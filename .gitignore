@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Downloaded model weights (large; re-downloaded on first run)
+models/
+artifacts/
+
+# Training-only venv + logs (regenerable; never shipped to production)
+.venv-train/
+.venv-backend/
+training/train_run.log
+training/
+testing/
+
+# Private/client data and non-backend project material
+Data/
+guides/
+scripts/
+.claude/
+LABELING_RULES.md
+MLMODEL.md
+blueprint.md
+
+# OS
+.DS_Store

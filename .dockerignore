@@ -1,0 +1,7 @@
+.venv-train
+models
+Data/Raw_Data
+Data/stale
+__pycache__
+*.pyc
+.DS_Store

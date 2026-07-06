@@ -1,0 +1,10 @@
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+pydantic==2.11.7
+pydantic-settings==2.10.1
+onnxruntime==1.22.0
+numpy==2.2.6
+scikit-learn==1.9.0
+joblib==1.5.1
+transformers==4.53.1
+tokenizers==0.21.2
