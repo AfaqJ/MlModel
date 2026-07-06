@@ -9,7 +9,7 @@ client = TestClient(app)
 def test_health():
     response = client.get("/health")
     assert response.status_code == 200
-    assert response.json()["model_loaded"] is True
+    assert response.json()["model_loaded"] is False
 
 
 def test_model_info():

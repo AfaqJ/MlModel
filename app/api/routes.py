@@ -10,6 +10,7 @@ from app.api.schemas import (
     PredictResponse,
     RowError,
 )
+from app.core.runtime import get_bundle, get_predictor
 
 
 router = APIRouter()
@@ -20,18 +21,18 @@ def health(request: Request) -> dict:
     return {
         "status": "ok",
         "service_version": request.app.state.settings.service_version,
-        "model_loaded": hasattr(request.app.state, "predictor"),
+        "model_loaded": request.app.state.bundle is not None,
     }
 
 
 @router.get("/model-info")
 def model_info(request: Request) -> dict:
-    return request.app.state.bundle.info()
+    return get_bundle(request.app).info()
 
 
 @router.post("/predict", response_model=PredictResponse)
 def predict(payload: PredictRequest, request: Request) -> dict:
-    return request.app.state.predictor.predict(**payload.model_dump())
+    return get_predictor(request.app).predict(**payload.model_dump())
 
 
 @router.post("/predict-batch", response_model=BatchPredictResponse)
@@ -46,7 +47,7 @@ def predict_batch(payload: BatchPredictRequest, request: Request) -> dict:
     started = time.perf_counter()
     results = []
     counts = {"count": len(payload.items), "auto_accept": 0, "review_required": 0, "errors": 0}
-    predictor = request.app.state.predictor
+    predictor = get_predictor(request.app)
     for item in payload.items:
         try:
             data = item.model_dump()
@@ -60,7 +61,7 @@ def predict_batch(payload: BatchPredictRequest, request: Request) -> dict:
 
     return {
         "batch_id": payload.batch_id,
-        "model_version": request.app.state.bundle.model_version,
+        "model_version": get_bundle(request.app).model_version,
         "results": results,
         "summary": counts,
         "latency_ms": int((time.perf_counter() - started) * 1000),

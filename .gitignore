@@ -11,6 +11,7 @@ models/
 artifacts/*
 !artifacts/v1.0.0/
 !artifacts/v1.0.0/**
+artifacts/v1.0.0/__pycache__/
 
 # Training-only venv + logs (regenerable; never shipped to production)
 .venv-train/
