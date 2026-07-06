@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from pathlib import Path
 import time
 from fastapi import APIRouter, HTTPException, Request
 
@@ -28,6 +29,30 @@ def health(request: Request) -> dict:
 @router.get("/model-info")
 def model_info(request: Request) -> dict:
     return get_bundle(request.app).info()
+
+
+@router.get("/artifact-check")
+def artifact_check(request: Request) -> dict:
+    model_dir = Path(request.app.state.settings.model_dir)
+    files = {}
+    for relative in [
+        "model.onnx",
+        "classifier.joblib",
+        "model_card.json",
+        "labels.json",
+        "tokenizer/tokenizer.json",
+    ]:
+        path = model_dir / relative
+        exists = path.exists()
+        first_bytes = ""
+        if exists and path.is_file():
+            first_bytes = path.read_bytes()[:80].decode("utf-8", errors="replace")
+        files[relative] = {
+            "exists": exists,
+            "size_bytes": path.stat().st_size if exists else 0,
+            "looks_like_lfs_pointer": first_bytes.startswith("version https://git-lfs.github.com/spec"),
+        }
+    return {"model_dir": str(model_dir), "files": files}
 
 
 @router.post("/predict", response_model=PredictResponse)
