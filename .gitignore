@@ -8,7 +8,9 @@ venv/
 
 # Downloaded model weights (large; re-downloaded on first run)
 models/
-artifacts/
+artifacts/*
+!artifacts/v1.0.0/
+!artifacts/v1.0.0/**
 
 # Training-only venv + logs (regenerable; never shipped to production)
 .venv-train/

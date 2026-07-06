@@ -1,0 +1,570 @@
+[
+  {
+    "new_code": "ING-0.1",
+    "parent": "INGRESOS DE EXPLOTACION",
+    "leaf": "VENTA DE LECHE",
+    "description": "MILK SALES | enviar facturas colun 12 meses",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ING-0.2",
+    "parent": "INGRESOS DE EXPLOTACION",
+    "leaf": "VENTA DE VACAS",
+    "description": "COW SALES",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ING-0.3",
+    "parent": "INGRESOS DE EXPLOTACION",
+    "leaf": "VENTA VAQUILLAS",
+    "description": "HEIFER SALES",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ING-0.4",
+    "parent": "INGRESOS DE EXPLOTACION",
+    "leaf": "VENTA TERNEROS",
+    "description": "CALVES SALES",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ING-0.5",
+    "parent": "INGRESOS DE EXPLOTACION",
+    "leaf": "VENTA DE OTROS ANIMALES",
+    "description": "OTHER CATEGORY OF ANIMALS SALES",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ING-0.6",
+    "parent": "INGRESOS DE EXPLOTACION",
+    "leaf": "VENTA LEÑA",
+    "description": "very eventual, not normally used. Wood sales | codigo audysoft | practicamente no la usamos",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-1.1",
+    "parent": "REMUNERACIONES OPERACIONES",
+    "leaf": "Otros Gastos RRHH",
+    "description": "trainings and education for staff, staff events, food for staff meetings. Does not include lunches & food for managing positions | Capacitaciones, eventos, regalias colaciones personal (no gerencia), etc | All wages and salaries paid to farm employees",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-2.1",
+    "parent": "SALUD ANIMAL",
+    "leaf": "Terapias Secado",
+    "description": "Dry cow therapy (veterinary products), antibiotics | enviar algunos nombres de terapias que hemos usado | Vet bills, animal remedies, drenches, vaccines, and other health-related costs for the herd. Includes animal health supplies for calves and cows.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-2.2",
+    "parent": "SALUD ANIMAL",
+    "leaf": "Medicamentos Mastitis",
+    "description": "Mastitis drugs medicaments | CMT, medicamentos pomos | Vet bills, animal remedies, drenches, vaccines, and other health-related costs for the herd. Includes animal health supplies for calves and cows.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-2.3",
+    "parent": "SALUD ANIMAL",
+    "leaf": "Vacunas",
+    "description": "Vaccines | de acuerdo a protocolo sanitario. Cattle master, leptospira, etc | Vet bills, animal remedies, drenches, vaccines, and other health-related costs for the herd. Includes animal health supplies for calves and cows.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-2.4",
+    "parent": "SALUD ANIMAL",
+    "leaf": "Sales Minerales",
+    "description": "Cattle mineral salts | Vet bills, animal remedies, drenches, vaccines, and other health-related costs for the herd. Includes animal health supplies for calves and cows.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-2.5",
+    "parent": "SALUD ANIMAL",
+    "leaf": "Otros Medicamentos",
+    "description": "Other animal medicines not specifically classified as mastitis drugs, vaccines, dry-cow therapy, mineral salts, or reproduction supplies. | ket10, pederol, etc | Vet bills, animal remedies, drenches, vaccines, and other health-related costs for the herd. Includes animal health supplies for calves and cows.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-2.6",
+    "parent": "SALUD ANIMAL",
+    "leaf": "Otros Gastos Salud Animal",
+    "description": "ear tags, syrings, needles, | Aretes, elementos partos, tacos, pegamento, agujas, jeringas | Vet bills, animal remedies, drenches, vaccines, and other health-related costs for the herd. Includes animal health supplies for calves and cows.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-3.1",
+    "parent": "REPRODUCCION",
+    "leaf": "Inseminacion Artificial",
+    "description": "Semen, reproductive hormones, pipettes, artificial insemination supplies, pregnancy/breeding services, and bull hire. | semen, hormonas, pipetas, etc. Arriendo toros | semen, hormonas | Artificial breeding (AB) fees, herd testing, pregnancy testing, bull hire, and related costs. May also include DNA testing and anoestrous treatments. | ?? Meterlo en salud animal?",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-4.1",
+    "parent": "ALIMENTOS CONFECCIONADOS",
+    "leaf": "Parva Silo",
+    "description": "Contractors for pile silage, plastics | servicios agricolas parva, plasticos parva | The cost of \"supplements made at the farm\" covers all expenses involved in producing these feeds. This includes contractor costs for raking, baling, and wrapping (for baleage or silage), as well as incidentals like transport of feed back to the milking area. For example, a budget might include the cost of making 400 bales of baleage, covering all contractor and handling costs.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-4.2",
+    "parent": "ALIMENTOS CONFECCIONADOS",
+    "leaf": "Bolos Silo",
+    "description": "contractors for bale silage, plastics | servicios agricolas confeccion bolos, plastico, traslados | plasticos pueden ser para diferentes categorias, como automatizar? | The cost of \"supplements made at the farm\" covers all expenses involved in producing these feeds. This includes contractor costs for raking, baling, and wrapping (for baleage or silage), as well as incidentals like transport of feed back to the milking area. For example, a budget might include the cost of making 400 bales of baleage, covering all contractor and handling costs.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-4.3",
+    "parent": "ALIMENTOS CONFECCIONADOS",
+    "leaf": "Bolos Heno",
+    "description": "contractos for hey silage, plastics | servicios agricolas pasto seco bolos, plastico | The cost of \"supplements made at the farm\" covers all expenses involved in producing these feeds. This includes contractor costs for raking, baling, and wrapping (for baleage or silage), as well as incidentals like transport of feed back to the milking area. For example, a budget might include the cost of making 400 bales of baleage, covering all contractor and handling costs.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-5.1",
+    "parent": "ALIMENTOS COMPRADOS",
+    "leaf": "Concentrado Vacas",
+    "description": "concentrate or maiz for cows | concentrado vacas, maiz roleados",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-5.2",
+    "parent": "ALIMENTOS COMPRADOS",
+    "leaf": "Concentrado Crianza",
+    "description": "concentrate for calves | conc inicial, crecimiento",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-5.3",
+    "parent": "ALIMENTOS COMPRADOS",
+    "leaf": "Concentrado Otros Animales",
+    "description": "concentrate for other animals",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-5.4",
+    "parent": "ALIMENTOS COMPRADOS",
+    "leaf": "Bolos",
+    "description": "silage bales bought. For control of inventory this mas be addes to bolos silo made at farm. Its the same product but one is made at farm and the other is bought from other farms. | compra de bolos de silo",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-5.5",
+    "parent": "ALIMENTOS COMPRADOS",
+    "leaf": "Sustituto Lacteo",
+    "description": "Milk replacer for calves (sustituto lacteo). Powdered or liquid milk substitute fed to calves instead of whole milk.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-6.1",
+    "parent": "FERTILIZANTES Y ENMIENDAS",
+    "leaf": "Fosforo",
+    "description": "phosphorus base fertilizers | fertilizantes fosfatados: Fosfato monoamonico, fosfato diamonico, superfosfato triple, trefos | Fertilizers and soil amendments",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-6.2",
+    "parent": "FERTILIZANTES Y ENMIENDAS",
+    "leaf": "Nitrogeno",
+    "description": "nitrogen based fertilizers | diferentes tipos de urea (smart, 40, smart blue), Can27, qrop adhero, Amintec. Fertilizantes base nitrogeno | Fertilizers and soil amendments",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-6.3",
+    "parent": "FERTILIZANTES Y ENMIENDAS",
+    "leaf": "Cal",
+    "description": "lime | cal iansa, cal colun | Fertilizers and soil amendments",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-6.4",
+    "parent": "FERTILIZANTES Y ENMIENDAS",
+    "leaf": "Guano",
+    "description": "Hen manure | Fertilizers and soil amendments",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-6.5",
+    "parent": "FERTILIZANTES Y ENMIENDAS",
+    "leaf": "Otros Fertilizantes",
+    "description": "other fertilizers, soil & plant improvers | muriato potasio, vitramag, etc | Fertilizers and soil amendments",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-7.0",
+    "parent": "AGROQUIMICOS",
+    "leaf": "AGROQUIMICOS",
+    "description": "Chemicals, sprays, and contracting for weed and pest control on pastures and crops.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-8.1",
+    "parent": "PRADERA",
+    "leaf": "Pradera Perenne",
+    "description": "Perennial grass establishment | Semillas perenne, servicio agricola siembra, preparacion suelo | mismos insumos pueden tener diferente categorizacion | Costs for pasture renewal: seed, spray, cultivation, drilling, and related contracting. Excludes fuel and vehicle costs.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-8.2",
+    "parent": "PRADERA",
+    "leaf": "Pradera Rotacion Corta",
+    "description": "Short rotation grass establishment | Semillas RC, servicio agricola siembra, preparacion suelo | Costs for pasture renewal: seed, spray, cultivation, drilling, and related contracting. Excludes fuel and vehicle costs.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-8.3",
+    "parent": "PRADERA",
+    "leaf": "Repoblamiento",
+    "description": "Pasture re-seeding | Semillas, servicio agricola siembra, preparacion suelo | Costs for pasture renewal: seed, spray, cultivation, drilling, and related contracting. Excludes fuel and vehicle costs.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-8.4",
+    "parent": "PRADERA",
+    "leaf": "Otros Cultivos",
+    "description": "other crops | rutabaga, raps (semilla, serv agricola siembra, preparacion suelo | Costs for pasture renewal: seed, spray, cultivation, drilling, and related contracting. Excludes fuel and vehicle costs.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-9.1",
+    "parent": "RIEGO",
+    "leaf": "Energia Electrica Riego",
+    "description": "Electricity for irrigations systems | indicar proveedor y servicio | Electricity, fuel, and water rates for irrigation equipment.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-9.2",
+    "parent": "RIEGO",
+    "leaf": "Otros Gastos Riego",
+    "description": "manteinance, spare parts, | repuestos cooprinsem, mantencion riego cooprinsem | Electricity, fuel, and water rates for irrigation equipment.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-10.1",
+    "parent": "LECHERIA",
+    "leaf": "Mantencion Sala",
+    "description": "Shed inspections and mateinance, rubberware | mantenciones GEA, serlac estanques, filtros | un proveedor puede estar en diferentes categorias",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-10.2",
+    "parent": "LECHERIA",
+    "leaf": "Diping",
+    "description": "Teat dipping products and teat disinfectants used in the dairy shed.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-10.3",
+    "parent": "LECHERIA",
+    "leaf": "Detergentes e higenizantes",
+    "description": "Detergents, sanitizers, cleaners, and hygiene chemicals for the dairy shed.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-10.4",
+    "parent": "LECHERIA",
+    "leaf": "Otros Gastos Lecheria",
+    "description": "other shed expenses",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-11.1",
+    "parent": "COMBUSTIBLE Y ENERGIA",
+    "leaf": "Electricidad Lecheria",
+    "description": "Shed electricity | indicar proveedores y servicios | Fuels and electric Power. Excludes irrigation electricity, which is listed separately. | No incluye servicios Riego",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-11.2",
+    "parent": "COMBUSTIBLE Y ENERGIA",
+    "leaf": "Electricidad Casas e Instalaciones",
+    "description": "Electricty for Houses & other buildings | indicar proveedores y servicios | Fuels and electric Power. Excludes irrigation electricity, which is listed separately. | No incluye servicios Riego",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-11.3",
+    "parent": "COMBUSTIBLE Y ENERGIA",
+    "leaf": "Petroleo",
+    "description": "Diesel | Fuels and electric Power. Excludes irrigation electricity, which is listed separately. | No incluye servicios Riego",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-11.4",
+    "parent": "COMBUSTIBLE Y ENERGIA",
+    "leaf": "Bencina",
+    "description": "Gasoline | bencina uso campos directo, no vehiculos admin | Fuels and electric Power. Excludes irrigation electricity, which is listed separately. | No incluye servicios Riego",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-11.5",
+    "parent": "COMBUSTIBLE Y ENERGIA",
+    "leaf": "Gas",
+    "description": "Natural Gas | Fuels and electric Power. Excludes irrigation electricity, which is listed separately. | No incluye servicios Riego",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-12.1",
+    "parent": "LABORATORIO",
+    "leaf": "Analisis Suelo y forraje",
+    "description": "Soil and feed testing | ejemplos cooprinsem",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-12.2",
+    "parent": "LABORATORIO",
+    "leaf": "Analisis Animales",
+    "description": "animal testing | colun, coopri. Control lechero, muestras sangre, etc",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-13.1",
+    "parent": "MAQUINARIA Y VEHICULOS",
+    "leaf": "Mantencion Maquinaria",
+    "description": "Machine repairs & maintenance, oil, grease | (lubricantes, neumaticos, mantenciones etc, permisos)",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-13.2",
+    "parent": "MAQUINARIA Y VEHICULOS",
+    "leaf": "Mantencion Motos",
+    "description": "motorcycle & quads maintenance",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-13.3",
+    "parent": "MAQUINARIA Y VEHICULOS",
+    "leaf": "Mantencion Vehiculos",
+    "description": "vehicule and trucks maintenance | (rev tecnica, permisos, mantenciones, neumaticos) | NO TODO TIENE XML",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-14.1",
+    "parent": "REPARACIONES Y MANTENCIONES",
+    "leaf": "Mantencion Caminos",
+    "description": "roads and runs maintenance. Includes material, contractors | arriendo maquinaria, fletes material, servicios geopartner, pinilla | un servicio puede estar en diferentes categorias | R&M covers all the ongoing costs to keep land, buildings, plant, and equipment in good working order, ensuring the farm runs smoothly and assets are maintained for the long term.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-14.2",
+    "parent": "REPARACIONES Y MANTENCIONES",
+    "leaf": "Mantencion Cercos",
+    "description": "fence maintenance | herramientas, alambre, aisladores, estacas, manillas, carretes, servicios | R&M covers all the ongoing costs to keep land, buildings, plant, and equipment in good working order, ensuring the farm runs smoothly and assets are maintained for the long term.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-14.3",
+    "parent": "REPARACIONES Y MANTENCIONES",
+    "leaf": "Mantencion Agua y Purines",
+    "description": "water supply & manure network maintenance. Pumps | mangueras, fittings, robinson hott servicios | R&M covers all the ongoing costs to keep land, buildings, plant, and equipment in good working order, ensuring the farm runs smoothly and assets are maintained for the long term.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-14.4",
+    "parent": "REPARACIONES Y MANTENCIONES",
+    "leaf": "Mantencion Instalaciones",
+    "description": "Houses & other buildings maintenance. | casas, galpones, ternerera. Materiales y servicios | R&M covers all the ongoing costs to keep land, buildings, plant, and equipment in good working order, ensuring the farm runs smoothly and assets are maintained for the long term.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-15.1",
+    "parent": "SERVICIOS",
+    "leaf": "Servicios Agronomicos",
+    "description": "agronomic consultancy | Aichele",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-15.2",
+    "parent": "SERVICIOS",
+    "leaf": "Servicios Veterinarios",
+    "description": "veterinary consultancy | Lecherias del sur y otros vet",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-15.3",
+    "parent": "SERVICIOS",
+    "leaf": "Fletes",
+    "description": "animal freights, Freight not assigned to other categories | traslado animales, fletes compras y otros (no traslados maicillo caminos)",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-15.4",
+    "parent": "SERVICIOS",
+    "leaf": "Arriendo Maquinaria y Vehiculos",
+    "description": "machine and vehicules leases | myo, arriendo tractor, arriendo retro pelleco",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-15.5",
+    "parent": "SERVICIOS",
+    "leaf": "Servicios Agricolas",
+    "description": "contractos not assigned to other categories | Fertilizaciones, purines, fumigaciones. NO siembras, NO preparacion de Suelos, NO ensilajes",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-16.1",
+    "parent": "GASTOS GENERALES CAMPO",
+    "leaf": "Ropa y Herramientas de Trabajo",
+    "description": "protective work clothing and equipment, biosecurity supplies | Apro, botas, overoles, pecheras, guantes, EPP",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "EXP-16.2",
+    "parent": "GASTOS GENERALES CAMPO",
+    "leaf": "Otros Gastos Campo",
+    "description": "other general farm expenses. rubbish disposal and recycling | agua, paja, aserrin, bioseguridad, reciclaje y residuos",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.2",
+    "parent": "ADMINISTRACION",
+    "leaf": "Comunicaciones e Internet",
+    "description": "internet and communications | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.3",
+    "parent": "ADMINISTRACION",
+    "leaf": "Arriendo Oficina",
+    "description": "Office lease | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.4",
+    "parent": "ADMINISTRACION",
+    "leaf": "Movilizacion",
+    "description": "administration mobilization. Plane tickets, gas | (bencinas adm, peajes, arriendo auto) | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.5",
+    "parent": "ADMINISTRACION",
+    "leaf": "Colacion y Alojamiento",
+    "description": "administration food expenses, and acommodation expenses | (almuerzos, café, etc) administracion | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.6",
+    "parent": "ADMINISTRACION",
+    "leaf": "Utiles y gastos de oficina.",
+    "description": "Office Supplies and Expenses | (aseo, impresión, coputacion, etc). Utiles de aseo | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.7",
+    "parent": "ADMINISTRACION",
+    "leaf": "Otros Gastos Administracion",
+    "description": "Other Administration Expenses | (envios, encomienda, notaria, donaciones, cuotas gremiales | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.8",
+    "parent": "ADMINISTRACION",
+    "leaf": "Asesoria Contable",
+    "description": "Accounting Advisory | audytax, audysoft | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.9",
+    "parent": "ADMINISTRACION",
+    "leaf": "Asesoria Legal",
+    "description": "Legal Advisory | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-1.10",
+    "parent": "ADMINISTRACION",
+    "leaf": "Otros Servicios y Asesorias",
+    "description": "Other Services and Advisory | Software chipax, fieldata, carlos gallardo | Accountancy, consultancy, legal fees, communication, advertising, resource consent fees, stationery, and subscriptions. Excludes private expenses.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-2.1",
+    "parent": "SEGUROS",
+    "leaf": "Seguros Vehiculos",
+    "description": "Vehicle Insurance | Insurance for farm assets, public liability, milk loss, and livestock. Excludes private dwelling insurance.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-2.2",
+    "parent": "SEGUROS",
+    "leaf": "Seguros Trabajadores",
+    "description": "Workers Insurance | Insurance for farm assets, public liability, milk loss, and livestock. Excludes private dwelling insurance.",
+    "color_note": "",
+    "excluded_reason": ""
+  },
+  {
+    "new_code": "ADM-2.3",
+    "parent": "SEGUROS",
+    "leaf": "Seguros Otros",
+    "description": "Other Insurance (shed, buildings) | Insurance for farm assets, public liability, milk loss, and livestock. Excludes private dwelling insurance.",
+    "color_note": "",
+    "excluded_reason": ""
+  }
+]

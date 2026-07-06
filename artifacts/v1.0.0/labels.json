@@ -1,0 +1,649 @@
+{
+  "classifier_classes": [
+    "ADM-1.10",
+    "ADM-1.2",
+    "ADM-1.3",
+    "ADM-1.4",
+    "ADM-1.5",
+    "ADM-1.6",
+    "ADM-1.7",
+    "ADM-1.8",
+    "ADM-2.1",
+    "ADM-2.2",
+    "ADM-2.3",
+    "EXP-1.1",
+    "EXP-10.1",
+    "EXP-10.2",
+    "EXP-10.3",
+    "EXP-10.4",
+    "EXP-11.1",
+    "EXP-11.2",
+    "EXP-11.3",
+    "EXP-11.4",
+    "EXP-11.5",
+    "EXP-12.1",
+    "EXP-12.2",
+    "EXP-13.1",
+    "EXP-13.2",
+    "EXP-13.3",
+    "EXP-14.1",
+    "EXP-14.2",
+    "EXP-14.3",
+    "EXP-14.4",
+    "EXP-15.1",
+    "EXP-15.2",
+    "EXP-15.3",
+    "EXP-15.4",
+    "EXP-15.5",
+    "EXP-16.1",
+    "EXP-16.2",
+    "EXP-2.1",
+    "EXP-2.2",
+    "EXP-2.3",
+    "EXP-2.4",
+    "EXP-2.5",
+    "EXP-2.6",
+    "EXP-3.1",
+    "EXP-4.1",
+    "EXP-4.2",
+    "EXP-4.3",
+    "EXP-5.1",
+    "EXP-5.2",
+    "EXP-5.3",
+    "EXP-5.4",
+    "EXP-5.5",
+    "EXP-6.1",
+    "EXP-6.2",
+    "EXP-6.3",
+    "EXP-6.4",
+    "EXP-6.5",
+    "EXP-7.0",
+    "EXP-8.1",
+    "EXP-8.2",
+    "EXP-8.3",
+    "EXP-8.4",
+    "EXP-9.1",
+    "EXP-9.2",
+    "ING-0.2",
+    "ING-0.4"
+  ],
+  "labels": [
+    {
+      "code": "ING-0.1",
+      "parent": "INGRESOS DE EXPLOTACION",
+      "name": "VENTA DE LECHE",
+      "trained": false,
+      "weak": true,
+      "gold_examples": 1
+    },
+    {
+      "code": "ING-0.2",
+      "parent": "INGRESOS DE EXPLOTACION",
+      "name": "VENTA DE VACAS",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 3
+    },
+    {
+      "code": "ING-0.3",
+      "parent": "INGRESOS DE EXPLOTACION",
+      "name": "VENTA VAQUILLAS",
+      "trained": false,
+      "weak": true,
+      "gold_examples": 1
+    },
+    {
+      "code": "ING-0.4",
+      "parent": "INGRESOS DE EXPLOTACION",
+      "name": "VENTA TERNEROS",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 2
+    },
+    {
+      "code": "ING-0.5",
+      "parent": "INGRESOS DE EXPLOTACION",
+      "name": "VENTA DE OTROS ANIMALES",
+      "trained": false,
+      "weak": true,
+      "gold_examples": 0
+    },
+    {
+      "code": "ING-0.6",
+      "parent": "INGRESOS DE EXPLOTACION",
+      "name": "VENTA LEÑA",
+      "trained": false,
+      "weak": true,
+      "gold_examples": 1
+    },
+    {
+      "code": "EXP-1.1",
+      "parent": "REMUNERACIONES OPERACIONES",
+      "name": "Otros Gastos RRHH",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 5
+    },
+    {
+      "code": "EXP-2.1",
+      "parent": "SALUD ANIMAL",
+      "name": "Terapias Secado",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 8
+    },
+    {
+      "code": "EXP-2.2",
+      "parent": "SALUD ANIMAL",
+      "name": "Medicamentos Mastitis",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 17
+    },
+    {
+      "code": "EXP-2.3",
+      "parent": "SALUD ANIMAL",
+      "name": "Vacunas",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 19
+    },
+    {
+      "code": "EXP-2.4",
+      "parent": "SALUD ANIMAL",
+      "name": "Sales Minerales",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 12
+    },
+    {
+      "code": "EXP-2.5",
+      "parent": "SALUD ANIMAL",
+      "name": "Otros Medicamentos",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 84
+    },
+    {
+      "code": "EXP-2.6",
+      "parent": "SALUD ANIMAL",
+      "name": "Otros Gastos Salud Animal",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 115
+    },
+    {
+      "code": "EXP-3.1",
+      "parent": "REPRODUCCION",
+      "name": "Inseminacion Artificial",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 22
+    },
+    {
+      "code": "EXP-4.1",
+      "parent": "ALIMENTOS CONFECCIONADOS",
+      "name": "Parva Silo",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 10
+    },
+    {
+      "code": "EXP-4.2",
+      "parent": "ALIMENTOS CONFECCIONADOS",
+      "name": "Bolos Silo",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 21
+    },
+    {
+      "code": "EXP-4.3",
+      "parent": "ALIMENTOS CONFECCIONADOS",
+      "name": "Bolos Heno",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 15
+    },
+    {
+      "code": "EXP-5.1",
+      "parent": "ALIMENTOS COMPRADOS",
+      "name": "Concentrado Vacas",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 4
+    },
+    {
+      "code": "EXP-5.2",
+      "parent": "ALIMENTOS COMPRADOS",
+      "name": "Concentrado Crianza",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 10
+    },
+    {
+      "code": "EXP-5.3",
+      "parent": "ALIMENTOS COMPRADOS",
+      "name": "Concentrado Otros Animales",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 14
+    },
+    {
+      "code": "EXP-5.4",
+      "parent": "ALIMENTOS COMPRADOS",
+      "name": "Bolos",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 8
+    },
+    {
+      "code": "EXP-5.5",
+      "parent": "ALIMENTOS COMPRADOS",
+      "name": "Sustituto Lacteo",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 4
+    },
+    {
+      "code": "EXP-6.1",
+      "parent": "FERTILIZANTES Y ENMIENDAS",
+      "name": "Fosforo",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 8
+    },
+    {
+      "code": "EXP-6.2",
+      "parent": "FERTILIZANTES Y ENMIENDAS",
+      "name": "Nitrogeno",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 17
+    },
+    {
+      "code": "EXP-6.3",
+      "parent": "FERTILIZANTES Y ENMIENDAS",
+      "name": "Cal",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 23
+    },
+    {
+      "code": "EXP-6.4",
+      "parent": "FERTILIZANTES Y ENMIENDAS",
+      "name": "Guano",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 2
+    },
+    {
+      "code": "EXP-6.5",
+      "parent": "FERTILIZANTES Y ENMIENDAS",
+      "name": "Otros Fertilizantes",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 15
+    },
+    {
+      "code": "EXP-7.0",
+      "parent": "AGROQUIMICOS",
+      "name": "AGROQUIMICOS",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 36
+    },
+    {
+      "code": "EXP-8.1",
+      "parent": "PRADERA",
+      "name": "Pradera Perenne",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 28
+    },
+    {
+      "code": "EXP-8.2",
+      "parent": "PRADERA",
+      "name": "Pradera Rotacion Corta",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 8
+    },
+    {
+      "code": "EXP-8.3",
+      "parent": "PRADERA",
+      "name": "Repoblamiento",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 4
+    },
+    {
+      "code": "EXP-8.4",
+      "parent": "PRADERA",
+      "name": "Otros Cultivos",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 14
+    },
+    {
+      "code": "EXP-9.1",
+      "parent": "RIEGO",
+      "name": "Energia Electrica Riego",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 26
+    },
+    {
+      "code": "EXP-9.2",
+      "parent": "RIEGO",
+      "name": "Otros Gastos Riego",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 38
+    },
+    {
+      "code": "EXP-10.1",
+      "parent": "LECHERIA",
+      "name": "Mantencion Sala",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 30
+    },
+    {
+      "code": "EXP-10.2",
+      "parent": "LECHERIA",
+      "name": "Diping",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 2
+    },
+    {
+      "code": "EXP-10.3",
+      "parent": "LECHERIA",
+      "name": "Detergentes e higenizantes",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 17
+    },
+    {
+      "code": "EXP-10.4",
+      "parent": "LECHERIA",
+      "name": "Otros Gastos Lecheria",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 9
+    },
+    {
+      "code": "EXP-11.1",
+      "parent": "COMBUSTIBLE Y ENERGIA",
+      "name": "Electricidad Lecheria",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 67
+    },
+    {
+      "code": "EXP-11.2",
+      "parent": "COMBUSTIBLE Y ENERGIA",
+      "name": "Electricidad Casas e Instalaciones",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 5
+    },
+    {
+      "code": "EXP-11.3",
+      "parent": "COMBUSTIBLE Y ENERGIA",
+      "name": "Petroleo",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 11
+    },
+    {
+      "code": "EXP-11.4",
+      "parent": "COMBUSTIBLE Y ENERGIA",
+      "name": "Bencina",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 17
+    },
+    {
+      "code": "EXP-11.5",
+      "parent": "COMBUSTIBLE Y ENERGIA",
+      "name": "Gas",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 24
+    },
+    {
+      "code": "EXP-12.1",
+      "parent": "LABORATORIO",
+      "name": "Analisis Suelo y forraje",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 29
+    },
+    {
+      "code": "EXP-12.2",
+      "parent": "LABORATORIO",
+      "name": "Analisis Animales",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 63
+    },
+    {
+      "code": "EXP-13.1",
+      "parent": "MAQUINARIA Y VEHICULOS",
+      "name": "Mantencion Maquinaria",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 45
+    },
+    {
+      "code": "EXP-13.2",
+      "parent": "MAQUINARIA Y VEHICULOS",
+      "name": "Mantencion Motos",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 21
+    },
+    {
+      "code": "EXP-13.3",
+      "parent": "MAQUINARIA Y VEHICULOS",
+      "name": "Mantencion Vehiculos",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 27
+    },
+    {
+      "code": "EXP-14.1",
+      "parent": "REPARACIONES Y MANTENCIONES",
+      "name": "Mantencion Caminos",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 20
+    },
+    {
+      "code": "EXP-14.2",
+      "parent": "REPARACIONES Y MANTENCIONES",
+      "name": "Mantencion Cercos",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 58
+    },
+    {
+      "code": "EXP-14.3",
+      "parent": "REPARACIONES Y MANTENCIONES",
+      "name": "Mantencion Agua y Purines",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 23
+    },
+    {
+      "code": "EXP-14.4",
+      "parent": "REPARACIONES Y MANTENCIONES",
+      "name": "Mantencion Instalaciones",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 27
+    },
+    {
+      "code": "EXP-15.1",
+      "parent": "SERVICIOS",
+      "name": "Servicios Agronomicos",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 5
+    },
+    {
+      "code": "EXP-15.2",
+      "parent": "SERVICIOS",
+      "name": "Servicios Veterinarios",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 7
+    },
+    {
+      "code": "EXP-15.3",
+      "parent": "SERVICIOS",
+      "name": "Fletes",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 17
+    },
+    {
+      "code": "EXP-15.4",
+      "parent": "SERVICIOS",
+      "name": "Arriendo Maquinaria y Vehiculos",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 12
+    },
+    {
+      "code": "EXP-15.5",
+      "parent": "SERVICIOS",
+      "name": "Servicios Agricolas",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 14
+    },
+    {
+      "code": "EXP-16.1",
+      "parent": "GASTOS GENERALES CAMPO",
+      "name": "Ropa y Herramientas de Trabajo",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 135
+    },
+    {
+      "code": "EXP-16.2",
+      "parent": "GASTOS GENERALES CAMPO",
+      "name": "Otros Gastos Campo",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 27
+    },
+    {
+      "code": "ADM-1.2",
+      "parent": "ADMINISTRACION",
+      "name": "Comunicaciones e Internet",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 13
+    },
+    {
+      "code": "ADM-1.3",
+      "parent": "ADMINISTRACION",
+      "name": "Arriendo Oficina",
+      "trained": true,
+      "weak": true,
+      "gold_examples": 7
+    },
+    {
+      "code": "ADM-1.4",
+      "parent": "ADMINISTRACION",
+      "name": "Movilizacion",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 22
+    },
+    {
+      "code": "ADM-1.5",
+      "parent": "ADMINISTRACION",
+      "name": "Colacion y Alojamiento",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 15
+    },
+    {
+      "code": "ADM-1.6",
+      "parent": "ADMINISTRACION",
+      "name": "Utiles y gastos de oficina.",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 27
+    },
+    {
+      "code": "ADM-1.7",
+      "parent": "ADMINISTRACION",
+      "name": "Otros Gastos Administracion",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 112
+    },
+    {
+      "code": "ADM-1.8",
+      "parent": "ADMINISTRACION",
+      "name": "Asesoria Contable",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 16
+    },
+    {
+      "code": "ADM-1.9",
+      "parent": "ADMINISTRACION",
+      "name": "Asesoria Legal",
+      "trained": false,
+      "weak": true,
+      "gold_examples": 1
+    },
+    {
+      "code": "ADM-1.10",
+      "parent": "ADMINISTRACION",
+      "name": "Otros Servicios y Asesorias",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 22
+    },
+    {
+      "code": "ADM-2.1",
+      "parent": "SEGUROS",
+      "name": "Seguros Vehiculos",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 17
+    },
+    {
+      "code": "ADM-2.2",
+      "parent": "SEGUROS",
+      "name": "Seguros Trabajadores",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 29
+    },
+    {
+      "code": "ADM-2.3",
+      "parent": "SEGUROS",
+      "name": "Seguros Otros",
+      "trained": true,
+      "weak": false,
+      "gold_examples": 16
+    }
+  ],
+  "excluded_categories": [
+    "Contratados",
+    "Honorarios",
+    "Arriendo Predio Lecheria",
+    "Arriendo Otros Predios",
+    "Arriendo Casas",
+    "Impuestos, comisiones, multas",
+    "Remuneraciones Administracion"
+  ]
+}
