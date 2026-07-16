@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field, ConfigDict
 
 
 Decision = Literal["auto_accept", "review_required"]
-Source = Literal["model", "product_lookup"]
+Source = Literal["model", "product_lookup", "meter_lookup"]
 
 
 class PredictRequest(BaseModel):
@@ -15,6 +15,12 @@ class PredictRequest(BaseModel):
     item_text: str = Field(min_length=1, max_length=512)
     description: str = Field(default="", max_length=512)
     provider: str = Field(default="", max_length=256)
+    meter_code: str | None = Field(
+        default=None,
+        max_length=64,
+        description="Electricity meter / CdgIntRecep. When present and known, resolves "
+        "deterministically via the meter lookup instead of the ML model.",
+    )
     invoice_metadata: dict[str, Any] = Field(default_factory=dict)
     top_k: int = Field(default=3, ge=1, le=10)
     return_debug: bool = False

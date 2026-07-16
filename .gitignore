@@ -31,3 +31,13 @@ blueprint.md
 
 # OS
 .DS_Store
+
+# Backend runtime data packaged into Docker
+!app/data/
+!app/data/*.csv
+
+# Versioned deployment artifacts
+!artifacts/v1.1.0/
+!artifacts/v1.1.0/**
+artifacts/v1.1.0/__pycache__/
+artifacts/v1.1.0/.DS_Store

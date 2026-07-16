@@ -29,12 +29,22 @@ class Predictor:
         item_text: str,
         description: str = "",
         provider: str = "",
+        meter_code: str | None = None,
         invoice_metadata: dict | None = None,
         input_id: str | None = None,
         top_k: int = 3,
         return_debug: bool = False,
     ) -> dict:
         started = time.perf_counter()
+
+        # Deterministic electricity path: when a known meter (CdgIntRecep) is
+        # supplied, the category is fixed by the client's meter map and the ML
+        # model is skipped entirely. An unknown meter falls through to the model.
+        if meter_code:
+            meter_hit = self.bundle.meter_lookup.match(meter_code)
+            if meter_hit:
+                return self._meter_response(meter_hit, meter_code, input_id, started, top_k, return_debug)
+
         lookup_hit = self.bundle.lookup.match(item_text, provider)
         text = self.build_text(item_text, description, provider)
         embedding = self.bundle.encoder.embed([text])
@@ -96,6 +106,37 @@ class Predictor:
                 "lookup_hit": None if not lookup_hit else lookup_hit.__dict__,
                 "model_top1": model_top[0],
             }
+        return response
+
+    def _meter_response(self, hit, meter_code, input_id, started, top_k, return_debug) -> dict:
+        prediction = {
+            "code": hit.category_code,
+            "name": self.bundle.names.get(hit.category_code, ""),
+            "score": 1.0,
+        }
+        decision = decide(
+            source="meter_lookup",
+            code1=hit.category_code,
+            top1=1.0,
+            margin=1.0,
+            weak_classes=self.bundle.weak_classes,
+            thresholds=self.bundle.thresholds,
+            shadow_mode=self.shadow_mode,
+        )
+        latency_ms = int((time.perf_counter() - started) * 1000)
+        response = {
+            "input_id": input_id,
+            "model_version": self.bundle.model_version,
+            "source": "meter_lookup",
+            "predictions": [prediction][:top_k],
+            "confidence": {"top1": 1.0, "margin": 1.0, "entropy": 0.0},
+            "decision": decision.decision,
+            "reason": decision.reason,
+            "latency_ms": latency_ms,
+            "debug": None,
+        }
+        if return_debug:
+            response["debug"] = {"meter_hit": hit.__dict__, "meter_code": meter_code}
         return response
 
     def _prediction(self, code: str, score: float) -> dict:

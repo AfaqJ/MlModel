@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import time
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app.api.schemas import (
     BatchPredictRequest,
@@ -11,7 +11,12 @@ from app.api.schemas import (
     PredictResponse,
     RowError,
 )
-from app.core.runtime import get_bundle, get_predictor
+from app.core.config import Settings
+from app.core.runtime import (
+    bundle_dependency,
+    predictor_dependency,
+    settings_dependency,
+)
 
 
 router = APIRouter()
@@ -19,6 +24,8 @@ router = APIRouter()
 
 @router.get("/health")
 def health(request: Request) -> dict:
+    # health must NOT trigger a model load, so it peeks at app.state directly
+    # instead of using the bundle dependency (which would build the model).
     return {
         "status": "ok",
         "service_version": request.app.state.settings.service_version,
@@ -27,13 +34,13 @@ def health(request: Request) -> dict:
 
 
 @router.get("/model-info")
-def model_info(request: Request) -> dict:
-    return get_bundle(request.app).info()
+def model_info(bundle=Depends(bundle_dependency)) -> dict:
+    return bundle.info()
 
 
 @router.get("/artifact-check")
-def artifact_check(request: Request) -> dict:
-    model_dir = Path(request.app.state.settings.model_dir)
+def artifact_check(settings: Settings = Depends(settings_dependency)) -> dict:
+    model_dir = Path(settings.model_dir)
     files = {}
     for relative in [
         "model.onnx",
@@ -56,13 +63,19 @@ def artifact_check(request: Request) -> dict:
 
 
 @router.post("/predict", response_model=PredictResponse)
-def predict(payload: PredictRequest, request: Request) -> dict:
-    return get_predictor(request.app).predict(**payload.model_dump())
+def predict(payload: PredictRequest, predictor=Depends(predictor_dependency)) -> dict:
+    # `predictor` is left un-annotated on purpose: annotating it with `Predictor`
+    # would force importing the ML stack at startup and break the lazy load.
+    return predictor.predict(**payload.model_dump())
 
 
 @router.post("/predict-batch", response_model=BatchPredictResponse)
-def predict_batch(payload: BatchPredictRequest, request: Request) -> dict:
-    settings = request.app.state.settings
+def predict_batch(
+    payload: BatchPredictRequest,
+    settings: Settings = Depends(settings_dependency),
+    predictor=Depends(predictor_dependency),
+    bundle=Depends(bundle_dependency),
+) -> dict:
     if len(payload.items) > settings.max_batch_size:
         raise HTTPException(
             status_code=413,
@@ -72,7 +85,6 @@ def predict_batch(payload: BatchPredictRequest, request: Request) -> dict:
     started = time.perf_counter()
     results = []
     counts = {"count": len(payload.items), "auto_accept": 0, "review_required": 0, "errors": 0}
-    predictor = get_predictor(request.app)
     for item in payload.items:
         try:
             data = item.model_dump()
@@ -86,7 +98,7 @@ def predict_batch(payload: BatchPredictRequest, request: Request) -> dict:
 
     return {
         "batch_id": payload.batch_id,
-        "model_version": get_bundle(request.app).model_version,
+        "model_version": bundle.model_version,
         "results": results,
         "summary": counts,
         "latency_ms": int((time.perf_counter() - started) * 1000),

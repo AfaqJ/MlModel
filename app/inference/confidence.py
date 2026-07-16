@@ -30,7 +30,7 @@ def decide(
         return DecisionResult("review_required", "shadow_mode")
     if lookup_model_conflict:
         return DecisionResult("review_required", "lookup_model_conflict")
-    if source == "product_lookup":
+    if source in ("product_lookup", "meter_lookup"):
         return DecisionResult("auto_accept", None)
     if code1 in weak_classes:
         return DecisionResult("review_required", "weak_class")

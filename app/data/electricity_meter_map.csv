@@ -1,0 +1,23 @@
+rut_provider,provider,service_number,farm,unit,category_code,category_leaf,source
+81388600-6,COOP RURAL ELECTRICA RIO BUENO LTDA,124581,RAICES,kWh,EXP-11.1,Electricidad Lecheria,client_servicios_electricos_tab
+81388600-6,COOP RURAL ELECTRICA RIO BUENO LTDA,3021,RAICES,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81388600-6,COOP RURAL ELECTRICA RIO BUENO LTDA,28201,RAICES,kWh,EXP-9.1,Energia Electrica Riego,client_servicios_electricos_tab
+96531500-4,CIA ELECTRICA OSORNO S A,10001033,YUTRECO,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+96531500-4,CIA ELECTRICA OSORNO S A,10075628,YUTRECO,kWh,EXP-11.1,Electricidad Lecheria,client_servicios_electricos_tab
+96531500-4,CIA ELECTRICA OSORNO S A,12145473,YUTRECO,kWh,EXP-9.1,Energia Electrica Riego,client_servicios_electricos_tab
+96531500-4,CIA ELECTRICA OSORNO S A,10007909,PELLECO,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+96531500-4,CIA ELECTRICA OSORNO S A,10004624,PELLECO,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,53501,MAITEN,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,53502,MAITEN,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,53503,MAITEN,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,72901,MAITEN,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,358801,MAITEN,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,636501,MAITEN,kWh,EXP-11.1,Electricidad Lecheria,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,636502,MAITEN,kWh,EXP-9.1,Energia Electrica Riego,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,636503,MAITEN,kWh,EXP-9.1,Energia Electrica Riego,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,690601,MAITEN,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,801101,MAITEN,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,3004,BRAMADERO,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,610401,BRAMADERO,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,610402,BRAMADERO,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
+81629800-8,COOP ELECTRICA PAILLACO LTDA,610403,BRAMADERO,kWh,EXP-11.2,Electricidad Casas e Instalaciones,client_servicios_electricos_tab
