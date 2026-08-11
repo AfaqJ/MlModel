@@ -32,6 +32,9 @@ blueprint.md
 # OS
 .DS_Store
 
+# Regenerable PDF render/inspection intermediates
+tmp/pdfs/
+
 # Temporary local inference loader secrets and generated run reports
 Temp_Inference/.env*
 temp_inference/.env*

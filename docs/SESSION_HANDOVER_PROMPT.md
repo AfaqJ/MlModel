@@ -1,5 +1,10 @@
 # Handover prompt — paste this into a new session
 
+> **SUPERSEDED - DO NOT USE AS THE CURRENT STARTING PROMPT.** This is the
+> Claude-era handover preserved for audit history. Start with
+> `ML_MODEL_INCIDENT_RECOVERY_FIELD_REPORT.md` and `RECOVERY_V1_2_0.md`, at local
+> recovery commit `9776523` on `codex/milk-fix-clean`.
+
 Copy everything below the line into a fresh Claude Code session in
 `/Users/afaq/Desktop/Mctech/ML-model`.
 

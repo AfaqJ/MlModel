@@ -1,5 +1,12 @@
 # RESULTS — v1.2.0, and whether we can report to the boss
 
+> **SUPERSEDED CLAUDE-ERA RESULTS:** The model recommendation and comparisons
+> below are preserved for incident history, not current release truth. They were
+> affected by changing datasets/evaluation confounds and predate the fixed-shape
+> full-SetFit recovery. Use `RECOVERY_V1_2_0.md`,
+> `reports/recovery_v1_2_0/model_comparison_fair.json`, and the comprehensive
+> `ML_MODEL_INCIDENT_RECOVERY_FIELD_REPORT.md` instead.
+
 **Date:** 2026-08-11 · **Verdict: the ML fix is done and proven. Do NOT show the
 client anything yet — the thing that actually caused the humiliation is still
 unfixed.** See section 6.

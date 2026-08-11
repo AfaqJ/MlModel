@@ -1,5 +1,11 @@
 # HANDOVER — where things stand right now
 
+> **SUPERSEDED HISTORICAL HANDOVER:** This records the Claude-era state before
+> the independent audit. Do not continue from its candidate/model recommendation.
+> Current truth is in `ML_MODEL_INCIDENT_RECOVERY_FIELD_REPORT.md` and
+> `RECOVERY_V1_2_0.md`; the selected local recovery is commit `9776523` on
+> `codex/milk-fix-clean`.
+
 **Living file. Update at the end of every session.**
 Deep background lives in `../CONTEXT_HANDOVER.md` (large, written 2026-08-11).
 This file is the short answer to "where were we?".

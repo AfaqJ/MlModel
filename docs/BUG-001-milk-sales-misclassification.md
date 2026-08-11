@@ -1,5 +1,10 @@
 # BUG-001 — All 125 sales lines classified as expenses
 
+> **HISTORICAL BUG RECORD:** The root-cause section remains valid, but the
+> original proposed fix below (including synthetic examples) was superseded.
+> The verified focused fix is documented in `RECOVERY_V1_2_0.md` and
+> `ML_MODEL_INCIDENT_RECOVERY_FIELD_REPORT.md`.
+
 **Status:** root-caused, fix in progress
 **Found:** 2026-08 by the client, in production
 **Severity:** critical — client's core revenue lines shown as road-maintenance

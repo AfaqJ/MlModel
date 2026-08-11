@@ -1,10 +1,20 @@
 # Start here — what happened, in plain English
 
+> **CURRENT STATUS (Codex recovery, commit `9776523`):** This file below is a
+> Claude-era explanation and is no longer the complete current handover. Read
+> `ML_MODEL_INCIDENT_RECOVERY_FIELD_REPORT.md` first for the full beginner
+> narrative and data lineage, then `RECOVERY_V1_2_0.md` for the concise verified
+> technical status. `RESULTS-v1.2.0.md`, `HANDOVER.md`, and
+> `SESSION_HANDOVER_PROMPT.md` are preserved as historical evidence and contain
+> superseded candidate/model claims.
+
 One page. Read this and you know the whole story. Everything else in this folder
 is detail you can look up when you need it.
 
 | File | What it's for |
 |---|---|
+| `ML_MODEL_INCIDENT_RECOVERY_FIELD_REPORT.md` | **Current complete report: data origins, Claude chronology, Codex audit/recovery, limits, rollback** |
+| `RECOVERY_V1_2_0.md` | **Current concise verified recovery status** |
 | **README.md** (this) | The story, plain English |
 | `HANDOVER.md` | Where the work stands right now |
 | `DECISIONS.md` | Every decision + why (11 entries) |
