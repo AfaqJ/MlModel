@@ -1,0 +1,29 @@
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/setfit_base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+`torch_dtype` is deprecated! Use `dtype` instead!
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/setfit_base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/setfit_base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/setfit_base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/setfit_base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/setfit_base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+/Users/afaq/Desktop/Mctech/ML-model/.venv-train/lib/python3.11/site-packages/transformers/modeling_attn_mask_utils.py:196: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  inverted_mask = torch.tensor(1.0, dtype=dtype) - expanded_mask
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/artifacts/v1.1.0/tokenizer' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+loading SetFit model…
+exporting ONNX (fp32)…
+quantizing to int8 (dynamic)…
+parity gate…
+cosine mean=0.99444 min=0.91762 | top1 disagreement=1.7647%
+val accuracy  torch=0.7441  int8-onnx=0.7441  (Δ=+0.0000) | int8 macroF1=0.6819
+package ready: /Users/afaq/Desktop/Mctech/ML-model/artifacts/v1.1.0
+  classifier.joblib  0.2 MB
+  inference_example.py  0.0 MB
+  labels.json  0.0 MB
+  model.onnx  278.3 MB
+  model_card.json  0.0 MB
+  provider_giro_map.csv  0.0 MB
+  taxonomy.json  0.0 MB
+  tokenizer/config.json  0.0 MB
+  tokenizer/special_tokens_map.json  0.0 MB
+  tokenizer/tokenizer.json  17.1 MB
+  tokenizer/tokenizer_config.json  0.0 MB

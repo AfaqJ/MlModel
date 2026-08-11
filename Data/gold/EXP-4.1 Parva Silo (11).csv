@@ -1,0 +1,12 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00640,EXP-4.1,Parva Silo,direct_client_example,SILO PARVA,,AGRO SERVICIOS NAVARRETE SPA,YUTRECO,Client-confirmed row-level example.,
+RG-00641,EXP-4.1,Parva Silo,direct_client_example,PLASTICOS PARVA,,COLUN,YUTRECO,Client-confirmed row-level example.,
+SA-00514,EXP-4.1,Parva Silo,file_audit,SILO PARVA BRAMADERO,,AGRO SERVICIOS NAVARRETE SPA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00515,EXP-4.1,Parva Silo,file_audit,PLASTICO SILO 14 M 26 M 150 MIC,PLASTICO SILO 14 M 26 M 150 MIC,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00784,EXP-4.1,Parva Silo,silver_audit,SILO PARVA MAITEN,,AGRO SERVICIOS NAVARRETE SPA,,[silver+ollama agree +claude review] matches client description,
+SA-00785,EXP-4.1,Parva Silo,silver_audit,PLASTICO SILO 14 M 150 MIC,PLASTICO SILO 14 M 150 MIC,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,,[silver+ollama agree +claude review] matches client description,
+SA-00889,EXP-4.1,Parva Silo,silver_audit,CULTIVO SILO RASTRA,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA,,ollama classify + claude audit vs description,
+SA-00962,EXP-4.1,Parva Silo,silver_audit,TRASLADO BOLOS SILOS,CON CARRO Y RETORNO DESDE MAITEN A YUTRECO ( 1 VIAJE ),LUIS ANTONIO TORRES JARAMILLO,,ollama classify + claude audit vs description,
+SA-00969,EXP-4.1,Parva Silo,silver_audit,PLAST.SILOFARM 14Mx50M x 130MIC,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,,ollama classify + claude audit vs description,
+SA-00976,EXP-4.1,Parva Silo,silver_audit,PLASTICO SILO FEROSOR X UNIDAD -Ferosor_14x35x125_NEGRO__,Ferosor_14x35x125_NEGRO__,FEROSOR AGRICOLA S.A.,,ollama classify + claude audit vs description,
+RG-01082,EXP-4.1,Parva Silo,client_product_rule,PLAST.SILOFARM  14Mx50M x 130MIC,27000090,COOPRINSEM,,"Client product-list (newest list, Productos tab): SUBCUENTA ""PARVA SILO"" -> EXP-4.1.",

@@ -1,0 +1,3 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+SA-00997,ING-0.4,VENTA TERNEROS,silver_audit,VENTA DE TERNERAS,,ANTILLANCA SPA,,ollama classify + claude audit vs description,
+SA-00999,ING-0.4,VENTA TERNEROS,silver_audit,VENTAS TERNEROS,DESDE RAICES FMA 153347973,ANTILLANCA SPA,,ollama classify + claude audit vs description,

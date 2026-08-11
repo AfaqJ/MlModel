@@ -1,0 +1,28 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00549,EXP-9.1,Energia Electrica Riego,direct_client_example,SERVICIO ELECTRICO RIEGO PIVOTE,,COOP ELECTRICA PAILLACO LTDA,MAITEN,Client-confirmed row-level example.,
+SA-00535,EXP-9.1,Energia Electrica Riego,file_audit,Energia Electrica Riego - COOPERATIVA ELECTRICA PAILLACO LTDA,,COOPERATIVA ELECTRICA PAILLACO LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00536,EXP-9.1,Energia Electrica Riego,file_audit,Energia Electrica Riego - NTILLANCA S.A.,,NTILLANCA S.A.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00537,EXP-9.1,Energia Electrica Riego,file_audit,Energia Electrica Riego - COOPERATIVA RURAL ELECTRICA RIO BUENO LTDA,,COOPERATIVA RURAL ELECTRICA RIO BUENO LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00710,EXP-9.1,Energia Electrica Riego,file_audit,"Cargo mensual por demanda mxima leida de potencia en horas de punta ( 0,040 )",,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00711,EXP-9.1,Energia Electrica Riego,file_audit,"Cargo mensual por D. Max de potencia suministrada ( 56,860 )",,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00855,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00856,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima potencia leida 30.57 x $ 28305.430160287862,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00857,EXP-9.1,Energia Electrica Riego,silver_audit,Interés por mora Energía,,CIA ELECTRICA OSORNO S A,,ollama classify + claude audit vs description,client_check
+SA-00867,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 8760 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00868,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima suministrada 38.55 x $ 18007.159533073933,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00869,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00882,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00883,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima potencia leida 30.57 x $ 28592.934249263984,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00884,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima suministrada 39.21 x $ 18065.161948482528,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00895,EXP-9.1,Energia Electrica Riego,silver_audit,Subsidio cuota deuda pandemia 38 / 48,,Sociedad Austral de Electricidad SA,,ollama classify + claude audit vs description,client_check
+SA-00896,EXP-9.1,Energia Electrica Riego,silver_audit,Cuota deuda pandemia (38/48),,Sociedad Austral de Electricidad SA,,ollama classify + claude audit vs description,client_check
+SA-00908,EXP-9.1,Energia Electrica Riego,silver_audit,Transporte de Electricidad ( 117 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,ollama classify + claude audit vs description,client_check
+SA-00910,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00945,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 7860 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00946,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima potencia leida 22.8 x $ 28803.15789473684,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00947,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima suministrada 39.21 x $ 17984.28972200969,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00948,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00957,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,ollama classify + claude audit vs description,client_check
+SA-00991,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima potencia leida 24.6 x $ 28746.382113821135,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+SA-00992,EXP-9.1,Energia Electrica Riego,silver_audit,Demanda maxima suministrada 40.44 x $ 18117.161226508408,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,,ollama classify + claude audit vs description,client_check
+RG-01075,EXP-9.1,Energia Electrica Riego,file_audit,"Cargo mensual por demanda mÃ¡xima leida de potencia en horas de punta ( 0,040 )",,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,"Folder audit (newest_example_folders); folder ""ENERGIA ELECTRICA RIEGO"" matches taxonomy for EXP-9.1.",

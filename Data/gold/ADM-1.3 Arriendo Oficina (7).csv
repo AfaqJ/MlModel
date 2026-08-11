@@ -1,0 +1,8 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00560,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA,MAITEN,Client-confirmed row-level example.,
+RG-00561,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA,TINEO,Client-confirmed row-level example.,
+RG-00562,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA,BRAMADERO,Client-confirmed row-level example.,
+RG-00563,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA,RAICES,Client-confirmed row-level example.,
+RG-00564,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA,YUTRECO,Client-confirmed row-level example.,
+SA-00684,ADM-1.3,Arriendo Oficina,file_audit,Arriendo mayo 26,,ADDVISE SPA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00685,ADM-1.3,Arriendo Oficina,file_audit,Arriendo junio 26,,ADDVISE SPA,,[folder-audit] client filed under this category; item consistent with client description,

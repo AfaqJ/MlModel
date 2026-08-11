@@ -1,0 +1,10 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+SA-00458,EXP-10.4,Otros Gastos Lecheria,file_audit,PARTE INFERIOR COLECTOR USADA,,GEA Farm Technologies Osorno Ltda.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00461,EXP-10.4,Otros Gastos Lecheria,file_audit,JUEGO PEZONERAS MONOBLOCK,,GEA Farm Technologies Osorno Ltda.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00463,EXP-10.4,Otros Gastos Lecheria,file_audit,FILTRO LECHE 75 MM * 800 SE - 200 UN,,GEA Farm Technologies Osorno Ltda.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00465,EXP-10.4,Otros Gastos Lecheria,file_audit,JUEGO PEZONERAS COLECTOR 300,,GEA Farm Technologies Osorno Ltda.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00466,EXP-10.4,Otros Gastos Lecheria,file_audit,TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00804,EXP-10.4,Otros Gastos Lecheria,silver_audit,SEAL KIT FOR HILGE MILK PUMP 2.2KW,,GEA Farm Technologies Osorno Ltda.,,[silver+ollama agree +claude review] matches client description,
+SA-00805,EXP-10.4,Otros Gastos Lecheria,silver_audit,-Juego de servicio - Gestion de leche (C)var.,,GEA Farm Technologies Osorno Ltda.,,[silver+ollama agree +claude review] matches client description,
+SA-00828,EXP-10.4,Otros Gastos Lecheria,silver_audit,Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA,,silver top1/ollama-verify + claude review; matches client description,
+SA-00830,EXP-10.4,Otros Gastos Lecheria,silver_audit,PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.,,silver top1/ollama-verify + claude review; matches client description,

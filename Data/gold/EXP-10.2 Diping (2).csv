@@ -1,0 +1,3 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00565,EXP-10.2,Diping,direct_client_example,FULLDIP 5000 PROMOCION 230 kg,,GEA Farm Technologies Osorno Ltda.,RAICES,Client-confirmed row-level example.,
+SA-00451,EXP-10.2,Diping,file_audit,COW GUARD BARRERA 210KG,,BIOGENESIS ANIMAL HEALTH SPA,,[folder-audit] client filed under this category; item consistent with client description,

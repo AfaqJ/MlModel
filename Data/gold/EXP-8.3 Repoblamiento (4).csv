@@ -1,0 +1,5 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+SA-00494,EXP-8.3,Repoblamiento,file_audit,SEMILLA BALLICA DAIRY PRIME DES X,,COOPERATIVA AGRÍCOLA Y LECHERA DE LA UNIÓN LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00965,EXP-8.3,Repoblamiento,silver_audit,INCORPORADOR CATROS,,GUILLERMO ENRIQUE RIEDEL MARTINEZ,,ollama classify + claude audit vs description,
+SA-00966,EXP-8.3,Repoblamiento,silver_audit,RODON,,GUILLERMO ENRIQUE RIEDEL MARTINEZ,,ollama classify + claude audit vs description,
+SR-00004,EXP-8.3,Repoblamiento,client_service_rule,SIEMBRA REPOBLAMIENTO,SIEMBRA REPOBLAMIENTO,,,Client-provided standardized service description for future invoice descriptions (servicios sheet).,

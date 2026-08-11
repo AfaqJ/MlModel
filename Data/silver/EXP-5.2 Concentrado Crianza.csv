@@ -1,0 +1,2 @@
+candidate_id,item_text,description,provider,giro,source,source_file,folio,siblings,top1_conf,audited,verdict,audit_reason
+OQ-01234,Mipro Pastoreo,//FUNDO YUTRECO G/7003,SANO - NUTRICION ANIMAL MODERNA SPA,Importación y Comercialización de alimentos para animales,COMPRAS,DTE_033_000000006353_764305752.xml,6353,Mipro Pastoreo - //FUNDO MAITEN G/6986 y 6999; Mipro Pastoreo - //FUNDO YUTRECO G/7003,0.8000,Y,EXP-5.2,2step_review

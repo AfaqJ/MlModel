@@ -1,0 +1,72 @@
+category_code,leaf,gold_count,status
+ING-0.1,VENTA DE LECHE,1,starving_under_15
+ING-0.2,VENTA DE VACAS,3,starving_under_15
+ING-0.3,VENTA VAQUILLAS,1,starving_under_15
+ING-0.4,VENTA TERNEROS,2,starving_under_15
+ING-0.5,VENTA DE OTROS ANIMALES,0,starving_under_15
+ING-0.6,VENTA LEÑA,1,starving_under_15
+EXP-1.1,Otros Gastos RRHH,32,ok_30_plus
+EXP-2.1,Terapias Secado,9,starving_under_15
+EXP-2.2,Medicamentos Mastitis,18,usable_15_plus
+EXP-2.3,Vacunas,22,usable_15_plus
+EXP-2.4,Sales Minerales,14,starving_under_15
+EXP-2.5,Otros Medicamentos,85,ok_30_plus
+EXP-2.6,Otros Gastos Salud Animal,119,ok_30_plus
+EXP-3.1,Inseminacion Artificial,23,usable_15_plus
+EXP-4.1,Parva Silo,11,starving_under_15
+EXP-4.2,Bolos Silo,28,usable_15_plus
+EXP-4.3,Bolos Heno,16,usable_15_plus
+EXP-5.1,Concentrado Vacas,5,starving_under_15
+EXP-5.2,Concentrado Crianza,11,starving_under_15
+EXP-5.3,Concentrado Otros Animales,17,usable_15_plus
+EXP-5.4,Bolos,11,starving_under_15
+EXP-5.5,Sustituto Lacteo,6,starving_under_15
+EXP-6.1,Fosforo,8,starving_under_15
+EXP-6.2,Nitrogeno,18,usable_15_plus
+EXP-6.3,Cal,23,usable_15_plus
+EXP-6.4,Guano,2,starving_under_15
+EXP-6.5,Otros Fertilizantes,15,usable_15_plus
+EXP-7.0,AGROQUIMICOS,57,ok_30_plus
+EXP-8.1,Pradera Perenne,30,ok_30_plus
+EXP-8.2,Pradera Rotacion Corta,8,starving_under_15
+EXP-8.3,Repoblamiento,4,starving_under_15
+EXP-8.4,Otros Cultivos,14,starving_under_15
+EXP-9.1,Energia Electrica Riego,27,usable_15_plus
+EXP-9.2,Otros Gastos Riego,39,ok_30_plus
+EXP-10.1,Mantencion Sala,30,ok_30_plus
+EXP-10.2,Diping,2,starving_under_15
+EXP-10.3,Detergentes e higenizantes,17,usable_15_plus
+EXP-10.4,Otros Gastos Lecheria,9,starving_under_15
+EXP-11.1,Electricidad Lecheria,76,ok_30_plus
+EXP-11.2,Electricidad Casas e Instalaciones,5,starving_under_15
+EXP-11.3,Petroleo,19,usable_15_plus
+EXP-11.4,Bencina,18,usable_15_plus
+EXP-11.5,Gas,24,usable_15_plus
+EXP-12.1,Analisis Suelo y forraje,29,usable_15_plus
+EXP-12.2,Analisis Animales,65,ok_30_plus
+EXP-13.1,Mantencion Maquinaria,46,ok_30_plus
+EXP-13.2,Mantencion Motos,21,usable_15_plus
+EXP-13.3,Mantencion Vehiculos,27,usable_15_plus
+EXP-14.1,Mantencion Caminos,20,usable_15_plus
+EXP-14.2,Mantencion Cercos,62,ok_30_plus
+EXP-14.3,Mantencion Agua y Purines,24,usable_15_plus
+EXP-14.4,Mantencion Instalaciones,27,usable_15_plus
+EXP-15.1,Servicios Agronomicos,6,starving_under_15
+EXP-15.2,Servicios Veterinarios,7,starving_under_15
+EXP-15.3,Fletes,17,usable_15_plus
+EXP-15.4,Arriendo Maquinaria y Vehiculos,12,starving_under_15
+EXP-15.5,Servicios Agricolas,14,starving_under_15
+EXP-16.1,Ropa y Herramientas de Trabajo,139,ok_30_plus
+EXP-16.2,Otros Gastos Campo,36,ok_30_plus
+ADM-1.2,Comunicaciones e Internet,14,starving_under_15
+ADM-1.3,Arriendo Oficina,7,starving_under_15
+ADM-1.4,Movilizacion,22,usable_15_plus
+ADM-1.5,Colacion y Alojamiento,16,usable_15_plus
+ADM-1.6,Utiles y gastos de oficina.,29,usable_15_plus
+ADM-1.7,Otros Gastos Administracion,112,ok_30_plus
+ADM-1.8,Asesoria Contable,16,usable_15_plus
+ADM-1.9,Asesoria Legal,1,starving_under_15
+ADM-1.10,Otros Servicios y Asesorias,22,usable_15_plus
+ADM-2.1,Seguros Vehiculos,17,usable_15_plus
+ADM-2.2,Seguros Trabajadores,29,usable_15_plus
+ADM-2.3,Seguros Otros,16,usable_15_plus

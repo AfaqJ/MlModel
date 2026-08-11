@@ -1,0 +1,10 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00018,EXP-2.1,Terapias Secado,client_product_rule,ORBENIN E.D.C CAJA 36 JER SECADO,10000601,COOPRINSEM,,Client-confirmed product-to-category mapping.,
+RG-00414,EXP-2.1,Terapias Secado,client_product_rule,ORBENIN X 36 JER,7613746,COLUN,,Client-confirmed product-to-category mapping.,
+RG-00639,EXP-2.1,Terapias Secado,direct_client_example,ORBENIN X 36 JER,,COLUN,YUTRECO,Client-confirmed row-level example.,
+SA-00420,EXP-2.1,Terapias Secado,file_audit,FATROXIMIN X 12 JER,,COOPERATIVA AGRÍCOLA Y LECHERA DE LA UNIÓN LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00421,EXP-2.1,Terapias Secado,file_audit,UBRISEC X 48 JER,UBRISEC X 48 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,,[folder-audit] client filed under this category; item consistent with client description,
+RG-00656,EXP-2.1,Terapias Secado,client_product_rule,UBRISEC,,,,Client-confirmed product-to-category mapping.,
+RG-00657,EXP-2.1,Terapias Secado,client_product_rule,FATROXIMIN,,,,Client-confirmed product-to-category mapping.,
+RG-00658,EXP-2.1,Terapias Secado,client_product_rule,SEPRAVIN,,,,Client-confirmed product-to-category mapping.,
+RG-01052,EXP-2.1,Terapias Secado,file_audit,ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,,"Folder audit (newest_example_folders); folder ""TERAPIAS SECADO"" matches taxonomy for EXP-2.1.",

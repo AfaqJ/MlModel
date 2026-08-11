@@ -1,0 +1,12 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00071,EXP-5.2,Concentrado Crianza,client_product_rule,C-B SURALIM TERNERO INICIAL 25 KG,12000541,COOPRINSEM,,Client-confirmed product-to-category mapping.,
+RG-00121,EXP-5.2,Concentrado Crianza,client_product_rule,T. COLUN CRECIMIENTO X 25 KG,7607641,COLUN,,Client-confirmed product-to-category mapping.,
+RG-00163,EXP-5.2,Concentrado Crianza,client_product_rule,T. SURALIM CRECIMIENTO RF X 25 KG,7607650,COLUN,,Client-confirmed product-to-category mapping.,
+RG-00215,EXP-5.2,Concentrado Crianza,client_product_rule,T. SURALIM INICIAL RF X 25 KG,7607648,COLUN,,Client-confirmed product-to-category mapping.,
+RG-00599,EXP-5.2,Concentrado Crianza,direct_client_example,BIOLACT TERNERO INICIAL,,AGROCOMERCIAL IANSA S.A.,MAITEN,Client-confirmed row-level example.,
+SA-00484,EXP-5.2,Concentrado Crianza,file_audit,CONCENTRADO TERNERO 1 STANDARD -Ferosor_25kg_Sin Sal_PBF_,Ferosor_25kg_Sin Sal_PBF_,FEROSOR AGRICOLA S.A.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00485,EXP-5.2,Concentrado Crianza,file_audit,T. SURALIM CRECIMIENTO RF X,,COOPERATIVA AGRÍCOLA Y LECHERA DE LA UNIÓN LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00487,EXP-5.2,Concentrado Crianza,file_audit,T. SURALIM INICIAL RF X,,COOPERATIVA AGRÍCOLA Y LECHERA DE LA UNIÓN LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00488,EXP-5.2,Concentrado Crianza,file_audit,CONCENTRADO TERNERO INICIAL SUPER -Ferosor_25kg_Sin Sal_PBF_,Ferosor_25kg_Sin Sal_PBF_,FEROSOR AGRICOLA S.A.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00489,EXP-5.2,Concentrado Crianza,file_audit,T. COLUN CRECIMIENTO X,,COOPERATIVA AGRÍCOLA Y LECHERA DE LA UNIÓN LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+RG-01066,EXP-5.2,Concentrado Crianza,file_audit,T. COLUN CRECIMIENTO X 25 KG,T. COLUN CRECIMIENTO X 25 KG,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,,"Folder audit (newest_example_folders); folder ""CONCENTRADO CRIANZA"" matches taxonomy for EXP-5.2.",

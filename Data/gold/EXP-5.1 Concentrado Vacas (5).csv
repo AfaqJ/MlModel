@@ -1,0 +1,6 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00558,EXP-5.1,Concentrado Vacas,direct_client_example,BIOLACT ANTILLANCA R GRANEL,,AGROCOMERCIAL IANSA S.A.,YUTRECO,Client-confirmed row-level example.,
+SA-00478,EXP-5.1,Concentrado Vacas,file_audit,MAIZ ROLEADO PF GRANEL x KG-ALIMENTOS(E)-MAIZ,,COMPAA AGROPECUARIA COPEVAL S.A.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00479,EXP-5.1,Concentrado Vacas,file_audit,BIOLACT ANTILLANCA GRANEL,,AGROCOMERCIAL IANSA S.A.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00779,EXP-5.1,Concentrado Vacas,silver_audit,Mipro Pastoreo,//FUNDO MAITEN G/6986 y 6999,SANO - NUTRICION ANIMAL MODERNA SPA,,[silver+ollama agree +claude review] matches client description,
+RG-01065,EXP-5.1,Concentrado Vacas,file_audit,MAIZ ROLEADO PF GRANEL x KG-ALIMENTOS(E)-MAIZ,,COMPAÃÃA AGROPECUARIA COPEVAL S.A.,,"Folder audit (newest_example_folders); folder ""CONCENTRADO VACAS"" matches taxonomy for EXP-5.1.",

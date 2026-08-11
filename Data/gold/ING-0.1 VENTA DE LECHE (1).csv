@@ -1,0 +1,2 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+SA-00755,ING-0.1,VENTA DE LECHE,silver_audit,VENTA DE LECHE,"145.412 kg de leche a $ 418,00 Estanque 21055-2, Raices Guias entre 1328157 - 1311519",ANTILLANCA SPA,,[silver+ollama agree +claude review] matches client description,

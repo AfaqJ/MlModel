@@ -1,0 +1,3 @@
+candidate_id,item_text,description,provider,giro,source,source_file,folio,siblings,top1_conf,audited,verdict,audit_reason
+OQ-00330,Venta de asiento,Venta de asiento,LATAM AIRLINES GROUP SA,LATAM AIRLINES GROUP SA,COMPRAS,DTE_034_000007114569_898622002.xml,7114569,Venta de asiento - Venta de asiento; Vuelo Tasas y/o impuestos - Vuelo Tasas y/o impuestos,0.7000,Y,ADM-1.4,Airline ticket (venta de asiento) from LATAM = administration travel/mobilization.
+OQ-01010,Vuelo Tasas y/o impuestos,Vuelo Tasas y/o impuestos,LATAM AIRLINES GROUP SA,LATAM AIRLINES GROUP SA,COMPRAS,DTE_033_000002481526_898622002.xml,2481526,Vuelo Tasas y/o impuestos - Vuelo Tasas y/o impuestos; Equipaje especial - Equipaje especial,0.2000,N,,

@@ -1,0 +1,8 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00645,EXP-15.2,Servicios Veterinarios,direct_client_example,HONORARIOS VETERINARIOS LDS,,LECHERIAS DEL SUR,MAITEN,Client-confirmed row-level example.,
+RG-00646,EXP-15.2,Servicios Veterinarios,direct_client_example,HONORARIOS VETERINARIOS LDS,,LECHERIAS DEL SUR,YUTRECO,Client-confirmed row-level example.,
+RG-00647,EXP-15.2,Servicios Veterinarios,direct_client_example,HONORARIOS VETERINARIOS LDS,,LECHERIAS DEL SUR,BRAMADERO,Client-confirmed row-level example.,
+RG-00648,EXP-15.2,Servicios Veterinarios,direct_client_example,HONORARIOS VETERINARIOS LDS,,LECHERIAS DEL SUR,RAICES,Client-confirmed row-level example.,
+RG-00649,EXP-15.2,Servicios Veterinarios,direct_client_example,HONORARIOS VETERINARIOS LDS,,LECHERIAS DEL SUR,TINEO,Client-confirmed row-level example.,
+SA-00786,EXP-15.2,Servicios Veterinarios,silver_audit,PODOLOGÍA CORRECTIVA,26 febrero: 25 vacas cojas,MOLINA MANNS SPA,,[silver+ollama agree +claude review] matches client description,
+SA-00787,EXP-15.2,Servicios Veterinarios,silver_audit,PODOLOGÍA CLÍNICA BOVINA,Servicio realizado 15 abril 2025 por Roberto Molina,MOLINA MANNS SPA,,[silver+ollama agree +claude review] matches client description,

@@ -1,0 +1,13 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00650,EXP-15.4,Arriendo Maquinaria y Vehiculos,direct_client_example,ARRIENDO TRACTOR AGOSTO,,JORGE HECTOR KIESSLING PINUER,TINEO,Client-confirmed row-level example.,
+SA-00326,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,ARRIENDO CAMION GRUA PLUM,"CARGA, TRASLADO Y DESCARGA DE MODULO EN RUPANCO HASTA MULPULMO",SOCIEDAD DE TRANSPORTES Y ARRIENDO DE EQUIPOS MENDOZA Y BASTIDAS LIMIT,,[high/keyword-audit] item matches EXP-15.4 signature,
+SA-00327,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,Arriendo Retroexcavadora,,SERVICIOS EL MAITEN LIMITADA,,[high/keyword-audit] item matches EXP-15.4 signature,
+SA-00330,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,ARRIENDO TRACTOR,AGOSTO,JORGE HECTOR KIESSLING PINUER,,[high/keyword-audit] item matches EXP-15.4 signature,
+SA-00331,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,ARRIENDO TRACTOR,SEPTIEMBRE,JORGE HECTOR KIESSLING PINUER,,[high/keyword-audit] item matches EXP-15.4 signature,
+SA-00334,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,CARGOS ADICIONALES,CARGOS ADICIONALES~,ARRENDADORA DE VEHICULOS SOCIEDAD ANONIMA,,[high/keyword-audit] item matches EXP-15.4 signature,
+SA-00446,EXP-15.4,Arriendo Maquinaria y Vehiculos,file_audit,Arriendo Maquinaria y Vehiculos - FACTURA ELECTRÓNICA GEO PARTNER SPA,,FACTURA ELECTRÓNICA GEO PARTNER SPA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00447,EXP-15.4,Arriendo Maquinaria y Vehiculos,file_audit,Arriendo Maquinaria y Vehiculos - HAKA INDUSTRIAL SPA,,HAKA INDUSTRIAL SPA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00448,EXP-15.4,Arriendo Maquinaria y Vehiculos,file_audit,Arriendo Maquinaria y Vehiculos - ANTILLANCA SPA,,ANTILLANCA SPA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00927,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,Arriendo de tractor Junio,,JORGE HECTOR KIESSLING PINUER,,ollama classify + claude audit vs description,
+SA-00968,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,ARRIENDO DE VEHICULOS,ARRIENDO DE VEHICULOS~,ARRENDADORA DE VEHICULOS SOCIEDAD ANONIMA,,ollama classify + claude audit vs description,
+SA-00983,EXP-15.4,Arriendo Maquinaria y Vehiculos,silver_audit,ARRIENDO DIARIO DE EQUIPO,GENERADOR INSONORIZADO INMESOL DE 100KVA SN.1932937,HAKA INDUSTRIAL SPA,,ollama classify + claude audit vs description,

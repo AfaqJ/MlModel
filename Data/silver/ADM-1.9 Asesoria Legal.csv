@@ -1,0 +1,6 @@
+candidate_id,item_text,description,provider,giro,source,source_file,folio,siblings,top1_conf,audited,verdict,audit_reason
+OQ-00576,Representacion Casub RBM,,AWÜA CONSULTORES SPA,ASESORÍAS Y SERVICIOS LEGALES,COMPRAS,DTE_033_000000000134_771713130.xml,134,,0.9500,Y,ADM-1.9,Legal representation service from law advisory firm confirmed
+OQ-00577,Administracion de Contratos,,BANCO BICE,BANCO COMERCIAL,COMPRAS,DTE_033_000003503224_97080000K.xml,3503224,Pago Vencido de renta de Arrendamiento Nº12 del contrato Nº34359-1,0.8500,Y,ADM-1.7,Bank contract administration fee not legal advisory; sibling is lease payment
+OQ-00580,Intereses Exentos,,SOCIEDAD CONCESIONARIA RUTA 5 TALCA-CHILLAN S.A.,SERVICIOS PRESTADOS POR CONCESIONARIOS DE CARRETERAS,COMPRAS,DTE_034_000001654046_773377529.xml,1654046,Viajes TAG del Periodo,0.7500,Y,ADM-1.7,Interest charges on TAG toll payments are admin financial expense not legal advisory
+OQ-00587,Comisión por Nóminas en Línea CCA,,BANCO BICE,BANCO COMERCIAL,COMPRAS,DTE_033_000003475877_97080000K.xml,3475877,,0.7500,Y,ADM-1.7,Bank commission for online payroll service; no legal advisory element.
+OQ-00676,Servicio prestado por el Servicio Agricola y Ganadero.,,SERVICIO AGRICOLA Y GANADERO,GIRO INSTITUCIONAL,COMPRAS,DTE_033_000000636404_613080007.xml,636404,,0.9500,Y,REJECT,2step_review

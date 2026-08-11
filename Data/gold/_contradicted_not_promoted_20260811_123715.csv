@@ -1,0 +1,54 @@
+item_text,description,provider,established_gold_code,silver_verdict_code,audit_reason
+Gastos Gestión Cobranzas,,Sociedad Concesionaria Costanera Norte S.A.,ADM-1.4,ADM-1.7,"Toll-road cobranza charge from concession road operator, not admin wages"
+Gastos Cobranza,,"RUTA DEL MAIPO SOCIEDAD CONCESIONARIA, S.A.",ADM-1.4,ADM-1.7,"Gastos Cobranza from toll road concession, other admin expense"
+Periodo de Cobertura octubre 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,ADM-2.1,2step_review
+Periodo de Cobertura agosto 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.3,ADM-2.1,wave2_review
+Periodo de Cobertura junio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.3,ADM-2.1,wave2_review
+Periodo de Cobertura julio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.3,ADM-2.1,wave2_review
+Periodo de Cobertura febrero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.3,ADM-2.1,wave2_review
+Periodo de Cobertura enero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.3,ADM-2.1,wave2_review
+Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA,EXP-9.1,EXP-11.2,2step_review
+Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,EXP-9.1,EXP-11.1,wave2_review
+Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,EXP-9.1,EXP-11.1,wave2_review
+Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,EXP-9.1,EXP-11.1,wave2_review
+Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,EXP-9.1,EXP-11.1,wave2_review
+Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.,EXP-9.1,EXP-11.1,wave2_review
+leña,,CONSTRUCCIONES Y PRESTACIÓN DE SERVICIOS VICENTE DIOCARES E.I.R.L.,ING-0.6,EXP-16.2,Leña (firewood) purchase on COMPRAS; general farm supply; not road maintenance
+Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA,EXP-10.4,EXP-14.1,wave2_review
+MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA,EXP-5.4,EXP-4.2,wave2_review
+TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.,EXP-10.4,EXP-10.1,2step_review
+TRI-PFAN 200 LTS,,GEA Farm Technologies Osorno Ltda.,EXP-10.3,EXP-10.1,wave2_review
+Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.,ADM-1.6,EXP-9.2,wave2_review
+SOLUTION 60 LTS,,GEA Farm Technologies Osorno Ltda.,EXP-10.3,EXP-10.1,wave2_review
+PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.,EXP-10.4,EXP-14.1,wave2_review
+TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA,EXP-4.2,EXP-15.3,2step_review
+Arriendo Octubre 25,,ADDVISE SPA,ADM-1.3,EXP-15.5,2step_review
+MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA,EXP-5.4,EXP-4.2,2step_review
+ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,EXP-2.1,EXP-2.5,2step_review
+MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA,EXP-5.4,EXP-4.2,2step_review
+Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA,EXP-5.4,EXP-4.2,wave2_review
+CONFECCIÓN BOLOS PRADERA,CONFECCIÓN bolos 196 totales,SERVICIOS AGRICOLAS CORPAL SPA,EXP-4.2,EXP-4.3,wave2_review
+Mipro Pastoreo Skyline,//FUNDO BRAMADEROS,SANO - NUTRICION ANIMAL MODERNA SPA,EXP-2.4,EXP-5.3,2step_review
+KILOS PAJA DE TRIGO,CANTIDAD: 39 MAXIFARDOS ACOPLADO: JF-2403,AGRICOLA LAS LOMAS LIMITADA,EXP-4.3,EXP-5.4,wave2_review
+BOLOS SILO CHAPILCAHUIN,20 bolos silo empastadas arriendo,SERVICIOS AGRICOLAS CORPAL SPA,EXP-4.3,EXP-4.2,wave2_review
+BOLOS SILO RAICES F2,Bolos silo f2 22 bolos en 6 ha total,SERVICIOS AGRICOLAS CORPAL SPA,EXP-4.2,EXP-5.4,2step_review
+Bolos Paja de Trigo,"Según Guía Despacho 573, 574, 575,579, 580",SERVICIOS AGRICOLAS OSORNO SPA,EXP-4.3,EXP-5.3,2step_review
+BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA,EXP-5.4,EXP-4.2,2step_review
+Conf. Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES,EXP-4.2,EXP-5.4,wave2_review
+Conf.. bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES,EXP-4.2,EXP-15.3,wave2_review
+Diferencia bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES,EXP-4.2,EXP-15.3,wave2_review
+Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES,EXP-4.2,EXP-15.3,wave2_review
+MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA,EXP-5.4,EXP-4.2,2step_review
+TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA,EXP-4.2,EXP-15.3,wave2_review
+YUTRECO FERTILIZANTE,RIEGO FERTILIZANTE UREA S-MART BLUE 50 K/HA,SERVICIOS AGRICOLAS CORPAL SPA,EXP-6.5,EXP-6.2,wave2_review
+VITRAMAG-BRAMADERO,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA,EXP-6.5,EXP-7.0,2step_review
+TRAS.FERTILIZANT VITRAMAG,DESDE MAITEN A TINEO,LUIS ANTONIO TORRES JARAMILLO,EXP-6.5,EXP-15.3,2step_review
+CHAPILCAHUIN FERTILIZANTE,APLICACION DE FERTILIZANTE TRIPLE 97 HA,SERVICIOS AGRICOLAS CORPAL SPA,EXP-6.5,EXP-7.0,2step_review
+SIEMBRA GUTTLER,,GUILLERMO ENRIQUE RIEDEL MARTINEZ,EXP-8.2,EXP-8.1,Siembra Guttler (precision seeder); EXP-15.5 excludes siembras; perennial default
+SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,EXP-8.4,EXP-8.2,2step_review
+SEM. RAPS FORR. PILLAR IMP.CTE. DES,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,EXP-8.4,EXP-8.2,2step_review
+PIRIMOR,BOLSA 1 KG|,Tattersall AgroInsumos S.A.,EXP-7.0,EXP-6.5,wave2_review
+MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA,EXP-5.4,EXP-4.2,wave2_review
+Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.,ADM-1.6,EXP-9.2,wave2_review
+Transporte de Electricidad,,CIA ELECTRICA OSORNO S A,EXP-11.1,EXP-9.1,wave2_review
+Interés por mora Energía,,CIA ELECTRICA OSORNO S A,EXP-9.1,EXP-11.1,wave2_review

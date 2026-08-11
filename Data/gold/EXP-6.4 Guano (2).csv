@@ -1,0 +1,3 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00503,EXP-6.4,Guano,client_product_rule,GUANO DE GALLINA FUNDO,7611645,COLUN,,Client-confirmed product-to-category mapping.,
+SA-00772,EXP-6.4,Guano,silver_audit,APLICACION KG GUANO TEBBE,APLICACION KG GUANO TEBBE,Servicios Bergström Limitada,,[silver+ollama agree +claude review] matches client description,

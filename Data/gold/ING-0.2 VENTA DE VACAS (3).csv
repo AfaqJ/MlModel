@@ -1,0 +1,4 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+SA-00756,ING-0.2,VENTA DE VACAS,silver_audit,VENTA DE VACAS,DESDE YUTRECO FMA 173815945,ANTILLANCA SPA,,[silver+ollama agree +claude review] matches client description,
+SA-00757,ING-0.2,VENTA DE VACAS,silver_audit,vacas,,AGRICOLA Y GANADERA EMERALD LIMITADA,,[silver+ollama agree +claude review] matches client description,
+SA-00758,ING-0.2,VENTA DE VACAS,silver_audit,vacas preñadas,,AGRICOLA Y GANADERA EMERALD LIMITADA,,[silver+ollama agree +claude review] matches client description,

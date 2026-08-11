@@ -1,0 +1,1295 @@
+check,key,gold_id,category_code,leaf,source,item_text,description,provider
+A_item_text,ARRIENDO OCTUBRE 25,RG-00560,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+A_item_text,ARRIENDO OCTUBRE 25,RG-00561,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+A_item_text,ARRIENDO OCTUBRE 25,RG-00562,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+A_item_text,ARRIENDO OCTUBRE 25,RG-00563,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+A_item_text,ARRIENDO OCTUBRE 25,RG-00564,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+A_item_text,ARRIENDO OCTUBRE 25,SP-00400,EXP-15.5,Servicios Agricolas,silver_audit_v2,Arriendo Octubre 25,,ADDVISE SPA
+A_item_text,BOLOS BRAMADERO,RG-01056,EXP-4.2,Bolos Silo,file_audit,Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,BOLOS BRAMADERO,SP-00441,EXP-15.3,Fletes,silver_audit_v2,Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,BOLOS DE PAJA,SA-00833,EXP-5.4,Bolos,silver_audit,BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA
+A_item_text,BOLOS DE PAJA,SP-00437,EXP-4.2,Bolos Silo,silver_audit_v2,BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA
+A_item_text,BOLOS PAJA DE TRIGO,SA-00837,EXP-4.3,Bolos Heno,silver_audit,Bolos Paja de Trigo,"Según Guía Despacho 573, 574, 575,579, 580",SERVICIOS AGRICOLAS OSORNO SPA
+A_item_text,BOLOS PAJA DE TRIGO,SP-00436,EXP-5.3,Concentrado Otros Animales,silver_audit_v2,Bolos Paja de Trigo,"Según Guía Despacho 573, 574, 575,579, 580",SERVICIOS AGRICOLAS OSORNO SPA
+A_item_text,BOLOS SILO CHAPILCAHUIN,SA-00517,EXP-4.3,Bolos Heno,file_audit,BOLOS SILO CHAPILCAHUIN,20 bolos silo empastadas arriendo,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,BOLOS SILO CHAPILCAHUIN,SP-00434,EXP-4.2,Bolos Silo,silver_audit_v2,BOLOS SILO CHAPILCAHUIN,20 bolos silo empastadas arriendo,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,BOLOS SILO RAICES F2,SA-00507,EXP-4.2,Bolos Silo,file_audit,BOLOS SILO RAICES F2,Bolos silo f2 22 bolos en 6 ha total,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,BOLOS SILO RAICES F2,SP-00435,EXP-5.4,Bolos,silver_audit_v2,BOLOS SILO RAICES F2,Bolos silo f2 22 bolos en 6 ha total,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,CHAPILCAHUIN FERTILIZANTE,SA-00964,EXP-6.5,Otros Fertilizantes,silver_audit,CHAPILCAHUIN FERTILIZANTE,APLICACION DE FERTILIZANTE TRIPLE 97 HA,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,CHAPILCAHUIN FERTILIZANTE,SP-00457,EXP-7.0,AGROQUIMICOS,silver_audit_v2,CHAPILCAHUIN FERTILIZANTE,APLICACION DE FERTILIZANTE TRIPLE 97 HA,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,CHAPILCAHUIN FERTILIZANTE,SP-00458,EXP-7.0,AGROQUIMICOS,silver_audit_v2,CHAPILCAHUIN FERTILIZANTE,APLICACION UREA SMART BLUE 100 HA,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,CONF BOLOS BRAMADERO,RG-01059,EXP-4.2,Bolos Silo,file_audit,Conf. Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,CONF BOLOS BRAMADERO,SP-00438,EXP-5.4,Bolos,silver_audit_v2,Conf. Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,CONF BOLOS TINEO,SA-00503,EXP-4.2,Bolos Silo,file_audit,Conf.. bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,CONF BOLOS TINEO,SP-00439,EXP-15.3,Fletes,silver_audit_v2,Conf.. bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,CONFECCION BOLOS PRADERA,RG-00643,EXP-4.2,Bolos Silo,direct_client_example,CONFECCION BOLOS PRADERA,,SERVICIOS AGRICOLA CORPAL SPA
+A_item_text,CONFECCION BOLOS PRADERA,SA-00841,EXP-4.2,Bolos Silo,silver_audit,CONFECCIÓN BOLOS PRADERA,CONFECCIÓN bolos 196 totales,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,CONFECCION BOLOS PRADERA,SP-00419,EXP-4.3,Bolos Heno,silver_audit_v2,CONFECCIÓN BOLOS PRADERA,CONFECCIÓN bolos 196 totales,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,CONTROL DE ROEDORES,SA-00853,EXP-7.0,AGROQUIMICOS,silver_audit,CONTROL DE ROEDORES,"PROGRAMA DE CONTROL DE ROEDORES AL PREDIO RAICES, VISITAS REALIZADAS 7/01/2025 HT6415; 21/01/2025 HT6440.",H2 ASESORIAS Y SERVICIOS SPA
+A_item_text,CONTROL DE ROEDORES,SP-00242,EXP-16.2,Otros Gastos Campo,silver_audit_v2,CONTROL DE ROEDORES,"INICIO DE CONTROL DE ROEDORES PREDIO TINEO, VISITA REALIZADA EN NOVIEMBRE 2025.",H2 ASESORIAS Y SERVICIOS SPA
+A_item_text,DETALLE,SA-00652,ADM-1.4,Movilizacion,file_audit,DETALLE,GASOLINA NU 1203| 81.390|L,COPEC S.A.
+A_item_text,DETALLE,SP-00177,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 20.000|L,COPEC S.A.
+A_item_text,DETALLE,SP-00211,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 20.100|L,COPEC S.A.
+A_item_text,DETALLE,SP-00213,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 65.646|L,COPEC S.A.
+A_item_text,DETALLE,SP-00215,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 31.646|L,COPEC S.A.
+A_item_text,DETALLE,SP-00216,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 68.715|L,COPEC S.A.
+A_item_text,DETALLE,SP-00217,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 72.470|L,COPEC S.A.
+A_item_text,DETALLE,SP-00219,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 58.726|L,COPEC S.A.
+A_item_text,DETALLE,SP-00220,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 29.764|L,COPEC S.A.
+A_item_text,DETALLE,SP-00221,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 65.833|L,COPEC S.A.
+A_item_text,DETALLE,SP-00222,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 56.228|L,COPEC S.A.
+A_item_text,DETALLE,SP-00223,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 42.750|L,COPEC S.A.
+A_item_text,DETALLE,SP-00224,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 72.829|L,COPEC S.A.
+A_item_text,DETALLE,SP-00225,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 43.831|L,COPEC S.A.
+A_item_text,DETALLE,SP-00226,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 44.663|L,COPEC S.A.
+A_item_text,DETALLE,SP-00227,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 85.416|L,COPEC S.A.
+A_item_text,DETALLE,SP-00228,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 86.927|L,COPEC S.A.
+A_item_text,DETALLE,SP-00229,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 64.527|L,COPEC S.A.
+A_item_text,DETALLE,SP-00230,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 70.867|L,COPEC S.A.
+A_item_text,DETALLE,SP-00231,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 100.812|L,COPEC S.A.
+A_item_text,DETALLE,SP-00232,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 105.329|L,COPEC S.A.
+A_item_text,DETALLE,SP-00233,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 77.292|L,COPEC S.A.
+A_item_text,DETALLE,SP-00234,EXP-11.4,Bencina,silver_audit_v2,DETALLE,GASOLINA NU 1203| 86.851|L,COPEC S.A.
+A_item_text,DIFERENCIA BOLOS TINEO,SA-00504,EXP-4.2,Bolos Silo,file_audit,Diferencia bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,DIFERENCIA BOLOS TINEO,SP-00440,EXP-15.3,Fletes,silver_audit_v2,Diferencia bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+A_item_text,ELECTRICIDAD CONSUMIDA 115 KWH,SP-00050,EXP-11.2,Electricidad Casas e Instalaciones,silver_audit_v2,Electricidad consumida ( 115 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+A_item_text,ELECTRICIDAD CONSUMIDA 115 KWH,SP-00085,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 115 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 153 KWH,SA-00957,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+A_item_text,ELECTRICIDAD CONSUMIDA 153 KWH,SP-00060,EXP-11.2,Electricidad Casas e Instalaciones,silver_audit_v2,Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+A_item_text,ELECTRICIDAD CONSUMIDA 456 KWH,SA-00948,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 456 KWH,SP-00128,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 5400 KWH,SA-00910,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 5400 KWH,SP-00118,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 6240 KWH,SA-00855,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 6240 KWH,SP-00147,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 7620 KWH,SA-00882,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 7620 KWH,SP-00126,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 923 KWH,SA-00869,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,ELECTRICIDAD CONSUMIDA 923 KWH,SP-00143,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+A_item_text,GASOLINA 93,RG-00583,EXP-11.4,Bencina,direct_client_example,GASOLINA 93,,COLUN
+A_item_text,GASOLINA 93,RG-00584,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+A_item_text,GASOLINA 93,RG-00585,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+A_item_text,GASOLINA 93,RG-00586,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+A_item_text,GASOLINA 93,RG-00587,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+A_item_text,GASOLINA 93,RG-00588,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+A_item_text,GASOLINA 93,RG-01036,EXP-11.4,Bencina,file_audit,GASOLINA 93,,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI
+A_item_text,GASOLINA 93,SP-00151,EXP-11.4,Bencina,silver_audit_v2,Gasolina 93,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM
+A_item_text,GASOLINA 93,SP-00159,EXP-11.4,Bencina,silver_audit_v2,GASOLINA 93,Retira: ANTILLANCA SPA{Impuesto base combustible: 27429{Impuesto variable combustible: 885,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+A_item_text,GASOLINA 93,SP-00160,EXP-11.4,Bencina,silver_audit_v2,GASOLINA 93,Retira: ANTILLANCA SPA{Impuesto base combustible: 30128{Impuesto variable combustible: -897,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+A_item_text,GASOLINA 93,SP-00161,EXP-11.4,Bencina,silver_audit_v2,GASOLINA 93,Retira: ANTILLANCA SPA{Impuesto base combustible: 12381{Impuesto variable combustible: -369,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+A_item_text,GASOLINA 93,SP-00162,EXP-11.4,Bencina,silver_audit_v2,GASOLINA 93,Retira: ANTILLANCA SPA{Impuesto base combustible: 40527{Impuesto variable combustible: 596,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+A_item_text,GASTOS COBRANZA,SA-00047,ADM-1.4,Movilizacion,silver_audit,Gastos Cobranza,,"RUTA DEL MAIPO SOCIEDAD CONCESIONARIA, S.A."
+A_item_text,GASTOS COBRANZA,SP-00019,ADM-1.7,Otros Gastos Administracion,silver_audit_v2,Gastos Cobranza,,"RUTA DEL MAIPO SOCIEDAD CONCESIONARIA, S.A."
+A_item_text,GASTOS GESTION COBRANZAS,SA-00167,ADM-1.4,Movilizacion,silver_audit,Gastos Gestión Cobranzas,,Sociedad Concesionaria Costanera Norte S.A.
+A_item_text,GASTOS GESTION COBRANZAS,SP-00018,ADM-1.7,Otros Gastos Administracion,silver_audit_v2,Gastos Gestión Cobranzas,,Sociedad Concesionaria Costanera Norte S.A.
+A_item_text,INTERES POR MORA ENERGIA,SA-00857,EXP-9.1,Energia Electrica Riego,silver_audit,Interés por mora Energía,,CIA ELECTRICA OSORNO S A
+A_item_text,INTERES POR MORA ENERGIA,SP-00469,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Interés por mora Energía,,CIA ELECTRICA OSORNO S A
+A_item_text,ITEM,RG-01039,EXP-13.1,Mantencion Maquinaria,file_audit,Item,Servicios de MantenciÃ³n~SERVICIO DE MANTENIMIENTO PREVENTIVO 1BM6115JCRD601743,SALINAS Y FABRES S.A.
+A_item_text,ITEM,SP-00260,EXP-10.4,Otros Gastos Lecheria,silver_audit_v2,Item,Servicios de Mantención~SERVICIO DE MANTENIMIENTO PREVENTIVO 1P06110ETN6000696,Salinas y Fabres S.A.
+A_item_text,KILOS PAJA DE TRIGO,SA-00836,EXP-4.3,Bolos Heno,silver_audit,KILOS PAJA DE TRIGO,CANTIDAD: 39 MAXIFARDOS ACOPLADO: JF-2403,AGRICOLA LAS LOMAS LIMITADA
+A_item_text,KILOS PAJA DE TRIGO,SP-00433,EXP-5.4,Bolos,silver_audit_v2,KILOS PAJA DE TRIGO,CANTIDAD: 39 MAXIFARDOS ACOPLADO: JF-2403,AGRICOLA LAS LOMAS LIMITADA
+A_item_text,LEVANTADOR DE VACAS STANDARD 201613,RG-01078,EXP-2.6,Otros Gastos Salud Animal,client_product_rule,LEVANTADOR DE VACAS STANDARD      201613,11001215,COOPRINSEM
+A_item_text,LEVANTADOR DE VACAS STANDARD 201613,SP-00408,EXP-14.4,Mantencion Instalaciones,silver_audit_v2,LEVANTADOR DE VACAS STANDARD 201613,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+A_item_text,LIMPIEZA SILO 33 T,SA-00828,EXP-10.4,Otros Gastos Lecheria,silver_audit,Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA
+A_item_text,LIMPIEZA SILO 33 T,SP-00309,EXP-14.1,Mantencion Caminos,silver_audit_v2,Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA
+A_item_text,MANTENCION Y REPARACION,SA-00007,EXP-13.1,Mantencion Maquinaria,silver_audit,MANTENCION Y REPARACION,SE ADJUNTA DETALLE,JOHN MARCELO CARRILLO SOLDAN
+A_item_text,MANTENCION Y REPARACION,SA-00602,EXP-13.2,Mantencion Motos,file_audit,MANTENCION Y REPARACION,"MOTO HONDA TRX 420, SEGUN OT 1049",MULTIMOTOS OSORNO SPA
+A_item_text,MAXXIFARDOS,SA-00940,EXP-5.4,Bolos,silver_audit,Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA
+A_item_text,MAXXIFARDOS,SP-00416,EXP-4.2,Bolos Silo,silver_audit_v2,Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA
+A_item_text,MIPRO PASTOREO SKYLINE,SA-00405,EXP-2.4,Sales Minerales,file_audit,Mipro Pastoreo Skyline,//FUNDO BRAMADEROS,SANO - NUTRICION ANIMAL MODERNA SPA
+A_item_text,MIPRO PASTOREO SKYLINE,SP-00430,EXP-5.3,Concentrado Otros Animales,silver_audit_v2,Mipro Pastoreo Skyline,//FUNDO BRAMADEROS,SANO - NUTRICION ANIMAL MODERNA SPA
+A_item_text,MOVIMIENTOS DE BOLOS,SA-00763,EXP-5.4,Bolos,silver_audit,MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA
+A_item_text,MOVIMIENTOS DE BOLOS,SP-00315,EXP-4.2,Bolos Silo,silver_audit_v2,MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA
+A_item_text,ORBENIN E D C CAJA 36 JER SECADO,RG-00018,EXP-2.1,Terapias Secado,client_product_rule,ORBENIN E.D.C CAJA 36 JER SECADO,10000601,COOPRINSEM
+A_item_text,ORBENIN E D C CAJA 36 JER SECADO,SP-00411,EXP-2.5,Otros Medicamentos,silver_audit_v2,ORBENIN E.D.C CAJA 36 JER SECADO,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+A_item_text,ORBENIN X 36 JER,RG-00414,EXP-2.1,Terapias Secado,client_product_rule,ORBENIN X 36 JER,7613746,COLUN
+A_item_text,ORBENIN X 36 JER,RG-00639,EXP-2.1,Terapias Secado,direct_client_example,ORBENIN X 36 JER,,COLUN
+A_item_text,ORBENIN X 36 JER,RG-01052,EXP-2.1,Terapias Secado,file_audit,ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+A_item_text,ORBENIN X 36 JER,SP-00412,EXP-2.5,Otros Medicamentos,silver_audit_v2,ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+A_item_text,PERIODO DE COBERTURA AGOSTO 2025,SA-00933,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura agosto 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA AGOSTO 2025,SP-00028,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura agosto 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA ENERO 2026,SA-00985,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura enero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA ENERO 2026,SP-00036,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura enero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA FEBRERO 2026,SA-00990,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura febrero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA FEBRERO 2026,SP-00034,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura febrero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA JULIO 2025,SA-00920,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura julio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA JULIO 2025,SP-00032,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura julio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA JUNIO 2025,SA-00909,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura junio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA JUNIO 2025,SP-00030,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura junio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA OCTUBRE 2025,SA-00752,ADM-2.2,Seguros Trabajadores,file_audit,Periodo de Cobertura octubre 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERIODO DE COBERTURA OCTUBRE 2025,SP-00026,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura octubre 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+A_item_text,PERNO COLECTOR SIN CIERRE,SA-00830,EXP-10.4,Otros Gastos Lecheria,silver_audit,PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+A_item_text,PERNO COLECTOR SIN CIERRE,SP-00343,EXP-14.1,Mantencion Caminos,silver_audit_v2,PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+A_item_text,PIOLA PERLON RETIRADOR NEGRA MT,SA-00472,EXP-10.3,Detergentes e higenizantes,file_audit,PIOLA PERLON RETIRADOR (NEGRA)/ MT,,GEA Farm Technologies Osorno Ltda.
+A_item_text,PIOLA PERLON RETIRADOR NEGRA MT,SP-00253,EXP-14.4,Mantencion Instalaciones,silver_audit_v2,PIOLA PERLON RETIRADOR (NEGRA)/ MT,,HGS DAIRY SOLUTIONS SPA
+A_item_text,PIRIMOR,SA-00863,EXP-7.0,AGROQUIMICOS,silver_audit,PIRIMOR,BOLSA 1 KG|,Tattersall AgroInsumos S.A.
+A_item_text,PIRIMOR,SP-00464,EXP-6.5,Otros Fertilizantes,silver_audit_v2,PIRIMOR,BOLSA 1 KG|,Tattersall AgroInsumos S.A.
+A_item_text,RECARGA AGUA PURIFICADA,SA-00754,ADM-1.6,Utiles y gastos de oficina.,file_audit,Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.
+A_item_text,RECARGA AGUA PURIFICADA,SP-00335,EXP-9.2,Otros Gastos Riego,silver_audit_v2,Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.
+A_item_text,SEM RAPS FORR PILLAR IMP CTE DES,SA-00951,EXP-8.4,Otros Cultivos,silver_audit,SEM. RAPS FORR. PILLAR IMP.CTE. DES,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+A_item_text,SEM RAPS FORR PILLAR IMP CTE DES,RG-00660,EXP-8.4,Otros Cultivos,client_product_rule,SEM. RAPS FORR. PILLAR IMP.CTE. DES,22000793,COOPRINSEM
+A_item_text,SEM RAPS FORR PILLAR IMP CTE DES,SP-00463,EXP-8.2,Pradera Rotacion Corta,silver_audit_v2,SEM. RAPS FORR. PILLAR IMP.CTE. DES,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+A_item_text,SEM RAPS FORR SPITFIRE DES CTE,RG-00578,EXP-8.4,Otros Cultivos,direct_client_example,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIO LTDA.
+A_item_text,SEM RAPS FORR SPITFIRE DES CTE,SA-00499,EXP-8.4,Otros Cultivos,file_audit,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+A_item_text,SEM RAPS FORR SPITFIRE DES CTE,RG-00659,EXP-8.4,Otros Cultivos,client_product_rule,SEM.RAPS FORR.SPITFIRE DES.     CTE,22000536,COOPRINSEM
+A_item_text,SEM RAPS FORR SPITFIRE DES CTE,SP-00462,EXP-8.2,Pradera Rotacion Corta,silver_audit_v2,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+A_item_text,SIEMBRA GUTTLER,SA-00967,EXP-8.2,Pradera Rotacion Corta,silver_audit,SIEMBRA GUTTLER,,GUILLERMO ENRIQUE RIEDEL MARTINEZ
+A_item_text,SIEMBRA GUTTLER,SP-00459,EXP-8.1,Pradera Perenne,silver_audit_v2,SIEMBRA GUTTLER,,GUILLERMO ENRIQUE RIEDEL MARTINEZ
+A_item_text,SOLUTION 60 LTS,RG-00566,EXP-10.3,Detergentes e higenizantes,direct_client_example,SOLUTION 60 lts,,GEA Farm Technologies Osorno Ltda.
+A_item_text,SOLUTION 60 LTS,CF-00004,EXP-10.3,Detergentes e higenizantes,file_audit_corrected,SOLUTION 60 LTS,,HGS DAIRY SOLUTIONS SPA
+A_item_text,SOLUTION 60 LTS,SP-00339,EXP-10.1,Mantencion Sala,silver_audit_v2,SOLUTION 60 LTS,,GEA Farm Technologies Osorno Ltda.
+A_item_text,TAPA COLECTOR 300 CC SIN CIERRE,SA-00466,EXP-10.4,Otros Gastos Lecheria,file_audit,TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+A_item_text,TAPA COLECTOR 300 CC SIN CIERRE,SP-00321,EXP-10.1,Mantencion Sala,silver_audit_v2,TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+A_item_text,TRANSPORTE DE ELECTRICIDAD,SA-00739,EXP-11.1,Electricidad Lecheria,file_audit,Transporte de Electricidad,,CIA ELECTRICA OSORNO S A
+A_item_text,TRANSPORTE DE ELECTRICIDAD,SP-00467,EXP-9.1,Energia Electrica Riego,silver_audit_v2,Transporte de Electricidad,,Sociedad Austral de Electricidad SA
+A_item_text,TRANSPORTE DE ELECTRICIDAD,SP-00468,EXP-9.1,Energia Electrica Riego,silver_audit_v2,Transporte de Electricidad,,CIA ELECTRICA OSORNO S A
+A_item_text,TRAS FERTILIZANT VITRAMAG,SA-00955,EXP-6.5,Otros Fertilizantes,silver_audit,TRAS.FERTILIZANT VITRAMAG,DESDE MAITEN A TINEO,LUIS ANTONIO TORRES JARAMILLO
+A_item_text,TRAS FERTILIZANT VITRAMAG,SP-00456,EXP-15.3,Fletes,silver_audit_v2,TRAS.FERTILIZANT VITRAMAG,DESDE MAITEN A TINEO,LUIS ANTONIO TORRES JARAMILLO
+A_item_text,TRASLADO DE BOLOS,RG-00559,EXP-4.2,Bolos Silo,direct_client_example,TRASLADO DE BOLOS,,SERGIO FABIAN RODRIGUEZ DELGADO
+A_item_text,TRASLADO DE BOLOS,SA-00799,EXP-4.2,Bolos Silo,silver_audit,TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA
+A_item_text,TRASLADO DE BOLOS,SP-00383,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA
+A_item_text,TRASLADO DE BOLOS,SP-00384,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,DESDE BRAMADERO A YUTRECO 39 BOLOS,SERGIO FABIAN RODRIGUEZ DELGADO
+A_item_text,TRASLADO DE BOLOS,SP-00385,EXP-15.3,Fletes,silver_audit_v2,Traslado de bolos,De silo desde raices a yutreco segun guia n 1473,MARCELO ALEJANDRO GUZMAN CATALAN
+A_item_text,TRASLADO DE BOLOS,SP-00386,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,DESDE FDO BRAMADERO HASTA YUTRECO GUIAS 1479/1481,SERGIO FABIAN RODRIGUEZ DELGADO
+A_item_text,TRASLADO DE BOLOS,SP-00387,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,DESDE BROMADERO HASTA YUTRECO GUIA 1487,SERGIO FABIAN RODRIGUEZ DELGADO
+A_item_text,TRASLADO DE BOLOS,SP-00388,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,DESDE BRAMADERO HASTA YUTRECO GUIA 1491 1492 1493,SERGIO FABIAN RODRIGUEZ DELGADO
+A_item_text,TRASLADO DE BOLOS,SP-00443,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,DEMAIHUE AL MAITEN,SERVICIOS VITAP SPA
+A_item_text,TRI PFAN 200 LTS,SA-00455,EXP-10.3,Detergentes e higenizantes,file_audit,TRI-PFAN 200 LTS,,HGS DAIRY SOLUTIONS SPA
+A_item_text,TRI PFAN 200 LTS,SA-00469,EXP-10.3,Detergentes e higenizantes,file_audit,TRI-PFAN 200 LTS,,GEA Farm Technologies Osorno Ltda.
+A_item_text,TRI PFAN 200 LTS,SP-00331,EXP-10.1,Mantencion Sala,silver_audit_v2,TRI-PFAN 200 LTS,,GEA Farm Technologies Osorno Ltda.
+A_item_text,VITRAMAG BRAMADERO,SA-00954,EXP-6.5,Otros Fertilizantes,silver_audit,VITRAMAG-BRAMADERO,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA
+A_item_text,VITRAMAG BRAMADERO,SP-00455,EXP-7.0,AGROQUIMICOS,silver_audit_v2,VITRAMAG-BRAMADERO,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA
+A_item_text,YUTRECO FERTILIZANTE,SA-00839,EXP-6.5,Otros Fertilizantes,silver_audit,YUTRECO FERTILIZANTE,RIEGO FERTILIZANTE UREA S-MART BLUE 50 K/HA,SERVICIOS AGRICOLAS CORPAL SPA
+A_item_text,YUTRECO FERTILIZANTE,SP-00449,EXP-6.2,Nitrogeno,silver_audit_v2,YUTRECO FERTILIZANTE,RIEGO FERTILIZANTE UREA S-MART BLUE 50 K/HA,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,ARRIENDO OCTUBRE 25,RG-00560,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+B_item_text+description,ARRIENDO OCTUBRE 25,RG-00561,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+B_item_text+description,ARRIENDO OCTUBRE 25,RG-00562,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+B_item_text+description,ARRIENDO OCTUBRE 25,RG-00563,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+B_item_text+description,ARRIENDO OCTUBRE 25,RG-00564,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+B_item_text+description,ARRIENDO OCTUBRE 25,SP-00400,EXP-15.5,Servicios Agricolas,silver_audit_v2,Arriendo Octubre 25,,ADDVISE SPA
+B_item_text+description,BOLOS BRAMADERO,RG-01056,EXP-4.2,Bolos Silo,file_audit,Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,BOLOS BRAMADERO,SP-00441,EXP-15.3,Fletes,silver_audit_v2,Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,BOLOS DE PAJA SEGUN GUIA DE DESPACHO N 2145 48 BOLOS EQUIVALENTES A 8 770 KG,SA-00833,EXP-5.4,Bolos,silver_audit,BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA
+B_item_text+description,BOLOS DE PAJA SEGUN GUIA DE DESPACHO N 2145 48 BOLOS EQUIVALENTES A 8 770 KG,SP-00437,EXP-4.2,Bolos Silo,silver_audit_v2,BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA
+B_item_text+description,BOLOS PAJA DE TRIGO SEGUN GUIA DESPACHO 573 574 575 579 580,SA-00837,EXP-4.3,Bolos Heno,silver_audit,Bolos Paja de Trigo,"Según Guía Despacho 573, 574, 575,579, 580",SERVICIOS AGRICOLAS OSORNO SPA
+B_item_text+description,BOLOS PAJA DE TRIGO SEGUN GUIA DESPACHO 573 574 575 579 580,SP-00436,EXP-5.3,Concentrado Otros Animales,silver_audit_v2,Bolos Paja de Trigo,"Según Guía Despacho 573, 574, 575,579, 580",SERVICIOS AGRICOLAS OSORNO SPA
+B_item_text+description,BOLOS SILO CHAPILCAHUIN 20 BOLOS SILO EMPASTADAS ARRIENDO,SA-00517,EXP-4.3,Bolos Heno,file_audit,BOLOS SILO CHAPILCAHUIN,20 bolos silo empastadas arriendo,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,BOLOS SILO CHAPILCAHUIN 20 BOLOS SILO EMPASTADAS ARRIENDO,SP-00434,EXP-4.2,Bolos Silo,silver_audit_v2,BOLOS SILO CHAPILCAHUIN,20 bolos silo empastadas arriendo,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,BOLOS SILO RAICES F2 BOLOS SILO F2 22 BOLOS EN 6 HA TOTAL,SA-00507,EXP-4.2,Bolos Silo,file_audit,BOLOS SILO RAICES F2,Bolos silo f2 22 bolos en 6 ha total,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,BOLOS SILO RAICES F2 BOLOS SILO F2 22 BOLOS EN 6 HA TOTAL,SP-00435,EXP-5.4,Bolos,silver_audit_v2,BOLOS SILO RAICES F2,Bolos silo f2 22 bolos en 6 ha total,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,CHAPILCAHUIN FERTILIZANTE APLICACION DE FERTILIZANTE TRIPLE 97 HA,SA-00964,EXP-6.5,Otros Fertilizantes,silver_audit,CHAPILCAHUIN FERTILIZANTE,APLICACION DE FERTILIZANTE TRIPLE 97 HA,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,CHAPILCAHUIN FERTILIZANTE APLICACION DE FERTILIZANTE TRIPLE 97 HA,SP-00457,EXP-7.0,AGROQUIMICOS,silver_audit_v2,CHAPILCAHUIN FERTILIZANTE,APLICACION DE FERTILIZANTE TRIPLE 97 HA,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,CONF BOLOS BRAMADERO,RG-01059,EXP-4.2,Bolos Silo,file_audit,Conf. Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,CONF BOLOS BRAMADERO,SP-00438,EXP-5.4,Bolos,silver_audit_v2,Conf. Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,CONF BOLOS TINEO,SA-00503,EXP-4.2,Bolos Silo,file_audit,Conf.. bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,CONF BOLOS TINEO,SP-00439,EXP-15.3,Fletes,silver_audit_v2,Conf.. bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,CONFECCION BOLOS PRADERA CONFECCION BOLOS 196 TOTALES,SA-00841,EXP-4.2,Bolos Silo,silver_audit,CONFECCIÓN BOLOS PRADERA,CONFECCIÓN bolos 196 totales,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,CONFECCION BOLOS PRADERA CONFECCION BOLOS 196 TOTALES,SP-00419,EXP-4.3,Bolos Heno,silver_audit_v2,CONFECCIÓN BOLOS PRADERA,CONFECCIÓN bolos 196 totales,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,DIFERENCIA BOLOS TINEO,SA-00504,EXP-4.2,Bolos Silo,file_audit,Diferencia bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,DIFERENCIA BOLOS TINEO,SP-00440,EXP-15.3,Fletes,silver_audit_v2,Diferencia bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+B_item_text+description,ELECTRICIDAD CONSUMIDA 115 KWH,SP-00050,EXP-11.2,Electricidad Casas e Instalaciones,silver_audit_v2,Electricidad consumida ( 115 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+B_item_text+description,ELECTRICIDAD CONSUMIDA 115 KWH,SP-00085,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 115 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 153 KWH,SA-00957,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+B_item_text+description,ELECTRICIDAD CONSUMIDA 153 KWH,SP-00060,EXP-11.2,Electricidad Casas e Instalaciones,silver_audit_v2,Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+B_item_text+description,ELECTRICIDAD CONSUMIDA 456 KWH,SA-00948,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 456 KWH,SP-00128,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 5400 KWH,SA-00910,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 5400 KWH,SP-00118,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 6240 KWH,SA-00855,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 6240 KWH,SP-00147,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 7620 KWH,SA-00882,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 7620 KWH,SP-00126,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 923 KWH,SA-00869,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,ELECTRICIDAD CONSUMIDA 923 KWH,SP-00143,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+B_item_text+description,GASOLINA 93,RG-00583,EXP-11.4,Bencina,direct_client_example,GASOLINA 93,,COLUN
+B_item_text+description,GASOLINA 93,RG-00584,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+B_item_text+description,GASOLINA 93,RG-00585,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+B_item_text+description,GASOLINA 93,RG-00586,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+B_item_text+description,GASOLINA 93,RG-00587,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+B_item_text+description,GASOLINA 93,RG-00588,ADM-1.4,Movilizacion,direct_client_example,GASOLINA 93,,ESTACION DE SERVICIOS PAOLA USLAR MOLINA EIRL
+B_item_text+description,GASOLINA 93,RG-01036,EXP-11.4,Bencina,file_audit,GASOLINA 93,,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI
+B_item_text+description,GASTOS COBRANZA,SA-00047,ADM-1.4,Movilizacion,silver_audit,Gastos Cobranza,,"RUTA DEL MAIPO SOCIEDAD CONCESIONARIA, S.A."
+B_item_text+description,GASTOS COBRANZA,SP-00019,ADM-1.7,Otros Gastos Administracion,silver_audit_v2,Gastos Cobranza,,"RUTA DEL MAIPO SOCIEDAD CONCESIONARIA, S.A."
+B_item_text+description,GASTOS GESTION COBRANZAS,SA-00167,ADM-1.4,Movilizacion,silver_audit,Gastos Gestión Cobranzas,,Sociedad Concesionaria Costanera Norte S.A.
+B_item_text+description,GASTOS GESTION COBRANZAS,SP-00018,ADM-1.7,Otros Gastos Administracion,silver_audit_v2,Gastos Gestión Cobranzas,,Sociedad Concesionaria Costanera Norte S.A.
+B_item_text+description,INTERES POR MORA ENERGIA,SA-00857,EXP-9.1,Energia Electrica Riego,silver_audit,Interés por mora Energía,,CIA ELECTRICA OSORNO S A
+B_item_text+description,INTERES POR MORA ENERGIA,SP-00469,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Interés por mora Energía,,CIA ELECTRICA OSORNO S A
+B_item_text+description,KILOS PAJA DE TRIGO CANTIDAD 39 MAXIFARDOS ACOPLADO JF 2403,SA-00836,EXP-4.3,Bolos Heno,silver_audit,KILOS PAJA DE TRIGO,CANTIDAD: 39 MAXIFARDOS ACOPLADO: JF-2403,AGRICOLA LAS LOMAS LIMITADA
+B_item_text+description,KILOS PAJA DE TRIGO CANTIDAD 39 MAXIFARDOS ACOPLADO JF 2403,SP-00433,EXP-5.4,Bolos,silver_audit_v2,KILOS PAJA DE TRIGO,CANTIDAD: 39 MAXIFARDOS ACOPLADO: JF-2403,AGRICOLA LAS LOMAS LIMITADA
+B_item_text+description,LIMPIEZA SILO 33 T,SA-00828,EXP-10.4,Otros Gastos Lecheria,silver_audit,Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA
+B_item_text+description,LIMPIEZA SILO 33 T,SP-00309,EXP-14.1,Mantencion Caminos,silver_audit_v2,Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA
+B_item_text+description,MAXXIFARDOS,SA-00940,EXP-5.4,Bolos,silver_audit,Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA
+B_item_text+description,MAXXIFARDOS,SP-00416,EXP-4.2,Bolos Silo,silver_audit_v2,Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA
+B_item_text+description,MIPRO PASTOREO SKYLINE FUNDO BRAMADEROS,SA-00405,EXP-2.4,Sales Minerales,file_audit,Mipro Pastoreo Skyline,//FUNDO BRAMADEROS,SANO - NUTRICION ANIMAL MODERNA SPA
+B_item_text+description,MIPRO PASTOREO SKYLINE FUNDO BRAMADEROS,SP-00430,EXP-5.3,Concentrado Otros Animales,silver_audit_v2,Mipro Pastoreo Skyline,//FUNDO BRAMADEROS,SANO - NUTRICION ANIMAL MODERNA SPA
+B_item_text+description,MOVIMIENTOS DE BOLOS,SA-00763,EXP-5.4,Bolos,silver_audit,MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA
+B_item_text+description,MOVIMIENTOS DE BOLOS,SP-00315,EXP-4.2,Bolos Silo,silver_audit_v2,MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA
+B_item_text+description,ORBENIN X 36 JER ORBENIN X 36 JER,RG-01052,EXP-2.1,Terapias Secado,file_audit,ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+B_item_text+description,ORBENIN X 36 JER ORBENIN X 36 JER,SP-00412,EXP-2.5,Otros Medicamentos,silver_audit_v2,ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+B_item_text+description,PERIODO DE COBERTURA AGOSTO 2025,SA-00933,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura agosto 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA AGOSTO 2025,SP-00028,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura agosto 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA ENERO 2026,SA-00985,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura enero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA ENERO 2026,SP-00036,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura enero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA FEBRERO 2026,SA-00990,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura febrero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA FEBRERO 2026,SP-00034,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura febrero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA JULIO 2025,SA-00920,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura julio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA JULIO 2025,SP-00032,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura julio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA JUNIO 2025,SA-00909,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura junio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA JUNIO 2025,SP-00030,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura junio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA OCTUBRE 2025,SA-00752,ADM-2.2,Seguros Trabajadores,file_audit,Periodo de Cobertura octubre 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERIODO DE COBERTURA OCTUBRE 2025,SP-00026,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura octubre 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+B_item_text+description,PERNO COLECTOR SIN CIERRE,SA-00830,EXP-10.4,Otros Gastos Lecheria,silver_audit,PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,PERNO COLECTOR SIN CIERRE,SP-00343,EXP-14.1,Mantencion Caminos,silver_audit_v2,PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,PIOLA PERLON RETIRADOR NEGRA MT,SA-00472,EXP-10.3,Detergentes e higenizantes,file_audit,PIOLA PERLON RETIRADOR (NEGRA)/ MT,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,PIOLA PERLON RETIRADOR NEGRA MT,SP-00253,EXP-14.4,Mantencion Instalaciones,silver_audit_v2,PIOLA PERLON RETIRADOR (NEGRA)/ MT,,HGS DAIRY SOLUTIONS SPA
+B_item_text+description,PIRIMOR BOLSA 1 KG,SA-00863,EXP-7.0,AGROQUIMICOS,silver_audit,PIRIMOR,BOLSA 1 KG|,Tattersall AgroInsumos S.A.
+B_item_text+description,PIRIMOR BOLSA 1 KG,SP-00464,EXP-6.5,Otros Fertilizantes,silver_audit_v2,PIRIMOR,BOLSA 1 KG|,Tattersall AgroInsumos S.A.
+B_item_text+description,RECARGA AGUA PURIFICADA FUNDO RAICES,SA-00754,ADM-1.6,Utiles y gastos de oficina.,file_audit,Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.
+B_item_text+description,RECARGA AGUA PURIFICADA FUNDO RAICES,SP-00335,EXP-9.2,Otros Gastos Riego,silver_audit_v2,Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.
+B_item_text+description,SEM RAPS FORR PILLAR IMP CTE DES,SA-00951,EXP-8.4,Otros Cultivos,silver_audit,SEM. RAPS FORR. PILLAR IMP.CTE. DES,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+B_item_text+description,SEM RAPS FORR PILLAR IMP CTE DES,SP-00463,EXP-8.2,Pradera Rotacion Corta,silver_audit_v2,SEM. RAPS FORR. PILLAR IMP.CTE. DES,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+B_item_text+description,SEM RAPS FORR SPITFIRE DES CTE,RG-00578,EXP-8.4,Otros Cultivos,direct_client_example,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIO LTDA.
+B_item_text+description,SEM RAPS FORR SPITFIRE DES CTE,SA-00499,EXP-8.4,Otros Cultivos,file_audit,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+B_item_text+description,SEM RAPS FORR SPITFIRE DES CTE,SP-00462,EXP-8.2,Pradera Rotacion Corta,silver_audit_v2,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+B_item_text+description,SIEMBRA GUTTLER,SA-00967,EXP-8.2,Pradera Rotacion Corta,silver_audit,SIEMBRA GUTTLER,,GUILLERMO ENRIQUE RIEDEL MARTINEZ
+B_item_text+description,SIEMBRA GUTTLER,SP-00459,EXP-8.1,Pradera Perenne,silver_audit_v2,SIEMBRA GUTTLER,,GUILLERMO ENRIQUE RIEDEL MARTINEZ
+B_item_text+description,SOLUTION 60 LTS,RG-00566,EXP-10.3,Detergentes e higenizantes,direct_client_example,SOLUTION 60 lts,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,SOLUTION 60 LTS,CF-00004,EXP-10.3,Detergentes e higenizantes,file_audit_corrected,SOLUTION 60 LTS,,HGS DAIRY SOLUTIONS SPA
+B_item_text+description,SOLUTION 60 LTS,SP-00339,EXP-10.1,Mantencion Sala,silver_audit_v2,SOLUTION 60 LTS,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,TAPA COLECTOR 300 CC SIN CIERRE,SA-00466,EXP-10.4,Otros Gastos Lecheria,file_audit,TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,TAPA COLECTOR 300 CC SIN CIERRE,SP-00321,EXP-10.1,Mantencion Sala,silver_audit_v2,TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,TRANSPORTE DE ELECTRICIDAD,SA-00739,EXP-11.1,Electricidad Lecheria,file_audit,Transporte de Electricidad,,CIA ELECTRICA OSORNO S A
+B_item_text+description,TRANSPORTE DE ELECTRICIDAD,SP-00467,EXP-9.1,Energia Electrica Riego,silver_audit_v2,Transporte de Electricidad,,Sociedad Austral de Electricidad SA
+B_item_text+description,TRANSPORTE DE ELECTRICIDAD,SP-00468,EXP-9.1,Energia Electrica Riego,silver_audit_v2,Transporte de Electricidad,,CIA ELECTRICA OSORNO S A
+B_item_text+description,TRAS FERTILIZANT VITRAMAG DESDE MAITEN A TINEO,SA-00955,EXP-6.5,Otros Fertilizantes,silver_audit,TRAS.FERTILIZANT VITRAMAG,DESDE MAITEN A TINEO,LUIS ANTONIO TORRES JARAMILLO
+B_item_text+description,TRAS FERTILIZANT VITRAMAG DESDE MAITEN A TINEO,SP-00456,EXP-15.3,Fletes,silver_audit_v2,TRAS.FERTILIZANT VITRAMAG,DESDE MAITEN A TINEO,LUIS ANTONIO TORRES JARAMILLO
+B_item_text+description,TRASLADO DE BOLOS BRAMADERO AL MAITEN,SA-00799,EXP-4.2,Bolos Silo,silver_audit,TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA
+B_item_text+description,TRASLADO DE BOLOS BRAMADERO AL MAITEN,SP-00383,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA
+B_item_text+description,TRI PFAN 200 LTS,SA-00455,EXP-10.3,Detergentes e higenizantes,file_audit,TRI-PFAN 200 LTS,,HGS DAIRY SOLUTIONS SPA
+B_item_text+description,TRI PFAN 200 LTS,SA-00469,EXP-10.3,Detergentes e higenizantes,file_audit,TRI-PFAN 200 LTS,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,TRI PFAN 200 LTS,SP-00331,EXP-10.1,Mantencion Sala,silver_audit_v2,TRI-PFAN 200 LTS,,GEA Farm Technologies Osorno Ltda.
+B_item_text+description,VITRAMAG BRAMADERO,SA-00954,EXP-6.5,Otros Fertilizantes,silver_audit,VITRAMAG-BRAMADERO,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA
+B_item_text+description,VITRAMAG BRAMADERO,SP-00455,EXP-7.0,AGROQUIMICOS,silver_audit_v2,VITRAMAG-BRAMADERO,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA
+B_item_text+description,YUTRECO FERTILIZANTE RIEGO FERTILIZANTE UREA S MART BLUE 50 K HA,SA-00839,EXP-6.5,Otros Fertilizantes,silver_audit,YUTRECO FERTILIZANTE,RIEGO FERTILIZANTE UREA S-MART BLUE 50 K/HA,SERVICIOS AGRICOLAS CORPAL SPA
+B_item_text+description,YUTRECO FERTILIZANTE RIEGO FERTILIZANTE UREA S MART BLUE 50 K HA,SP-00449,EXP-6.2,Nitrogeno,silver_audit_v2,YUTRECO FERTILIZANTE,RIEGO FERTILIZANTE UREA S-MART BLUE 50 K/HA,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,ARRIENDO OCTUBRE 25 ADDVISE SPA,RG-00560,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+C_item_text+description+provider,ARRIENDO OCTUBRE 25 ADDVISE SPA,RG-00561,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+C_item_text+description+provider,ARRIENDO OCTUBRE 25 ADDVISE SPA,RG-00562,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+C_item_text+description+provider,ARRIENDO OCTUBRE 25 ADDVISE SPA,RG-00563,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+C_item_text+description+provider,ARRIENDO OCTUBRE 25 ADDVISE SPA,RG-00564,ADM-1.3,Arriendo Oficina,direct_client_example,ARRIENDO OCTUBRE 25,,ADDVISE SPA
+C_item_text+description+provider,ARRIENDO OCTUBRE 25 ADDVISE SPA,SP-00400,EXP-15.5,Servicios Agricolas,silver_audit_v2,Arriendo Octubre 25,,ADDVISE SPA
+C_item_text+description+provider,BOLOS BRAMADERO HECTOR ADRIAN VALENZUELA PAREDES,RG-01056,EXP-4.2,Bolos Silo,file_audit,Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,BOLOS BRAMADERO HECTOR ADRIAN VALENZUELA PAREDES,SP-00441,EXP-15.3,Fletes,silver_audit_v2,Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,BOLOS DE PAJA SEGUN GUIA DE DESPACHO N 2145 48 BOLOS EQUIVALENTES A 8 770 KG SOC COMERCIAL AGRO TRUST LTDA,SA-00833,EXP-5.4,Bolos,silver_audit,BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA
+C_item_text+description+provider,BOLOS DE PAJA SEGUN GUIA DE DESPACHO N 2145 48 BOLOS EQUIVALENTES A 8 770 KG SOC COMERCIAL AGRO TRUST LTDA,SP-00437,EXP-4.2,Bolos Silo,silver_audit_v2,BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA
+C_item_text+description+provider,BOLOS PAJA DE TRIGO SEGUN GUIA DESPACHO 573 574 575 579 580 SERVICIOS AGRICOLAS OSORNO SPA,SA-00837,EXP-4.3,Bolos Heno,silver_audit,Bolos Paja de Trigo,"Según Guía Despacho 573, 574, 575,579, 580",SERVICIOS AGRICOLAS OSORNO SPA
+C_item_text+description+provider,BOLOS PAJA DE TRIGO SEGUN GUIA DESPACHO 573 574 575 579 580 SERVICIOS AGRICOLAS OSORNO SPA,SP-00436,EXP-5.3,Concentrado Otros Animales,silver_audit_v2,Bolos Paja de Trigo,"Según Guía Despacho 573, 574, 575,579, 580",SERVICIOS AGRICOLAS OSORNO SPA
+C_item_text+description+provider,BOLOS SILO CHAPILCAHUIN 20 BOLOS SILO EMPASTADAS ARRIENDO SERVICIOS AGRICOLAS CORPAL SPA,SA-00517,EXP-4.3,Bolos Heno,file_audit,BOLOS SILO CHAPILCAHUIN,20 bolos silo empastadas arriendo,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,BOLOS SILO CHAPILCAHUIN 20 BOLOS SILO EMPASTADAS ARRIENDO SERVICIOS AGRICOLAS CORPAL SPA,SP-00434,EXP-4.2,Bolos Silo,silver_audit_v2,BOLOS SILO CHAPILCAHUIN,20 bolos silo empastadas arriendo,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,BOLOS SILO RAICES F2 BOLOS SILO F2 22 BOLOS EN 6 HA TOTAL SERVICIOS AGRICOLAS CORPAL SPA,SA-00507,EXP-4.2,Bolos Silo,file_audit,BOLOS SILO RAICES F2,Bolos silo f2 22 bolos en 6 ha total,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,BOLOS SILO RAICES F2 BOLOS SILO F2 22 BOLOS EN 6 HA TOTAL SERVICIOS AGRICOLAS CORPAL SPA,SP-00435,EXP-5.4,Bolos,silver_audit_v2,BOLOS SILO RAICES F2,Bolos silo f2 22 bolos en 6 ha total,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,CHAPILCAHUIN FERTILIZANTE APLICACION DE FERTILIZANTE TRIPLE 97 HA SERVICIOS AGRICOLAS CORPAL SPA,SA-00964,EXP-6.5,Otros Fertilizantes,silver_audit,CHAPILCAHUIN FERTILIZANTE,APLICACION DE FERTILIZANTE TRIPLE 97 HA,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,CHAPILCAHUIN FERTILIZANTE APLICACION DE FERTILIZANTE TRIPLE 97 HA SERVICIOS AGRICOLAS CORPAL SPA,SP-00457,EXP-7.0,AGROQUIMICOS,silver_audit_v2,CHAPILCAHUIN FERTILIZANTE,APLICACION DE FERTILIZANTE TRIPLE 97 HA,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,CONF BOLOS BRAMADERO HECTOR ADRIAN VALENZUELA PAREDES,RG-01059,EXP-4.2,Bolos Silo,file_audit,Conf. Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,CONF BOLOS BRAMADERO HECTOR ADRIAN VALENZUELA PAREDES,SP-00438,EXP-5.4,Bolos,silver_audit_v2,Conf. Bolos bramadero,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,CONF BOLOS TINEO HECTOR ADRIAN VALENZUELA PAREDES,SA-00503,EXP-4.2,Bolos Silo,file_audit,Conf.. bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,CONF BOLOS TINEO HECTOR ADRIAN VALENZUELA PAREDES,SP-00439,EXP-15.3,Fletes,silver_audit_v2,Conf.. bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,CONFECCION BOLOS PRADERA CONFECCION BOLOS 196 TOTALES SERVICIOS AGRICOLAS CORPAL SPA,SA-00841,EXP-4.2,Bolos Silo,silver_audit,CONFECCIÓN BOLOS PRADERA,CONFECCIÓN bolos 196 totales,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,CONFECCION BOLOS PRADERA CONFECCION BOLOS 196 TOTALES SERVICIOS AGRICOLAS CORPAL SPA,SP-00419,EXP-4.3,Bolos Heno,silver_audit_v2,CONFECCIÓN BOLOS PRADERA,CONFECCIÓN bolos 196 totales,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,DIFERENCIA BOLOS TINEO HECTOR ADRIAN VALENZUELA PAREDES,SA-00504,EXP-4.2,Bolos Silo,file_audit,Diferencia bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,DIFERENCIA BOLOS TINEO HECTOR ADRIAN VALENZUELA PAREDES,SP-00440,EXP-15.3,Fletes,silver_audit_v2,Diferencia bolos tineo,,HECTOR ADRIAN VALENZUELA PAREDES
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 153 KWH COOPERATIVA ELECTRICA PAILLACO LIMITADA,SA-00957,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 153 KWH COOPERATIVA ELECTRICA PAILLACO LIMITADA,SP-00060,EXP-11.2,Electricidad Casas e Instalaciones,silver_audit_v2,Electricidad consumida ( 153 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 456 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SA-00948,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 456 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SP-00128,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 456 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 5400 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SA-00910,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 5400 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SP-00118,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 5400 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 6240 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SA-00855,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 6240 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SP-00147,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 6240 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 7620 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SA-00882,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 7620 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SP-00126,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 7620 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 923 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SA-00869,EXP-9.1,Energia Electrica Riego,silver_audit,Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,ELECTRICIDAD CONSUMIDA 923 KWH COOPERATIVA RURAL ELECT R BUENO LTDA,SP-00143,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Electricidad consumida 923 KwH,,COOPERATIVA RURAL ELECT.R.BUENO LTDA.
+C_item_text+description+provider,GASTOS COBRANZA RUTA DEL MAIPO SOCIEDAD CONCESIONARIA S A,SA-00047,ADM-1.4,Movilizacion,silver_audit,Gastos Cobranza,,"RUTA DEL MAIPO SOCIEDAD CONCESIONARIA, S.A."
+C_item_text+description+provider,GASTOS COBRANZA RUTA DEL MAIPO SOCIEDAD CONCESIONARIA S A,SP-00019,ADM-1.7,Otros Gastos Administracion,silver_audit_v2,Gastos Cobranza,,"RUTA DEL MAIPO SOCIEDAD CONCESIONARIA, S.A."
+C_item_text+description+provider,GASTOS GESTION COBRANZAS SOCIEDAD CONCESIONARIA COSTANERA NORTE S A,SA-00167,ADM-1.4,Movilizacion,silver_audit,Gastos Gestión Cobranzas,,Sociedad Concesionaria Costanera Norte S.A.
+C_item_text+description+provider,GASTOS GESTION COBRANZAS SOCIEDAD CONCESIONARIA COSTANERA NORTE S A,SP-00018,ADM-1.7,Otros Gastos Administracion,silver_audit_v2,Gastos Gestión Cobranzas,,Sociedad Concesionaria Costanera Norte S.A.
+C_item_text+description+provider,INTERES POR MORA ENERGIA CIA ELECTRICA OSORNO S A,SA-00857,EXP-9.1,Energia Electrica Riego,silver_audit,Interés por mora Energía,,CIA ELECTRICA OSORNO S A
+C_item_text+description+provider,INTERES POR MORA ENERGIA CIA ELECTRICA OSORNO S A,SP-00469,EXP-11.1,Electricidad Lecheria,silver_audit_v2,Interés por mora Energía,,CIA ELECTRICA OSORNO S A
+C_item_text+description+provider,KILOS PAJA DE TRIGO CANTIDAD 39 MAXIFARDOS ACOPLADO JF 2403 AGRICOLA LAS LOMAS LIMITADA,SA-00836,EXP-4.3,Bolos Heno,silver_audit,KILOS PAJA DE TRIGO,CANTIDAD: 39 MAXIFARDOS ACOPLADO: JF-2403,AGRICOLA LAS LOMAS LIMITADA
+C_item_text+description+provider,KILOS PAJA DE TRIGO CANTIDAD 39 MAXIFARDOS ACOPLADO JF 2403 AGRICOLA LAS LOMAS LIMITADA,SP-00433,EXP-5.4,Bolos,silver_audit_v2,KILOS PAJA DE TRIGO,CANTIDAD: 39 MAXIFARDOS ACOPLADO: JF-2403,AGRICOLA LAS LOMAS LIMITADA
+C_item_text+description+provider,LIMPIEZA SILO 33 T MANTENCION INDUSTRIAL DEL SUR LIMITADA,SA-00828,EXP-10.4,Otros Gastos Lecheria,silver_audit,Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA
+C_item_text+description+provider,LIMPIEZA SILO 33 T MANTENCION INDUSTRIAL DEL SUR LIMITADA,SP-00309,EXP-14.1,Mantencion Caminos,silver_audit_v2,Limpieza silo 33 T,,MANTENCION INDUSTRIAL DEL SUR LIMITADA
+C_item_text+description+provider,MAXXIFARDOS SERVICIOS AGRICOLAS MECANIZADOS SPA,SA-00940,EXP-5.4,Bolos,silver_audit,Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA
+C_item_text+description+provider,MAXXIFARDOS SERVICIOS AGRICOLAS MECANIZADOS SPA,SP-00416,EXP-4.2,Bolos Silo,silver_audit_v2,Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA
+C_item_text+description+provider,MIPRO PASTOREO SKYLINE FUNDO BRAMADEROS SANO NUTRICION ANIMAL MODERNA SPA,SA-00405,EXP-2.4,Sales Minerales,file_audit,Mipro Pastoreo Skyline,//FUNDO BRAMADEROS,SANO - NUTRICION ANIMAL MODERNA SPA
+C_item_text+description+provider,MIPRO PASTOREO SKYLINE FUNDO BRAMADEROS SANO NUTRICION ANIMAL MODERNA SPA,SP-00430,EXP-5.3,Concentrado Otros Animales,silver_audit_v2,Mipro Pastoreo Skyline,//FUNDO BRAMADEROS,SANO - NUTRICION ANIMAL MODERNA SPA
+C_item_text+description+provider,MOVIMIENTOS DE BOLOS AGRICOLA J S E LIMITADA,SA-00763,EXP-5.4,Bolos,silver_audit,MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA
+C_item_text+description+provider,MOVIMIENTOS DE BOLOS AGRICOLA J S E LIMITADA,SP-00315,EXP-4.2,Bolos Silo,silver_audit_v2,MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA
+C_item_text+description+provider,ORBENIN X 36 JER ORBENIN X 36 JER COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA,RG-01052,EXP-2.1,Terapias Secado,file_audit,ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+C_item_text+description+provider,ORBENIN X 36 JER ORBENIN X 36 JER COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA,SP-00412,EXP-2.5,Otros Medicamentos,silver_audit_v2,ORBENIN X 36 JER,ORBENIN X 36 JER,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.
+C_item_text+description+provider,PERIODO DE COBERTURA AGOSTO 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SA-00933,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura agosto 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA AGOSTO 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SP-00028,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura agosto 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA ENERO 2026 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SA-00985,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura enero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA ENERO 2026 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SP-00036,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura enero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA FEBRERO 2026 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SA-00990,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura febrero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA FEBRERO 2026 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SP-00034,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura febrero 2026,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA JULIO 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SA-00920,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura julio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA JULIO 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SP-00032,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura julio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA JUNIO 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SA-00909,ADM-2.3,Seguros Otros,silver_audit,Periodo de Cobertura junio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA JUNIO 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SP-00030,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura junio 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA OCTUBRE 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SA-00752,ADM-2.2,Seguros Trabajadores,file_audit,Periodo de Cobertura octubre 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERIODO DE COBERTURA OCTUBRE 2025 CIA DE SEGUROS DE VIDA CONSORCIO NACIONAL DE SEGUROS SA,SP-00026,ADM-2.1,Seguros Vehiculos,silver_audit_v2,Periodo de Cobertura octubre 2025,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA
+C_item_text+description+provider,PERNO COLECTOR SIN CIERRE GEA FARM TECHNOLOGIES OSORNO LTDA,SA-00830,EXP-10.4,Otros Gastos Lecheria,silver_audit,PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,PERNO COLECTOR SIN CIERRE GEA FARM TECHNOLOGIES OSORNO LTDA,SP-00343,EXP-14.1,Mantencion Caminos,silver_audit_v2,PERNO COLECTOR SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,PIRIMOR BOLSA 1 KG TATTERSALL AGROINSUMOS S A,SA-00863,EXP-7.0,AGROQUIMICOS,silver_audit,PIRIMOR,BOLSA 1 KG|,Tattersall AgroInsumos S.A.
+C_item_text+description+provider,PIRIMOR BOLSA 1 KG TATTERSALL AGROINSUMOS S A,SP-00464,EXP-6.5,Otros Fertilizantes,silver_audit_v2,PIRIMOR,BOLSA 1 KG|,Tattersall AgroInsumos S.A.
+C_item_text+description+provider,RECARGA AGUA PURIFICADA FUNDO RAICES PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E I R L,SA-00754,ADM-1.6,Utiles y gastos de oficina.,file_audit,Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.
+C_item_text+description+provider,RECARGA AGUA PURIFICADA FUNDO RAICES PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E I R L,SP-00335,EXP-9.2,Otros Gastos Riego,silver_audit_v2,Recarga Agua Purificada,Fundo Raices,PURIFICADORA DE AGUA ALEJANDRO SALAZAR RIVERA E.I.R.L.
+C_item_text+description+provider,SEM RAPS FORR PILLAR IMP CTE DES COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,SA-00951,EXP-8.4,Otros Cultivos,silver_audit,SEM. RAPS FORR. PILLAR IMP.CTE. DES,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+C_item_text+description+provider,SEM RAPS FORR PILLAR IMP CTE DES COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,SP-00463,EXP-8.2,Pradera Rotacion Corta,silver_audit_v2,SEM. RAPS FORR. PILLAR IMP.CTE. DES,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+C_item_text+description+provider,SEM RAPS FORR SPITFIRE DES CTE COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,SA-00499,EXP-8.4,Otros Cultivos,file_audit,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+C_item_text+description+provider,SEM RAPS FORR SPITFIRE DES CTE COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,SP-00462,EXP-8.2,Pradera Rotacion Corta,silver_audit_v2,SEM.RAPS FORR.SPITFIRE DES. CTE,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA
+C_item_text+description+provider,SIEMBRA GUTTLER GUILLERMO ENRIQUE RIEDEL MARTINEZ,SA-00967,EXP-8.2,Pradera Rotacion Corta,silver_audit,SIEMBRA GUTTLER,,GUILLERMO ENRIQUE RIEDEL MARTINEZ
+C_item_text+description+provider,SIEMBRA GUTTLER GUILLERMO ENRIQUE RIEDEL MARTINEZ,SP-00459,EXP-8.1,Pradera Perenne,silver_audit_v2,SIEMBRA GUTTLER,,GUILLERMO ENRIQUE RIEDEL MARTINEZ
+C_item_text+description+provider,SOLUTION 60 LTS GEA FARM TECHNOLOGIES OSORNO LTDA,RG-00566,EXP-10.3,Detergentes e higenizantes,direct_client_example,SOLUTION 60 lts,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,SOLUTION 60 LTS GEA FARM TECHNOLOGIES OSORNO LTDA,SP-00339,EXP-10.1,Mantencion Sala,silver_audit_v2,SOLUTION 60 LTS,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,TAPA COLECTOR 300 CC SIN CIERRE GEA FARM TECHNOLOGIES OSORNO LTDA,SA-00466,EXP-10.4,Otros Gastos Lecheria,file_audit,TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,TAPA COLECTOR 300 CC SIN CIERRE GEA FARM TECHNOLOGIES OSORNO LTDA,SP-00321,EXP-10.1,Mantencion Sala,silver_audit_v2,TAPA COLECTOR 300 CC. SIN CIERRE,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,TRANSPORTE DE ELECTRICIDAD CIA ELECTRICA OSORNO S A,SA-00739,EXP-11.1,Electricidad Lecheria,file_audit,Transporte de Electricidad,,CIA ELECTRICA OSORNO S A
+C_item_text+description+provider,TRANSPORTE DE ELECTRICIDAD CIA ELECTRICA OSORNO S A,SP-00468,EXP-9.1,Energia Electrica Riego,silver_audit_v2,Transporte de Electricidad,,CIA ELECTRICA OSORNO S A
+C_item_text+description+provider,TRAS FERTILIZANT VITRAMAG DESDE MAITEN A TINEO LUIS ANTONIO TORRES JARAMILLO,SA-00955,EXP-6.5,Otros Fertilizantes,silver_audit,TRAS.FERTILIZANT VITRAMAG,DESDE MAITEN A TINEO,LUIS ANTONIO TORRES JARAMILLO
+C_item_text+description+provider,TRAS FERTILIZANT VITRAMAG DESDE MAITEN A TINEO LUIS ANTONIO TORRES JARAMILLO,SP-00456,EXP-15.3,Fletes,silver_audit_v2,TRAS.FERTILIZANT VITRAMAG,DESDE MAITEN A TINEO,LUIS ANTONIO TORRES JARAMILLO
+C_item_text+description+provider,TRASLADO DE BOLOS BRAMADERO AL MAITEN SERVICIOS VITAP SPA,SA-00799,EXP-4.2,Bolos Silo,silver_audit,TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA
+C_item_text+description+provider,TRASLADO DE BOLOS BRAMADERO AL MAITEN SERVICIOS VITAP SPA,SP-00383,EXP-15.3,Fletes,silver_audit_v2,TRASLADO DE BOLOS,BRAMADERO AL MAITEN,SERVICIOS VITAP SPA
+C_item_text+description+provider,TRI PFAN 200 LTS GEA FARM TECHNOLOGIES OSORNO LTDA,SA-00469,EXP-10.3,Detergentes e higenizantes,file_audit,TRI-PFAN 200 LTS,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,TRI PFAN 200 LTS GEA FARM TECHNOLOGIES OSORNO LTDA,SP-00331,EXP-10.1,Mantencion Sala,silver_audit_v2,TRI-PFAN 200 LTS,,GEA Farm Technologies Osorno Ltda.
+C_item_text+description+provider,VITRAMAG BRAMADERO PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA,SA-00954,EXP-6.5,Otros Fertilizantes,silver_audit,VITRAMAG-BRAMADERO,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA
+C_item_text+description+provider,VITRAMAG BRAMADERO PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA,SP-00455,EXP-7.0,AGROQUIMICOS,silver_audit_v2,VITRAMAG-BRAMADERO,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA
+C_item_text+description+provider,YUTRECO FERTILIZANTE RIEGO FERTILIZANTE UREA S MART BLUE 50 K HA SERVICIOS AGRICOLAS CORPAL SPA,SA-00839,EXP-6.5,Otros Fertilizantes,silver_audit,YUTRECO FERTILIZANTE,RIEGO FERTILIZANTE UREA S-MART BLUE 50 K/HA,SERVICIOS AGRICOLAS CORPAL SPA
+C_item_text+description+provider,YUTRECO FERTILIZANTE RIEGO FERTILIZANTE UREA S MART BLUE 50 K HA SERVICIOS AGRICOLAS CORPAL SPA,SP-00449,EXP-6.2,Nitrogeno,silver_audit_v2,YUTRECO FERTILIZANTE,RIEGO FERTILIZANTE UREA S-MART BLUE 50 K/HA,SERVICIOS AGRICOLAS CORPAL SPA
+D_embedding_near_dup,cos=0.993,,"EXP-11.2,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 456 KWH,
+D_embedding_near_dup,cos=0.988,,"EXP-10.1,EXP-14.3",,,CONFEC 01 MANG HIDRA 1 47 4 R2,CONFEC 01 MANG HIDRA 1 47 2 R2,
+D_embedding_near_dup,cos=0.988,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.987,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.986,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.985,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 263 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.984,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA AGOSTO 2025,PERIODO DE COBERTURA ENERO 2025,
+D_embedding_near_dup,cos=0.984,,"EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 8760 KWH,
+D_embedding_near_dup,cos=0.982,,"EXP-4.2,EXP-15.3",,,FLETE TRASLADO DE BOLOS DE SILO,TRASLADO DE BOLOS DE SILO,
+D_embedding_near_dup,cos=0.979,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA AGOSTO 2025,PERIODO DE COBERTURA NOVIEMBRE 2025,
+D_embedding_near_dup,cos=0.976,,"EXP-15.3,EXP-4.2,EXP-4.2",,,TRASLADO DE BOLOS,TRASLADO BOLOS,
+D_embedding_near_dup,cos=0.976,,"EXP-10.3,EXP-10.1",,,MANGA DE LECHE 12 MM X MT,MANGA DE LECHE 16 MM MT,
+D_embedding_near_dup,cos=0.976,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA SUMINISTRADA 39 21 X 18186 99311400153,DEMANDA MAXIMA SUMINISTRADA 39 21 X 17984 28972200969,
+D_embedding_near_dup,cos=0.975,,"EXP-1.1,EXP-15.2",,,CURSO TECNICAS DE MANEJO DE CRIANZA DE TERNERAS DE LECHERIA,TECNICAS DE MANEJO DE CRIANZA DE TERNERAS DE LECHERIA,
+D_embedding_near_dup,cos=0.973,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA SUMINISTRADA 39 21 X 18186 99311400153,DEMANDA MAXIMA SUMINISTRADA 39 21 X 18065 161948482528,
+D_embedding_near_dup,cos=0.972,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.971,,"EXP-12.2,EXP-12.1",,,PLANILLA N 73698 ANALISIS COOP FECCAS PARASITOS PUL,PLANILLA NUMERO 73698 ANALISIS COOP FECAS PARASITOS PUL,
+D_embedding_near_dup,cos=0.969,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.969,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 257 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.968,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA POTENCIA LEIDA 24 0 X 29050 541666666668,DEMANDA MAXIMA POTENCIA LEIDA 30 57 X 28592 934249263984,
+D_embedding_near_dup,cos=0.968,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA POTENCIA LEIDA 24 0 X 29050 541666666668,DEMANDA MAXIMA POTENCIA LEIDA 24 6 X 28746 382113821135,
+D_embedding_near_dup,cos=0.968,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 795 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.968,,"EXP-9.1,EXP-11.1",,,CARGO MENSUAL POR DEMANDA MXIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 0 040,CARGO MENSUAL POR DEMANDA MXIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 56 480,
+D_embedding_near_dup,cos=0.968,,"EXP-9.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 7620 KWH,
+D_embedding_near_dup,cos=0.967,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA AGOSTO 2025,PERIODO DE COBERTURA MAYO 2025,
+D_embedding_near_dup,cos=0.967,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 17 960 KWH,ELECTRICIDAD CONSUMIDA 17 710 KWH,
+D_embedding_near_dup,cos=0.967,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA AGOSTO 2025,PERIODO DE COBERTURA ABRIL 2025,
+D_embedding_near_dup,cos=0.966,,"EXP-4.2,EXP-4.2,EXP-4.3",,,BOLOS CHAPILCAHUIN,BOLOS SILO CHAPILCAHUIN,
+D_embedding_near_dup,cos=0.963,,"EXP-4.2,EXP-4.3",,,DESCARGA BOLOS YUTRECO,BOLOS YUTRECO,
+D_embedding_near_dup,cos=0.963,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 7860 KWH,
+D_embedding_near_dup,cos=0.963,,"EXP-16.1,EXP-2.6",,,GUANTE LARGO NITRILO S SHOOF 204629,GUANTE LARGO NITRILO XL SHOOF 204630,
+D_embedding_near_dup,cos=0.963,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.963,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA AGOSTO 2025,PERIODO DE COBERTURA DICIEMBRE 2025,
+D_embedding_near_dup,cos=0.962,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 252 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.961,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA SUMINISTRADA 39 21 X 18186 99311400153,DEMANDA MAXIMA SUMINISTRADA 40 44 X 18117 161226508408,
+D_embedding_near_dup,cos=0.960,,"EXP-4.2,EXP-4.3,EXP-4.2",,,CONFECCION BOLOS PRADERA,CONFECCIA N BOLOS PRADERA,
+D_embedding_near_dup,cos=0.959,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.959,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JUNIO 2025,PERIODO DE COBERTURA MAYO 2025,
+D_embedding_near_dup,cos=0.958,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.958,,"EXP-16.1,EXP-2.6",,,TRAJE DESECHABLE TYVEK DUPONT XL,TRAJE DESECHABLE TYVEK DUPONT XXL,
+D_embedding_near_dup,cos=0.957,,"EXP-12.2,EXP-12.1",,,PLANILLA N 73697 ANALISIS COOP FECCAS SEDIMENTACION,PLANILLA NUMERO 76450 ANALISIS COOP FECAS SEDIMENTACION,
+D_embedding_near_dup,cos=0.957,,"EXP-4.2,EXP-4.3",,,BOLOS SILO YUTRECO,BOLOS YUTRECO,
+D_embedding_near_dup,cos=0.957,,"ADM-1.3,EXP-15.5",,,ARRIENDO JUNIO 26,ARRIENDO JUNIO 25,
+D_embedding_near_dup,cos=0.957,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA AGOSTO 2025,PERIODO DE COBERTURA MARZO 2025,
+D_embedding_near_dup,cos=0.957,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JULIO 2025,PERIODO DE COBERTURA MAYO 2025,
+D_embedding_near_dup,cos=0.957,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.957,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.957,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.956,,"ADM-2.1,ADM-2.2,ADM-2.1",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA DICIEMBRE 2025,
+D_embedding_near_dup,cos=0.956,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.956,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.954,,"ADM-1.6,ADM-1.6,EXP-9.2",,,REGARGA AGUA PURIFICADA,RECARGA AGUA PURIFICADA,
+D_embedding_near_dup,cos=0.954,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA SUMINISTRADA 39 21 X 18186 99311400153,DEMANDA MAXIMA SUMINISTRADA 38 55 X 18007 159533073933,
+D_embedding_near_dup,cos=0.954,,"EXP-11.1,EXP-11.2",,,CARGO POR SERVICIO PUBLICO BASE 17 960 KWH EX IVA,CARGO POR SERVICIO PUBLICO BASE 458 KWH EX IVA,
+D_embedding_near_dup,cos=0.954,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.954,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA POTENCIA LEIDA 24 0 X 29050 541666666668,DEMANDA MAXIMA POTENCIA LEIDA 22 8 X 28803 15789473684,
+D_embedding_near_dup,cos=0.953,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.953,,"ADM-2.1,ADM-2.2,ADM-2.1",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA NOVIEMBRE 2025,
+D_embedding_near_dup,cos=0.953,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.953,,"EXP-12.2,EXP-12.1",,,PLANILLA N 73697 ANALISIS COOP FECCAS SEDIMENTACION,PLANILLA NUMERO 76449 ANALISIS COOP FECAS SEDIMENTACION,
+D_embedding_near_dup,cos=0.953,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 8760 KWH,
+D_embedding_near_dup,cos=0.952,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.952,,"EXP-11.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 6240 KWH,
+D_embedding_near_dup,cos=0.951,,"EXP-3.1,EXP-2.5",,,CONCEPTAL FACTOR LIBERA HORMONAL X 50ML,CONCEPTAL FACTOR LIBERA HORMONAL 50 ML,
+D_embedding_near_dup,cos=0.951,,"EXP-1.1,EXP-4.2",,,BOLSA,BOLOS,
+D_embedding_near_dup,cos=0.951,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.950,,"EXP-12.2,EXP-12.1",,,PLANILLA N 73697 ANALISIS COOP FECCAS SEDIMENTACION,PLANILLA NUMERO 73697 ANALISIS COOP FECAS SEDIMENTACION,
+D_embedding_near_dup,cos=0.950,,"EXP-9.1,EXP-11.1",,,CARGO MENSUAL POR DEMANDA MXIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 0 040,CARGO MENSUAL POR DEMANDA MXIMA DE POTENCIA LEDA HORA PUNTA,
+D_embedding_near_dup,cos=0.950,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 969 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.949,,"EXP-9.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 456 KWH,
+D_embedding_near_dup,cos=0.949,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 6 KWH,
+D_embedding_near_dup,cos=0.949,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.949,,"EXP-9.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 923 KWH,
+D_embedding_near_dup,cos=0.949,,"EXP-11.1,EXP-9.1",,,DEMANDA MAXIMA POTENCIA LEIDA 24 0 X 29050 541666666668,DEMANDA MAXIMA POTENCIA LEIDA 30 57 X 28305 430160287862,
+D_embedding_near_dup,cos=0.949,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.949,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 225 KWH,ELECTRICIDAD CONSUMIDA 245 KWH,
+D_embedding_near_dup,cos=0.948,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.948,,"EXP-4.3,EXP-4.2",,,BOLOS RAICES,BOLOS,
+D_embedding_near_dup,cos=0.948,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.948,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.948,,"EXP-16.1,EXP-2.6",,,GUANTE LARGO NITRILO L SHOOF 204627,GUANTE LARGO NITRILO XL SHOOF 204630,
+D_embedding_near_dup,cos=0.947,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.947,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA ENERO 2026,PERIODO DE COBERTURA ABRIL 2025,
+D_embedding_near_dup,cos=0.947,,"EXP-16.1,EXP-16.2",,,LIMA PLANA 8 SANDVIK CON MANGO,LIMAS PLANAS 10 SANDVIK CON MANGO,
+D_embedding_near_dup,cos=0.947,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 245 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.946,,"EXP-11.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 7620 KWH,
+D_embedding_near_dup,cos=0.946,,"EXP-13.1,EXP-14.2",,,A SPIRAX S4 TXM X 18 9 L 958955,A SPIRAX S4 TXM JC X 20 L 968314,
+D_embedding_near_dup,cos=0.946,,"EXP-16.1,EXP-2.6",,,GUANTE LARGO NITRILO M SHOOF 204628,GUANTE LARGO NITRILO XL SHOOF 204630,
+D_embedding_near_dup,cos=0.946,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.946,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.945,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 182 KWH,
+D_embedding_near_dup,cos=0.945,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.945,,"EXP-11.2,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 8760 KWH,
+D_embedding_near_dup,cos=0.945,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.945,,"EXP-14.1,EXP-14.4",,,LIMPIEZA DE FOSOS,LIMPIEZA DE FOSO,
+D_embedding_near_dup,cos=0.945,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.945,,"EXP-15.3,EXP-4.2,EXP-15.3",,,TRASLADO DE BOLOS,TRASLADO DE BOLOS DE SILO,
+D_embedding_near_dup,cos=0.945,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.945,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA FEBRERO 2026,PERIODO DE COBERTURA FEBRERO 2025,
+D_embedding_near_dup,cos=0.945,,"EXP-10.4,EXP-14.3",,,CONF 01 MANG HIDRA 1 QUOT R2,CONFEC 01 MANG HIDRA 1 47 2 R2,
+D_embedding_near_dup,cos=0.944,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.944,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.944,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 951 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.944,,"EXP-11.1,EXP-9.1",,,CARGO MENSUAL POR DEMANDA MXIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 56 480,CARGO MENSUAL POR DEMANDA MA XIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 0 040,
+D_embedding_near_dup,cos=0.944,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.944,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.943,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 934 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.943,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JULIO 2025,PERIODO DE COBERTURA NOVIEMBRE 2025,
+D_embedding_near_dup,cos=0.943,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.943,,"EXP-14.4,EXP-13.1",,,MANO DE OBRA,MANO DE OBRA MARCELO,
+D_embedding_near_dup,cos=0.943,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.942,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.942,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 798 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.942,,"EXP-9.2,EXP-13.2",,,MANTENCION,MANTENCION MOTO,
+D_embedding_near_dup,cos=0.942,,"EXP-11.2,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 5400 KWH,
+D_embedding_near_dup,cos=0.942,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.942,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JUNIO 2025,PERIODO DE COBERTURA FEBRERO 2025,
+D_embedding_near_dup,cos=0.942,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA AGOSTO 2025,PERIODO DE COBERTURA FEBRERO 2025,
+D_embedding_near_dup,cos=0.942,,"ADM-2.1,ADM-2.2,ADM-2.1,ADM-2.3",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA AGOSTO 2025,
+D_embedding_near_dup,cos=0.941,,"EXP-9.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 5400 KWH,
+D_embedding_near_dup,cos=0.941,,"EXP-15.4,EXP-14.3",,,ARRIENDO RETROEXCAVADORA,RETROESCAVADORA,
+D_embedding_near_dup,cos=0.941,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.941,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.941,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.941,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.940,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.940,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.940,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-15.5,EXP-15.3",,,ARRIENDO FEBRERO 25,ARRIENDO FEBRERO 26,
+D_embedding_near_dup,cos=0.939,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 995 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 798 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 214 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.939,,"EXP-11.1,EXP-9.1",,,CARGO MENSUAL POR DEMANDA MA XIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 56 480,CARGO MENSUAL POR DEMANDA MA XIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 0 040,
+D_embedding_near_dup,cos=0.938,,"EXP-10.4,EXP-10.1",,,CONF 01 MANG HIDRA 1 QUOT R2,CONFEC 01 MANG HIDRA 1 47 4 R2,
+D_embedding_near_dup,cos=0.938,,"ADM-2.1,ADM-2.2,ADM-2.1",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA MAYO 2025,
+D_embedding_near_dup,cos=0.938,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.938,,"EXP-2.4,EXP-2.2",,,BILIFAR 120 GRS,DIGESTIVO BILIFAR 120 GRS,
+D_embedding_near_dup,cos=0.938,,"ADM-2.1,ADM-2.2,ADM-2.1",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA ABRIL 2025,
+D_embedding_near_dup,cos=0.938,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.938,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.938,,"ING-0.2,ING-0.3",,,VENTA DE VACAS,VENTA DE VAQUILLAS,
+D_embedding_near_dup,cos=0.937,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 798 KWH,
+D_embedding_near_dup,cos=0.937,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.937,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.937,,"EXP-4.2,EXP-4.3",,,BOLOS PELLECO EMPASTADA,CONFECCION BOLOS PELLECO,
+D_embedding_near_dup,cos=0.937,,"EXP-11.1,EXP-11.2",,,TRANSPORTE DE ELECTRICIDAD 17 960 KWH,TRANSPORTE DE ELECTRICIDAD 458 KWH,
+D_embedding_near_dup,cos=0.937,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JUNIO 2025,PERIODO DE COBERTURA NOVIEMBRE 2025,
+D_embedding_near_dup,cos=0.937,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.937,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JULIO 2025,PERIODO DE COBERTURA MARZO 2025,
+D_embedding_near_dup,cos=0.936,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 7860 KWH,
+D_embedding_near_dup,cos=0.936,,"EXP-11.2,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 155 KWH,
+D_embedding_near_dup,cos=0.936,,"EXP-9.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 456 KWH,
+D_embedding_near_dup,cos=0.936,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.935,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA FEBRERO 2026,PERIODO DE COBERTURA ABRIL 2025,
+D_embedding_near_dup,cos=0.935,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-11.2,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 6240 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-4.3,EXP-15.3",,,TRASLADO BOLOS CORTE ALTO,TRASLADO DE BOLOS DE SILO,
+D_embedding_near_dup,cos=0.935,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-11.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 456 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 458 KWH,
+D_embedding_near_dup,cos=0.935,,"EXP-15.4,EXP-14.1",,,ARRIENDO MAQUINARIA Y VEHICULOS FACTURA ELECTRONICA GEO PARTNER SPA,MANTENCION CAMINOS FACTURA ELECTRONICA GEO PARTNER SPA,
+D_embedding_near_dup,cos=0.935,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 182 KWH,
+D_embedding_near_dup,cos=0.934,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.934,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 610 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.934,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.934,,"EXP-9.1,EXP-11.2",,,ENERGIA ELECTRICA RIEGO COOPERATIVA ELECTRICA PAILLACO LTDA,ELECTRICIDAD CASAS E INSTALACIONES COOPERATIVA ELECTRICA PAILLACO LTDA,
+D_embedding_near_dup,cos=0.934,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.934,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.934,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.934,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.933,,"EXP-13.1,EXP-13.2,EXP-13.2",,,MANTENCION Y REPARACION,MANTENION Y REPARACION,
+D_embedding_near_dup,cos=0.933,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 798 KWH,
+D_embedding_near_dup,cos=0.933,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.933,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 257 KWH,
+D_embedding_near_dup,cos=0.933,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.933,,"EXP-11.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 5400 KWH,
+D_embedding_near_dup,cos=0.933,,"EXP-10.3,EXP-10.1",,,MANGA DE LECHE 12 MM X MT,MANGA DE LECHE 5 8 MT,
+D_embedding_near_dup,cos=0.933,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.932,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 795 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.932,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.932,,"ING-0.2,ING-0.3",,,VENTA DE VACAS,VENTA VAQUILLAS,
+D_embedding_near_dup,cos=0.932,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JUNIO 2025,PERIODO DE COBERTURA MARZO 2025,
+D_embedding_near_dup,cos=0.932,,"EXP-11.1,EXP-11.2,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 118 KWH,
+D_embedding_near_dup,cos=0.932,,"EXP-15.3,EXP-4.1",,,TRASLADO DE BOLOS DE SILO,TRASLADO BOLOS SILOS,
+D_embedding_near_dup,cos=0.932,,"EXP-11.2,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 157 KWH,
+D_embedding_near_dup,cos=0.932,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.931,,"EXP-10.1,EXP-10.3,EXP-10.3",,,TRI PFAN 200 LTS,TRI PFAN 60 LTS,
+D_embedding_near_dup,cos=0.931,,"EXP-11.1,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 923 KWH,
+D_embedding_near_dup,cos=0.931,,"ADM-2.1,ADM-2.2,ADM-2.1",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA FEBRERO 2025,
+D_embedding_near_dup,cos=0.931,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.931,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.931,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.931,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JULIO 2025,PERIODO DE COBERTURA ABRIL 2025,
+D_embedding_near_dup,cos=0.931,,"EXP-15.3,EXP-11.3",,,FLETE,DIESEL,
+D_embedding_near_dup,cos=0.931,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.931,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.930,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.930,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.930,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 48 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.930,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.930,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.930,,"EXP-9.1,EXP-11.1",,,CARGO MENSUAL POR DEMANDA MXIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 0 040,CARGO MENSUAL POR DEMANDA MA XIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 56 480,
+D_embedding_near_dup,cos=0.930,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.930,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JULIO 2025,PERIODO DE COBERTURA ENERO 2025,
+D_embedding_near_dup,cos=0.930,,"EXP-11.2,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.930,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.929,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 61 KWH,
+D_embedding_near_dup,cos=0.929,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.929,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.929,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.929,,"EXP-11.2,EXP-9.1",,,TRANSPORTE DE ELECTRICIDAD 458 KWH,TRANSPORTE DE ELECTRICIDAD 117 KWH,
+D_embedding_near_dup,cos=0.929,,"ADM-2.1,ADM-2.2,ADM-2.1",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA ENERO 2025,
+D_embedding_near_dup,cos=0.929,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.929,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.929,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.929,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA ENERO 2026,PERIODO DE COBERTURA NOVIEMBRE 2025,
+D_embedding_near_dup,cos=0.929,,"ADM-2.1,ADM-2.2,ADM-2.1",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA MARZO 2025,
+D_embedding_near_dup,cos=0.929,,"EXP-15.3,EXP-4.2,EXP-4.3",,,TRASLADO DE BOLOS,TRASLADO BOLOS CORTE ALTO,
+D_embedding_near_dup,cos=0.929,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JULIO 2025,PERIODO DE COBERTURA FEBRERO 2025,
+D_embedding_near_dup,cos=0.929,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 217 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 7860 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 155 KWH,ELECTRICIDAD CONSUMIDA 152 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.2,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 152 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-9.1,EXP-11.1",,,CARGO MENSUAL POR D MAX DE POTENCIA SUMINISTRADA 56 860,CARGO MENSUAL POR D MAX DE POTENCIA SUMINISTRADA 70 650,
+D_embedding_near_dup,cos=0.928,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-4.2,EXP-4.3",,,CARGA DE BOLOS PELLECO,CONFECCION BOLOS PELLECO,
+D_embedding_near_dup,cos=0.928,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 675 KWH,
+D_embedding_near_dup,cos=0.928,,"EXP-15.3,EXP-4.2,EXP-4.2,EXP-5.4",,,BOLOS BRAMADERO,CONF BOLOS BRAMADERO,
+D_embedding_near_dup,cos=0.928,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 182 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.927,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JULIO 2025,PERIODO DE COBERTURA DICIEMBRE 2025,
+D_embedding_near_dup,cos=0.927,,"ADM-1.4,EXP-11.4,EXP-11.4",,,GASOLINA 93,GASOLINA 95,
+D_embedding_near_dup,cos=0.927,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 155 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.927,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 155 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 155 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 245 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 61 KWH,
+D_embedding_near_dup,cos=0.926,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JUNIO 2025,PERIODO DE COBERTURA ABRIL 2025,
+D_embedding_near_dup,cos=0.926,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-14.2,EXP-10.4",,,CLAVOS 2 1 2 X 11,CLAVO TERRANO 1 1 2 X 11,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.926,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 584 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.2,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 7620 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 675 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 200 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 158 KWH,ELECTRICIDAD CONSUMIDA 157 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 117 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 60 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-4.3,EXP-5.4,EXP-5.3",,,KILOS PAJA DE TRIGO,FARDOS PAJA DE TRIGO,
+D_embedding_near_dup,cos=0.925,,"ADM-2.1,ADM-2.2,ADM-2.1,ADM-2.3",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA JULIO 2025,
+D_embedding_near_dup,cos=0.925,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.2,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 7860 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7020 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.925,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 118 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 61 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.924,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA ENERO 2026,PERIODO DE COBERTURA MAYO 2025,
+D_embedding_near_dup,cos=0.924,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 321 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 162 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.924,,"EXP-4.1,EXP-8.4",,,CULTIVO SILO RASTRA,SIEMBRA OTROS CULTIVOS,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 155 KWH,ELECTRICIDAD CONSUMIDA 158 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 16 762 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 675 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 124 KWH,ELECTRICIDAD CONSUMIDA 14 134 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 5 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 38 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 193 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.2,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 158 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-9.1,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 6 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.923,,"EXP-15.3,EXP-4.2,EXP-5.4",,,VIAJES BOLOS,BOLOS DE PAJA,
+D_embedding_near_dup,cos=0.922,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 140 KWH,ELECTRICIDAD CONSUMIDA 14 134 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 112 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 969 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 193 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.922,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JUNIO 2025,PERIODO DE COBERTURA ENERO 2025,
+D_embedding_near_dup,cos=0.922,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-4.2,EXP-5.4,EXP-4.3,EXP-5.3",,,BOLOS DE PAJA,BOLOS PAJA DE TRIGO,
+D_embedding_near_dup,cos=0.922,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.922,,"EXP-15.3,EXP-4.2,EXP-4.2",,,TRASLADO DE BOLOS,FLETE TRASLADO DE BOLOS DE SILO,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 7860 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-9.1,EXP-11.1",,,ENERGIA ELECTRICA RIEGO COOPERATIVA RURAL ELECTRICA RIO BUENO LTDA,ELECTRICIDAD LECHERIA COOPERATIVA RURAL ELECTRICA RIO BUENO LTDA,
+D_embedding_near_dup,cos=0.921,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-4.2,EXP-4.3",,,FLETE TRASLADO DE BOLOS DE SILO,TRASLADO BOLOS CORTE ALTO,
+D_embedding_near_dup,cos=0.921,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA FEBRERO 2026,PERIODO DE COBERTURA MARZO 2025,
+D_embedding_near_dup,cos=0.921,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 118 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 5 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 257 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.2,EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 923 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 211 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 798 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 524 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.921,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA ENERO 2026,PERIODO DE COBERTURA ENERO 2025,
+D_embedding_near_dup,cos=0.921,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-2.6,EXP-13.1",,,PINTURA CELO TELL TAIL ROJO 1 LT,PINTURA CELO TELL TAIL ROJO,
+D_embedding_near_dup,cos=0.921,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.921,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.920,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA FEBRERO 2026,PERIODO DE COBERTURA NOVIEMBRE 2025,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7020 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 257 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 524 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 6 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 118 KWH,ELECTRICIDAD CONSUMIDA 112 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 40 KWH,ELECTRICIDAD CONSUMIDA 4 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 155 KWH,ELECTRICIDAD CONSUMIDA 173 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 995 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.920,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.920,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA ENERO 2026,PERIODO DE COBERTURA DICIEMBRE 2025,
+D_embedding_near_dup,cos=0.919,,"EXP-15.5,EXP-15.3",,,ARRIENDO DICIEMBRE 25,ARRIENDO NOVIEMBRE 25,
+D_embedding_near_dup,cos=0.919,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.919,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA JUNIO 2025,PERIODO DE COBERTURA DICIEMBRE 2025,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 1 211 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 7860 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.2,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 173 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1",,,TRANSPORTE DE ELECTRICIDAD 17 960 KWH,TRANSPORTE DE ELECTRICIDAD 117 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 584 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-4.3,EXP-5.4,EXP-4.3,EXP-5.3",,,KILOS PAJA DE TRIGO,BOLOS PAJA DE TRIGO,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 14 134 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-14.2,EXP-10.4",,,CLAVOS TERRANO 1 1 2,CLAVO TERRANO 1 1 2 X 11,
+D_embedding_near_dup,cos=0.919,,"EXP-11.2,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 146 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.919,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 3 512 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 584 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 155 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 73 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 112 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.918,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 633 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 200 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 112 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 193 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 73 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 124 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.917,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 934 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.916,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA ENERO 2026,PERIODO DE COBERTURA MARZO 2025,
+D_embedding_near_dup,cos=0.916,,"EXP-11.2,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.916,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA FEBRERO 2026,PERIODO DE COBERTURA MAYO 2025,
+D_embedding_near_dup,cos=0.916,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 675 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 118 KWH,ELECTRICIDAD CONSUMIDA 117 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 61 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 245 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-16.1,EXP-10.1",,,MANGAS PARA ORDENA MECANICA,MANGAS PARA ORDEA MECANICA,
+D_embedding_near_dup,cos=0.916,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 112 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7440 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.916,,"ADM-1.4,EXP-11.4,EXP-11.3",,,DETALLE,DIESEL,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-11.2,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 109 KWH,
+D_embedding_near_dup,cos=0.916,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 109 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 140 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.2,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 245 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 1 211 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 245 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-4.3,EXP-5.3,EXP-5.3",,,BOLOS PAJA DE TRIGO,FARDOS PAJA DE TRIGO,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1",,,CARGO MENSUAL POR DEMANDA MXIMA DE POTENCIA LEDA HORA PUNTA,CARGO MENSUAL POR DEMANDA MA XIMA LEIDA DE POTENCIA EN HORAS DE PUNTA 0 040,
+D_embedding_near_dup,cos=0.915,,"EXP-4.3,EXP-1.1",,,BOLOS RAICES,BOLSA,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 624 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 179 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.915,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 158 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 200 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.914,,"ADM-2.1,ADM-2.2,ADM-2.1,ADM-2.3",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA JUNIO 2025,
+D_embedding_near_dup,cos=0.914,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 48 KWH,ELECTRICIDAD CONSUMIDA 32 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 225 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 184 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 146 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 109 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 263 KWH,ELECTRICIDAD CONSUMIDA 27 KWH,
+D_embedding_near_dup,cos=0.914,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 110 KWH,ELECTRICIDAD CONSUMIDA 60 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 61 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 584 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 42 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 110 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 118 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 173 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 257 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 3 101 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 798 KWH,
+D_embedding_near_dup,cos=0.913,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-16.1,EXP-2.6",,,TRAJE DESECHABLE TYVEK DUPONT XL,TRAJE DESECHABLE TYVEK DUPONT L,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-10.1,EXP-13.1",,,HORA TECNICA AM,HORA TECNICA,
+D_embedding_near_dup,cos=0.912,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 184 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7440 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 60 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 168 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 118 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 117 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 61 KWH,ELECTRICIDAD CONSUMIDA 39 KWH,
+D_embedding_near_dup,cos=0.912,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 193 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 3 101 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 133 KWH,ELECTRICIDAD CONSUMIDA 173 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 172 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 140 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-4.3,EXP-4.2,EXP-5.4",,,BOLOS PAJA PLASTIFICADOS,BOLOS DE PAJA,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 172 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 51 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 6 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-4.3,EXP-4.2,EXP-5.4",,,BOLOS PAJA PLASTIFICADO,BOLOS DE PAJA,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 584 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.911,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 610 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 118 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 193 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 852 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 193 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 5 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 2 053 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 675 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 5 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 162 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 146 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 179 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 934 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 157 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 179 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 40 KWH,ELECTRICIDAD CONSUMIDA 60 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 140 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 675 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 179 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-15.5,EXP-15.4",,,ARRIENDO ABRIL 25,ARRIENDO ENERO 25,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 995 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-14.2,EXP-10.4",,,CLAVOS 2 1 2 X 11 X,CLAVO TERRANO 1 1 2 X 11,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.910,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 17 710 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-2.6,EXP-5.3",,,TOALLA PAPEL INTERFOLIADA 320 UN,TOALLA PAPEL INTERFOLIADA,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-4.1,EXP-8.1",,,SILO PARVA MAITEN,MAITEN SIEMBRA EMPAST,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 610 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 675 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 158 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.909,,"ADM-2.1,ADM-2.2,ADM-2.1,ADM-2.3",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA ENERO 2026,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 110 KWH,ELECTRICIDAD CONSUMIDA 112 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 969 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.909,,"EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 39 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 4 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-4.2,EXP-4.3",,,TRASLADO BOLOS,TRASLADO BOLOS CORTE ALTO,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 109 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 117 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 2 053 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-14.4,EXP-14.1",,,CAMION,ARRIENDO CAMION,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 179 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-8.4,EXP-8.1",,,SIEMBRA MAITEN,MAITEN SIEMBRA EMPAST,
+D_embedding_near_dup,cos=0.908,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 155 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.908,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 524 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 146 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.907,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA FEBRERO 2026,PERIODO DE COBERTURA DICIEMBRE 2025,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7020 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 798 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-4.2,EXP-4.1",,,FLETE TRASLADO DE BOLOS DE SILO,TRASLADO BOLOS SILOS,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.907,,"ADM-2.1,ADM-2.2,ADM-2.1,ADM-2.3",,,PERIODO DE COBERTURA OCTUBRE 2025,PERIODO DE COBERTURA FEBRERO 2026,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-4.3,EXP-4.2",,,CONFECCION BOLOS PELLECO,BOLOS PELLECO,
+D_embedding_near_dup,cos=0.907,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-13.1,EXP-10.1",,,HORA TECNICA,HORA TECNICA JM,
+D_embedding_near_dup,cos=0.907,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-9.1,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 133 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 3 101 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 524 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 3 978 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.907,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 124 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 60 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 524 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 39 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.2,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 157 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 19 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 173 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 51 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 995 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 4 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.1",,,ENERGIA ELECTRICA RIEGO COOPERATIVA ELECTRICA PAILLACO LTDA,ELECTRICIDAD LECHERIA COOPERATIVA ELECTRICA PAILLACO LTDA,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 61 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 60 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 257 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 95 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 746 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.906,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 257 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 225 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 795 KWH,ELECTRICIDAD CONSUMIDA 39 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 16 762 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 225 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 60 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 633 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 193 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 42 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 822 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 155 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 61 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 40 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 12 210 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-2.6,EXP-13.1",,,PINTURA CELO TELL TAIL ROSADO 1 LT,PINTURA CELO TELL TAIL ROJO,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1310 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 193 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 140 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 746 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-10.4,EXP-10.1",,,FILTRO LECHE 75 MM 800 SE 200 UN,FILTRO LECHE 60 MM 455 370 UN,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 42 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 852 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 27 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 225 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 32 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.905,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-15.3,EXP-4.2,EXP-15.3",,,TRASLADO DE BOLOS,VIAJES BOLOS,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 110 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 155 KWH,ELECTRICIDAD CONSUMIDA 150 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 73 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 51 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 115 KWH,
+D_embedding_near_dup,cos=0.904,,"ADM-1.3,EXP-15.5,EXP-15.5",,,ARRIENDO OCTUBRE 25,ARRIENDO SEPTIEMBRE 25,
+D_embedding_near_dup,cos=0.904,,"EXP-15.4,EXP-14.1",,,ARRIENDO DE TRACTOR JUNIO,TRASLADO DE RODILLO DESDE,
+D_embedding_near_dup,cos=0.904,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 584 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 124 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 118 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 1310 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 17 710 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 140 KWH,
+D_embedding_near_dup,cos=0.904,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 3 101 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 73 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 28 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 798 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-9.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 146 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 14 134 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 2 053 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 937 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7440 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 172 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 110 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-16.1,EXP-2.6",,,GUANTE CORTO NITRILO L SHOOF 204631,GUANTE LARGO NITRILO XL SHOOF 204630,
+D_embedding_near_dup,cos=0.903,,"ADM-1.7,EXP-15.3",,,INTERES MORA MAYOR PLAZO,INTERES MAYOR PLAZO,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7440 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 584 KWH,ELECTRICIDAD CONSUMIDA 1 211 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 852 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 39 KWH,ELECTRICIDAD CONSUMIDA 34 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 95 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 28 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.903,,"ADM-2.1,ADM-2.3,ADM-2.1",,,PERIODO DE COBERTURA ENERO 2026,PERIODO DE COBERTURA FEBRERO 2025,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 795 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 158 KWH,
+D_embedding_near_dup,cos=0.903,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 73 KWH,ELECTRICIDAD CONSUMIDA 17 710 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 14 134 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 3 101 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 12 210 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 38 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.2,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 153 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 182 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 200 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 166 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 73 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 146 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 214 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 172 KWH,ELECTRICIDAD CONSUMIDA 7440 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 19 KWH,ELECTRICIDAD CONSUMIDA 209 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-4.2,EXP-4.3",,,CARGA DE BOLOS PELLECO,BOLOS PASTO SECO PELLECO,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 225 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 1 193 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 2 135 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-15.4,EXP-14.1",,,ARRIENDO RETROEXCAVADORA,ARRIENDO DE RETRO EXCAVADORA,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 38 KWH,ELECTRICIDAD CONSUMIDA 32 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 17 710 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 200 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 133 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 937 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 193 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 95 KWH,ELECTRICIDAD CONSUMIDA 5 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 321 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 117 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 995 KWH,ELECTRICIDAD CONSUMIDA 1 724 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 969 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 1 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 6 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8640 KWH,ELECTRICIDAD CONSUMIDA 10 027 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,
+D_embedding_near_dup,cos=0.902,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7440 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 8 KWH,ELECTRICIDAD CONSUMIDA 795 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 6 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 200 KWH,ELECTRICIDAD CONSUMIDA 2 521 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 951 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 1 211 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 10 027 KWH,ELECTRICIDAD CONSUMIDA 60 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 38 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 257 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 146 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 822 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 4 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 184 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 173 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 51 KWH,ELECTRICIDAD CONSUMIDA 252 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 13 863 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1",,,ELECTRICIDAD CONSUMIDA 73 KWH,ELECTRICIDAD CONSUMIDA 139 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 209 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 166 KWH,ELECTRICIDAD CONSUMIDA 263 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 158 KWH,ELECTRICIDAD CONSUMIDA 16 762 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 17 710 KWH,ELECTRICIDAD CONSUMIDA 14 767 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 17 960 KWH,ELECTRICIDAD CONSUMIDA 172 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 5 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-4.2,EXP-4.3",,,BOLOS PELLECO EMPASTADA,BOLOS PASTO SECO PELLECO,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 458 KWH,ELECTRICIDAD CONSUMIDA 42 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 923 KWH,ELECTRICIDAD CONSUMIDA 261 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 3 978 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-2.5,EXP-7.0",,,MOSKIMIC FORTE X 3 LT,MOSKIMIC FORTE 3 LT,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 73 KWH,ELECTRICIDAD CONSUMIDA 173 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 1 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 73 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 7860 KWH,ELECTRICIDAD CONSUMIDA 217 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 8760 KWH,ELECTRICIDAD CONSUMIDA 17 710 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 110 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 746 KWH,ELECTRICIDAD CONSUMIDA 995 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 109 KWH,ELECTRICIDAD CONSUMIDA 14 134 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 321 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.901,,"ADM-1.3,EXP-15.5",,,ARRIENDO MAYO 26,ARRIENDO JUNIO 25,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 456 KWH,ELECTRICIDAD CONSUMIDA 17 961 KWH,
+D_embedding_near_dup,cos=0.901,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 624 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 115 KWH,ELECTRICIDAD CONSUMIDA 934 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.2,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 92 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 179 KWH,ELECTRICIDAD CONSUMIDA 12 210 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 173 KWH,ELECTRICIDAD CONSUMIDA 1 852 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-8.4,EXP-4.1",,,SIEMBRA MAITEN,SILO PARVA MAITEN,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 109 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 92 KWH,ELECTRICIDAD CONSUMIDA 624 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 12 210 KWH,ELECTRICIDAD CONSUMIDA 48 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-9.1,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 139 KWH,ELECTRICIDAD CONSUMIDA 7020 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 6240 KWH,ELECTRICIDAD CONSUMIDA 184 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 209 KWH,ELECTRICIDAD CONSUMIDA 584 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-15.5,EXP-14.4",,,TRASLADO DE ABONO,TRASLADO EQUIPO,
+D_embedding_near_dup,cos=0.900,,"EXP-11.2,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 153 KWH,ELECTRICIDAD CONSUMIDA 172 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 7620 KWH,ELECTRICIDAD CONSUMIDA 118 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 155 KWH,ELECTRICIDAD CONSUMIDA 172 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.2,EXP-11.1",,,ELECTRICIDAD CONSUMIDA 110 KWH,ELECTRICIDAD CONSUMIDA 117 KWH,
+D_embedding_near_dup,cos=0.900,,"EXP-11.1,EXP-9.1,EXP-11.2",,,ELECTRICIDAD CONSUMIDA 5400 KWH,ELECTRICIDAD CONSUMIDA 8 KWH,

@@ -1,0 +1,17 @@
+{
+  "created_at_epoch": 1784899324,
+  "tables": {
+    "invoice_items": {
+      "file": "Temp_Inference/snapshots/normalized_before_company_item_split/invoice_items.json",
+      "rows": 12071
+    },
+    "invoices": {
+      "file": "Temp_Inference/snapshots/normalized_before_company_item_split/invoices.json",
+      "rows": 5157
+    },
+    "taxonomy_categories": {
+      "file": "Temp_Inference/snapshots/normalized_before_company_item_split/taxonomy_categories.json",
+      "rows": 71
+    }
+  }
+}

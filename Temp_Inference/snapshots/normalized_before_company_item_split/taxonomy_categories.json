@@ -1,0 +1,357 @@
+[
+  {
+    "code": "ING-0.1",
+    "name": "VENTA DE LECHE",
+    "taxonomy_id": "4ebc4e02-12b3-46e1-87f2-ea16dc8f90c2"
+  },
+  {
+    "code": "ING-0.2",
+    "name": "VENTA DE VACAS",
+    "taxonomy_id": "e2ccf756-93b4-4295-b45e-f34010a1f626"
+  },
+  {
+    "code": "ING-0.3",
+    "name": "VENTA VAQUILLAS",
+    "taxonomy_id": "5206b7c6-c015-49fc-aa64-591714d5c762"
+  },
+  {
+    "code": "ING-0.4",
+    "name": "VENTA TERNEROS",
+    "taxonomy_id": "b18fc752-082a-404f-a140-87bb29eaef21"
+  },
+  {
+    "code": "ING-0.5",
+    "name": "VENTA DE OTROS ANIMALES",
+    "taxonomy_id": "399d0549-5f65-41e1-bb8c-9ad4524a0a95"
+  },
+  {
+    "code": "ING-0.6",
+    "name": "VENTA LEÑA",
+    "taxonomy_id": "3fb39238-917d-4d2c-9f12-a8a9dc8eccac"
+  },
+  {
+    "code": "EXP-1.1",
+    "name": "Otros Gastos RRHH",
+    "taxonomy_id": "51b9a7f2-6a43-4dd8-8c09-51cd1b5ad8d7"
+  },
+  {
+    "code": "EXP-2.1",
+    "name": "Terapias Secado",
+    "taxonomy_id": "55f24d7d-245c-4ec4-8335-792d2ad0797c"
+  },
+  {
+    "code": "EXP-2.2",
+    "name": "Medicamentos Mastitis",
+    "taxonomy_id": "3023cd76-b827-4741-98cd-c30a1af5cd59"
+  },
+  {
+    "code": "EXP-2.3",
+    "name": "Vacunas",
+    "taxonomy_id": "57f9a824-a8b2-4758-ae2a-d568f43871e7"
+  },
+  {
+    "code": "EXP-2.4",
+    "name": "Sales Minerales",
+    "taxonomy_id": "50c2f68e-36c8-4462-9ddd-90a081546f5c"
+  },
+  {
+    "code": "EXP-2.5",
+    "name": "Otros Medicamentos",
+    "taxonomy_id": "5894bdc3-091e-479e-8e38-48509b5475cc"
+  },
+  {
+    "code": "EXP-2.6",
+    "name": "Otros Gastos Salud Animal",
+    "taxonomy_id": "d83462b9-79bf-40c0-bbf0-3caf5e3774a9"
+  },
+  {
+    "code": "EXP-3.1",
+    "name": "Inseminacion Artificial",
+    "taxonomy_id": "6d89bdf7-5ea2-42b9-9399-a5bbc4f4042b"
+  },
+  {
+    "code": "EXP-4.1",
+    "name": "Parva Silo",
+    "taxonomy_id": "62b6a819-76b5-47a2-8064-15eef7587a92"
+  },
+  {
+    "code": "EXP-4.2",
+    "name": "Bolos Silo",
+    "taxonomy_id": "5d123594-777f-48b0-a964-e3cc60c2a822"
+  },
+  {
+    "code": "EXP-4.3",
+    "name": "Bolos Heno",
+    "taxonomy_id": "de0c4575-e781-49a3-987d-c9eb3e126328"
+  },
+  {
+    "code": "EXP-5.1",
+    "name": "Concentrado Vacas",
+    "taxonomy_id": "4e00a9e7-1eda-47f4-9c7d-23ce8f3755bc"
+  },
+  {
+    "code": "EXP-5.2",
+    "name": "Concentrado Crianza",
+    "taxonomy_id": "c6f2cc6d-7251-4423-aa6b-df26c1ef14a5"
+  },
+  {
+    "code": "EXP-5.3",
+    "name": "Concentrado Otros Animales",
+    "taxonomy_id": "ce17f9c1-194d-4a70-8cb3-cee5c1ab44a7"
+  },
+  {
+    "code": "EXP-5.4",
+    "name": "Bolos",
+    "taxonomy_id": "4b74f9b7-6f8a-471c-882c-9c2eb99a8222"
+  },
+  {
+    "code": "EXP-5.5",
+    "name": "Sustituto Lacteo",
+    "taxonomy_id": "de8d6569-d14a-4616-8997-5cd03c9b7fc1"
+  },
+  {
+    "code": "EXP-6.1",
+    "name": "Fosforo",
+    "taxonomy_id": "899132e3-3732-4464-ac1d-8d5a4ba394af"
+  },
+  {
+    "code": "EXP-6.2",
+    "name": "Nitrogeno",
+    "taxonomy_id": "71e80b86-8b37-4fe4-8c56-ac2d78fe34a8"
+  },
+  {
+    "code": "EXP-6.3",
+    "name": "Cal",
+    "taxonomy_id": "6d00d4a0-c7c3-4c79-ae2a-902dc9afb49c"
+  },
+  {
+    "code": "EXP-6.4",
+    "name": "Guano",
+    "taxonomy_id": "f54b1101-727e-4658-8c26-91737fbb3161"
+  },
+  {
+    "code": "EXP-6.5",
+    "name": "Otros Fertilizantes",
+    "taxonomy_id": "eb7f15cc-dd4f-4b22-b5e4-e050ea77ce7a"
+  },
+  {
+    "code": "EXP-7.0",
+    "name": "AGROQUIMICOS",
+    "taxonomy_id": "df29857b-29ca-4863-99fb-873fd02dcb32"
+  },
+  {
+    "code": "EXP-8.1",
+    "name": "Pradera Perenne",
+    "taxonomy_id": "32a0b630-4fea-4234-ba07-1588971b3a6e"
+  },
+  {
+    "code": "EXP-8.2",
+    "name": "Pradera Rotacion Corta",
+    "taxonomy_id": "c4af9b4d-20b6-4687-94e4-2c678d75dfc9"
+  },
+  {
+    "code": "EXP-8.3",
+    "name": "Repoblamiento",
+    "taxonomy_id": "dcec566e-3244-46cf-b547-cb8213b73dd6"
+  },
+  {
+    "code": "EXP-8.4",
+    "name": "Otros Cultivos",
+    "taxonomy_id": "90a4c9b1-a8bf-45a4-8be5-ea666bdc197b"
+  },
+  {
+    "code": "EXP-9.1",
+    "name": "Energia Electrica Riego",
+    "taxonomy_id": "aef6bab4-926e-417a-9724-49d157120841"
+  },
+  {
+    "code": "EXP-9.2",
+    "name": "Otros Gastos Riego",
+    "taxonomy_id": "cf1272cf-ef42-4724-9b90-3f6bcc9a5239"
+  },
+  {
+    "code": "EXP-10.1",
+    "name": "Mantencion Sala",
+    "taxonomy_id": "716b9453-0dc6-4c35-966b-b228b475f8b7"
+  },
+  {
+    "code": "EXP-10.2",
+    "name": "Diping",
+    "taxonomy_id": "f0cc2158-269b-4815-8fa9-8a9ec9a58053"
+  },
+  {
+    "code": "EXP-10.3",
+    "name": "Detergentes e higenizantes",
+    "taxonomy_id": "bb703661-a485-4b95-81ae-166fbc8c164d"
+  },
+  {
+    "code": "EXP-10.4",
+    "name": "Otros Gastos Lecheria",
+    "taxonomy_id": "6cc4f044-e53f-4d17-baaf-5ba2cee42647"
+  },
+  {
+    "code": "EXP-11.1",
+    "name": "Electricidad Lecheria",
+    "taxonomy_id": "d1e9dc00-74c7-414f-80cf-0a017b9da886"
+  },
+  {
+    "code": "EXP-11.2",
+    "name": "Electricidad Casas e Instalaciones",
+    "taxonomy_id": "fc884515-414e-4d69-89c7-5a6e1c224f8a"
+  },
+  {
+    "code": "EXP-11.3",
+    "name": "Petroleo",
+    "taxonomy_id": "c97e8aea-ac7c-41aa-b7e7-25f68718c98a"
+  },
+  {
+    "code": "EXP-11.4",
+    "name": "Bencina",
+    "taxonomy_id": "6c0aa5ce-3747-43c2-88c3-8b00251b3668"
+  },
+  {
+    "code": "EXP-11.5",
+    "name": "Gas",
+    "taxonomy_id": "71b84a92-6bb1-4f49-8acf-e64a4f0891f4"
+  },
+  {
+    "code": "EXP-12.1",
+    "name": "Analisis Suelo y forraje",
+    "taxonomy_id": "72001e1f-d60a-4b84-a9cb-300e1869b1c5"
+  },
+  {
+    "code": "EXP-12.2",
+    "name": "Analisis Animales",
+    "taxonomy_id": "ed1724cb-0305-432d-99f5-b69b9b31ab6f"
+  },
+  {
+    "code": "EXP-13.1",
+    "name": "Mantencion Maquinaria",
+    "taxonomy_id": "c27840d6-b394-4a01-8b9b-c8351a42d84e"
+  },
+  {
+    "code": "EXP-13.2",
+    "name": "Mantencion Motos",
+    "taxonomy_id": "5fdf68c9-943c-455e-a54f-b77e36880e11"
+  },
+  {
+    "code": "EXP-13.3",
+    "name": "Mantencion Vehiculos",
+    "taxonomy_id": "21de8beb-63ed-4e84-8728-64f4b05f879b"
+  },
+  {
+    "code": "EXP-14.1",
+    "name": "Mantencion Caminos",
+    "taxonomy_id": "27fd8637-405f-4529-86f2-aa8e456ba9f1"
+  },
+  {
+    "code": "EXP-14.2",
+    "name": "Mantencion Cercos",
+    "taxonomy_id": "06636e76-df04-4bd6-b5df-7600b0bc3ce9"
+  },
+  {
+    "code": "EXP-14.3",
+    "name": "Mantencion Agua y Purines",
+    "taxonomy_id": "fe28e4fe-d671-4d25-bd20-46ae83de2bc8"
+  },
+  {
+    "code": "EXP-14.4",
+    "name": "Mantencion Instalaciones",
+    "taxonomy_id": "658d7985-0329-40df-80d8-35916b1aa13b"
+  },
+  {
+    "code": "EXP-15.1",
+    "name": "Servicios Agronomicos",
+    "taxonomy_id": "be1306f8-d9b4-44a8-a274-1a753c412c68"
+  },
+  {
+    "code": "EXP-15.2",
+    "name": "Servicios Veterinarios",
+    "taxonomy_id": "f4295bec-34b9-472a-9ee7-8398fda256ea"
+  },
+  {
+    "code": "EXP-15.3",
+    "name": "Fletes",
+    "taxonomy_id": "0c9e52e8-14ed-4a10-9b06-28402815a5c4"
+  },
+  {
+    "code": "EXP-15.4",
+    "name": "Arriendo Maquinaria y Vehiculos",
+    "taxonomy_id": "719b2e67-b1dd-4e10-95dc-f72909e38503"
+  },
+  {
+    "code": "EXP-15.5",
+    "name": "Servicios Agricolas",
+    "taxonomy_id": "238a717c-3fa4-4d7d-8ce6-44ade30fcacc"
+  },
+  {
+    "code": "EXP-16.1",
+    "name": "Ropa y Herramientas de Trabajo",
+    "taxonomy_id": "c504c17a-782d-4c24-9482-6ade400ae476"
+  },
+  {
+    "code": "EXP-16.2",
+    "name": "Otros Gastos Campo",
+    "taxonomy_id": "7f4a9719-7f04-4bdd-afeb-f3cd34a23069"
+  },
+  {
+    "code": "ADM-1.2",
+    "name": "Comunicaciones e Internet",
+    "taxonomy_id": "710358ea-2ecf-49f6-b0de-4d5d8385bf18"
+  },
+  {
+    "code": "ADM-1.3",
+    "name": "Arriendo Oficina",
+    "taxonomy_id": "c15165a3-a0fa-4c9f-9891-545f57dd2068"
+  },
+  {
+    "code": "ADM-1.4",
+    "name": "Movilizacion",
+    "taxonomy_id": "8e658101-4d0c-49ea-9678-9d17f727fa0c"
+  },
+  {
+    "code": "ADM-1.5",
+    "name": "Colacion y Alojamiento",
+    "taxonomy_id": "c0496c3d-2ce2-4232-bac6-b94e4e10d764"
+  },
+  {
+    "code": "ADM-1.6",
+    "name": "Utiles y gastos de oficina.",
+    "taxonomy_id": "921c6fa5-b7ab-4f82-ad6f-cc9897a5daf6"
+  },
+  {
+    "code": "ADM-1.7",
+    "name": "Otros Gastos Administracion",
+    "taxonomy_id": "23965f49-504e-4565-9b5c-02df8fd36aec"
+  },
+  {
+    "code": "ADM-1.8",
+    "name": "Asesoria Contable",
+    "taxonomy_id": "10fd8930-58f7-41ee-8bbb-cdcb80295595"
+  },
+  {
+    "code": "ADM-1.9",
+    "name": "Asesoria Legal",
+    "taxonomy_id": "a3d1b787-2355-4ab5-9f58-de4e842d2835"
+  },
+  {
+    "code": "ADM-1.10",
+    "name": "Otros Servicios y Asesorias",
+    "taxonomy_id": "056abbad-3767-4062-8898-85b1174574d9"
+  },
+  {
+    "code": "ADM-2.1",
+    "name": "Seguros Vehiculos",
+    "taxonomy_id": "4f1d7bb6-e390-47f9-9425-48b2e93fde67"
+  },
+  {
+    "code": "ADM-2.2",
+    "name": "Seguros Trabajadores",
+    "taxonomy_id": "c56f53fc-782a-4d29-9ec3-8a2159c3d4ca"
+  },
+  {
+    "code": "ADM-2.3",
+    "name": "Seguros Otros",
+    "taxonomy_id": "8c079d3c-3026-48f4-942a-7f114cb1311c"
+  }
+]

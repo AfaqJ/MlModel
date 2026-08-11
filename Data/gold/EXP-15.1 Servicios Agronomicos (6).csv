@@ -1,0 +1,7 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00619,EXP-15.1,Servicios Agronomicos,direct_client_example,ASESORIA AGROPECUARIA,,SOCIEDAD ROBERTO AICHELE Y CIA LTDA.,MAITEN,Client-confirmed row-level example.,
+RG-00620,EXP-15.1,Servicios Agronomicos,direct_client_example,ASESORIA AGROPECUARIA,,SOCIEDAD ROBERTO AICHELE Y CIA LTDA.,TINEO,Client-confirmed row-level example.,
+RG-00621,EXP-15.1,Servicios Agronomicos,direct_client_example,ASESORIA AGROPECUARIA,,SOCIEDAD ROBERTO AICHELE Y CIA LTDA.,RAICES,Client-confirmed row-level example.,
+RG-00622,EXP-15.1,Servicios Agronomicos,direct_client_example,ASESORIA AGROPECUARIA,,SOCIEDAD ROBERTO AICHELE Y CIA LTDA.,BRAMADERO,Client-confirmed row-level example.,
+RG-00623,EXP-15.1,Servicios Agronomicos,direct_client_example,ASESORIA AGROPECUARIA,,SOCIEDAD ROBERTO AICHELE Y CIA LTDA.,YUTRECO,Client-confirmed row-level example.,
+RG-01049,EXP-15.1,Servicios Agronomicos,file_audit,ASESORIA AGROPECUARIA,,SOC ROBERTO AICHELE Y CIA LIMITADA,,"Folder audit (newest_example_folders); folder ""SERVICIOS AGRONOMICOS"" matches taxonomy for EXP-15.1.",

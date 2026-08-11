@@ -1,0 +1,7 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00072,EXP-5.5,Sustituto Lacteo,client_product_rule,SUST. EUROLAC BLUE 25 KGS. SCHILS,13000232,COOPRINSEM,,Client-confirmed product-to-category mapping.,
+RG-00073,EXP-5.5,Sustituto Lacteo,client_product_rule,SUST. KALMILAC PLUS 25 KGS SCHILS,13000237,COOPRINSEM,,Client-confirmed product-to-category mapping.,
+RG-00134,EXP-5.5,Sustituto Lacteo,client_product_rule,SUSTITUTO LACTEO COLUN (SPT) 25 KG,7603359,COLUN,,Client-confirmed product-to-category mapping.,
+RG-00598,EXP-5.5,Sustituto Lacteo,direct_client_example,SUSTITUTO LACTEO COLUN (SPT) 25 kg,,COLUN,BRAMADERO,Client-confirmed row-level example.,
+RG-01070,EXP-5.5,Sustituto Lacteo,file_audit,SUSTITUTO LACTEO COLUN (SPT) 25 KG,SUSTITUTO LACTEO COLUN (SPT) 25 KG,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,,"Folder audit (newest_example_folders). Polluted multi-category invoice filed in [EXP-5.3,EXP-5.5]; assigned EXP-5.5 by item semantics vs taxonomy.",
+RG-01071,EXP-5.5,Sustituto Lacteo,file_audit,SUST. KALMILAC PLUS 25 KGS SCHILS,,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,,"Folder audit (newest_example_folders); folder ""SUSTITUTO LACTEO"" matches taxonomy for EXP-5.5.",

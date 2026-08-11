@@ -1,0 +1,9 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00247,EXP-6.1,Fosforo,client_product_rule,SUPERFOSFATO TRIPLE FUNDO,7012521,COLUN,,Client-confirmed product-to-category mapping.,
+RG-00484,EXP-6.1,Fosforo,client_product_rule,SUPERFOSFATO TRIPLE X 25 KG,7609387,COLUN,,Client-confirmed product-to-category mapping.,
+RG-00493,EXP-6.1,Fosforo,client_product_rule,FOSFATO MONOAMONICO FUNDO,7608527,COLUN,,Client-confirmed product-to-category mapping.,
+SA-00404,EXP-6.1,Fosforo,file_audit,TREFOS PLUS MAXI PF YARA (SF3)-FERTILIZANTES(B)-ME,,COMPAA AGROPECUARIA COPEVAL S.A.,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00886,EXP-6.1,Fosforo,silver_audit,MAITEN FERTILIZACION MAP,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA,,ollama classify + claude audit vs description,
+SA-00888,EXP-6.1,Fosforo,silver_audit,BRAM. FERTILIZACION MAP,,PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA,,ollama classify + claude audit vs description,
+RG-00654,EXP-6.1,Fosforo,client_product_rule,FOSFATO DIAMONICO,,,,Client-confirmed product-to-category mapping.,
+RG-00655,EXP-6.1,Fosforo,client_product_rule,TREFOS,,,,Client-confirmed product-to-category mapping.,

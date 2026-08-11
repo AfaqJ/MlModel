@@ -1,0 +1,12 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+SA-00759,EXP-5.4,Bolos,silver_audit,BOLOS MAITEN 2DA VUELTA,6ha 24 bolos : 4 bolos por ha valor ha 122.000 total 732.000,SERVICIOS AGRICOLAS CORPAL SPA,,[silver+ollama agree +claude review] matches client description,
+SA-00763,EXP-5.4,Bolos,silver_audit,MOVIMIENTOS DE BOLOS,,AGRÍCOLA J-S-E LIMITADA,,[silver+ollama agree +claude review] matches client description,
+SA-00764,EXP-5.4,Bolos,silver_audit,"MALLA PARA BOLO TOTAL COVER 1,25 X 3000 MT",ROLLO|SOLICITADO POR PILAR LOBOS. CANCELAN EN 3 CUOTAS IGUALES,Tattersall AgroInsumos S.A.,,[silver+ollama agree +claude review] matches client description,
+SA-00766,EXP-5.4,Bolos,silver_audit,BOLOS MAITEN,Primera vuelta 199 bolos,SERVICIOS AGRICOLAS CORPAL SPA,,[silver+ollama agree +claude review] matches client description,
+SA-00767,EXP-5.4,Bolos,silver_audit,BOLOS FUTRONO,Bolos futrono 149,SERVICIOS AGRICOLAS CORPAL SPA,,[silver+ollama agree +claude review] matches client description,
+SA-00833,EXP-5.4,Bolos,silver_audit,BOLOS DE PAJA,Según guía de despacho N° 2145 48 Bolos equivalentes a 8.770 kg.,SOC COMERCIAL AGRO-TRUST LTDA,,silver top1/ollama-verify + claude review; matches client description,
+SA-00939,EXP-5.4,Bolos,silver_audit,Maxxifardos Trigo,,SERVICIOS AGRICOLAS MECANIZADOS SPA,,ollama classify + claude audit vs description,
+SA-00940,EXP-5.4,Bolos,silver_audit,Maxxifardos,,SERVICIOS AGRICOLAS MECANIZADOS SPA,,ollama classify + claude audit vs description,
+RG-01126,EXP-5.4,Bolos,file_audit_corrected,VENTA BOLO DE SILO,FUNDO EL MAITEN,COMERCIAL AQUA-NAV LIMITADA,,Folder re-audit: item misfiled in folder(s) ['EXP-4.2']; corrected to EXP-5.4 by product/taxonomy semantics.,
+RG-01127,EXP-5.4,Bolos,file_audit_corrected,VENTA BOLOS DE SILO,FUNDO PELLECO,COMERCIAL AQUA-NAV LIMITADA,,Folder re-audit: item misfiled in folder(s) ['EXP-4.2']; corrected to EXP-5.4 by product/taxonomy semantics.,
+RG-01128,EXP-5.4,Bolos,file_audit_corrected,VENTA BOLOS SILO,FUNDO PELLECO,COMERCIAL AQUA-NAV LIMITADA,,Folder re-audit: item misfiled in folder(s) ['EXP-4.2']; corrected to EXP-5.4 by product/taxonomy semantics.,

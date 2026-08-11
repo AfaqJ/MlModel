@@ -1,0 +1,6 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+RG-00548,EXP-11.2,Electricidad Casas e Instalaciones,direct_client_example,SERVICIO ELECTRICO CASA,,COOP ELECTRICA PAILLACO LTDA,MAITEN,Client-confirmed row-level example.,
+SA-00638,EXP-11.2,Electricidad Casas e Instalaciones,file_audit,Electricidad Casas e Instalaciones - COOPERATIVA ELECTRICA PAILLACO LTDA,,COOPERATIVA ELECTRICA PAILLACO LTDA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00749,EXP-11.2,Electricidad Casas e Instalaciones,file_audit,Electricidad consumida ( 458 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00750,EXP-11.2,Electricidad Casas e Instalaciones,file_audit,Transporte de Electricidad ( 458 kWh),,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,[folder-audit] client filed under this category; item consistent with client description,
+SA-00751,EXP-11.2,Electricidad Casas e Instalaciones,file_audit,Cargo por servicio publico Base ( 458 kWh) (Ex. IVA),,COOPERATIVA ELECTRICA PAILLACO LIMITADA,,[folder-audit] client filed under this category; item consistent with client description,

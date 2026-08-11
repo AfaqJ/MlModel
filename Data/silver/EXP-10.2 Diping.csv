@@ -1,0 +1,2 @@
+candidate_id,item_text,description,provider,giro,source,source_file,folio,siblings,top1_conf,audited,verdict,audit_reason
+OQ-03142,TRI-PFAN 60 LTS.,,GEA Farm Technologies Osorno Ltda.,"INSTALACION,MANTENCION,REPARACION MAQUINARIA AGROPECUARIA,FORESTAL",COMPRAS,DTE_033_000000024784_761757865.xml,24784,ORACID 60 L; ZINICIN 70 KGS.,0.7500,Y,EXP-10.3,2step_review
