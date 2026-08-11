@@ -60,6 +60,51 @@ def test_predict_unknown_meter_falls_through_to_model():
     assert response.json()["source"] in {"model", "product_lookup"}
 
 
+def test_predict_verified_milk_sale_uses_exact_transaction_lookup():
+    response = client.post(
+        "/predict",
+        json={"item_text": "VENTA DE LECHE", "transaction_type": "VENTAS"},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["source"] == "business_rule"
+    assert body["predictions"] == [
+        {"code": "ING-0.1", "name": "VENTA DE LECHE", "score": 1.0}
+    ]
+    assert body["decision"] == "auto_accept"
+
+
+def test_same_text_is_not_a_sale_without_ventas_direction():
+    response = client.post(
+        "/predict",
+        json={"item_text": "VENTA DE LECHE", "transaction_type": "COMPRAS"},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["source"] != "business_rule"
+    assert all(not prediction["code"].startswith("ING-") for prediction in body["predictions"])
+
+
+def test_unknown_sale_can_never_auto_accept():
+    response = client.post(
+        "/predict",
+        json={"item_text": "VENTA CAMIONETA", "transaction_type": "VENTAS"},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["source"] == "model"
+    assert body["decision"] == "review_required"
+    assert body["reason"] == "unknown_sales_item"
+
+
+def test_transaction_type_is_validated():
+    response = client.post(
+        "/predict",
+        json={"item_text": "VENTA DE LECHE", "transaction_type": "sale"},
+    )
+    assert response.status_code == 422
+
+
 def test_batch_limit():
     items = [{"item_text": "X"} for _ in range(501)]
     response = client.post("/predict-batch", json={"items": items})

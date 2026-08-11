@@ -5,7 +5,7 @@ import time
 import numpy as np
 
 from app.core.model_loader import ModelBundle
-from app.inference.confidence import decide, entropy
+from app.inference.confidence import DecisionResult, decide, entropy
 from app.inference.business_rules import direction_mask
 
 
@@ -47,13 +47,11 @@ class Predictor:
             if meter_hit:
                 return self._meter_response(meter_hit, meter_code, input_id, started, top_k, return_debug)
 
-        # Transaction-aware business rules. Two outcomes:
-        #   assign -> known category, skip the model entirely
-        #   review -> we know this line has NO correct category in the taxonomy
-        #             (asset disposals). Force review; never let the model guess.
+        # A verified exact sales phrase is authoritative. Skip both the model and
+        # product lookup: this is the deterministic path the incident lacked.
         rule_hit = self.bundle.business_rules.match(item_text, transaction_type)
-        if rule_hit and rule_hit.action == "review":
-            return self._rule_review_response(rule_hit, input_id, started, top_k, return_debug)
+        if rule_hit:
+            return self._business_rule_response(rule_hit, input_id, started, top_k, return_debug)
 
         lookup_hit = self.bundle.lookup.match(item_text, provider)
         text = self.build_text(item_text, description, provider)
@@ -74,25 +72,16 @@ class Predictor:
                 proba = proba / total
 
         order = np.argsort(-proba)
+        if masked:
+            masked_set = set(masked)
+            order = np.asarray([index for index in order if index not in masked_set])
 
         model_top = [self._prediction(classes[index], proba[index]) for index in order[:top_k]]
         source = "model"
         predictions = model_top
         lookup_conflict = False
 
-        # An `assign` business rule outranks the model: the item name states its
-        # own category and the transaction direction confirms it. The model still
-        # runs, so a strong disagreement can still be surfaced for review.
-        if rule_hit and rule_hit.action == "assign":
-            source = "business_rule"
-            rule_code = rule_hit.category_code
-            lookup_conflict = classes[order[0]] != rule_code and float(proba[order[0]]) >= 0.90
-            model_without_rule = [p for p in model_top if p["code"] != rule_code]
-            predictions = [
-                {"code": rule_code, "name": self.bundle.names.get(rule_code, ""), "score": 1.0},
-                *model_without_rule[: max(0, top_k - 1)],
-            ]
-        elif lookup_hit:
+        if lookup_hit:
             source = "product_lookup"
             lookup_code = lookup_hit.category_code
             lookup_conflict = classes[order[0]] != lookup_code and float(proba[order[0]]) >= 0.70
@@ -119,6 +108,12 @@ class Predictor:
             lookup_model_conflict=lookup_conflict,
             shadow_mode=self.shadow_mode,
         )
+        if (transaction_type or "").upper() == "VENTAS" and source != "business_rule":
+            # The known operating sales were handled by the exact lookup above.
+            # An unknown sale may be an asset disposal or a missing taxonomy
+            # class, so a probabilistic result is useful for review but unsafe to
+            # auto-accept regardless of its confidence.
+            decision = DecisionResult("review_required", "unknown_sales_item")
         latency_ms = int((time.perf_counter() - started) * 1000)
         response = {
             "input_id": input_id,
@@ -143,24 +138,21 @@ class Predictor:
             }
         return response
 
-    def _rule_review_response(self, hit, input_id, started, top_k, return_debug) -> dict:
-        """A line we KNOW we cannot categorise.
-
-        Asset disposals (`VENTA CAMIONETA`, `VENTA DE ACTIVO FIJO`, machinery)
-        have no category in this taxonomy — every ING-* code is operating
-        revenue. Returning no prediction at all is the honest answer, and it is
-        strictly safer than letting the model return its nearest neighbour at
-        high confidence, which is what produced "milk sales @ 0.841" for a truck.
-        """
+    def _business_rule_response(self, hit, input_id, started, top_k, return_debug) -> dict:
         latency_ms = int((time.perf_counter() - started) * 1000)
+        prediction = {
+            "code": hit.category_code,
+            "name": self.bundle.names.get(hit.category_code, ""),
+            "score": 1.0,
+        }
         response = {
             "input_id": input_id,
             "model_version": self.bundle.model_version,
             "source": "business_rule",
-            "predictions": [],
-            "confidence": {"top1": 0.0, "margin": 0.0, "entropy": 0.0},
-            "decision": "review_required",
-            "reason": "no_category_in_taxonomy",
+            "predictions": [prediction][:top_k],
+            "confidence": {"top1": 1.0, "margin": 1.0, "entropy": 0.0},
+            "decision": "auto_accept",
+            "reason": None,
             "latency_ms": latency_ms,
             "debug": None,
         }

@@ -1,0 +1,53 @@
+{
+  "status": "pass",
+  "local_only": true,
+  "candidate_manifest_sha256": "785100c2728d107eac0512d25bf455dc4d894762a5c51efbba1f8fcc75e83b97",
+  "split_manifest_sha256": "72130f988942e8fd14dda87888ba7face06f78a72ed76cb169f319c0c67a0c13",
+  "model_run_manifest_sha256": "a45905fb6535ce4d4f8a7a6256f96b7f801e072ebd7d3f5a46695bd326c049bb",
+  "model_comparison_sha256": "1a69b825f7db154df143c7d232e2671c3b2b9eeece32933adf5cfbb0bf741553",
+  "gold": {
+    "base_rows": 1733,
+    "quarantined_rows": 3,
+    "harvested_rows": 105,
+    "raw_rows_already_present": 13,
+    "final_rows": 1835,
+    "normalized_distinct_model_inputs": 1580,
+    "synthetic_rows": 0
+  },
+  "income_counts": {
+    "ING-0.1": 47,
+    "ING-0.2": 15,
+    "ING-0.3": 2,
+    "ING-0.4": 46
+  },
+  "split_counts": {
+    "excluded_lt2": 1,
+    "train": 1247,
+    "train_weak": 21,
+    "validation": 311
+  },
+  "exact_sales_lookup": {
+    "verified_matches": 118,
+    "unknown_for_review": 7,
+    "unknown_item_counts": {
+      "VENTA CAMIONETA": 3,
+      "VENTA DE ACTIVO FIJO": 2,
+      "OTROS INGRESOS": 1,
+      "maquinaria": 1
+    }
+  },
+  "training": {
+    "optimizer": "AcceleratedOptimizer -> AdamW",
+    "full_encoder_trainable": true,
+    "token_embedding_delta": 0.002398202195763588,
+    "fixed_length_padding": true,
+    "unbounded_mps_watermark": false
+  },
+  "model_release_checks": {
+    "shared_blind_candidate_beats_baseline_accuracy": true,
+    "shared_blind_candidate_beats_baseline_macro_f1": true,
+    "shared_blind_candidate_beats_baseline_top3": true,
+    "candidate_locked_accuracy_at_least_70_percent": true,
+    "candidate_locked_income_accuracy_at_least_90_percent": true
+  }
+}

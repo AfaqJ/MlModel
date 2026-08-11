@@ -299,6 +299,26 @@ Rejected alternatives:
 
 ---
 
+## D-012 — Full embeddings retained; fixed batch shapes solve the MPS growth
+
+**Date:** 2026-08-11 · **Decided by:** Codex independent recovery
+
+D-011's frozen-embedding recommendation is superseded for release candidates.
+Controlled local smoke runs showed that dynamic sequence padding grew MPS driver
+memory from 5.05 to 14.41 GiB in 12 steps even with Adafactor. Padding every
+batch to the fixed 64-token model length made memory plateau: 4.42 GiB with
+Adafactor/batch 4 and 6.60 GiB with standard AdamW/batch 8, each through 20
+steps. All 278,043,648 encoder parameters were trainable and tracked token
+embeddings changed.
+
+The recovery configuration therefore uses full encoder training, AdamW, batch
+8, fixed 64-token padding, and the normal bounded MPS watermark. The trainer
+refuses an unbounded `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0`. Evidence is saved
+under `reports/recovery_v1_2_0/`; full reasoning is in
+`docs/RECOVERY_V1_2_0.md`.
+
+---
+
 ## D-010 — Document type is out of scope; direction comes from the folder
 
 **Date:** 2026-08-11 · **Decided by:** Afaq

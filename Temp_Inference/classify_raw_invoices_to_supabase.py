@@ -286,6 +286,7 @@ def to_predict_request(row: InvoiceLine) -> dict[str, Any]:
         "item_text": api_truncate(row.item_text, API_ITEM_MAX),
         "description": api_truncate(row.description, API_DESCRIPTION_MAX),
         "provider": api_truncate(row.provider, API_PROVIDER_MAX),
+        "transaction_type": row.transaction_type,
         "top_k": 3,
     }
     if row.meter_code:
@@ -375,7 +376,7 @@ def final_decision(
     auto_accept_margin: float,
 ) -> str:
     source = result["source"]
-    if source in {"meter_lookup", "product_lookup"}:
+    if source in {"meter_lookup", "product_lookup", "business_rule"}:
         return "auto_accept"
     if result["decision"] == "review_required":
         return "review_required"
@@ -488,7 +489,7 @@ def write_threshold_report(output_dir: Path, supabase_rows: list[dict[str, Any]]
             for margin in margin_thresholds:
                 auto_accept = 0
                 for row in supabase_rows:
-                    if row["prediction_source"] in {"meter_lookup", "product_lookup"}:
+                    if row["prediction_source"] in {"meter_lookup", "product_lookup", "business_rule"}:
                         auto_accept += 1
                     elif (
                         row.get("backend_decision") == "auto_accept"

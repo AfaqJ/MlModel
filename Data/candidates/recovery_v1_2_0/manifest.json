@@ -1,0 +1,40 @@
+{
+  "candidate": "recovery_v1_2_0",
+  "policy": "pre-Claude gold minus 3 verified direction errors plus exact canonical raw VENTAS; no synthetic data",
+  "inputs": {
+    "Data/gold/_master_gold.backup_20260811_104643.csv": "f6307308f03e1ac90c2c00831916025169eb496d9f32a772849b8a01e3f51c39",
+    "Data/processed/line_items.csv": "ff10d5ee6243d26a9a6356350876eef34fe8921dcb2ac0d9d7c19e32f110fef0"
+  },
+  "counts": {
+    "base_rows": 1733,
+    "quarantined_rows": 3,
+    "harvested_rows": 105,
+    "raw_rows_already_present": 13,
+    "final_rows": 1835,
+    "normalized_distinct_model_inputs": 1580,
+    "synthetic_rows": 0
+  },
+  "income_counts": {
+    "ING-0.1": 47,
+    "ING-0.2": 15,
+    "ING-0.3": 2,
+    "ING-0.4": 46
+  },
+  "quarantined_gold_ids": [
+    "SA-00757",
+    "SA-00758",
+    "SA-00874"
+  ],
+  "canonical_sales_map": {
+    "venta de leche": "ING-0.1",
+    "venta de vacas": "ING-0.2",
+    "venta de vaquillas": "ING-0.3",
+    "ventas terneros": "ING-0.4",
+    "venta de terneras": "ING-0.4"
+  },
+  "outputs": {
+    "master_gold.csv": "cfb67e75cee7dfd6129d299c95c3bb118cc9ac5ffac27f3bc58895faece9529a",
+    "quarantined_purchase_as_income.csv": "8b8f5ac1f2aaa7fef0a53f192c5fe0a9cf6e320ed2ef3371b2858bad0cb01345",
+    "harvested_raw_ventas.csv": "5a7d03ead6066c25a339dfe1d86d77902f7426164dea703186e36cd2592f6be4"
+  }
+}

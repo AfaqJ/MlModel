@@ -69,7 +69,7 @@ create table if not exists public.invoice_items (
   constraint invoice_items_line_number_positive check (invoice_line_number > 0),
   constraint invoice_items_item_text_not_blank check (length(trim(item_text)) > 0),
   constraint invoice_items_prediction_source_allowed check (
-    prediction_source in ('model', 'product_lookup', 'meter_lookup')
+    prediction_source in ('model', 'product_lookup', 'meter_lookup', 'business_rule')
   ),
   constraint invoice_items_decision_allowed check (
     decision in ('auto_accept', 'review_required')

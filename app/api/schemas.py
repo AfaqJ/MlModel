@@ -5,7 +5,8 @@ from pydantic import BaseModel, Field, ConfigDict
 
 
 Decision = Literal["auto_accept", "review_required"]
-Source = Literal["model", "product_lookup", "meter_lookup"]
+Source = Literal["model", "product_lookup", "meter_lookup", "business_rule"]
+TransactionType = Literal["COMPRAS", "VENTAS"]
 
 
 class PredictRequest(BaseModel):
@@ -21,12 +22,11 @@ class PredictRequest(BaseModel):
         description="Electricity meter / CdgIntRecep. When present and known, resolves "
         "deterministically via the meter lookup instead of the ML model.",
     )
-    transaction_type: str | None = Field(
+    transaction_type: TransactionType | None = Field(
         default=None,
-        max_length=16,
         description="COMPRAS (purchase) or VENTAS (sale), from the source DTE folder. "
-        "Enables deterministic sales rules and blocks impossible categories: a "
-        "purchase line can never be income. Omitting it disables both protections.",
+        "Enables the verified exact-sales lookup and direction safety checks. "
+        "Omitting it preserves compatibility but disables those protections.",
     )
     invoice_metadata: dict[str, Any] = Field(default_factory=dict)
     top_k: int = Field(default=3, ge=1, le=10)

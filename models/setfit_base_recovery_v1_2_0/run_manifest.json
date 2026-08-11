@@ -1,0 +1,8200 @@
+{
+  "mode": "candidate_training",
+  "device": "mps",
+  "optimizer_requested": "adamw_torch",
+  "optimizer_observed": "AcceleratedOptimizer -> AdamW",
+  "full_encoder_trainable": true,
+  "trainable_encoder_parameters": 278043648,
+  "total_encoder_parameters": 278043648,
+  "tracked_token_embedding_max_abs_delta": 0.002398202195763588,
+  "gradient_checkpointing": true,
+  "fixed_length_padding": true,
+  "unbounded_mps_watermark": false,
+  "batch_size": 8,
+  "max_steps": 1500,
+  "elapsed_minutes": 22.46,
+  "data_audit": {
+    "source_rows": 1835,
+    "normalized_distinct_inputs": 1580,
+    "same_label_duplicates_collapsed": 255,
+    "cross_label_contradictions": 0
+  },
+  "train_rows": 1268,
+  "validation_rows": 311,
+  "train_class_counts": {
+    "ADM-1.10": 13,
+    "ADM-1.2": 8,
+    "ADM-1.3": 3,
+    "ADM-1.4": 9,
+    "ADM-1.5": 6,
+    "ADM-1.6": 23,
+    "ADM-1.7": 42,
+    "ADM-1.8": 10,
+    "ADM-2.1": 12,
+    "ADM-2.2": 4,
+    "ADM-2.3": 13,
+    "EXP-1.1": 26,
+    "EXP-10.1": 22,
+    "EXP-10.2": 2,
+    "EXP-10.3": 14,
+    "EXP-10.4": 7,
+    "EXP-11.1": 33,
+    "EXP-11.2": 4,
+    "EXP-11.3": 15,
+    "EXP-11.4": 14,
+    "EXP-11.5": 12,
+    "EXP-12.1": 22,
+    "EXP-12.2": 42,
+    "EXP-13.1": 31,
+    "EXP-13.2": 17,
+    "EXP-13.3": 19,
+    "EXP-14.1": 16,
+    "EXP-14.2": 49,
+    "EXP-14.3": 19,
+    "EXP-14.4": 22,
+    "EXP-15.1": 2,
+    "EXP-15.2": 3,
+    "EXP-15.3": 14,
+    "EXP-15.4": 9,
+    "EXP-15.5": 11,
+    "EXP-16.1": 110,
+    "EXP-16.2": 28,
+    "EXP-2.1": 6,
+    "EXP-2.2": 14,
+    "EXP-2.3": 16,
+    "EXP-2.4": 11,
+    "EXP-2.5": 68,
+    "EXP-2.6": 95,
+    "EXP-3.1": 18,
+    "EXP-4.1": 9,
+    "EXP-4.2": 22,
+    "EXP-4.3": 13,
+    "EXP-5.1": 4,
+    "EXP-5.2": 9,
+    "EXP-5.3": 11,
+    "EXP-5.4": 9,
+    "EXP-5.5": 4,
+    "EXP-6.1": 6,
+    "EXP-6.2": 12,
+    "EXP-6.3": 3,
+    "EXP-6.4": 2,
+    "EXP-6.5": 12,
+    "EXP-7.0": 46,
+    "EXP-8.1": 14,
+    "EXP-8.2": 6,
+    "EXP-8.3": 4,
+    "EXP-8.4": 11,
+    "EXP-9.1": 22,
+    "EXP-9.2": 26,
+    "ING-0.1": 38,
+    "ING-0.2": 12,
+    "ING-0.3": 2,
+    "ING-0.4": 37
+  },
+  "validation_class_counts": {
+    "ADM-1.10": 3,
+    "ADM-1.2": 2,
+    "ADM-1.4": 2,
+    "ADM-1.5": 2,
+    "ADM-1.6": 6,
+    "ADM-1.7": 10,
+    "ADM-1.8": 2,
+    "ADM-2.1": 3,
+    "ADM-2.2": 1,
+    "ADM-2.3": 3,
+    "EXP-1.1": 6,
+    "EXP-10.1": 6,
+    "EXP-10.3": 3,
+    "EXP-10.4": 2,
+    "EXP-11.1": 8,
+    "EXP-11.2": 1,
+    "EXP-11.3": 4,
+    "EXP-11.4": 4,
+    "EXP-11.5": 3,
+    "EXP-12.1": 5,
+    "EXP-12.2": 11,
+    "EXP-13.1": 8,
+    "EXP-13.2": 4,
+    "EXP-13.3": 5,
+    "EXP-14.1": 4,
+    "EXP-14.2": 12,
+    "EXP-14.3": 5,
+    "EXP-14.4": 5,
+    "EXP-15.3": 3,
+    "EXP-15.4": 2,
+    "EXP-15.5": 3,
+    "EXP-16.1": 28,
+    "EXP-16.2": 7,
+    "EXP-2.1": 2,
+    "EXP-2.2": 4,
+    "EXP-2.3": 4,
+    "EXP-2.4": 3,
+    "EXP-2.5": 17,
+    "EXP-2.6": 24,
+    "EXP-3.1": 5,
+    "EXP-4.1": 2,
+    "EXP-4.2": 6,
+    "EXP-4.3": 3,
+    "EXP-5.1": 1,
+    "EXP-5.2": 2,
+    "EXP-5.3": 3,
+    "EXP-5.4": 2,
+    "EXP-5.5": 1,
+    "EXP-6.1": 2,
+    "EXP-6.2": 3,
+    "EXP-6.5": 3,
+    "EXP-7.0": 11,
+    "EXP-8.1": 3,
+    "EXP-8.2": 2,
+    "EXP-8.4": 3,
+    "EXP-9.1": 5,
+    "EXP-9.2": 6,
+    "ING-0.1": 9,
+    "ING-0.2": 3,
+    "ING-0.4": 9
+  },
+  "weak_train_only_classes": [
+    "ADM-1.3",
+    "ADM-2.2",
+    "EXP-10.2",
+    "EXP-11.2",
+    "EXP-15.1",
+    "EXP-15.2",
+    "EXP-5.1",
+    "EXP-5.5",
+    "EXP-6.3",
+    "EXP-6.4",
+    "EXP-8.3",
+    "ING-0.3"
+  ],
+  "excluded_lt2_classes": [
+    "ADM-1.9"
+  ],
+  "gold_sha256": "cfb67e75cee7dfd6129d299c95c3bb118cc9ac5ffac27f3bc58895faece9529a",
+  "split_sha256": "72130f988942e8fd14dda87888ba7face06f78a72ed76cb169f319c0c67a0c13",
+  "mps_memory_samples": [
+    {
+      "step": 1,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 2,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 3,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 4,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 5,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 6,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 7,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 8,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 9,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6014
+    },
+    {
+      "step": 10,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6014,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 11,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 12,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 13,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 14,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 15,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 16,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 17,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 18,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 19,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 20,
+      "current_allocated_gib": 3.1232,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 21,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 22,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 23,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 24,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 25,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 26,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 27,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 28,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 29,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 30,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 31,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 32,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 33,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 34,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 35,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 36,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 37,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 38,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 39,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 40,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 41,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 42,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 43,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 44,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 45,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 46,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 47,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 48,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 49,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 50,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 51,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 52,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 53,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 54,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 55,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 56,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 57,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 58,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 59,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 60,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 61,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 62,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 63,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 64,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 65,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 66,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 67,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 68,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 69,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 70,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 71,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 72,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 73,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 74,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 75,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 76,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 77,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 78,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 79,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 80,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 81,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 82,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 83,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 84,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 85,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 86,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 87,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 88,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 89,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 90,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 91,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 92,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 93,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 94,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 95,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 96,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 97,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 98,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 99,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 100,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 101,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 102,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 103,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 104,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 105,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 106,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 107,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 108,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 109,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 110,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 111,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 112,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 113,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 114,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 115,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 116,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 117,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 118,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 119,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 120,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 121,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 122,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 123,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 124,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 125,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 126,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 127,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 128,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 129,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 130,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 131,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 132,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 133,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 134,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 135,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 136,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 137,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 138,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 139,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 140,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 141,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 142,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 143,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 144,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 145,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 146,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 147,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 148,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 149,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 150,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 151,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 152,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 153,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 154,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 155,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 156,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 157,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 158,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 159,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 160,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 161,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 162,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 163,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 164,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 165,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 166,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 167,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 168,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 169,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 170,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 171,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 172,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 173,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 174,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 175,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 176,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 177,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 178,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 179,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 180,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 181,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 182,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 183,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 184,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 185,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 186,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 187,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 188,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 189,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 190,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 191,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 192,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 193,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 194,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 195,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 196,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 197,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 198,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 199,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 200,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 201,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 202,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 203,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 204,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 205,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 206,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 207,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 208,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 209,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 210,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 211,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 212,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 213,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 214,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 215,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 216,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 217,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 218,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 219,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 220,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 221,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 222,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 223,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 224,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 225,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 226,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 227,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 228,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 229,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 230,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 231,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 232,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 233,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 234,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 235,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 236,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 237,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 238,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 239,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 240,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 241,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 242,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 243,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 244,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 245,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 246,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 247,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 248,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 249,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 250,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 251,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 252,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 253,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 254,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 255,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 256,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 257,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 258,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 259,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 260,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 261,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 262,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 263,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 264,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 265,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 266,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 267,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 268,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 269,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 270,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 271,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 272,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 273,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 274,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 275,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 276,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 277,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 278,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 279,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 280,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 281,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 282,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 283,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 284,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 285,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 286,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 287,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 288,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 289,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 290,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 291,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 292,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 293,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 294,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 295,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 296,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 297,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 298,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 299,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 300,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 301,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 302,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 303,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 304,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 305,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 306,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 307,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 308,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 309,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 310,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 311,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 312,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 313,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 314,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 315,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 316,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 317,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 318,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 319,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 320,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 321,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 322,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 323,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 324,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 325,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 326,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 327,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 328,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 329,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 330,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 331,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 332,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 333,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 334,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 335,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 336,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 337,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 338,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 339,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 340,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 341,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 342,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 343,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 344,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 345,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 346,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 347,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 348,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 349,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 350,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 351,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 352,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 353,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 354,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 355,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 356,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 357,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 358,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 359,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 360,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 361,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 362,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 363,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 364,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 365,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 366,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 367,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 368,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 369,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 370,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 371,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 372,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 373,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 374,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 375,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 376,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 377,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 378,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 379,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 380,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 381,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 382,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 383,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 384,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 385,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 386,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 387,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 388,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 389,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 390,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 391,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 392,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 393,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 394,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 395,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 396,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 397,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 398,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 399,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 400,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 401,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 402,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 403,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 404,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 405,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 406,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 407,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 408,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 409,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 410,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 411,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 412,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 413,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 414,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 415,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 416,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 417,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 418,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 419,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 420,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 421,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 422,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 423,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 424,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 425,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 426,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 427,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 428,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 429,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 430,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 431,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 432,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 433,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 434,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 435,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 436,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 437,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 438,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 439,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 440,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 441,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 442,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 443,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 444,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 445,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 446,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 447,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 448,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 449,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 450,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 451,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 452,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 453,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 454,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 455,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 456,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 457,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 458,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 459,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 460,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 461,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 462,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 463,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 464,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 465,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 466,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 467,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 468,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 469,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 470,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 471,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 472,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 473,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 474,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 475,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 476,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 477,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 478,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 479,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 480,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 481,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 482,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 483,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 484,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 485,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 486,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 487,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 488,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 489,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 490,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 491,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 492,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 493,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 494,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 495,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 496,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 497,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 498,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 499,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 500,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 501,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 502,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 503,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 504,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 505,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 506,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 507,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 508,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 509,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 510,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 511,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 512,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 513,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 514,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 515,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 516,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 517,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 518,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 519,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 520,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 521,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 522,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 523,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 524,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 525,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 526,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 527,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 528,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 529,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 530,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 531,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 532,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 533,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 534,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 535,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 536,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 537,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 538,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 539,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 540,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 541,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 542,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 543,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 544,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 545,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 546,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 547,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 548,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 549,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 550,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 551,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 552,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 553,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 554,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 555,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 556,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 557,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 558,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 559,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 560,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 561,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 562,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 563,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 564,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 565,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 566,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 567,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 568,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 569,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 570,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 571,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 572,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 573,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 574,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 575,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 576,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 577,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 578,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 579,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 580,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 581,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 582,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 583,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 584,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 585,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 586,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 587,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 588,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 589,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 590,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 591,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 592,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 593,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 594,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 595,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 596,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 597,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 598,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 599,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 600,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 601,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 602,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 603,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 604,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 605,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 606,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 607,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 608,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 609,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 610,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 611,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 612,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 613,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 614,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 615,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 616,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 617,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 618,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 619,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 620,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 621,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 622,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 623,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 624,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 625,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 626,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 627,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 628,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 629,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 630,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 631,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 632,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 633,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 634,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 635,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 636,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 637,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 638,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 639,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 640,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 641,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 642,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 643,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 644,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 645,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 646,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 647,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 648,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 649,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 650,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 651,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 652,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 653,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 654,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 655,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 656,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 657,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 658,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 659,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 660,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 661,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 662,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 663,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 664,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 665,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 666,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 667,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 668,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 669,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 670,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 671,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 672,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 673,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 674,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 675,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 676,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 677,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 678,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 679,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 680,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 681,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 682,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 683,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 684,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 685,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 686,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 687,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 688,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 689,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 690,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 691,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 692,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 693,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 694,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 695,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 696,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 697,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 698,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 699,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 700,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 701,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 702,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 703,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 704,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 705,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 706,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 707,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 708,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 709,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 710,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 711,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 712,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 713,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 714,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 715,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 716,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 717,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 718,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 719,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 720,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 721,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 722,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 723,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 724,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 725,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 726,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 727,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 728,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 729,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 730,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 731,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 732,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 733,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 734,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 735,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 736,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 737,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 738,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 739,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 740,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 741,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 742,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 743,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 744,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 745,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 746,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 747,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 748,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 749,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 750,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 751,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 752,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 753,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 754,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 755,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 756,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 757,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 758,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 759,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 760,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 761,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 762,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 763,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 764,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 765,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 766,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 767,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 768,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 769,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 770,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 771,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 772,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 773,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 774,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 775,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 776,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 777,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 778,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 779,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 780,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 781,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 782,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 783,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 784,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 785,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 786,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 787,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 788,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 789,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 790,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 791,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 792,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 793,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 794,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 795,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 796,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 797,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 798,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 799,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 800,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 801,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 802,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 803,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 804,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 805,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 806,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 807,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 808,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 809,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 810,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 811,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 812,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 813,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 814,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 815,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 816,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 817,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 818,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 819,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 820,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 821,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 822,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 823,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 824,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 825,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 826,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 827,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 828,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 829,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 830,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 831,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 832,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 833,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 834,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 835,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 836,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 837,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 838,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 839,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 840,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 841,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 842,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 843,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 844,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 845,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 846,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 847,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 848,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 849,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 850,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 851,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 852,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 853,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 854,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 855,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 856,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 857,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 858,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 859,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 860,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 861,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 862,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 863,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 864,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 865,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 866,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 867,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 868,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 869,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 870,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 871,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 872,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 873,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 874,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 875,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 876,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 877,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 878,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 879,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 880,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 881,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 882,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 883,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 884,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 885,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 886,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 887,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 888,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 889,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 890,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 891,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 892,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 893,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 894,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 895,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 896,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 897,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 898,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 899,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 900,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 901,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 902,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 903,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 904,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 905,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 906,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 907,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 908,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 909,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 910,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 911,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 912,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 913,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 914,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 915,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 916,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 917,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 918,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 919,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 920,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 921,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 922,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 923,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 924,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 925,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 926,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 927,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 928,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 929,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 930,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 931,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 932,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 933,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 934,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 935,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 936,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 937,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 938,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 939,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 940,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 941,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 942,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 943,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 944,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 945,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 946,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 947,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 948,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 949,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 950,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 951,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 952,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 953,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 954,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 955,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 956,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 957,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 958,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 959,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 960,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 961,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 962,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 963,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 964,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 965,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 966,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 967,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 968,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 969,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 970,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 971,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 972,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 973,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 974,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 975,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 976,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 977,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 978,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 979,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 980,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 981,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 982,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 983,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 984,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 985,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 986,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 987,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 988,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 989,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 990,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 991,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 992,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 993,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 994,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 995,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 996,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 997,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 998,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 999,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1000,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1001,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1002,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1003,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1004,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1005,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1006,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1007,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1008,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1009,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1010,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1011,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1012,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1013,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1014,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1015,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1016,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1017,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1018,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1019,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1020,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1021,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1022,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1023,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1024,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1025,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1026,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1027,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1028,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1029,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1030,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1031,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1032,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1033,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1034,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1035,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1036,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1037,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1038,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1039,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1040,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1041,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1042,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1043,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1044,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1045,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1046,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1047,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1048,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1049,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1050,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1051,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1052,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1053,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1054,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1055,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1056,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1057,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1058,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1059,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1060,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1061,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1062,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1063,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1064,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1065,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1066,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1067,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1068,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1069,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1070,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1071,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1072,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1073,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1074,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1075,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1076,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1077,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1078,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1079,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1080,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1081,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1082,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1083,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1084,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1085,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1086,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1087,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1088,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1089,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1090,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1091,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1092,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1093,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1094,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1095,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1096,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1097,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1098,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1099,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1100,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1101,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1102,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1103,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1104,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1105,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1106,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1107,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1108,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1109,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1110,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1111,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1112,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1113,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1114,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1115,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1116,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1117,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1118,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1119,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1120,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1121,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1122,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1123,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1124,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1125,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1126,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1127,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1128,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1129,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1130,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1131,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1132,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1133,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1134,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1135,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1136,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1137,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1138,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1139,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1140,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1141,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1142,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1143,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1144,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1145,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1146,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1147,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1148,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1149,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1150,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1151,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1152,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1153,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1154,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1155,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1156,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1157,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1158,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1159,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1160,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1161,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1162,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1163,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1164,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1165,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1166,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1167,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1168,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1169,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1170,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1171,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1172,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1173,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1174,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1175,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1176,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1177,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1178,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1179,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1180,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1181,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1182,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1183,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1184,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1185,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1186,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1187,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1188,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1189,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1190,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1191,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1192,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1193,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1194,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1195,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1196,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1197,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1198,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1199,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1200,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1201,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1202,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1203,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1204,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1205,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1206,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1207,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1208,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1209,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1210,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1211,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1212,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1213,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1214,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1215,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1216,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1217,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1218,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1219,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1220,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1221,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1222,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1223,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1224,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1225,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1226,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1227,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1228,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1229,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1230,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1231,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1232,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1233,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1234,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1235,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1236,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1237,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1238,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1239,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1240,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1241,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1242,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1243,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1244,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1245,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1246,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1247,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1248,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1249,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1250,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1251,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1252,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1253,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1254,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1255,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1256,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1257,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1258,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1259,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1260,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1261,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1262,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1263,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1264,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1265,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1266,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1267,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1268,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1269,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1270,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1271,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1272,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1273,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1274,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1275,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1276,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1277,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1278,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1279,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1280,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1281,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1282,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1283,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1284,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1285,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1286,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1287,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1288,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1289,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1290,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1291,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1292,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1293,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1294,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1295,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1296,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1297,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1298,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1299,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1300,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1301,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1302,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1303,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1304,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1305,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1306,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1307,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1308,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1309,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1310,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1311,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1312,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1313,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1314,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1315,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1316,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1317,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1318,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1319,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1320,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1321,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1322,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1323,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1324,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1325,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1326,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1327,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1328,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1329,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1330,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1331,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1332,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1333,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1334,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1335,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1336,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1337,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1338,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1339,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1340,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1341,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1342,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1343,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1344,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1345,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1346,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1347,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1348,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1349,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1350,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1351,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1352,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1353,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1354,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1355,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1356,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1357,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1358,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1359,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1360,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1361,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1362,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1363,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1364,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1365,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1366,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1367,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1368,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1369,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1370,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1371,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1372,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1373,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1374,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1375,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1376,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1377,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1378,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1379,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1380,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1381,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1382,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1383,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1384,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1385,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1386,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1387,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1388,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1389,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1390,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1391,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1392,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1393,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1394,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1395,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1396,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1397,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1398,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1399,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1400,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1401,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1402,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1403,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1404,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1405,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1406,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1407,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1408,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1409,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1410,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1411,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1412,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1413,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1414,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1415,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1416,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1417,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1418,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1419,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1420,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1421,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1422,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1423,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1424,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1425,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1426,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1427,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1428,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1429,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1430,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1431,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1432,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1433,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1434,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1435,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1436,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1437,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1438,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1439,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1440,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1441,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1442,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1443,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1444,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1445,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1446,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1447,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1448,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1449,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1450,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1451,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1452,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1453,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1454,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1455,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1456,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1457,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1458,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1459,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1460,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1461,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1462,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1463,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1464,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1465,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1466,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1467,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1468,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1469,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1470,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1471,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1472,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1473,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1474,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1475,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1476,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1477,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1478,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1479,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1480,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1481,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1482,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1483,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1484,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1485,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1486,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1487,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1488,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1489,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1490,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    },
+    {
+      "step": 1491,
+      "current_allocated_gib": 3.1228,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1492,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1493,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1494,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1495,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1496,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1497,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1498,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1499,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092
+    },
+    {
+      "step": 1500,
+      "current_allocated_gib": 3.1231,
+      "driver_allocated_gib": 6.6092,
+      "driver_after_empty_cache_gib": 3.9744
+    }
+  ],
+  "metrics": {
+    "validation_rows": 311,
+    "accuracy": 0.7524,
+    "macro_f1": 0.7316,
+    "top3_accuracy": 0.8746,
+    "income": {
+      "rows": 21,
+      "accuracy": 1.0,
+      "top3_accuracy": 1.0
+    },
+    "per_class": {
+      "ADM-1.10": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 3
+      },
+      "ADM-1.2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "ADM-1.4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "ADM-1.5": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "support": 2
+      },
+      "ADM-1.6": {
+        "precision": 0.8,
+        "recall": 0.6667,
+        "f1": 0.7273,
+        "support": 6
+      },
+      "ADM-1.7": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 10
+      },
+      "ADM-1.8": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "ADM-2.1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 3
+      },
+      "ADM-2.2": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1
+      },
+      "ADM-2.3": {
+        "precision": 0.6667,
+        "recall": 0.6667,
+        "f1": 0.6667,
+        "support": 3
+      },
+      "EXP-1.1": {
+        "precision": 0.8333,
+        "recall": 0.8333,
+        "f1": 0.8333,
+        "support": 6
+      },
+      "EXP-10.1": {
+        "precision": 0.6667,
+        "recall": 0.6667,
+        "f1": 0.6667,
+        "support": 6
+      },
+      "EXP-10.3": {
+        "precision": 0.6667,
+        "recall": 0.6667,
+        "f1": 0.6667,
+        "support": 3
+      },
+      "EXP-10.4": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "support": 2
+      },
+      "EXP-11.1": {
+        "precision": 0.7143,
+        "recall": 0.625,
+        "f1": 0.6667,
+        "support": 8
+      },
+      "EXP-11.2": {
+        "precision": 0.3333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "support": 1
+      },
+      "EXP-11.3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "EXP-11.4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "EXP-11.5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 3
+      },
+      "EXP-12.1": {
+        "precision": 0.625,
+        "recall": 1.0,
+        "f1": 0.7692,
+        "support": 5
+      },
+      "EXP-12.2": {
+        "precision": 1.0,
+        "recall": 0.8182,
+        "f1": 0.9,
+        "support": 11
+      },
+      "EXP-13.1": {
+        "precision": 0.6,
+        "recall": 0.375,
+        "f1": 0.4615,
+        "support": 8
+      },
+      "EXP-13.2": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8889,
+        "support": 4
+      },
+      "EXP-13.3": {
+        "precision": 0.6667,
+        "recall": 0.8,
+        "f1": 0.7273,
+        "support": 5
+      },
+      "EXP-14.1": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "support": 4
+      },
+      "EXP-14.2": {
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "support": 12
+      },
+      "EXP-14.3": {
+        "precision": 0.3333,
+        "recall": 0.4,
+        "f1": 0.3636,
+        "support": 5
+      },
+      "EXP-14.4": {
+        "precision": 0.4,
+        "recall": 0.4,
+        "f1": 0.4,
+        "support": 5
+      },
+      "EXP-15.3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 3
+      },
+      "EXP-15.4": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "support": 2
+      },
+      "EXP-15.5": {
+        "precision": 0.5,
+        "recall": 0.6667,
+        "f1": 0.5714,
+        "support": 3
+      },
+      "EXP-16.1": {
+        "precision": 0.84,
+        "recall": 0.75,
+        "f1": 0.7925,
+        "support": 28
+      },
+      "EXP-16.2": {
+        "precision": 0.5,
+        "recall": 0.1429,
+        "f1": 0.2222,
+        "support": 7
+      },
+      "EXP-2.1": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "support": 2
+      },
+      "EXP-2.2": {
+        "precision": 0.375,
+        "recall": 0.75,
+        "f1": 0.5,
+        "support": 4
+      },
+      "EXP-2.3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "EXP-2.4": {
+        "precision": 0.6667,
+        "recall": 0.6667,
+        "f1": 0.6667,
+        "support": 3
+      },
+      "EXP-2.5": {
+        "precision": 0.8571,
+        "recall": 0.7059,
+        "f1": 0.7742,
+        "support": 17
+      },
+      "EXP-2.6": {
+        "precision": 0.6,
+        "recall": 0.75,
+        "f1": 0.6667,
+        "support": 24
+      },
+      "EXP-3.1": {
+        "precision": 0.75,
+        "recall": 0.6,
+        "f1": 0.6667,
+        "support": 5
+      },
+      "EXP-4.1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "EXP-4.2": {
+        "precision": 0.7143,
+        "recall": 0.8333,
+        "f1": 0.7692,
+        "support": 6
+      },
+      "EXP-4.3": {
+        "precision": 0.25,
+        "recall": 0.3333,
+        "f1": 0.2857,
+        "support": 3
+      },
+      "EXP-5.1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+      },
+      "EXP-5.2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "EXP-5.3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 3
+      },
+      "EXP-5.4": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "EXP-5.5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+      },
+      "EXP-6.1": {
+        "precision": 0.25,
+        "recall": 0.5,
+        "f1": 0.3333,
+        "support": 2
+      },
+      "EXP-6.2": {
+        "precision": 0.6,
+        "recall": 1.0,
+        "f1": 0.75,
+        "support": 3
+      },
+      "EXP-6.5": {
+        "precision": 0.5,
+        "recall": 0.3333,
+        "f1": 0.4,
+        "support": 3
+      },
+      "EXP-7.0": {
+        "precision": 0.9091,
+        "recall": 0.9091,
+        "f1": 0.9091,
+        "support": 11
+      },
+      "EXP-8.1": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 3
+      },
+      "EXP-8.2": {
+        "precision": 0.3333,
+        "recall": 0.5,
+        "f1": 0.4,
+        "support": 2
+      },
+      "EXP-8.4": {
+        "precision": 0.6667,
+        "recall": 0.6667,
+        "f1": 0.6667,
+        "support": 3
+      },
+      "EXP-9.1": {
+        "precision": 0.5714,
+        "recall": 0.8,
+        "f1": 0.6667,
+        "support": 5
+      },
+      "EXP-9.2": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 6
+      },
+      "ING-0.1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 9
+      },
+      "ING-0.2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 3
+      },
+      "ING-0.4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 9
+      }
+    }
+  }
+}

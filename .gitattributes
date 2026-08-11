@@ -2,3 +2,6 @@ artifacts/v1.0.0/model.onnx filter=lfs diff=lfs merge=lfs -text
 artifacts/v1.0.0/classifier.joblib filter=lfs diff=lfs merge=lfs -text
 artifacts/v1.1.0/model.onnx filter=lfs diff=lfs merge=lfs -text
 artifacts/v1.1.0/classifier.joblib filter=lfs diff=lfs merge=lfs -text
+models/setfit_base_recovery_v1_2_0/model.safetensors filter=lfs diff=lfs merge=lfs -text
+models/setfit_base_recovery_v1_2_0/tokenizer.json filter=lfs diff=lfs merge=lfs -text
+Data/candidates/recovery_v1_2_0/*.csv whitespace=cr-at-eol

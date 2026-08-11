@@ -1,0 +1,4 @@
+gold_id,category_code,leaf,source,item_text,description,provider,farm,audit_reason,verify_flag
+SA-00757,ING-0.2,VENTA DE VACAS,silver_audit,vacas,,AGRICOLA Y GANADERA EMERALD LIMITADA,,[silver+ollama agree +claude review] matches client description,
+SA-00758,ING-0.2,VENTA DE VACAS,silver_audit,vacas preñadas,,AGRICOLA Y GANADERA EMERALD LIMITADA,,[silver+ollama agree +claude review] matches client description,
+SA-00874,ING-0.6,VENTA LEÑA,silver_audit,leña,,CONSTRUCCIONES Y PRESTACIÓN DE SERVICIOS VICENTE DIOCARES E.I.R.L.,,ollama classify + claude audit vs description,client_check
