@@ -1,0 +1,5 @@
+{
+  "accept_top1": 0.75,
+  "accept_margin": 0.5,
+  "model_auto_accept": true
+}

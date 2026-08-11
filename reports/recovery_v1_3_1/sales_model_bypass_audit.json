@@ -1,0 +1,31 @@
+{
+  "audit_type": "known-history memorization check; not blind deployment accuracy",
+  "inference_backend": "setfit-fp32",
+  "sales_rows": 125,
+  "rows_with_exact_rule_truth": 118,
+  "unknown_sales_without_exact_truth": 7,
+  "ml_direct_correct": 117,
+  "ml_direct_accuracy": 0.9915,
+  "by_truth": {
+    "ING-0.1": {
+      "rows": 47,
+      "correct": 47
+    },
+    "ING-0.2": {
+      "rows": 18,
+      "correct": 18
+    },
+    "ING-0.3": {
+      "rows": 2,
+      "correct": 2
+    },
+    "ING-0.4": {
+      "rows": 51,
+      "correct": 50
+    }
+  },
+  "unknown_prediction_counts": {
+    "ING-0.3": 3,
+    "ING-0.4": 4
+  }
+}

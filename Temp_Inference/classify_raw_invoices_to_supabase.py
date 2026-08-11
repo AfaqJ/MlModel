@@ -299,6 +299,7 @@ def to_predict_request(row: InvoiceLine) -> dict[str, Any]:
         "description": api_truncate(row.description, API_DESCRIPTION_MAX),
         "provider": api_truncate(row.provider, API_PROVIDER_MAX),
         "transaction_type": row.transaction_type,
+        "invoice_metadata": {"document_type": row.document_type},
         "top_k": 3,
     }
     if row.meter_code:

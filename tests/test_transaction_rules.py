@@ -97,6 +97,16 @@ def test_unknown_sale_is_never_auto_accepted():
     assert result["reason"] == "unknown_sales_item"
 
 
+def test_dte43_liquidacion_is_never_auto_accepted_without_client_category():
+    result = Predictor(Bundle(FixedEncoder())).predict(
+        item_text="VACA ENGORDA",
+        transaction_type="COMPRAS",
+        invoice_metadata={"document_type": "043", "xml_document_kind": "Liquidacion"},
+    )
+    assert result["decision"] == "review_required"
+    assert result["reason"] == "liquidacion_dte43_requires_client_category"
+
+
 def test_all_canonical_taxonomy_names_are_rules():
     rules = BusinessRules(RULES)
     taxonomy_path = RULES.parents[2] / "Data/current_context_2026_06_30/taxonomy_from_plan.csv"
@@ -150,6 +160,11 @@ def test_confidence_cannot_override_missing_semantic_context():
     assert model_review_guard_reason("Item", "FILTRO DE COMBUSTIBLE") == "generic_item_name_requires_review"
     assert model_review_guard_reason("GUANTE LARGO NITRILO") == "client_examples_conflict_with_glove_taxonomy"
     assert model_review_guard_reason("MENGUANTE") is None
+    assert (
+        model_review_guard_reason("R.N.PIBOTE RIEGO R 24", predicted_code="EXP-13.2")
+        == "irrigation_context_conflicts_with_prediction"
+    )
+    assert model_review_guard_reason("R.N.PIBOTE RIEGO R 24", predicted_code="EXP-9.2") is None
 
 
 def test_model_decision_does_not_depend_on_requested_top_k():

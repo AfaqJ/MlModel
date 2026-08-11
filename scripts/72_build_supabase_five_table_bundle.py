@@ -13,6 +13,7 @@ import csv
 import hashlib
 import importlib.util
 import json
+import sys
 from collections import Counter, defaultdict
 from dataclasses import asdict
 from pathlib import Path
@@ -50,6 +51,7 @@ def load_xml_helpers():
     if spec is None or spec.loader is None:
         raise RuntimeError(f"cannot load XML helpers from {path}")
     module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     module.RAW_DIRS = {
         "COMPRAS": ROOT / "Data/Raw_Data/dte_96685810_COMPRAS",
@@ -129,6 +131,8 @@ def main() -> None:
     for invoice in invoices:
         row = asdict(invoice)
         row.pop("invoice_key")
+        # Kept in the natural-key bundle as import provenance; a future loader
+        # must omit this non-schema field from the invoices table insert.
         # Current invoices.company_id denotes the counterparty. Resolve this
         # natural key to companies.company_id during a future upload.
         row["company_rut"] = (
@@ -188,6 +192,7 @@ def main() -> None:
             "recargo_amount": line.recargo_amount,
             "tax_exempt": line.tax_exempt,
             "additional_tax_code": line.additional_tax_code,
+            "xml_document_kind": invoice.xml_document_kind,
             "model_version": prediction["model_version"],
             "prediction_source": prediction["prediction_source"],
             "predicted_code": prediction["predicted_code"],
@@ -239,6 +244,24 @@ def main() -> None:
     for name, rows in files.items():
         write_jsonl(args.output_dir / name, rows)
 
+    invariants = {
+        "categories_are_71": len(categories) == 71,
+        "all_5195_invoice_headers_preserved": len(invoice_rows) == 5195,
+        "retained_invoice_items_are_11766": len(item_rows) == 11766,
+        "audited_junk_lines_are_440": len(stale_junk_rows) == 440,
+        "all_29_liquidacion_headers_preserved": sum(
+            invoice.xml_document_kind == "Liquidacion" for invoice in invoices
+        ) == 29,
+        "all_103_liquidacion_lines_preserved_for_review": sum(
+            row["xml_document_kind"] == "Liquidacion" for row in item_rows
+        ) == 103,
+        "no_invoice_is_misrepresented_as_empty": len(empty_invoices) == 0,
+        "all_predictions_mapped_once": len(prediction_by_line) == len(item_rows),
+    }
+    failed = [name for name, passed in invariants.items() if not passed]
+    if failed:
+        raise RuntimeError(f"refusing to emit invalid Supabase bundle; failed invariants: {failed}")
+
     manifest = {
         "release": "v1.3.1-local-only",
         "schema": "Temp_Inference/normalized_company_item_schema.sql",
@@ -252,14 +275,7 @@ def main() -> None:
         "counts": {name.removesuffix(".jsonl"): len(rows) for name, rows in files.items()},
         "decision_counts": dict(sorted(Counter(row["decision"] for row in item_rows).items())),
         "source_counts": dict(sorted(Counter(row["prediction_source"] for row in item_rows).items())),
-        "invariants": {
-            "categories_are_71": len(categories) == 71,
-            "all_5195_invoice_headers_preserved": len(invoice_rows) == 5195,
-            "retained_invoice_items_are_11663": len(item_rows) == 11663,
-            "audited_junk_lines_are_440": len(stale_junk_rows) == 440,
-            "empty_invoice_headers_preserved_are_29": len(empty_invoices) == 29,
-            "all_predictions_mapped_once": len(prediction_by_line) == len(item_rows),
-        },
+        "invariants": invariants,
     }
     manifest["sha256"] = {
         name: sha256(args.output_dir / name) for name in sorted(files)
@@ -273,10 +289,11 @@ def main() -> None:
         "cannot know Supabase-generated UUIDs. A future importer must resolve category code, company RUT, "
         "invoice `(seller_rut, document_type, invoice_folio)`, and catalog `(item_name, description)` keys.\n\n"
         "Before changing remote data, export/backup the five tables. In one transaction: upsert categories, "
-        "companies, catalog and all 5,195 invoice headers; resolve UUIDs; upsert the 11,663 retained item lines; "
+        "companies, catalog and all 5,195 invoice headers; resolve UUIDs; upsert the 11,766 retained item lines; "
         "then delete only the explicit 440 keys in `reconcile_delete_junk_lines.jsonl`. Roll back the transaction "
-        "if any count/hash/invariant differs from `manifest.json`. The 29 invoices with no retained lines remain "
-        "valid invoice headers and must not be deleted.\n",
+        "if any count/hash/invariant differs from `manifest.json`. The 29 DTE-43 Liquidacion invoices and their "
+        "103 genuine livestock lines are retained, but those lines remain review-required until the client supplies "
+        "the correct purchase-side accounting category.\n",
         encoding="utf-8",
     )
     print(json.dumps(manifest, ensure_ascii=False, indent=2))

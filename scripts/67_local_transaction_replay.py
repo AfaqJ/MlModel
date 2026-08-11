@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Replay all 12,103 locally extracted XML lines through the v1.3.1 cascade.
+"""Replay all 12,206 local XML lines through the v1.3.1 cascade.
 
 No API, database, deployment, or network call is made. CdgIntRecep and
 MontoItem are reparsed from the local XML because the old line_items.csv parser
-discarded the amount (`MntItem` typo) and did not retain the electricity meter.
+discarded the amount (`MntItem` typo), did not retain the electricity meter,
+and skipped 103 genuine lines inside 29 DTE-43 ``Liquidacion`` documents.
 """
 from __future__ import annotations
 
@@ -44,7 +45,7 @@ FIELDS = [
     "row_id", "input_id", "source_file", "period", "folio", "nro_lin_det", "direction",
     "invoice_date", "document_type", "provider_rut", "provider_giro",
     "item_text", "description", "provider", "farm", "meter_code", "amount",
-    "unit_price",
+    "unit_price", "xml_document_kind",
     "source", "prediction", "top1", "margin", "entropy", "decision", "reason", "top3",
     "model_prediction", "model_top1", "lookup_conflict", "exact_known_truth",
     "exact_known_consistent", "risk_flags",
@@ -136,6 +137,35 @@ def parse_xml_context(path: Path) -> tuple[dict[str, str], dict[str, dict[str, s
     return metadata, details
 
 
+def liquidation_raw_rows() -> list[dict[str, str]]:
+    """Recover DTE-43 Liquidacion lines omitted by the historical CSV parser."""
+    rows = []
+    root_dir = RAW_ROOT / "dte_96685810_COMPRAS"
+    for path in sorted(root_dir.rglob("*.xml")):
+        root = parse_local_xml(path)
+        liquidations = [node for node in root.iter() if node.tag.rsplit("}", 1)[-1] == "Liquidacion"]
+        for liquidation in liquidations:
+            folio = node_text(liquidation, "Folio")
+            provider = node_text(liquidation, "RznSoc")
+            farm = node_text(liquidation, "RznSocRecep")
+            for detail in [node for node in liquidation.iter() if node.tag.rsplit("}", 1)[-1] == "Detalle"]:
+                line = node_text(detail, "NroLinDet")
+                rows.append({
+                    "row_id": f"LIQ43|{path.name}|{line}",
+                    "source_file": path.name,
+                    "period": path.parent.name,
+                    "folio": folio,
+                    "nro_lin_det": line,
+                    "source": "COMPRAS",
+                    "nmb_item": node_text(detail, "NmbItem"),
+                    "dsc_item": node_text(detail, "DscItem"),
+                    "rzn_soc_emisor": provider,
+                    "farm": farm,
+                    "xml_document_kind": "Liquidacion",
+                })
+    return rows
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--artifact", type=Path, default=ARTIFACT)
@@ -147,11 +177,19 @@ def main() -> None:
     args = parser.parse_args()
 
     raw_rows = read_csv(args.raw)
-    if len(raw_rows) != 12103:
-        raise RuntimeError(f"expected 12,103 local raw rows, found {len(raw_rows)}")
+    for row in raw_rows:
+        row["xml_document_kind"] = "Documento"
+    raw_rows.extend(liquidation_raw_rows())
+    if len(raw_rows) != 12206:
+        raise RuntimeError(f"expected 12,206 local raw rows including DTE-43, found {len(raw_rows)}")
     gold_rows = read_csv(args.gold)
-    model_card = json.loads((args.artifact / "model_card.json").read_text())
-    thresholds = model_card["thresholds"]
+    artifact_ready = (args.artifact / "model_card.json").exists()
+    if artifact_ready:
+        model_card = json.loads((args.artifact / "model_card.json").read_text())
+        thresholds = model_card["thresholds"]
+    else:
+        model_card = None
+        thresholds = json.loads(args.thresholds.read_text())
 
     taxonomy = {
         row["new_code"]: row["leaf"]
@@ -162,10 +200,34 @@ def main() -> None:
     meters = MeterLookup(ROOT / "app/data/electricity_meter_map.csv")
     xml_index = build_xml_index()
 
-    body = OnnxEncoder(args.artifact)
-    head = LogisticHead(args.artifact)
-    classes = np.asarray([str(value) for value in head.classes_])
-    model_version = model_card["model_version"]
+    if artifact_ready:
+        body = OnnxEncoder(args.artifact)
+        head = LogisticHead(args.artifact)
+        classes = np.asarray([str(value) for value in head.classes_])
+        model_version = model_card["model_version"]
+        inference_backend = "onnx"
+    else:
+        import transformers.training_args as transformers_training_args
+        if not hasattr(transformers_training_args, "default_logdir"):
+            from transformers.integrations.integration_utils import default_logdir
+            transformers_training_args.default_logdir = default_logdir
+        from setfit import SetFitModel
+
+        fp32_model = SetFitModel.from_pretrained(
+            str(ROOT / "models/setfit_base_recovery_v1_3_1"), local_files_only=True
+        )
+
+        class BodyAdapter:
+            def embed(self, texts, batch_size=128):
+                return fp32_model.model_body.encode(
+                    texts, batch_size=batch_size, convert_to_numpy=True, show_progress_bar=True
+                )
+
+        body = BodyAdapter()
+        head = fp32_model.model_head
+        classes = np.asarray([str(value) for value in fp32_model.labels])
+        model_version = "v1.3.1-fp32"
+        inference_backend = "setfit-fp32"
 
     distinct_by_label: defaultdict[str, set[str]] = defaultdict(set)
     exact_truth: defaultdict[str, set[str]] = defaultdict(set)
@@ -256,6 +318,7 @@ def main() -> None:
             "meter_code": meter_code,
             "amount": amount,
             "unit_price": unit_price,
+            "xml_document_kind": raw["xml_document_kind"],
             "meter_hit": meter,
             "rule_hit": rule,
             "product_hit": product,
@@ -320,11 +383,20 @@ def main() -> None:
                 thresholds=thresholds,
             )
             decision, reason = result.decision, result.reason or ""
-            ambiguity_reason = model_review_guard_reason(row["item_text"], row["description"]) if source == "model" else None
+            ambiguity_reason = (
+                model_review_guard_reason(row["item_text"], row["description"], prediction)
+                if source == "model"
+                else None
+            )
             if ambiguity_reason:
                 decision, reason = "review_required", ambiguity_reason
             if row["direction"] == "VENTAS":
                 decision, reason = "review_required", "unknown_sales_item"
+
+        if row["xml_document_kind"] == "Liquidacion":
+            # Type-43 settlement lines are genuine livestock transactions, but
+            # the client has supplied no purchase-side livestock category.
+            decision, reason = "review_required", "liquidacion_dte43_requires_client_category"
 
         exact_labels = exact_truth.get(normalize(row["model_text"]), set())
         exact_label = next(iter(exact_labels)) if len(exact_labels) == 1 else ""
@@ -349,7 +421,7 @@ def main() -> None:
                 "row_id", "input_id", "source_file", "period", "folio", "nro_lin_det", "direction",
                 "invoice_date", "document_type", "provider_rut", "provider_giro",
                 "item_text", "description", "provider", "farm", "meter_code", "amount",
-                "unit_price",
+                "unit_price", "xml_document_kind",
             ]},
             "source": source,
             "prediction": prediction,
@@ -410,6 +482,7 @@ def main() -> None:
             "decision": row["decision"],
             "reviewed": False,
             "final_code": row["prediction"] if row["decision"] == "auto_accept" else None,
+            "xml_document_kind": row["xml_document_kind"],
         })
     write_jsonl(args.output_dir / "inference_rows_with_natural_keys.jsonl", supabase_rows)
 
@@ -463,7 +536,10 @@ def main() -> None:
 
     summary = {
         "local_only": True,
+        "inference_backend": inference_backend,
         "raw_rows": len(raw_rows),
+        "standard_document_rows": sum(row["xml_document_kind"] == "Documento" for row in results),
+        "liquidacion_dte43_rows": sum(row["xml_document_kind"] == "Liquidacion" for row in results),
         "rows_after_audited_zero_junk_filter": len(results),
         "excluded_zero_junk_rows": len(excluded_zero_junk),
         "xml_files_parsed": len(xml_cache),

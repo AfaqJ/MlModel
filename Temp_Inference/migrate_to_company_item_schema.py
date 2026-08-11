@@ -29,8 +29,8 @@ ROOT = Path(__file__).resolve().parents[1]
 HERE = Path(__file__).resolve().parent
 
 RAW_DIRS = {
-    "COMPRAS": ROOT / "data" / "Raw_Data" / "dte_96685810_COMPRAS",
-    "VENTAS": ROOT / "data" / "Raw_Data" / "dte_96685810_VENTAS",
+    "COMPRAS": ROOT / "Data" / "Raw_Data" / "dte_96685810_COMPRAS",
+    "VENTAS": ROOT / "Data" / "Raw_Data" / "dte_96685810_VENTAS",
 }
 
 DEFAULT_SNAPSHOT_DIR = HERE / "snapshots" / "normalized_before_company_item_split"
@@ -80,6 +80,7 @@ class XmlInvoice:
     due_date: str | None
     payment_form: str | None
     source_file: str
+    xml_document_kind: str
 
 
 @dataclass(frozen=True)
@@ -244,6 +245,8 @@ def parse_raw_xml() -> tuple[dict[str, XmlInvoice], dict[str, XmlLine], dict[str
     stats = {
         "raw_xml_documents": 0,
         "raw_detail_lines": 0,
+        "standard_document_invoices": 0,
+        "liquidacion_invoices": 0,
         "duplicate_invoice_keys": 0,
         "duplicate_line_keys": 0,
     }
@@ -268,8 +271,15 @@ def parse_raw_xml() -> tuple[dict[str, XmlInvoice], dict[str, XmlLine], dict[str
             for dte in iter_named(root, "DTE"):
                 doc = find_deep_named(dte, "Documento")
                 if doc is None:
+                    doc = find_deep_named(dte, "Liquidacion")
+                if doc is None:
+                    errors.append({"path": str(path), "error": "missing_document_or_liquidacion"})
                     continue
+                document_kind = local_name(doc.tag)
                 stats["raw_xml_documents"] += 1
+                stats[
+                    "liquidacion_invoices" if document_kind == "Liquidacion" else "standard_document_invoices"
+                ] += 1
 
                 encab = find_named(doc, "Encabezado")
                 id_doc = find_named(encab, "IdDoc")
@@ -327,6 +337,7 @@ def parse_raw_xml() -> tuple[dict[str, XmlInvoice], dict[str, XmlLine], dict[str
                     due_date=parse_date(clean_text(find_named(id_doc, "FchVenc"))),
                     payment_form=none_if_blank(clean_text(find_named(id_doc, "FmaPago"))),
                     source_file=str(path.relative_to(ROOT)),
+                    xml_document_kind=document_kind,
                 )
                 if key in invoices_by_key:
                     stats["duplicate_invoice_keys"] += 1

@@ -45,13 +45,19 @@ class Predictor:
         if meter_code and (transaction_type or "").upper() == "COMPRAS":
             meter_hit = self.bundle.meter_lookup.match(meter_code)
             if meter_hit:
-                return self._meter_response(meter_hit, meter_code, input_id, started, top_k, return_debug)
+                return self._invoice_context_guard(
+                    self._meter_response(meter_hit, meter_code, input_id, started, top_k, return_debug),
+                    invoice_metadata,
+                )
 
         # A verified exact sales phrase is authoritative. Skip both the model and
         # product lookup: this is the deterministic path the incident lacked.
         rule_hit = self.bundle.business_rules.match(item_text, transaction_type)
         if rule_hit:
-            return self._business_rule_response(rule_hit, input_id, started, top_k, return_debug)
+            return self._invoice_context_guard(
+                self._business_rule_response(rule_hit, input_id, started, top_k, return_debug),
+                invoice_metadata,
+            )
 
         # Row-level client product labels are stronger than invoice-folder
         # placement. Product hits short-circuit and cannot be vetoed by ML.
@@ -59,7 +65,10 @@ class Predictor:
             transaction_type or ""
         ).upper() == "COMPRAS" else None
         if lookup_hit:
-            return self._product_response(lookup_hit, input_id, started, top_k, return_debug)
+            return self._invoice_context_guard(
+                self._product_response(lookup_hit, input_id, started, top_k, return_debug),
+                invoice_metadata,
+            )
 
         text = self.build_text(item_text, description, provider, transaction_type)
         embedding = self.bundle.encoder.embed([text])
@@ -105,7 +114,7 @@ class Predictor:
             thresholds=self.bundle.thresholds,
             shadow_mode=self.shadow_mode,
         )
-        ambiguity_reason = model_review_guard_reason(item_text, description) if source == "model" else None
+        ambiguity_reason = model_review_guard_reason(item_text, description, code1) if source == "model" else None
         if ambiguity_reason:
             decision = DecisionResult("review_required", ambiguity_reason)
         if (transaction_type or "").upper() == "VENTAS" and source != "business_rule":
@@ -135,6 +144,16 @@ class Predictor:
                 "model_text": text,
                 "model_top1": model_top[0],
             }
+        return self._invoice_context_guard(response, invoice_metadata)
+
+    @staticmethod
+    def _invoice_context_guard(response: dict, invoice_metadata: dict | None) -> dict:
+        metadata = invoice_metadata or {}
+        document_type = str(metadata.get("document_type") or metadata.get("tipo_dte") or "").lstrip("0")
+        document_kind = str(metadata.get("xml_document_kind") or "").lower()
+        if document_type == "43" or document_kind == "liquidacion":
+            response["decision"] = "review_required"
+            response["reason"] = "liquidacion_dte43_requires_client_category"
         return response
 
     def _business_rule_response(self, hit, input_id, started, top_k, return_debug) -> dict:

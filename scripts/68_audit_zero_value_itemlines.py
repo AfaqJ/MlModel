@@ -110,6 +110,9 @@ def scan() -> tuple[list[dict], dict]:
             for dte in iter_named(root, "DTE"):
                 doc = find_deep_named(dte, "Documento")
                 if doc is None:
+                    doc = find_deep_named(dte, "Liquidacion")
+                if doc is None:
+                    parse_errors.append(f"{path.relative_to(ROOT)}: missing Documento/Liquidacion")
                     continue
                 encab = find_named(doc, "Encabezado")
                 id_doc = find_named(encab, "IdDoc")

@@ -282,6 +282,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gold", type=Path, default=DEFAULT_GOLD)
     parser.add_argument("--split-manifest", type=Path, default=DEFAULT_SPLIT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--initial-model",
+        type=Path,
+        help="Continue full-encoder training from a local SetFit candidate instead of the cached base model.",
+    )
     parser.add_argument("--device", choices=["auto", "mps", "cpu"], default="auto")
     parser.add_argument("--optimizer", choices=["adafactor", "adamw_torch"], default="adamw_torch")
     parser.add_argument("--batch-size", type=int, default=4)
@@ -364,8 +369,9 @@ def main() -> None:
     print(f"excluded <2 classes: {excluded_classes}")
 
     labels = sorted(train_counts)
+    initial_model = args.initial_model.resolve() if args.initial_model else base_model_path
     model = SetFitModel.from_pretrained(
-        base_model_path,
+        str(initial_model),
         labels=labels,
         head_params={"class_weight": "balanced", "max_iter": 2000},
         local_files_only=True,
@@ -434,6 +440,7 @@ def main() -> None:
         "mode": "memory_smoke" if args.memory_smoke else "candidate_training",
         "base_model": BASE_MODEL,
         "base_model_local_snapshot": str(base_model_path),
+        "initial_model": str(initial_model),
         "device": device,
         "optimizer_requested": args.optimizer,
         "optimizer_observed": monitor.optimizer_class,

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Verify the ONNX ML path on sales phrases even when exact rules bypass it."""
+"""Check memorization of known historical sales when exact rules are bypassed.
+
+This mixes historical training and held-out rows, so it is not a deployment
+accuracy estimate. Its narrow purpose is to prove the trained model learned the
+known milk/cattle/calf labels rather than relying only on runtime exact rules.
+"""
 from __future__ import annotations
 
 import csv
@@ -30,14 +35,31 @@ def main() -> None:
     report = ROOT / "reports/recovery_v1_3_1"
     raw = [row for row in read_csv(ROOT / "Data/processed/line_items.csv") if row["source"] == "VENTAS"]
     rules = BusinessRules(ROOT / "app/data/business_rules.csv")
-    encoder = OnnxEncoder(artifact)
-    head = LogisticHead(artifact)
-    classes = np.asarray([str(code) for code in head.classes_])
     texts = [
         build_model_text(row["nmb_item"], row["dsc_item"], row["rzn_soc_emisor"], "VENTAS")
         for row in raw
     ]
-    probabilities = np.asarray(head.predict_proba(encoder.embed(texts)))
+    if artifact.exists():
+        encoder = OnnxEncoder(artifact)
+        head = LogisticHead(artifact)
+        classes = np.asarray([str(code) for code in head.classes_])
+        probabilities = np.asarray(head.predict_proba(encoder.embed(texts)))
+        backend = "onnx-int8"
+    else:
+        # This fallback keeps the incident proof available before packaging.
+        # The final release reruns the same audit against the ONNX artifact.
+        import transformers.training_args as transformers_training_args
+        if not hasattr(transformers_training_args, "default_logdir"):
+            from transformers.integrations.integration_utils import default_logdir
+            transformers_training_args.default_logdir = default_logdir
+        from setfit import SetFitModel
+
+        model = SetFitModel.from_pretrained(
+            str(ROOT / "models/setfit_base_recovery_v1_3_1"), local_files_only=True
+        )
+        classes = np.asarray([str(code) for code in model.labels])
+        probabilities = np.asarray(model.predict_proba(texts))
+        backend = "setfit-fp32"
     masked = direction_mask(classes, "VENTAS")
     probabilities[:, masked] = 0.0
     probabilities /= probabilities.sum(axis=1, keepdims=True)
@@ -68,6 +90,8 @@ def main() -> None:
         writer.writerows(rows)
     known = [row for row in rows if row["exact_rule_truth"]]
     summary = {
+        "audit_type": "known-history memorization check; not blind deployment accuracy",
+        "inference_backend": backend,
         "sales_rows": len(rows),
         "rows_with_exact_rule_truth": len(known),
         "unknown_sales_without_exact_truth": len(rows) - len(known),

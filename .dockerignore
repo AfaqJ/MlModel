@@ -1,7 +1,10 @@
-.venv-train
-models
-Data/Raw_Data
-Data/stale
-__pycache__
-*.pyc
-.DS_Store
+# Cloud Run image needs only the backend, pinned dependencies, and the final
+# versioned ONNX artifact. Keeping the client data/training workspace out of the
+# build context avoids multi-gigabyte transfers and accidental data inclusion.
+*
+!requirements.txt
+!app/
+!app/**
+!artifacts/
+!artifacts/v1.3.1/
+!artifacts/v1.3.1/**

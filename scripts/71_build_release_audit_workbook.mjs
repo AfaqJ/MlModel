@@ -22,6 +22,7 @@ for (const [name, file] of [
   ["Zero Value Audit", path.join(report, "zero_value_audit/distinct_zero_value_groups.csv")],
   ["Validation", path.join(report, "validation_predictions.csv")],
   ["Auto Accept Risks", path.join(report, "local_replay/auto_accept_risk_flags.csv")],
+  ["Model Lie Audit", path.join(report, "counterfactual_model_false_positives.csv")],
   ["Review Groups", path.join(report, "local_replay/review_groups.csv")],
 ]) {
   try {
@@ -35,6 +36,7 @@ const calibration = await readJson(path.join(report, "calibration_and_validation
 const replay = await readJson(path.join(report, "local_replay/summary.json"));
 const zero = await readJson(path.join(report, "zero_value_audit/inventory_summary.json"));
 const card = await readJson(path.join(root, "artifacts/v1.3.1/model_card.json"));
+const bundle = await readJson(path.join(report, "supabase_five_table_bundle/manifest.json"));
 
 const summary = workbook.worksheets.add("Summary");
 summary.showGridLines = false;
@@ -61,11 +63,15 @@ const rows = [
   ["Validation macro F1", card.metrics?.macro_f1 ?? "", card.metrics?.macro_f1 ? "INFO" : "PENDING", "Class-balanced held-out score"],
   ["Staged thresholds", calibration.selected_thresholds ? `${calibration.selected_thresholds.accept_top1} / ${calibration.selected_thresholds.accept_margin}` : "", calibration.selected_thresholds ? "PASS" : "PENDING", "Top-1 / margin; weak classes still review"],
   ["Held-out auto-accept false positives", calibration.cascade?.auto_accept_false_positives ?? "", calibration.cascade && calibration.cascade.auto_accept_false_positives === 0 ? "PASS" : "REVIEW", "Wrong labels accepted on held-out data"],
+  ["Counterfactual confident ML lies", calibration.counterfactual_model_only_on_all_validation_rows?.auto_accept_false_positives ?? "", calibration.counterfactual_model_only_on_all_validation_rows && calibration.counterfactual_model_only_on_all_validation_rows.auto_accept_false_positives === 0 ? "PASS" : "REVIEW", "Model checked even where a lookup normally wins"],
   ["Raw rows after zero-junk filter", replay.rows_after_audited_zero_junk_filter ?? "", replay.rows_after_audited_zero_junk_filter ? "PASS" : "PENDING", "Offline inference/upload row count"],
   ["Zero junk excluded", zero.audit_verdict_counts?.EXCLUDE_JUNK ?? "", "PASS", "Only audited separator/note/template patterns"],
   ["Zero-valued retained", zero.audit_verdict_counts?.KEEP_GENUINE_OR_UNCERTAIN ?? "", "PASS", "Conservative keep when genuine/uncertain"],
   ["Raw auto-accept rate", replay.auto_accept_rate ?? "", replay.auto_accept_rate ? "INFO" : "PENDING", "All deterministic + staged ML accepts"],
   ["Serious raw auto-accept flags", replay.auto_accept_risk_flags?.serious_rule_or_known_label_conflicts ?? "", replay.auto_accept_risk_flags && replay.auto_accept_risk_flags.serious_rule_or_known_label_conflicts === 0 ? "PASS" : "REVIEW", "Known-label/direction conflicts"],
+  ["Supabase invoice headers", bundle.counts?.invoices ?? "", bundle.invariants?.all_5195_invoice_headers_preserved ? "PASS" : "PENDING", "All standard and DTE-43 Liquidacion invoices preserved"],
+  ["Supabase retained item lines", bundle.counts?.invoice_items ?? "", bundle.invariants?.retained_invoice_items_are_11766 ? "PASS" : "PENDING", "Five-table natural-key bundle"],
+  ["DTE-43 liquidation lines", replay.liquidacion_dte43_rows ?? "", replay.liquidacion_dte43_rows === 103 ? "REVIEW" : "PENDING", "Genuine livestock lines retained but require a client purchase-side category"],
 ];
 summary.getRangeByIndexes(2, 0, rows.length, 4).values = rows;
 summary.getRange(`A3:D3`).format = { fill: "#D9EAF7", font: { bold: true }, borders: { preset: "all", style: "thin", color: "#B4C6D7" } };
@@ -88,6 +94,6 @@ const xlsx = await SpreadsheetFile.exportXlsx(workbook);
 await xlsx.save(output);
 const preview = await workbook.render({ sheetName: "Summary", autoCrop: "all", scale: 1, format: "png" });
 await fs.writeFile(path.join(report, "v1_3_1_release_audit_preview.png"), new Uint8Array(await preview.arrayBuffer()));
-const inspection = await workbook.inspect({ kind: "sheet,region", sheetId: "Summary", range: "A1:D24", maxChars: 4000 });
+const inspection = await workbook.inspect({ kind: "sheet,region", sheetId: "Summary", range: "A1:D30", maxChars: 5000 });
 console.log(inspection.ndjson);
 console.log(output);

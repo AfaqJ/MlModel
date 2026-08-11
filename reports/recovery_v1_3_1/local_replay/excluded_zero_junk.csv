@@ -1,0 +1,441 @@
+row_id,source_file,period,folio,nro_lin_det,direction,item_text,description,provider,amount,unit_price,audit_rationale
+96,DTE_033_000000006480_768318301.xml,2025-01,6480,2,COMPRAS,Comentarios:,Comentarios:,AUTOMOTRIZ TECNOCID LIMITADA,0,,comments_header
+110,DTE_033_000000017084_766379990.xml,2025-01,17084,2,COMPRAS,ENTREGA INMEDIATA&#46; SALVO VENTA PREVIA,&#45;&#45;&#45;&#45; CANCELADA TRANSFERENCIA 23&#45;01&#45;2025,ENTRE RIEGOS DEL SUR SPA,0,,delivery_payment_note
+287,DTE_033_000000365765_801251005.xml,2025-01,365765,2,COMPRAS,Segun Guias,"G0371619,",BOTTAI S.A.,0,,delivery_reference
+298,DTE_033_000000551719_969183005.xml,2025-01,551719,2,COMPRAS,FORD F150 LARIAT TBZL-91 41264 03/01/2025 14:58 725197,A@FORD F150 LARIAT TBZL-91 41264 03/01/2025 14:58 725197,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+299,DTE_033_000000551719_969183005.xml,2025-01,551719,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+300,DTE_033_000000551719_969183005.xml,2025-01,551719,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+301,DTE_033_000000551719_969183005.xml,2025-01,551719,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+303,DTE_033_000000551719_969183005.xml,2025-01,551719,7,COMPRAS,SCO-MO REVISAR FUNCIONAMIENTO DEL SISTEMA OPERA,A@SCO-MO REVISAR FUNCIONAMIENTO DEL SISTEMA OPERA,DIFOR CHILE S.A.,0,,workshop_request_note
+304,DTE_033_000000551719_969183005.xml,2025-01,551719,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+305,DTE_033_000000551719_969183005.xml,2025-01,551719,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+306,DTE_033_000000551719_969183005.xml,2025-01,551719,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+307,DTE_033_000000551719_969183005.xml,2025-01,551719,11,COMPRAS,248625 70154 9747 2071 87713,2@248625 70154 9747 2071 87713,DIFOR CHILE S.A.,0,,printed_numeric_summary
+308,DTE_033_000000551719_969183005.xml,2025-01,551719,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+309,DTE_033_000000551719_969183005.xml,2025-01,551719,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+310,DTE_033_000000551719_969183005.xml,2025-01,551719,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+312,DTE_033_000000553382_969183005.xml,2025-01,553382,2,COMPRAS,FORD F150 LARIAT PKSR-82 130473 09/01/2025 10:03 726731,A@FORD F150 LARIAT PKSR-82 130473 09/01/2025 10:03 726731,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+313,DTE_033_000000553382_969183005.xml,2025-01,553382,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+314,DTE_033_000000553382_969183005.xml,2025-01,553382,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+315,DTE_033_000000553382_969183005.xml,2025-01,553382,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+317,DTE_033_000000553382_969183005.xml,2025-01,553382,7,COMPRAS,"SCO-MO 13? REVISI?N DE MANTENCI?N, CAMBIAR PLUM","A@SCO-MO 13? REVISI?N DE MANTENCI?N, CAMBIAR PLUM",DIFOR CHILE S.A.,0,,workshop_request_note
+318,DTE_033_000000553382_969183005.xml,2025-01,553382,8,COMPRAS,SCO-MO CAMBIAR ESPEJO RETROVISOR DERECHO,A@SCO-MO CAMBIAR ESPEJO RETROVISOR DERECHO,DIFOR CHILE S.A.,0,,workshop_request_note
+319,DTE_033_000000553382_969183005.xml,2025-01,553382,9,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+320,DTE_033_000000553382_969183005.xml,2025-01,553382,10,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+321,DTE_033_000000553382_969183005.xml,2025-01,553382,11,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+322,DTE_033_000000553382_969183005.xml,2025-01,553382,12,COMPRAS,233605 52048 33009 2192 92874,2@233605 52048 33009 2192 92874,DIFOR CHILE S.A.,0,,printed_numeric_summary
+323,DTE_033_000000553382_969183005.xml,2025-01,553382,13,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+324,DTE_033_000000553382_969183005.xml,2025-01,553382,14,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+325,DTE_033_000000553382_969183005.xml,2025-01,553382,15,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+328,DTE_033_000000622975_990120005.xml,2025-01,622975,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+1032,DTE_033_000000558367_969183005.xml,2025-02,558367,2,COMPRAS,FORD RANGER XL 4X PSSS-88 160565 11/02/2025 17:36 734734,A@FORD RANGER XL 4X PSSS-88 160565 11/02/2025 17:36 734734,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+1033,DTE_033_000000558367_969183005.xml,2025-02,558367,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1034,DTE_033_000000558367_969183005.xml,2025-02,558367,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+1035,DTE_033_000000558367_969183005.xml,2025-02,558367,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1037,DTE_033_000000558367_969183005.xml,2025-02,558367,7,COMPRAS,SCO-MO REVISAR SISTEMA DE DIRECCION,A@SCO-MO REVISAR SISTEMA DE DIRECCION,DIFOR CHILE S.A.,0,,workshop_request_note
+1038,DTE_033_000000558367_969183005.xml,2025-02,558367,8,COMPRAS,SCO-MO 16? REVISI?N DE MANTENCI?N,A@SCO-MO 16? REVISI?N DE MANTENCI?N,DIFOR CHILE S.A.,0,,workshop_request_note
+1039,DTE_033_000000558367_969183005.xml,2025-02,558367,9,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+1040,DTE_033_000000558367_969183005.xml,2025-02,558367,10,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+1041,DTE_033_000000558367_969183005.xml,2025-02,558367,11,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1042,DTE_033_000000558367_969183005.xml,2025-02,558367,12,COMPRAS,193375 78432 1360 11192 69559,2@193375 78432 1360 11192 69559,DIFOR CHILE S.A.,0,,printed_numeric_summary
+1043,DTE_033_000000558367_969183005.xml,2025-02,558367,13,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+1044,DTE_033_000000558367_969183005.xml,2025-02,558367,14,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+1045,DTE_033_000000558367_969183005.xml,2025-02,558367,15,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+1047,DTE_033_000000561426_969183005.xml,2025-02,561426,2,COMPRAS,FORD RANGER XL 4X RZGC-45 109461 27/02/2025 18:11 738483,A@FORD RANGER XL 4X RZGC-45 109461 27/02/2025 18:11 738483,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+1048,DTE_033_000000561426_969183005.xml,2025-02,561426,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1049,DTE_033_000000561426_969183005.xml,2025-02,561426,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+1050,DTE_033_000000561426_969183005.xml,2025-02,561426,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1052,DTE_033_000000561426_969183005.xml,2025-02,561426,7,COMPRAS,SCO-MO REVISAR VIBRACION RUEDA DELANTERA IZQUIE,A@SCO-MO REVISAR VIBRACION RUEDA DELANTERA IZQUIE,DIFOR CHILE S.A.,0,,workshop_request_note
+1053,DTE_033_000000561426_969183005.xml,2025-02,561426,8,COMPRAS,SCO-MO MANTENCION 110.000KMS,A@SCO-MO MANTENCION 110.000KMS,DIFOR CHILE S.A.,0,,workshop_request_note
+1054,DTE_033_000000561426_969183005.xml,2025-02,561426,9,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+1055,DTE_033_000000561426_969183005.xml,2025-02,561426,10,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+1056,DTE_033_000000561426_969183005.xml,2025-02,561426,11,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1057,DTE_033_000000561426_969183005.xml,2025-02,561426,12,COMPRAS,165710 60842 1390 11441 71105,2@165710 60842 1390 11441 71105,DIFOR CHILE S.A.,0,,printed_numeric_summary
+1058,DTE_033_000000561426_969183005.xml,2025-02,561426,13,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+1059,DTE_033_000000561426_969183005.xml,2025-02,561426,14,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+1060,DTE_033_000000561426_969183005.xml,2025-02,561426,15,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+1063,DTE_033_000000628741_990120005.xml,2025-02,628741,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+1686,DTE_033_000000565825_969183005.xml,2025-03,565825,2,COMPRAS,FORD RANGER XLT 4 TJXC-63 48335 28/03/2025 18:03 744974,A@FORD RANGER XLT 4 TJXC-63 48335 28/03/2025 18:03 744974,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+1687,DTE_033_000000565825_969183005.xml,2025-03,565825,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1688,DTE_033_000000565825_969183005.xml,2025-03,565825,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+1689,DTE_033_000000565825_969183005.xml,2025-03,565825,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1691,DTE_033_000000565825_969183005.xml,2025-03,565825,7,COMPRAS,SCO-MO REVISAR BOCINA,A@SCO-MO REVISAR BOCINA,DIFOR CHILE S.A.,0,,workshop_request_note
+1692,DTE_033_000000565825_969183005.xml,2025-03,565825,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+1693,DTE_033_000000565825_969183005.xml,2025-03,565825,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+1694,DTE_033_000000565825_969183005.xml,2025-03,565825,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+1695,DTE_033_000000565825_969183005.xml,2025-03,565825,11,COMPRAS,181691 57593 26895 11441 91421,2@181691 57593 26895 11441 91421,DIFOR CHILE S.A.,0,,printed_numeric_summary
+1696,DTE_033_000000565825_969183005.xml,2025-03,565825,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+1697,DTE_033_000000565825_969183005.xml,2025-03,565825,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+1698,DTE_033_000000565825_969183005.xml,2025-03,565825,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+1703,DTE_033_000000633520_990120005.xml,2025-03,633520,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+2183,DTE_033_000000024183_766002048.xml,2025-04,24183,2,COMPRAS,OBSERVACIONES,TRANSFERENCIA ELECTRONICA Cotización valida por 10 días.,BOBINADOS INDUSTRIALES LONCOMILLA SPA,0,,observations_note
+2185,DTE_033_000000024184_766002048.xml,2025-04,24184,2,COMPRAS,OBSERVACIONES,TRANSFERENCIA ELECTRONICA Contacto: ( mantencion@bobinadosloncomilla.cl - serviciotecnico@bobinadosloncomilla.cl ) Teléfono: +56 85012109 / (64) 2 24350,BOBINADOS INDUSTRIALES LONCOMILLA SPA,0,,observations_note
+2315,DTE_033_000000567514_969183005.xml,2025-04,567514,2,COMPRAS,FORD F150 LARIAT TBZL-91 50838 10/03/2025 12:32 740387,A@FORD F150 LARIAT TBZL-91 50838 10/03/2025 12:32 740387,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+2316,DTE_033_000000567514_969183005.xml,2025-04,567514,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2317,DTE_033_000000567514_969183005.xml,2025-04,567514,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+2318,DTE_033_000000567514_969183005.xml,2025-04,567514,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2320,DTE_033_000000567514_969183005.xml,2025-04,567514,7,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+2321,DTE_033_000000567514_969183005.xml,2025-04,567514,8,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+2322,DTE_033_000000567514_969183005.xml,2025-04,567514,9,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2323,DTE_033_000000567514_969183005.xml,2025-04,567514,10,COMPRAS,272729 47111 1393 11461 106994,2@272729 47111 1393 11461 106994,DIFOR CHILE S.A.,0,,printed_numeric_summary
+2324,DTE_033_000000567514_969183005.xml,2025-04,567514,11,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+2325,DTE_033_000000567514_969183005.xml,2025-04,567514,12,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+2326,DTE_033_000000567514_969183005.xml,2025-04,567514,13,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+2328,DTE_033_000000569101_969183005.xml,2025-04,569101,2,COMPRAS,FORD AJE5 / NEW R TYLD-93 16099 16/04/2025 16:54 749192,A@FORD AJE5 / NEW R TYLD-93 16099 16/04/2025 16:54 749192,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+2329,DTE_033_000000569101_969183005.xml,2025-04,569101,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2330,DTE_033_000000569101_969183005.xml,2025-04,569101,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+2331,DTE_033_000000569101_969183005.xml,2025-04,569101,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2333,DTE_033_000000569101_969183005.xml,2025-04,569101,7,COMPRAS,"SCO-MO REVISAR AUDIO, PANTALLA, CAMARA. SE DESC","A@SCO-MO REVISAR AUDIO, PANTALLA, CAMARA. SE DESC",DIFOR CHILE S.A.,0,,workshop_request_note
+2334,DTE_033_000000569101_969183005.xml,2025-04,569101,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+2335,DTE_033_000000569101_969183005.xml,2025-04,569101,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+2336,DTE_033_000000569101_969183005.xml,2025-04,569101,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2337,DTE_033_000000569101_969183005.xml,2025-04,569101,11,COMPRAS,172531 39996 1360 11192 79496,2@172531 39996 1360 11192 79496,DIFOR CHILE S.A.,0,,printed_numeric_summary
+2338,DTE_033_000000569101_969183005.xml,2025-04,569101,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+2339,DTE_033_000000569101_969183005.xml,2025-04,569101,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+2340,DTE_033_000000569101_969183005.xml,2025-04,569101,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+2343,DTE_033_000000571282_969183005.xml,2025-04,571282,2,COMPRAS,FORD F150 LARIAT PKSR-82 138698 28/04/2025 14:36 751484,A@FORD F150 LARIAT PKSR-82 138698 28/04/2025 14:36 751484,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+2344,DTE_033_000000571282_969183005.xml,2025-04,571282,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2345,DTE_033_000000571282_969183005.xml,2025-04,571282,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+2346,DTE_033_000000571282_969183005.xml,2025-04,571282,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2348,DTE_033_000000571282_969183005.xml,2025-04,571282,7,COMPRAS,SCO-MO INSTALAR TAPA ESCALERA,A@SCO-MO INSTALAR TAPA ESCALERA,DIFOR CHILE S.A.,0,,workshop_request_note
+2349,DTE_033_000000571282_969183005.xml,2025-04,571282,8,COMPRAS,SCO-MO 14? REVISI?N DE MANTENCI?N,A@SCO-MO 14? REVISI?N DE MANTENCI?N,DIFOR CHILE S.A.,0,,workshop_request_note
+2350,DTE_033_000000571282_969183005.xml,2025-04,571282,9,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+2351,DTE_033_000000571282_969183005.xml,2025-04,571282,10,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+2352,DTE_033_000000571282_969183005.xml,2025-04,571282,11,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+2353,DTE_033_000000571282_969183005.xml,2025-04,571282,12,COMPRAS,246076 78943 11878 10571 98678 15300,2@246076 78943 11878 10571 98678 15300,DIFOR CHILE S.A.,0,,printed_numeric_summary
+2354,DTE_033_000000571282_969183005.xml,2025-04,571282,13,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+2355,DTE_033_000000571282_969183005.xml,2025-04,571282,14,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+2356,DTE_033_000000571282_969183005.xml,2025-04,571282,15,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+2384,DTE_033_000000638229_990120005.xml,2025-04,638229,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+2654,DTE_033_000027409247_995200007.xml,2025-04,27409247,1,COMPRAS,Fecha-Guía,04.04.25-29771090*,COPEC S.A.,0,,fuel_delivery_reference
+2655,DTE_033_000027409247_995200007.xml,2025-04,27409247,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 94,146|Litro",COPEC S.A.,0,,zero_fuel_summary
+2657,DTE_033_000027477406_995200007.xml,2025-04,27477406,1,COMPRAS,Fecha-Guía,27.04.25-29894218*,COPEC S.A.,0,,fuel_delivery_reference
+2658,DTE_033_000027477406_995200007.xml,2025-04,27477406,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 105,953|Litro",COPEC S.A.,0,,zero_fuel_summary
+2660,DTE_033_000027477945_995200007.xml,2025-04,27477945,1,COMPRAS,Fecha-Guía,27.04.25-30150984*,COPEC S.A.,0,,fuel_delivery_reference
+2661,DTE_033_000027477945_995200007.xml,2025-04,27477945,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 63,687|Litro",COPEC S.A.,0,,zero_fuel_summary
+3095,DTE_033_000000024625_766002048.xml,2025-05,24625,2,COMPRAS,OBSERVACIONES,PAGO TRANSFERENCIA EQUIPO CON PUESTA EN MARCHA,BOBINADOS INDUSTRIALES LONCOMILLA SPA,0,,observations_note
+3098,DTE_033_000000024627_766002048.xml,2025-05,24627,3,COMPRAS,OBSERVACIONES,PAGO : TRANSFERENCIA ELECTRONICA 28/05/2025 EQUIPO CON PUESTA EN MARCHA / PROBADO EN LOCAL,BOBINADOS INDUSTRIALES LONCOMILLA SPA,0,,observations_note
+3278,DTE_033_000000572916_969183005.xml,2025-05,572916,2,COMPRAS,FORD F150 PLATINI TJXC-64 32185 08/05/2025 10:30 753467,A@FORD F150 PLATINI TJXC-64 32185 08/05/2025 10:30 753467,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+3279,DTE_033_000000572916_969183005.xml,2025-05,572916,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3280,DTE_033_000000572916_969183005.xml,2025-05,572916,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+3281,DTE_033_000000572916_969183005.xml,2025-05,572916,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3283,DTE_033_000000572916_969183005.xml,2025-05,572916,7,COMPRAS,SCO-MO PISADERA DERECHA COPILOTO NO SIEMPRE BAJ,A@SCO-MO PISADERA DERECHA COPILOTO NO SIEMPRE BAJ,DIFOR CHILE S.A.,0,,workshop_request_note
+3284,DTE_033_000000572916_969183005.xml,2025-05,572916,8,COMPRAS,SCO-MO PUERTA LADO CHOFER CRUJE SIEMPRE,A@SCO-MO PUERTA LADO CHOFER CRUJE SIEMPRE,DIFOR CHILE S.A.,0,,workshop_request_note
+3285,DTE_033_000000572916_969183005.xml,2025-05,572916,9,COMPRAS,SCO-MO COTIZAR MOLDURA DE PLASTICO,A@SCO-MO COTIZAR MOLDURA DE PLASTICO,DIFOR CHILE S.A.,0,,workshop_request_note
+3286,DTE_033_000000572916_969183005.xml,2025-05,572916,10,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+3287,DTE_033_000000572916_969183005.xml,2025-05,572916,11,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+3288,DTE_033_000000572916_969183005.xml,2025-05,572916,12,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3289,DTE_033_000000572916_969183005.xml,2025-05,572916,13,COMPRAS,172310 104949 1405 11566 71978,2@172310 104949 1405 11566 71978,DIFOR CHILE S.A.,0,,printed_numeric_summary
+3290,DTE_033_000000572916_969183005.xml,2025-05,572916,14,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+3291,DTE_033_000000572916_969183005.xml,2025-05,572916,15,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+3292,DTE_033_000000572916_969183005.xml,2025-05,572916,16,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+3294,DTE_033_000000572948_969183005.xml,2025-05,572948,2,COMPRAS,FORD F150 LARIAT JSFK-23 272011 14/02/2025 11:36 735499,A@FORD F150 LARIAT JSFK-23 272011 14/02/2025 11:36 735499,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+3295,DTE_033_000000572948_969183005.xml,2025-05,572948,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3296,DTE_033_000000572948_969183005.xml,2025-05,572948,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+3297,DTE_033_000000572948_969183005.xml,2025-05,572948,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3298,DTE_033_000000572948_969183005.xml,2025-05,572948,6,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+3299,DTE_033_000000572948_969183005.xml,2025-05,572948,7,COMPRAS,Repuestos Servicios,A@Repuestos Servicios,DIFOR CHILE S.A.,0,,printed_service_columns
+3300,DTE_033_000000572948_969183005.xml,2025-05,572948,8,COMPRAS,--------------------------------------------------------------------------------,A@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3301,DTE_033_000000572948_969183005.xml,2025-05,572948,9,COMPRAS,651000 10571,A@651000 10571,DIFOR CHILE S.A.,0,,printed_numeric_summary
+3302,DTE_033_000000572948_969183005.xml,2025-05,572948,10,COMPRAS,VIM : undefined,A@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+3303,DTE_033_000000572948_969183005.xml,2025-05,572948,11,COMPRAS,Taller Ford Osorno.,A@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+3304,DTE_033_000000572948_969183005.xml,2025-05,572948,12,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,A@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+3306,DTE_033_000000575474_969183005.xml,2025-05,575474,2,COMPRAS,FORD F150 LARIAT TBZL-91 61219 27/05/2025 15:18 757385,A@FORD F150 LARIAT TBZL-91 61219 27/05/2025 15:18 757385,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+3307,DTE_033_000000575474_969183005.xml,2025-05,575474,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3308,DTE_033_000000575474_969183005.xml,2025-05,575474,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+3309,DTE_033_000000575474_969183005.xml,2025-05,575474,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3311,DTE_033_000000575474_969183005.xml,2025-05,575474,7,COMPRAS,"SCO-MO REVISAR CONECTIVIDAD CON CELULAR, SE CON","A@SCO-MO REVISAR CONECTIVIDAD CON CELULAR, SE CON",DIFOR CHILE S.A.,0,,workshop_request_note
+3312,DTE_033_000000575474_969183005.xml,2025-05,575474,8,COMPRAS,SCO-MO REVISAR RUIDO EN TRACCION AL MOMENTO DE,A@SCO-MO REVISAR RUIDO EN TRACCION AL MOMENTO DE,DIFOR CHILE S.A.,0,,workshop_request_note
+3313,DTE_033_000000575474_969183005.xml,2025-05,575474,9,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+3314,DTE_033_000000575474_969183005.xml,2025-05,575474,10,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+3315,DTE_033_000000575474_969183005.xml,2025-05,575474,11,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+3316,DTE_033_000000575474_969183005.xml,2025-05,575474,12,COMPRAS,260550 73547 13975 12436 116092 19739,2@260550 73547 13975 12436 116092 19739,DIFOR CHILE S.A.,0,,printed_numeric_summary
+3317,DTE_033_000000575474_969183005.xml,2025-05,575474,13,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+3318,DTE_033_000000575474_969183005.xml,2025-05,575474,14,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+3319,DTE_033_000000575474_969183005.xml,2025-05,575474,15,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+3322,DTE_033_000000643067_990120005.xml,2025-05,643067,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+3480,DTE_033_000027489702_995200007.xml,2025-05,27489702,1,COMPRAS,Fecha-Guía,01.05.25-30215827*,COPEC S.A.,0,,fuel_delivery_reference
+3481,DTE_033_000027489702_995200007.xml,2025-05,27489702,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 49,666|Litro",COPEC S.A.,0,,zero_fuel_summary
+3483,DTE_033_000027493093_995200007.xml,2025-05,27493093,1,COMPRAS,Fecha-Guía,02.05.25-30219620*,COPEC S.A.,0,,fuel_delivery_reference
+3484,DTE_033_000027493093_995200007.xml,2025-05,27493093,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 88,550|Litro",COPEC S.A.,0,,zero_fuel_summary
+3486,DTE_033_000027556700_995200007.xml,2025-05,27556700,1,COMPRAS,Fecha-Guía,19.05.25-30012745*,COPEC S.A.,0,,fuel_delivery_reference
+3487,DTE_033_000027556700_995200007.xml,2025-05,27556700,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 105,329|Litro",COPEC S.A.,0,,zero_fuel_summary
+3489,DTE_033_000027575146_995200007.xml,2025-05,27575146,1,COMPRAS,Fecha-Guía,25.05.25-30418571*,COPEC S.A.,0,,fuel_delivery_reference
+3490,DTE_033_000027575146_995200007.xml,2025-05,27575146,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 78,027|Litro",COPEC S.A.,0,,zero_fuel_summary
+3492,DTE_033_000027594847_995200007.xml,2025-05,27594847,1,COMPRAS,Fecha-Guía,31.05.25-30446614*,COPEC S.A.,0,,fuel_delivery_reference
+3493,DTE_033_000027594847_995200007.xml,2025-05,27594847,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 82,162|Litro",COPEC S.A.,0,,zero_fuel_summary
+3964,DTE_033_000000024672_766002048.xml,2025-06,24672,3,COMPRAS,OBSERVACIONES,ATENCION SR. FELIPE ANGUITA +56 9 9259 9535 PAGO : TRANSFERENCIA ELECTRONICA 28 /05 / 2025 EQUIPO CON PUESTA EN MARCHA / PROBADO EN LOCAL,BOBINADOS INDUSTRIALES LONCOMILLA SPA,0,,observations_note
+4146,DTE_033_000000580760_969183005.xml,2025-06,580760,2,COMPRAS,FORD RANGER XL 4X PSSS-88 171197 25/06/2025 12:01 763986,A@FORD RANGER XL 4X PSSS-88 171197 25/06/2025 12:01 763986,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+4147,DTE_033_000000580760_969183005.xml,2025-06,580760,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+4148,DTE_033_000000580760_969183005.xml,2025-06,580760,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+4149,DTE_033_000000580760_969183005.xml,2025-06,580760,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+4151,DTE_033_000000580760_969183005.xml,2025-06,580760,7,COMPRAS,SCO-MO MANTENCION 170.000KMS,A@SCO-MO MANTENCION 170.000KMS,DIFOR CHILE S.A.,0,,workshop_request_note
+4152,DTE_033_000000580760_969183005.xml,2025-06,580760,8,COMPRAS,"SCO-MO REVISAR SUSPENSION DELANTERA, NO SE PUDO","A@SCO-MO REVISAR SUSPENSION DELANTERA, NO SE PUDO",DIFOR CHILE S.A.,0,,workshop_request_note
+4153,DTE_033_000000580760_969183005.xml,2025-06,580760,9,COMPRAS,SCO-MO REVISAR FILTRACION DE AGUA EN PISO CHOFE,A@SCO-MO REVISAR FILTRACION DE AGUA EN PISO CHOFE,DIFOR CHILE S.A.,0,,workshop_request_note
+4154,DTE_033_000000580760_969183005.xml,2025-06,580760,10,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+4155,DTE_033_000000580760_969183005.xml,2025-06,580760,11,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+4156,DTE_033_000000580760_969183005.xml,2025-06,580760,12,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+4157,DTE_033_000000580760_969183005.xml,2025-06,580760,13,COMPRAS,162120 63464 1345 12436 88329 19739,2@162120 63464 1345 12436 88329 19739,DIFOR CHILE S.A.,0,,printed_numeric_summary
+4158,DTE_033_000000580760_969183005.xml,2025-06,580760,14,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+4159,DTE_033_000000580760_969183005.xml,2025-06,580760,15,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+4160,DTE_033_000000580760_969183005.xml,2025-06,580760,16,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+4163,DTE_033_000000647680_990120005.xml,2025-06,647680,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+4312,DTE_033_000028101795_995200007.xml,2025-06,28101795,1,COMPRAS,Fecha-Guía,15.06.25-30595287*,COPEC S.A.,0,,fuel_delivery_reference
+4313,DTE_033_000028101795_995200007.xml,2025-06,28101795,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 86,927|Litro",COPEC S.A.,0,,zero_fuel_summary
+4315,DTE_033_000028102136_995200007.xml,2025-06,28102136,1,COMPRAS,Fecha-Guía,15.06.25-30543474*,COPEC S.A.,0,,fuel_delivery_reference
+4316,DTE_033_000028102136_995200007.xml,2025-06,28102136,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 52,477|Litro",COPEC S.A.,0,,zero_fuel_summary
+4318,DTE_033_000028113826_995200007.xml,2025-06,28113826,1,COMPRAS,Fecha-Guía,18.06.25-30590791*,COPEC S.A.,0,,fuel_delivery_reference
+4319,DTE_033_000028113826_995200007.xml,2025-06,28113826,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 78,471|Litro",COPEC S.A.,0,,zero_fuel_summary
+4321,DTE_033_000028142850_995200007.xml,2025-06,28142850,1,COMPRAS,Fecha-Guía,27.06.25-30683018*,COPEC S.A.,0,,fuel_delivery_reference
+4322,DTE_033_000028142850_995200007.xml,2025-06,28142850,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 44,663|Litro",COPEC S.A.,0,,zero_fuel_summary
+4477,DTE_033_000051964399_97036000K.xml,2025-06,51964399,2,COMPRAS,LEASING 614266 JUNIO 2025 CUOTA 1 DE 37,LEASING 614266 JUNIO 2025 CUOTA 1 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+4479,DTE_033_000052220425_97036000K.xml,2025-06,52220425,2,COMPRAS,LEASING 614747 JUNIO 2025 CUOTA 1 DE 25,LEASING 614747 JUNIO 2025 CUOTA 1 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+5101,DTE_033_000000582337_969183005.xml,2025-07,582337,2,COMPRAS,FORD RANGER XLT 4 TJXC-63 65024 04/07/2025 17:30 766093,A@FORD RANGER XLT 4 TJXC-63 65024 04/07/2025 17:30 766093,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+5102,DTE_033_000000582337_969183005.xml,2025-07,582337,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+5103,DTE_033_000000582337_969183005.xml,2025-07,582337,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+5104,DTE_033_000000582337_969183005.xml,2025-07,582337,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+5106,DTE_033_000000582337_969183005.xml,2025-07,582337,7,COMPRAS,SCO-MO SIGUE GASTANDO LOS NEUMATICOS DELANTEROS,A@SCO-MO SIGUE GASTANDO LOS NEUMATICOS DELANTEROS,DIFOR CHILE S.A.,0,,workshop_request_note
+5107,DTE_033_000000582337_969183005.xml,2025-07,582337,8,COMPRAS,SCO-MO AFIRMAR GUARDAFANGO TRASERO LADO CHOFER,A@SCO-MO AFIRMAR GUARDAFANGO TRASERO LADO CHOFER,DIFOR CHILE S.A.,0,,workshop_request_note
+5108,DTE_033_000000582337_969183005.xml,2025-07,582337,9,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+5109,DTE_033_000000582337_969183005.xml,2025-07,582337,10,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+5110,DTE_033_000000582337_969183005.xml,2025-07,582337,11,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+5111,DTE_033_000000582337_969183005.xml,2025-07,582337,12,COMPRAS,191765 80622 1237 11441 81263 18159,2@191765 80622 1237 11441 81263 18159,DIFOR CHILE S.A.,0,,printed_numeric_summary
+5112,DTE_033_000000582337_969183005.xml,2025-07,582337,13,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+5113,DTE_033_000000582337_969183005.xml,2025-07,582337,14,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+5114,DTE_033_000000582337_969183005.xml,2025-07,582337,15,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+5132,DTE_033_000000652425_990120005.xml,2025-07,652425,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+5352,DTE_033_000028181299_995200007.xml,2025-07,28181299,1,COMPRAS,Fecha-Guía,05.07.25-30756175*,COPEC S.A.,0,,fuel_delivery_reference
+5353,DTE_033_000028181299_995200007.xml,2025-07,28181299,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 80,744|Litro",COPEC S.A.,0,,zero_fuel_summary
+5355,DTE_033_000028225160_995200007.xml,2025-07,28225160,1,COMPRAS,Fecha-Guía,18.07.25-30850352*,COPEC S.A.,0,,fuel_delivery_reference
+5356,DTE_033_000028225160_995200007.xml,2025-07,28225160,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 107,440|Litro",COPEC S.A.,0,,zero_fuel_summary
+5358,DTE_033_000028226906_995200007.xml,2025-07,28226906,1,COMPRAS,Fecha-Guía,19.07.25-30435151*,COPEC S.A.,0,,fuel_delivery_reference
+5359,DTE_033_000028226906_995200007.xml,2025-07,28226906,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 43,831|Litro",COPEC S.A.,0,,zero_fuel_summary
+5727,DTE_033_000052357439_97036000K.xml,2025-07,52357439,2,COMPRAS,LEASING 614266 JULIO 2025 CUOTA 2 DE 37,LEASING 614266 JULIO 2025 CUOTA 2 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+6094,DTE_033_000000587911_969183005.xml,2025-08,587911,2,COMPRAS,FORD F150 LARIAT TBZL-91 71285 06/08/2025 09:55 772922,A@FORD F150 LARIAT TBZL-91 71285 06/08/2025 09:55 772922,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+6095,DTE_033_000000587911_969183005.xml,2025-08,587911,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+6096,DTE_033_000000587911_969183005.xml,2025-08,587911,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+6097,DTE_033_000000587911_969183005.xml,2025-08,587911,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+6099,DTE_033_000000587911_969183005.xml,2025-08,587911,7,COMPRAS,SCO-MO REVISAR RADIO SE SIGUE DESCONECTANDO EL,A@SCO-MO REVISAR RADIO SE SIGUE DESCONECTANDO EL,DIFOR CHILE S.A.,0,,workshop_request_note
+6100,DTE_033_000000587911_969183005.xml,2025-08,587911,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+6101,DTE_033_000000587911_969183005.xml,2025-08,587911,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+6102,DTE_033_000000587911_969183005.xml,2025-08,587911,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+6103,DTE_033_000000587911_969183005.xml,2025-08,587911,11,COMPRAS,247986 78316 1237 11441 106805 18160,2@247986 78316 1237 11441 106805 18160,DIFOR CHILE S.A.,0,,printed_numeric_summary
+6104,DTE_033_000000587911_969183005.xml,2025-08,587911,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+6105,DTE_033_000000587911_969183005.xml,2025-08,587911,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+6106,DTE_033_000000587911_969183005.xml,2025-08,587911,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+6128,DTE_033_000000657568_990120005.xml,2025-08,657568,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+6302,DTE_033_000028306310_995200007.xml,2025-08,28306310,1,COMPRAS,Fecha-Guía,08.08.25-30609987*,COPEC S.A.,0,,fuel_delivery_reference
+6303,DTE_033_000028306310_995200007.xml,2025-08,28306310,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 117,918|Litro",COPEC S.A.,0,,zero_fuel_summary
+6305,DTE_033_000028312184_995200007.xml,2025-08,28312184,1,COMPRAS,Fecha-Guía,10.08.25-31032019*,COPEC S.A.,0,,fuel_delivery_reference
+6306,DTE_033_000028312184_995200007.xml,2025-08,28312184,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 94,442|Litro",COPEC S.A.,0,,zero_fuel_summary
+6308,DTE_033_000028327018_995200007.xml,2025-08,28327018,1,COMPRAS,Fecha-Guía,14.08.25-31071598*,COPEC S.A.,0,,fuel_delivery_reference
+6309,DTE_033_000028327018_995200007.xml,2025-08,28327018,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 56,228|Litro",COPEC S.A.,0,,zero_fuel_summary
+6311,DTE_033_000028330161_995200007.xml,2025-08,28330161,1,COMPRAS,Fecha-Guía,15.08.25-31091020*,COPEC S.A.,0,,fuel_delivery_reference
+6312,DTE_033_000028330161_995200007.xml,2025-08,28330161,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 98,644|Litro",COPEC S.A.,0,,zero_fuel_summary
+6314,DTE_033_000028334222_995200007.xml,2025-08,28334222,1,COMPRAS,Fecha-Guía,17.08.25-31118646*,COPEC S.A.,0,,fuel_delivery_reference
+6315,DTE_033_000028334222_995200007.xml,2025-08,28334222,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 65,127|Litro",COPEC S.A.,0,,zero_fuel_summary
+6318,DTE_033_000028359587_995200007.xml,2025-08,28359587,1,COMPRAS,Fecha-Guía,24.08.25-31177637*,COPEC S.A.,0,,fuel_delivery_reference
+6319,DTE_033_000028359587_995200007.xml,2025-08,28359587,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 98,040|Litro",COPEC S.A.,0,,zero_fuel_summary
+6321,DTE_033_000028363545_995200007.xml,2025-08,28363545,1,COMPRAS,Fecha-Guía,25.08.25-31171176*,COPEC S.A.,0,,fuel_delivery_reference
+6322,DTE_033_000028363545_995200007.xml,2025-08,28363545,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 64,527|Litro",COPEC S.A.,0,,zero_fuel_summary
+6324,DTE_033_000028379316_995200007.xml,2025-08,28379316,1,COMPRAS,Fecha-Guía,29.08.25-31213751*,COPEC S.A.,0,,fuel_delivery_reference
+6325,DTE_033_000028379316_995200007.xml,2025-08,28379316,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 65,646|Litro",COPEC S.A.,0,,zero_fuel_summary
+6632,DTE_033_000052659387_97036000K.xml,2025-08,52659387,2,COMPRAS,LEASING 614747 AGOSTO 2025 CUOTA 2 DE 25,LEASING 614747 AGOSTO 2025 CUOTA 2 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+6634,DTE_033_000052685845_97036000K.xml,2025-08,52685845,2,COMPRAS,LEASING 614266 AGOSTO 2025 CUOTA 3 DE 37,LEASING 614266 AGOSTO 2025 CUOTA 3 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+6823,DTE_033_000000025657_766002048.xml,2025-09,25657,2,COMPRAS,OBSERVACIONES,TARJETA CREDITO,BOBINADOS INDUSTRIALES LONCOMILLA SPA,0,,observations_note
+6996,DTE_033_000000592958_969183005.xml,2025-09,592958,2,COMPRAS,FORD AJE5 / NEW R TYLD-93 34046 04/09/2025 17:46 779364,A@FORD AJE5 / NEW R TYLD-93 34046 04/09/2025 17:46 779364,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+6997,DTE_033_000000592958_969183005.xml,2025-09,592958,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+6998,DTE_033_000000592958_969183005.xml,2025-09,592958,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+6999,DTE_033_000000592958_969183005.xml,2025-09,592958,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+7001,DTE_033_000000592958_969183005.xml,2025-09,592958,7,COMPRAS,SCO-MO CAMBIO EXTINTOR,A@SCO-MO CAMBIO EXTINTOR,DIFOR CHILE S.A.,0,,workshop_request_note
+7002,DTE_033_000000592958_969183005.xml,2025-09,592958,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+7003,DTE_033_000000592958_969183005.xml,2025-09,592958,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+7004,DTE_033_000000592958_969183005.xml,2025-09,592958,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+7005,DTE_033_000000592958_969183005.xml,2025-09,592958,11,COMPRAS,154690 70724 9698 10036 66834 15929,2@154690 70724 9698 10036 66834 15929,DIFOR CHILE S.A.,0,,printed_numeric_summary
+7006,DTE_033_000000592958_969183005.xml,2025-09,592958,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+7007,DTE_033_000000592958_969183005.xml,2025-09,592958,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+7008,DTE_033_000000592958_969183005.xml,2025-09,592958,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+7195,DTE_033_000028474250_995200007.xml,2025-09,28474250,1,COMPRAS,Fecha-Guía,24.09.25-30944639*,COPEC S.A.,0,,fuel_delivery_reference
+7196,DTE_033_000028474250_995200007.xml,2025-09,28474250,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 31,646|Litro",COPEC S.A.,0,,zero_fuel_summary
+7198,DTE_033_000028475306_995200007.xml,2025-09,28475306,1,COMPRAS,Fecha-Guía,24.09.25-31454511*,COPEC S.A.,0,,fuel_delivery_reference
+7199,DTE_033_000028475306_995200007.xml,2025-09,28475306,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 86,930|Litro",COPEC S.A.,0,,zero_fuel_summary
+7469,DTE_033_000052973725_97036000K.xml,2025-09,52973725,2,COMPRAS,LEASING 614747 SEPTIEMBRE 2025 CUOTA 3 D,LEASING 614747 SEPTIEMBRE 2025 CUOTA 3 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+7471,DTE_033_000053049578_97036000K.xml,2025-09,53049578,2,COMPRAS,LEASING 614266 SEPTIEMBRE 2025 CUOTA 4 D,LEASING 614266 SEPTIEMBRE 2025 CUOTA 4 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+7905,DTE_033_000000283446_796499702.xml,2025-10,283446,2,COMPRAS,Patente: TYSZ10,,Automotriz Servimaq SPA,0,,vehicle_metadata
+7979,DTE_033_000000597788_969183005.xml,2025-10,597788,2,COMPRAS,FORD F150 LARIAT TBZL-91 81996 02/10/2025 09:41 785113,A@FORD F150 LARIAT TBZL-91 81996 02/10/2025 09:41 785113,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+7980,DTE_033_000000597788_969183005.xml,2025-10,597788,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+7981,DTE_033_000000597788_969183005.xml,2025-10,597788,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+7982,DTE_033_000000597788_969183005.xml,2025-10,597788,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+7984,DTE_033_000000597788_969183005.xml,2025-10,597788,7,COMPRAS,SCO-MO CON LAVADO POR PAGAR,A@SCO-MO CON LAVADO POR PAGAR,DIFOR CHILE S.A.,0,,workshop_request_note
+7985,DTE_033_000000597788_969183005.xml,2025-10,597788,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+7986,DTE_033_000000597788_969183005.xml,2025-10,597788,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+7987,DTE_033_000000597788_969183005.xml,2025-10,597788,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+7988,DTE_033_000000597788_969183005.xml,2025-10,597788,11,COMPRAS,280333 62778 1361 11192 104483 17765,2@280333 62778 1361 11192 104483 17765,DIFOR CHILE S.A.,0,,printed_numeric_summary
+7989,DTE_033_000000597788_969183005.xml,2025-10,597788,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+7990,DTE_033_000000597788_969183005.xml,2025-10,597788,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+7991,DTE_033_000000597788_969183005.xml,2025-10,597788,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+7993,DTE_033_000000598671_969183005.xml,2025-10,598671,2,COMPRAS,FORD RANGER XLT 4 TJXC-63 81157 09/10/2025 17:59 786564,A@FORD RANGER XLT 4 TJXC-63 81157 09/10/2025 17:59 786564,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+7994,DTE_033_000000598671_969183005.xml,2025-10,598671,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+7995,DTE_033_000000598671_969183005.xml,2025-10,598671,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+7996,DTE_033_000000598671_969183005.xml,2025-10,598671,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+7998,DTE_033_000000598671_969183005.xml,2025-10,598671,7,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+7999,DTE_033_000000598671_969183005.xml,2025-10,598671,8,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+8000,DTE_033_000000598671_969183005.xml,2025-10,598671,9,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+8001,DTE_033_000000598671_969183005.xml,2025-10,598671,10,COMPRAS,196374 43430 1271 10454 69615 16593,2@196374 43430 1271 10454 69615 16593,DIFOR CHILE S.A.,0,,printed_numeric_summary
+8002,DTE_033_000000598671_969183005.xml,2025-10,598671,11,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+8003,DTE_033_000000598671_969183005.xml,2025-10,598671,12,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+8004,DTE_033_000000598671_969183005.xml,2025-10,598671,13,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+8006,DTE_033_000000599067_969183005.xml,2025-10,599067,2,COMPRAS,FORD RANGER XL 4X RZGC-45 119636 12/09/2025 09:29 781448,A@FORD RANGER XL 4X RZGC-45 119636 12/09/2025 09:29 781448,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+8007,DTE_033_000000599067_969183005.xml,2025-10,599067,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+8008,DTE_033_000000599067_969183005.xml,2025-10,599067,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+8009,DTE_033_000000599067_969183005.xml,2025-10,599067,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+8011,DTE_033_000000599067_969183005.xml,2025-10,599067,7,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+8012,DTE_033_000000599067_969183005.xml,2025-10,599067,8,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+8013,DTE_033_000000599067_969183005.xml,2025-10,599067,9,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+8014,DTE_033_000000599067_969183005.xml,2025-10,599067,10,COMPRAS,152745 88109 12508 10571 70393 16777,2@152745 88109 12508 10571 70393 16777,DIFOR CHILE S.A.,0,,printed_numeric_summary
+8015,DTE_033_000000599067_969183005.xml,2025-10,599067,11,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+8016,DTE_033_000000599067_969183005.xml,2025-10,599067,12,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+8017,DTE_033_000000599067_969183005.xml,2025-10,599067,13,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+8038,DTE_033_000000667460_990120005.xml,2025-10,667460,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+8043,DTE_033_000001171587_79853470K.xml,2025-10,1171587,2,COMPRAS,MARCA: FORD,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8044,DTE_033_000001171587_79853470K.xml,2025-10,1171587,3,COMPRAS,MODELO: F-150 LARIAT LUX CC 4X4 5.0L,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8045,DTE_033_000001171587_79853470K.xml,2025-10,1171587,4,COMPRAS,COLOR: ROJO METALICO,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8046,DTE_033_000001171587_79853470K.xml,2025-10,1171587,5,COMPRAS,AÑO: 2023,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8047,DTE_033_000001171587_79853470K.xml,2025-10,1171587,6,COMPRAS,CHASIS: 1FTFW1E52NFB33530,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8048,DTE_033_000001171587_79853470K.xml,2025-10,1171587,7,COMPRAS,MOTOR: NFB33530,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8049,DTE_033_000001171587_79853470K.xml,2025-10,1171587,8,COMPRAS,TIPO COMBUSTIBLE: GASOLINA,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8050,DTE_033_000001171587_79853470K.xml,2025-10,1171587,9,COMPRAS,PESO BRUTO VEHICULAR: 3175 KG,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8051,DTE_033_000001171587_79853470K.xml,2025-10,1171587,10,COMPRAS,PATENTE: TBFK.28-2,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8052,DTE_033_000001171587_79853470K.xml,2025-10,1171587,11,COMPRAS,TRANSMISION: AUTOMATICA,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8053,DTE_033_000001171587_79853470K.xml,2025-10,1171587,12,COMPRAS,TRACCIÓN: 4X4,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8054,DTE_033_000001171587_79853470K.xml,2025-10,1171587,13,COMPRAS,CILINDRADA: 5000 CC,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8055,DTE_033_000001171587_79853470K.xml,2025-10,1171587,14,COMPRAS,CAPACIDAD DE CARGA: 968 KG,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8056,DTE_033_000001171587_79853470K.xml,2025-10,1171587,15,COMPRAS,CONDICION VEHICULO: USADO,,Automotriz Cordillera S.A.,0,,vehicle_metadata
+8262,DTE_033_000028503048_995200007.xml,2025-10,28503048,1,COMPRAS,Fecha-Guía,02.10.25-31116256*,COPEC S.A.,0,,fuel_delivery_reference
+8263,DTE_033_000028503048_995200007.xml,2025-10,28503048,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 86,851|Litro",COPEC S.A.,0,,zero_fuel_summary
+8265,DTE_033_000028542790_995200007.xml,2025-10,28542790,1,COMPRAS,Fecha-Guía,09.10.25-31116269*,COPEC S.A.,0,,fuel_delivery_reference
+8266,DTE_033_000028542790_995200007.xml,2025-10,28542790,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 58,726|Litro",COPEC S.A.,0,,zero_fuel_summary
+8268,DTE_033_000028578212_995200007.xml,2025-10,28578212,1,COMPRAS,Fecha-Guía,19.10.25-31680569*,COPEC S.A.,0,,fuel_delivery_reference
+8269,DTE_033_000028578212_995200007.xml,2025-10,28578212,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 72,470|Litro",COPEC S.A.,0,,zero_fuel_summary
+8271,DTE_033_000028578903_995200007.xml,2025-10,28578903,1,COMPRAS,Fecha-Guía,20.10.25-31639907*,COPEC S.A.,0,,fuel_delivery_reference
+8272,DTE_033_000028578903_995200007.xml,2025-10,28578903,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 46,382|Litro",COPEC S.A.,0,,zero_fuel_summary
+8274,DTE_033_000028588168_995200007.xml,2025-10,28588168,1,COMPRAS,Fecha-Guía,22.10.25-31687725*,COPEC S.A.,0,,fuel_delivery_reference
+8275,DTE_033_000028588168_995200007.xml,2025-10,28588168,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 67,433|Litro",COPEC S.A.,0,,zero_fuel_summary
+8277,DTE_033_000028599388_995200007.xml,2025-10,28599388,1,COMPRAS,Fecha-Guía,25.10.25-31722888*,COPEC S.A.,0,,fuel_delivery_reference
+8278,DTE_033_000028599388_995200007.xml,2025-10,28599388,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 68,715|Litro",COPEC S.A.,0,,zero_fuel_summary
+8501,DTE_033_000053325198_97036000K.xml,2025-10,53325198,2,COMPRAS,LEASING 614747 OCTUBRE 2025 CUOTA 4 DE 2,LEASING 614747 OCTUBRE 2025 CUOTA 4 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+8503,DTE_033_000053387058_97036000K.xml,2025-10,53387058,2,COMPRAS,LEASING 614266 OCTUBRE 2025 CUOTA 5 DE 3,LEASING 614266 OCTUBRE 2025 CUOTA 5 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+8935,DTE_033_000000603661_969183005.xml,2025-11,603661,2,COMPRAS,FORD F150 PLATINI TJXC-64 48653 07/11/2025 17:31 792924,A@FORD F150 PLATINI TJXC-64 48653 07/11/2025 17:31 792924,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+8936,DTE_033_000000603661_969183005.xml,2025-11,603661,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+8937,DTE_033_000000603661_969183005.xml,2025-11,603661,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+8938,DTE_033_000000603661_969183005.xml,2025-11,603661,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+8940,DTE_033_000000603661_969183005.xml,2025-11,603661,7,COMPRAS,SCO-MO REVISAR RADIO EN OCACIONES SE PEGA,A@SCO-MO REVISAR RADIO EN OCACIONES SE PEGA,DIFOR CHILE S.A.,0,,workshop_request_note
+8941,DTE_033_000000603661_969183005.xml,2025-11,603661,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+8942,DTE_033_000000603661_969183005.xml,2025-11,603661,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios Servicios LubricacionTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+8943,DTE_033_000000603661_969183005.xml,2025-11,603661,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+8944,DTE_033_000000603661_969183005.xml,2025-11,603661,11,COMPRAS,167375 55548 1363 11210 69762 17792,2@167375 55548 1363 11210 69762 17792,DIFOR CHILE S.A.,0,,printed_numeric_summary
+8945,DTE_033_000000603661_969183005.xml,2025-11,603661,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+8946,DTE_033_000000603661_969183005.xml,2025-11,603661,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+8947,DTE_033_000000603661_969183005.xml,2025-11,603661,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+8952,DTE_033_000000672290_990120005.xml,2025-11,672290,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+9187,DTE_033_000029078055_995200007.xml,2025-11,29078055,1,COMPRAS,Fecha-Guía,06.11.25-31268508*,COPEC S.A.,0,,fuel_delivery_reference
+9188,DTE_033_000029078055_995200007.xml,2025-11,29078055,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 101,751|Litro",COPEC S.A.,0,,zero_fuel_summary
+9190,DTE_033_000029094923_995200007.xml,2025-11,29094923,1,COMPRAS,Fecha-Guía,11.11.25-31866170*,COPEC S.A.,0,,fuel_delivery_reference
+9191,DTE_033_000029094923_995200007.xml,2025-11,29094923,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 70,867|Litro",COPEC S.A.,0,,zero_fuel_summary
+9193,DTE_033_000029112397_995200007.xml,2025-11,29112397,1,COMPRAS,Fecha-Guía,15.11.25-31899869*,COPEC S.A.,0,,fuel_delivery_reference
+9194,DTE_033_000029112397_995200007.xml,2025-11,29112397,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 106,064|Litro",COPEC S.A.,0,,zero_fuel_summary
+9196,DTE_033_000029112672_995200007.xml,2025-11,29112672,1,COMPRAS,Fecha-Guía,15.11.25-31899424*,COPEC S.A.,0,,fuel_delivery_reference
+9197,DTE_033_000029112672_995200007.xml,2025-11,29112672,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 29,764|Litro",COPEC S.A.,0,,zero_fuel_summary
+9202,DTE_033_000029168856_995200007.xml,2025-11,29168856,1,COMPRAS,Fecha-Guía,30.11.25-32062728*,COPEC S.A.,0,,fuel_delivery_reference
+9203,DTE_033_000029168856_995200007.xml,2025-11,29168856,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 77,292|Litro",COPEC S.A.,0,,zero_fuel_summary
+9406,DTE_033_000053670178_97036000K.xml,2025-11,53670178,2,COMPRAS,LEASING 614747 NOVIEMBRE 2025 CUOTA 5 DE,LEASING 614747 NOVIEMBRE 2025 CUOTA 5 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+9408,DTE_033_000053722489_97036000K.xml,2025-11,53722489,2,COMPRAS,LEASING 614266 NOVIEMBRE 2025 CUOTA 6 DE,LEASING 614266 NOVIEMBRE 2025 CUOTA 6 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+9442,DTE_033_000143855637_96792430K.xml,2025-11,143855637,4,COMPRAS,OC 1424072597/ DO 398213922642,,SODIMAC S.A.,0,,purchase_order_reference
+9887,DTE_033_000000607829_969183005.xml,2025-12,607829,2,COMPRAS,FORD RANGER XLT 4 TJXC-63 81157 14/11/2025 11:31 794455,A@FORD RANGER XLT 4 TJXC-63 81157 14/11/2025 11:31 794455,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+9888,DTE_033_000000607829_969183005.xml,2025-12,607829,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9889,DTE_033_000000607829_969183005.xml,2025-12,607829,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+9890,DTE_033_000000607829_969183005.xml,2025-12,607829,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9891,DTE_033_000000607829_969183005.xml,2025-12,607829,6,COMPRAS,SCO-MO MANO DE OBRA CAMBIO KIT DISTRIBUCION,A@SCO-MO MANO DE OBRA CAMBIO KIT DISTRIBUCION,DIFOR CHILE S.A.,0,,workshop_request_note
+9892,DTE_033_000000607829_969183005.xml,2025-12,607829,7,COMPRAS,SCO-MO A ALTA VELOCIDAD VIBRA DEMASIADO LA CAMI,A@SCO-MO A ALTA VELOCIDAD VIBRA DEMASIADO LA CAMI,DIFOR CHILE S.A.,0,,workshop_request_note
+9893,DTE_033_000000607829_969183005.xml,2025-12,607829,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+9894,DTE_033_000000607829_969183005.xml,2025-12,607829,9,COMPRAS,MO elec Mec Repuestos Accesorios ServiciosTrabajos Fue,AUTO2@MO elec Mec Repuestos Accesorios ServiciosTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+9895,DTE_033_000000607829_969183005.xml,2025-12,607829,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9896,DTE_033_000000607829_969183005.xml,2025-12,607829,11,COMPRAS,401837 379915 12913 2568 25506,2@401837 379915 12913 2568 25506,DIFOR CHILE S.A.,0,,printed_numeric_summary
+9897,DTE_033_000000607829_969183005.xml,2025-12,607829,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+9898,DTE_033_000000607829_969183005.xml,2025-12,607829,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+9899,DTE_033_000000607829_969183005.xml,2025-12,607829,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+9901,DTE_033_000000608452_969183005.xml,2025-12,608452,2,COMPRAS,FORD AJE5 / NEW R TYLD-93 48464 24/11/2025 12:12 796018,A@FORD AJE5 / NEW R TYLD-93 48464 24/11/2025 12:12 796018,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+9902,DTE_033_000000608452_969183005.xml,2025-12,608452,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9903,DTE_033_000000608452_969183005.xml,2025-12,608452,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+9904,DTE_033_000000608452_969183005.xml,2025-12,608452,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9906,DTE_033_000000608452_969183005.xml,2025-12,608452,7,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+9907,DTE_033_000000608452_969183005.xml,2025-12,608452,8,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+9908,DTE_033_000000608452_969183005.xml,2025-12,608452,9,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9909,DTE_033_000000608452_969183005.xml,2025-12,608452,10,COMPRAS,169847 203764 11181 2587 74505,2@169847 203764 11181 2587 74505,DIFOR CHILE S.A.,0,,printed_numeric_summary
+9910,DTE_033_000000608452_969183005.xml,2025-12,608452,11,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+9911,DTE_033_000000608452_969183005.xml,2025-12,608452,12,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+9912,DTE_033_000000608452_969183005.xml,2025-12,608452,13,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+9914,DTE_033_000000608453_969183005.xml,2025-12,608453,2,COMPRAS,FORD AJE5 / NEW R TYLD-93 48464 24/11/2025 12:24 796022,A@FORD AJE5 / NEW R TYLD-93 48464 24/11/2025 12:24 796022,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+9915,DTE_033_000000608453_969183005.xml,2025-12,608453,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9916,DTE_033_000000608453_969183005.xml,2025-12,608453,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+9917,DTE_033_000000608453_969183005.xml,2025-12,608453,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9918,DTE_033_000000608453_969183005.xml,2025-12,608453,6,COMPRAS,SCO-MO ALINEACION,A@SCO-MO ALINEACION,DIFOR CHILE S.A.,0,,workshop_request_note
+9919,DTE_033_000000608453_969183005.xml,2025-12,608453,7,COMPRAS,SCO-MO RECTIFICAR DISCOS DELANTEROS,A@SCO-MO RECTIFICAR DISCOS DELANTEROS,DIFOR CHILE S.A.,0,,workshop_request_note
+9920,DTE_033_000000608453_969183005.xml,2025-12,608453,8,COMPRAS,SCO-MO RECTIFICADO TAMBORES TRASEROS,A@SCO-MO RECTIFICADO TAMBORES TRASEROS,DIFOR CHILE S.A.,0,,workshop_request_note
+9921,DTE_033_000000608453_969183005.xml,2025-12,608453,9,COMPRAS,SCO-MO REPARACION DE FRENOS COMPLETOS,A@SCO-MO REPARACION DE FRENOS COMPLETOS,DIFOR CHILE S.A.,0,,workshop_request_note
+9922,DTE_033_000000608453_969183005.xml,2025-12,608453,10,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+9923,DTE_033_000000608453_969183005.xml,2025-12,608453,11,COMPRAS,MO elec Mec Accesorios ServiciosTrabajos Fue,AUTO2@MO elec Mec Accesorios ServiciosTrabajos Fue,DIFOR CHILE S.A.,0,,printed_service_columns
+9924,DTE_033_000000608453_969183005.xml,2025-12,608453,12,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9925,DTE_033_000000608453_969183005.xml,2025-12,608453,13,COMPRAS,274696 9203 2534 70920,2@274696 9203 2534 70920,DIFOR CHILE S.A.,0,,printed_numeric_summary
+9926,DTE_033_000000608453_969183005.xml,2025-12,608453,14,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+9927,DTE_033_000000608453_969183005.xml,2025-12,608453,15,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+9928,DTE_033_000000608453_969183005.xml,2025-12,608453,16,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+9930,DTE_033_000000610482_969183005.xml,2025-12,610482,2,COMPRAS,FORD F150 LARIAT TBZL-91 93164 19/12/2025 16:47 801490,A@FORD F150 LARIAT TBZL-91 93164 19/12/2025 16:47 801490,DIFOR CHILE S.A.,0,,vehicle_work_order_metadata
+9931,DTE_033_000000610482_969183005.xml,2025-12,610482,3,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9932,DTE_033_000000610482_969183005.xml,2025-12,610482,4,COMPRAS,CODIGO DESCRIPCION,A@CODIGO DESCRIPCION,DIFOR CHILE S.A.,0,,printed_column_header
+9933,DTE_033_000000610482_969183005.xml,2025-12,610482,5,COMPRAS,--------------------------------------------------------------------------------,A@---------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9935,DTE_033_000000610482_969183005.xml,2025-12,610482,7,COMPRAS,SCO-MO REVISAR ACELERACION MAS LENTA AL EXIGIRL,A@SCO-MO REVISAR ACELERACION MAS LENTA AL EXIGIRL,DIFOR CHILE S.A.,0,,workshop_request_note
+9936,DTE_033_000000610482_969183005.xml,2025-12,610482,8,COMPRAS,--------------------------Valores Netos con Descto. Incluido--------------------,A@--------------------------Valores Netos con Descto. Incluido--------------------,DIFOR CHILE S.A.,0,,printed_totals_header
+9937,DTE_033_000000610482_969183005.xml,2025-12,610482,9,COMPRAS,MO elec Mec Repuestos Accesorios Servicios Lubricacion,AUTO2@MO elec Mec Repuestos Accesorios Servicios Lubricacion,DIFOR CHILE S.A.,0,,printed_service_columns
+9938,DTE_033_000000610482_969183005.xml,2025-12,610482,10,COMPRAS,--------------------------------------------------------------------------------,2@--------------------------------------------------------------------------------,DIFOR CHILE S.A.,0,,separator
+9939,DTE_033_000000610482_969183005.xml,2025-12,610482,11,COMPRAS,257195 61314 10558 2540 98618,2@257195 61314 10558 2540 98618,DIFOR CHILE S.A.,0,,printed_numeric_summary
+9940,DTE_033_000000610482_969183005.xml,2025-12,610482,12,COMPRAS,VIM : undefined,2@VIM : undefined,DIFOR CHILE S.A.,0,,broken_template_field
+9941,DTE_033_000000610482_969183005.xml,2025-12,610482,13,COMPRAS,Taller Ford Osorno.,2@Taller Ford Osorno.,DIFOR CHILE S.A.,0,,workshop_footer
+9942,DTE_033_000000610482_969183005.xml,2025-12,610482,14,COMPRAS,RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,2@RECUERDE PROGRAMAR SU PROXIMA VISITA A SERVICIO AL NUMERO : 600 262 05 55.,DIFOR CHILE S.A.,0,,workshop_reminder
+9945,DTE_033_000000677331_990120005.xml,2025-12,677331,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+10442,DTE_033_000030405762_995200007.xml,2025-12,30405762,1,COMPRAS,Fecha-Guía,06.12.25-32110208*,COPEC S.A.,0,,fuel_delivery_reference
+10443,DTE_033_000030405762_995200007.xml,2025-12,30405762,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 102,198|Litro",COPEC S.A.,0,,zero_fuel_summary
+10445,DTE_033_000030464561_995200007.xml,2025-12,30464561,1,COMPRAS,Fecha-Guía,22.12.25-32262778*,COPEC S.A.,0,,fuel_delivery_reference
+10446,DTE_033_000030464561_995200007.xml,2025-12,30464561,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 100,812|Litro",COPEC S.A.,0,,zero_fuel_summary
+10470,DTE_033_000053999128_97036000K.xml,2025-12,53999128,2,COMPRAS,LEASING 614747 DICIEMBRE 2025 CUOTA 6 DE,LEASING 614747 DICIEMBRE 2025 CUOTA 6 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+10472,DTE_033_000054041614_97036000K.xml,2025-12,54041614,2,COMPRAS,LEASING 614266 DICIEMBRE 2025 CUOTA 7 DE,LEASING 614266 DICIEMBRE 2025 CUOTA 7 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+10895,DTE_033_000000682881_990120005.xml,2026-01,682881,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+11192,DTE_033_000030480154_995200007.xml,2025-12,30480154,1,COMPRAS,Fecha-Guía,27.12.25-32215906*,COPEC S.A.,0,,fuel_delivery_reference
+11193,DTE_033_000030480154_995200007.xml,2025-12,30480154,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 72,829|Litro",COPEC S.A.,0,,zero_fuel_summary
+11195,DTE_033_000030491804_995200007.xml,2025-12,30491804,1,COMPRAS,Fecha-Guía,30.12.25-32308991*,COPEC S.A.,0,,fuel_delivery_reference
+11196,DTE_033_000030491804_995200007.xml,2025-12,30491804,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 65,833|Litro",COPEC S.A.,0,,zero_fuel_summary
+11198,DTE_033_000030498450_995200007.xml,2026-01,30498450,1,COMPRAS,Fecha-Guía,02.01.26-32327028*,COPEC S.A.,0,,fuel_delivery_reference
+11199,DTE_033_000030498450_995200007.xml,2026-01,30498450,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 20,000|Litro",COPEC S.A.,0,,zero_fuel_summary
+11201,DTE_033_000030499422_995200007.xml,2026-01,30499422,1,COMPRAS,Fecha-Guía,02.01.26-32342852*,COPEC S.A.,0,,fuel_delivery_reference
+11202,DTE_033_000030499422_995200007.xml,2026-01,30499422,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 35,321|Litro",COPEC S.A.,0,,zero_fuel_summary
+11204,DTE_033_000030555883_995200007.xml,2026-01,30555883,1,COMPRAS,Fecha-Guía,14.01.26-32440234*,COPEC S.A.,0,,fuel_delivery_reference
+11205,DTE_033_000030555883_995200007.xml,2026-01,30555883,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 72,496|Litro",COPEC S.A.,0,,zero_fuel_summary
+11221,DTE_033_000054348139_97036000K.xml,2026-01,54348139,2,COMPRAS,LEASING 614747 ENERO 2026 CUOTA 7 DE 25,LEASING 614747 ENERO 2026 CUOTA 7 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+11223,DTE_033_000054418684_97036000K.xml,2026-01,54418684,2,COMPRAS,LEASING 614266 ENERO 2026 CUOTA 8 DE 37,LEASING 614266 ENERO 2026 CUOTA 8 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+11512,DTE_033_000000687382_990120005.xml,2026-02,687382,3,COMPRAS,RUTCOBRANZA 96685810,,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,0,,billing_reference
+11823,DTE_033_000030748326_995200007.xml,2026-02,30748326,1,COMPRAS,Fecha-Guía,11.02.26-32708809*,COPEC S.A.,0,,fuel_delivery_reference
+11824,DTE_033_000030748326_995200007.xml,2026-02,30748326,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 54,373|Litro",COPEC S.A.,0,,zero_fuel_summary
+11826,DTE_033_000030748348_995200007.xml,2026-02,30748348,1,COMPRAS,Fecha-Guía,11.02.26-32708810*,COPEC S.A.,0,,fuel_delivery_reference
+11827,DTE_033_000030748348_995200007.xml,2026-02,30748348,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 20,000|Litro",COPEC S.A.,0,,zero_fuel_summary
+11829,DTE_033_000030768291_995200007.xml,2026-02,30768291,1,COMPRAS,Fecha-Guía,17.02.26-32754686*,COPEC S.A.,0,,fuel_delivery_reference
+11830,DTE_033_000030768291_995200007.xml,2026-02,30768291,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 42,750|Litro",COPEC S.A.,0,,zero_fuel_summary
+11832,DTE_033_000030769509_995200007.xml,2026-02,30769509,1,COMPRAS,Fecha-Guía,17.02.26-32762256*,COPEC S.A.,0,,fuel_delivery_reference
+11833,DTE_033_000030769509_995200007.xml,2026-02,30769509,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 64,566|Litro",COPEC S.A.,0,,zero_fuel_summary
+11835,DTE_033_000030769555_995200007.xml,2026-02,30769555,1,COMPRAS,Fecha-Guía,17.02.26-32762257*,COPEC S.A.,0,,fuel_delivery_reference
+11836,DTE_033_000030769555_995200007.xml,2026-02,30769555,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 38,018|Litro",COPEC S.A.,0,,zero_fuel_summary
+11838,DTE_033_000030773817_995200007.xml,2026-02,30773817,1,COMPRAS,Fecha-Guía,18.02.26-32754715*,COPEC S.A.,0,,fuel_delivery_reference
+11839,DTE_033_000030773817_995200007.xml,2026-02,30773817,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 20,100|Litro",COPEC S.A.,0,,zero_fuel_summary
+11883,DTE_033_000054686181_97036000K.xml,2026-02,54686181,2,COMPRAS,LEASING 614747 FEBRERO 2026 CUOTA 8 DE 2,LEASING 614747 FEBRERO 2026 CUOTA 8 DE 25,Santander - Chile,0,,duplicate_lease_installment_note
+11885,DTE_033_000054736071_97036000K.xml,2026-02,54736071,2,COMPRAS,LEASING 614266 FEBRERO 2026 CUOTA 9 DE 3,LEASING 614266 FEBRERO 2026 CUOTA 9 DE 37,Santander - Chile,0,,duplicate_lease_installment_note
+11975,DTE_033_000030813768_995200007.xml,2026-02,30813768,1,COMPRAS,Fecha-Guía,28.02.26-32563119*,COPEC S.A.,0,,fuel_delivery_reference
+11976,DTE_033_000030813768_995200007.xml,2026-02,30813768,2,COMPRAS,Total,"GASOLINA SP 93 OCTANOS NU 1203| 85,416|Litro",COPEC S.A.,0,,zero_fuel_summary

@@ -38,9 +38,10 @@ ARTIFACT = ROOT / "artifacts/v1.3.1"
 GOLD = ROOT / "Data/candidates/recovery_v1_3_1/master_gold.csv"
 SPLIT = ROOT / "Data/candidates/recovery_v1_3_1/split_seed42.csv"
 REPORT_DIR = ROOT / "reports/recovery_v1_3_1"
-# The user explicitly prioritised avoiding confidently wrong auto-accepts over
-# coverage. Require zero observed model false positives on the locked holdout;
-# deterministic exact lookups remain independently auditable.
+# The user-approved release threshold is fixed below; false positives are a
+# release diagnostic, not something this script hides by silently selecting a
+# stricter threshold. Any observed confident error must be traced to data/model
+# behavior and repaired or explicitly blocked before release.
 TARGET_ACCEPTED_ACCURACY = 1.00
 MIN_CALIBRATION_ACCEPTS = 20
 RELEASE_TOP1 = 0.75
@@ -143,10 +144,15 @@ def main() -> None:
         source = "business_rule" if rule else "product_lookup" if product else "model"
         final_code = rule.category_code if rule else product.category_code if product else code1
         lookup_conflict = False
-        guard_reason = model_review_guard_reason(gold["item_text"], gold["description"]) if source == "model" else None
+        guard_reason = (
+            model_review_guard_reason(gold["item_text"], gold["description"], code1)
+            if source == "model"
+            else None
+        )
         rows.append({
             "gold_id": gold["gold_id"],
             "truth": gold["category_code"],
+            "gold_source": gold["source"],
             "item_text": gold["item_text"],
             "description": gold["description"],
             "provider": gold["provider"],
@@ -160,6 +166,7 @@ def main() -> None:
             "lookup_conflict": lookup_conflict,
             "guard_reason": guard_reason or "",
             "correct": final_code == gold["category_code"],
+            "model_prediction_correct": code1 == gold["category_code"],
             "top3": ";".join(str(classes[i]) for i in order[:3]),
         })
 
@@ -209,6 +216,21 @@ def main() -> None:
     selection_reason = "user-approved staged release threshold; weak classes and ambiguity guards still require review"
 
     for row in rows:
+        if row["direction"] == "VENTAS":
+            counterfactual_decision, counterfactual_reason = "review_required", "unknown_sales_item"
+        elif row["guard_reason"]:
+            counterfactual_decision, counterfactual_reason = "review_required", row["guard_reason"]
+        elif row["model_prediction"] in weak_classes:
+            counterfactual_decision, counterfactual_reason = "review_required", "weak_class"
+        elif row["top1"] < selected["top1"]:
+            counterfactual_decision, counterfactual_reason = "review_required", "low_confidence"
+        elif row["margin"] < selected["margin"]:
+            counterfactual_decision, counterfactual_reason = "review_required", "small_margin"
+        else:
+            counterfactual_decision, counterfactual_reason = "auto_accept", ""
+        row["counterfactual_model_decision"] = counterfactual_decision
+        row["counterfactual_model_reason"] = counterfactual_reason
+
         if row["source"] in {"business_rule", "product_lookup"}:
             decision, reason = "auto_accept", ""
         elif row["direction"] == "VENTAS":
@@ -231,18 +253,29 @@ def main() -> None:
     review = [row for row in rows if row["decision"] == "review_required"]
     review_false_negatives = [row for row in review if row["correct"]]
     review_errors = [row for row in review if not row["correct"]]
+    counterfactual_model_accepted = [
+        row for row in rows if row["counterfactual_model_decision"] == "auto_accept"
+    ]
+    counterfactual_model_false_positives = [
+        row for row in counterfactual_model_accepted if not row["model_prediction_correct"]
+    ]
 
     fields = [
-        "gold_id", "truth", "prediction", "model_prediction", "source", "decision", "reason",
-        "correct", "top1", "margin", "direction", "item_text", "description", "provider",
+        "gold_id", "truth", "prediction", "model_prediction", "gold_source", "source", "decision", "reason",
+        "correct", "model_prediction_correct", "top1", "margin", "direction", "item_text", "description", "provider",
         "lookup_conflict", "top3", "model_text",
-        "guard_reason",
+        "guard_reason", "counterfactual_model_decision", "counterfactual_model_reason",
     ]
     args.report_dir.mkdir(parents=True, exist_ok=True)
     write_csv(args.report_dir / "validation_predictions.csv", rows, fields)
     write_csv(args.report_dir / "auto_accept_false_positives.csv", false_positives, fields)
     write_csv(args.report_dir / "review_false_negatives.csv", review_false_negatives, fields)
     write_csv(args.report_dir / "review_errors.csv", review_errors, fields)
+    write_csv(
+        args.report_dir / "counterfactual_model_false_positives.csv",
+        counterfactual_model_false_positives,
+        fields,
+    )
 
     report = {
         "inference_backend": backend,
@@ -272,6 +305,19 @@ def main() -> None:
             "review_correct_predictions_false_negatives": len(review_false_negatives),
             "review_misclassifications": len(review_errors),
         },
+        "counterfactual_model_only_on_all_validation_rows": {
+            "purpose": "detect confident model lies even where an authoritative runtime lookup would win",
+            "auto_accept_rows": len(counterfactual_model_accepted),
+            "auto_accept_correct": len(counterfactual_model_accepted) - len(counterfactual_model_false_positives),
+            "auto_accept_false_positives": len(counterfactual_model_false_positives),
+            "auto_accept_precision": round(
+                (len(counterfactual_model_accepted) - len(counterfactual_model_false_positives))
+                / len(counterfactual_model_accepted), 4
+            ) if counterfactual_model_accepted else None,
+            "false_positive_gold_sources": dict(sorted(Counter(
+                row["gold_source"] for row in counterfactual_model_false_positives
+            ).items())),
+        },
         "false_positive_by_source": dict(sorted(Counter(row["source"] for row in false_positives).items())),
         "false_positive_by_truth": dict(sorted(Counter(row["truth"] for row in false_positives).items())),
         "review_false_negative_by_category": dict(sorted(Counter(row["truth"] for row in review_false_negatives).items())),
@@ -289,6 +335,7 @@ def main() -> None:
     print(json.dumps({key: report[key] for key in [
         "locked_validation_rows", "classes", "calibration_model_purchase_rows",
         "selected_thresholds", "selected_calibration_point", "selection_reason", "cascade",
+        "counterfactual_model_only_on_all_validation_rows",
         "false_positive_by_source", "review_false_negative_by_category", "review_error_by_category",
     ]}, indent=2, ensure_ascii=False))
 

@@ -11,7 +11,11 @@ def _normalize(value: str | None) -> str:
     return re.sub(r"[^a-z0-9]+", " ", value).strip()
 
 
-def model_review_guard_reason(item_text: str, description: str = "") -> str | None:
+def model_review_guard_reason(
+    item_text: str,
+    description: str = "",
+    predicted_code: str | None = None,
+) -> str | None:
     """Return why a model-only result must be reviewed despite confidence.
 
     Exact taxonomy, product, and meter lookups are resolved before this guard.
@@ -27,6 +31,13 @@ def model_review_guard_reason(item_text: str, description: str = "") -> str | No
         return "fertilizer_type_requires_review"
     if re.search(r"\bguantes?\b", text):
         return "client_examples_conflict_with_glove_taxonomy"
+    irrigation_terms = ("riego", "pibote", "pivote", "irripod")
+    if (
+        predicted_code
+        and any(term in text for term in irrigation_terms)
+        and predicted_code not in {"EXP-9.1", "EXP-9.2"}
+    ):
+        return "irrigation_context_conflicts_with_prediction"
     electricity_terms = ("electricidad", "electrica", "electrico", "energia")
     if any(term in text for term in electricity_terms):
         return "electricity_requires_exact_meter_or_lookup"

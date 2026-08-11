@@ -117,20 +117,34 @@ def main() -> None:
     tmp = ROOT / "models/_onnx_tmp_recovery_v1_3_1"
     if tmp.exists():
         shutil.rmtree(tmp)
+    onnx_tools_python = Path(
+        os.environ.get("ONNX_TOOLS_PYTHON", ROOT / ".venv-train/bin/python")
+    )
+    if not onnx_tools_python.exists():
+        onnx_tools_python = Path(sys.executable)
     subprocess.run([
-        sys.executable, "-m", "optimum.exporters.onnx",
+        str(onnx_tools_python), "-m", "optimum.exporters.onnx",
         "--model", str(args.model.resolve()),
         "--task", "feature-extraction",
+        "--library-name", "transformers",
         str(tmp),
     ], check=True, env={**os.environ, "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1"})
 
-    from onnxruntime.quantization import QuantType, quantize_dynamic
-
-    quantize_dynamic(
-        model_input=str(tmp / "model.onnx"),
-        model_output=str(args.output / "model.onnx"),
-        weight_type=QuantType.QInt8,
-    )
+    # The training environment owns the local ONNX exporter and quantizer;
+    # keeping this as a subprocess lets the current SentenceTransformer 5.x
+    # process load the trained model while the existing Python 3.11 tools emit
+    # the portable artifact. No package download or model conversion occurs.
+    subprocess.run([
+        str(onnx_tools_python),
+        "-c",
+        (
+            "from onnxruntime.quantization import QuantType, quantize_dynamic; "
+            "import sys; quantize_dynamic(model_input=sys.argv[1], "
+            "model_output=sys.argv[2], weight_type=QuantType.QInt8)"
+        ),
+        str(tmp / "model.onnx"),
+        str(args.output / "model.onnx"),
+    ], check=True)
     tokenizer_dir = args.output / "tokenizer"
     tokenizer_dir.mkdir()
     for path in tmp.iterdir():
@@ -243,7 +257,8 @@ def main() -> None:
         "thresholds": thresholds,
         "decision_policy": (
             "meter, taxonomy/alias, and client product lookups auto-accept; model-only inputs auto-accept "
-            "only at top1 >= 0.75 and margin >= 0.50 outside weak classes and ambiguity guards"
+            "only at top1 >= 0.75 and margin >= 0.50 outside weak classes and ambiguity guards; "
+            "DTE-43 Liquidacion rows always require review until a client purchase-side category exists"
         ),
         "metrics": run["metrics"],
         "excluded_untrained": run["excluded_lt2_classes"],
