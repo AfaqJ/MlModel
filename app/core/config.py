@@ -19,7 +19,7 @@ class Settings(BaseSettings):
         default=ROOT / "app" / "data" / "electricity_meter_map.csv",
         alias="METER_LOOKUP_PATH",
     )
-    service_version: str = Field(default="1.3.0", alias="SERVICE_VERSION")
+    service_version: str = Field(default="1.3.1", alias="SERVICE_VERSION")
     max_batch_size: int = Field(default=500, alias="MAX_BATCH_SIZE")
     default_top_k: int = Field(default=3, alias="DEFAULT_TOP_K")
     shadow_mode: bool = Field(default=False, alias="SHADOW_MODE")

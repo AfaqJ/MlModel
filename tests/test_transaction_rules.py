@@ -36,13 +36,27 @@ class FixedHead:
         return np.asarray([[0.1, 0.9] for _ in embeddings])
 
 
+class AmbiguousHead:
+    classes_ = np.asarray(["EXP-1.1", "EXP-2.1"])
+
+    def predict_proba(self, embeddings):
+        return np.asarray([[0.8, 0.2] for _ in embeddings])
+
+
+class BoundaryHead:
+    classes_ = np.asarray(["EXP-1.1", "EXP-2.1"])
+
+    def predict_proba(self, embeddings):
+        return np.asarray([[0.74996, 0.25004] for _ in embeddings])
+
+
 class Bundle:
-    def __init__(self, encoder):
+    def __init__(self, encoder, head=None):
         self.business_rules = BusinessRules(RULES)
         self.meter_lookup = NoMatch()
         self.lookup = NoMatch()
         self.encoder = encoder
-        self.head = FixedHead()
+        self.head = head or FixedHead()
         self.names = {
             "EXP-1.1": "Otros Gastos RRHH",
             "ING-0.1": "VENTA DE LECHE",
@@ -135,6 +149,34 @@ def test_confidence_cannot_override_missing_semantic_context():
     assert model_review_guard_reason("GASOLINA 93") is None
     assert model_review_guard_reason("Item", "FILTRO DE COMBUSTIBLE") == "generic_item_name_requires_review"
     assert model_review_guard_reason("GUANTE LARGO NITRILO") == "client_examples_conflict_with_glove_taxonomy"
+    assert model_review_guard_reason("MENGUANTE") is None
+
+
+def test_model_decision_does_not_depend_on_requested_top_k():
+    bundle = Bundle(FixedEncoder(), AmbiguousHead())
+    bundle.thresholds = {"accept_top1": 0.75, "accept_margin": 0.70, "model_auto_accept": True}
+    one = Predictor(bundle).predict(item_text="ambiguous", transaction_type="COMPRAS", top_k=1)
+    two = Predictor(bundle).predict(item_text="ambiguous", transaction_type="COMPRAS", top_k=2)
+    assert one["decision"] == two["decision"] == "review_required"
+    assert one["reason"] == two["reason"] == "small_margin"
+    assert one["confidence"]["margin"] == two["confidence"]["margin"] == 0.6
+
+
+def test_threshold_uses_unrounded_probability():
+    bundle = Bundle(FixedEncoder(), BoundaryHead())
+    bundle.thresholds = {"accept_top1": 0.75, "accept_margin": 0.40, "model_auto_accept": True}
+    result = Predictor(bundle).predict(item_text="boundary", transaction_type="COMPRAS")
+    assert result["predictions"][0]["score"] == 0.75
+    assert result["decision"] == "review_required"
+    assert result["reason"] == "low_confidence"
+
+
+def test_shadow_mode_applies_to_every_authoritative_path():
+    result = Predictor(Bundle(FailIfCalledEncoder()), shadow_mode=True).predict(
+        item_text="VENTA DE LECHE", transaction_type="VENTAS"
+    )
+    assert result["decision"] == "review_required"
+    assert result["reason"] == "shadow_mode"
 
 
 def test_rules_reject_duplicate_normalized_keys(tmp_path):

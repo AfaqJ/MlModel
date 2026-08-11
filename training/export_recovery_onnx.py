@@ -46,6 +46,39 @@ def mean_pool(last_hidden: np.ndarray, mask: np.ndarray) -> np.ndarray:
     return (last_hidden * expanded).sum(1) / np.clip(expanded.sum(1), 1e-9, None)
 
 
+def masked_probabilities(probabilities: np.ndarray, classes: list[str], texts: list[str]) -> np.ndarray:
+    """Apply the same transaction-direction defense used by the backend."""
+    result = probabilities.copy()
+    for index, text in enumerate(texts):
+        direction = "VENTAS" if text.startswith("[VENTAS]") else "COMPRAS"
+        impossible = [
+            class_index for class_index, code in enumerate(classes)
+            if (direction == "COMPRAS" and code.startswith("ING-"))
+            or (direction == "VENTAS" and not code.startswith("ING-"))
+        ]
+        result[index, impossible] = 0.0
+        total = result[index].sum()
+        if total > 0:
+            result[index] /= total
+    return result
+
+
+def model_acceptance(probabilities: np.ndarray, classes: list[str], weak: set[str], thresholds: dict) -> np.ndarray:
+    accepted = []
+    for row in probabilities:
+        order = np.argsort(-row)
+        top1 = float(row[order[0]])
+        top2 = float(row[order[1]]) if len(order) > 1 else 0.0
+        code = classes[order[0]]
+        accepted.append(
+            code not in weak
+            and top1 >= float(thresholds["accept_top1"])
+            and top1 - top2 >= float(thresholds["accept_margin"])
+            and thresholds.get("model_auto_accept") is not False
+        )
+    return np.asarray(accepted, dtype=bool)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", type=Path, default=MODEL)
@@ -157,17 +190,34 @@ def main() -> None:
     cosine = np.sum(reference_embeddings * onnx_embeddings, axis=1) / (
         np.linalg.norm(reference_embeddings, axis=1) * np.linalg.norm(onnx_embeddings, axis=1)
     )
-    reference_predictions = head.predict(reference_embeddings)
-    onnx_predictions = head.predict(onnx_embeddings)
+    reference_probabilities = masked_probabilities(
+        np.asarray(head.predict_proba(reference_embeddings)), classes, texts
+    )
+    onnx_probabilities = masked_probabilities(
+        np.asarray(head.predict_proba(onnx_embeddings)), classes, texts
+    )
+    reference_predictions = np.asarray(classes)[np.argmax(reference_probabilities, axis=1)]
+    onnx_predictions = np.asarray(classes)[np.argmax(onnx_probabilities, axis=1)]
     disagreement = float(np.mean(reference_predictions != onnx_predictions))
     reference_accuracy = float(accuracy_score(truth, reference_predictions))
     onnx_accuracy = float(accuracy_score(truth, onnx_predictions))
     onnx_macro_f1 = float(f1_score(truth, onnx_predictions, average="macro", zero_division=0))
-    if cosine.mean() < 0.99 or disagreement >= 0.03 or reference_accuracy - onnx_accuracy > 0.02:
+    weak_codes = {row["code"] for row in labels if row["weak"]}
+    reference_accept = model_acceptance(reference_probabilities, classes, weak_codes, thresholds)
+    onnx_accept = model_acceptance(onnx_probabilities, classes, weak_codes, thresholds)
+    decision_disagreement = float(np.mean(reference_accept != onnx_accept))
+    probability_max_abs_delta = float(np.max(np.abs(reference_probabilities - onnx_probabilities)))
+    if (
+        cosine.mean() < 0.99
+        or disagreement >= 0.03
+        or reference_accuracy - onnx_accuracy > 0.02
+        or decision_disagreement > 0
+    ):
         shutil.rmtree(args.output)
         raise SystemExit(
             f"parity gate failed: cosine={cosine.mean():.5f}, disagreement={disagreement:.4%}, "
-            f"accuracy_drop={reference_accuracy - onnx_accuracy:+.4f}; candidate artifact removed"
+            f"accuracy_drop={reference_accuracy - onnx_accuracy:+.4f}, "
+            f"decision_disagreement={decision_disagreement:.4%}; candidate artifact removed"
         )
 
     gold_rows = read_csv(args.gold)
@@ -205,6 +255,8 @@ def main() -> None:
             "val_accuracy_torch_fp32": round(reference_accuracy, 4),
             "val_accuracy_int8_onnx": round(onnx_accuracy, 4),
             "val_macro_f1_int8_onnx": round(onnx_macro_f1, 4),
+            "threshold_decision_disagreement": round(decision_disagreement, 5),
+            "probability_max_abs_delta": round(probability_max_abs_delta, 6),
         },
         "gold_provenance_rows": len(gold_rows),
         "gold_distinct_model_inputs": len(split),

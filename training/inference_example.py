@@ -1,6 +1,9 @@
-"""MCT-37 — Standalone inference example for the deployment package.
+"""MCT-37 — Standalone ONNX component diagnostic.
 
-Shows EXACTLY how production must run the model. Dependencies:
+This verifies the packaged encoder/head without PyTorch. It is intentionally
+NOT the production cascade: deterministic meter, taxonomy, and product rules
+live in the API application. Therefore this script never auto-accepts. Use the
+Docker/FastAPI service for production decisions. Dependencies:
     pip install onnxruntime numpy scikit-learn joblib tokenizers transformers
 (no PyTorch, no sentence-transformers, no setfit)
 
@@ -59,26 +62,25 @@ class Classifier:
                 description: str = "", provider: str = "", top_k: int = 3) -> dict:
         text = self.build_text(item_text, transaction_type, description, provider)
         proba = self.head.predict_proba(self.embed([text]))[0]
-        order = np.argsort(-proba)[:top_k]
         classes = self.head.classes_
+        direction = transaction_type.strip().upper()
+        impossible = [i for i, code in enumerate(classes)
+                      if (direction == "COMPRAS" and str(code).startswith("ING-"))
+                      or (direction == "VENTAS" and not str(code).startswith("ING-"))]
+        if impossible:
+            proba = proba.copy()
+            proba[impossible] = 0.0
+            proba /= proba.sum()
+        full_order = np.argsort(-proba)
+        order = full_order[:top_k]
         preds = [{"code": classes[i], "name": self.names.get(classes[i], ""),
                   "score": round(float(proba[i]), 4)} for i in order]
-        top1, top2 = float(proba[order[0]]), float(proba[order[1]])
-        code1 = classes[order[0]]
-        t = self.thresholds
-        if code1 in self.weak:
-            decision, reason = "review_required", "weak_class"
-        elif top1 < t["accept_top1"]:
-            decision, reason = "review_required", "low_confidence"
-        elif top1 - top2 < t["accept_margin"]:
-            decision, reason = "review_required", "small_margin"
-        elif t.get("model_auto_accept") is False:
-            decision, reason = "review_required", "model_unseen_input"
-        else:
-            decision, reason = "auto_accept", None
+        top1 = float(proba[full_order[0]])
+        top2 = float(proba[full_order[1]]) if len(full_order) > 1 else 0.0
+        decision, reason = "review_required", "standalone_model_component_only"
         return {"predictions": preds, "confidence": {"top1": round(top1, 4),
                 "margin": round(top1 - top2, 4)}, "decision": decision, "reason": reason,
-                "model_version": self.card["model_version"]}
+                "production_cascade": False, "model_version": self.card["model_version"]}
 
 
 if __name__ == "__main__":

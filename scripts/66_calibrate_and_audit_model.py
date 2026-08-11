@@ -34,6 +34,7 @@ from app.inference.ambiguity_guard import model_review_guard_reason
 
 
 MODEL = ROOT / "models/setfit_base_recovery_v1_3_1"
+ARTIFACT = ROOT / "artifacts/v1.3.1"
 GOLD = ROOT / "Data/candidates/recovery_v1_3_1/master_gold.csv"
 SPLIT = ROOT / "Data/candidates/recovery_v1_3_1/split_seed42.csv"
 REPORT_DIR = ROOT / "reports/recovery_v1_3_1"
@@ -76,30 +77,42 @@ def wilson_lower(correct: int, total: int, z: float = 1.96) -> float:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", type=Path, default=MODEL)
+    parser.add_argument("--artifact", type=Path, help="Use the exported ONNX artifact for the final backend-parity audit.")
     parser.add_argument("--gold", type=Path, default=GOLD)
     parser.add_argument("--split", type=Path, default=SPLIT)
     parser.add_argument("--report-dir", type=Path, default=REPORT_DIR)
     parser.add_argument("--device", choices=["mps", "cpu"], default="cpu")
     args = parser.parse_args()
 
-    from sentence_transformers import SentenceTransformer
-
     gold_by_id = {row["gold_id"]: row for row in read_csv(args.gold)}
     validation_split = [row for row in read_csv(args.split) if row["split"] == "validation"]
     validation = [gold_by_id[row["gold_id"]] for row in validation_split]
 
-    body = SentenceTransformer(
-        str(args.model.resolve()),
-        device=args.device,
-        tokenizer_kwargs={"fix_mistral_regex": False},
-    )
-    head = joblib.load(args.model / "model_head.pkl")
+    if args.artifact:
+        from app.inference.onnx_encoder import OnnxEncoder
+        from app.inference.classifier import LogisticHead
+        body = OnnxEncoder(args.artifact)
+        head = LogisticHead(args.artifact)
+        backend = "onnx_int8"
+    else:
+        from sentence_transformers import SentenceTransformer
+        body = SentenceTransformer(
+            str(args.model.resolve()),
+            device=args.device,
+            tokenizer_kwargs={"fix_mistral_regex": False},
+        )
+        head = joblib.load(args.model / "model_head.pkl")
+        backend = "setfit_fp32"
     classes = np.asarray([str(value) for value in head.classes_])
     texts = [
         build_model_text(row["item_text"], row["description"], row["provider"], row["direction"])
         for row in validation
     ]
-    embeddings = body.encode(texts, batch_size=64, show_progress_bar=True)
+    embeddings = (
+        body.embed(texts, batch_size=64)
+        if args.artifact
+        else body.encode(texts, batch_size=64, show_progress_bar=True)
+    )
     probabilities = np.asarray(head.predict_proba(embeddings))
 
     rules = BusinessRules(ROOT / "app/data/business_rules.csv")
@@ -232,6 +245,7 @@ def main() -> None:
     write_csv(args.report_dir / "review_errors.csv", review_errors, fields)
 
     report = {
+        "inference_backend": backend,
         "locked_validation_rows": len(rows),
         "classes": len(classes),
         "weak_classes_lt15_distinct": sorted(weak_classes),

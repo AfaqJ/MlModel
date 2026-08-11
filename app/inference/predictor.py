@@ -82,13 +82,20 @@ class Predictor:
             masked_set = set(masked)
             order = np.asarray([index for index in order if index not in masked_set])
 
+        if len(order) == 0:
+            raise RuntimeError("direction mask removed every model class")
+        # Acceptance must never depend on how many predictions the caller asks
+        # us to display. Compute top1/top2 from the full, unrounded probability
+        # vector; round only the response representation below.
+        top1_index = int(order[0])
+        top2_index = int(order[1]) if len(order) > 1 else None
+        code1 = str(classes[top1_index])
+        top1 = float(proba[top1_index])
+        top2 = float(proba[top2_index]) if top2_index is not None else 0.0
         model_top = [self._prediction(classes[index], proba[index]) for index in order[:top_k]]
         source = "model"
         predictions = model_top
 
-        code1 = str(predictions[0]["code"])
-        top1 = float(predictions[0]["score"])
-        top2 = float(predictions[1]["score"]) if len(predictions) > 1 else 0.0
         decision = decide(
             source=source,
             code1=code1,
@@ -137,14 +144,23 @@ class Predictor:
             "name": self.bundle.names.get(hit.category_code, ""),
             "score": 1.0,
         }
+        decision = decide(
+            source="business_rule",
+            code1=hit.category_code,
+            top1=1.0,
+            margin=1.0,
+            weak_classes=self.bundle.weak_classes,
+            thresholds=self.bundle.thresholds,
+            shadow_mode=self.shadow_mode,
+        )
         response = {
             "input_id": input_id,
             "model_version": self.bundle.model_version,
             "source": "business_rule",
             "predictions": [prediction][:top_k],
             "confidence": {"top1": 1.0, "margin": 1.0, "entropy": 0.0},
-            "decision": "auto_accept",
-            "reason": None,
+            "decision": decision.decision,
+            "reason": decision.reason,
             "latency_ms": latency_ms,
             "debug": None,
         }
@@ -190,14 +206,23 @@ class Predictor:
             "name": self.bundle.names.get(hit.category_code, ""),
             "score": 1.0,
         }
+        decision = decide(
+            source="product_lookup",
+            code1=hit.category_code,
+            top1=1.0,
+            margin=1.0,
+            weak_classes=self.bundle.weak_classes,
+            thresholds=self.bundle.thresholds,
+            shadow_mode=self.shadow_mode,
+        )
         response = {
             "input_id": input_id,
             "model_version": self.bundle.model_version,
             "source": "product_lookup",
             "predictions": [prediction][:top_k],
             "confidence": {"top1": 1.0, "margin": 1.0, "entropy": 0.0},
-            "decision": "auto_accept",
-            "reason": None,
+            "decision": decision.decision,
+            "reason": decision.reason,
             "latency_ms": latency_ms,
             "debug": None,
         }

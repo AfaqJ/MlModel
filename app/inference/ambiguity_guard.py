@@ -25,7 +25,7 @@ def model_review_guard_reason(item_text: str, description: str = "") -> str | No
         return "generic_item_name_requires_review"
     if _normalize(item_text).startswith("aplicacion fertilizante"):
         return "fertilizer_type_requires_review"
-    if "guante" in text:
+    if re.search(r"\bguantes?\b", text):
         return "client_examples_conflict_with_glove_taxonomy"
     electricity_terms = ("electricidad", "electrica", "electrico", "energia")
     if any(term in text for term in electricity_terms):

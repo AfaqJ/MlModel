@@ -17,7 +17,6 @@ import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from pathlib import Path
 
-import joblib
 import numpy as np
 
 
@@ -31,9 +30,11 @@ from app.inference.model_input import build_model_text
 from app.inference.product_lookup import ProductLookup
 from app.inference.line_filters import zero_value_junk_reason
 from app.inference.ambiguity_guard import model_review_guard_reason
+from app.inference.onnx_encoder import OnnxEncoder
+from app.inference.classifier import LogisticHead
 
 
-MODEL = ROOT / "models/setfit_base_recovery_v1_3_1"
+ARTIFACT = ROOT / "artifacts/v1.3.1"
 RAW = ROOT / "Data/processed/line_items.csv"
 GOLD = ROOT / "Data/candidates/recovery_v1_3_1/master_gold.csv"
 THRESHOLDS = ROOT / "reports/recovery_v1_3_1/selected_thresholds.json"
@@ -137,22 +138,20 @@ def parse_xml_context(path: Path) -> tuple[dict[str, str], dict[str, dict[str, s
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=Path, default=MODEL)
+    parser.add_argument("--artifact", type=Path, default=ARTIFACT)
     parser.add_argument("--raw", type=Path, default=RAW)
     parser.add_argument("--gold", type=Path, default=GOLD)
     parser.add_argument("--thresholds", type=Path, default=THRESHOLDS)
     parser.add_argument("--output-dir", type=Path, default=OUTPUT)
-    parser.add_argument("--device", choices=["mps", "cpu"], default="cpu")
     parser.add_argument("--batch-size", type=int, default=128)
     args = parser.parse_args()
-
-    from sentence_transformers import SentenceTransformer
 
     raw_rows = read_csv(args.raw)
     if len(raw_rows) != 12103:
         raise RuntimeError(f"expected 12,103 local raw rows, found {len(raw_rows)}")
     gold_rows = read_csv(args.gold)
-    thresholds = json.loads(args.thresholds.read_text())
+    model_card = json.loads((args.artifact / "model_card.json").read_text())
+    thresholds = model_card["thresholds"]
 
     taxonomy = {
         row["new_code"]: row["leaf"]
@@ -163,14 +162,10 @@ def main() -> None:
     meters = MeterLookup(ROOT / "app/data/electricity_meter_map.csv")
     xml_index = build_xml_index()
 
-    body = SentenceTransformer(
-        str(args.model.resolve()),
-        device=args.device,
-        tokenizer_kwargs={"fix_mistral_regex": False},
-    )
-    head = joblib.load(args.model / "model_head.pkl")
+    body = OnnxEncoder(args.artifact)
+    head = LogisticHead(args.artifact)
     classes = np.asarray([str(value) for value in head.classes_])
-    model_version = "v1.3.1"
+    model_version = model_card["model_version"]
 
     distinct_by_label: defaultdict[str, set[str]] = defaultdict(set)
     exact_truth: defaultdict[str, set[str]] = defaultdict(set)
@@ -274,12 +269,7 @@ def main() -> None:
     if missing_xml:
         raise RuntimeError(f"missing {len(missing_xml)} primary XML files; sample: {missing_xml[:5]}")
 
-    embeddings = body.encode(
-        to_embed,
-        batch_size=args.batch_size,
-        show_progress_bar=True,
-        convert_to_numpy=True,
-    )
+    embeddings = body.embed(to_embed, batch_size=args.batch_size)
     probabilities = np.asarray(head.predict_proba(embeddings))
     for position, row_index in enumerate(embed_indices):
         row = prepared[row_index]
@@ -386,8 +376,9 @@ def main() -> None:
     risk_rows = [row for row in results if row["decision"] == "auto_accept" and row["risk_flags"]]
     write_csv(args.output_dir / "auto_accept_risk_flags.csv", risk_rows, FIELDS)
 
-    # Offline, upload-ready rows matching the existing Supabase loader output.
-    # No network/API/database call is made here.
+    # Offline intermediate rows keyed by invoice business identifiers. These
+    # are intentionally NOT called upload-ready: the production Supabase schema
+    # uses five related tables whose UUIDs must be resolved at import time.
     supabase_rows = []
     for row in results:
         top3 = []
@@ -420,7 +411,7 @@ def main() -> None:
             "reviewed": False,
             "final_code": row["prediction"] if row["decision"] == "auto_accept" else None,
         })
-    write_jsonl(args.output_dir / "supabase_upload_ready.jsonl", supabase_rows)
+    write_jsonl(args.output_dir / "inference_rows_with_natural_keys.jsonl", supabase_rows)
 
     grouped = defaultdict(list)
     for row in results:

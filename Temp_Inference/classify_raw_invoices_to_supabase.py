@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Temporary raw-DTE inference loader for Supabase.
+"""Legacy raw-DTE parser retained for historical reproducibility.
 
-This script is intentionally separate from the FastAPI app. It parses raw SII
-DTE XML files, calls the local /predict-batch endpoint, applies the loader's
-production acceptance policy, and upserts the resulting rows into Supabase.
+Remote writes are deliberately disabled because this code targets the dropped
+flat ``line_item_predictions`` table. It may only be used with ``--dry-run``.
+The v1.3.1 release builds a reviewed five-table import bundle instead.
 """
 
 from __future__ import annotations
@@ -587,7 +587,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--input-id", action="append", help="Process only this exact input_id. Repeat for multiple rows.")
     parser.add_argument("--limit", type=int, help="Limit parsed line items before inference.")
     parser.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE, help="Line items per /predict-batch call. Max 500.")
-    parser.add_argument("--dry-run", action="store_true", help="Run parsing and inference but do not write to Supabase.")
+    parser.add_argument("--dry-run", action="store_true", help="Legacy local parser only; remote writes are disabled.")
     parser.add_argument("--threshold-report", action="store_true", help="Write threshold_report.csv and review_samples.csv.")
     parser.add_argument("--auto-accept-top1", type=float, default=DEFAULT_AUTO_ACCEPT_TOP1)
     parser.add_argument("--auto-accept-margin", type=float, default=DEFAULT_AUTO_ACCEPT_MARGIN)
@@ -602,6 +602,14 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
+    if not args.dry_run:
+        print(
+            "ERROR: legacy remote writer is disabled because it targets the dropped "
+            "line_item_predictions table. Use --dry-run only; build the reviewed "
+            "five-table import bundle before any future upload.",
+            file=sys.stderr,
+        )
+        return 2
     if args.batch_size < 1 or args.batch_size > DEFAULT_BATCH_SIZE:
         print(f"ERROR: --batch-size must be between 1 and {DEFAULT_BATCH_SIZE}", file=sys.stderr)
         return 2
