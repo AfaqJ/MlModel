@@ -32,6 +32,16 @@ blueprint.md
 # OS
 .DS_Store
 
+# Temporary local inference loader secrets and generated run reports
+Temp_Inference/.env*
+temp_inference/.env*
+Temp_Inference/*.jsonl
+temp_inference/*.jsonl
+Temp_Inference/*.csv
+temp_inference/*.csv
+Temp_Inference/snapshots/
+temp_inference/snapshots/
+
 # Backend runtime data packaged into Docker
 !app/data/
 !app/data/*.csv

@@ -1,9 +1,13 @@
+import json
+
 from fastapi.testclient import TestClient
 
+from app.core.config import get_settings
 from app.main import app
 
 
 client = TestClient(app)
+settings = get_settings()
 
 
 def test_health():
@@ -16,7 +20,8 @@ def test_model_info():
     response = client.get("/model-info")
     assert response.status_code == 200
     body = response.json()
-    assert body["model_version"] == "v1.0.0"
+    model_card = json.loads((settings.model_dir / "model_card.json").read_text())
+    assert body["model_version"] == model_card["model_version"]
     assert body["num_trained_classes"] == 66
 
 

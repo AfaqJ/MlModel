@@ -1,0 +1,15 @@
+rule_version,transaction_type,item_text,category_code,action,note
+2026.08.11,VENTAS,VENTA DE LECHE,ING-0.1,assign,Milk sale. Client's own outgoing invoice; item name states the category.
+2026.08.11,VENTAS,VENTA DE VACAS,ING-0.2,assign,Cow sale.
+2026.08.11,VENTAS,VENTA DE VAQUILLAS,ING-0.3,assign,Heifer sale.
+2026.08.11,VENTAS,VENTA VAQUILLAS,ING-0.3,assign,Heifer sale (spacing variant).
+2026.08.11,VENTAS,VENTAS TERNEROS,ING-0.4,assign,Calf sale (male). Taxonomy has one calf category.
+2026.08.11,VENTAS,VENTA TERNEROS,ING-0.4,assign,Calf sale (spacing variant).
+2026.08.11,VENTAS,VENTA DE TERNERAS,ING-0.4,assign,Calf sale (female). Same taxonomy category as male calves.
+2026.08.11,VENTAS,VENTA TERNERAS,ING-0.4,assign,Calf sale (spacing variant).
+2026.08.11,VENTAS,VENTA DE LENA,ING-0.6,assign,Firewood sale. Client says this is practically never used.
+2026.08.11,VENTAS,VENTA CAMIONETA,,review,ASSET DISPOSAL - no taxonomy category exists for selling a vehicle. Client decision required; must never be auto-accepted.
+2026.08.11,VENTAS,VENTA DE ACTIVO FIJO,,review,ASSET DISPOSAL - no taxonomy category exists. Client decision required.
+2026.08.11,VENTAS,VENTA DE ACTIVOS FIJOS,,review,ASSET DISPOSAL - plural variant.
+2026.08.11,VENTAS,MAQUINARIA,,review,ASSET DISPOSAL on a sales invoice - machinery. Client decision required.
+2026.08.11,VENTAS,OTROS INGRESOS,,review,Other income - too generic to categorise safely. Client decision required.
