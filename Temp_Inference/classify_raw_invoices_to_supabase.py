@@ -25,27 +25,25 @@ import httpx
 
 ROOT = Path(__file__).resolve().parents[1]
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+
+from app.inference.line_filters import zero_value_junk_reason
 
 RAW_DIRS = {
-    "COMPRAS": ROOT / "data" / "Raw_Data" / "dte_96685810_COMPRAS",
-    "VENTAS": ROOT / "data" / "Raw_Data" / "dte_96685810_VENTAS",
+    "COMPRAS": ROOT / "Data" / "Raw_Data" / "dte_96685810_COMPRAS",
+    "VENTAS": ROOT / "Data" / "Raw_Data" / "dte_96685810_VENTAS",
 }
 
 DEFAULT_PREDICT_API_URL = "http://127.0.0.1:8000"
 DEFAULT_TABLE = "line_item_predictions"
 DEFAULT_BATCH_SIZE = 500
-DEFAULT_AUTO_ACCEPT_TOP1 = 0.80
-DEFAULT_AUTO_ACCEPT_MARGIN = 0.10
+DEFAULT_AUTO_ACCEPT_TOP1 = 0.75
+DEFAULT_AUTO_ACCEPT_MARGIN = 0.50
 
 API_ITEM_MAX = 512
 API_DESCRIPTION_MAX = 512
 API_PROVIDER_MAX = 256
 API_INPUT_ID_MAX = 128
-
-JUNK_HEADER_RE = re.compile(r"^(codigo|c[oó]digo)?\s*descripci[oó]n\b", re.IGNORECASE)
-SEPARATOR_RE = re.compile(r"^[-_=.\s]{4,}$")
-NUMERIC_ONLY_RE = re.compile(r"^[\d\s.,/\-]+$")
-
 
 @dataclass(frozen=True)
 class InvoiceLine:
@@ -62,6 +60,7 @@ class InvoiceLine:
     provider_giro: str | None
     meter_code: str | None
     amount: int | float | None
+    unit_price: int | float | None
     source_file: str
 
 
@@ -148,17 +147,22 @@ def api_truncate(value: str | None, max_len: int) -> str:
     return value[:max_len]
 
 
-def is_junk_line(item_text: str, description: str) -> bool:
+def is_junk_line(
+    item_text: str,
+    description: str,
+    *,
+    amount: int | float | None = None,
+    unit_price: int | float | None = None,
+) -> bool:
     combined = " ".join(part for part in [item_text.strip(), description.strip()] if part)
     if not combined:
         return True
-    if SEPARATOR_RE.fullmatch(combined):
-        return True
-    if JUNK_HEADER_RE.search(combined):
-        return True
-    # Keep realistic short product names like "93 S/P"; this only removes
-    # lines that are purely numeric/separator fragments.
-    return bool(NUMERIC_ONLY_RE.fullmatch(combined))
+    return zero_value_junk_reason(
+        item_text,
+        description,
+        amount=amount,
+        unit_price=unit_price,
+    ) is not None
 
 
 def parse_xml(path: Path, transaction_type: str) -> tuple[list[InvoiceLine], list[dict[str, Any]]]:
@@ -197,8 +201,15 @@ def parse_xml(path: Path, transaction_type: str) -> tuple[list[InvoiceLine], lis
             item_text = clean_text(find_named(detalle, "NmbItem"))
             description = clean_text(find_named(detalle, "DscItem"))
             line_number_text = clean_text(find_named(detalle, "NroLinDet"))
+            unit_price = parse_number(clean_text(find_named(detalle, "PrcItem")))
+            amount = parse_number(clean_text(find_named(detalle, "MontoItem")))
 
-            if is_junk_line(item_text, description):
+            if is_junk_line(
+                item_text,
+                description,
+                amount=amount,
+                unit_price=unit_price,
+            ):
                 continue
 
             try:
@@ -257,7 +268,8 @@ def parse_xml(path: Path, transaction_type: str) -> tuple[list[InvoiceLine], lis
                     provider=provider,
                     provider_giro=provider_giro,
                     meter_code=meter_code,
-                    amount=parse_number(clean_text(find_named(detalle, "MontoItem"))),
+                    amount=amount,
+                    unit_price=unit_price,
                     source_file=str(path.relative_to(ROOT)),
                 )
             )

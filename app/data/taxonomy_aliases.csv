@@ -1,0 +1,25 @@
+transaction_type,item_text,category_code,note
+VENTAS,VENTA LECHE,ING-0.1,Common omission of "de".
+VENTAS,VENTAS DE LECHE,ING-0.1,Plural invoice wording.
+VENTAS,VENTAS LECHE,ING-0.1,Plural wording with omitted "de".
+VENTAS,VENTA VACAS,ING-0.2,Common omission of "de".
+VENTAS,VENTAS DE VACAS,ING-0.2,Plural invoice wording.
+VENTAS,VENTAS VACAS,ING-0.2,Plural wording with omitted "de".
+VENTAS,VENTA DE VAQUILLAS,ING-0.3,Observed client wording.
+VENTAS,VENTAS VAQUILLAS,ING-0.3,Plural invoice wording.
+VENTAS,VENTAS DE VAQUILLAS,ING-0.3,Plural wording with "de".
+VENTAS,VENTA DE TERNEROS,ING-0.4,Male calves; same client category as female calves.
+VENTAS,VENTAS TERNEROS,ING-0.4,Observed male-calf wording.
+VENTAS,VENTAS DE TERNEROS,ING-0.4,Male calves; plural invoice wording.
+VENTAS,VENTA TERNERAS,ING-0.4,Female calves; same client category as male calves.
+VENTAS,VENTA DE TERNERAS,ING-0.4,Observed female-calf wording.
+VENTAS,VENTAS TERNERAS,ING-0.4,Female calves; plural invoice wording.
+VENTAS,VENTAS DE TERNERAS,ING-0.4,Female calves; plural wording with "de".
+VENTAS,VENTA OTROS ANIMALES,ING-0.5,Common omission of "de".
+VENTAS,VENTAS DE OTROS ANIMALES,ING-0.5,Plural invoice wording.
+VENTAS,VENTAS OTROS ANIMALES,ING-0.5,Plural wording with omitted "de".
+VENTAS,VENTA DE LEÑA,ING-0.6,Common insertion of "de".
+VENTAS,VENTAS LEÑA,ING-0.6,Plural invoice wording.
+VENTAS,VENTAS DE LEÑA,ING-0.6,Plural wording with "de".
+COMPRAS,DIPPING,EXP-10.2,Corrected spelling of taxonomy leaf "Diping".
+COMPRAS,DETERGENTES E HIGIENIZANTES,EXP-10.3,Corrected spelling of taxonomy leaf "higenizantes".

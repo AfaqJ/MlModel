@@ -1,0 +1,366 @@
+{
+  "candidate": "recovery_v1_3_1_transaction_aware_authority_corrected",
+  "policy": "validated v1.2 recovery + strict manual raw audit; transaction direction in every model input; no synthetic data",
+  "inputs": {
+    "Data/candidates/recovery_v1_2_0/master_gold.csv": "cfb67e75cee7dfd6129d299c95c3bb118cc9ac5ffac27f3bc58895faece9529a",
+    "Data/processed/line_items.csv": "ff10d5ee6243d26a9a6356350876eef34fe8921dcb2ac0d9d7c19e32f110fef0",
+    "Data/current_context_2026_06_30/taxonomy_from_plan.csv": "9e7ce13ccf87a46b69368716c8af1fa5be5cc34997ef66218fd863f44a9e270b"
+  },
+  "counts": {
+    "base_rows": 1835,
+    "quarantined_wrong_labels": 97,
+    "corrected_authority_conflicts": 56,
+    "folder_rows_audited": 399,
+    "folder_rows_kept": 277,
+    "folder_rows_corrected": 34,
+    "folder_rows_quarantined": 88,
+    "manual_candidates_inspected": 139,
+    "manual_rows_promoted": 83,
+    "final_rows": 1821,
+    "normalized_distinct_transaction_aware_inputs": 1566,
+    "synthetic_rows": 0,
+    "cross_label_contradictions": 0
+  },
+  "audit_verdicts": {
+    "already_gold": 13,
+    "needs_client": 5,
+    "promote": 83,
+    "reject": 38
+  },
+  "promotions_by_category": {
+    "ADM-1.2": 12,
+    "ADM-1.3": 13,
+    "ADM-1.4": 5,
+    "ADM-1.5": 8,
+    "ADM-1.8": 6,
+    "ADM-2.2": 12,
+    "EXP-10.2": 3,
+    "EXP-15.2": 2,
+    "EXP-15.4": 1,
+    "EXP-2.1": 1,
+    "EXP-4.1": 4,
+    "EXP-5.2": 2,
+    "EXP-5.5": 1,
+    "EXP-6.1": 4,
+    "EXP-6.3": 8,
+    "EXP-6.4": 1
+  },
+  "authority_corrections": {
+    "RG-00603": {
+      "category_code": "EXP-3.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Exact client product rule for Conceptal reproductive hormone overrides the conflicting direct example."
+    },
+    "SA-00287": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00288": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00289": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00290": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00291": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00292": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00293": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00294": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00295": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00296": {
+      "category_code": "ADM-2.1",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples identify policy 6615118 as vehicle insurance; they override keyword silver."
+    },
+    "SA-00399": {
+      "category_code": "EXP-15.5",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "Purine application is explicitly an agricultural service in the client taxonomy; two folder rows independently agree."
+    },
+    "SA-00410": {
+      "category_code": "EXP-16.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Tyvek size variants follow the row-level client product family label for work clothing/EPP."
+    },
+    "SA-00411": {
+      "category_code": "EXP-16.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Tyvek size variants follow the row-level client product family label for work clothing/EPP."
+    },
+    "SA-00412": {
+      "category_code": "EXP-16.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Tyvek size variants follow the row-level client product family label for work clothing/EPP."
+    },
+    "SA-00413": {
+      "category_code": "EXP-14.2",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client product rule for the same MOTTO barbed-wire family overrides the unrelated invoice folder."
+    },
+    "SA-00416": {
+      "category_code": "EXP-16.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Row-level client product labels override category-folder placement; Shoof nitrile gloves are EPP."
+    },
+    "SA-00417": {
+      "category_code": "EXP-16.2",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client product family places PINOS deodorizer variants under other operational expenses, not animal health."
+    },
+    "SA-00422": {
+      "category_code": "EXP-2.5",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Exact client PENCIVET product examples override the mastitis-folder placement."
+    },
+    "SA-00423": {
+      "category_code": "EXP-2.4",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Exact client BILIFAR product examples override the mastitis-folder placement."
+    },
+    "SA-00427": {
+      "category_code": "EXP-16.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Row-level client Shoof glove family labels override the mastitis-folder placement."
+    },
+    "SA-00432": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level needle rules classify disposable needles as animal-health supplies, not medicine."
+    },
+    "SA-00433": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level syringe rules classify disposable syringes as animal-health supplies, not medicine."
+    },
+    "SA-00439": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level needle rules classify disposable needles as animal-health supplies, not medicine."
+    },
+    "SA-00440": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level syringe rules classify disposable syringes as animal-health supplies, not medicine."
+    },
+    "SA-00463": {
+      "category_code": "EXP-10.1",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "Milk filters are explicitly listed in the client definition of dairy-room maintenance and match audited milk-filter siblings."
+    },
+    "SA-00472": {
+      "category_code": "EXP-10.1",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "A remover cord is milking equipment/maintenance, not a detergent or hygiene chemical."
+    },
+    "SA-00481": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level paper-towel product rule overrides the unrelated feed-category invoice folder."
+    },
+    "SA-00494": {
+      "category_code": "EXP-8.1",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "The same Dairy Prime perennial ryegrass family appears repeatedly as EXP-8.1; folder placement alone had assigned reseeding."
+    },
+    "SA-00501": {
+      "category_code": "EXP-15.5",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "Sludge application is an agricultural application service, not purchase/transport of silage bales."
+    },
+    "SA-00517": {
+      "category_code": "EXP-4.2",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "The row explicitly says silage bales, so the more specific Bolos Silo category overrides the hay folder."
+    },
+    "SA-00520": {
+      "category_code": "EXP-6.3",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "The item explicitly says lime application; the client taxonomy places lime product and application in EXP-6.3."
+    },
+    "SA-00550": {
+      "category_code": "EXP-13.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client product rule for the same Gadus grease family overrides the work-clothing folder."
+    },
+    "SA-00551": {
+      "category_code": "EXP-8.1",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "NUI is perennial ryegrass seed; it cannot be work clothing or tools."
+    },
+    "SA-00553": {
+      "category_code": "EXP-8.1",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "NUI is perennial ryegrass seed; it cannot be work clothing or tools."
+    },
+    "SA-00571": {
+      "category_code": "EXP-15.4",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "The item explicitly says truck rental; machinery/vehicle rental is EXP-15.4, not road maintenance."
+    },
+    "SA-00572": {
+      "category_code": "EXP-15.4",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "The item explicitly says excavator rental; machinery/vehicle rental is EXP-15.4, not road maintenance."
+    },
+    "SA-00573": {
+      "category_code": "EXP-15.4",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "The item explicitly says machinery rental; machinery/vehicle rental is EXP-15.4, not road maintenance."
+    },
+    "SA-00578": {
+      "category_code": "EXP-13.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client product rule for the same Spirax transmission-oil family overrides the fencing folder."
+    },
+    "SA-00625": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client FORMALINA product examples override the machinery-maintenance folder."
+    },
+    "SA-00626": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level Tell Tail animal-marking paint rules override the unrelated invoice folder."
+    },
+    "SA-00627": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level Tell Tail animal-marking paint rules override the unrelated invoice folder."
+    },
+    "SA-00628": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level Tell Tail animal-marking paint rules override the unrelated invoice folder."
+    },
+    "SA-00629": {
+      "category_code": "EXP-2.6",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client wooden hoof-block product example overrides the machinery-maintenance folder."
+    },
+    "SA-00704": {
+      "category_code": "EXP-4.2",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Description explicitly says transport of silage bales; client evidence and taxonomy put incidental bale transport in EXP-4.2."
+    },
+    "SA-00759": {
+      "category_code": "EXP-4.2",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "Per-hectare contractor work making silage bales belongs to on-farm bale production, not purchased feed."
+    },
+    "SA-00763": {
+      "category_code": "EXP-4.2",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client evidence places movement/transport of silage bales with on-farm silage-bale costs."
+    },
+    "SA-00764": {
+      "category_code": "EXP-4.2",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "The client taxonomy explicitly includes silage plastics/wrapping materials in on-farm silage production."
+    },
+    "SA-00766": {
+      "category_code": "EXP-4.2",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "Per-hectare contractor work making silage bales belongs to on-farm bale production, not purchased feed."
+    },
+    "SA-00767": {
+      "category_code": "EXP-4.2",
+      "source": "manual_taxonomy_resolution",
+      "audit_reason": "Contractor bale-production line belongs to on-farm silage-bale costs, not purchased feed."
+    },
+    "SA-00802": {
+      "category_code": "EXP-4.2",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Direct client examples include bale transport in Bolos Silo; they override silver/Ollama freight labeling."
+    },
+    "SA-00959": {
+      "category_code": "EXP-12.2",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Fecal parasite/sedimentation analysis is animal analysis; client row examples override Ollama/silver."
+    },
+    "SA-00960": {
+      "category_code": "EXP-12.2",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Fecal parasite/sedimentation analysis is animal analysis; client row examples override Ollama/silver."
+    },
+    "SA-00993": {
+      "category_code": "EXP-12.2",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Fecal parasite/sedimentation analysis is animal analysis; client row examples override Ollama/silver."
+    },
+    "SA-00994": {
+      "category_code": "EXP-12.2",
+      "source": "direct_client_family_resolution",
+      "audit_reason": "Fecal parasite/sedimentation analysis is animal analysis; client row examples override Ollama/silver."
+    },
+    "CF-00001": {
+      "category_code": "EXP-16.1",
+      "source": "client_product_family_resolution",
+      "audit_reason": "Client row-level milking-sleeve product rule labels this protective garment as work clothing/EPP."
+    }
+  },
+  "direction_evidence": {
+    "existing_explicit": 110,
+    "raw_exact_model_fields": 768,
+    "raw_xml_source": 83,
+    "taxonomy_income_vs_expense_family": 860
+  },
+  "direction_counts": {
+    "COMPRAS": 1711,
+    "VENTAS": 110
+  },
+  "active_taxonomy_categories": 71,
+  "model_eligible_categories_ge2_distinct": 67,
+  "active_not_model_eligible": [
+    "ADM-1.9",
+    "ADM-2.3",
+    "ING-0.5",
+    "ING-0.6"
+  ],
+  "no_valid_raw_sales_examples": [
+    "ING-0.5",
+    "ING-0.6"
+  ],
+  "starving_audit_notes": {
+    "EXP-8.3": "No raw line explicitly says repoblamiento/reseeding; generic seed/siembra rows are ambiguous among pasture categories.",
+    "ING-0.5": "No verified VENTAS row for other-animal sales; three old silver candidates were COMPRAS and remain rejected.",
+    "ING-0.6": "No verified VENTAS firewood row; all raw leña matches are COMPRAS or unrelated provider giro text.",
+    "EXP-11.2": "Generic electricity text cannot distinguish buildings; the client meter lookup remains the authoritative discriminator.",
+    "EXP-5.1": "Mipro rows have contradictory prior labels and were not promoted without client confirmation."
+  },
+  "outputs": {
+    "master_gold.csv": "ef9b4afcf55a100c4b6b02841f915ab15e9d5d8f535ac05d38e946b5726a652d",
+    "starving_category_manual_audit.csv": "01abe133ecfb4f375fbd639a90dc143f30910d05f6abe12d5fd6cae3916d7a2b",
+    "promoted_raw_rows.csv": "9ca5a16c1a2e26891f069e2523018a3b409d74bab25d3a7fa835dc0bcd772698",
+    "quarantined_wrong_labels.csv": "6b8c0038aba9938104e54e6ec995940efbeeea91d3f4e71a66a9fee603cb2894",
+    "folder_line_audit.csv": "65b86325a085768cdc4036aee743ca7727d67fcf57efa5396b7b36ed963b9a04"
+  }
+}

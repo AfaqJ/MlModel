@@ -21,6 +21,14 @@ class ModelBundle:
         self.meter_lookup = MeterLookup(meter_lookup_path) if meter_lookup_path else MeterLookup(Path("__none__"))
         default_rules = product_lookup_path.parent / "business_rules.csv"
         self.business_rules = BusinessRules(business_rules_path or default_rules)
+        required_lookups = {
+            "product_lookup": self.lookup.enabled,
+            "meter_lookup": self.meter_lookup.enabled,
+            "business_rules": self.business_rules.enabled,
+        }
+        missing = [name for name, enabled in required_lookups.items() if not enabled]
+        if missing:
+            raise RuntimeError(f"required deterministic lookup missing or empty: {', '.join(missing)}")
         self.names = {row["code"]: row["name"] for row in self.labels["labels"]}
         self.weak_classes = {row["code"] for row in self.labels["labels"] if row["weak"]}
 

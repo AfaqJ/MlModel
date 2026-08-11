@@ -22,13 +22,13 @@ def test_model_info():
     body = response.json()
     model_card = json.loads((settings.model_dir / "model_card.json").read_text())
     assert body["model_version"] == model_card["model_version"]
-    assert body["num_trained_classes"] == 66
+    assert body["num_trained_classes"] == 67
 
 
 def test_predict_known_vaccine():
     response = client.post(
         "/predict",
-        json={"item_text": "VACUNA CLOSTRIBAC 8 GOLD X 50 DOS.", "provider": "COOPRINSEM"},
+        json={"item_text": "VACUNA CLOSTRIBAC 8 GOLD X 50 DOS.", "provider": "COOPRINSEM", "transaction_type": "COMPRAS"},
     )
     assert response.status_code == 200
     body = response.json()
@@ -41,7 +41,7 @@ def test_predict_meter_lookup_deterministic():
     # map without the ML model. 6365.02 -> irrigation meter -> EXP-9.1.
     response = client.post(
         "/predict",
-        json={"item_text": "Administracion del servicio", "provider": "COOP PAILLACO", "meter_code": "6365.02"},
+        json={"item_text": "Administracion del servicio", "provider": "COOP PAILLACO", "meter_code": "6365.02", "transaction_type": "COMPRAS"},
     )
     assert response.status_code == 200
     body = response.json()
@@ -54,7 +54,7 @@ def test_predict_unknown_meter_falls_through_to_model():
     # An unknown meter must not short-circuit; it goes to the ML model as usual.
     response = client.post(
         "/predict",
-        json={"item_text": "VACUNA CLOSTRIBAC 8 GOLD X 50 DOS.", "provider": "COOPRINSEM", "meter_code": "00000"},
+        json={"item_text": "VACUNA CLOSTRIBAC 8 GOLD X 50 DOS.", "provider": "COOPRINSEM", "meter_code": "00000", "transaction_type": "COMPRAS"},
     )
     assert response.status_code == 200
     assert response.json()["source"] in {"model", "product_lookup"}
@@ -97,6 +97,23 @@ def test_unknown_sale_can_never_auto_accept():
     assert body["reason"] == "unknown_sales_item"
 
 
+def test_row_level_product_family_resolution_beats_folder_placement_and_model():
+    response = client.post(
+        "/predict",
+        json={
+            "item_text": "GUANTE LARGO NITRILO XL SHOOF 204630",
+            "description": "GUANTE LARGO NITRILO XL MARCA SHOOF",
+            "provider": "COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.",
+            "transaction_type": "COMPRAS",
+        },
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["source"] == "product_lookup"
+    assert body["predictions"][0]["code"] == "EXP-16.1"
+    assert body["decision"] == "auto_accept"
+
+
 def test_transaction_type_is_validated():
     response = client.post(
         "/predict",
@@ -105,7 +122,12 @@ def test_transaction_type_is_validated():
     assert response.status_code == 422
 
 
+def test_transaction_type_is_required():
+    response = client.post("/predict", json={"item_text": "VENTA DE LECHE"})
+    assert response.status_code == 422
+
+
 def test_batch_limit():
-    items = [{"item_text": "X"} for _ in range(501)]
+    items = [{"item_text": "X", "transaction_type": "COMPRAS"} for _ in range(501)]
     response = client.post("/predict-batch", json={"items": items})
     assert response.status_code == 413

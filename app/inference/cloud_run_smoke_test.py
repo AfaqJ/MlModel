@@ -44,6 +44,7 @@ def main() -> None:
     parser.add_argument("--item-text", default=DEFAULT_ITEM)
     parser.add_argument("--description", default="")
     parser.add_argument("--provider", default=DEFAULT_PROVIDER)
+    parser.add_argument("--transaction-type", choices=["COMPRAS", "VENTAS"], default="COMPRAS")
     parser.add_argument("--token", default=os.getenv("CLOUD_RUN_ID_TOKEN"))
     parser.add_argument("--insecure", action="store_true", help="Skip TLS verification for local smoke tests.")
     args = parser.parse_args()
@@ -64,6 +65,7 @@ def main() -> None:
         "item_text": args.item_text,
         "description": args.description,
         "provider": args.provider,
+        "transaction_type": args.transaction_type,
         "top_k": 3,
     }
     prediction = call_json(

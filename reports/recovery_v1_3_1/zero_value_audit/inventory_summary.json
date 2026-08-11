@@ -1,0 +1,44 @@
+{
+  "xml_files": 5195,
+  "detail_lines": 12103,
+  "zero_candidates": 497,
+  "explicit_zero_amount": 497,
+  "parse_error_count": 0,
+  "parse_errors": [],
+  "distinct_zero_value_groups": 254,
+  "direction_counts": {
+    "COMPRAS": 496,
+    "VENTAS": 1
+  },
+  "zero_reason_counts": {
+    "amount_zero": 497
+  },
+  "audit_verdict_counts": {
+    "EXCLUDE_JUNK": 440,
+    "KEEP_GENUINE_OR_UNCERTAIN": 57
+  },
+  "audit_rationale_counts": {
+    "billing_reference": 13,
+    "broken_template_field": 23,
+    "comments_header": 1,
+    "delivery_payment_note": 1,
+    "delivery_reference": 1,
+    "duplicate_lease_installment_note": 17,
+    "fuel_delivery_reference": 50,
+    "observations_note": 6,
+    "printed_column_header": 23,
+    "printed_numeric_summary": 23,
+    "printed_service_columns": 23,
+    "printed_totals_header": 23,
+    "purchase_order_reference": 1,
+    "separator": 69,
+    "vehicle_metadata": 15,
+    "vehicle_work_order_metadata": 23,
+    "workshop_footer": 23,
+    "workshop_reminder": 23,
+    "workshop_request_note": 32,
+    "zero-value text may describe a real/free/bundled good, service, or correction; retain safely": 57,
+    "zero_fuel_summary": 50
+  },
+  "safety_rule": "zero value alone never implies junk; every distinct group requires an audited verdict"
+}

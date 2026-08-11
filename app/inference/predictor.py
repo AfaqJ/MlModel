@@ -1,15 +1,13 @@
 from __future__ import annotations
 
-import re
 import time
 import numpy as np
 
 from app.core.model_loader import ModelBundle
 from app.inference.confidence import DecisionResult, decide, entropy
 from app.inference.business_rules import direction_mask
-
-
-NUMERIC_RE = re.compile(r"[\d\s.,\-/]+$")
+from app.inference.model_input import build_model_text
+from app.inference.ambiguity_guard import model_review_guard_reason
 
 
 class Predictor:
@@ -17,12 +15,14 @@ class Predictor:
         self.bundle = bundle
         self.shadow_mode = shadow_mode
 
-    def build_text(self, item_text: str, description: str = "", provider: str = "") -> str:
-        desc = (description or "").strip()
-        if NUMERIC_RE.fullmatch(desc or "0"):
-            desc = ""
-        parts = [item_text.strip(), desc, (provider or "").strip()]
-        return " | ".join(part for part in parts if part)
+    def build_text(
+        self,
+        item_text: str,
+        description: str = "",
+        provider: str = "",
+        transaction_type: str | None = None,
+    ) -> str:
+        return build_model_text(item_text, description, provider, transaction_type)
 
     def predict(
         self,
@@ -42,7 +42,7 @@ class Predictor:
         # Deterministic electricity path: when a known meter (CdgIntRecep) is
         # supplied, the category is fixed by the client's meter map and the ML
         # model is skipped entirely. An unknown meter falls through to the model.
-        if meter_code:
+        if meter_code and (transaction_type or "").upper() == "COMPRAS":
             meter_hit = self.bundle.meter_lookup.match(meter_code)
             if meter_hit:
                 return self._meter_response(meter_hit, meter_code, input_id, started, top_k, return_debug)
@@ -53,16 +53,22 @@ class Predictor:
         if rule_hit:
             return self._business_rule_response(rule_hit, input_id, started, top_k, return_debug)
 
-        lookup_hit = self.bundle.lookup.match(item_text, provider)
-        text = self.build_text(item_text, description, provider)
+        # Row-level client product labels are stronger than invoice-folder
+        # placement. Product hits short-circuit and cannot be vetoed by ML.
+        lookup_hit = self.bundle.lookup.match(item_text, provider) if (
+            transaction_type or ""
+        ).upper() == "COMPRAS" else None
+        if lookup_hit:
+            return self._product_response(lookup_hit, input_id, started, top_k, return_debug)
+
+        text = self.build_text(item_text, description, provider, transaction_type)
         embedding = self.bundle.encoder.embed([text])
         proba = self.bundle.head.predict_proba(embedding)[0]
         classes = self.bundle.head.classes_
 
-        # A purchase can never be income. The model has no notion of transaction
-        # direction, which is how 12 COMPRAS lines were predicted as ING-*.
-        # Masking removes that error class by construction. Probabilities are
-        # renormalised so the reported confidence stays a real probability.
+        # Direction is learned in the model text and also enforced here. The
+        # mask is defense in depth: impossible cross-direction labels can never
+        # be returned even when the model is confidently wrong.
         masked = direction_mask(classes, transaction_type)
         if masked:
             proba = proba.copy()
@@ -79,21 +85,6 @@ class Predictor:
         model_top = [self._prediction(classes[index], proba[index]) for index in order[:top_k]]
         source = "model"
         predictions = model_top
-        lookup_conflict = False
-
-        if lookup_hit:
-            source = "product_lookup"
-            lookup_code = lookup_hit.category_code
-            lookup_conflict = classes[order[0]] != lookup_code and float(proba[order[0]]) >= 0.70
-            model_without_lookup = [p for p in model_top if p["code"] != lookup_code]
-            predictions = [
-                {
-                    "code": lookup_code,
-                    "name": self.bundle.names.get(lookup_code, ""),
-                    "score": 1.0,
-                },
-                *model_without_lookup[: max(0, top_k - 1)],
-            ]
 
         code1 = str(predictions[0]["code"])
         top1 = float(predictions[0]["score"])
@@ -105,9 +96,11 @@ class Predictor:
             margin=top1 - top2,
             weak_classes=self.bundle.weak_classes,
             thresholds=self.bundle.thresholds,
-            lookup_model_conflict=lookup_conflict,
             shadow_mode=self.shadow_mode,
         )
+        ambiguity_reason = model_review_guard_reason(item_text, description) if source == "model" else None
+        if ambiguity_reason:
+            decision = DecisionResult("review_required", ambiguity_reason)
         if (transaction_type or "").upper() == "VENTAS" and source != "business_rule":
             # The known operating sales were handled by the exact lookup above.
             # An unknown sale may be an asset disposal or a missing taxonomy
@@ -133,7 +126,6 @@ class Predictor:
         if return_debug:
             response["debug"] = {
                 "model_text": text,
-                "lookup_hit": None if not lookup_hit else lookup_hit.__dict__,
                 "model_top1": model_top[0],
             }
         return response
@@ -189,6 +181,28 @@ class Predictor:
         }
         if return_debug:
             response["debug"] = {"meter_hit": hit.__dict__, "meter_code": meter_code}
+        return response
+
+    def _product_response(self, hit, input_id, started, top_k, return_debug) -> dict:
+        latency_ms = int((time.perf_counter() - started) * 1000)
+        prediction = {
+            "code": hit.category_code,
+            "name": self.bundle.names.get(hit.category_code, ""),
+            "score": 1.0,
+        }
+        response = {
+            "input_id": input_id,
+            "model_version": self.bundle.model_version,
+            "source": "product_lookup",
+            "predictions": [prediction][:top_k],
+            "confidence": {"top1": 1.0, "margin": 1.0, "entropy": 0.0},
+            "decision": "auto_accept",
+            "reason": None,
+            "latency_ms": latency_ms,
+            "debug": None,
+        }
+        if return_debug:
+            response["debug"] = {"product_lookup": hit.__dict__}
         return response
 
     def _prediction(self, code: str, score: float) -> dict:

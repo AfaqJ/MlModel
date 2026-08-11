@@ -6,6 +6,7 @@ import unicodedata
 
 PUNCT_RE = re.compile(r"[^A-Z0-9\- ]+")
 SPACE_RE = re.compile(r"\s+")
+DANGLING_HYPHEN_RE = re.compile(r"(?:^|\s)-(?=\s|$)")
 UNIT_REPLACEMENTS = (
     (re.compile(r"\b(LTS?|LITROS?)\b"), "L"),
     (re.compile(r"\b(KGS?|KILOS?)\b"), "KG"),
@@ -23,4 +24,5 @@ def normalize_text(value: str) -> str:
     for pattern, replacement in UNIT_REPLACEMENTS:
         text = pattern.sub(replacement, text)
     text = PUNCT_RE.sub(" ", text)
+    text = DANGLING_HYPHEN_RE.sub(" ", text)
     return SPACE_RE.sub(" ", text).strip()

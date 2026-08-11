@@ -8,14 +8,19 @@ import onnxruntime as ort
 os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
 
 from transformers import AutoTokenizer
+import json
 
 
 class OnnxEncoder:
-    def __init__(self, artifact_dir: Path, max_length: int = 128):
-        self.max_length = max_length
+    def __init__(self, artifact_dir: Path, max_length: int | None = None):
+        card = json.loads((artifact_dir / "model_card.json").read_text())
+        self.max_length = max_length or int(card["input_construction"]["max_length"])
         self.tokenizer = AutoTokenizer.from_pretrained(
             str(artifact_dir / "tokenizer"),
-            fix_mistral_regex=True,
+            # This is XLM-R, not Mistral. Transformers 4.57 emits a false
+            # detector warning; enabling the Mistral rewrite changes the
+            # tokenizer and breaks parity with training.
+            fix_mistral_regex=False,
         )
         self.session = ort.InferenceSession(
             str(artifact_dir / "model.onnx"),

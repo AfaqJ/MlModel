@@ -38,4 +38,6 @@ def decide(
         return DecisionResult("review_required", "low_confidence")
     if margin < thresholds["accept_margin"]:
         return DecisionResult("review_required", "small_margin")
+    if source == "model" and thresholds.get("model_auto_accept") is False:
+        return DecisionResult("review_required", "model_unseen_input")
     return DecisionResult("auto_accept", None)

@@ -2,22 +2,19 @@
 
 WHY THIS EXISTS
 ---------------
-`VENTA DE LECHE` repeats across the client's outgoing invoices and its name
-states its category. Asking a probabilistic classifier to rediscover a known
-fact adds uncertainty for no benefit. Only phrases verified in the raw VENTAS
-corpus are active here; asset disposals and unobserved categories are excluded.
+When an invoice item exactly names one of the client's 71 active taxonomy
+categories, asking a probabilistic classifier to rediscover that known fact
+adds uncertainty for no benefit. The table contains all canonical taxonomy
+leaf names plus explicit, client-specific aliases. Matching is exact after
+normalizing superficial spelling differences; it is never fuzzy.
 
 DIRECTION MASKING
 -----------------
-Separately, a COMPRAS (purchase) line can never be income. The model has no
-notion of transaction direction — it was parsed and stored but never reached the
-predictor — so it produced 12 purchase lines predicted as income. Masking the
-ING-* classes for purchases removes that class of error by construction rather
-than hoping training fixes it.
-
-The reverse mask (VENTAS cannot be an expense) is deliberately not applied to
-probabilities because the taxonomy is incomplete for some sales. Unknown sales
-are instead prevented from auto-accepting elsewhere in the predictor.
+The transaction direction is now also part of the trained model text. Masks
+remain as defense in depth: COMPRAS cannot return income classes and VENTAS
+cannot return expense/administration classes. Unknown sales are still forced to
+review because asset disposals and other unmatched sales may be outside the
+active taxonomy.
 """
 from __future__ import annotations
 
@@ -105,9 +102,12 @@ class BusinessRules:
 def direction_mask(classes, transaction_type: str | None):
     """Indices of classes that are IMPOSSIBLE for this transaction direction.
 
-    Only the purchase->income direction is masked. See the module docstring for
-    why the reverse is not.
+    The probabilistic model still returns a review suggestion for an unknown
+    sale, but it may only suggest a direction-compatible class.
     """
-    if (transaction_type or "").strip().upper() != "COMPRAS":
-        return []
-    return [i for i, code in enumerate(classes) if str(code).startswith("ING-")]
+    direction = (transaction_type or "").strip().upper()
+    if direction == "COMPRAS":
+        return [i for i, code in enumerate(classes) if str(code).startswith("ING-")]
+    if direction == "VENTAS":
+        return [i for i, code in enumerate(classes) if not str(code).startswith("ING-")]
+    return []

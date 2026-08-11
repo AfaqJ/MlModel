@@ -117,7 +117,9 @@ def parse_xml(path: Path, source: str) -> list[dict]:
         for detalle in iter_named(doc, "Detalle"):
             nmb  = text(find_named(detalle, "NmbItem"))
             dsc  = text(find_named(detalle, "DscItem"))
-            mnt  = text(find_named(detalle, "MntItem"))
+            # SII DTE uses MontoItem. The previous typo (MntItem) silently
+            # produced an empty amount for every extracted row.
+            mnt  = text(find_named(detalle, "MontoItem"))
             nro  = text(find_named(detalle, "NroLinDet"))
 
             if not nmb and not dsc:

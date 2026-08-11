@@ -18,10 +18,12 @@ from sklearn.metrics import accuracy_score, classification_report, f1_score
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SPLIT = ROOT / "Data/candidates/recovery_v1_2_0/split_seed42.csv"
-DEFAULT_CANDIDATE = ROOT / "models/setfit_base_recovery_v1_2_0"
+DEFAULT_SPLIT = ROOT / "Data/candidates/recovery_v1_3_1/split_seed42.csv"
+DEFAULT_CANDIDATE = ROOT / "models/setfit_base_recovery_v1_3_1"
+DEFAULT_PREVIOUS = ROOT / "models/setfit_base_recovery_v1_2_0"
+PREVIOUS_SPLIT = ROOT / "Data/candidates/recovery_v1_2_0/split_seed42.csv"
 DEFAULT_BASELINE = ROOT / "models/setfit_base"
-DEFAULT_REPORT = ROOT / "reports/recovery_v1_2_0/model_comparison_fair.json"
+DEFAULT_REPORT = ROOT / "reports/recovery_v1_3_1/model_comparison_fair.json"
 ORIGINAL_GOLD = ROOT / "Data/gold/_master_gold.backup_20260811_104643.csv"
 BASELINE_VALIDATION = DEFAULT_BASELINE / "val_split.csv"
 NUMERIC_RE = re.compile(r"[\d\s.,\-/]+$")
@@ -67,7 +69,11 @@ def build_text(row: dict[str, str]) -> str:
     )
 
 
-def build_shared_blind_rows(split_path: Path) -> tuple[list[dict[str, str]], dict]:
+def build_shared_blind_rows(
+    split_path: Path,
+    *,
+    require_previous_recovery_blind: bool,
+) -> tuple[list[dict[str, str]], dict]:
     """Rows held out by v1.1 and absent from the candidate's training split.
 
     v1.1's validation itself leaked duplicate model inputs. Requiring the input
@@ -83,6 +89,11 @@ def build_shared_blind_rows(split_path: Path) -> tuple[list[dict[str, str]], dic
         for row in candidate_split
         if row["split"].startswith("train")
     }
+    previous_train_hashes = {
+        row["text_sha256"]
+        for row in read_csv(PREVIOUS_SPLIT)
+        if row["split"].startswith("train")
+    }
     baseline_validation = read_csv(BASELINE_VALIDATION)
     kept = []
     excluded = Counter()
@@ -90,6 +101,9 @@ def build_shared_blind_rows(split_path: Path) -> tuple[list[dict[str, str]], dic
     for row in baseline_validation:
         key = normalize(row["text"])
         text_hash = hashlib.sha256(key.encode()).hexdigest()
+        direction = "VENTAS" if row["label"].startswith("ING-") else "COMPRAS"
+        candidate_text = f"[{direction}] | {row['text']}"
+        candidate_hash = hashlib.sha256(normalize(candidate_text).encode()).hexdigest()
         if key in seen:
             excluded["duplicate_in_v1_1_validation"] += 1
             continue
@@ -97,15 +111,23 @@ def build_shared_blind_rows(split_path: Path) -> tuple[list[dict[str, str]], dic
         if original_frequency[key] != 1:
             excluded["not_unique_in_original_gold"] += 1
             continue
-        if text_hash in candidate_train_hashes:
+        if require_previous_recovery_blind and text_hash in previous_train_hashes:
+            excluded["present_in_previous_recovery_training"] += 1
+            continue
+        if candidate_hash in candidate_train_hashes:
             excluded["present_in_candidate_training"] += 1
             continue
-        kept.append({"text": row["text"], "category_code": row["label"]})
+        kept.append({
+            "text": row["text"],
+            "candidate_text": candidate_text,
+            "category_code": row["label"],
+        })
     return kept, {
         "v1_1_validation_rows": len(baseline_validation),
         "shared_blind_rows": len(kept),
         "excluded": dict(sorted(excluded.items())),
         "income_rows": sum(row["category_code"].startswith("ING-") for row in kept),
+        "previous_recovery_blind_required": require_previous_recovery_blind,
     }
 
 
@@ -114,7 +136,12 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def evaluate_model(model_dir: Path, rows: list[dict[str, str]], device: str) -> dict:
+def evaluate_model(
+    model_dir: Path,
+    rows: list[dict[str, str]],
+    device: str,
+    text_field: str = "text",
+) -> dict:
     model_dir = model_dir.resolve()
     # Transformers 4.57.6 emits a Mistral-regex warning for locally saved
     # XLM-R tokenizers because their detection branch only exempts <=4.57.2.
@@ -127,7 +154,7 @@ def evaluate_model(model_dir: Path, rows: list[dict[str, str]], device: str) -> 
     )
     head = joblib.load(model_dir / "model_head.pkl")
     classes = [str(value) for value in head.classes_]
-    texts = [row["text"] for row in rows]
+    texts = [row[text_field] for row in rows]
     truth = [row["category_code"] for row in rows]
     embeddings = body.encode(texts, batch_size=64, show_progress_bar=False)
     probabilities = np.asarray(head.predict_proba(embeddings))
@@ -179,6 +206,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--split", type=Path, default=DEFAULT_SPLIT)
     parser.add_argument("--candidate", type=Path, default=DEFAULT_CANDIDATE)
+    parser.add_argument("--previous", type=Path, default=DEFAULT_PREVIOUS)
     parser.add_argument("--baseline", type=Path, default=DEFAULT_BASELINE)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     parser.add_argument("--device", choices=["mps", "cpu"], default="mps")
@@ -188,11 +216,32 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     locked_rows = load_validation(args.split)
-    shared_rows, shared_audit = build_shared_blind_rows(args.split)
+    shared_rows, shared_audit = build_shared_blind_rows(
+        args.split,
+        require_previous_recovery_blind=False,
+    )
     if len(shared_rows) < 50:
-        raise RuntimeError(f"shared blind comparison is too small: {len(shared_rows)} rows")
+        raise RuntimeError(f"v1.1/candidate shared blind comparison is too small: {len(shared_rows)} rows")
+    three_way_rows, three_way_audit = build_shared_blind_rows(
+        args.split,
+        require_previous_recovery_blind=True,
+    )
     baseline = evaluate_model(args.baseline, shared_rows, args.device)
-    candidate = evaluate_model(args.candidate, shared_rows, args.device)
+    candidate = evaluate_model(args.candidate, shared_rows, args.device, text_field="candidate_text")
+    three_way = None
+    if three_way_rows:
+        three_way = {
+            "warning": "descriptive only; too few genuinely blind rows for a release claim",
+            "sufficient_for_release_claim": len(three_way_rows) >= 50,
+            "baseline": evaluate_model(args.baseline, three_way_rows, args.device),
+            "previous_recovery": evaluate_model(args.previous, three_way_rows, args.device),
+            "candidate": evaluate_model(
+                args.candidate,
+                three_way_rows,
+                args.device,
+                text_field="candidate_text",
+            ),
+        }
     candidate_run = json.loads((args.candidate / "run_manifest.json").read_text())
     candidate_locked = candidate_run["metrics"]
     comparison = {
@@ -212,6 +261,8 @@ def main() -> None:
             key: round(candidate[key] - baseline[key], 4)
             for key in ("accuracy", "macro_f1", "top3_accuracy")
         },
+        "three_model_blind_audit": three_way_audit,
+        "three_model_blind_descriptive_only": three_way,
         "release_checks": {
             "shared_blind_candidate_beats_baseline_accuracy": candidate["accuracy"] > baseline["accuracy"],
             "shared_blind_candidate_beats_baseline_macro_f1": candidate["macro_f1"] > baseline["macro_f1"],
@@ -227,6 +278,14 @@ def main() -> None:
         "baseline": {key: baseline[key] for key in ("accuracy", "macro_f1", "top3_accuracy")},
         "candidate": {key: candidate[key] for key in ("accuracy", "macro_f1", "top3_accuracy")},
         "shared_blind_deltas": comparison["shared_blind_deltas"],
+        "three_model_blind_audit": three_way_audit,
+        "three_model_blind_descriptive_only": None if three_way is None else {
+            "warning": three_way["warning"],
+            "sufficient_for_release_claim": three_way["sufficient_for_release_claim"],
+            "baseline": {key: three_way["baseline"][key] for key in ("accuracy", "macro_f1", "top3_accuracy")},
+            "previous_recovery": {key: three_way["previous_recovery"][key] for key in ("accuracy", "macro_f1", "top3_accuracy")},
+            "candidate": {key: three_way["candidate"][key] for key in ("accuracy", "macro_f1", "top3_accuracy")},
+        },
         "candidate_locked_validation": {
             key: candidate_locked[key] for key in ("validation_rows", "accuracy", "macro_f1", "top3_accuracy", "income")
         },

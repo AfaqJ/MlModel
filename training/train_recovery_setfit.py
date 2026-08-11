@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train the focused recovery candidate with the full SetFit encoder.
+"""Train the transaction-aware recovery candidate with the full SetFit encoder.
 
 This is intentionally separate from train_setfit.py, whose outputs and behavior
 belong to the previous experiments. The defaults here keep every encoder
@@ -20,6 +20,7 @@ import json
 import os
 import random
 import re
+import sys
 import time
 import unicodedata
 from collections import Counter, defaultdict
@@ -29,10 +30,15 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_GOLD = ROOT / "Data/candidates/recovery_v1_2_0/master_gold.csv"
-DEFAULT_SPLIT = ROOT / "Data/candidates/recovery_v1_2_0/split_seed42.csv"
-DEFAULT_OUTPUT = ROOT / "models/setfit_base_recovery_v1_2_0"
-DEFAULT_SMOKE_REPORT = ROOT / "reports/recovery_v1_2_0/memory_smoke.json"
+sys.path.insert(0, str(ROOT))
+
+from app.inference.model_input import build_model_text
+
+
+DEFAULT_GOLD = ROOT / "Data/candidates/recovery_v1_3_1/master_gold.csv"
+DEFAULT_SPLIT = ROOT / "Data/candidates/recovery_v1_3_1/split_seed42.csv"
+DEFAULT_OUTPUT = ROOT / "models/setfit_base_recovery_v1_3_1"
+DEFAULT_SMOKE_REPORT = ROOT / "reports/recovery_v1_3_1/memory_smoke.json"
 BASE_MODEL = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
 NUMERIC_RE = re.compile(r"[\d\s.,\-/]+$")
 SEED = 42
@@ -50,12 +56,12 @@ def clean_description(value: str | None) -> str:
 
 
 def build_text(row: dict[str, str]) -> str:
-    parts = [
-        (row.get("item_text") or "").strip(),
-        clean_description(row.get("description")),
-        (row.get("provider") or "").strip(),
-    ]
-    return " | ".join(part for part in parts if part)
+    return build_model_text(
+        row.get("item_text") or "",
+        row.get("description") or "",
+        row.get("provider") or "",
+        row.get("direction"),
+    )
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -308,8 +314,25 @@ def main() -> None:
 
     random.seed(SEED)
     np.random.seed(SEED)
+    # This recovery is intentionally local-only. Resolve the already cached
+    # base snapshot before SentenceTransformer is constructed; passing the hub
+    # id with local_files_only still triggered metadata HEAD retries in the
+    # installed SetFit/SentenceTransformers combination.
+    os.environ.setdefault("HF_HUB_OFFLINE", "1")
+    os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+    from huggingface_hub import snapshot_download
+
+    base_model_path = snapshot_download(BASE_MODEL, local_files_only=True)
     import torch
     from datasets import Dataset
+    # SetFit 1.1.x still imports this helper from its Transformers 4.x
+    # location. Transformers 5 moved it to integration_utils. Keep the shim
+    # local to this training process; no site-package or global environment is
+    # modified.
+    import transformers.training_args as transformers_training_args
+    if not hasattr(transformers_training_args, "default_logdir"):
+        from transformers.integrations.integration_utils import default_logdir
+        transformers_training_args.default_logdir = default_logdir
     from setfit import SetFitModel, Trainer, TrainingArguments
     from transformers.training_args import OptimizerNames
 
@@ -342,7 +365,7 @@ def main() -> None:
 
     labels = sorted(train_counts)
     model = SetFitModel.from_pretrained(
-        BASE_MODEL,
+        base_model_path,
         labels=labels,
         head_params={"class_weight": "balanced", "max_iter": 2000},
         local_files_only=True,
@@ -378,7 +401,7 @@ def main() -> None:
         "label": [row["category_code"] for row in train_rows],
     })
     training_args = TrainingArguments(
-        output_dir=str(ROOT / "models/_checkpoints_recovery_v1_2_0"),
+        output_dir=str(ROOT / "models/_checkpoints_recovery_v1_3_1"),
         batch_size=args.batch_size,
         num_epochs=1,
         body_learning_rate=2e-5,
@@ -409,6 +432,8 @@ def main() -> None:
 
     run = {
         "mode": "memory_smoke" if args.memory_smoke else "candidate_training",
+        "base_model": BASE_MODEL,
+        "base_model_local_snapshot": str(base_model_path),
         "device": device,
         "optimizer_requested": args.optimizer,
         "optimizer_observed": monitor.optimizer_class,
@@ -419,6 +444,8 @@ def main() -> None:
         "gradient_checkpointing": not args.no_gradient_checkpointing,
         "fixed_length_padding": not args.dynamic_padding,
         "unbounded_mps_watermark": False,
+        "transaction_type_in_model_input": True,
+        "model_input_template": "[transaction_type] | item_text | description | provider",
         "batch_size": args.batch_size,
         "max_steps": args.max_steps,
         "elapsed_minutes": elapsed_minutes,

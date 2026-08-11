@@ -6,7 +6,9 @@ from pydantic import ValidationError
 
 from app.api.schemas import PredictRequest
 from app.inference.business_rules import BusinessRules
+from app.inference.confidence import decide
 from app.inference.predictor import Predictor
+from app.inference.ambiguity_guard import model_review_guard_reason
 
 
 RULES = Path(__file__).resolve().parents[1] / "app/data/business_rules.csv"
@@ -41,7 +43,12 @@ class Bundle:
         self.lookup = NoMatch()
         self.encoder = encoder
         self.head = FixedHead()
-        self.names = {"EXP-1.1": "Otros Gastos RRHH", "ING-0.1": "VENTA DE LECHE"}
+        self.names = {
+            "EXP-1.1": "Otros Gastos RRHH",
+            "ING-0.1": "VENTA DE LECHE",
+            "ING-0.4": "VENTA TERNEROS",
+            "ING-0.6": "VENTA LEÑA",
+        }
         self.weak_classes = set()
         self.thresholds = {"accept_top1": 0.8, "accept_margin": 0.2}
         self.model_version = "test"
@@ -76,9 +83,58 @@ def test_unknown_sale_is_never_auto_accepted():
     assert result["reason"] == "unknown_sales_item"
 
 
+def test_all_canonical_taxonomy_names_are_rules():
+    rules = BusinessRules(RULES)
+    taxonomy_path = RULES.parents[2] / "Data/current_context_2026_06_30/taxonomy_from_plan.csv"
+    import csv
+
+    with taxonomy_path.open(encoding="utf-8-sig", newline="") as handle:
+        taxonomy = list(csv.DictReader(handle))
+    assert len(taxonomy) == 71
+    for row in taxonomy:
+        direction = "VENTAS" if row["new_code"].startswith("ING-") else "COMPRAS"
+        hit = rules.match(row["leaf"], direction)
+        assert hit is not None
+        assert hit.category_code == row["new_code"]
+
+
+@pytest.mark.parametrize(
+    "item_text",
+    ["VENTA TERNEROS", "VENTAS TERNEROS", "VENTA DE TERNERAS", "VENTAS DE TERNERAS"],
+)
+def test_male_and_female_calf_aliases_share_one_category(item_text):
+    hit = BusinessRules(RULES).match(item_text, "VENTAS")
+    assert hit is not None
+    assert hit.category_code == "ING-0.4"
+
+
+def test_untrained_firewood_class_is_still_resolved_by_exact_taxonomy_rule():
+    result = Predictor(Bundle(FailIfCalledEncoder())).predict(
+        item_text="VENTA LEÑA",
+        transaction_type="VENTAS",
+    )
+    assert result["source"] == "business_rule"
+    assert result["predictions"][0]["code"] == "ING-0.6"
+
+
+def test_transaction_type_is_first_model_token():
+    predictor = Predictor(Bundle(FixedEncoder()))
+    assert predictor.build_text("leña", provider="Proveedor", transaction_type="COMPRAS").startswith(
+        "[COMPRAS] | leña"
+    )
+
+
 def test_transaction_type_rejects_unknown_values():
     with pytest.raises(ValidationError):
         PredictRequest(item_text="VENTA DE LECHE", transaction_type="sale")
+
+
+def test_confidence_cannot_override_missing_semantic_context():
+    assert model_review_guard_reason("- Revision Tecnica Maquinaria automotriz VPSJ99")
+    assert model_review_guard_reason("Interés por mora Energía")
+    assert model_review_guard_reason("GASOLINA 93") is None
+    assert model_review_guard_reason("Item", "FILTRO DE COMBUSTIBLE") == "generic_item_name_requires_review"
+    assert model_review_guard_reason("GUANTE LARGO NITRILO") == "client_examples_conflict_with_glove_taxonomy"
 
 
 def test_rules_reject_duplicate_normalized_keys(tmp_path):
@@ -91,3 +147,33 @@ def test_rules_reject_duplicate_normalized_keys(tmp_path):
     )
     with pytest.raises(ValueError, match="duplicate normalized key"):
         BusinessRules(path)
+
+
+def test_staged_release_auto_accepts_high_confidence_model_input():
+    decision = decide(
+        source="model",
+        code1="EXP-11.4",
+        top1=0.99,
+        margin=0.98,
+        weak_classes=set(),
+        thresholds={
+            "accept_top1": 0.75,
+            "accept_margin": 0.50,
+            "model_auto_accept": True,
+        },
+    )
+    assert decision.decision == "auto_accept"
+    assert decision.reason is None
+
+
+def test_weak_class_still_requires_review_at_high_confidence():
+    decision = decide(
+        source="model",
+        code1="EXP-11.2",
+        top1=0.99,
+        margin=0.98,
+        weak_classes={"EXP-11.2"},
+        thresholds={"accept_top1": 0.75, "accept_margin": 0.50, "model_auto_accept": True},
+    )
+    assert decision.decision == "review_required"
+    assert decision.reason == "weak_class"
