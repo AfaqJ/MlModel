@@ -107,7 +107,13 @@ def test_dte43_liquidacion_is_never_auto_accepted_without_client_category():
     assert result["reason"] == "liquidacion_dte43_requires_client_category"
 
 
-def test_all_canonical_taxonomy_names_are_rules():
+def test_every_sales_taxonomy_name_is_a_rule():
+    """All six income leaves resolve exactly; the expense side deliberately does not.
+
+    On sales the client writes the invoice, so an item naming a category IS the
+    client naming their own category. On purchases the supplier writes it, and a
+    match is a coincidence in someone else's document.
+    """
     rules = BusinessRules(RULES)
     taxonomy_path = RULES.parents[2] / "Data/current_context_2026_06_30/taxonomy_from_plan.csv"
     import csv
@@ -115,11 +121,59 @@ def test_all_canonical_taxonomy_names_are_rules():
     with taxonomy_path.open(encoding="utf-8-sig", newline="") as handle:
         taxonomy = list(csv.DictReader(handle))
     assert len(taxonomy) == 71
-    for row in taxonomy:
-        direction = "VENTAS" if row["new_code"].startswith("ING-") else "COMPRAS"
-        hit = rules.match(row["leaf"], direction)
+    sales = [row for row in taxonomy if row["new_code"].startswith("ING-")]
+    assert len(sales) == 6
+    for row in sales:
+        hit = rules.match(row["leaf"], "VENTAS")
         assert hit is not None
         assert hit.category_code == row["new_code"]
+    for row in taxonomy:
+        if row["new_code"].startswith("ING-"):
+            continue
+        assert rules.match(row["leaf"], "COMPRAS") is None
+
+
+def test_no_expense_rule_can_exist():
+    """The whole table is sales-only, so no expense word can ever short-circuit."""
+    rules = BusinessRules(RULES)
+    assert rules.entries
+    assert {direction for direction, _ in rules.entries} == {"VENTAS"}
+    for _, text in rules.entries:
+        assert text.startswith("VENTA"), f"non-sales key leaked into the table: {text!r}"
+
+
+@pytest.mark.parametrize("bare", ["vaca", "VACA", "vacas", "VACAS", "cow", "leche",
+                                  "LECHE", "terneros", "vaquillas", "leña"])
+@pytest.mark.parametrize("direction", ["COMPRAS", "VENTAS"])
+def test_a_bare_product_word_never_resolves(bare, direction):
+    """`cow` must never mean "Cow Sales" — it could just as easily be a purchase."""
+    assert BusinessRules(RULES).match(bare, direction) is None
+
+
+@pytest.mark.parametrize("item_text", ["VENTA DE VACAS", "VENTA DE LECHE", "VENTAS TERNEROS"])
+def test_the_same_words_never_resolve_under_the_wrong_direction(item_text):
+    """An auction settlement filed under COMPRAS keeps the seller's wording."""
+    rules = BusinessRules(RULES)
+    assert rules.match(item_text, "VENTAS") is not None
+    assert rules.match(item_text, "COMPRAS") is None
+
+
+@pytest.mark.parametrize("item_text", ["VENTA DE LECHE FRESCA", "LECHE", "DE VACAS",
+                                       "FACTURA VENTA DE LECHE", "VENTA"])
+def test_matching_is_exact_and_never_partial(item_text):
+    """Neither a superstring nor a substring of a rule key may match it."""
+    assert BusinessRules(RULES).match(item_text, "VENTAS") is None
+
+
+def test_a_cattle_purchase_can_never_be_labelled_as_a_sale():
+    """End to end: the 103 DTE-43 auction lines must stay out of income."""
+    result = Predictor(Bundle(FixedEncoder())).predict(
+        item_text="VACA ENGORDA",
+        description="vacas preñadas",
+        transaction_type="COMPRAS",
+    )
+    assert result["source"] != "business_rule"
+    assert all(not prediction["code"].startswith("ING-") for prediction in result["predictions"])
 
 
 @pytest.mark.parametrize(

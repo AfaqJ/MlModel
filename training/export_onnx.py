@@ -1,6 +1,6 @@
 """MCT-37 — Export the trained SetFit model to the ONNX int8 deployment package.
 
-Pipeline (per blueprint.md §2.4):
+Pipeline (per docs/archive/blueprint.md §2.4 — archived; superseded by export_recovery_onnx.py):
   1. Load trained SetFit model (models/setfit_<variant>).
   2. Export the sentence-transformer body to ONNX via optimum, then dynamic-quantize to int8.
   3. Dump the sklearn LogisticRegression head to classifier.joblib.

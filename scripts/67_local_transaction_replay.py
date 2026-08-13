@@ -33,14 +33,16 @@ from app.inference.line_filters import zero_value_junk_reason
 from app.inference.ambiguity_guard import model_review_guard_reason
 from app.inference.onnx_encoder import OnnxEncoder
 from app.inference.classifier import LogisticHead
+from app.inference.familiarity import FamiliarityIndex
 
 
-ARTIFACT = ROOT / "artifacts/v1.3.1"
+ARTIFACT = ROOT / "artifacts/v1.3.2"
 RAW = ROOT / "Data/processed/line_items.csv"
-GOLD = ROOT / "Data/candidates/recovery_v1_3_1/master_gold.csv"
+GOLD = ROOT / "Data/candidates/recovery_v1_3_2/master_gold.csv"
 THRESHOLDS = ROOT / "reports/recovery_v1_3_1/selected_thresholds.json"
-OUTPUT = ROOT / "reports/recovery_v1_3_1/local_replay"
+OUTPUT = ROOT / "reports/recovery_v1_3_2/local_replay"
 RAW_ROOT = ROOT / "Data/Raw_Data"
+MODEL_DIR = ROOT / "models/setfit_base_recovery_v1_3_2"
 FIELDS = [
     "row_id", "input_id", "source_file", "period", "folio", "nro_lin_det", "direction",
     "invoice_date", "document_type", "provider_rut", "provider_giro",
@@ -214,7 +216,7 @@ def main() -> None:
         from setfit import SetFitModel
 
         fp32_model = SetFitModel.from_pretrained(
-            str(ROOT / "models/setfit_base_recovery_v1_3_1"), local_files_only=True
+            str(MODEL_DIR), local_files_only=True
         )
 
         class BodyAdapter:
@@ -226,8 +228,15 @@ def main() -> None:
         body = BodyAdapter()
         head = fp32_model.model_head
         classes = np.asarray([str(value) for value in fp32_model.labels])
-        model_version = "v1.3.1-fp32"
+        model_version = "v1.3.2-fp32"
         inference_backend = "setfit-fp32"
+
+    familiarity = FamiliarityIndex.load(args.artifact if artifact_ready else MODEL_DIR)
+    if familiarity is None:
+        raise SystemExit(
+            "familiarity index missing; run scripts/75_calibrate_familiarity_gate.py "
+            "--write-index before replaying, or the confident-lie gate is silently off"
+        )
 
     distinct_by_label: defaultdict[str, set[str]] = defaultdict(set)
     exact_truth: defaultdict[str, set[str]] = defaultdict(set)
@@ -348,6 +357,7 @@ def main() -> None:
         row["model_margin"] = float(proba[order[0]] - proba[order[1]]) if len(order) > 1 else 1.0
         row["model_entropy"] = entropy(proba)
         row["model_top3"] = [(str(classes[i]), float(proba[i])) for i in order[:3]]
+        row["model_embedding"] = embeddings[position]
 
     results = []
     for row in prepared:
@@ -390,6 +400,12 @@ def main() -> None:
             )
             if ambiguity_reason:
                 decision, reason = "review_required", ambiguity_reason
+            # Confidence cannot tell an unfamiliar row from a well-supported
+            # one; the familiarity gate can, and only downgrades.
+            if familiarity is not None and decision == "auto_accept":
+                familiarity_reason = familiarity.review_reason(row["model_embedding"], prediction)
+                if familiarity_reason:
+                    decision, reason = "review_required", familiarity_reason
             if row["direction"] == "VENTAS":
                 decision, reason = "review_required", "unknown_sales_item"
 

@@ -29,7 +29,7 @@ raised top-1 marginally but collapsed top-3 diversity and hurt rare classes. See
 `../models/_comparison_archive/`.
 
 ## Retraining loop
-1. Export audited human corrections from Supabase into `Data/gold/_master_gold.csv` per LABELING_RULES.md.
+1. Export audited human corrections from Supabase into `Data/gold/_master_gold.csv` per docs/LABELING_RULES.md.
 2. `python scripts/50_build_gold_views.py && python scripts/55_contradiction_audit.py`
 3. `python training/train_setfit.py --variant base` → check metrics.json (macro-F1, top-3, threshold sweep)
 4. `python training/export_onnx.py --variant base --version vX.Y.Z`

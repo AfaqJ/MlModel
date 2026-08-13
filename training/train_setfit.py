@@ -1,6 +1,6 @@
 """MCT-37 — SetFit training for the Antillanca invoice line-item classifier.
 
-Architecture per MLMODEL.md / blueprint.md (do not drift):
+Architecture per docs/DECISIONS.md D-025 (superseded script; v1.3.3 used train_recovery_setfit.py):
   SetFit contrastive fine-tune of sentence-transformers/paraphrase-multilingual-mpnet-base-v2
   + LogisticRegression head (trained automatically inside trainer.train()).
 

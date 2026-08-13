@@ -7,6 +7,7 @@ from app.inference.onnx_encoder import OnnxEncoder
 from app.inference.product_lookup import ProductLookup
 from app.inference.meter_lookup import MeterLookup
 from app.inference.business_rules import BusinessRules
+from app.inference.familiarity import FamiliarityIndex
 
 
 class ModelBundle:
@@ -18,6 +19,17 @@ class ModelBundle:
         self.encoder = OnnxEncoder(artifact_dir)
         self.head = LogisticHead(artifact_dir)
         self.lookup = ProductLookup(product_lookup_path)
+        # The kNN gate is the only check that can catch a confident prediction
+        # the model has no supporting evidence for; on the 11,766-row replay it
+        # stopped 163 rows that had all cleared 0.75/0.50. A packaging slip that
+        # dropped the index would not fail — it would quietly start auto-
+        # accepting those rows again. Refuse to serve instead.
+        self.familiarity = FamiliarityIndex.load(artifact_dir)
+        if self.familiarity is None:
+            raise RuntimeError(
+                f"familiarity index missing from artifact: {artifact_dir / 'familiarity_index.npz'}; "
+                "refusing to serve with the familiarity gate silently disabled"
+            )
         self.meter_lookup = MeterLookup(meter_lookup_path) if meter_lookup_path else MeterLookup(Path("__none__"))
         default_rules = product_lookup_path.parent / "business_rules.csv"
         self.business_rules = BusinessRules(business_rules_path or default_rules)
@@ -51,5 +63,6 @@ class ModelBundle:
             "product_lookup": self.lookup.info(),
             "meter_lookup": self.meter_lookup.info(),
             "business_rules": self.business_rules.info(),
+            "familiarity_gate": self.familiarity.info() if self.familiarity else {"enabled": False},
             "artifacts_sha256": self.model_card.get("artifacts_sha256", {}),
         }

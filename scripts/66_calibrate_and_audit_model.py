@@ -33,11 +33,11 @@ from app.inference.product_lookup import ProductLookup
 from app.inference.ambiguity_guard import model_review_guard_reason
 
 
-MODEL = ROOT / "models/setfit_base_recovery_v1_3_1"
-ARTIFACT = ROOT / "artifacts/v1.3.1"
-GOLD = ROOT / "Data/candidates/recovery_v1_3_1/master_gold.csv"
-SPLIT = ROOT / "Data/candidates/recovery_v1_3_1/split_seed42.csv"
-REPORT_DIR = ROOT / "reports/recovery_v1_3_1"
+MODEL = ROOT / "models/setfit_base_recovery_v1_3_2"
+ARTIFACT = ROOT / "artifacts/v1.3.3"
+GOLD = ROOT / "Data/candidates/recovery_v1_3_2/master_gold.csv"
+SPLIT = ROOT / "Data/candidates/recovery_v1_3_2/split_seed42.csv"
+REPORT_DIR = ROOT / "reports/recovery_v1_3_2"
 # The user-approved release threshold is fixed below; false positives are a
 # release diagnostic, not something this script hides by silently selecting a
 # stricter threshold. Any observed confident error must be traced to data/model
@@ -94,7 +94,7 @@ def main() -> None:
         from app.inference.classifier import LogisticHead
         body = OnnxEncoder(args.artifact)
         head = LogisticHead(args.artifact)
-        backend = "onnx_int8"
+        backend = "onnx"
     else:
         from sentence_transformers import SentenceTransformer
         body = SentenceTransformer(

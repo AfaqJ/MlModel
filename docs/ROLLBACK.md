@@ -1,81 +1,84 @@
 # ROLLBACK — how to undo each step
 
-Every step in the v1.2.0 recovery, and exactly how to reverse it.
+Production now holds real state in two places: the Cloud Run service and the
+Supabase database. Both need a written way back.
 
 ## Ground truth that cannot be lost
 
-These are never modified by any script in this phase. If everything else burns,
-the project is recoverable from them:
+If everything else burns, the project is recoverable from these. No script in
+normal operation modifies them:
 
 ```
-Data/Raw_Data/                     raw XML, read-only
-Data/silver/                       audit ledger, read-only in this phase
-artifacts/v1.1.0/                  deployed model, never overwritten
-Temp_Inference/snapshots/normalized_before_company_item_split/
-                                   v1.1.0 predictions for 12,071 items
+Data/Raw_Data/                              raw XML, read-only
+Data/candidates/recovery_v1_3_2/            the gold v1.3.3 trained on
+backups/supabase_20260812T070037Z/          pre-upload export, all 5 tables
 ```
 
-## Step-by-step reversal
+## Roll back the deployed model
 
-### Gold promotion (dedup fix)
-
-Before writing, the script copies the current master to:
-
-```
-Data/gold/_master_gold.backup_<timestamp>.csv
-```
-
-To undo:
+Cloud Run keeps every revision. Traffic-shifting is instant and needs no
+rebuild:
 
 ```bash
-cp Data/gold/_master_gold.backup_<timestamp>.csv Data/gold/_master_gold.csv
-.venv-train/bin/python scripts/50_build_gold_views.py
+gcloud run revisions list --service mlmodel --region europe-west1
 ```
 
-The generated per-category views in `Data/gold/` are rebuilt from the master, so
-restoring the master and rebuilding views fully reverses the change.
-
-### Sales harvest / synthetic rows
-
-Both are tagged in the `source` column (`raw_ventas_harvest`, `synthetic_*`).
-To remove without touching anything else, filter them out of the master and
-rebuild views. They carry no folio or row_id, so they cannot be confused with
-real invoice rows.
-
-### Training
-
-New training writes to a **new** directory (`models/setfit_v1_2_0/`) and a new
-artifact version (`artifacts/v1.2.0/`). `models/setfit_base/` and
-`artifacts/v1.1.0/` are untouched.
-
-To undo: delete the new directories. Nothing else changes.
-
-### Local re-inference
-
-The v1.1.0 baseline is copied to `Data/stale/inference_v1.1.0_<timestamp>/`
-before any new inference run. New results are written to a separate path.
-
-To undo: delete the new results directory. The baseline snapshot under
-`Temp_Inference/snapshots/` is never written to at all.
-
-## What cannot be rolled back from this repo
-
-Nothing in this phase — no Supabase writes, no deploys, no pushes.
-See CONSTRAINTS.md.
-
-If a future phase does write to Supabase: take a fresh export first, and record
-the row counts before and after in this file.
-
-## Git
-
-Pre-existing uncommitted work that must not be reset:
-
-```
-M .gitignore          protects Temp_Inference/.env.loader and generated reports
-M tests/test_api.py   model version read from model card instead of hard-coded
-?? Temp_Inference/    migration + loader tooling
-?? call_graphs/       tracing tooling
+```bash
+gcloud run services update-traffic mlmodel --region europe-west1 --to-revisions <REVISION>=100
 ```
 
-Never run `git checkout .`, `git reset --hard`, or `git clean` in this repo
-without checking these first.
+Current: `mlmodel-00014-lrp` (v1.3.3-int8, 100%). The v1.1.0 revisions are still
+present, so a rollback to the pre-recovery generation is available.
+
+**Check after:** hit `/artifact-check` on the service. It must report
+`model.onnx = 278,181,947 bytes` and `looks_like_lfs_pointer: false` for
+v1.3.3-int8. A different size means a different generation is live.
+
+## Roll back the database
+
+`backups/supabase_20260812T070037Z/` is a full read-only export of all five
+tables taken immediately before the v1.3.3 upload, via
+`scripts/81_backup_supabase.py`.
+
+**There was no transaction around the upload,** and there cannot be — PostgREST
+cannot wrap five tables in one. Restoring means re-loading from the backup, not
+rolling back. Take a fresh backup first, or you lose any client review work done
+since.
+
+Three things compensate for the missing transaction, and they are why a failed
+upload leaves a valid database rather than a corrupt one:
+
+1. **Ordering** — dependencies land before dependants, so a failure leaves the
+   database merely partially updated.
+2. **Abort on first mismatch** — every stage verifies its own count.
+3. **Idempotence** — every write is an upsert on a business key, or a delete of
+   an already-identified row.
+
+Stage 7 (the catalog prune) re-queries live rather than trusting the pre-flight,
+because it is the only destructive step whose safety depends on stage 6 having
+completed.
+
+**The backup is a logical row export, not a `pg_dump`.** It restores data — not
+schema, indexes, or policies. The widened `prediction_source` CHECK constraint
+would *not* come back from it. That constraint must allow: `model`,
+`product_lookup`, `meter_lookup`, `business_rule`, `client_evidence_backfill`,
+`silver_audit_backfill`, `manually_audited_near_identical_backfill`.
+
+## Roll back an artifact
+
+Artifacts are gitignored and fully reproducible from the exporter, so there is
+nothing to restore — rebuild:
+
+```bash
+.venv-train/bin/python training/export_recovery_onnx.py --gold Data/candidates/recovery_v1_3_2/master_gold.csv --split Data/candidates/recovery_v1_3_2/split_seed42.csv
+```
+
+`artifacts/v1.0.0/` and `artifacts/v1.1.0/` are protected paths — never
+overwritten, so no rollback is needed for them.
+
+## Roll back a training run
+
+Training writes to a new `models/<name>/` directory. Nothing is overwritten, so
+rolling back means pointing `app/core/config.py` at the previous artifact and
+redeploying. `models/setfit_base/` (the base encoder) is a protected path in the
+trainer and is never touched.

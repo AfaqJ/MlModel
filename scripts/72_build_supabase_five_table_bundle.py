@@ -21,8 +21,12 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-REPLAY = ROOT / "reports/recovery_v1_3_1/local_replay/inference_rows_with_natural_keys.jsonl"
-OUTPUT = ROOT / "reports/recovery_v1_3_1/supabase_five_table_bundle"
+sys.path.insert(0, str(ROOT))
+
+# Built from the corrected batch, not the raw replay: scripts/76 applies the
+# client-evidence recovery and the audited review overrides.
+REPLAY = ROOT / "reports/recovery_v1_3_3/inference_rows_with_natural_keys.jsonl"
+OUTPUT = ROOT / "reports/recovery_v1_3_3/supabase_five_table_bundle"
 TAXONOMY = ROOT / "Data/current_context_2026_06_30/taxonomy_from_plan.csv"
 
 
@@ -66,18 +70,31 @@ def most_common(values: list[str | None]) -> str | None:
 
 
 def build_companies(invoices) -> list[dict[str, Any]]:
+    """Counterparties only. The client is one end of every invoice, not a row here.
+
+    `invoices.company_id` denotes the other party: on a COMPRAS document that is
+    the seller, on a VENTAS document the buyer. Registering the client as well
+    would create a company row no invoice ever references, and would make the
+    `is_seller` / `is_buyer` flags meaningless - the client is a seller on every
+    sale and a buyer on every purchase, so it would carry both.
+
+    The flags therefore describe the counterparty's role towards the client:
+    `is_seller` means they sold to us, `is_buyer` means they bought from us.
+    """
     appearances: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)
     for invoice in invoices:
-        appearances[invoice.seller_rut].append({
-            "name": invoice.seller_name, "giro": invoice.seller_giro,
-            "address": invoice.seller_address, "commune": invoice.seller_commune,
-            "city": invoice.seller_city, "seller": True, "buyer": False,
-        })
-        appearances[invoice.buyer_rut].append({
-            "name": invoice.buyer_name, "giro": invoice.buyer_giro,
-            "address": invoice.buyer_address, "commune": invoice.buyer_commune,
-            "city": invoice.buyer_city, "seller": False, "buyer": True,
-        })
+        if invoice.transaction_type == "COMPRAS":
+            appearances[invoice.seller_rut].append({
+                "name": invoice.seller_name, "giro": invoice.seller_giro,
+                "address": invoice.seller_address, "commune": invoice.seller_commune,
+                "city": invoice.seller_city, "seller": True, "buyer": False,
+            })
+        else:
+            appearances[invoice.buyer_rut].append({
+                "name": invoice.buyer_name, "giro": invoice.buyer_giro,
+                "address": invoice.buyer_address, "commune": invoice.buyer_commune,
+                "city": invoice.buyer_city, "seller": False, "buyer": True,
+            })
     rows = []
     for rut, seen in sorted(appearances.items()):
         name = most_common([row["name"] for row in seen])

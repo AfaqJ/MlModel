@@ -1,0 +1,27 @@
+# Build context for `gcloud builds submit`.
+#
+# This file MUST exist. Without it gcloud falls back to .gitignore, which
+# excludes artifacts/* — the image would then build successfully with no model
+# in it and fail at first request instead of at build time.
+#
+# Mirrors .dockerignore: only the backend, pinned dependencies, and the
+# versioned ONNX artifact are uploaded.
+.gcloudignore
+.git
+.gitignore
+
+*
+!Dockerfile
+!requirements.txt
+!app/
+!app/**
+!artifacts/
+artifacts/*
+!artifacts/v1.3.3-int8/
+!artifacts/v1.3.3-int8/**
+
+# Re-excluded after the allow-list above (last match wins).
+app/inference/line_filters.py
+app/inference/cloud_run_smoke_test.py
+**/__pycache__
+**/.DS_Store

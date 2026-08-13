@@ -6,5 +6,14 @@
 !app/
 !app/**
 !artifacts/
-!artifacts/v1.3.1/
-!artifacts/v1.3.1/**
+!artifacts/v1.3.3-int8/
+!artifacts/v1.3.3-int8/**
+
+# Re-excluded after the allow-list above (last match wins).
+# Offline batch tooling: line_filters.py carries vocabulary tuned to one XML
+# batch and is imported only by scripts/67, 68, 72 and its own test. Nothing in
+# the serving path touches it, so it does not belong in the deployed image.
+app/inference/line_filters.py
+app/inference/cloud_run_smoke_test.py
+**/__pycache__
+**/.DS_Store

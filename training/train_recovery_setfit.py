@@ -116,6 +116,75 @@ def load_and_collapse(path: Path) -> tuple[list[dict[str, str]], dict]:
     return collapsed, audit
 
 
+def provider_dropout_augmentation(
+    train_rows: list[dict[str, str]],
+    held_out_rows: list[dict[str, str]],
+) -> tuple[list[dict[str, str]], dict]:
+    """Add a provider-free copy of every train row that carries a provider.
+
+    The v1.3.1 raw replay showed the encoder had learned provider shortcuts:
+    because `ADM-1.6` was mostly RENDIC cleaning products, every RENDIC food
+    line was confidently filed as office supplies. Showing each item with and
+    without its provider keeps the provider available as evidence while making
+    it impossible to decide a row on the provider alone.
+
+    Only train rows are augmented, and a variant is dropped whenever it would
+    collide with any other model input. That last rule matters: `GASOLINA 93`
+    is legitimately `ADM-1.4` at a service station and `EXP-11.4` at the farm
+    co-op, so its provider-free form is genuinely ambiguous and must not be
+    taught as either.
+    """
+    held_out_by_text = {normalize(row["text"]): row["category_code"].strip() for row in held_out_rows}
+    train_by_text = {normalize(row["text"]): row["category_code"].strip() for row in train_rows}
+
+    proposed: defaultdict[str, set[str]] = defaultdict(set)
+    candidates: dict[str, dict[str, str]] = {}
+    no_provider = 0
+    for row in train_rows:
+        if not (row.get("provider") or "").strip():
+            no_provider += 1
+            continue
+        text = build_model_text(
+            row.get("item_text") or "",
+            row.get("description") or "",
+            "",
+            row.get("direction"),
+        )
+        key = normalize(text)
+        proposed[key].add(row["category_code"].strip())
+        candidates.setdefault(key, {**row, "text": text, "gold_id": f"{row['gold_id']}#noprov"})
+
+    added, dropped_conflict, dropped_duplicate, dropped_leakage = [], 0, 0, 0
+    for key, labels in sorted(proposed.items()):
+        label = next(iter(labels))
+        if len(labels) > 1:
+            dropped_conflict += 1
+            continue
+        if key in held_out_by_text:
+            # Either a validation row (leakage) or an excluded singleton whose
+            # label may differ. Neither is safe to synthesize.
+            dropped_leakage += 1
+            continue
+        existing = train_by_text.get(key)
+        if existing is not None:
+            dropped_duplicate += 1
+            if existing != label:
+                dropped_conflict += 1
+            continue
+        added.append(candidates[key])
+
+    audit = {
+        "train_rows_before": len(train_rows),
+        "train_rows_without_provider": no_provider,
+        "provider_free_variants_added": len(added),
+        "dropped_already_present": dropped_duplicate,
+        "dropped_cross_label_conflict": dropped_conflict,
+        "dropped_collides_with_held_out": dropped_leakage,
+        "train_rows_after": len(train_rows) + len(added),
+    }
+    return train_rows + added, audit
+
+
 def deterministic_split(
     rows: list[dict[str, str]], seed: int = SEED, val_fraction: float = 0.20
 ) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
@@ -303,6 +372,11 @@ def parse_args() -> argparse.Namespace:
         help="use per-batch sequence lengths; disabled by default because MPS caches a graph per shape",
     )
     parser.add_argument("--no-gradient-checkpointing", action="store_true")
+    parser.add_argument(
+        "--no-provider-augmentation",
+        action="store_true",
+        help="disable the provider-free training variants (ablation only)",
+    )
     parser.add_argument("--overwrite-split", action="store_true")
     parser.add_argument("--overwrite-output", action="store_true")
     parser.add_argument("--memory-smoke", action="store_true")
@@ -343,6 +417,16 @@ def main() -> None:
 
     torch.manual_seed(SEED)
     device = resolve_device(args.device)
+    if device == "cpu":
+        # model.to("cpu") is not enough, and pinning accelerate alone only
+        # splits the run (model on MPS, batches on CPU). SetFit, Sentence
+        # Transformers and the Transformers Trainer each probe for MPS
+        # independently, so the only reliable way to mean CPU is to make MPS
+        # invisible for this process. The allocator otherwise dies retaining a
+        # ~732 MB optimizer-state block regardless of batch size.
+        os.environ["ACCELERATE_USE_CPU"] = "1"
+        torch.backends.mps.is_available = lambda: False
+        torch.backends.mps.is_built = lambda: False
     if device == "mps" and os.environ.get("PYTORCH_MPS_HIGH_WATERMARK_RATIO") == "0.0":
         raise SystemExit(
             "refusing unbounded MPS watermark; unset PYTORCH_MPS_HIGH_WATERMARK_RATIO"
@@ -369,6 +453,23 @@ def main() -> None:
     print(f"excluded <2 classes: {excluded_classes}")
 
     labels = sorted(train_counts)
+
+    # Weak classes and the label set are taken from the real gold rows above so
+    # augmentation cannot make a thin class look well covered.
+    if args.no_provider_augmentation:
+        augmented_train_rows = train_rows
+        augmentation_audit = {"enabled": False}
+    else:
+        augmented_train_rows, augmentation_audit = provider_dropout_augmentation(
+            train_rows, validation_rows + excluded_rows
+        )
+        augmentation_audit["enabled"] = True
+        print(
+            f"provider augmentation: +{augmentation_audit['provider_free_variants_added']} "
+            f"variants, {augmentation_audit['dropped_cross_label_conflict']} conflicts dropped, "
+            f"{augmentation_audit['dropped_collides_with_held_out']} held-out collisions dropped"
+        )
+
     initial_model = args.initial_model.resolve() if args.initial_model else base_model_path
     model = SetFitModel.from_pretrained(
         str(initial_model),
@@ -403,11 +504,11 @@ def main() -> None:
     before_embeddings = token_embeddings[tracked_ids].detach().cpu().clone()
 
     train_dataset = Dataset.from_dict({
-        "text": [row["text"] for row in train_rows],
-        "label": [row["category_code"] for row in train_rows],
+        "text": [row["text"] for row in augmented_train_rows],
+        "label": [row["category_code"] for row in augmented_train_rows],
     })
     training_args = TrainingArguments(
-        output_dir=str(ROOT / "models/_checkpoints_recovery_v1_3_1"),
+        output_dir=str(ROOT / "models/_checkpoints_recovery_v1_3_2"),
         batch_size=args.batch_size,
         num_epochs=1,
         body_learning_rate=2e-5,
@@ -457,6 +558,7 @@ def main() -> None:
         "max_steps": args.max_steps,
         "elapsed_minutes": elapsed_minutes,
         "data_audit": data_audit,
+        "provider_augmentation": augmentation_audit,
         "train_rows": len(train_rows),
         "validation_rows": len(validation_rows),
         "train_class_counts": dict(sorted(train_counts.items())),

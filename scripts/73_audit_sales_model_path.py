@@ -7,6 +7,7 @@ known milk/cattle/calf labels rather than relying only on runtime exact rules.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import sys
@@ -31,8 +32,13 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def main() -> None:
-    artifact = ROOT / "artifacts/v1.3.1"
-    report = ROOT / "reports/recovery_v1_3_1"
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--artifact", type=Path, default=ROOT / "artifacts/v1.3.3")
+    parser.add_argument("--report", type=Path, default=ROOT / "reports/recovery_v1_3_3")
+    args = parser.parse_args()
+    artifact = args.artifact
+    report = args.report
+    report.mkdir(parents=True, exist_ok=True)
     raw = [row for row in read_csv(ROOT / "Data/processed/line_items.csv") if row["source"] == "VENTAS"]
     rules = BusinessRules(ROOT / "app/data/business_rules.csv")
     texts = [
@@ -44,7 +50,7 @@ def main() -> None:
         head = LogisticHead(artifact)
         classes = np.asarray([str(code) for code in head.classes_])
         probabilities = np.asarray(head.predict_proba(encoder.embed(texts)))
-        backend = "onnx-int8"
+        backend = json.loads((artifact / "model_card.json").read_text())["artifact_format"]
     else:
         # This fallback keeps the incident proof available before packaging.
         # The final release reruns the same audit against the ONNX artifact.
@@ -55,7 +61,7 @@ def main() -> None:
         from setfit import SetFitModel
 
         model = SetFitModel.from_pretrained(
-            str(ROOT / "models/setfit_base_recovery_v1_3_1"), local_files_only=True
+            str(ROOT / "models/setfit_base_recovery_v1_3_2"), local_files_only=True
         )
         classes = np.asarray([str(code) for code in model.labels])
         probabilities = np.asarray(model.predict_proba(texts))

@@ -1,96 +1,29 @@
 rule_version,transaction_type,item_text,category_code,action,note
-2026.08.11-v2,VENTAS,VENTA DE LECHE,ING-0.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,VENTAS,VENTA DE VACAS,ING-0.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,VENTAS,VENTA VAQUILLAS,ING-0.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,VENTAS,VENTA TERNEROS,ING-0.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,VENTAS,VENTA DE OTROS ANIMALES,ING-0.5,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,VENTAS,VENTA LEÑA,ING-0.6,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Gastos RRHH,EXP-1.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Terapias Secado,EXP-2.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Medicamentos Mastitis,EXP-2.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Vacunas,EXP-2.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Sales Minerales,EXP-2.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Medicamentos,EXP-2.5,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Gastos Salud Animal,EXP-2.6,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Inseminacion Artificial,EXP-3.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Parva Silo,EXP-4.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Bolos Silo,EXP-4.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Bolos Heno,EXP-4.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Concentrado Vacas,EXP-5.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Concentrado Crianza,EXP-5.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Concentrado Otros Animales,EXP-5.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Bolos,EXP-5.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Sustituto Lacteo,EXP-5.5,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Fosforo,EXP-6.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Nitrogeno,EXP-6.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Cal,EXP-6.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Guano,EXP-6.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Fertilizantes,EXP-6.5,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,AGROQUIMICOS,EXP-7.0,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Pradera Perenne,EXP-8.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Pradera Rotacion Corta,EXP-8.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Repoblamiento,EXP-8.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Cultivos,EXP-8.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Energia Electrica Riego,EXP-9.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Gastos Riego,EXP-9.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Sala,EXP-10.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Diping,EXP-10.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Detergentes e higenizantes,EXP-10.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Gastos Lecheria,EXP-10.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Electricidad Lecheria,EXP-11.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Electricidad Casas e Instalaciones,EXP-11.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Petroleo,EXP-11.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Bencina,EXP-11.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Gas,EXP-11.5,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Analisis Suelo y forraje,EXP-12.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Analisis Animales,EXP-12.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Maquinaria,EXP-13.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Motos,EXP-13.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Vehiculos,EXP-13.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Caminos,EXP-14.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Cercos,EXP-14.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Agua y Purines,EXP-14.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Mantencion Instalaciones,EXP-14.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Servicios Agronomicos,EXP-15.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Servicios Veterinarios,EXP-15.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Fletes,EXP-15.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Arriendo Maquinaria y Vehiculos,EXP-15.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Servicios Agricolas,EXP-15.5,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Ropa y Herramientas de Trabajo,EXP-16.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Gastos Campo,EXP-16.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Comunicaciones e Internet,ADM-1.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Arriendo Oficina,ADM-1.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Movilizacion,ADM-1.4,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Colacion y Alojamiento,ADM-1.5,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Utiles y gastos de oficina.,ADM-1.6,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Gastos Administracion,ADM-1.7,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Asesoria Contable,ADM-1.8,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Asesoria Legal,ADM-1.9,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Otros Servicios y Asesorias,ADM-1.10,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Seguros Vehiculos,ADM-2.1,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Seguros Trabajadores,ADM-2.2,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,COMPRAS,Seguros Otros,ADM-2.3,assign,Canonical active client taxonomy leaf; exact-name rule.
-2026.08.11-v2,VENTAS,VENTA LECHE,ING-0.1,assign,"Common omission of ""de""."
-2026.08.11-v2,VENTAS,VENTAS DE LECHE,ING-0.1,assign,Plural invoice wording.
-2026.08.11-v2,VENTAS,VENTAS LECHE,ING-0.1,assign,"Plural wording with omitted ""de""."
-2026.08.11-v2,VENTAS,VENTA VACAS,ING-0.2,assign,"Common omission of ""de""."
-2026.08.11-v2,VENTAS,VENTAS DE VACAS,ING-0.2,assign,Plural invoice wording.
-2026.08.11-v2,VENTAS,VENTAS VACAS,ING-0.2,assign,"Plural wording with omitted ""de""."
-2026.08.11-v2,VENTAS,VENTA DE VAQUILLAS,ING-0.3,assign,Observed client wording.
-2026.08.11-v2,VENTAS,VENTAS VAQUILLAS,ING-0.3,assign,Plural invoice wording.
-2026.08.11-v2,VENTAS,VENTAS DE VAQUILLAS,ING-0.3,assign,"Plural wording with ""de""."
-2026.08.11-v2,VENTAS,VENTA DE TERNEROS,ING-0.4,assign,Male calves; same client category as female calves.
-2026.08.11-v2,VENTAS,VENTAS TERNEROS,ING-0.4,assign,Observed male-calf wording.
-2026.08.11-v2,VENTAS,VENTAS DE TERNEROS,ING-0.4,assign,Male calves; plural invoice wording.
-2026.08.11-v2,VENTAS,VENTA TERNERAS,ING-0.4,assign,Female calves; same client category as male calves.
-2026.08.11-v2,VENTAS,VENTA DE TERNERAS,ING-0.4,assign,Observed female-calf wording.
-2026.08.11-v2,VENTAS,VENTAS TERNERAS,ING-0.4,assign,Female calves; plural invoice wording.
-2026.08.11-v2,VENTAS,VENTAS DE TERNERAS,ING-0.4,assign,"Female calves; plural wording with ""de""."
-2026.08.11-v2,VENTAS,VENTA OTROS ANIMALES,ING-0.5,assign,"Common omission of ""de""."
-2026.08.11-v2,VENTAS,VENTAS DE OTROS ANIMALES,ING-0.5,assign,Plural invoice wording.
-2026.08.11-v2,VENTAS,VENTAS OTROS ANIMALES,ING-0.5,assign,"Plural wording with omitted ""de""."
-2026.08.11-v2,VENTAS,VENTA DE LEÑA,ING-0.6,assign,"Common insertion of ""de""."
-2026.08.11-v2,VENTAS,VENTAS LEÑA,ING-0.6,assign,Plural invoice wording.
-2026.08.11-v2,VENTAS,VENTAS DE LEÑA,ING-0.6,assign,"Plural wording with ""de""."
-2026.08.11-v2,COMPRAS,DIPPING,EXP-10.2,assign,"Corrected spelling of taxonomy leaf ""Diping""."
-2026.08.11-v2,COMPRAS,DETERGENTES E HIGIENIZANTES,EXP-10.3,assign,"Corrected spelling of taxonomy leaf ""higenizantes""."
+2026.08.12-v3,VENTAS,VENTA DE LECHE,ING-0.1,assign,Canonical active client taxonomy leaf; exact-name rule.
+2026.08.12-v3,VENTAS,VENTA DE VACAS,ING-0.2,assign,Canonical active client taxonomy leaf; exact-name rule.
+2026.08.12-v3,VENTAS,VENTA VAQUILLAS,ING-0.3,assign,Canonical active client taxonomy leaf; exact-name rule.
+2026.08.12-v3,VENTAS,VENTA TERNEROS,ING-0.4,assign,Canonical active client taxonomy leaf; exact-name rule.
+2026.08.12-v3,VENTAS,VENTA DE OTROS ANIMALES,ING-0.5,assign,Canonical active client taxonomy leaf; exact-name rule.
+2026.08.12-v3,VENTAS,VENTA LEÑA,ING-0.6,assign,Canonical active client taxonomy leaf; exact-name rule.
+2026.08.12-v3,VENTAS,VENTA LECHE,ING-0.1,assign,"Common omission of ""de""."
+2026.08.12-v3,VENTAS,VENTAS DE LECHE,ING-0.1,assign,Plural invoice wording.
+2026.08.12-v3,VENTAS,VENTAS LECHE,ING-0.1,assign,"Plural wording with omitted ""de""."
+2026.08.12-v3,VENTAS,VENTA VACAS,ING-0.2,assign,"Common omission of ""de""."
+2026.08.12-v3,VENTAS,VENTAS DE VACAS,ING-0.2,assign,Plural invoice wording.
+2026.08.12-v3,VENTAS,VENTAS VACAS,ING-0.2,assign,"Plural wording with omitted ""de""."
+2026.08.12-v3,VENTAS,VENTA DE VAQUILLAS,ING-0.3,assign,Observed client wording.
+2026.08.12-v3,VENTAS,VENTAS VAQUILLAS,ING-0.3,assign,Plural invoice wording.
+2026.08.12-v3,VENTAS,VENTAS DE VAQUILLAS,ING-0.3,assign,"Plural wording with ""de""."
+2026.08.12-v3,VENTAS,VENTA DE TERNEROS,ING-0.4,assign,Male calves; same client category as female calves.
+2026.08.12-v3,VENTAS,VENTAS TERNEROS,ING-0.4,assign,Observed male-calf wording.
+2026.08.12-v3,VENTAS,VENTAS DE TERNEROS,ING-0.4,assign,Male calves; plural invoice wording.
+2026.08.12-v3,VENTAS,VENTA TERNERAS,ING-0.4,assign,Female calves; same client category as male calves.
+2026.08.12-v3,VENTAS,VENTA DE TERNERAS,ING-0.4,assign,Observed female-calf wording.
+2026.08.12-v3,VENTAS,VENTAS TERNERAS,ING-0.4,assign,Female calves; plural invoice wording.
+2026.08.12-v3,VENTAS,VENTAS DE TERNERAS,ING-0.4,assign,"Female calves; plural wording with ""de""."
+2026.08.12-v3,VENTAS,VENTA OTROS ANIMALES,ING-0.5,assign,"Common omission of ""de""."
+2026.08.12-v3,VENTAS,VENTAS DE OTROS ANIMALES,ING-0.5,assign,Plural invoice wording.
+2026.08.12-v3,VENTAS,VENTAS OTROS ANIMALES,ING-0.5,assign,"Plural wording with omitted ""de""."
+2026.08.12-v3,VENTAS,VENTA DE LEÑA,ING-0.6,assign,"Common insertion of ""de""."
+2026.08.12-v3,VENTAS,VENTAS LEÑA,ING-0.6,assign,Plural invoice wording.
+2026.08.12-v3,VENTAS,VENTAS DE LEÑA,ING-0.6,assign,"Plural wording with ""de""."

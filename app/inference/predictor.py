@@ -117,6 +117,15 @@ class Predictor:
         ambiguity_reason = model_review_guard_reason(item_text, description, code1) if source == "model" else None
         if ambiguity_reason:
             decision = DecisionResult("review_required", ambiguity_reason)
+        # Confidence says how sharply the head separated the classes it knows.
+        # It cannot say whether this row resembles anything the model was
+        # trained on, which is what produced the confident lies in the v1.3.1
+        # raw replay. The familiarity gate answers that, and only downgrades.
+        familiarity = getattr(self.bundle, "familiarity", None)
+        if familiarity is not None and source == "model" and decision.decision == "auto_accept":
+            familiarity_reason = familiarity.review_reason(embedding[0], code1)
+            if familiarity_reason:
+                decision = DecisionResult("review_required", familiarity_reason)
         if (transaction_type or "").upper() == "VENTAS" and source != "business_rule":
             # The known operating sales were handled by the exact lookup above.
             # An unknown sale may be an asset disposal or a missing taxonomy

@@ -1,7 +1,19 @@
-# LABELING RULES — MCT-37 Antillanca invoice classifier (READ FIRST, every session)
+# LABELING RULES — what may enter the gold set
 
-This file is the single source of truth for how gold/silver data is organized and what may
-enter the gold set. Do not deviate. Do not invent new file layouts.
+The rules below are current. **Some file paths in this document are stale** —
+verified 2026-08-13:
+
+| Path as written | Reality |
+|---|---|
+| `Products list Antillanca.xlsx` | now `Newest_Products list_Antillanca.xlsx`, plus `Products list Antillanca(Productos)New.csv` |
+| `Data/silver_audit_2026_06_30/audit_ledger.csv` | directory no longer exists; the ledger lives under `Data/silver/` |
+| "72 generated category files" | the taxonomy has **71** categories; this doc contradicts its own later count |
+
+Also note: this file describes the `Data/gold/_master_gold.csv` lineage. The
+model in production trained on `Data/candidates/recovery_v1_3_2/master_gold.csv`
+(1,837 rows). See `CONSTRAINTS.md` — do not conflate the two.
+
+The *rules* about what may enter gold are unchanged and still binding.
 
 ## What may enter GOLD (these sources)
 1. **Client row examples** — `Data/examples_categories/xml examples list.xlsx` → source `direct_client_example`.
@@ -139,3 +151,38 @@ ADM-1.1 Remuneraciones (wages). These wait for client data; do not fabricate.
 ## Regenerate views
 `python3 scripts/50_build_gold_views.py`   (gold master → 72 files + coverage)
 `python3 scripts/51_build_silver_structure.py`   (silver → 72 files + index)
+
+---
+
+## Recovery ceiling — what the original (lost) dataset actually had
+
+From a client screenshot, re-confirmed 2026-07-01. These are the counts the
+**original, now-lost** dataset held for its most deficient categories.
+Everything not listed here had ≥20.
+
+This is the realistic **ceiling** for recovery: if a category had 0 examples
+originally, it will not be hiding in silver either.
+
+| Category | Original count |
+|---|---:|
+| ADM-1.1 Remuneraciones Administración | 0 — unrecoverable; needs client payroll data |
+| ADM-1.9 Asesoría Legal | 0 |
+| ADM-2.3 Seguros Otros | 0 |
+| ING-0.5 Venta de Otros Animales | 1 — income; needs VENTAS data |
+| ING-0.6 Venta Leña | 1 |
+| EXP-1.1 Otros Gastos RRHH | 5 |
+| EXP-8.3 Repoblamiento | 6 |
+| EXP-6.4 Guano | 9 |
+| EXP-2.1 Terapias Secado | 10 |
+| EXP-4.3 Bolos Heno | 12 |
+| EXP-15.2 Servicios Veterinarios | 13 |
+| EXP-5.4 Bolos | 13 |
+| EXP-6.1 Fósforo | 15 |
+| EXP-6.5 Otros Fertilizantes | 16 |
+
+`ADM-1.9` and `ADM-2.3` are the two categories currently excluded as untrained.
+This table is why: they never had examples to begin with.
+
+**Rule for a starving category:** if it is in this list *and* the client is
+expected to supply ≥10 examples, wait for the client. Otherwise recover it by
+auditing silver — never by keyword or raw promotion.
