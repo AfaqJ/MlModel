@@ -44,9 +44,18 @@ Two traps:
   Entretecho and Pilauco never emit it, so a blank there carries no information.
   COPEC, Steuer, Daniel Villar and the rest always emit it.
 
-**Not settled:** the co-op (`COOPERATIVA AGRICOLA Y LECHERA DE LA UNION`) both
-delivers bulk fuel *and* runs a pump, so a plate on their invoice might be their
-own delivery truck. 47 lines held back.
+**The co-op is not a special case — this was checked and the exception was
+wrong.** `<Transporte>` is legally the goods-dispatch section, so a plate on a
+bulk supplier's invoice *looks* like it should be their delivery truck. It
+isn't: **41 of the co-op's 47 plate lines carry the same plates that appear at
+the service stations** (`TBZL91`, `PKSR82`, `TJXC63`, `TJXC64`) — Antillanca's
+own vehicles. A delivery fleet would be a disjoint set. The co-op's block also
+carries no `<Chofer>`, while the service stations' do. All 47 resolved as
+vehicle travel.
+
+Method worth reusing: when a field might mean two different things depending on
+the supplier, check whether the *values* overlap across suppliers. Shared values
+mean one meaning.
 
 This rule is **petrol only.** Diesel is `EXP-11.3` regardless of plate — settled
 by the product name, and the client's own filing has been 100% consistent.
@@ -157,7 +166,7 @@ classification is what caused the original incident.
    TVs. Every vehicle/machine/building category in the taxonomy is a
    *maintenance* category; nothing covers acquiring one. They named the *sale*
    side but not the *purchase* side.
-2. **The co-op's petrol** — delivery truck or fill-up? 47 lines.
+2. ~~The co-op's petrol~~ — resolved, see §1.
 3. **77 petrol lines** from stations that record neither a plate nor a jerrycan.
 4. **`OTROS INGRESOS`** (CLP 750,000, income from road maintenance work) — not an
    asset sale, so `ING-0.7` doesn't fit it either.
