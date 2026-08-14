@@ -108,7 +108,7 @@ category ever fitted, and the model was forced to pick a wrong one.
 
 | Code | Name | Covers |
 |---|---|---|
-| `AF-1.1` | Compras de Animales | Buying live animals — 109 lines, CLP 383,039,000 |
+| `AF-1.1` | Compras de Animales | Buying live animals — 112 lines, CLP 512,139,000 |
 | `ING-0.7` | Ventas de Activo Fijo | Selling a vehicle, tank or machine — 6 lines, CLP 112,474,790 |
 
 Codes were ours, not the client's — they said the codes carry no meaning for
