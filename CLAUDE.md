@@ -51,6 +51,7 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
 | How the system is built | `docs/ARCHITECTURE.md` |
 | Why it is built that way | `docs/DECISIONS.md` |
 | What may enter the gold dataset | `docs/LABELING_RULES.md` |
+| How the client wants things labelled | `docs/CLIENT_CONVENTIONS.md` |
 | What counts as proof before shipping | `docs/TEST_CHECKLIST.md` |
 | How to undo a deploy, an upload, a retrain | `docs/ROLLBACK.md` |
 | Hard boundaries, in full | `docs/CONSTRAINTS.md` |

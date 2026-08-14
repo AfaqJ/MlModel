@@ -1,0 +1,243 @@
+input_id,item,provider,was,now,why
+COMPRAS|76746083K|155701|1,G93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772614535|191932|1,93 S/P,COMERCIALIZADORA CARTIZ SPA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772614535|192705|1,93 S/P,COMERCIALIZADORA CARTIZ SPA,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|242147|1,G93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|242570|1,G93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|242572|1,G93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|343458|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|344962|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|493899|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|494819|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|773753202|524902|1,G93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|823926006|4879583|1,G93,COOPRINSEM,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|19654719|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|27783884|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|27785510|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|27785847|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|27785925|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28124565|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28124895|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28124912|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28124962|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|772594003|240473|1,G93,JUAN CARLOS MARTINEZ Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|245850|1,G93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|763329399|250158|1,G93,COMERCIAL AIKETEN LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|348944|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|352040|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|495857|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|497478|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|498651|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|499913|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|20098963|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28125729|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28125976|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28309638|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28310284|2,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28353802|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,review_required,auto_accept,decided by the plate rule
+COMPRAS|767570007|131222|1,G93,ESTACION DE SERVICIOS BULNES LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|769206531|167477|1,G93,COMERCIAL Y SERVICIOS PALMILLA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|763686728|223224|1,G93,SOC COMERCIAL SANTA SOLEDAD LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|763329399|251931|1,G93,COMERCIAL AIKETEN LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|356568|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|500976|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|500978|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|502514|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|503121|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|504279|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|773753202|540507|1,G93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|765700817|567901|1,G93,COMERCIAL NAVEA LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|20343829|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28354167|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28354222|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,review_required,auto_accept,decided by the plate rule
+COMPRAS|763686728|226628|1,G93,SOC COMERCIAL SANTA SOLEDAD LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|761105221|300018|1,G93,COMERCIAL Y SERVICIOS J Y M LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|360584|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|505817|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|509454|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|797061204|8071162|1,93 S/P,ESMAX RED LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|20503928|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27409247|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27477406|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27477945|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28354528|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28354572|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28368140|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|777854402|511121|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|511735|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|512665|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|513456|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|514430|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|773753202|550684|1,G93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27489702|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27493093|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27556700|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27575146|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|27594847|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28354912|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28355047|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28355088|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28355089|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28369657|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,review_required,auto_accept,decided by the plate rule
+COMPRAS|761105221|306274|1,G93,COMERCIAL Y SERVICIOS J Y M LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|369102|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|778621401|496226|1,G93,DISTRIBUIDORA DE COMBUSTIBLES ARAUCANIA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|515535|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|766958206|783067|1,G93,COMERCIAL DASEFE LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|20938222|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|20975016|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28101795|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28102136|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28113826|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28142850|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28355538|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28921670|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28922235|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|786566800|372432|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|778621401|498679|1,G93,DISTRIBUIDORA DE COMBUSTIBLES ARAUCANIA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|519986|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|521779|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|522162|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28181299|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28225160|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28226906|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|28355703|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28355725|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28355795|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28355895|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28720938|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28922308|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28922334|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|28922425|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29082387|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|76746083K|171909|1,G93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772594003|255154|1,G93,JUAN CARLOS MARTINEZ Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|264733|1,G93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|265356|1,G93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|761105221|310521|1,G93,COMERCIAL Y SERVICIOS J Y M LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|375994|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|377471|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|778621401|503590|1,G93,DISTRIBUIDORA DE COMBUSTIBLES ARAUCANIA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|524011|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|525420|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|525688|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|526387|1,G93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|773753202|565855|1,G93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|773753202|565859|1,G93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|21278361|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|21324545|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|21358010|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|21380383|1,G93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28306310|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28312184|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28327018|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28330161|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28334222|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28359587|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28363545|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28379316|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|29163058|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|762599570|212438|1,93 S/P,Est. de Servicio Paola Uslar M. E.I.R.L.,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|378377|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|378810|1,G93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|379691|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|528303|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|530452|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|773753202|572034|1,Gasolina 93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|21536321|1,Gasolina 93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|21621513|1,Gasolina 93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28474250|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28475306|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|29163407|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29163410|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29163492|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29307870|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29308275|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|76746083K|175556|1,Gasolina 93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|76746083K|175831|1,Gasolina 93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772594003|262786|1,Gasolina 93,JUAN CARLOS MARTINEZ Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|763329399|265268|1,Gasolina 93,COMERCIAL AIKETEN LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|763329399|267100|1,Gasolina 93,COMERCIAL AIKETEN LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|385021|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|532402|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|535126|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|773753202|578078|1,Gasolina 93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|21733980|1,Gasolina 93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28503048|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28542790|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28578212|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28578903|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28588168|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|28599388|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|29309175|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|775834382|49579|1,Gasolina 93,COMERCIAL Y SERVICIOS VIGU LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|761105221|319344|1,Gasolina 93,COMERCIAL Y SERVICIOS J Y M LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|386297|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|389139|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|389984|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|538712|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|539125|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|539263|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|772156405|22007480|1,Gasolina 93,ADMINISTRADORA DE VENTAS AL DETALLE LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|29078055|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|29094923|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|29112397|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|29112672|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|29168856|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|29309284|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|775834382|51784|1,Gasolina 93,COMERCIAL Y SERVICIOS VIGU LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|77722073K|61253|1,93 S/P,COMERCIAL VICTORIA SPA,review_required,auto_accept,decided by the plate rule
+COMPRAS|76746083K|179494|1,Gasolina 93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|276017|1,Gasolina 93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|277437|1,Gasolina 93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|277518|1,Gasolina 93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|392470|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|392749|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|393792|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|541166|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|541822|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|543232|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|795888705|2563624|1,Aramco Gasolina 93,Esmax Distribucion SpA,auto_accept,review_required,station records neither a plate nor a jerrycan
+COMPRAS|810941006|29582622|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29582626|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|995200007|30405762|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30464561|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|775834382|54880|1,Gasolina 93,COMERCIAL Y SERVICIOS VIGU LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|76746083K|181219|1,Gasolina 93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|280476|1,Gasolina 93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|395776|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|397403|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|786566800|397404|1,Gasolina 93,DANIEL VILLAR Y CIA LTDA,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|545398|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|546958|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|29934329|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29934363|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29934382|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29934399|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|995200007|30480154|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30491804|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30498450|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30499422|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30555883|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|76746083K|182536|1,Gasolina 93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|76746083K|182537|1,Gasolina 93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|77139597K|210892|1,93 S/P,SERVICENTRO DEL SUR LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|763329399|275429|1,Gasolina 93,COMERCIAL AIKETEN LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|282857|1,Gasolina 93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|57884150|283966|1,Gasolina 93,PATRICIO SANTIAGO CAREY BRIONES,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|553773|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|777854402|554494|1,Gasolina 93,SOC DE TRANSPORTES STEUER HOLMGREN Y COM,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|29884363|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29934529|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|810941006|29934763|1,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30748326|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30748348|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30768291|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30769509|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30769555|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|995200007|30773817|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|76746083K|184105|1,Gasolina 93,COMERCIAL Y SERVICIOS FUTRONO LIMITADA,review_required,auto_accept,decided by the plate rule
+COMPRAS|810941006|29934913|1,GASOLINA 93,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,auto_accept,review_required,co-op plate could be their delivery truck
+COMPRAS|995200007|30813768|3,DETALLE,COPEC S.A.,review_required,auto_accept,decided by the plate rule
+COMPRAS|761491156|12439|1,Eurodiesel plus 15W40 CK4 19 lts,SOCIEDAD TOROYO LTDA,review_required,auto_accept,item name settles it — not fuel
+COMPRAS|810941006|29692362|1,EST. DIESEL PORTATIL CERT. 420 L,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,review_required,auto_accept,item name settles it — not fuel

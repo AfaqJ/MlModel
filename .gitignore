@@ -54,3 +54,10 @@ temp_inference/snapshots/
 !artifacts/v1.1.0/**
 artifacts/v1.1.0/__pycache__/
 artifacts/v1.1.0/.DS_Store
+
+# Local backups of data files — recoverable, never in git
+backups/
+# Bulk generated data. The small CSV changelogs under reports/ stay tracked.
+reports/**/*.jsonl
+reports/**/*.jsonl.bak_*
+reports/**/*.npz
