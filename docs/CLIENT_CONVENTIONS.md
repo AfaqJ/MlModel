@@ -108,7 +108,7 @@ category ever fitted, and the model was forced to pick a wrong one.
 
 | Code | Name | Covers |
 |---|---|---|
-| `AF-1.1` | Compras de Animales | Buying live animals — 112 lines, CLP 512,139,000 |
+| `AF-1.1` | Compras de Animales | Buying live animals — 113 lines, CLP 529,541,100 |
 | `ING-0.7` | Ventas de Activo Fijo | Selling a vehicle, tank or machine — 6 lines, CLP 112,474,790 |
 
 Codes were ours, not the client's — they said the codes carry no meaning for
@@ -161,13 +161,19 @@ classification is what caused the original incident.
 
 ## Still open — needs the client
 
-1. **Buying a non-animal fixed asset.** 12 lines, CLP 105,678,715 — barn
+1. **Where do lease payments go? CLP 377,117,342 — the largest open item.**
+   Banco BICE `RENTA DE ARRENDAMIENTO` 141 lines (CLP 310,427,389) sitting in
+   Other Admin; Santander `PAGO ARRIENDO OPERACION` 17 lines and a farm lease
+   from Inmobiliaria Progreso 14 lines, both sitting in *Road Maintenance*. The
+   only lease categories that exist are machinery/vehicle (`EXP-15.4`) and
+   office (`ADM-1.3`); nothing covers a bank finance lease or land rental.
+2. **Buying a non-animal fixed asset.** 12 lines, CLP 105,678,715 — barn
    construction, a pickup, a motorbike, a lawn tractor, four generators, two
    TVs. Every vehicle/machine/building category in the taxonomy is a
    *maintenance* category; nothing covers acquiring one. They named the *sale*
    side but not the *purchase* side.
-2. ~~The co-op's petrol~~ — resolved, see §1.
-3. **77 petrol lines** from stations that record neither a plate nor a jerrycan.
+3. ~~The co-op's petrol~~ — resolved, see §1.
+4. **77 petrol lines** from stations that record neither a plate nor a jerrycan.
 4. **`OTROS INGRESOS`** (CLP 750,000, income from road maintenance work) — not an
    asset sale, so `ING-0.7` doesn't fit it either.
 5. **Rename COPEC's `DETALLE` rows** to `Gasolina 93`? 50 rows where the name is
