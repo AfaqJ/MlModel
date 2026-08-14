@@ -5,50 +5,43 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**v1.3.3 is live in production and the original incident is closed.** Revision
-`mlmodel-00014-lrp` serves 100% of traffic on Cloud Run (`mlmodel`,
-`europe-west1`), running `artifacts/v1.3.3-int8` (284 MB). All 11,766 invoice
-lines across 5,195 invoices are uploaded to Supabase `nkdswofslslrumyraklv`:
-6,583 auto-accepted with `final_code` set, 5,183 in review with `final_code`
-NULL. The 47 `VENTA DE LECHE` lines (CLP 3.8bn) that production had filed as
-*Road Maintenance* and *Freight* are now `ING-0.1`, auto-accepted via exact
-business rule.
+**The labelled dataset is corrected and live.** Supabase `nkdswofslslrumyraklv`
+holds **11,746 invoice lines — 7,014 auto-accepted, 4,732 in review**, with zero
+rows showing a label while awaiting review. Three categories the client created
+on 2026-08-14 are populated: `AF-1.1` Compras de Animales (113 lines, CLP
+529,541,100), `AF-2.1` Compras de Activo Fijo (19 lines, CLP 339,658,011),
+`ING-0.7` Ventas de Activo Fijo (6 lines, CLP 112,474,790). The live `categories`
+table now has 74 rows; **the deployed model still emits only the original 71** —
+these three are rule-assigned, see D-028.
 
-Branch `codex/transaction-aware-retrain-v2` is **dirty across 67 paths** — last
-commit `2ed3a87`. Nothing from the v1.3.3 session *or* the doc restructure is
-committed. Tests: 98 passing. Artifacts are gitignored and rebuildable from the
-exporter.
+v1.3.3 remains live on Cloud Run (`mlmodel-00014-lrp`). No model change this
+session. Branch `codex/transaction-aware-retrain-v2`, last commit on the session's
+work is `ea46b49`; the only uncommitted paths are pre-existing (`call_graphs/`
+deletions and a `Temp_Inference/README.md` edit that were dirty at session start).
+Tests: 98 passing.
 
 ## Next
 
-1. **Commit — do this before starting new work.** Three suggested commits:
-   the VENTAS-only business-rules change; the artifact/deploy tooling
-   (`.gcloudignore`, exporter, `familiarity.py`, new tests); and the docs
-   restructure. 67 dirty paths on one branch is hard to review or revert.
-2. **Frontend fix — highest value available.** The UI renders `predicted_code`
-   in the Category column on rows where `final_code` is NULL, so a CLP 45M "fat
-   cow" displays as *Milking Parlour Maintenance*. Frontend only; no backend
-   change. This is the same display error class as the original incident.
-3. **Gold defect, fix before any retrain.** `FUNDO CHAPICAHUIN` and `FUNDO
-   RAICES` are farm names sitting in gold as `EXP-6.3` (Cal); the model
-   memorised them. Harmless today — only ever invoiced by SERVICIOS AGRICOLAS
-   CORPAL — but it is the same shape as the `Item` row that once stamped 32
-   invoices.
-4. **On next retrain, re-measure INT8.** Flip count is a property of these
-   specific weights and worsened from v1.3.1 (12/308) to v1.3.3 (15/312). The
-   exporter refuses by default; ceilings must be passed explicitly.
-5. **Stale summary badges** — the `VENTA DE LECHE` detail page reads "seen in 1
-   other category" when live data has exactly one everywhere. Cache or history
-   table. The catalog list shows 37 lines where the detail page shows 47
-   invoices, so more than one aggregate is stale.
-6. **DIFOR split rows** — 20 invoices where the money sits on a printed column
-   header and the service name on a CLP 0 line. Fix is an UPDATE plus a DELETE;
-   `invoice_line_number` does not need to change.
-7. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres. Chilean decimal
-   format (`62.648,532`) read as thousands separators. Amounts are correct;
-   quantity and average-unit-price columns are not.
+1. **Send the client email.** Three questions, drafted: the bank leases, farmland
+   rental, and Shell/ENEX fuel. See `docs/CLIENT_CONVENTIONS.md` "Still open".
+2. **Frontend fix — still the highest-value item and still untouched.** The UI
+   renders `predicted_code` on rows awaiting review. Lower risk than it was now
+   that `final_code` is NULL on every review row, but the UI still reads the
+   wrong column. Same error class as the original incident.
+3. **Gold defect before any retrain.** `FUNDO CHAPICAHUIN` and `FUNDO RAICES` are
+   farm names sitting in gold as `EXP-6.3` (Cal); the model memorised them.
+4. **On next retrain, handle the three new categories.** They have gold rows but
+   the model cannot emit them. Also re-measure INT8 flip count — it worsened from
+   12/308 (v1.3.1) to 15/312 (v1.3.3).
+5. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres. Chilean decimal
+   format (`62.648,532`) read as thousands separators. Amounts are correct.
+6. **Stale summary badges** — catalog list and detail page disagree on counts.
 
-## What the 5,183 review rows actually contain
+## What the review rows contain
+
+Measured at 5,183 rows before the 2026-08-14 corrections; the shape holds at
+4,732. Fuel is now fully triaged — everything left in fuel review is a genuine
+client question, which is **not** true of the rest of the queue.
 
 | bucket | rows | share |
 |---|---:|---:|
@@ -87,6 +80,53 @@ Each blocks rows that no amount of model work can fix.
    available. ~3,500 review rows are undertraining, not genuine ambiguity.
 
 ## Recent sessions
+
+### 2026-08-14 — client conventions applied; dataset corrected and re-pushed
+
+- **No model change.** Data, gold, docs and a new re-load script. 98 tests pass.
+- **Petrol solved by a field we were never reading.** The client said invoices
+  distinguish vehicle fuel from farm fuel; they do, in `<Transporte><Patente>`,
+  which holds either the plate or the word "bidon". Resolved 676 of 753 petrol
+  lines and corrected 236 labels — wrong in *both* directions, so no
+  supplier-level rule could have caught it (-> D-029).
+- **Three categories created and populated** — `AF-1.1`, `AF-2.1`, `ING-0.7`
+  (-> D-028). Live `categories` is now 74 rows; the model still emits 71.
+- **The scale of the missing-category damage was far larger than recorded.**
+  Animal purchases were documented as 103 auction lines / CLP 254,529,000. Actual:
+  **113 lines / CLP 529,541,100** — cows, heifers and calves bought direct from
+  breeders, filed as *teat dip*, *veterinary services* and *mineral salts*. The
+  model was 87-90% confident on those; only the familiarity gate kept them out of
+  auto-accept. Found by grouping the review queue by total value, not by keyword.
+- **CLP 377M of lease payments have no home** — Banco BICE, Santander, and a
+  farmland lease, two of the three sitting in *Road Maintenance* because that
+  category's own description contains the word "arriendo".
+- **DIFOR merge** — 20 invoices where a printed table header parsed as the line
+  item and carried the whole amount while the service name sat on a CLP 0 line.
+  Merged; the money line survives and keeps its line number, so no renumbering.
+- **Pushed live** via the new `scripts/82_apply_label_corrections.py` (-> D-031).
+  Backup first: `backups/supabase_20260814T110447Z_pre_corrections/`.
+- **Decided:** client authority outranks row volume (-> D-030). Written up in the
+  new `docs/CLIENT_CONVENTIONS.md`.
+- **Gotcha — a theory about the data is not a finding.** Claimed the co-op's
+  plates were their delivery trucks, reasoning from what `<Transporte>` is *for*
+  in the DTE schema. Afaq pushed back. One query killed it: **41 of the co-op's 47
+  plate lines carry the same plates seen at the service stations** — Antillanca's
+  own vehicles. A delivery fleet would be a disjoint set. That removed a client
+  question that was about to be sent. **Method: when a field might mean two things
+  depending on the supplier, check whether the values overlap across suppliers.**
+- **Gotcha — PostgREST upsert is `INSERT ... ON CONFLICT`.** A partial-column
+  payload fails the insert arm on every NOT NULL column it omits. Send whole rows
+  or `PATCH`. Also `categories_id` is database-generated, so locally-invented
+  UUIDs are meaningless — read ids back from live and remap.
+- **Gotcha — Chilean RUTs can end in `K`.** A filename regex matching only digits
+  before `.xml` silently dropped 11 invoices from an index and made them look like
+  missing raw data. They were on disk the whole time.
+- **Gotcha — `CAFE` is usually the colour brown.** `BOTIN NORSEG PRO CAFE 42` is
+  a boot, not coffee. Nearly swept 14 rows into a food category.
+- **Two scripts were numbered 81.** `81_backup_supabase.py` already existed; the
+  new one was renamed to `82_`. `scripts/` is gitignored with ~22 files
+  force-added, so `git ls-files` does not show what is on disk — check `ls`.
+
 
 ### 2026-08-13 — context architecture; 15 docs → 7
 

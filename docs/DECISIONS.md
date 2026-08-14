@@ -597,3 +597,81 @@ of truth, none loading automatically. `MLMODEL.md` said "do not drift" and
 **Rejected:** an `archive/` folder (sprawl that has been moved rather than
 removed), and keeping handovers in `~/.claude/handoffs/` (does not travel with
 the repo, invisible in a diff, invisible to Codex).
+
+## D-028 — Three new categories are assigned by rule, not predicted by the model
+
+**Date:** 2026-08-14 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The client created `AF-1.1 Compras de Animales`, `AF-2.1 Compras de Activo Fijo`
+and `ING-0.7 Ventas de Activo Fijo`. All three exist in the live `categories`
+table (74 rows) and carry data, but **the deployed model cannot emit them** — it
+still has the original 71 output classes. Rows land in them by deterministic rule
+only, `prediction_source = business_rule`.
+
+**Why:** the data had to be correct on the dashboard now; retraining is a
+separate, later job. A category the model cannot predict is still a valid label
+when a rule assigns it.
+
+**The code prefix is load-bearing, despite the client saying codes are
+meaningless to them.** `app/inference/business_rules.py::direction_mask` filters
+on the literal string `"ING-"`: anything on a VENTAS invoice must start with
+`ING-`, anything on a COMPRAS invoice must not. That is why asset *sales* are
+`ING-0.7` and not an `AF-` code. Renaming these codes would silently break
+direction masking.
+
+**Rejected:** waiting for a retrain before creating the categories — it would
+have left CLP 981M mislabelled on a live dashboard.
+
+## D-029 — The petrol farm-vs-travel split is a rule at inference, never gold
+
+**Date:** 2026-08-14 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Petrol is farm fuel or vehicle travel depending on the `<Transporte><Patente>`
+field of the DTE: a plate means travel, the word "bidón" means farm. The model
+input is `[direction] | item_text | description | provider` and **does not carry
+the plate**. Two invoices from the same station, one jerrycan and one fill-up,
+are byte-identical to the model but need opposite labels.
+
+Correct labels were still written into gold at Afaq's explicit instruction — the
+dashboard had to be right — but the contradictory pairs carry
+`verify_flag=conflict` so a future retrain sees them.
+
+**Why:** without the flag, D-013's dedup on the built input string would collide
+those pairs and silently drop one. That is the exact mechanism that destroyed the
+47 milk-sale rows.
+
+**Rejected:** encoding the split by supplier. Two suppliers are genuinely mixed —
+the co-op 47/48 and Paola 11/56 — so no supplier-level rule can express it.
+
+## D-030 — Client authority outranks row volume when labels disagree
+
+**Date:** 2026-08-14 · **Decided by:** Claude Opus 5, confirmed by Afaq
+
+When our data disagrees with a client-sourced label, the client wins regardless
+of how many rows say otherwise. `docs/CLIENT_CONVENTIONS.md` records every
+confirmed rule with its provenance tier.
+
+**Why:** it happened twice in one session. Butane cartridges showed 15 rows as
+`EXP-11.5` against 2 as `EXP-16.2`; the 15 were our keyword audit and the 2 were
+`client_product_rule`. Groceries showed the client "filing biscuits under Office
+Supplies" — he never did, our audit did, and his one real supermarket label was
+toilet paper. Counting rows gave the wrong answer both times.
+
+## D-031 — Script 80 is first-load only; script 82 is the re-load
+
+**Date:** 2026-08-14 · **Decided by:** Claude Opus 5
+
+`scripts/80_upload_to_supabase.py` expects a pre-v1.3.3 database and its
+pre-flight refuses once that upload has landed. `scripts/82_apply_label_corrections.py`
+pushes whole rows to an already-populated database and deletes live rows the
+payload no longer contains. No DDL, so the frontend schema is untouched.
+
+**Two failure modes are encoded in it:** PostgREST upsert is `INSERT ... ON
+CONFLICT`, so a partial-column payload fails the insert arm on every NOT NULL
+column it omits — send whole rows, or `PATCH`. And `categories_id` is generated
+by the database, so locally-invented UUIDs are meaningless; category ids are read
+back from live and remapped before items go up.
+
+**Rejected:** dropping and recreating the tables. Every invoice, company and
+catalog row would get a new UUID and all foreign keys would need rebuilding, to
+replace ~650 row updates.

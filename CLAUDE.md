@@ -4,7 +4,8 @@ Classifies Spanish invoice line items into accounting categories for
 **Antillanca**, a Chilean dairy/agriculture client of Audisis / Grupo ProGestión.
 
 **Status:** v1.3.3 live on Cloud Run — service `mlmodel`, `europe-west1`,
-revision `mlmodel-00014-lrp`, 100% traffic.
+revision `mlmodel-00014-lrp`, 100% traffic. Supabase holds 11,746 corrected
+lines as of 2026-08-14.
 **Branch:** `codex/transaction-aware-retrain-v2` (dirty — see `docs/STATE.md`).
 
 ## What this is
@@ -14,11 +15,13 @@ COMPRAS/VENTAS direction from the folder the document came from. Output is top-3
 category codes with confidence, and a decision: `auto_accept` or
 `review_required`.
 
-The product is **human-in-the-loop by design**. 71 taxonomy categories, 67
-trained, 1,837 gold rows (1,582 distinct model inputs), 26 classes under 15
-examples — the model cannot be trusted alone, so the review gate is a feature,
-not a shortfall. Of 11,766 uploaded lines, 6,583 (56%) are auto-accepted and
-5,183 (44%) sit in review.
+The product is **human-in-the-loop by design**. 74 categories are live, but the
+deployed model emits only 67 — the three added on 2026-08-14 are rule-assigned
+and it cannot predict them (D-028). `Data/gold/_master_gold.csv` holds 2,577 rows
+across 73 classes, 2,329 of them distinct model inputs. Many classes have very
+few examples, so the model cannot be trusted alone: the review gate is a feature,
+not a shortfall. Of 11,746 lines, 7,014 (60%) are auto-accepted and 4,732 (40%)
+sit in review.
 
 The system is two halves that are easy to confuse: an **offline labeling
 pipeline** (raw XML → gold → Supabase) and an **online classifier service**
@@ -35,6 +38,10 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
   the *built* string — see D-013, which supersedes D-001's narrower key. A key
   narrower than the input is what destroyed 47 milk-sale rows.
 - Never promote an unaudited row to gold. See `docs/LABELING_RULES.md`.
+- A client-sourced label outranks any number of rows that disagree with it.
+  See `docs/CLIENT_CONVENTIONS.md` — counting rows got this wrong twice.
+- Supabase is already loaded. Re-load with `scripts/82_apply_label_corrections.py`;
+  script 80 is first-load only and will refuse.
 - Never modify `Data/Raw_Data/` — it is the only irreplaceable thing here.
 - Never overwrite `artifacts/v1.0.0/` or `artifacts/v1.1.0/` (protected paths).
 - Never release on aggregate accuracy alone. The income slice is a mandatory

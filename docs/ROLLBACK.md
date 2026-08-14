@@ -12,6 +12,7 @@ normal operation modifies them:
 Data/Raw_Data/                              raw XML, read-only
 Data/candidates/recovery_v1_3_2/            the gold v1.3.3 trained on
 backups/supabase_20260812T070037Z/          pre-upload export, all 5 tables
+backups/supabase_20260814T110447Z_pre_corrections/  pre-correction export, all 5 tables
 ```
 
 ## Roll back the deployed model
@@ -38,7 +39,15 @@ v1.3.3-int8. A different size means a different generation is live.
 
 `backups/supabase_20260812T070037Z/` is a full read-only export of all five
 tables taken immediately before the v1.3.3 upload, via
-`scripts/81_backup_supabase.py`.
+`scripts/81_backup_supabase.py`. `backups/supabase_20260814T110447Z_pre_corrections/`
+is the equivalent taken before the 2026-08-14 label corrections.
+
+**To re-load after the first upload has landed,** use
+`scripts/82_apply_label_corrections.py`, not script 80. Script 80 is the
+first-load path and its pre-flight refuses once v1.3.3 is live — correctly, since
+it expects pre-upload row counts. Script 82 pushes whole rows and deletes live
+rows the payload no longer contains. Dry run by default; writing needs both
+`--execute` and `--i-have-backed-up-the-database`.
 
 **There was no transaction around the upload,** and there cannot be — PostgREST
 cannot wrap five tables in one. Restoring means re-loading from the backup, not

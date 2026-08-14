@@ -35,7 +35,7 @@ models/setfit_base_recovery_v1_3_2/           PyTorch SetFit body + LR head
 artifacts/v1.3.3-int8/                        ONNX int8 deployment bundle
   │  gcloud builds submit → Artifact Registry → gcloud run deploy
   ▼
-Cloud Run `mlmodel` ──► Supabase (5 tables)   11,766 rows, live
+Cloud Run `mlmodel` ──► Supabase (5 tables)   11,746 rows, live
 ```
 
 Note the deploy path: **git is never involved**. The 278 MB `.onnx` is uploaded
@@ -55,7 +55,9 @@ model input  : "[transaction_type] | item_text | description | provider"
 model label  : category_code string, e.g. "ING-0.1"
 ```
 
-71 categories in the taxonomy, **67 trained**. `ADM-1.9` and `ADM-2.3` are
+**74 categories** in the live `categories` table, but the deployed model still
+emits only the original 71 (67 trained). `AF-1.1`, `AF-2.1` and `ING-0.7` were
+added 2026-08-14 and are assigned by rule, not predicted — see D-028. `ADM-1.9` and `ADM-2.3` are
 excluded as untrained. 26 classes have fewer than 15 distinct examples and are
 routed to review by the weak-class guard. Validation: 312 rows, accuracy 0.7532
 (FP32) / 0.7468 (INT8), top-3 0.8654, income slice 21 rows at 1.00.
@@ -108,10 +110,13 @@ confidence.
 - **Local, authoritative:** `Data/` (raw, processed, silver, gold), `models/`,
   `artifacts/`. Artifacts are gitignored and rebuildable from the exporter.
 - **Supabase (`nkdswofslslrumyraklv`), live:** categories, companies,
-  item_catalog, invoices, invoice_items — 11,766 rows uploaded 2026-08-12.
+  item_catalog, invoices, invoice_items — 11,746 rows. Uploaded 2026-08-12,
+  corrected in place 2026-08-14 via `scripts/82_apply_label_corrections.py`.
   Writes require an explicit flag on `scripts/supabase_rest.py`.
 - **Cloud Run:** stateless. The service is a pure function; it holds no records.
-- **Backup:** `backups/supabase_20260812T070037Z/` — pre-upload, all 5 tables.
+- **Backup:** `backups/supabase_20260814T110447Z_pre_corrections/` — all 5 tables,
+  taken before the 2026-08-14 correction pass. The 2026-08-12 pre-upload export
+  is at `backups/supabase_20260812T070037Z/`.
 
 The ML service must never become a system of record. That is a deliberate
 constraint, not an accident of the current design.
