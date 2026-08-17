@@ -608,6 +608,16 @@ table (74 rows) and carry data, but **the deployed model cannot emit them** — 
 still has the original 71 output classes. Rows land in them by deterministic rule
 only, `prediction_source = business_rule`.
 
+> **Correction 2026-08-17 — two facts above are wrong; the decision stands.**
+> (a) The deployed model has **67** output classes, not 71 — verified against
+> `artifacts/v1.3.3-int8/labels.json` → `classifier_classes` and
+> `model_card.json` → `trained_classes`. The "71" was arithmetic on the category
+> table (74 − 3), never measured. (b) The client created `AF-1.1` and `ING-0.7`
+> only. **`AF-2.1` was ours** — naming the sale side alone left trucks,
+> generators and barn contracts with nowhere to go, so we added the purchase
+> side and informed the client rather than asking. See
+> `docs/CLIENT_CONVENTIONS.md` §4.
+
 **Why:** the data had to be correct on the dashboard now; retraining is a
 separate, later job. A category the model cannot predict is still a valid label
 when a rule assigns it.

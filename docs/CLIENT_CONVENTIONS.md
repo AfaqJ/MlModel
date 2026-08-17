@@ -100,7 +100,7 @@ Two traps in this bucket:
 - **Dairy shed sanitiser is not a cleaning supply.** `detergente`/`cloro` bought
   for the milking parlour stays in `EXP-10.3`, not Office Supplies.
 
-## 4. Two categories the client created on 2026-08-14
+## 4. Three categories created on 2026-08-14
 
 Their chart of accounts is **expenses-only by design**. Buying a cow, a truck or
 a tractor is a *fixed asset* to them, not an expense — which is why no expense
@@ -109,7 +109,12 @@ category ever fitted, and the model was forced to pick a wrong one.
 | Code | Name | Covers |
 |---|---|---|
 | `AF-1.1` | Compras de Animales | Buying live animals — 113 lines, CLP 529,541,100 |
+| `AF-2.1` | Compras de Activo Fijo | Buying a vehicle, machine, generator or building — 19 lines, CLP 339,658,011 |
 | `ING-0.7` | Ventas de Activo Fijo | Selling a vehicle, tank or machine — 6 lines, CLP 112,474,790 |
+
+The client named `AF-1.1` and `ING-0.7`. **`AF-2.1` was ours** — naming only the
+sale side left trucks, generators and barn contracts with nowhere to go. Told to
+the client 2026-08-17, not asked.
 
 Codes were ours, not the client's — they said the codes carry no meaning for
 them. But **the prefix is load-bearing**: `app/inference/business_rules.py`
@@ -117,8 +122,7 @@ masks by prefix, so anything on a VENTAS invoice must start with `ING-`, and
 anything on a COMPRAS invoice must not. That is why asset *sales* are `ING-0.7`
 rather than an `AF-` code.
 
-`AF-1.1` covers **animals only.** Buying a truck, generator or barn still has no
-category — see the open questions.
+`AF-1.1` covers **animals only.** Everything else bought outright is `AF-2.1`.
 
 ## 5. Fuel item names that mean the same thing
 
@@ -161,28 +165,54 @@ classification is what caused the original incident.
 
 ## Still open — needs the client
 
-1. **Where do lease payments go? CLP 377,117,342 — the largest open item.**
-   Banco BICE `RENTA DE ARRENDAMIENTO` 141 lines (CLP 310,427,389) sitting in
-   Other Admin; Santander `PAGO ARRIENDO OPERACION` 17 lines and a farm lease
-   from Inmobiliaria Progreso 14 lines, both sitting in *Road Maintenance*. The
-   only lease categories that exist are machinery/vehicle (`EXP-15.4`) and
-   office (`ADM-1.3`); nothing covers a bank finance lease or land rental.
-2. **Buying a non-animal fixed asset.** 12 lines, CLP 105,678,715 — barn
-   construction, a pickup, a motorbike, a lawn tractor, four generators, two
-   TVs. Every vehicle/machine/building category in the taxonomy is a
-   *maintenance* category; nothing covers acquiring one. They named the *sale*
-   side but not the *purchase* side.
-3. ~~The co-op's petrol~~ — resolved, see §1.
-4. **77 petrol lines** from stations that record neither a plate nor a jerrycan.
-4. **`OTROS INGRESOS`** (CLP 750,000, income from road maintenance work) — not an
-   asset sale, so `ING-0.7` doesn't fit it either.
-5. **Rename COPEC's `DETALLE` rows** to `Gasolina 93`? 50 rows where the name is
-   a placeholder.
-6. **A CLP 22,507,092 contract prepayment** booked as vehicle insurance. Looks
-   like a lease.
-7. **Multi-invoice assets.** A barn is wood + nails + labour across many
-   invoices. The client raised it and said they don't know if it needs solving.
-   It needs a project code, not a category — out of scope for now.
-8. **July 2026 onward invoices** — they offered them as training data. Need
-   volume, format, and whether those labels are client-confirmed or uncorrected
-   model output.
+**Asked by email 2026-08-17** (reply received, not yet processed):
+
+1. **The bank leases. CLP 343,684,709 — the largest open item.** Banco BICE
+   `Renta de Arrendamiento Nº_ del contrato Nº_`, 141 lines, CLP 310,427,389,
+   across **16 distinct contract numbers**; 135 of the 141 carry that string and
+   nothing else, description empty. Santander, 17 lines, CLP 33,257,320, every
+   line the identical string `PAGO ARRIENDO OPERACION:`. **Neither invoice says
+   what is being leased** — verified, not assumed. Asked: are these all
+   machinery and vehicles (`EXP-15.4`), or split? Review cannot resolve this;
+   a reviewer sees exactly what we see.
+2. **Farmland rental has no category.** `ARRIENDO FUNDO PELLECO`, 14 lines,
+   CLP 33,432,633, monthly, land roll in the description (`LOTE A ROL 2230-12`).
+   Perfectly legible; the taxonomy has only `EXP-15.4` (machinery/vehicles) and
+   `ADM-1.3` (office).
+3. **77 petrol lines with no tag.** Verified against the raw XML: **all 77 have
+   no `<Patente>` element at all.** 52 ENEX, 9 Entretecho, 5 Pilauco Viejo,
+   4 Barca, 7 across six one-off suppliers. Asked for a *default rule* rather
+   than a per-supplier answer, so future unseen stations are covered too.
+4. **Rename COPEC's `DETALLE` rows** to `Gasolina 93`? 50 rows. Cosmetic only —
+   all 50 carry a plate and are correctly `ADM-1.4`.
+
+**Resolved, no longer open:**
+
+- ~~Buying a non-animal fixed asset~~ — `AF-2.1` created and applied, see §4.
+- ~~Multi-invoice assets / the barn~~ — the premise was wrong. The client feared
+  a barn arrives as wood + nails across many invoices. It does not: one builder
+  invoiced it in **contract stages** — 5 lines from Constructora Raul Ernesto
+  Palma, CLP 152,521,235 (`35% de anticipo`, `Estado de pago Nº1`, `saldo
+  presupuesto inicial`, `adicionales`, `portones`), all already in `AF-2.1` and
+  auto-accepted. No project code needed.
+- ~~The co-op's petrol~~ — see §1.
+
+**Not asked, deliberately** — too small to spend client attention on; left in
+review for their team:
+
+- `OTROS INGRESOS`, CLP 750,000, road-maintenance income. Not an asset sale.
+- A CLP 22,507,092 contract prepayment booked as vehicle insurance; looks like a
+  lease.
+- Side work on the barn billed by other contractors — 4 lines, CLP 5,442,100
+  (A&C Electricidad lighting CLP 3,212,100; Magdiel Montecinos `Muro galpón` +
+  `Galpón y taller Maitén` CLP 2,230,000). All already `review_required` at
+  0.39–0.51 confidence. The underlying convention — does work *around* a new
+  build join the asset or stay an expense? — recurs on every future build and is
+  worth asking once a bigger batch is behind it.
+
+**Still unasked, and the highest-value item available:**
+
+- **July 2026 onward invoices.** They offered them as training data. Need volume,
+  format, and whether the labels are client-confirmed or uncorrected model
+  output. Dropped from the 2026-08-17 email twice; ~3,529 review rows are
+  undertrained rather than ambiguous, so this is the single biggest lever.

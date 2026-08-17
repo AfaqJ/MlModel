@@ -11,8 +11,10 @@ rows showing a label while awaiting review. Three categories the client created
 on 2026-08-14 are populated: `AF-1.1` Compras de Animales (113 lines, CLP
 529,541,100), `AF-2.1` Compras de Activo Fijo (19 lines, CLP 339,658,011),
 `ING-0.7` Ventas de Activo Fijo (6 lines, CLP 112,474,790). The live `categories`
-table now has 74 rows; **the deployed model still emits only the original 71** —
-these three are rule-assigned, see D-028.
+table now has 74 rows; **the deployed model emits 67** — verified against
+`artifacts/v1.3.3-int8/labels.json` → `classifier_classes` (67 entries) and
+`model_card.json` → `trained_classes: 67`. Everything else is rule- or
+lookup-assigned, see D-028.
 
 v1.3.3 remains live on Cloud Run (`mlmodel-00014-lrp`). No model change this
 session. Branch `codex/transaction-aware-retrain-v2`, last commit on the session's
@@ -22,20 +24,40 @@ Tests: 98 passing.
 
 ## Next
 
-1. **Send the client email.** Three questions, drafted: the bank leases, farmland
-   rental, and Shell/ENEX fuel. See `docs/CLIENT_CONVENTIONS.md` "Still open".
-2. **Frontend fix — still the highest-value item and still untouched.** The UI
+1. **Process the client's reply.** The 2026-08-17 email was sent and Cristian has
+   answered; the reply has **not** been read or applied. Four questions were
+   asked — bank leases, farmland rental, the no-tag fuel default, COPEC `DETALLE`
+   renaming. Start by reading it against `docs/CLIENT_CONVENTIONS.md` "Still
+   open", and remember D-030: his answer outranks our row counts.
+2. **One lease line is wrongly auto-accepted.** `Pago Vencido de renta de
+   Arrendamiento Nº12 del contrato Nº…`, CLP 2,816,710, sits in `ADM-1.7` at
+   confidence **0.7528** against a 0.75 threshold. The other 171 lease lines are
+   all `review_required`. Flip this one to review — a data fix via
+   `scripts/82_apply_label_corrections.py`, not a model change. Do it before any
+   lease answer is applied, or it will be silently skipped.
+3. **Frontend fix — still the highest-value item and still untouched.** The UI
    renders `predicted_code` on rows awaiting review. Lower risk than it was now
    that `final_code` is NULL on every review row, but the UI still reads the
    wrong column. Same error class as the original incident.
-3. **Gold defect before any retrain.** `FUNDO CHAPICAHUIN` and `FUNDO RAICES` are
+4. **Gold defect before any retrain.** `FUNDO CHAPICAHUIN` and `FUNDO RAICES` are
    farm names sitting in gold as `EXP-6.3` (Cal); the model memorised them.
-4. **On next retrain, handle the three new categories.** They have gold rows but
+5. **Run the `giro` variant — scaffolded but never trained.** `train_setfit.py`
+   already accepts `--variant base|giro|both`, `training/provider_giro_map.csv`
+   exists (440 providers), and `export_onnx.py` ships it into every artifact.
+   But only `models/setfit_base/metrics.json` exists — there is **no
+   `models/setfit_giro/`**, so the variant has never been measured. The deployed
+   template is `[transaction_type] | item_text | description | provider`; giro is
+   absent. Cheap to test, and it targets a real weakness: the supplier's declared
+   line of business separates purchase from maintenance from rental where the
+   item name alone cannot (`Excavadora` CLP 13,275,000 from a supplier whose giro
+   is `ARRIENDO DE MAQUINARIAS`). Baseline to beat: base = 0.7441 accuracy /
+   0.6768 macro-F1 / 0.8765 top-3 on 340 val rows.
+6. **On next retrain, handle the three new categories.** They have gold rows but
    the model cannot emit them. Also re-measure INT8 flip count — it worsened from
    12/308 (v1.3.1) to 15/312 (v1.3.3).
-5. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres. Chilean decimal
+7. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres. Chilean decimal
    format (`62.648,532`) read as thousands separators. Amounts are correct.
-6. **Stale summary badges** — catalog list and detail page disagree on counts.
+8. **Stale summary badges** — catalog list and detail page disagree on counts.
 
 ## What the review rows contain
 
@@ -66,20 +88,57 @@ Prediction-source spread on the live upload: model 6,238 · product_lookup 2,640
 
 ## Open questions — blocked on the client
 
-Each blocks rows that no amount of model work can fix.
+**Single source: `docs/CLIENT_CONVENTIONS.md` → "Still open".** Do not maintain a
+second list here; the copy that used to live in this file drifted and was still
+naming livestock purchases, asset disposals, supermarket drinks and butane
+cartridges as open after all four had been answered on 2026-08-14.
 
-1. **Which category receives livestock purchases?** 103 DTE-43 auction lines,
-   CLP 254,529,000. The taxonomy has "Sale of Cows" but nothing for buying one.
-2. **Where do asset disposals go?** 7 sales lines — truck, machinery, fixed
-   assets. Only six income categories exist, all livestock or milk, and two of
-   those have zero training examples.
-3. **Is service-station fuel Bencina or Movilización?** 133 lines.
-4. **Where do supermarket drinks go?** No gold either way.
-5. **Are butane cartridges `EXP-11.5` or `EXP-16.2`?** Gold currently says both.
-6. **Labelled examples of contractor free-text** — the highest-value input
-   available. ~3,500 review rows are undertraining, not genuine ambiguity.
+Status as of 2026-08-17: four questions asked by email, **reply received and
+unread**. One question deliberately never asked and still worth asking — the
+July 2026 onward invoices, which are the highest-value input available, because
+~3,529 review rows are undertrained rather than genuinely ambiguous.
 
 ## Recent sessions
+
+### 2026-08-17 — client email sent; barn and lease questions verified against data
+
+- **No code changed. No data changed.** Working tree is exactly as it was at
+  session start (`call_graphs/` deletions, `Temp_Inference/README.md`). Doc
+  edits only: this file and `CLIENT_CONVENTIONS.md`.
+- **The client email was drafted, fact-checked line by line, and sent.** Cristian
+  has replied; **the reply is unread** — that is where the next session starts.
+- **Every figure in the email was verified against `invoice_items.jsonl` before
+  sending.** All matched except one Afaq had drafted from memory: BICE has **16
+  distinct contract numbers, not 60**. Caught by grouping the 141 lines on the
+  contract number in the item string.
+- **The barn premise was wrong, and checking it changed the email.** The client
+  worried a barn arrives as wood + nails across many invoices needing a project
+  code. It does not: 5 contract-stage lines from one builder, CLP 152,521,235,
+  already in `AF-2.1` and auto-accepted. The question became a statement.
+- **Nearly sent a question that would have looked careless.** Two `Días galpon`
+  lines were about to be cited as barn work. They are dated 21 and 31 January
+  2025; the barn contract runs 6 May to 5 August 2025. Different building.
+  **Method: on any claim that two invoices belong to the same job, check the
+  dates before the words.**
+- **Found one lease line wrongly auto-accepted** at 0.7528 against a 0.75
+  threshold — see Next #2. 171 of 172 lease lines are correctly in review.
+- **Corrected two claims I had made confidently in the same session:**
+  1. Told Afaq the deployed model emits 71 categories (this file said so).
+     It emits **67** — `labels.json` → `classifier_classes` and `model_card.json`
+     → `trained_classes` both say 67. `CLAUDE.md` was right; STATE was wrong.
+     Fixed. **The artifact is the authority on what the model can emit, not
+     arithmetic on the category table.**
+  2. Told Afaq the supplier `giro` was unread data, "like the Patente". Wrong —
+     the training plumbing exists and the map ships in every artifact. What is
+     true is that it has **never been trained or measured**. See Next #5.
+- **Costed an LLM pass over the corpus, since Afaq's stated blocker was price.**
+  Batched, terse output: ~$2 Haiku 4.5, ~$4 Sonnet 5, ~$9 Opus 5 for all 11,746
+  lines — one-time, not recurring. With per-line thinking, ~8× that. **Not
+  decided**; no D- entry. Deferred behind settling the data ambiguities first.
+- **Argued the reasoning-vs-data point and it held up under the data.** Of the
+  4,732 review rows, ~32% (ambiguity, client-only context, meaningless names, no
+  valid category) are unsolvable by *any* model including an LLM. The 68%
+  undertrained bucket is where an LLM would genuinely win, zero-shot.
 
 ### 2026-08-14 — client conventions applied; dataset corrected and re-pushed
 
@@ -90,7 +149,8 @@ Each blocks rows that no amount of model work can fix.
   lines and corrected 236 labels — wrong in *both* directions, so no
   supplier-level rule could have caught it (-> D-029).
 - **Three categories created and populated** — `AF-1.1`, `AF-2.1`, `ING-0.7`
-  (-> D-028). Live `categories` is now 74 rows; the model still emits 71.
+  (-> D-028). Live `categories` is now 74 rows; the model emits 67 (this entry
+  originally said 71 — corrected 2026-08-17 against the artifact).
 - **The scale of the missing-category damage was far larger than recorded.**
   Animal purchases were documented as 103 auction lines / CLP 254,529,000. Actual:
   **113 lines / CLP 529,541,100** — cows, heifers and calves bought direct from
@@ -202,12 +262,6 @@ Each blocks rows that no amount of model work can fix.
 - **Decided:** removed twelve hardcoded Spanish gates Claude had added — Afaq's
   call, and the most important correction of the round (→ D-023).
 
-### 2026-08-11 — recovery v1.2.0 and the incident root cause
-
-- Root-caused the production incident: the historical silver→gold promotion
-  deduped on `(normalized_item_text, category_code)` while the model consumes
-  `item_text | description | provider`. 47 distinct milk-sale rows collapsed to
-  one; the trainer then excluded the 1-example class; the UI displayed the
-  resulting low-confidence `review_required` suggestion as a final answer.
-- Independent audit run and acted on. D-001 through D-014 recorded.
-- Full narrative was `docs/ML_MODEL_INCIDENT_RECOVERY_FIELD_REPORT.md`, deleted 2026-08-13; recoverable from git history.
+<!-- 2026-08-11 (recovery v1.2.0 / incident root cause) dropped 2026-08-17 at the
+5-session limit. Nothing lost: the root cause is D-001 and the dedup rule it
+produced is a hard limit in CLAUDE.md. Full narrative in git history. -->

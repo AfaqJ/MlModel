@@ -55,10 +55,13 @@ model input  : "[transaction_type] | item_text | description | provider"
 model label  : category_code string, e.g. "ING-0.1"
 ```
 
-**74 categories** in the live `categories` table, but the deployed model still
-emits only the original 71 (67 trained). `AF-1.1`, `AF-2.1` and `ING-0.7` were
-added 2026-08-14 and are assigned by rule, not predicted — see D-028. `ADM-1.9` and `ADM-2.3` are
-excluded as untrained. 26 classes have fewer than 15 distinct examples and are
+**74 categories** in the live `categories` table; the deployed model **emits 67**
+— `artifacts/v1.3.3-int8/labels.json` → `classifier_classes`, corroborated by
+`model_card.json` → `trained_classes: 67`. That artifact is the authority here;
+do not derive the number by subtracting from the category table. `AF-1.1`,
+`AF-2.1` and `ING-0.7` were added 2026-08-14 and are assigned by rule, not
+predicted — see D-028. `ADM-1.9`, `ADM-2.3`, `ING-0.5` and `ING-0.6` carry
+`trained: false` and cannot be emitted. 26 classes have fewer than 15 distinct examples and are
 routed to review by the weak-class guard. Validation: 312 rows, accuracy 0.7532
 (FP32) / 0.7468 (INT8), top-3 0.8654, income slice 21 rows at 1.00.
 

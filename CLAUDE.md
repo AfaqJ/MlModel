@@ -15,9 +15,11 @@ COMPRAS/VENTAS direction from the folder the document came from. Output is top-3
 category codes with confidence, and a decision: `auto_accept` or
 `review_required`.
 
-The product is **human-in-the-loop by design**. 74 categories are live, but the
-deployed model emits only 67 — the three added on 2026-08-14 are rule-assigned
-and it cannot predict them (D-028). `Data/gold/_master_gold.csv` holds 2,577 rows
+The product is **human-in-the-loop by design**. 74 categories are live; the
+deployed model emits **67** — read it from `artifacts/v1.3.3-int8/labels.json`
+(`classifier_classes`), never by subtracting from the category table. The three
+added on 2026-08-14 are rule-assigned and cannot be predicted (D-028); four more
+carry `trained: false`. `Data/gold/_master_gold.csv` holds 2,577 rows
 across 73 classes, 2,329 of them distinct model inputs. Many classes have very
 few examples, so the model cannot be trusted alone: the review gate is a feature,
 not a shortfall. Of 11,746 lines, 7,014 (60%) are auto-accepted and 4,732 (40%)
