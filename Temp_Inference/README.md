@@ -91,8 +91,8 @@ If the dry run is clean and the tables exist, write the normalized rows:
 - Raw XML folders: `data/Raw_Data/dte_96685810_COMPRAS` and `data/Raw_Data/dte_96685810_VENTAS`
 - Local API: `http://127.0.0.1:8000`
 - Batch size: `500`
-- Loader auto-accept top-1 threshold: `0.80`
-- Loader auto-accept margin threshold: `0.10`
+- Loader auto-accept top-1 threshold: `0.75`
+- Loader auto-accept margin threshold: `0.50`
 
 The database generates `id`, `invoice_period`, and `needs_review`, so the script
 does not send those columns.

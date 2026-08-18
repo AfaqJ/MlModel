@@ -1,0 +1,21 @@
+{
+  "input_rows": 11766,
+  "recovered_from_review": 1164,
+  "recovered_by_evidence_tier": {
+    "silver_audit": 377,
+    "manually_audited_near_identical": 67,
+    "client_evidence": 720
+  },
+  "recovered_where_model_already_agreed": 1111,
+  "recovered_over_model_disagreement": 53,
+  "silver_transfers_flagged_abnormal": 46,
+  "left_in_review_provider_dependent_client_evidence": 48,
+  "override_items_supplied": 211,
+  "rows_pushed_back_to_review": 341,
+  "final_decision_counts": {
+    "review_required": 5183,
+    "auto_accept": 6583
+  },
+  "final_auto_accept_rate": 0.5595,
+  "jsonl_rows_rewritten": 11766
+}

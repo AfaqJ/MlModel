@@ -1,0 +1,44 @@
+input_id,item,was_code,was_decision,was_final_code,now_code,now_decision,now_final_code,why,amount
+COMPRAS|81201000K|24168223|4,NECTAR ANDINA FRUT NARAN LIGHT PET 1.5LT,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,1345
+COMPRAS|81201000K|25771159|12,NECTAR WATT S PINA LIGHT PET 1.5LT,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,1500
+COMPRAS|815376005|41329900|15,JAMON PECHUGA COCIDA SOPRAVAL 200GR,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,2521
+COMPRAS|815376005|41329900|9,MAGDALENA TRES LECHES PULMAHUE 300GR,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,1672
+COMPRAS|815376005|42598882|3,MINITURRON AMBROSOLI 300 GR,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,2176
+COMPRAS|815376005|42715690|7,"PAPAS FRITAS KRYZPO 130 GR, ORIGINAL",ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,1378
+COMPRAS|815376005|43024983|2,"PAPAS FRITAS KRYZPO 130 GR, ORIGINAL",ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,1521
+COMPRAS|815376005|43024983|9,"NECTAR ANDINA PET LIGHT 1.5 LT, DURAZNO",ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,1261
+COMPRAS|815376005|43287292|11,NUEZ PARTIDA FRUTISA 200 GR,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,8890
+COMPRAS|815376005|43287292|14,CLEMENTINA MALLA 1 KG,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,2672
+COMPRAS|815376005|43287292|5,NARANJA MALLA 2 KG,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,2092
+COMPRAS|815376005|43287292|6,MANI TOSTADO SIN SAL TENTO 300 GR.,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,3176
+COMPRAS|815376005|43287292|9,MANI NUTMIX 2 MARCO POLO 350 GR,ADM-1.6,auto_accept,ADM-1.6,EXP-1.1,auto_accept,EXP-1.1,client supermarket-food rule,7529
+COMPRAS|54232675|2866|1,CENA 41 PERSONAS N.OP.080,EXP-1.1,auto_accept,EXP-1.1,ADM-1.5,auto_accept,ADM-1.5,client restaurant-meal rule,1395613
+COMPRAS|780852186|21|1,Empanadas,EXP-1.1,auto_accept,EXP-1.1,ADM-1.5,auto_accept,ADM-1.5,client restaurant-meal rule,96840
+COMPRAS|66554732|243355|1,FRAGUE ACRILICO CAFE OSCURO SIKA C710 300ML -@,EXP-1.1,auto_accept,EXP-1.1,EXP-1.1,review_required,,not food; category unresolved,2078
+COMPRAS|810941006|29936574|4,VISION CLARA MANZANA SONAX 250ML,EXP-1.1,auto_accept,EXP-1.1,EXP-1.1,review_required,,not food; category unresolved,3991
+COMPRAS|810941006|29936592|1,VISION CLARA MANZANA SONAX 250ML,EXP-1.1,auto_accept,EXP-1.1,EXP-1.1,review_required,,not food; category unresolved,3991
+COMPRAS|98124942|352|1,EMPANADAS DE HORNO,EXP-1.1,auto_accept,EXP-1.1,EXP-1.1,review_required,,not food; category unresolved,36135
+COMPRAS|777854402|500978|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,68677
+COMPRAS|777854402|514430|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,46000
+COMPRAS|777854402|522162|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,45599
+COMPRAS|777854402|528303|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,62549
+COMPRAS|777854402|528303|2,BIDON GASOLINA 20 LT,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,26050
+COMPRAS|777854402|530452|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,15239
+COMPRAS|777854402|532402|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,60537
+COMPRAS|777854402|535126|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,28908
+COMPRAS|777854402|538712|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,59412
+COMPRAS|777854402|541166|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,28558
+COMPRAS|777854402|545398|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,51252
+COMPRAS|777854402|546958|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,37951
+COMPRAS|777854402|553773|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised container/plate value,40372
+COMPRAS|57884150|242147|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,63575
+COMPRAS|57884150|242570|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,15894
+COMPRAS|57884150|242572|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,34555
+COMPRAS|57884150|264733|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,30407
+COMPRAS|57884150|265356|1,G93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,59448
+COMPRAS|57884150|276017|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,70626
+COMPRAS|57884150|277437|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,40270
+COMPRAS|57884150|277518|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,13255
+COMPRAS|57884150|280476|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,25008
+COMPRAS|57884150|282857|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,39836
+COMPRAS|57884150|283966|1,Gasolina 93,ADM-1.4,auto_accept,ADM-1.4,ADM-1.4,review_required,,unrecognised plate value,66534

@@ -1,0 +1,342 @@
+row_id,item_text,provider,prediction,top1,reason
+13,SERVICIO DE TRASLADO,GABRIEL ALEJANDRO CASTILLO JOHANSEN,EXP-14.1,0.801685,transport service filed as road maintenance; the line describes the movement not the cargo
+327,Periodo de Cobertura enero 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.960177,insurance cover period; the type of cover is not stated
+357,WD-40 187CC. 52025 (20% ADICIONAL),COMERCIAL CLIMENT SPA,EXP-7.0,0.803589,penetrating lubricant filed as an agrochemical; no client evidence for this label
+369,WD-40 226 GRS,COMERCIAL HARCHA SPA,EXP-7.0,0.936316,penetrating lubricant filed as an agrochemical; no client evidence for this label
+440,Comisión por Transferencia Electrónica d,BANCO BICE,ADM-1.8,0.76221,bank transfer fee filed as accounting advisory
+441,Renta de Arrendamiento Nº7 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.848525,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+442,Renta de Arrendamiento Nº10 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.838188,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+444,Renta de Arrendamiento Nº1 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.818374,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+445,Renta de Arrendamiento Nº32 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.834502,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+446,Renta de Arrendamiento Nº27 del contrato Nº23221-2,BANCO BICE,ADM-1.7,0.847225,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+447,Renta de Arrendamiento Nº1 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.826798,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+448,Renta de Arrendamiento Nº68 del contrato Nº16380-1,BANCO BICE,ADM-1.7,0.831322,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+509,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.944068,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+510,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.944068,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+511,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.948095,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+513,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.948095,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+514,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947443,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+515,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947443,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+517,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949955,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+949,Gasolina 93 octanos sin plomo,PILAUCO VIEJO SPA,EXP-11.4,0.941699,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+1062,Periodo de Cobertura febrero 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.960286,insurance cover period; the type of cover is not stated
+1188,Renta de Arrendamiento Nº1 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.822721,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1190,Comisión por Transferencia Electrónica d,BANCO BICE,ADM-1.8,0.76221,bank transfer fee filed as accounting advisory
+1194,Renta de Arrendamiento Nº1 del contrato Nº34431-0,BANCO BICE,ADM-1.7,0.825298,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1195,Renta de Arrendamiento Nº11 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.832377,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1198,Renta de Arrendamiento Nº2 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.82137,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1199,Renta de Arrendamiento Nº28 del contrato Nº23221-2,BANCO BICE,ADM-1.7,0.844406,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1200,Renta de Arrendamiento Nº2 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.829904,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1201,Renta de Arrendamiento Nº33 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.8353,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1241,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949976,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+1242,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.955448,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+1243,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.951936,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+1244,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.951936,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+1377,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,EXP-11.4,0.811264,same Bencina-vs-Movilizacion client convention as the other petrol rows
+1469,dias,CONSTRUCCIONES Y PRESTACIÓN DE SERVICIOS VICENTE DIOCARES E.I.R.L.,EXP-14.2,0.759887,bare unit of labour; the category came from the provider rather than the item
+1568,Gasolina 93 octanos sin plomo,INVERSIONES Y ASESORIA BARCA SPA 3103944,EXP-11.4,0.941457,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+1702,Periodo de Cobertura marzo 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.961275,insurance cover period; the type of cover is not stated
+1718,Residencial,STARLINK CHILE SPA,ADM-1.2,0.817375,generic line naming nothing
+1813,Renta de Arrendamiento Nº69 del contrato Nº16380-1,BANCO BICE,ADM-1.7,0.834614,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1814,Renta de Arrendamiento Nº2 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.826092,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1815,Renta de Arrendamiento Nº9 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.836138,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1818,Comisión por Transferencia Electrónica d,BANCO BICE,ADM-1.8,0.76221,bank transfer fee filed as accounting advisory
+1819,Renta de Arrendamiento Nº2 del contrato Nº34431-0,BANCO BICE,ADM-1.7,0.826308,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1820,Renta de Arrendamiento Nº12 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.840324,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1823,Renta de Arrendamiento Nº1 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.824842,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1824,Renta de Arrendamiento Nº1 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.82448,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1827,Renta de Arrendamiento Nº3 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.824222,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1828,Renta de Arrendamiento Nº34 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.834895,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1829,Renta de Arrendamiento Nº3 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.833391,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+1845,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.948007,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+1936,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,EXP-11.4,0.811264,same Bencina-vs-Movilizacion client convention as the other petrol rows
+2097,dias,CONSTRUCCIONES Y PRESTACIÓN DE SERVICIOS VICENTE DIOCARES E.I.R.L.,EXP-14.2,0.759887,bare unit of labour; the category came from the provider rather than the item
+2123,SEGUN OT 270,MULTIMOTOS OSORNO SPA,EXP-13.2,0.870023,work-order reference; names no product or service
+2124,SEGUN OT 269,MULTIMOTOS OSORNO SPA,EXP-13.2,0.867039,work-order reference; names no product or service
+2125,SEGUN OT 268,MULTIMOTOS OSORNO SPA,EXP-13.2,0.892812,work-order reference; names no product or service
+2187,Gasolina 93 octanos sin plomo,COMER DE COMBUSTIBLES M&D LTD,EXP-11.4,0.936375,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+2195,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.939632,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+2383,Periodo de Cobertura abril 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.957966,insurance cover period; the type of cover is not stated
+2522,Renta de Arrendamiento Nº70 del contrato Nº16380-1,BANCO BICE,ADM-1.7,0.834314,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2523,Renta de Arrendamiento Nº3 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.829373,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2526,Renta de Arrendamiento Nº10 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.837279,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2527,Renta de Arrendamiento Nº3 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.834086,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2528,Renta de Arrendamiento Nº13 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.841883,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2529,Renta de Arrendamiento Nº2 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.828553,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2530,Renta de Arrendamiento Nº2 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.82838,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2531,Renta de Arrendamiento Nº4 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.832715,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2532,Renta de Arrendamiento Nº35 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.834933,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2533,Renta de Arrendamiento Nº4 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.839182,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2534,Renta de Arrendamiento Nº71 del contrato Nº16380-1,BANCO BICE,ADM-1.7,0.83205,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+2547,Disco SSD KNG 500GB M.2 2280 MVMe PCIe,COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA,EXP-13.3,0.856382,computer storage filed as vehicle maintenance
+2567,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947777,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+2568,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.959058,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+2569,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947469,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+2570,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947469,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+2617,Subsidio cuota deuda pandemia 38 / 48,Sociedad Austral de Electricidad SA,EXP-9.1,0.928636,electricity account instalment; which meter it belongs to is not in the text
+2618,Cuota deuda pandemia (38/48),Sociedad Austral de Electricidad SA,EXP-9.1,0.966147,electricity account instalment; which meter it belongs to is not in the text
+2656,DETALLE,COPEC S.A.,ADM-1.4,0.773743,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+2659,DETALLE,COPEC S.A.,ADM-1.4,0.770864,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+2662,DETALLE,COPEC S.A.,ADM-1.4,0.766222,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+2675,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,EXP-11.4,0.811264,same Bencina-vs-Movilizacion client convention as the other petrol rows
+3014,Compra materiales,INDUSTRIAL RIEGO SPA,EXP-9.2,0.852529,generic line naming nothing
+3023,SEGUN OT 338,MULTIMOTOS OSORNO SPA,EXP-13.2,0.911928,work-order reference; names no product or service
+3109,Gasolina 93 octanos sin plomo,INVERSIONES Y ASESORIA BARCA SPA 3103944,EXP-11.4,0.945454,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+3110,Gasolina 93 octanos sin plomo,INVERSIONES Y ASESORIA BARCA SPA 3103944,EXP-11.4,0.945454,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+3114,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.943036,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+3203,Gasolina 93 octanos sin plomo,PILAUCO VIEJO SPA,EXP-11.4,0.943809,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+3204,Gasolina 93 octanos sin plomo,COMERCIAL SUR ENERGY SPA,EXP-11.4,0.947766,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+3321,Periodo de Cobertura mayo 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.959128,insurance cover period; the type of cover is not stated
+3417,Renta de Arrendamiento Nº4 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.836236,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3419,Renta de Arrendamiento Nº11 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.830804,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3420,Renta de Arrendamiento Nº4 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.839532,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3422,Comisión por Transferencia Electrónica d,BANCO BICE,ADM-1.8,0.76221,bank transfer fee filed as accounting advisory
+3423,Renta de Arrendamiento Nº14 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.841218,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3424,Renta de Arrendamiento Nº3 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.831853,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3425,Renta de Arrendamiento Nº3 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.831821,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3426,Renta de Arrendamiento Nº5 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.837033,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3427,Renta de Arrendamiento Nº5 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.843601,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3428,Renta de Arrendamiento Nº1 del contrato Nº34853-0,BANCO BICE,ADM-1.7,0.833822,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3429,Renta de Arrendamiento Nº36 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.833169,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3430,Renta de Arrendamiento Nº72 del contrato Nº16380-1,BANCO BICE,ADM-1.7,0.836116,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+3458,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.952334,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+3469,Subsidio cuota deuda pandemia 39 / 48,Sociedad Austral de Electricidad SA,EXP-9.1,0.93142,electricity account instalment; which meter it belongs to is not in the text
+3470,Cuota deuda pandemia (39/48),Sociedad Austral de Electricidad SA,EXP-9.1,0.966836,electricity account instalment; which meter it belongs to is not in the text
+3482,DETALLE,COPEC S.A.,ADM-1.4,0.765103,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+3485,DETALLE,COPEC S.A.,ADM-1.4,0.760996,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+3488,DETALLE,COPEC S.A.,ADM-1.4,0.765243,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+3491,DETALLE,COPEC S.A.,ADM-1.4,0.778131,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+3494,DETALLE,COPEC S.A.,ADM-1.4,0.767786,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+3497,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,EXP-11.4,0.811264,same Bencina-vs-Movilizacion client convention as the other petrol rows
+3533,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,EXP-11.4,0.811264,same Bencina-vs-Movilizacion client convention as the other petrol rows
+3874,TRASLADO VACAS VACIAS,LUIS ANTONIO TORRES JARAMILLO,EXP-2.3,0.824926,livestock transport filed as vaccines
+3916,SEGUN OT 364,MULTIMOTOS OSORNO SPA,EXP-13.2,0.873303,work-order reference; names no product or service
+3917,SEGUN OT 350,MULTIMOTOS OSORNO SPA,EXP-13.2,0.885596,work-order reference; names no product or service
+3920,SEGUN OT 394,MULTIMOTOS OSORNO SPA,EXP-13.2,0.866618,work-order reference; names no product or service
+3986,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.942487,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+4087,Gasolina 93 octanos sin plomo,PILAUCO VIEJO SPA,EXP-11.4,0.94537,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+4162,Periodo de Cobertura junio 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.959104,insurance cover period; the type of cover is not stated
+4261,Renta de Arrendamiento Nº5 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.840912,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4263,Renta de Arrendamiento Nº12 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.839106,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4265,Renta de Arrendamiento Nº5 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.844381,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4266,Renta de Arrendamiento Nº15 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.842551,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4267,Renta de Arrendamiento Nº6 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.833342,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4268,Renta de Arrendamiento Nº4 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.835941,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4269,Renta de Arrendamiento Nº4 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.836682,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4272,Renta de Arrendamiento Nº6 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.840069,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4275,Renta de Arrendamiento Nº37 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.834773,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4276,Renta de Arrendamiento Nº2 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.829081,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+4291,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.952036,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+4292,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.952151,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+4314,DETALLE,COPEC S.A.,ADM-1.4,0.783561,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+4317,DETALLE,COPEC S.A.,ADM-1.4,0.758725,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+4320,DETALLE,COPEC S.A.,ADM-1.4,0.776778,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+4323,DETALLE,COPEC S.A.,ADM-1.4,0.774762,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+4511,TRASL.VACAS PREÑADAS,LUIS ANTONIO TORRES JARAMILLO,EXP-2.3,0.881998,livestock transport filed as vaccines
+4512,TRASL.VACAS PREÑADAS,LUIS ANTONIO TORRES JARAMILLO,EXP-2.3,0.881998,livestock transport filed as vaccines
+4593,SEGUN OT 381,MULTIMOTOS OSORNO SPA,EXP-13.2,0.869314,work-order reference; names no product or service
+4594,SEGUN OT 382,MULTIMOTOS OSORNO SPA,EXP-13.2,0.879372,work-order reference; names no product or service
+4595,SEGUN OT 401,MULTIMOTOS OSORNO SPA,EXP-13.2,0.889225,work-order reference; names no product or service
+4596,SEGUN OT 402,MULTIMOTOS OSORNO SPA,EXP-13.2,0.894027,work-order reference; names no product or service
+4597,SEGUN OT 400,MULTIMOTOS OSORNO SPA,EXP-13.2,0.822632,work-order reference; names no product or service
+4598,SEGUN OT 441,MULTIMOTOS OSORNO SPA,EXP-13.2,0.841114,work-order reference; names no product or service
+4599,SEGUN OT 383,MULTIMOTOS OSORNO SPA,EXP-13.2,0.853922,work-order reference; names no product or service
+4606,SERVICIOS,GEO PARTNER SPA,EXP-15.3,0.75288,generic word carrying no information about what was bought
+5024,Gasolina 93 octanos sin plomo,PILAUCO VIEJO SPA,EXP-11.4,0.942155,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+5121,CLORINDA X 4 LT,COMERCIAL AMAR HNOS. Y CIA. LTDA,EXP-7.0,0.826181,household bleach; the client files Clorinda under ADM-1.6 office and cleaning supplies
+5131,Periodo de Cobertura julio 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.95561,insurance cover period; the type of cover is not stated
+5278,Renta de Arrendamiento Nº6 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.836836,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5281,Renta de Arrendamiento Nº13 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.840471,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5282,Renta de Arrendamiento Nº6 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.840667,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5283,Renta de Arrendamiento Nº16 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.840605,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5284,Renta de Arrendamiento Nº5 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.840645,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5285,Renta de Arrendamiento Nº5 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.841009,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5287,Renta de Arrendamiento Nº7 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.841738,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5288,Renta de Arrendamiento Nº3 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.833128,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5289,Renta de Arrendamiento Nº38 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.831,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5290,Renta de Arrendamiento Nº7 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.847109,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+5330,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.950641,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+5354,DETALLE,COPEC S.A.,ADM-1.4,0.776782,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+5357,DETALLE,COPEC S.A.,ADM-1.4,0.768843,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+5360,DETALLE,COPEC S.A.,ADM-1.4,0.782281,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+5769,TRASL.VACAS PREÑADAS,LUIS ANTONIO TORRES JARAMILLO,EXP-2.3,0.881998,livestock transport filed as vaccines
+5801,dias trabajados,CONSTRUCCIONES Y PRESTACIÓN DE SERVICIOS VICENTE DIOCARES E.I.R.L.,EXP-14.2,0.793234,bare unit of labour; the category came from the provider rather than the item
+5844,SEGUN OT 470,MULTIMOTOS OSORNO SPA,EXP-13.2,0.909534,work-order reference; names no product or service
+5845,SEGUN OT 471,MULTIMOTOS OSORNO SPA,EXP-13.2,0.894603,work-order reference; names no product or service
+5848,SEGUN OT 468,MULTIMOTOS OSORNO SPA,EXP-13.2,0.885168,work-order reference; names no product or service
+5849,SEGUN OT 469,MULTIMOTOS OSORNO SPA,EXP-13.2,0.869489,work-order reference; names no product or service
+5854,SERVICIOS,GEO PARTNER SPA,EXP-15.3,0.796445,generic word carrying no information about what was bought
+5890,Eurodiesel plus 15W40 CK4 19 lts,SOCIEDAD TOROYO LTDA,EXP-11.3,0.837871,"15W40 is engine oil, not diesel fuel"
+6127,Periodo de Cobertura agosto 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.954386,insurance cover period; the type of cover is not stated
+6239,Renta de Arrendamiento Nº7 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.844154,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6241,Renta de Arrendamiento Nº14 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.840143,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6242,Renta de Arrendamiento Nº7 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.847812,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6243,Renta de Arrendamiento Nº17 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.844891,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6244,Renta de Arrendamiento Nº6 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.837396,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6245,Renta de Arrendamiento Nº6 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.838116,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6248,Renta de Arrendamiento Nº8 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.82619,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6249,Renta de Arrendamiento Nº4 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.839962,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6250,Renta de Arrendamiento Nº8 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.83367,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6251,Renta de Arrendamiento Nº39 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.829242,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+6283,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.950959,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+6284,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.95907,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+6304,DETALLE,COPEC S.A.,ADM-1.4,0.779264,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6307,DETALLE,COPEC S.A.,ADM-1.4,0.767957,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6310,DETALLE,COPEC S.A.,ADM-1.4,0.767318,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6313,DETALLE,COPEC S.A.,ADM-1.4,0.769845,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6316,DETALLE,COPEC S.A.,ADM-1.4,0.756459,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6320,DETALLE,COPEC S.A.,ADM-1.4,0.769412,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6323,DETALLE,COPEC S.A.,ADM-1.4,0.775764,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6326,DETALLE,COPEC S.A.,ADM-1.4,0.768805,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+6720,SERVICIO DE TRASLADO,TRANSPORTES OJEDA SPA,EXP-14.1,0.875181,transport service filed as road maintenance; the line describes the movement not the cargo
+6721,SERVICIO DE TRASLADO,TRANSPORTES OJEDA SPA,EXP-14.1,0.875181,transport service filed as road maintenance; the line describes the movement not the cargo
+6848,SERVICIO DE TRASLADO,SOCIEDAD COMERCIAL SERLAC CHILE S.A.,EXP-14.1,0.782735,transport service filed as road maintenance; the line describes the movement not the cargo
+6994,Gasolina 93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,EXP-11.4,0.778719,fuel usage split is a client bookkeeping convention; client proof exists only for PAOLA USLAR and the dairy co-op
+7116,Renta de Arrendamiento Nº8 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.83041,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7120,Comisión por Transferencia Electrónica d,BANCO BICE,ADM-1.8,0.76221,bank transfer fee filed as accounting advisory
+7121,Renta de Arrendamiento Nº15 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.841165,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7122,Renta de Arrendamiento Nº8 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.834578,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7123,Renta de Arrendamiento Nº18 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.839213,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7124,Renta de Arrendamiento Nº7 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.844582,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7125,Renta de Arrendamiento Nº7 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.845528,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7126,Renta de Arrendamiento Nº9 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.828913,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7129,Renta de Arrendamiento Nº5 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.844891,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7130,Renta de Arrendamiento Nº9 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.8356,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7131,Renta de Arrendamiento Nº40 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.827005,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+7179,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.946363,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+7180,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949948,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+7181,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.951201,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+7182,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.951201,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+7197,DETALLE,COPEC S.A.,ADM-1.4,0.774301,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+7200,DETALLE,COPEC S.A.,ADM-1.4,0.778007,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+7536,Valor Neto Afectado,COOP RURAL ELECTRICA RIO BUENO LIMITADA,EXP-12.2,0.75423,invoice total line rather than a purchased item
+7538,Valor Neto Afectado,COOP RURAL ELECTRICA RIO BUENO LIMITADA,EXP-12.2,0.75423,invoice total line rather than a purchased item
+7581,URETANO,ROAGRO SPA,EXP-6.2,0.857846,urethane is not a fertiliser; likely confused with UREA
+7602,FUNDO RAICES,SERVICIOS AGRICOLAS CORPAL SPA,EXP-6.2,0.97333,farm name only; no item named
+7606,FUNDO RAICES,SERVICIOS AGRICOLAS CORPAL SPA,EXP-6.2,0.97333,farm name only; no item named
+7761,Termos Crigenico Tank ET20,ABS CHILE LIMITADA,EXP-16.2,0.853413,cryogenic semen flask; client evidence places this family with artificial insemination
+7902,Gasolina 93,COMERCIAL AIKETEN LIMITADA,EXP-11.4,0.782722,fuel usage split is a client bookkeeping convention; client proof exists only for PAOLA USLAR and the dairy co-op
+7903,Gasolina 93,COMERCIAL AIKETEN LIMITADA,EXP-11.4,0.782722,fuel usage split is a client bookkeeping convention; client proof exists only for PAOLA USLAR and the dairy co-op
+7977,Gasolina 93,DISTRIBUIDORA COMERCIAL P Y G LIMITADA,EXP-11.4,0.778719,fuel usage split is a client bookkeeping convention; client proof exists only for PAOLA USLAR and the dairy co-op
+8040,Gasolina 93 octanos sin plomo,SOC. COMERC. EDOW LTDA. 3101597,EXP-11.4,0.944564,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8041,Gasolina 93 octanos sin plomo,SOC. COMERC. EDOW LTDA. 3101597,EXP-11.4,0.944484,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8139,Renta de Arrendamiento Nº9 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.832307,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8140,Renta de Arrendamiento Nº16 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.839793,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8145,Renta de Arrendamiento Nº9 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.836294,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8146,Renta de Arrendamiento Nº19 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.840874,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8147,Renta de Arrendamiento Nº8 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.831537,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8148,Renta de Arrendamiento Nº8 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.831797,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8149,Renta de Arrendamiento Nº10 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.830041,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8151,Renta de Arrendamiento Nº41 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.827407,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8152,Renta de Arrendamiento Nº10 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.83711,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8153,Renta de Arrendamiento Nº6 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.840864,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+8198,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.951201,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8199,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947553,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8201,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947553,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8202,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947553,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8203,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.961982,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8205,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.953569,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8264,DETALLE,COPEC S.A.,ADM-1.4,0.780825,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+8267,DETALLE,COPEC S.A.,ADM-1.4,0.779844,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+8270,DETALLE,COPEC S.A.,ADM-1.4,0.758342,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+8273,DETALLE,COPEC S.A.,ADM-1.4,0.785584,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+8276,DETALLE,COPEC S.A.,ADM-1.4,0.768474,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+8279,DETALLE,COPEC S.A.,ADM-1.4,0.77445,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+8521,FUNDO RAICES,SERVICIOS AGRICOLAS CORPAL SPA,EXP-6.2,0.97333,farm name only; no item named
+8757,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.953716,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8758,Gasolina 93 octanos sin plomo,INVERSIONES Y ASESORIA BARCA SPA 3103944,EXP-11.4,0.941246,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+8921,"LAVAPARABRISAS, 5LT",DANIEL VILLAR Y CIA LTDA,EXP-7.0,0.804513,windshield washer fluid is not an agrochemical; no client evidence for this label
+8923,"LAVAPARABRISAS, 5LT",DANIEL VILLAR Y CIA LTDA,EXP-7.0,0.804513,windshield washer fluid is not an agrochemical; no client evidence for this label
+8927,CARGOS ADICIONALES,ARRENDADORA DE VEHICULOS SOCIEDAD ANONIMA,EXP-15.4,0.875309,generic surcharge line naming nothing
+8951,Periodo de Cobertura noviembre 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.959536,insurance cover period; the type of cover is not stated
+9086,Renta de Arrendamiento Nº10 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.833818,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9088,Renta de Arrendamiento Nº17 del contrato Nº32799-1,BANCO BICE,ADM-1.7,0.844105,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9091,Renta de Arrendamiento Nº10 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.837126,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9092,Renta de Arrendamiento Nº20 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.839519,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9095,Renta de Arrendamiento Nº9 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.832963,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9096,Renta de Arrendamiento Nº9 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.833332,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9098,Renta de Arrendamiento Nº11 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.822961,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9099,Renta de Arrendamiento Nº7 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.848146,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9100,Renta de Arrendamiento Nº11 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.831407,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9101,Renta de Arrendamiento Nº42 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.831904,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9102,Renta de Arrendamiento Nº1 del contrato Nº36931-0,BANCO BICE,ADM-1.7,0.835208,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+9153,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949516,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9155,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949516,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9156,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949516,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9157,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949016,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9159,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949016,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9160,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949016,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9161,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.959329,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9162,Gasolina 95 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.961492,same Bencina-vs-Movilizacion client convention as the other petrol rows
+9164,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.959329,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9165,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.950445,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9189,DETALLE,COPEC S.A.,ADM-1.4,0.753369,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+9192,DETALLE,COPEC S.A.,ADM-1.4,0.777533,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+9195,DETALLE,COPEC S.A.,ADM-1.4,0.775137,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+9198,DETALLE,COPEC S.A.,ADM-1.4,0.769983,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+9204,DETALLE,COPEC S.A.,ADM-1.4,0.768807,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+9722,MANO DE OBRA 4 LH,LIDIA ANGELICA SANHUEZA FUENTES,EXP-13.1,0.762384,bare labour line naming no product
+9726,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.933494,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9729,Gasolina 93 octanos sin plomo,SOC DE INVERSIONES EL OLIVO SPA,EXP-11.4,0.945175,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+9944,Periodo de Cobertura diciembre 2025,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.959979,insurance cover period; the type of cover is not stated
+10154,Renta de Arrendamiento Nº11 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.827619,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10159,Renta de Arrendamiento Nº11 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.831346,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10160,Renta de Arrendamiento Nº21 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.830021,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10161,Renta de Arrendamiento Nº10 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.834678,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10162,Renta de Arrendamiento Nº10 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.834322,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10163,Renta de Arrendamiento Nº12 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.832483,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10165,Renta de Arrendamiento Nº43 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.830725,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10170,Renta de Arrendamiento Nº2 del contrato Nº36931-1,BANCO BICE,ADM-1.7,0.833255,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10201,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.947986,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+10203,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.948716,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+10428,EST. DIESEL PORTATIL CERT. 420 L,COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA.,EXP-11.3,0.979287,"portable diesel station is a container, not fuel"
+10444,DETALLE,COPEC S.A.,ADM-1.4,0.760247,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+10447,DETALLE,COPEC S.A.,ADM-1.4,0.756319,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+10660,Gasolina 93 octanos sin plomo,COMERCIAL RIO BUENO SPA,EXP-11.4,0.942541,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+10666,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.939919,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+10667,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.940824,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+10668,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.940824,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+10894,Periodo de Cobertura enero 2026,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.961742,insurance cover period; the type of cover is not stated
+10968,Renta de Arrendamiento Nº12 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.835351,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10971,Comisión por Transferencia Electrónica d,BANCO BICE,ADM-1.8,0.76221,bank transfer fee filed as accounting advisory
+10972,Renta de Arrendamiento Nº12 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.839243,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10973,Renta de Arrendamiento Nº22 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.838989,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10974,Renta de Arrendamiento Nº11 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.830134,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10975,Renta de Arrendamiento Nº11 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.830012,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10976,Renta de Arrendamiento Nº13 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.83986,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10977,Renta de Arrendamiento Nº9 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.835808,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10978,Renta de Arrendamiento Nº13 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.833863,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10979,Renta de Arrendamiento Nº44 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.828943,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+10981,Renta de Arrendamiento Nº3 del contrato Nº36931-1,BANCO BICE,ADM-1.7,0.835769,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11032,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.949638,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11033,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.948872,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11034,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.948872,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11194,DETALLE,COPEC S.A.,ADM-1.4,0.774372,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11197,DETALLE,COPEC S.A.,ADM-1.4,0.781885,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11203,DETALLE,COPEC S.A.,ADM-1.4,0.773806,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11206,DETALLE,COPEC S.A.,ADM-1.4,0.755157,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11369,Gasolina 93 octanos sin plomo,DISTRIBUIDORA ENTRETECHO SPA,EXP-11.4,0.945576,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11423,Gasolina 93,COMERCIAL AIKETEN LIMITADA,EXP-11.4,0.782722,fuel usage split is a client bookkeeping convention; client proof exists only for PAOLA USLAR and the dairy co-op
+11429,Gasolina 93 octanos sin plomo,PILAUCO VIEJO SPA,EXP-11.4,0.946389,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11511,Periodo de Cobertura febrero 2026,Cia de Seguros de Vida Consorcio Nacional de Seguros SA,ADM-2.2,0.961798,insurance cover period; the type of cover is not stated
+11623,Renta de Arrendamiento Nº13 del contrato Nº34379-1,BANCO BICE,ADM-1.7,0.836666,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11628,Renta de Arrendamiento Nº13 del contrato Nº34431-1,BANCO BICE,ADM-1.7,0.840665,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11629,Renta de Arrendamiento Nº23 del contrato Nº32326-1,BANCO BICE,ADM-1.7,0.836765,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11630,Renta de Arrendamiento Nº12 del contrato Nº34589-1,BANCO BICE,ADM-1.7,0.836591,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11631,Renta de Arrendamiento Nº12 del contrato Nº34590-1,BANCO BICE,ADM-1.7,0.837139,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11632,Renta de Arrendamiento Nº14 del contrato Nº34350-1,BANCO BICE,ADM-1.7,0.833881,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11633,Renta de Arrendamiento Nº10 del contrato Nº34853-1,BANCO BICE,ADM-1.7,0.837658,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11634,Renta de Arrendamiento Nº14 del contrato Nº34359-1,BANCO BICE,ADM-1.7,0.839862,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11635,Renta de Arrendamiento Nº45 del contrato Nº22338-1,BANCO BICE,ADM-1.7,0.831191,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11671,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.950832,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11672,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.950832,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11673,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.950832,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11674,Gasolina 93 octanos sin plomo,INVERSIONES ENEX S.A.,EXP-11.4,0.950734,fuel usage split (Bencina vs Movilizacion) is a client bookkeeping convention; only silver backs these providers
+11759,GASOLINA 95,COOPERATIVA AGRICOLA Y LECHERA DE LA UNI,EXP-11.4,0.811264,same Bencina-vs-Movilizacion client convention as the other petrol rows
+11825,DETALLE,COPEC S.A.,ADM-1.4,0.77867,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11831,DETALLE,COPEC S.A.,ADM-1.4,0.753691,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11834,DETALLE,COPEC S.A.,ADM-1.4,0.759561,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11837,DETALLE,COPEC S.A.,ADM-1.4,0.787148,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"
+11914,ROSCO,MANTENCION INDUSTRIAL DEL SUR LIMITADA,EXP-14.4,0.896469,unidentifiable item name
+11945,Renta de Arrendamiento Nº4 del contrato Nº36931-1,BANCO BICE,ADM-1.7,0.841184,finance lease from a bank; the taxonomy has no leasing category and the correct home depends on what is leased
+11977,DETALLE,COPEC S.A.,ADM-1.4,0.767191,"COPEC fuel line; same Bencina-vs-Movilizacion client convention as the other petrol rows, and no client proof for this retailer"

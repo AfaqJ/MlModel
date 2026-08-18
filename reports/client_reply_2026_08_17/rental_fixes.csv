@@ -1,0 +1,19 @@
+item,was,was_decision,was_confidence,now,now_decision,why,amount
+Excavadora,EXP-14.2,review_required,0.232027,EXP-15.4,review_required,"bare machine name, supplier rents machinery, 0.23 confidence",13275000
+Arriendo enero 25,ADM-1.3,auto_accept,0.970839,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,345416
+Arriendo febrero 25,ADM-1.3,auto_accept,0.968274,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,537783
+Arriendo marzo 25,ADM-1.3,auto_accept,0.96619,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,527983
+Arriendo abril 25,ADM-1.3,auto_accept,0.958147,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,544931
+Arriendo mayo 25,ADM-1.3,auto_accept,0.968117,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,556221
+Arriendo junio 25,ADM-1.3,auto_accept,0.969518,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,543134
+Arriendo julio 25,ADM-1.3,auto_accept,0.9597,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,599431
+Arriendo agosto 25,ADM-1.3,auto_accept,0.957335,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,583831
+Arriendo Septiembre 25,ADM-1.3,auto_accept,0.964765,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,600647
+Arriendo Octubre 25,ADM-1.3,auto_accept,1.0,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,599311
+Arriendo Noviembre 25,ADM-1.3,auto_accept,0.962717,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,601308
+Arriendo Diciembre 25,ADM-1.3,auto_accept,0.963877,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,601889
+Arriendo Enero 26,ADM-1.3,auto_accept,0.924553,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,607767
+Arriendo febrero 26,ADM-1.3,auto_accept,0.934015,EXP-15.4,review_required,monthly rent from a feed supplier; not an office landlord,603389
+ARRIENDO PARRILLA,EXP-14.1,auto_accept,1.0,EXP-15.4,review_required,"says rent, object unclear",200000
+ARRIENDO DE RETRO EXCAVADORA,EXP-14.1,auto_accept,1.0,EXP-15.4,auto_accept,rents a named machine (backhoe),178500
+RENTA GENER INSO 4T220V 3KW-HD,ADM-1.6,review_required,0.174913,EXP-15.4,auto_accept,rents a named machine (generator),30983

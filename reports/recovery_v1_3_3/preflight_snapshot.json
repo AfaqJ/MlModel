@@ -1,0 +1,67 @@
+{
+  "live_counts": {
+    "categories": 71,
+    "companies": 461,
+    "item_catalog": 5402,
+    "invoices": 5195,
+    "invoice_items": 11766
+  },
+  "junk_keys_in_file": 440,
+  "junk_keys_present_live": 0,
+  "expected_delete_rowcount": 0,
+  "prune_targets": 225,
+  "live_rows_referencing_prune_targets": 0,
+  "payload_item_rows": 11746,
+  "checks": [
+    {
+      "name": "live categories count",
+      "passed": true,
+      "detail": "expected 71, found 71"
+    },
+    {
+      "name": "live companies count",
+      "passed": false,
+      "detail": "expected 460, found 461 (someone else has changed the data since this payload was built)"
+    },
+    {
+      "name": "live item_catalog count",
+      "passed": false,
+      "detail": "expected 5579, found 5402 (someone else has changed the data since this payload was built)"
+    },
+    {
+      "name": "live invoices count",
+      "passed": false,
+      "detail": "expected 5157, found 5195 (someone else has changed the data since this payload was built)"
+    },
+    {
+      "name": "live invoice_items count",
+      "passed": false,
+      "detail": "expected 12071, found 11766 (someone else has changed the data since this payload was built)"
+    },
+    {
+      "name": "category UUIDs match the payload",
+      "passed": true,
+      "detail": "all 71 codes resolve to the same UUID"
+    },
+    {
+      "name": "junk rows present live",
+      "passed": false,
+      "detail": "0 of 440 junk keys exist live (the other 440 name line numbers the old parser never created); expect DELETE rowcount 0, not 440"
+    },
+    {
+      "name": "no unaccounted live item rows",
+      "passed": false,
+      "detail": "20 live rows are in neither set, e.g. [('969183005', '33', '551719', 6), ('969183005', '33', '553382', 6), ('969183005', '33', '558367', 6)]"
+    },
+    {
+      "name": "prune targets exist live",
+      "passed": false,
+      "detail": "0 of 225 prune targets found in the live catalog"
+    },
+    {
+      "name": "prune targets referenced only by junk rows",
+      "passed": true,
+      "detail": "0 live rows reference them, all of which are being deleted as junk"
+    }
+  ]
+}

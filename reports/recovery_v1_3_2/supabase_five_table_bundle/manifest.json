@@ -1,0 +1,53 @@
+{
+  "release": "v1.3.1-local-only",
+  "schema": "Temp_Inference/normalized_company_item_schema.sql",
+  "network_calls": 0,
+  "uuid_policy": "resolve from natural keys at upload time; no fabricated database UUIDs",
+  "reconciliation_policy": "backup affected invoice_items, upsert retained rows, then delete only the explicit invoice+line keys in reconcile_delete_junk_lines.jsonl inside one transaction",
+  "raw_xml": {
+    "raw_xml_documents": 5195,
+    "raw_detail_lines": 12206,
+    "standard_document_invoices": 5166,
+    "liquidacion_invoices": 29,
+    "duplicate_invoice_keys": 0,
+    "duplicate_line_keys": 0
+  },
+  "counts": {
+    "categories": 71,
+    "companies": 462,
+    "item_catalog": 5402,
+    "invoices": 5195,
+    "invoice_items": 11766,
+    "reconcile_delete_junk_lines": 440,
+    "invoices_with_no_retained_items": 0
+  },
+  "decision_counts": {
+    "auto_accept": 5536,
+    "review_required": 6230
+  },
+  "source_counts": {
+    "business_rule": 137,
+    "meter_lookup": 1587,
+    "model": 7402,
+    "product_lookup": 2640
+  },
+  "invariants": {
+    "categories_are_71": true,
+    "all_5195_invoice_headers_preserved": true,
+    "retained_invoice_items_are_11766": true,
+    "audited_junk_lines_are_440": true,
+    "all_29_liquidacion_headers_preserved": true,
+    "all_103_liquidacion_lines_preserved_for_review": true,
+    "no_invoice_is_misrepresented_as_empty": true,
+    "all_predictions_mapped_once": true
+  },
+  "sha256": {
+    "categories.jsonl": "b647314d9c6aacbbd74aed5bf6e41fc072d9f948032ddffe54eb9d226ed92bef",
+    "companies.jsonl": "4290533973505508015ff033dc31c206fb61b3141b6050f473564ce66bf758ef",
+    "invoice_items.jsonl": "26f957ef5a49e4f1fe73b8329b1ddeff54d01d00fb8de066afefe67a794b142a",
+    "invoices.jsonl": "73fda4b8753199325172075cd3ca834980e0b94da7ece7d8c5cff1ba241a469d",
+    "invoices_with_no_retained_items.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "item_catalog.jsonl": "c703845206af8f97b5b3747497c5df686e800eded458422e3ad60543864efa47",
+    "reconcile_delete_junk_lines.jsonl": "74d2ac2d50fea70ab44aa2e09efdd5dc31eca2948ceb2e743f4c2b813b39c624"
+  }
+}

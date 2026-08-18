@@ -5,8 +5,15 @@ Classifies Spanish invoice line items into accounting categories for
 
 **Status:** v1.3.3 live on Cloud Run — service `mlmodel`, `europe-west1`,
 revision `mlmodel-00014-lrp`, 100% traffic. Supabase holds 11,746 corrected
-lines as of 2026-08-14.
+lines as of 2026-08-17: 7,143 auto-accepted, 4,603 in review, and 77
+categories.
 **Branch:** `codex/transaction-aware-retrain-v2` (dirty — see `docs/STATE.md`).
+
+**Item-catalog canonicalization is parked, awaiting a client meeting.** Live
+`item_catalog` holds 5,411 entries for 11,746 invoice lines, because the item
+name is the key and it often carries a changing value (a meter reading, a
+contract number, a date). No cleanup has been applied and none should be
+started until the client answers the open questions — see `docs/STATE.md`.
 
 ## What this is
 
@@ -15,14 +22,14 @@ COMPRAS/VENTAS direction from the folder the document came from. Output is top-3
 category codes with confidence, and a decision: `auto_accept` or
 `review_required`.
 
-The product is **human-in-the-loop by design**. 74 categories are live; the
+The product is **human-in-the-loop by design**. 77 categories are live; the
 deployed model emits **67** — read it from `artifacts/v1.3.3-int8/labels.json`
-(`classifier_classes`), never by subtracting from the category table. The three
-added on 2026-08-14 are rule-assigned and cannot be predicted (D-028); four more
-carry `trained: false`. `Data/gold/_master_gold.csv` holds 2,577 rows
+(`classifier_classes`), never by subtracting from the category table. The six
+added on 2026-08-14/17 are rule-assigned and cannot be predicted (D-028); four
+more carry `trained: false`. `Data/gold/_master_gold.csv` holds 2,577 rows
 across 73 classes, 2,329 of them distinct model inputs. Many classes have very
 few examples, so the model cannot be trusted alone: the review gate is a feature,
-not a shortfall. Of 11,746 lines, 7,014 (60%) are auto-accepted and 4,732 (40%)
+not a shortfall. Of 11,746 lines, 7,143 (61%) are auto-accepted and 4,603 (39%)
 sit in review.
 
 The system is two halves that are easy to confuse: an **offline labeling
@@ -58,6 +65,7 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
 |---|---|
 | Where we are, recent sessions, next steps | `docs/STATE.md` |
 | How the system is built | `docs/ARCHITECTURE.md` |
+| The complete staged Supabase payload | `reports/recovery_v1_3_3/supabase_upload/` |
 | Why it is built that way | `docs/DECISIONS.md` |
 | What may enter the gold dataset | `docs/LABELING_RULES.md` |
 | How the client wants things labelled | `docs/CLIENT_CONVENTIONS.md` |
@@ -76,6 +84,11 @@ not. PyTorch must never reach the production container.
 ```bash
 .venv-backend/bin/python -m pytest tests/ -q     # 98 tests, all must pass
 ```
+
+For a full database re-load, mutate only the staged JSONL payload through a
+numbered correction script, run it dry, back up live with script 81, then use
+script 82. Script 82 preserves the existing Supabase schema and re-resolves all
+database-generated IDs from live before upserting whole rows.
 
 Deploy is **container-only** — `gcloud builds submit` → Artifact Registry →
 `gcloud run deploy`. Git is never in the path, which is what keeps the 278 MB

@@ -1,0 +1,176 @@
+input_id,item,was,now,was_decision,now_decision,why,amount
+783847701|1452|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2332712
+783847701|1452|2,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2384389
+783847701|1464|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2316659
+783847701|1464|2,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2376237
+783847701|1479|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2393615
+783847701|1479|2,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2393615
+783847701|1490|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2396384
+783847701|1490|2,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2396384
+783847701|1502|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2404731
+783847701|1502|2,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2404731
+783847701|1516|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2405969
+783847701|1516|2,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2405969
+783847701|1529|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2412255
+783847701|1543|1,ARRIENDO FUNDO PELLECO,EXP-14.1,EXP-15.7,review_required,auto_accept,client 2026-08-17,2408983
+97036000K|51964399|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,8314491
+97036000K|52220425|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487644
+97036000K|52357439|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97036000K|52659387|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,608807
+97036000K|52685845|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97036000K|52973725|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,608807
+97036000K|53049578|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97036000K|53325198|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,608807
+97036000K|53387058|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97036000K|53670178|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,608807
+97036000K|53722489|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97036000K|53999128|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,608807
+97036000K|54041614|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97036000K|54348139|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,608807
+97036000K|54418684|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97036000K|54686181|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,608807
+97036000K|54736071|1,PAGO ARRIENDO OPERACION:,EXP-14.1,EXP-15.8,review_required,auto_accept,client 2026-08-17,2399192
+97080000K|3174617|1,Renta de Arrendamiento Nº7 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3183740|1,Renta de Arrendamiento Nº10 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3185771|1,Renta de Arrendamiento Nº1 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3186523|1,Renta de Arrendamiento Nº32 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3186537|1,Renta de Arrendamiento Nº27 del contrato Nº23221-2,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2106369
+97080000K|3187085|1,Renta de Arrendamiento Nº1 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3187696|1,Renta de Arrendamiento Nº68 del contrato Nº16380-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,4072992
+97080000K|3190257|1,Renta de Arrendamiento Nº1 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3200024|1,Pago Vencido de renta de Arrendamiento Nº8 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3206334|1,Renta de Arrendamiento Nº1 del contrato Nº34431-0,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3206571|1,Renta de Arrendamiento Nº11 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3210653|1,Renta de Arrendamiento Nº2 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3211320|1,Renta de Arrendamiento Nº28 del contrato Nº23221-2,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2106369
+97080000K|3212097|1,Renta de Arrendamiento Nº2 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3212152|1,Renta de Arrendamiento Nº33 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3212345|1,Renta de Arrendamiento Nº69 del contrato Nº16380-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,4072992
+97080000K|3214553|1,Renta de Arrendamiento Nº2 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3215483|1,Renta de Arrendamiento Nº9 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3231910|1,Renta de Arrendamiento Nº2 del contrato Nº34431-0,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3231963|1,Renta de Arrendamiento Nº12 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3232020|1,Pago parcial de la renta de arrendamiento Nº3 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1351214
+97080000K|3232628|1,Renta de Arrendamiento Nº1 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3232629|1,Renta de Arrendamiento Nº1 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3234471|1,Renta de Arrendamiento Nº3 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3236242|1,Renta de Arrendamiento Nº34 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3236591|1,Renta de Arrendamiento Nº3 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3237327|1,Renta de Arrendamiento Nº70 del contrato Nº16380-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,4072992
+97080000K|3239857|1,Renta de Arrendamiento Nº3 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3248421|1,Renta de Arrendamiento Nº10 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3248955|1,Renta de Arrendamiento Nº3 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,786419
+97080000K|3256703|1,Renta de Arrendamiento Nº13 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3257117|1,Renta de Arrendamiento Nº2 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3257118|1,Renta de Arrendamiento Nº2 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3259384|1,Renta de Arrendamiento Nº4 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3260376|1,Renta de Arrendamiento Nº35 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3260655|1,Renta de Arrendamiento Nº4 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3261218|1,Renta de Arrendamiento Nº71 del contrato Nº16380-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,4072992
+97080000K|3264922|1,Renta de Arrendamiento Nº4 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3266276|1,Renta de Arrendamiento Nº11 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3266964|1,Renta de Arrendamiento Nº4 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3282915|1,Renta de Arrendamiento Nº14 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3283565|1,Renta de Arrendamiento Nº3 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3283566|1,Renta de Arrendamiento Nº3 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3284963|1,Renta de Arrendamiento Nº5 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3285702|1,Renta de Arrendamiento Nº5 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3285753|1,Renta de Arrendamiento Nº1 del contrato Nº34853-0,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3286237|1,Renta de Arrendamiento Nº36 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3287029|1,Renta de Arrendamiento Nº72 del contrato Nº16380-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,4072992
+97080000K|3290123|1,Renta de Arrendamiento Nº5 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3298616|1,Renta de Arrendamiento Nº12 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3305507|1,Pago parcial de la renta de arrendamiento Nº2 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,473193
+97080000K|3306572|1,Renta de Arrendamiento Nº5 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3307188|1,Renta de Arrendamiento Nº15 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3308121|1,Renta de Arrendamiento Nº6 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3308186|1,Renta de Arrendamiento Nº4 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3308187|1,Renta de Arrendamiento Nº4 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3309758|1,Pago parcial de la renta de arrendamiento Nº20 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2241136
+97080000K|3309906|1,Renta de Arrendamiento Nº6 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3310004|1,Opcion de compra del contrato Nº16380-1,ADM-1.7,AF-2.1,review_required,review_required,"ours — buyout, not rent; left in review",488759
+97080000K|3310005|1,Opcion de compra del contrato Nº16380-1,ADM-1.7,AF-2.1,review_required,review_required,"ours — buyout, not rent; left in review",3584233
+97080000K|3310038|1,Renta de Arrendamiento Nº37 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3310261|1,Renta de Arrendamiento Nº2 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2241135
+97080000K|3315154|1,Renta de Arrendamiento Nº6 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3323676|1,Renta de Arrendamiento Nº13 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3323970|1,Renta de Arrendamiento Nº6 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3332089|1,Renta de Arrendamiento Nº16 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3332505|1,Renta de Arrendamiento Nº5 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3332506|1,Renta de Arrendamiento Nº5 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3334080|1,Renta de Arrendamiento Nº7 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3335033|1,Renta de Arrendamiento Nº3 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3335261|1,Renta de Arrendamiento Nº38 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3335599|1,Renta de Arrendamiento Nº7 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3339898|1,Renta de Arrendamiento Nº7 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3349338|1,Renta de Arrendamiento Nº14 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3356046|1,Renta de Arrendamiento Nº7 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3357322|1,Renta de Arrendamiento Nº17 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3358197|1,Renta de Arrendamiento Nº6 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3358198|1,Renta de Arrendamiento Nº6 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3360945|1,Renta de Arrendamiento Nº8 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3360998|1,Renta de Arrendamiento Nº4 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3361446|1,Renta de Arrendamiento Nº8 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3361479|1,Renta de Arrendamiento Nº39 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3364812|1,Renta de Arrendamiento Nº8 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3368417|1,Renta de Arrendamiento Nº15 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3381276|1,Renta de Arrendamiento Nº8 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3382939|1,Renta de Arrendamiento Nº18 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3383377|1,Renta de Arrendamiento Nº7 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3383378|1,Renta de Arrendamiento Nº7 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3383583|1,Renta de Arrendamiento Nº9 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3385041|1,Renta de Arrendamiento Nº5 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3385433|1,Renta de Arrendamiento Nº9 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3385719|1,Renta de Arrendamiento Nº40 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3388933|1,Renta de Arrendamiento Nº9 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3390297|1,Renta de Arrendamiento Nº16 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3398871|1,Renta de Arrendamiento Nº9 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3402728|1,Renta de Arrendamiento Nº19 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3403117|1,Renta de Arrendamiento Nº8 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3403118|1,Renta de Arrendamiento Nº8 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3403859|1,Renta de Arrendamiento Nº10 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3405801|1,Renta de Arrendamiento Nº41 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3406332|1,Renta de Arrendamiento Nº10 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3406381|1,Renta de Arrendamiento Nº6 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3413981|1,Renta de Arrendamiento Nº10 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3423202|1,Renta de Arrendamiento Nº17 del contrato Nº32799-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3256429
+97080000K|3437867|1,Renta de Arrendamiento Nº10 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3441065|1,Renta de Arrendamiento Nº20 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3441071|1,Prepago Total del contrato Nº32799-1,ADM-2.1,AF-2.1,review_required,review_required,"ours — buyout, not rent; left in review",22507092
+97080000K|3441861|1,Renta de Arrendamiento Nº9 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3441862|1,Renta de Arrendamiento Nº9 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3446226|1,Renta de Arrendamiento Nº11 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3446711|1,Renta de Arrendamiento Nº7 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3457207|1,Renta de Arrendamiento Nº11 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3458122|1,Renta de Arrendamiento Nº42 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3458482|1,Renta de Arrendamiento Nº1 del contrato Nº36931-0,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2186581
+97080000K|3468147|1,Renta de Arrendamiento Nº11 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3483787|1,Renta de Arrendamiento Nº11 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3487110|1,Renta de Arrendamiento Nº21 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3488138|1,Renta de Arrendamiento Nº10 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3488139|1,Renta de Arrendamiento Nº10 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3490390|1,Renta de Arrendamiento Nº12 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3502830|1,Renta de Arrendamiento Nº43 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3503224|1,Pago Vencido de renta de Arrendamiento Nº12 del contrato Nº34359-1,ADM-1.7,EXP-15.8,auto_accept,auto_accept,client 2026-08-17,2816710
+97080000K|3503261|1,Pago Vencido de renta de Arrendamiento Nº8 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3503320|1,Renta de Arrendamiento Nº2 del contrato Nº36931-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2186581
+97080000K|3506482|1,Renta de Arrendamiento Nº12 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3530428|1,Renta de Arrendamiento Nº12 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3536813|1,Renta de Arrendamiento Nº22 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3538602|1,Renta de Arrendamiento Nº11 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3538603|1,Renta de Arrendamiento Nº11 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3550675|1,Renta de Arrendamiento Nº13 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3550728|1,Renta de Arrendamiento Nº9 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3550926|1,Renta de Arrendamiento Nº13 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3552745|1,Renta de Arrendamiento Nº44 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3553942|1,Renta de Arrendamiento Nº3 del contrato Nº36931-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2186581
+97080000K|3561631|1,Renta de Arrendamiento Nº13 del contrato Nº34379-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,575921
+97080000K|3585956|1,Renta de Arrendamiento Nº13 del contrato Nº34431-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2137633
+97080000K|3589703|1,Renta de Arrendamiento Nº23 del contrato Nº32326-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,3967703
+97080000K|3590262|1,Renta de Arrendamiento Nº12 del contrato Nº34589-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1435898
+97080000K|3590263|1,Renta de Arrendamiento Nº12 del contrato Nº34590-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2766683
+97080000K|3590755|1,Renta de Arrendamiento Nº14 del contrato Nº34350-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,1487279
+97080000K|3602860|1,Renta de Arrendamiento Nº10 del contrato Nº34853-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2714328
+97080000K|3603097|1,Renta de Arrendamiento Nº14 del contrato Nº34359-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2816710
+97080000K|3603496|1,Renta de Arrendamiento Nº45 del contrato Nº22338-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,741955
+97080000K|3605030|1,Renta de Arrendamiento Nº4 del contrato Nº36931-1,ADM-1.7,EXP-15.8,review_required,auto_accept,client 2026-08-17,2186581

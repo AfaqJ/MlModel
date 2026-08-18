@@ -5,36 +5,80 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The labelled dataset is corrected and live.** Supabase `nkdswofslslrumyraklv`
-holds **11,746 invoice lines — 7,014 auto-accepted, 4,732 in review**, with zero
-rows showing a label while awaiting review. Three categories the client created
-on 2026-08-14 are populated: `AF-1.1` Compras de Animales (113 lines, CLP
-529,541,100), `AF-2.1` Compras de Activo Fijo (19 lines, CLP 339,658,011),
-`ING-0.7` Ventas de Activo Fijo (6 lines, CLP 112,474,790). The live `categories`
-table now has 74 rows; **the deployed model emits 67** — verified against
+**The client's 2026-08-17 reply and the confirmed post-recovery corrections are
+applied locally and live.** The payload in
+`reports/recovery_v1_3_3/supabase_upload/` holds **11,746 lines — 7,143
+auto-accepted and 4,603 in review**, with zero rows showing a label while
+awaiting review. **Live Supabase now matches exactly:** 11,746 lines, 77
+categories, 7,143 auto / 4,603 review. A complete verified pre-write backup is
+`backups/supabase_20260817T105217Z/`.
+
+Categories are now **77**. Three were added this session from the client's reply
+(`scripts/83_apply_client_reply_2026_08_17.py`): `EXP-15.8` Leasing (158 lines,
+CLP 343,684,709), `EXP-15.7` Arriendo Otros Predios (14 lines, CLP 33,432,633),
+`EXP-15.6` Arriendo Predio Lecheria (**0 lines** — the client named it, but no
+invoice can be assigned to it without him naming the property; see
+`CLIENT_CONVENTIONS.md` §7). The three from 2026-08-14 are populated: `AF-1.1`
+(113 lines, CLP 529,541,100), `AF-2.1` (22 lines, CLP 366,238,095 — 19 plus the
+3 lease buyouts added this session, which stay in review), `ING-0.7` (6 lines,
+CLP 112,474,790).
+
+**The deployed model emits 67** — verified against
 `artifacts/v1.3.3-int8/labels.json` → `classifier_classes` (67 entries) and
 `model_card.json` → `trained_classes: 67`. Everything else is rule- or
-lookup-assigned, see D-028.
+lookup-assigned, see D-028. The three new codes are rule-assigned and cannot be
+predicted.
 
 v1.3.3 remains live on Cloud Run (`mlmodel-00014-lrp`). No model change this
-session. Branch `codex/transaction-aware-retrain-v2`, last commit on the session's
-work is `ea46b49`; the only uncommitted paths are pre-existing (`call_graphs/`
-deletions and a `Temp_Inference/README.md` edit that were dirty at session start).
-Tests: 98 passing.
+session. Branch `codex/transaction-aware-retrain-v2`. Tests: **98 passing**
+(was 108; the 10 catalog-prototype tests were deleted with the prototype).
+
+**Item-catalog cleanup is PARKED, waiting on a client meeting.** All prototype
+code, generated preview data and its design doc were deleted on 2026-08-18 —
+the schema was our assumption and the meeting may invalidate it (D-036).
+Nothing was ever applied: no Supabase, staged-payload, raw-XML or frontend
+change was made at any point. The measured findings survive in the client brief
+(below); the code does not, and should not be rebuilt from memory.
+
+**All correction scripts are now tracked in git.** `scripts/` is gitignored with
+files force-added individually, and `80`, `81`, `83`, `84`, `85` had been left
+untracked — the scripts that loaded Supabase, back it up, and applied the client
+reply and the confirmed triage corrections. A `git clean -fdx` would have
+destroyed them. Force-added 2026-08-18; 29 scripts tracked. **When adding a
+script under `scripts/`, `git add -f` it in the same commit.**
 
 ## Next
 
-1. **Process the client's reply.** The 2026-08-17 email was sent and Cristian has
-   answered; the reply has **not** been read or applied. Four questions were
-   asked — bank leases, farmland rental, the no-tag fuel default, COPEC `DETALLE`
-   renaming. Start by reading it against `docs/CLIENT_CONVENTIONS.md` "Still
-   open", and remember D-030: his answer outranks our row counts.
-2. **One lease line is wrongly auto-accepted.** `Pago Vencido de renta de
-   Arrendamiento Nº12 del contrato Nº…`, CLP 2,816,710, sits in `ADM-1.7` at
-   confidence **0.7528** against a 0.75 threshold. The other 171 lease lines are
-   all `review_required`. Flip this one to review — a data fix via
-   `scripts/82_apply_label_corrections.py`, not a model change. Do it before any
-   lease answer is applied, or it will be silently skipped.
+1. **Item catalog — hold until the client answers.** The brief published
+   2026-08-18 states the position: live `item_catalog` has **5,411 entries for
+   11,746 invoice lines**, because the item name is the key and often carries a
+   changing value. Measured breakdown: 950 entries are billing values in the
+   name (→ 68 groups); 132 are placeholder names like `Item`/`DETALLE` (120
+   rescuable from their description); ~300 are wording variants of the same
+   product; 765 are spec variants (→ 297 groups) and are the client's call;
+   4,168 entries appear on exactly one invoice line, ~3,544 of them with no
+   sibling to merge with at all. Safe cleanup alone gets 5,411 → ~4,300;
+   collapsing specs too gets ~3,850.
+
+   **Seven questions went to the client**: pack sizes (WD-40 226g vs 458ml);
+   size-as-the-product (clamps, needle gauges); shoe/garment sizes; pipe and
+   fitting diameters (349 entries → 129 groups, the largest block); cattle sale
+   lots (30 entries, 30 lines); freight by destination (43 entries, 60 lines);
+   flavour and colour variants. **Do not start any implementation until these
+   are answered** — and then build from the answers, not from the old design.
+
+   Settled already, by Afaq: **licence plates stay part of an item's identity.**
+   Maintenance on truck A is a different item from truck B, so the client can
+   see one vehicle's cost history. Only the wording around the plate is
+   normalised. The deleted prototype did the opposite.
+2. **Work the 4,603 review rows — Afaq's stated next task.** Resume label
+   cleanup: get final labels onto the rows sitting in review. Start from the
+   bucket table below — **~3,529 (68%) are undertrained, not ambiguous**, so
+   they are mostly already correct and just need confirming; the ~32% that are
+   genuine ambiguity, client-only context, meaningless names or no-valid-category
+   cannot be solved by any model. Rank by total value, not keyword: that is how
+   the CLP 529M animal-purchase gap was found. Corrections go through a new
+   numbered script, dry-run first, then script 82 — never a direct write.
 3. **Frontend fix — still the highest-value item and still untouched.** The UI
    renders `predicted_code` on rows awaiting review. Lower risk than it was now
    that `final_code` is NULL on every review row, but the UI still reads the
@@ -52,8 +96,13 @@ Tests: 98 passing.
    item name alone cannot (`Excavadora` CLP 13,275,000 from a supplier whose giro
    is `ARRIENDO DE MAQUINARIAS`). Baseline to beat: base = 0.7441 accuracy /
    0.6768 macro-F1 / 0.8765 top-3 on 340 val rows.
-6. **On next retrain, handle the three new categories.** They have gold rows but
-   the model cannot emit them. Also re-measure INT8 flip count — it worsened from
+6. **On next retrain, handle the six new categories.** `AF-1.1`, `AF-2.1`,
+   `ING-0.7` (2026-08-14) have gold rows; `EXP-15.6`, `EXP-15.7`, `EXP-15.8`
+   (2026-08-17) do **not** — no gold was written for them, deliberately, because
+   nobody asked for it. Decide before retraining: `EXP-15.7`/`EXP-15.8` have
+   learnable wording (`ARRIENDO FUNDO …`, `Renta de Arrendamiento … del contrato
+   …`), `EXP-15.6` has no rows at all and would trip the "fewer than 2 examples
+   must fail loudly" limit. Also re-measure INT8 flip count — it worsened from
    12/308 (v1.3.1) to 15/312 (v1.3.3).
 7. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres. Chilean decimal
    format (`62.648,532`) read as thousands separators. Amounts are correct.
@@ -61,9 +110,9 @@ Tests: 98 passing.
 
 ## What the review rows contain
 
-Measured at 5,183 rows before the 2026-08-14 corrections; the shape holds at
-4,732. Fuel is now fully triaged — everything left in fuel review is a genuine
-client question, which is **not** true of the rest of the queue.
+Measured at 5,183 rows before the 2026-08-14 corrections; the broad shape holds
+at the current 4,603. Fuel is largely triaged; 24 rows with unrecognised
+plate-field values were deliberately moved to review rather than guessed.
 
 | bucket | rows | share |
 |---|---:|---:|
@@ -93,12 +142,76 @@ second list here; the copy that used to live in this file drifted and was still
 naming livestock purchases, asset disposals, supermarket drinks and butane
 cartridges as open after all four had been answered on 2026-08-14.
 
-Status as of 2026-08-17: four questions asked by email, **reply received and
-unread**. One question deliberately never asked and still worth asking — the
-July 2026 onward invoices, which are the highest-value input available, because
-~3,529 review rows are undertrained rather than genuinely ambiguous.
+Status as of 2026-08-17: all four emailed questions **answered and applied**.
+Nothing from that round is waiting on him. What his answers left behind — the
+missing default rule for untagged petrol, which farms have a milking shed, and
+whether the three lease buyouts are asset purchases — is in that same list.
+
+One question deliberately never asked and still worth asking — the July 2026
+onward invoices, which are the highest-value input available, because ~3,529
+review rows are undertrained rather than genuinely ambiguous.
 
 ## Recent sessions
+
+### 2026-08-18 (later) — catalog measured for the client, then prototype deleted
+
+- **Deleted all catalog-prototype work at Afaq's instruction, before the client
+  meeting.** Removed `scripts/86_build_catalog_prototype.py`,
+  `tests/test_catalog_prototype.py`, `docs/PRODUCT_CATALOG_PROTOTYPE.md`, the
+  20 MB `reports/catalog_prototype_2026_08_17/` preview, and the prototype's
+  `.gitignore` block. None of it was ever committed, so it is gone for good —
+  deliberately, because the schema was our assumption and the client's answers
+  may imply a different shape. Tests back to **98 passing**. Labelling work,
+  the staged v1.3.3 payload and all other uncommitted changes were untouched.
+- **Measured the live catalog first, and that survives.** Against
+  `item_catalog.jsonl` (not the prototype): 5,411 entries for 11,746 lines. The
+  full breakdown and worked examples are in `Next` #1 and the published brief.
+- **Corrected a rule Afaq reversed.** The prototype stripped licence plates into
+  an attribute, merging four trucks' inspections into one item. He decided the
+  plate stays part of the item's identity, so each vehicle keeps its own cost
+  history. Any future build must follow the new rule.
+- **Gotcha — number-stripping alone does not find the real duplicates.** It
+  catches `Gasolina 93` variants but misses `WD-40 226 GRS` vs `LUBRICANTE
+  ANTICORROSIVO WD 40 187 GRS`, where the words differ too. Whatever gets built
+  after the meeting needs both, plus human inspection.
+- **Gotcha — a flat embedding cluster is unsafe as a grouping.** It confidently
+  places Gasolina 93 beside Gasolina 95, and pipe fittings across sizes. Useful
+  as a work queue, never as the answer.
+- **Gotcha — five correction scripts were one `git clean` from being lost.**
+  Checking whether earlier Codex work was preserved revealed that `scripts/80`,
+  `81`, `83`, `84`, `85` were untracked *and* gitignored. Only `82` had been
+  force-added. Fixed. Verified no hardcoded credentials before adding.
+- **Decided:** client answers gate all catalog work; prototype deleted, not
+  parked (→ D-036).
+
+### 2026-08-17 — confirmed recovery corrections and verified Supabase re-load
+
+- **Applied 43 exact invoice-line corrections via
+  `scripts/85_apply_confirmed_triage_corrections.py`, then re-loaded all five
+  tables with `scripts/82_apply_label_corrections.py`; no model change.** 15
+  client-rule labels are auto-accepted (13 supermarket foods
+  → `EXP-1.1`, two restaurant/cafe meals → `ADM-1.5`). 28 rows are now review:
+  13 unrecognised container values, 11 unrecognised plate values, and four
+  items that are clearly not confirmed food but have no certain final category.
+  Payload is now **7,143 auto / 4,603 review**; the invariant “review has no
+  final label” passes. Backup first:
+  `backups/supabase_20260817T105217Z/`; full live/local comparison passed with
+  zero missing, extra, or different rows.
+- **DTE-43 auction rows are not a defect.** A recovered audit claimed 103
+  auction rows were cattle sales. Afaq verified they are all `COMPRAS`; they
+  remain `AF-1.1` auto-accepted (103 rows, CLP 254,529,000). Do not reverse them
+  on DTE type or supplier semantics alone.
+- **Gotcha — recovered summaries can combine evidence with speculation.** The
+  “28 junk plates” claim yielded only 11 exact raw-XML matches (CLP 459,408).
+  The other 17 targets were not discoverable, so were not changed. `ENV000` was
+  the missing spelling required to reproduce the 13-row container group.
+- The remaining explicitly logged work is still `Next` #1–8. The newly ranked
+  review clusters and client-question batch are deferred to the discussion that
+  follows this correction pass; no new data rule was invented from them.
+- **Documented the reload contract:** the staged local five-table JSONL payload,
+  live schema ownership, latest backup, and required full-reload checks are now
+  explicit in `CLAUDE.md`, `ARCHITECTURE.md`, `ROLLBACK.md`, and
+  `TEST_CHECKLIST.md`.
 
 ### 2026-08-17 — client email sent; barn and lease questions verified against data
 
@@ -106,7 +219,7 @@ July 2026 onward invoices, which are the highest-value input available, because
   session start (`call_graphs/` deletions, `Temp_Inference/README.md`). Doc
   edits only: this file and `CLIENT_CONVENTIONS.md`.
 - **The client email was drafted, fact-checked line by line, and sent.** Cristian
-  has replied; **the reply is unread** — that is where the next session starts.
+  has replied, and the reply was read and applied later the same day.
 - **Every figure in the email was verified against `invoice_items.jsonl` before
   sending.** All matched except one Afaq had drafted from memory: BICE has **16
   distinct contract numbers, not 60**. Caught by grouping the 141 lines on the
@@ -186,82 +299,3 @@ July 2026 onward invoices, which are the highest-value input available, because
 - **Two scripts were numbered 81.** `81_backup_supabase.py` already existed; the
   new one was renamed to `82_`. `scripts/` is gitignored with ~22 files
   force-added, so `git ls-files` does not show what is on disk — check `ls`.
-
-
-### 2026-08-13 — context architecture; 15 docs → 7
-
-- **No code changed.** Docs, plus three doc-reference fixes in `training/`.
-- Built the context architecture: repo-root `CLAUDE.md` (front door, auto-loads),
-  `AGENTS.md` (one-line pointer so Codex loads the same thing), and this file.
-  Deleted 15 overlapping docs across 4 locations — `MLMODEL.md`, `blueprint.md`,
-  `CONTEXT_HANDOVER.md`, the field report, `FLOW.md`, both `HANDOVER_v1.3.x`,
-  `guides/`, and the old `docs/README.md`.
-- Recovered 11 decisions that were never recorded: D-016–D-024 from the v1.3.2
-  and v1.3.3 sessions, D-025 (why SetFit/mpnet) and D-026 (why Cloud Run) from
-  `MLMODEL.md` before deleting it. Fixed a duplicate `D-012`.
-- **Decided:** context lives in the repo, superseded docs are deleted not
-  archived, and memory never duplicates the repo (→ D-027).
-- **Corrections found while auditing, all now in the docs:** gold is 1,837 rows
-  / 67 classes / 26 weak (the docs said 1,604 / 66 / 31); `CONSTRAINTS.md` still
-  banned the Supabase upload and Cloud Run deploy that had already happened;
-  `Temp_Inference/README.md` claimed loader thresholds 0.80/0.10 against the
-  code's 0.75/0.50.
-- **Two real defects, not just doc rot:**
-  1. `train_recovery_setfit.py` defaults to `recovery_v1_3_1/` while the
-     exporter defaults to `recovery_v1_3_2/`. Retrain without explicit `--gold`
-     and you silently train on the previous generation. Now in `CONSTRAINTS.md`.
-  2. v1.3.3-int8 **did not meet** the exporter's default parity ceilings — it
-     shipped by raising them from 0.03/0.0 to 0.07/0.05. Working as designed,
-     but undocumented until now. See D-017.
-- **Gotcha — an "obviously fine" doc is the dangerous one.** The files that
-  called themselves context docs got audited; `guides/` and `reports/*.md` did
-  not, and both were wrong. `review_ambiguity_analysis.md` claimed 6,927
-  auto-accepts against the shipped 6,583. Audit by *content*, never by filename.
-
-### 2026-08-12 — v1.3.3 INT8 artifact + Cloud Run deploy
-
-- Narrowed business rules 95 → 28, **VENTAS-only**. `scripts/64` now emits
-  `ING-*` leaves only and rejects expense-side aliases (→ D-015).
-- Built two artifacts via a now-parameterised `training/export_recovery_onnx.py`:
-  `v1.3.3` FP32 (1.1 GB, reference only) and `v1.3.3-int8` (284 MB, deployed).
-- `app/core/model_loader.py` now hard-fails when `familiarity_index.npz` is
-  missing — it was silently disabling the kNN gate.
-- Tests went 57 passed / 11 failed → **98 passed**.
-- **Decided:** INT8 over FP32 — FP32 peaks at 1.92 GiB and is OOM-killed in the
-  2 GiB box (→ D-016). Weak-class guard kept (→ D-017). Familiarity gate kept
-  (→ D-018). Concurrency 4 → 1, timeout 300 → 600 s (→ D-019).
-- **Gotcha — parity gate failed 4× at `cosine=4.36`.** Impossible for a cosine,
-  and that impossibility is the only reason it got investigated. Cause was not
-  the model: `np.sum(ref * onnx, axis=1)` wrote its product back into `ref`, so
-  the denominator read a squared buffer. Fixed with norms computed before the
-  dot product, `np.einsum` with explicit output, float64 copies, and a hard
-  `cosine > 1` check. **MPS, onnxruntime and subprocess timing are all ruled
-  out — do not re-chase them.**
-- **Gotcha — `.gcloudignore` is required.** Without it `gcloud builds submit`
-  falls back to `.gitignore`, which excludes `artifacts/*`; the image builds
-  successfully with **no model inside** and fails at first request instead of at
-  build time. It also needs the `artifacts/*` re-exclude line or `!artifacts/`
-  drags in the 1.1 GB FP32 build.
-- **Gotcha — do not size Cloud Run from local Docker `--cpus 1`.** Local said
-  342 ms/row; real Cloud Run vCPU does 103 ms/row. 3.3× pessimistic, macOS VM
-  overhead. A 500-row batch takes 51 s.
-
-### 2026-08-12 — v1.3.2 confident false positives
-
-- v1.3.1 was blocked: the raw replay found ≥171 of 1,570 model auto-accepts
-  (10.9%) semantically wrong while sitting above the 0.75/0.50 thresholds —
-  biscuits as office supplies, soft drinks as natural gas, WD-40 as
-  agrochemicals. Every one of those families is now at **zero**.
-- Three measured causes: provider shortcut (`RENDIC → ADM-1.6` learned from 21
-  gold rows), discarded client evidence plus wrong silver labels, and the fact
-  that a closed-set logistic head must put every input *somewhere*.
-- **Decided:** fix the data and the training, never the threshold — 0.75 stayed
-  (→ D-020). Provider *dropout* in training rather than removing the provider
-  or adding a runtime ablation gate (→ D-021). Relabel quarantined rows instead
-  of dropping them (→ D-022).
-- **Decided:** removed twelve hardcoded Spanish gates Claude had added — Afaq's
-  call, and the most important correction of the round (→ D-023).
-
-<!-- 2026-08-11 (recovery v1.2.0 / incident root cause) dropped 2026-08-17 at the
-5-session limit. Nothing lost: the root cause is D-001 and the dedup rule it
-produced is a hard limit in CLAUDE.md. Full narrative in git history. -->

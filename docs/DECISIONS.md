@@ -685,3 +685,108 @@ back from live and remapped before items go up.
 **Rejected:** dropping and recreating the tables. Every invoice, company and
 catalog row would get a new UUID and all foreign keys would need rebuilding, to
 replace ~650 row updates.
+
+## D-032 — Source direction and client instruction beat structural audit theories
+
+**Date:** 2026-08-17 · **Decided by:** Afaq · **Model:** Codex GPT-5.6
+
+The 103 DTE-43 animal-auction rows from Tattersall Ganado and Feria Ganaderos
+Osorno are `COMPRAS` in their source folder and every `input_id`. The client
+created `AF-1.1 Compras de Animales` for purchases. They remain auto-accepted
+as `AF-1.1`; an audit may not recast them as income merely from document type,
+supplier business, or related freight lines.
+
+**Why:** the recovered audit mixed a plausible story about an auction settlement
+with an unsupported conclusion about the buyer/seller relationship. That would
+have overridden both transaction direction and the client's own category.
+
+## D-033 — A plate-field value outside the client's confirmed signals is review
+
+**Date:** 2026-08-17 · **Decided by:** Afaq · **Model:** Codex GPT-5.6
+
+For petrol, auto-accept only a recognised vehicle plate or a confirmed loose
+`BIDON` spelling under the client rule. `ENVASE`-style entries and garbled
+plate-like values are neither signal, so they remain predicted hints but must be
+`review_required` with `final_code = NULL`.
+
+**Why:** the client told us what the two meaningful signals are. Treating a
+third spelling as farm fuel, or a malformed value as a vehicle plate, turns an
+unproven interpretation into a final accounting answer.
+
+## D-034 — Raw invoice text stays immutable (design withdrawn 2026-08-18)
+
+**Date:** 2026-08-17 · **Decided by:** Afaq · **Model:** Codex GPT-5.6
+**Amended:** 2026-08-18 — the specific schema below is **withdrawn**.
+
+**What still holds.** The current `item_catalog` is an exact raw-wording
+dictionary, not a product master. Do not collapse or rewrite it to manufacture a
+smaller dashboard. `invoice_items.item_text`, description, item code, supplier,
+invoice folio and line number remain the evidence and the link back to the
+original XML. Any future canonicalization is additive over that evidence, never
+a rewrite of it.
+
+**What is withdrawn.** The two-table proposal (`product_catalog` plus
+`product_catalog_mapping`) and the two-invoice-line dashboard threshold were our
+assumptions, not the client's requirements. The prototype that implemented them
+was deleted on 2026-08-18, before the client meeting that decides how far to
+normalise. Do not resurrect that schema from memory — the answers may imply a
+different shape entirely. Nothing was ever applied to Supabase, the staged
+payload, raw XML or the frontend.
+
+## D-035 — Catalog clustering is supervised candidate discovery, never mapping
+
+**Date:** 2026-08-18 · **Decided by:** Afaq · **Model:** Codex GPT-5.6
+**Status:** the *principle* holds and applies to any future attempt. The
+implementation it describes was deleted on 2026-08-18 with D-034's schema.
+
+Use a locally cached multilingual sentence embedding plus character-gram
+similarity only to retrieve candidate source-wording pairs and overlapping
+review neighbourhoods. An item may belong to several candidate neighbourhoods.
+Neither a semantic score nor a connected component creates a canonical product
+mapping. Inspect the actual members first; only then may a small deterministic
+rule create a *suggested* mapping.
+
+Product-defining details — model/OEM identifiers, dimensions, fractions,
+gauge, grade, capacity, pack size, colour, formulation and certification — are
+conflict evidence. Do not collapse variants because they share a broad product
+family. Volatile context such as an inspected vehicle plate, farm route, animal
+count, worker, work-order number, or PPE wearer size may be an extracted
+attribute only when the checked pattern proves it does not change the item.
+
+**Why:** flat semantic clusters put Gasolina 93 next to Gasolina 95, pipe
+fittings of different sizes together, and different needle lengths together.
+They are useful as a work queue but unsafe as a catalog. This preserves the
+dashboard's purpose: a canonical header is a real comparable product or service,
+while original invoice wording stays visible as evidence.
+
+**Rejected:** Ollama/LLM batch normalisation, a separate matching classifier, and
+automatic HDBSCAN or connected-component assignment. There is no approved
+same/different-pair corpus. This authorises no Supabase, staged-payload, raw-XML
+or frontend change.
+
+## D-036 — Catalog cleanup is decided by the client, not inferred from the data
+
+**Date:** 2026-08-18 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Item-catalog canonicalization stops until the client answers how far to
+normalise. The prototype built on 2026-08-17/18 was deleted outright rather than
+parked, because keeping it would invite a future session to resume from a schema
+the client never approved. Nothing was ever applied to Supabase, the staged
+payload, raw XML or the frontend, so there is nothing to roll back.
+
+**Why:** how far to collapse is a business judgement with no data-derivable
+answer. Whether `WD-40 226 GRS` and `WD-40 458ML` are one item depends on
+whether the client compares per-unit or per-purchase; whether `ABRAZADERA SEBCOR
+1/2"` and `2 1/2"` merge depends on whether they treat them as substitutes. Our
+prototype answered these by assumption. Seven such questions went to the client
+with measured examples; building before the answers means building twice.
+
+One call is already settled and survives the deletion: **a licence plate stays
+part of an item's identity.** Maintenance on truck A is a different catalog item
+from truck B, so a single vehicle's cost history is visible. The deleted
+prototype merged them, which was wrong.
+
+**Rejected:** keeping the prototype behind a flag (it would be resumed from
+without re-reading the client's answers); committing it to an archive branch
+(git history is the archive, and this was never committed, so there is no
+history to preserve — the measured findings live in the client brief instead).

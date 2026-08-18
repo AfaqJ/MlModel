@@ -95,4 +95,8 @@ Out of scope by explicit instruction, unless reopened:
   from the COMPRAS/VENTAS folder, which Supabase already stores. See D-010.
 - auditing the remaining unverified silver rows;
 - resolving the 77 conflicting-verdict item names;
-- item catalog / alias canonicalization.
+- **all** item-catalog canonicalization work, including local prototypes. Parked
+  2026-08-18 pending a client meeting; the earlier prototype was deleted rather
+  than kept, so there is nothing to resume. Do not restart it — not the schema,
+  not the clustering, not a "quick" normalisation pass — until the client's
+  answers are in. See D-034 and `docs/STATE.md` Next #1.

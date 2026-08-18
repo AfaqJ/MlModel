@@ -1,0 +1,49 @@
+{
+  "categories": 71,
+  "companies": 461,
+  "item_catalog": 5402,
+  "invoices": 5195,
+  "invoice_items": 11766,
+  "auto_accept": 6583,
+  "review_required": 5183,
+  "final_code_filled": 6583,
+  "reviewed_true": 0,
+  "prediction_source_counts": {
+    "model": 6238,
+    "product_lookup": 2640,
+    "meter_lookup": 1587,
+    "client_evidence_backfill": 720,
+    "silver_audit_backfill": 377,
+    "business_rule": 137,
+    "manually_audited_near_identical_backfill": 67
+  },
+  "prediction_sources_needing_check_extension": [
+    "business_rule",
+    "client_evidence_backfill",
+    "manually_audited_near_identical_backfill",
+    "silver_audit_backfill"
+  ],
+  "collapse_applied": false,
+  "model_version_stamped": "v1.3.3",
+  "model_binary": "models/setfit_base_recovery_v1_3_2 (SetFit FP32)",
+  "category_uuids_resolved_against": "live categories table (71 codes)",
+  "payload_is_environment_specific": true,
+  "generated_columns_intentionally_omitted": [
+    "invoices.invoice_period",
+    "invoice_items.needs_review",
+    "categories.categories_id",
+    "companies.company_id",
+    "item_catalog.catalog_item_id",
+    "invoices.invoice_id",
+    "invoice_items.item_id"
+  ],
+  "bundle_fields_dropped": {
+    "invoices.xml_document_kind": "document_type '43' already identifies the 29 Liquidacion invoices",
+    "invoices.source_file": "no column; recoverable from (seller_rut, document_type, invoice_folio)",
+    "invoice_items.xml_document_kind": "same as invoices"
+  },
+  "blocking_problems": [],
+  "blocking_problem_count": 0,
+  "orphan_catalog_rows_to_prune": 225,
+  "item_catalog_end_state_after_prune": 5402
+}

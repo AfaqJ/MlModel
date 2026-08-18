@@ -1,0 +1,1 @@
+gold_id,truth,prediction,model_prediction,gold_source,source,decision,reason,correct,model_prediction_correct,top1,margin,direction,item_text,description,provider,lookup_conflict,top3,model_text,guard_reason,counterfactual_model_decision,counterfactual_model_reason

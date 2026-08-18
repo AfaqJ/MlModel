@@ -13,6 +13,7 @@ Data/Raw_Data/                              raw XML, read-only
 Data/candidates/recovery_v1_3_2/            the gold v1.3.3 trained on
 backups/supabase_20260812T070037Z/          pre-upload export, all 5 tables
 backups/supabase_20260814T110447Z_pre_corrections/  pre-correction export, all 5 tables
+backups/supabase_20260817T105217Z/          pre-2026-08-17 full re-load, all 5 tables
 ```
 
 ## Roll back the deployed model
@@ -41,6 +42,8 @@ v1.3.3-int8. A different size means a different generation is live.
 tables taken immediately before the v1.3.3 upload, via
 `scripts/81_backup_supabase.py`. `backups/supabase_20260814T110447Z_pre_corrections/`
 is the equivalent taken before the 2026-08-14 label corrections.
+`backups/supabase_20260817T105217Z/` is the latest verified backup, taken before
+the 2026-08-17 full payload re-load.
 
 **To re-load after the first upload has landed,** use
 `scripts/82_apply_label_corrections.py`, not script 80. Script 80 is the

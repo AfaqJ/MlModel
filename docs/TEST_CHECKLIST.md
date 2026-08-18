@@ -11,6 +11,22 @@ output recorded. "The script ran without error" is not evidence.
 
 98 tests. All must pass. Anything less is a regression — the suite went from
 57 passed / 11 failed to 98 passed on 2026-08-12 and must not go backwards.
+It briefly read 108 while the catalog prototype existed; those 10 tests were
+deleted with it on 2026-08-18, so 98 is the floor again.
+
+## Before a full Supabase re-load
+
+1. Run the exact local correction script without `--write`; its target count,
+   amount, and “no final label on review” invariant must pass.
+2. Run `scripts/81_backup_supabase.py`; every one of the five table row counts
+   must match Supabase before continuing.
+3. Run `scripts/82_apply_label_corrections.py --execute
+   --i-have-backed-up-the-database`. It upserts the complete staged payload,
+   not a partial patch, and deletes live rows absent from that payload.
+4. Confirm the script's live verification: row count, category IDs, item names,
+   decisions, and final labels all match. The local payload is staged at
+   `reports/recovery_v1_3_3/supabase_upload/`; Supabase schema is deliberately
+   not recreated or modified.
 
 ## Before accepting a retrain
 

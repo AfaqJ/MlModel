@@ -1,0 +1,359 @@
+{
+  "model": "models/setfit_base_recovery_v1_3_2",
+  "calibration": {
+    "validation_rows": 312,
+    "expected_calibration_error": 0.0517,
+    "maximum_calibration_error": 0.202,
+    "reliability_table": [
+      {
+        "bin": "[0.00,0.50)",
+        "n": 84,
+        "mean_confidence": 0.3302,
+        "observed_accuracy": 0.3333,
+        "gap": -0.0031
+      },
+      {
+        "bin": "[0.50,0.60)",
+        "n": 23,
+        "mean_confidence": 0.547,
+        "observed_accuracy": 0.6522,
+        "gap": -0.1052
+      },
+      {
+        "bin": "[0.60,0.70)",
+        "n": 21,
+        "mean_confidence": 0.6551,
+        "observed_accuracy": 0.8571,
+        "gap": -0.202
+      },
+      {
+        "bin": "[0.70,0.75)",
+        "n": 22,
+        "mean_confidence": 0.7231,
+        "observed_accuracy": 0.7273,
+        "gap": -0.0042
+      },
+      {
+        "bin": "[0.75,0.80)",
+        "n": 17,
+        "mean_confidence": 0.7692,
+        "observed_accuracy": 0.8824,
+        "gap": -0.1131
+      },
+      {
+        "bin": "[0.80,0.90)",
+        "n": 32,
+        "mean_confidence": 0.8506,
+        "observed_accuracy": 0.9375,
+        "gap": -0.0869
+      },
+      {
+        "bin": "[0.90,1.01)",
+        "n": 113,
+        "mean_confidence": 0.9611,
+        "observed_accuracy": 1.0,
+        "gap": -0.0389
+      }
+    ]
+  },
+  "memorisation": {
+    "seen_in_training": {
+      "n": 300,
+      "mean_top1": 0.8112,
+      "median_top1": 0.8861,
+      "accuracy": 0.9667
+    },
+    "held_out_validation": {
+      "n": 312,
+      "mean_top1": 0.7015,
+      "median_top1": 0.7568,
+      "accuracy": 0.7532
+    },
+    "never_seen_raw_invoice_lines": {
+      "n": 2000,
+      "mean_top1": 0.5199,
+      "median_top1": 0.4709
+    }
+  },
+  "risk_coverage": [
+    {
+      "accept_top1": 0.5,
+      "accept_margin": 0.0,
+      "coverage": 0.7308,
+      "precision": 0.9079,
+      "risk": 0.0921,
+      "wilson_95_lower_precision": 0.8633,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.5,
+      "accept_margin": 0.3,
+      "coverage": 0.6987,
+      "precision": 0.922,
+      "risk": 0.078,
+      "wilson_95_lower_precision": 0.8787,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.5,
+      "accept_margin": 0.5,
+      "coverage": 0.6186,
+      "precision": 0.9378,
+      "risk": 0.0622,
+      "wilson_95_lower_precision": 0.8945,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.5,
+      "accept_margin": 0.7,
+      "coverage": 0.4808,
+      "precision": 0.98,
+      "risk": 0.02,
+      "wilson_95_lower_precision": 0.9429,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.6,
+      "accept_margin": 0.0,
+      "coverage": 0.6571,
+      "precision": 0.9366,
+      "risk": 0.0634,
+      "wilson_95_lower_precision": 0.8945,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.6,
+      "accept_margin": 0.3,
+      "coverage": 0.6538,
+      "precision": 0.9363,
+      "risk": 0.0637,
+      "wilson_95_lower_precision": 0.894,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.6,
+      "accept_margin": 0.5,
+      "coverage": 0.6154,
+      "precision": 0.9427,
+      "risk": 0.0573,
+      "wilson_95_lower_precision": 0.9003,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.6,
+      "accept_margin": 0.7,
+      "coverage": 0.4808,
+      "precision": 0.98,
+      "risk": 0.02,
+      "wilson_95_lower_precision": 0.9429,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.7,
+      "accept_margin": 0.0,
+      "coverage": 0.5897,
+      "precision": 0.9457,
+      "risk": 0.0543,
+      "wilson_95_lower_precision": 0.9029,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.7,
+      "accept_margin": 0.3,
+      "coverage": 0.5897,
+      "precision": 0.9457,
+      "risk": 0.0543,
+      "wilson_95_lower_precision": 0.9029,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.7,
+      "accept_margin": 0.5,
+      "coverage": 0.5897,
+      "precision": 0.9457,
+      "risk": 0.0543,
+      "wilson_95_lower_precision": 0.9029,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.7,
+      "accept_margin": 0.7,
+      "coverage": 0.4808,
+      "precision": 0.98,
+      "risk": 0.02,
+      "wilson_95_lower_precision": 0.9429,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.75,
+      "accept_margin": 0.0,
+      "coverage": 0.5192,
+      "precision": 0.9753,
+      "risk": 0.0247,
+      "wilson_95_lower_precision": 0.9382,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.75,
+      "accept_margin": 0.3,
+      "coverage": 0.5192,
+      "precision": 0.9753,
+      "risk": 0.0247,
+      "wilson_95_lower_precision": 0.9382,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.75,
+      "accept_margin": 0.5,
+      "coverage": 0.5192,
+      "precision": 0.9753,
+      "risk": 0.0247,
+      "wilson_95_lower_precision": 0.9382,
+      "is_current_operating_point": true
+    },
+    {
+      "accept_top1": 0.75,
+      "accept_margin": 0.7,
+      "coverage": 0.4744,
+      "precision": 0.9797,
+      "risk": 0.0203,
+      "wilson_95_lower_precision": 0.9421,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.8,
+      "accept_margin": 0.0,
+      "coverage": 0.4647,
+      "precision": 0.9862,
+      "risk": 0.0138,
+      "wilson_95_lower_precision": 0.9511,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.8,
+      "accept_margin": 0.3,
+      "coverage": 0.4647,
+      "precision": 0.9862,
+      "risk": 0.0138,
+      "wilson_95_lower_precision": 0.9511,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.8,
+      "accept_margin": 0.5,
+      "coverage": 0.4647,
+      "precision": 0.9862,
+      "risk": 0.0138,
+      "wilson_95_lower_precision": 0.9511,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.8,
+      "accept_margin": 0.7,
+      "coverage": 0.4615,
+      "precision": 0.9861,
+      "risk": 0.0139,
+      "wilson_95_lower_precision": 0.9508,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.85,
+      "accept_margin": 0.0,
+      "coverage": 0.4103,
+      "precision": 0.9844,
+      "risk": 0.0156,
+      "wilson_95_lower_precision": 0.9448,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.85,
+      "accept_margin": 0.3,
+      "coverage": 0.4103,
+      "precision": 0.9844,
+      "risk": 0.0156,
+      "wilson_95_lower_precision": 0.9448,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.85,
+      "accept_margin": 0.5,
+      "coverage": 0.4103,
+      "precision": 0.9844,
+      "risk": 0.0156,
+      "wilson_95_lower_precision": 0.9448,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.85,
+      "accept_margin": 0.7,
+      "coverage": 0.4103,
+      "precision": 0.9844,
+      "risk": 0.0156,
+      "wilson_95_lower_precision": 0.9448,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.9,
+      "accept_margin": 0.0,
+      "coverage": 0.3622,
+      "precision": 1.0,
+      "risk": 0.0,
+      "wilson_95_lower_precision": 0.9671,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.9,
+      "accept_margin": 0.3,
+      "coverage": 0.3622,
+      "precision": 1.0,
+      "risk": 0.0,
+      "wilson_95_lower_precision": 0.9671,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.9,
+      "accept_margin": 0.5,
+      "coverage": 0.3622,
+      "precision": 1.0,
+      "risk": 0.0,
+      "wilson_95_lower_precision": 0.9671,
+      "is_current_operating_point": false
+    },
+    {
+      "accept_top1": 0.9,
+      "accept_margin": 0.7,
+      "coverage": 0.3622,
+      "precision": 1.0,
+      "risk": 0.0,
+      "wilson_95_lower_precision": 0.9671,
+      "is_current_operating_point": false
+    }
+  ],
+  "recommended_release_metric": "precision at fixed coverage on the locked validation cascade, not top-1 accuracy: v1.3.2 top-1 fell 76.30% to 75.32% while cascade auto-accept precision rose to 100%, because top-1 scores the raw head and the cascade is what reaches the client",
+  "provider_confound": {
+    "ablation": {
+      "v1.3.1": {
+        "rows": 311,
+        "label_flip_rate_when_provider_removed": 0.3023,
+        "mean_abs_confidence_change": 0.1436,
+        "auto_accepted_rows": 146,
+        "flip_rate_among_auto_accepted": 0.1301
+      },
+      "v1.3.2": {
+        "rows": 311,
+        "label_flip_rate_when_provider_removed": 0.1093,
+        "mean_abs_confidence_change": 0.0488,
+        "auto_accepted_rows": 162,
+        "flip_rate_among_auto_accepted": 0.0247
+      }
+    },
+    "provider_only_baseline": {
+      "validation_rows_covered": 292,
+      "baseline_accuracy": 0.4075,
+      "rows_where_baseline_is_wrong": 173,
+      "model_accuracy_on_those_rows": 0.7225
+    },
+    "pass_condition": "v1.3.2 flip rate materially below v1.3.1 AND model beats the provider-only baseline on rows that baseline gets wrong",
+    "verdict": "augmentation reduced the provider shortcut"
+  }
+}

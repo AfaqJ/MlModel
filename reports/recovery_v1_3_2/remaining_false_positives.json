@@ -1,0 +1,14 @@
+{
+  "hardware_into_EXP-1.1_rrhh": 8,
+  "nitrogeno_liquido_into_EXP-16.2": 9,
+  "insurance_policy_number_into_EXP-13.1": 5,
+  "televia_toll_into_EXP-15.4": 7,
+  "transport_into_cargo_category": 12,
+  "screws_into_EXP-7.0_agroquimicos": 3,
+  "wd40_into_EXP-7.0": 1,
+  "food_into_dairy_or_workwear": 5,
+  "low_information_item_text_G93": 8,
+  "_total_distinct_rows": 58,
+  "_ml_auto_accepts": 1924,
+  "_rate": 0.0301
+}

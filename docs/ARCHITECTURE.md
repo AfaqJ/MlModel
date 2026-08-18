@@ -35,7 +35,7 @@ models/setfit_base_recovery_v1_3_2/           PyTorch SetFit body + LR head
 artifacts/v1.3.3-int8/                        ONNX int8 deployment bundle
   │  gcloud builds submit → Artifact Registry → gcloud run deploy
   ▼
-Cloud Run `mlmodel` ──► Supabase (5 tables)   11,746 rows, live
+Cloud Run `mlmodel` ──► Supabase (5 tables)   11,746 rows, 77 categories, live
 ```
 
 Note the deploy path: **git is never involved**. The 278 MB `.onnx` is uploaded
@@ -55,7 +55,7 @@ model input  : "[transaction_type] | item_text | description | provider"
 model label  : category_code string, e.g. "ING-0.1"
 ```
 
-**74 categories** in the live `categories` table; the deployed model **emits 67**
+**77 categories** in the live `categories` table; the deployed model **emits 67**
 — `artifacts/v1.3.3-int8/labels.json` → `classifier_classes`, corroborated by
 `model_card.json` → `trained_classes: 67`. That artifact is the authority here;
 do not derive the number by subtracting from the category table. `AF-1.1`,
@@ -110,16 +110,34 @@ confidence.
 
 ## Where state lives
 
-- **Local, authoritative:** `Data/` (raw, processed, silver, gold), `models/`,
-  `artifacts/`. Artifacts are gitignored and rebuildable from the exporter.
+- **Local source of truth:** `Data/` (raw, processed, silver, gold), `models/`,
+  `artifacts/`. Raw XML and client evidence are the irreplaceable source;
+  artifacts are gitignored and rebuildable from the exporter.
+- **Local staged database payload:**
+  `reports/recovery_v1_3_3/supabase_upload/` contains complete JSONL snapshots
+  of all five tables — `categories`, `companies`, `item_catalog`, `invoices`,
+  and `invoice_items`. This is the copy correction scripts modify and script 82
+  re-loads wholesale. It is a release payload derived from the source data, not
+  a second source of truth. Every correction script must be exact-targeted, dry
+  runnable, make a local pre-write backup, and emit a changelog.
+- **Item-catalog canonicalization: nothing built, deliberately.** `item_catalog`
+  is keyed on item name plus a selective description, so a name carrying a
+  changing value spawns a new entry per invoice — 5,411 entries for 11,746
+  lines. A local prototype explored a two-table overlay and was deleted on
+  2026-08-18 without being applied; its schema was an assumption, and the
+  client meeting may invalidate it. Do not rebuild from memory of it. See
+  D-034 and `docs/STATE.md`.
 - **Supabase (`nkdswofslslrumyraklv`), live:** categories, companies,
-  item_catalog, invoices, invoice_items — 11,746 rows. Uploaded 2026-08-12,
-  corrected in place 2026-08-14 via `scripts/82_apply_label_corrections.py`.
+  item_catalog, invoices, invoice_items — 11,746 rows, 77 categories, 7,143
+  auto / 4,603 review after the verified 2026-08-17 re-load. Supabase owns the
+  schema, generated UUIDs, policies, and live reviewer work. Script 82 performs
+  no DDL: it upserts whole rows, reads live IDs back, and preserves the schema.
   Writes require an explicit flag on `scripts/supabase_rest.py`.
 - **Cloud Run:** stateless. The service is a pure function; it holds no records.
-- **Backup:** `backups/supabase_20260814T110447Z_pre_corrections/` — all 5 tables,
-  taken before the 2026-08-14 correction pass. The 2026-08-12 pre-upload export
-  is at `backups/supabase_20260812T070037Z/`.
+- **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
+  row-count verified immediately before the 2026-08-17 full re-load. Earlier
+  snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and
+  `backups/supabase_20260812T070037Z/`.
 
 The ML service must never become a system of record. That is a deliberate
 constraint, not an accident of the current design.
