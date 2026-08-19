@@ -351,6 +351,15 @@ Noted here only so a future session does not re-derive it as a "gap".
 
 ## D-016 — Business rules are sales-only, narrowed 95 → 28
 
+> **Still true of the runtime; the payload tag has drifted (checked 2026-08-19).**
+> `app/data/business_rules.csv` holds exactly **28 rules, all `ING-*`, all
+> `assign`** — this entry is accurate about what fires at inference. But
+> `prediction_source = "business_rule"` in the Supabase payload was later reused
+> by correction scripts as a generic "a deterministic rule decided this" tag:
+> of its **928** rows only **124 are `ING-*`**, the rest being EXP- 479, ADM- 190,
+> AF-1 113, AF-2 22. Do not read the payload tag as "one of the 28 sales rules".
+> Folded into D-042's cleanup.
+
 **Date:** 2026-08-12 · **Decided by:** Afaq · **Model:** Claude (Opus 5)
 
 `scripts/64_build_taxonomy_rules.py` now emits `ING-*` leaves only and rejects
@@ -793,6 +802,21 @@ history to preserve — the measured findings live in the client brief instead).
 
 ## D-037 — A row reaches auto_accept only on a rule the client wrote
 
+> **Narrowed by D-040 (2026-08-19).** Condition 2 below — "the model
+> independently predicts the same code" — no longer applies where the client
+> filed the same kind of item **consistently**. His filing wins and the model
+> disagreeing is usually the undertraining, not a second opinion. Read D-040
+> before applying this entry; on its own it would forbid promotions that are
+> already live.
+>
+> **Also read literally, this entry describes a bar the existing data does not
+> meet.** ~732 auto-accepted rows predate it and rest on `silver_audit_v2`
+> keyword matching (365 tagged `silver_audit_backfill`, 367 hiding inside
+> `client_evidence_backfill` — see D-042). They were audited against every
+> product the client ruled on and scored **0 contradictions in 7,286**, so they
+> are not being unwound; but this rule governs *new* promotions, it does not
+> describe the whole table.
+
 **Date:** 2026-08-18
 
 **Amended 2026-08-18 (Afaq) — a client rule is no longer the only route.**
@@ -1000,6 +1024,10 @@ Two problems are recorded and deliberately **not** fixed yet:
   `silver_audit_v2`, which is our own keyword matching. The tag asserts an
   authority nothing behind it has — precisely what the rule at the top of
   `CLIENT_CONVENTIONS.md` exists to prevent.
+
+A third tag has the same defect: **`business_rule` (928 rows) means two
+different things** — the 28 `ING-*` sales rules that fire at inference (D-016),
+and "a correction script applied a deterministic rule", which is 804 of the 928.
 
 Also dead and removable: `COLLAPSE_TO_SCHEMA` / `--collapse-prediction-source` in
 `scripts/78_prepare_supabase_upload.py`, which squashes 4 sources to 3. It has
