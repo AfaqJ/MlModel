@@ -790,3 +790,224 @@ prototype merged them, which was wrong.
 without re-reading the client's answers); committing it to an archive branch
 (git history is the archive, and this was never committed, so there is no
 history to preserve — the measured findings live in the client brief instead).
+
+## D-037 — A row reaches auto_accept only on a rule the client wrote
+
+**Date:** 2026-08-18
+
+**Amended 2026-08-18 (Afaq) — a client rule is no longer the only route.**
+A row may also be promoted when **the model and an independent manual auditor
+(Claude or Codex) both agree, and the object physically makes sense in that
+account**. The two eyes must be independent: the auditor judges what the product
+*is*, not what the model said. Where a client rule exists it still outranks both
+— see D-030. Where none exists, unanimity between model and auditor plus a
+physical-sense check is sufficient. Anything short of unanimous stays in
+`review_required` with a corrected hint.
+
+The original three conditions, which remain the strict path when a client rule
+covers the product:
+
+1. a rule **the client wrote** covers the product — `client_product_rule`,
+   `direct_client_example`, `client_service_rule`, or a family resolution
+   derived from one. Brand, size and supplier may differ; the product may not;
+2. the model **independently** predicts the same code. Once the evidence stops
+   being unanimous it is not a promotion, it is a guess with a citation;
+3. the object physically makes sense in that account.
+
+Our own reasoning is never sufficient, however obvious it feels. A brucellosis
+test plainly is not building maintenance, but "plainly" is what put nails in
+Agrochemicals in the first place. Such rows get a corrected **hint** and stay in
+`review_required`.
+
+`silver_audit_backfill` does **not** qualify. It was produced by an Ollama pass
+with review, and four products are now known where it contradicts a client
+label outright (`CLAVO TERRANO`, `LEVANTADOR DE VACAS`, `MOSKIMIC FORTE`,
+`ORBENIN E.D.C`). It is a hint, not authority — in either direction.
+
+**Why:** `HORA TECNICA` was promoted onto the client's example `HORA TECNICA AM`
+and reverted the same session. The client ruled on one technician's initials;
+gold labels a second set of initials from the same supplier to a different
+account. A client example covers the row he labelled, not every variant of it.
+
+**Consequence:** promotions are small and slow. 153 rows on 2026-08-18, against
+a review queue of thousands. That is the intended trade — see D-001.
+
+## D-038 — Read the description and the client's rules before calling a row wrong
+
+**Date:** 2026-08-18
+
+Four auto-accepted rows were flagged as silver-audit errors on 2026-08-18. Three
+were correct, and "fixing" any of them would have overwritten a client
+convention:
+
+- `SMART BLUE …FERTILIZANTES(B)-UREA`, CLP 67.3M — `SMARTBLUE FUNDO` is a
+  client product rule mapping to `EXP-6.2`, and the item name ends in UREA.
+- `BIDON CERT. AMARILLO DIESEL 20 L` — read as diesel fuel because a neighbouring
+  line's description mentioned `Impuesto base combustible`. The row itself has
+  `additional_tax_code = None`, `quantity = 1`, `unit = UN`, flat unit price.
+  Real diesel in this payload carries tax code **28**, `unit = Lt`, and a
+  per-litre price. It is the jerrycan. The client's rule was right.
+- `VENTA MATERIAL`, CLP 13.03M — called meaningless from `item_text`. Its
+  **description** is `MAICILLO`, road surfacing gravel, from an excavation
+  contractor. `EXP-14.1` is right.
+
+A fourth scare came from our own tooling: 56 fuel rows looked like plated
+vehicle fuel filed as farm petrol, contradicting five client examples for that
+station. The `<Patente>` values are `BIDO93`, `BIDO45`, `IBDO96`, `VIDO93` —
+"bidón" typed into the plate field with the fuel grade appended, including
+typos. The production rule already handles them; the ad-hoc check written to
+audit it did not.
+
+**Amended 2026-08-18 (Afaq) — what to do with a finding that has no client rule.**
+If a client rule covers the product, the rule decides and the finding is checked
+against it. If **no** rule exists, the finding may be applied only when the
+correction is beyond doubt — the object is unmistakable and the model agrees.
+Otherwise the row is not left where it is and not promoted either: it moves to
+the **best available account as a corrected hint** and stays `review_required`.
+A wrong-but-closer hint is worth more to the reviewer than a wrong-and-far one.
+
+**The order is:** read `description`, check `additional_tax_code`/`unit`/
+`quantity`, grep the client's rules, and only then call an auto-accept wrong.
+Verify the audit tool against the production rule before trusting a discrepancy.
+
+## D-039 — Hardware with no named job needs a default, not a new category
+
+**Date:** 2026-08-18 · **Decided by:** Afaq, on measured evidence · **Model:** Claude Opus 5
+
+Do **not** create a category for "tools and materials bought to support a fixed
+asset". The idea was raised because 1,562 hardware- and building-store lines sit
+in review with nothing on the invoice naming a job. It was rejected on the data.
+
+Two categories already cover it, and one is the client's own:
+
+- `EXP-16.1 Ropa y Herramientas de Trabajo` holds 422 lines, 371 auto-accepted,
+  **305 of them placed by rules the client wrote.** Tools are not homeless.
+- `EXP-14.2 Mantencion Cercos` holds 206 auto-accepted rows of *physical fence
+  hardware* — nails, staples, pigtail posts, insulators. All ten fastener rules
+  in `product_lookup` are `client_product_rule` pointing there.
+
+**The client's pattern, read off his own placements:** a maintenance category
+holds the work done on that system **plus the parts specific to that system**.
+`EXP-14.4 Mantencion Instalaciones` is almost pure labour (16 auto rows: `MANO DE
+OBRA`, `INSTALACION`) precisely because a generic bolt is not specific to
+anything.
+
+**Why:** the measurement is unambiguous. Of the 189 hardware-store lines that
+*were* auto-accepted, **121 (64%) name their own system in the product text**
+(HDPE, `ASPERSOR`, chainsaw, fencing). Of the 1,428 still in review, **38 (3%)**
+do. The stuck lines are objects genuinely at home in four categories at once — a
+1/2" nipple fits water, slurry, irrigation and the milking parlour, and all four
+are correct. A catch-all category would give every one of them a home and destroy
+the only thing the categories exist for.
+
+**Consequence:** the open item is a client question — is there a default, or does
+his team place each one? If the answer is "our team places them", that is a
+complete answer and those lines stay in `review_required` by design, exactly as
+untagged petrol does under D-029.
+
+**Rejected:** a "supporting tools / fixed-asset consumables" category; inferring
+the job from sibling lines on the same invoice (a ferretería receipt mixes jobs);
+widening `product_lookup` with generic hardware (no client rule exists to anchor
+it, and D-037 requires one or an unambiguous physical read).
+
+
+## D-040 — A consistent client folder placement outranks the model
+
+**Date:** 2026-08-19 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+`file_audit` — a label inferred from the folder the client filed the invoice in —
+was rated **Medium** trust because we feared noise: an invoice dropped in the
+wrong place by accident. Measured across all 392 `file_audit` gold rows,
+**363 of 369 distinct item-kinds went into exactly one category (98%)**. The only
+6 that split are electricity lines from the Paillaco co-op, where the account
+genuinely depends on which meter it is — already handled by `meter_lookup`, not
+client error.
+
+**So where the client filed the same kind of item the same way every time, his
+filing wins, and the model's disagreement is not a veto.**
+
+**Why:** consistent placement is intentional placement. Afaq's argument, and it
+held under measurement. The worked example is `Revision Tecnica`: he files
+`Automovil particular camioneta` under `EXP-13.3` (4 of 4) and `Maquinaria
+automotriz` under `EXP-13.1` (1 of 1) — the inspection follows what the asset is.
+The model predicts `EXP-13.3` for both, because exactly **one** machinery example
+exists in all of gold. That disagreement *is* the undertraining; treating it as a
+second opinion inverts the evidence.
+
+The bar is the one `product_lookup` already clears to auto-accept 2,639 rows: an
+exact item + supplier match to something the client decided. A plate or a size
+differing does not make it a different product.
+
+**Three limits, all of which fired in practice on 2026-08-19:**
+- **A spec sibling is only safe when the siblings agree.** The client filed
+  `FILTRO LECHE JUMBO 100 UND` under `EXP-10.1` and `FILTRO LECHE 75 MM * 800 SE`
+  under `EXP-10.4` — same product, same supplier, different size, different
+  account. Held in review.
+- **The placement must also make physical sense.** `PIOLA PERLON RETIRADOR`, a
+  nylon cluster-remover cord, is filed under `EXP-10.3 Detergentes e
+  higenizantes`, an account holding ZINICIN, ORACID and chlorine. That is the
+  misfile we feared. Held in review, model hint left in place.
+- **A placeholder item name is never a match key.** `Item`, `DETALLE`,
+  `MATERIALES` identify no product and collide with every other placeholder from
+  the same supplier — the same empty-key bug that produced 138 false
+  contradictions on 2026-08-18. Read the description instead; it carries the real
+  product on **141 of 155** vague-named review rows, CLP 106.8M.
+
+**Rejected:** requiring model agreement in all cases (D-037's bar) — it lets an
+undertrained model overrule the client, which is backwards; and blanket-trusting
+`file_audit` without the three limits above.
+
+**Superseded scope:** narrows D-037's promotion bar. A client-sourced label plus
+consistency now qualifies; model agreement strengthens it but is not required.
+
+## D-041 — Never resolve in the payload a question currently open with the client
+
+**Date:** 2026-08-19 · **Decided by:** Claude, endorsed by Afaq · **Model:** Claude Opus 5
+
+If a question has gone to the client and is unanswered, the affected rows stay in
+`review_required` even when we could argue a defensible answer.
+
+**Why:** it happened twice on 2026-08-19 and was caught both times. Three
+`TRASLADO BOLOS` rows matched a client convention saying Hay while the model said
+Silage — silage-vs-hay is question 4 of the email sent that day. And four SONDAJES
+PERFOMAQ lines were promoted to `EXP-14.3` on their descriptions before rereading
+showed they describe **buying and improving equipment** (`REEMPLAZO EQUIPO
+SUMERGIBLE POR UNO NUEVO`, `MEJORAS EN INSTALACION`, `PUESTA EN MARCHA … SONDAJE
+N° 2824`), and the supplier's giro is `Perforacion de Pozos Profundos, Const. e
+Instalaciones`. Expense-vs-fixed-asset is **question 1** of that same email.
+Reverted by `scripts/92_revert_sondajes_capital_rows.py`.
+
+Answering it ourselves would make the client's reply arrive to a database that
+had already decided, and we would not know which rows to revisit.
+
+**Consequence:** before any promotion, check the open-questions list in
+`CLIENT_CONVENTIONS.md`. Pure-service lines from the same supplier are still fine
+— `LIMPIEZA DE POZO 6"` and `REVISION … FALLA EN CONTACTOR` stayed auto-accepted,
+because neither creates an asset.
+
+## D-042 — `prediction_source` will be consolidated, but not in the same upload
+
+**Date:** 2026-08-19 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Two problems are recorded and deliberately **not** fixed yet:
+
+- `manual_recategorisation` (327) and `manually_audited_near_identical_backfill`
+  (216) are the same principle at different confidence, and are **perfectly
+  determined by the `decision` column** — 100% review and 100% auto respectively.
+  One of the two tags carries no information.
+- **`client_evidence_backfill` is a misleading name.** Of its 612 rows, **none**
+  trace to a highest-trust client label: 243 rest on `file_audit` and 367 on
+  `silver_audit_v2`, which is our own keyword matching. The tag asserts an
+  authority nothing behind it has — precisely what the rule at the top of
+  `CLIENT_CONVENTIONS.md` exists to prevent.
+
+Also dead and removable: `COLLAPSE_TO_SCHEMA` / `--collapse-prediction-source` in
+`scripts/78_prepare_supabase_upload.py`, which squashes 4 sources to 3. It has
+never been used and now contradicts the extended CHECK constraint.
+
+**Why not now:** renaming a source value needs another migration plus rewriting
+provenance on 543 rows, on the same day two label uploads went out. Two changes in
+one upload means a failure tells you nothing about which one broke.
+
+**Consequence:** read the backing gold `source`, never the `prediction_source`
+tag, until this is done.

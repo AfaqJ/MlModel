@@ -128,8 +128,8 @@ confidence.
   client meeting may invalidate it. Do not rebuild from memory of it. See
   D-034 and `docs/STATE.md`.
 - **Supabase (`nkdswofslslrumyraklv`), live:** categories, companies,
-  item_catalog, invoices, invoice_items — 11,746 rows, 77 categories, 7,143
-  auto / 4,603 review after the verified 2026-08-17 re-load. Supabase owns the
+  item_catalog, invoices, invoice_items — 11,746 rows, 77 categories, 7,335
+  auto / 4,411 review after the verified 2026-08-19 re-load. Supabase owns the
   schema, generated UUIDs, policies, and live reviewer work. Script 82 performs
   no DDL: it upserts whole rows, reads live IDs back, and preserves the schema.
   Writes require an explicit flag on `scripts/supabase_rest.py`.

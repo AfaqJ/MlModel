@@ -1,0 +1,25 @@
+Read CLAUDE.md and docs/CLIENT_CONVENTIONS.md first for context. This is a Chilean dairy/agriculture client (Antillanca); all item names are Spanish.
+
+TASK: audit every row of app/data/product_lookup.csv (696 entries, columns item_text,provider,category_code,rule_source). For each entry judge ONE thing: is category_code correct for what that product or service physically IS?
+
+The category code->name mapping is in reports/recovery_v1_3_3/supabase_upload/categories.jsonl (fields: code, name).
+
+Report an entry ONLY if you are confident the category is wrong. Examples of what a real finding looks like: a hand tool filed under a medicine account; a fertiliser filed under a fuel account; a building material filed under an animal-health account. Do NOT report an entry merely because you would have picked a different but adjacent account (e.g. Mantencion Instalaciones vs Mantencion Cercos for a bolt) - that ambiguity is already a known open question and reporting it is noise.
+
+IMPORTANT - rule_source tells you who decided:
+  client_product_rule, direct_client_example, client_service_rule,
+  client_product_family_resolution, direct_client_family_resolution
+all mean THE CLIENT chose that category himself. His chart of accounts, his call. Flag one of these only if it is clearly, factually wrong about what the object is - and say explicitly in your finding that it overrides a client decision, so a human weighs it properly. Never treat "I disagree with the client's accounting preference" as a finding.
+
+Two known-correct examples so you calibrate and do NOT report them:
+  - "PINTURA CELO TELL TAIL AZUL" -> EXP-2.6 Otros Gastos Salud Animal. This is livestock heat-detection tail paint, not decorating paint. Correct.
+  - "BIDON CERT. AMARILLO DIESEL 20 L" -> EXP-16.2 Otros Gastos Campo. This is a certified 20-litre diesel JERRYCAN (quantity 1, unit UN, no fuel tax code), not diesel fuel. Correct.
+
+OUTPUT: a plain list, one finding per line, in this exact format:
+  <csv line number> | <item_text> | <current code + name> | <code + name you believe is right> | <one sentence why> | CLIENT-DECIDED or ours
+
+Then a final line: "TOTAL FINDINGS: <n> of 696 entries reviewed".
+
+If you find nothing wrong in a stretch, say so rather than inventing findings. A short honest list is the useful outcome.
+
+LANE: This is a read-only audit. Do NOT edit any file. Do NOT touch docs/. Do NOT run the correction scripts. Report findings only - a human reviews them against client rules before anything is applied. If you think this spec is wrong, say so instead of working around it.

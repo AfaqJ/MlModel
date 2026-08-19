@@ -22,6 +22,32 @@ Provenance lives in the `source` column of `Data/gold/_master_gold.csv`:
 | `file_audit` | Medium | Inferred from the folder the client filed it in |
 | `silver_audit`, `silver_audit_v2` | **Low** | Our keyword matching. Never overrides the rows above. |
 
+**`file_audit` is more trustworthy than "Medium" suggests — measured 2026-08-19.**
+The fear was noise: an invoice dropped in the wrong folder by accident. It was
+tested. Across all 392 `file_audit` rows, **363 of 369 distinct item-kinds went
+into exactly one category (98%)**. The only 6 that split are electricity lines
+from the Paillaco co-op, where the account genuinely depends on which meter it
+is — already handled by `meter_lookup`, not client error.
+
+Consistent placement is intentional placement. So **where the client filed the
+same kind of item the same way every time, his folder beats our model**, which
+is undertrained on most of these classes. Worked example: he files
+`Revision Tecnica Automovil particular camioneta` under `EXP-13.3` (4 of 4) and
+`Revision Tecnica Maquinaria automotriz` under `EXP-13.1` (1 of 1) — the
+inspection follows what the asset is. The model predicts `EXP-13.3` for both,
+because exactly one machinery example exists in gold.
+
+Two limits. A `file_audit` convention backed by a single gold row is still one
+data point — relabel on it, but only promote to auto-accept when the model
+independently agrees (D-037). And a placeholder item name (`Item`, `DETALLE`,
+`MATERIALES`) must never be used as the match key: it identifies no product and
+collides with every other placeholder from the same supplier.
+
+**`client_evidence_backfill` is a misleading tag name.** Of its 612 rows, none
+trace to a highest-trust client label: 243 rest on `file_audit` and 367 on
+`silver_audit_v2`, which is our own keyword matching. Read the backing gold
+source, never the tag.
+
 ---
 
 ## 1. Petrol — the plate tells you what it was for
@@ -228,22 +254,14 @@ classification is what caused the original incident.
 back; nothing from that round is still waiting on him. What his answers left
 behind:
 
-1. **Untagged petrol has no forward rule.** He answered the 77 lines (CLP
-   4,497,441 — 52 ENEX, 9 Entretecho, 5 Pilauco Viejo, 4 Barca, 7 one-offs) with
-   *"Our team to place."* That places these 77, but we asked for a **default
-   rule** and did not get one, so every future fill-up at a station that omits
-   `<Patente>` lands in review forever. Worth telling him that consequence — it
-   is a growing queue, not a one-off.
-2. **Which farms have a milking shed.** See §7 — `EXP-15.6` cannot be populated
-   from an invoice. Only ask when a second farmland lease actually appears.
-3. **Do the three lease buyouts belong in `AF-2.1`?** CLP 26,580,084, in review.
+1. **Do the three lease buyouts belong in `AF-2.1`?** CLP 26,580,084, in review.
    See §7.
-4. **Does work *around* a new build join the asset or stay an expense?** 4 lines,
+2. **Does work *around* a new build join the asset or stay an expense?** 4 lines,
    CLP 5,442,100 (A&C Electricidad lighting CLP 3,212,100; Magdiel Montecinos
    `Muro galpón` + `Galpón y taller Maitén` CLP 2,230,000), all `review_required`
    at 0.39–0.51. Recurs on every future build; worth asking once a bigger batch
    is behind it.
-5. **Bank commissions — does he want his "Impuestos, comisiones, multas" account?**
+3. **Bank commissions — does he want his "Impuestos, comisiones, multas" account?**
    56 lines, CLP 5,193,633, all from Banco BICE: `Comisión por Nóminas en Línea`,
    `COMISION DE USO MENSUAL`, `Comisión por Transferencia Electrónica`,
    `Comisión por Pagos de Nominas`, `Administracion de Contratos`. **26 of them
@@ -253,6 +271,157 @@ behind:
    the claim *"normalmente no tienen xml"* — which these 56 invoices disprove.
    Ask before creating a code: it is his chart, not ours. See the exclusion-list
    trap below.
+
+### Convention questions — measured 2026-08-18, not yet sent
+
+> **These thirteen entries overlap and their row counts must not be summed.**
+> The hardware-store question contains the fastener, fitting, welding and
+> building-paint questions; several product families appear under two headings.
+> An **exclusive** partition of the review rows (4,461 when measured; 4,411
+> after the 2026-08-19 promotions) — every row in exactly one
+> group, summing to the total — is in the 2026-08-18 sixth-pass entry of
+> `docs/STATE.md` and in the published client brief. It reduces to **eight**
+> questions covering 2,110 rows (47% of the queue, 12% of the money). Use that
+> grouping when talking to the client; use the detail below when working a
+> specific family.
+
+
+These are different from #1–3 above. Those are one-off rulings on specific
+invoices; these are **recurring product families where one answer settles
+hundreds of rows at once**, now and forever. Every count below is from the
+staged payload after `scripts/86_disperse_misfiled_hardware.py`.
+
+**Why these exist: the review queue is not 4,613 independent problems.**
+55% of it comes from 15 suppliers, and one hardware store dominates:
+
+| supplier | giro | review rows | spread over |
+|---|---|---:|---:|
+| DORIS IVONNE CASTILLO KANTER | Ferretería | 868 | **26 categories** |
+| COMERCIAL CLIMENT SPA | building materials | 302 | 15 |
+| GEA Farm Technologies Osorno | milking-plant service | 244 | 6 |
+| SODIMAC S.A. | building materials | 236 | 23 |
+| ADMIN. DE SUPERMERCADOS HIPER | supermarket | 139 | 14 |
+| COMERCIAL HARCHA SPA | Ferretería | 127 | 17 |
+
+One hardware store's screws and fittings are spread across 26 accounts. That is
+a missing convention, not 868 judgement calls. Ranked by rows settled per
+question asked:
+
+1. **Water and irrigation fittings — confirm the default.** **240 lines still
+   in review**, CLP 3.52M, spread over 6 accounts: `EXP-14.3 Mantencion Agua y
+   Purines` (156), `EXP-13.1 Mantencion Maquinaria` (27), `EXP-10.1 Mantencion
+   Sala` (26), plus stragglers in Otros Gastos Campo, Utiles de oficina and
+   Otros Gastos RRHH. Threaded nipples, bushings, PVC elbows and tees, ball
+   valves. **Propose: any plumbing fitting defaults to `Mantencion Agua y
+   Purines` unless the invoice names another system.**
+
+   **HDPE is already settled and must not be re-asked** — the client filed
+   `TUBERIA HDPE 63MM` under `EXP-14.3`, so 87 HDPE compression fittings were
+   auto-accepted there on 2026-08-18. 16 HDPE rows remain in review only because
+   the model predicts `Mantencion Sala` for them; 16 rows is not worth his time
+   and they stay in review. The open question is the **non-HDPE** fittings.
+
+   One thing his answer must settle: the lookup files `HI PLANZA 1"` and
+   `K-L ASPERSOR NELSON` under `EXP-9.2 Otros Gastos Riego`, so fittings already
+   split between water/slurry and irrigation depending on use. Ask which wins
+   when the invoice does not say.
+2. **Nails, screws and fasteners — which account?** 217 lines, CLP 1.46M, 191
+   in review, spread over 15 categories. Currently split `Mantencion
+   Instalaciones` (80) vs `Mantencion Cercos` (75) — and nothing on the invoice
+   says which. **Ask: is there a default account for building fasteners, or
+   should they follow the job they were bought for?** If it is the job, we
+   cannot infer it and these stay in review permanently — worth him knowing.
+
+3. **The hardware-store default.** Behind #1 and #2: 868 review lines from one
+   ferretería. **Ask: when a hardware-store line names only an object and no
+   job — a bolt, a hinge, a metre of hose — is there a default account, or does
+   his team place every one?** This is the single highest-leverage answer
+   available; it decides whether ~800 lines are automatable at all.
+
+4. **Bale making: `Bolos Silo` vs `Bolos Heno`.** 72 lines, **CLP 208.7M** —
+   by far the largest money in this list. `Confección de bolos`, `Diferencia de
+   bolos`, `Bolos bramadero` from Héctor Adrián Valenzuela. 50 currently
+   `Bolos Silo`, 18 `Bolos Heno`, and **the invoice text never says which**.
+   **Ask: how does his team tell silage bales from hay bales on these invoices
+   — by season, by property, or does the contractor say?** Highest value per
+   question of anything open.
+
+5. **Fire-extinguisher servicing.** 52 lines, CLP 2.06M, all in review, split
+   across `Mantencion Instalaciones` (18), `Mantencion Maquinaria` (17) and
+   `Utiles de oficina` (12). **Propose one home for extinguisher inspection and
+   recharge regardless of where the extinguisher hangs.**
+
+6. **Road tolls and TAG.** 66 lines, CLP 642K, all in review, across 6
+   accounts including `Mantencion Caminos` (23) — which is road *maintenance*,
+   not tolls. `ARRIENDO TELEVIA`, `VIAJES TAG`, `TRANSITO`. **Propose:
+   `ADM-1.4 Movilizacion`, matching vehicle fuel.**
+
+7. **Paint — two kinds, one word.** 160 lines, CLP 11.6M. 98 are already
+   correctly in `Otros Gastos Salud Animal`: `PINTURA CELO TELL TAIL` is
+   livestock heat-detection paint, not decoration. The other ~60 are ordinary
+   enamel and brushes, now parked in `Mantencion Instalaciones`. **Ask: where
+   does ordinary building paint go?** Confirm we keep tail paint under animal
+   health.
+
+8. **Welding rod, discs and abrasives.** 52 lines, CLP 603K, all in review,
+   across 13 accounts. Same shape as #2 — consumables with no named job.
+   **Ask: one default, or per job?**
+
+9. **Supermarket cleaning products.** 88 lines, CLP 2.19M, split `Utiles de
+   oficina` (39) vs `Detergentes e higenizantes` (29). Detergent, chlorine,
+   toilet paper. **Ask: does `Detergentes e higenizantes` mean milking-plant
+   hygiene only, with household cleaning going to office supplies?** The name
+   does not say, and the split is currently arbitrary.
+
+10. **Oil, fuel and air filters.** 15 lines, CLP 650K, across 5 accounts.
+    Small, but recurring forever. **Ask: does a filter follow the machine it
+    fits, or is there one consumables account?**
+
+11. **GEA technician hours — does the technician's initials change the account?**
+    36 lines, CLP 12.8M, 27 in review. GEA Farm Technologies invoice
+    `HORA TECNICA AM`, `JM`, `FA`, `CAL`, `LH` — the letters are the
+    technician. The client labelled **`HORA TECNICA AM` → `EXP-10.1` Mantencion
+    Sala** as a row-level example, and that is the only one he ever ruled on.
+    Our own silver audit then labelled `LH` as `EXP-13.1` Mantencion Maquinaria
+    and `JM` as `EXP-10.1`, so gold now contradicts itself on the same supplier.
+    **Ask: do all GEA technician hours go to Mantencion Sala regardless of who
+    attended, or does the work type vary?** Until he answers, all 27 stay in
+    review — extending his single AM example to the other four initials was
+    tried and reverted on 2026-08-18.
+
+12. **Ryegrass variety — perennial or short rotation?** 9 lines, CLP 5.28M.
+    `SEMILLA BALLICA TAMA` is auto-accepted into `EXP-8.1 Pradera Perenne`, but
+    TAMA is an Italian/annual ryegrass, which is short-rotation — and
+    `EXP-8.2 Pradera Rotacion Corta` exists and holds `BALLICA FORGE` and
+    `PASTURE PACK KABUL`. The client's only seed rule is `SEMILLA BALLICA COLUN
+    4*5*25 kg` → `EXP-8.1`; no rule distinguishes varieties. **Ask: which
+    ryegrass varieties count as perennial and which as short rotation?** Found
+    by the 2026-08-18 silver audit; not changed, because it is his agronomy.
+
+13. **Copper sulphate — agrochemical, or field expense?** 6 lines, CLP 1.07M.
+    The client's own rule files `SULFATO DE COBRE X 25 KL.` under `EXP-16.2
+    Otros Gastos Campo` (3 lines auto-accepted). But the same product from
+    another supplier reads as `EXP-7.0 AGROQUIMICOS` to the model, and copper
+    sulphate really is a fungicide — and on a dairy it is also the standard hoof
+    footbath. **Ask: where does copper sulphate go?** The 3 rows on his rule stay
+    auto-accepted because only he can overturn his own decision (D-030); the
+    other 3 are held in review until he answers. Raised by Afaq 2026-08-18.
+
+**Chainsaw consumables are already answered and need no question** — the
+product lookup files `LIMA MOTOSIERRA` under `EXP-16.2 Otros Gastos Campo`, so
+its 11 siblings were moved to match. Recorded here so nobody re-asks.
+
+**Settled policy from his reply — not open questions, do not re-ask:**
+
+- **Untagged petrol goes to review, permanently.** Asked for a default rule for
+  the 77 lines (CLP 4,497,441) on invoices carrying no `<Patente>`; he answered
+  *"Our team to place."* That **is** the rule: no default exists, their team
+  places them. Every future fill-up at a station that omits `<Patente>` lands in
+  review by design. This is intended behaviour, not an unanswered question.
+- **The milking-shed rule is given.** *"Predio Lecheria are for leases that have
+  a milk shed, Arriendo otros predios for leases for younger animals that are not
+  milking."* Pelleco → `EXP-15.7`. `EXP-15.6` stays empty until a lease that has
+  a milking shed actually invoices; only then does the property need naming.
 
 **Answered 2026-08-17 and applied — do not re-ask:**
 
@@ -283,7 +452,7 @@ behind:
 > also been falsified: `Impuestos, comisiones, multas`, marked "normalmente no
 > tienen xml" — Banco BICE alone issues 56 commission invoices, CLP 5,193,633.**
 > Two of the list's factual claims have now been checked and both were wrong.
-> Treat the rest of that file as unverified. See "Still open" #5.
+> Treat the rest of that file as unverified. See "Still open" #3.
 
 **Resolved, no longer open:**
 
@@ -305,7 +474,7 @@ review for their team:
   Nº32799-1`, and its description names a 2024 John Deere 6115J tractor — the
   early payoff of the BICE lease whose rent lines are now `EXP-15.8`. Moved to
   `AF-2.1`, still in review; see §7.
-- Side work on the barn — now tracked in "Still open" #4 above.
+- Side work on the barn — now tracked in "Still open" #2 above.
 
 **Still unasked, and the highest-value item available:**
 

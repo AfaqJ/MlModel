@@ -5,9 +5,19 @@ Classifies Spanish invoice line items into accounting categories for
 
 **Status:** v1.3.3 live on Cloud Run — service `mlmodel`, `europe-west1`,
 revision `mlmodel-00014-lrp`, 100% traffic. Supabase holds 11,746 corrected
-lines as of 2026-08-17: 7,143 auto-accepted, 4,603 in review, and 77
-categories.
+lines as of 2026-08-19: **7,335 auto-accepted, 4,411 in review**, 77 categories.
+
+**Live and the staged payload are identical — nothing is pending.** Both
+uploads of 2026-08-19 landed and were verified independently against live.
+`002_add_manual_recategorisation_source.sql` is **applied to production**; live
+carries all 8 `prediction_source` values. Latest backup:
+`backups/supabase_20260819T064303Z/`.
 **Branch:** `codex/transaction-aware-retrain-v2` (dirty — see `docs/STATE.md`).
+
+`app/data/product_lookup.csv` was audited entry by entry on 2026-08-18 by an
+independent Codex pass — **1 finding in 696, not actionable.** It is clean; do
+not re-audit it. The client brief listing every open question is at
+https://claude.ai/code/artifact/47769557-4221-4b7d-a29c-00ca2d3d88a7
 
 **Item-catalog canonicalization is parked, awaiting a client meeting.** Live
 `item_catalog` holds 5,411 entries for 11,746 invoice lines, because the item
@@ -29,7 +39,7 @@ added on 2026-08-14/17 are rule-assigned and cannot be predicted (D-028); four
 more carry `trained: false`. `Data/gold/_master_gold.csv` holds 2,577 rows
 across 73 classes, 2,329 of them distinct model inputs. Many classes have very
 few examples, so the model cannot be trusted alone: the review gate is a feature,
-not a shortfall. Of 11,746 lines, 7,143 (61%) are auto-accepted and 4,603 (39%)
+not a shortfall. Of 11,746 lines, 7,335 (62%) are auto-accepted and 4,411 (38%)
 sit in review.
 
 The system is two halves that are easy to confuse: an **offline labeling
@@ -48,7 +58,12 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
   narrower than the input is what destroyed 47 milk-sale rows.
 - Never promote an unaudited row to gold. See `docs/LABELING_RULES.md`.
 - A client-sourced label outranks any number of rows that disagree with it.
-  See `docs/CLIENT_CONVENTIONS.md` — counting rows got this wrong twice.
+  See `docs/CLIENT_CONVENTIONS.md` — counting rows got this wrong twice. Where
+  the client filed the same kind of item consistently, that filing beats the
+  model too (D-040); the model disagreeing is usually the undertraining.
+- Never resolve in the payload a question currently open with the client (D-041).
+- Read the backing gold `source`, never the `prediction_source` tag —
+  `client_evidence_backfill` asserts an authority none of its 612 rows has (D-042).
 - Supabase is already loaded. Re-load with `scripts/82_apply_label_corrections.py`;
   script 80 is first-load only and will refuse.
 - Never modify `Data/Raw_Data/` — it is the only irreplaceable thing here.
