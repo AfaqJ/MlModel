@@ -138,21 +138,6 @@ A single gate would have caught the entire incident before release.
 
 ---
 
-## D-009 — Local only this phase
-
-> **Expired 2026-08-12.** This was a phase freeze, not a permanent rule. The
-> v1.3.3 Supabase upload and Cloud Run deploy both happened and were the
-> intended outcome. Kept as the record of why the recovery phase was sealed off.
-
-**Date:** 2026-08-11 · **Decided by:** Afaq
-
-No Supabase writes, no deploys, no git push. The v1.1.0 prediction run is
-preserved locally at
-`Temp_Inference/snapshots/normalized_before_company_item_split/invoice_items.json`
-and is the before/after baseline. See CONSTRAINTS.md.
-
----
-
 ## D-012 — Established gold wins; a promotion may never contradict it
 
 **Date:** 2026-08-11 · **Decided by:** Claude (Opus 5), flagged to Afaq
@@ -241,76 +226,6 @@ forcing asset disposals into an income category is precisely the failure above.
 
 **Requires `transaction_type` on the request.** Verified: without it, the old
 broken behaviour reproduces exactly. Every caller must pass it.
-
----
-
-## D-011 — Token embeddings frozen for the constrained-memory run only
-
-> **Superseded by D-015.**
-
-**Date:** 2026-08-11 · **Decided by:** Claude (Opus 5), flagged to Afaq
-
-Training OOM'd on MPS three times. Diagnosis: the failing allocation was always
-exactly **732.43 MiB**, which is `vocab_size × hidden × 4 bytes`
-= 250,002 × 768 × 4 = 768,006,144 bytes — the gradient buffer for the token
-embedding matrix. It is **batch-independent**, which is why dropping
-`--batch-size` from 8 to 4 changed nothing.
-
-**CORRECTED 2026-08-11.** My first two diagnoses were wrong and are recorded
-here so nobody repeats them:
-
-- ~~"other apps are holding 14.34 GiB, close them"~~ — closing Chrome changed
-  nothing.
-- ~~"36 days of uptime filled swap, reboot"~~ — the user rebooted; a fresh boot
-  with **0 MB swap used** produced the byte-identical error.
-
-The actual mechanism, measured rather than inferred:
-
-```
-macOS recommended_max_memory()      = 11.84 GiB   (75% of 16 GiB physical)
-PyTorch default watermark ratio     x  1.7
-max allowed                         = 20.13 GiB   <- matches the error exactly
-```
-
-And `other allocations` is **PyTorch's own caching allocator pool**, not other
-processes. Demonstrated directly:
-
-```
-allocate a 200 MiB tensor  -> pytorch tensors 200 MiB, driver holds 1024 MiB
-delete that tensor         -> pytorch tensors   0 MiB, driver holds 1024 MiB
-torch.mps.empty_cache()    -> pytorch tensors   0 MiB, driver holds    0.5 MiB
-```
-
-PyTorch requests memory from Metal in large blocks and retains them for reuse.
-Over a training run that pool reaches ~14.34 GiB of held-but-idle memory. The
-OOM is therefore `5.35 (live) + 14.34 (cached) + 0.73 (next block) = 20.42 >
-20.13` — the process starves inside its own budget while sitting on 14 GiB it is
-not using.
-
-This explains every observation: the number is byte-identical across system
-states because it is a property of *this workload*, and freeing system RAM
-cannot affect it because system RAM was never in it.
-
-**Working fix:** `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0` raises the ceiling. Safe
-here because the job's true requirement is bounded (~6.1 GiB) and known. The
-more principled fix, if this recurs, is periodic `torch.mps.empty_cache()`
-during training to stop the pool growing unbounded.
-
-`--freeze-embeddings` (default on) skips that gradient. Defensible on its own
-terms: contrastive fine-tuning on ~1,850 short domain texts has no business
-rewriting a 250k-token multilingual vocabulary, and the encoder blocks above it
-still train normally.
-
-**But it is not what v1.1.0 did.** The v1.1.0 comparison is only exactly
-like-for-like with embeddings trainable. After a reboot reclaims swap, retrain
-with `--no-freeze-embeddings` at `--batch-size 8` and compare the two.
-
-Rejected alternatives:
-- lower `--batch-size` — does not touch a batch-independent allocation;
-- lower `max_seq_length` to 48 — truncates 6.1% of gold rows (p99 = 62 tokens),
-  and the truncated tail is exactly the long milk descriptions we just recovered;
-- `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0` — removes the safety ceiling on a
-  machine already 8 GB into swap; risks a hard system hang.
 
 ---
 
@@ -596,7 +511,12 @@ of truth, none loading automatically. `MLMODEL.md` said "do not drift" and
   `D-NNN`. STATE is short-term memory; DECISIONS is long-term.
 - **Delete superseded docs, do not archive them.** Git history is the archive.
   Fold load-bearing facts into the surviving doc first, then delete and fix
-  every reference.
+  every reference. **Amended 2026-08-19 (Afaq): this now applies to `D-NNN`
+  entries too.** An entry that is fully dead — expired, superseded, and with no
+  inbound reference from `CLAUDE.md`, `docs/` or code — is deleted, not left
+  wearing a marker. An entry whose principle is still cited stays and carries
+  the marker. D-009 and D-011 were removed on that basis; D-001 and D-034 stay,
+  because they are cited.
 - **Memory never duplicates the repo.** `~/.claude/.../memory/` is only for
   things the repo cannot hold. A fact stored twice rots in one copy.
 - **Audit docs by content, not filename.** The files calling themselves context
@@ -1039,3 +959,45 @@ one upload means a failure tells you nothing about which one broke.
 
 **Consequence:** read the backing gold `source`, never the `prediction_source`
 tag, until this is done.
+
+## D-043 — Say which decision you are relying on, before you act on it
+
+**Date:** 2026-08-19 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Whenever a `D-NNN` is about to shape what gets built, labelled, promoted or
+written, **name it to Afaq in plain language with its reasoning, and wait** —
+before acting, not in the summary afterwards.
+
+This is wider than the existing rule about contradictions. That one only fires
+when Afaq asks for something a decision forbids. This one fires whenever a
+decision is *load-bearing for the next step*, including when it agrees with what
+he asked for. The point is that the rationale passes through him every time it is
+used, not only when it collides with him.
+
+**Why:** the decision log is now 40 entries deep and much of it was written in
+sessions Afaq does not remember. A past decision applied silently is
+indistinguishable, from his side, from the agent inventing a rule — and he cannot
+withdraw consent from reasoning he never sees. On 2026-08-19 he overruled D-037's
+model-agreement requirement within minutes of it being explained, because it was
+letting an undertrained model veto the client. Had it been applied silently, the
+`Revision Tecnica` rows would have stayed wrong and nobody would have known which
+rule made them so.
+
+Two more from the same day: a proposed date-window rule for capitalising
+contractor invoices was killed on sight once stated out loud, and the claim that
+`client_evidence_backfill` meant "the client labelled this" collapsed the moment
+he asked for the trace instead of accepting the tag.
+
+**How to apply:**
+- State the entry, what it says, and what it makes you do next. One or two
+  sentences, no jargon, no "see D-0NN".
+- Say it *before* the edit, script or promotion — not in the report.
+- If he disagrees, the decision is amended or superseded in the same session.
+  A decision he no longer agrees with is stale by definition (see D-027).
+- Batch sensibly. Several rows governed by one decision is one disclosure, not
+  one per row.
+
+**Rejected:** relying on him to read `DECISIONS.md` — he does not read the docs,
+that is the agent's job (global `CLAUDE.md`); and surfacing only on conflict,
+which is the rule that already existed and is what let D-037 sit unchallenged for
+a day.

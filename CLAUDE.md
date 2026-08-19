@@ -62,6 +62,9 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
   the client filed the same kind of item consistently, that filing beats the
   model too (D-040); the model disagreeing is usually the undertraining.
 - Never resolve in the payload a question currently open with the client (D-041).
+- **Before acting on any `D-NNN`, say which one and what it makes you do, in
+  plain language, and wait** (D-043). Not only when it conflicts with what Afaq
+  asked — every time it is load-bearing for the next step.
 - Read the backing gold `source`, never the `prediction_source` tag —
   `client_evidence_backfill` asserts an authority none of its 612 rows has (D-042).
 - Supabase is already loaded. Re-load with `scripts/82_apply_label_corrections.py`;
