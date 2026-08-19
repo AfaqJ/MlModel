@@ -1,6 +1,11 @@
 # DECISIONS
 
-Why things are the way they are. Append-only — supersede an entry, don't delete it.
+Why things are the way they are.
+
+**A dead entry is deleted, not left wearing a marker.** Fully dead means expired
+or superseded AND cited nowhere in `CLAUDE.md`, `docs/` or code. An entry whose
+principle is still cited stays and carries its marker instead. Git history is the
+archive — check inbound references before deleting, and fix any that dangle.
 
 Format: `D-NNN` | date | decision | why | who decided.
 **Grep for existing `D-` IDs before adding one.** This file had a duplicate
@@ -510,14 +515,14 @@ of truth, none loading automatically. `MLMODEL.md` said "do not drift" and
   `_v3`. Versioned handovers are how history turns into sprawl.
 - **Last 5 sessions only.** Anything older that still matters must already be a
   `D-NNN`. STATE is short-term memory; DECISIONS is long-term.
-- **Delete superseded docs, do not archive them.** Git history is the archive.
-  Fold load-bearing facts into the surviving doc first, then delete and fix
-  every reference. **Amended 2026-08-19 (Afaq): this now applies to `D-NNN`
-  entries too.** An entry that is fully dead — expired, superseded, and with no
-  inbound reference from `CLAUDE.md`, `docs/` or code — is deleted, not left
-  wearing a marker. An entry whose principle is still cited stays and carries
-  the marker. D-009 and D-011 were removed on that basis; D-001 and D-034 stay,
-  because they are cited.
+- **Delete superseded docs and dead decisions; do not archive them.** Git
+  history is the archive. Fold load-bearing facts into the surviving doc first,
+  then delete and fix every reference. This covers `D-NNN` entries: one that is
+  expired or superseded **and** cited nowhere in `CLAUDE.md`, `docs/` or code is
+  deleted. One whose principle is still cited stays and carries its marker.
+  D-009 and D-011 were deleted on that test 2026-08-19; D-001 and D-034 stayed,
+  because both are cited. (`DECISIONS.md` was append-only until then; Afaq
+  removed that rule — a log nobody prunes is one nobody reads.)
 - **Memory never duplicates the repo.** `~/.claude/.../memory/` is only for
   things the repo cannot hold. A fact stored twice rots in one copy.
 - **Audit docs by content, not filename.** The files calling themselves context
