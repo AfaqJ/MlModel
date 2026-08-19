@@ -1,0 +1,253 @@
+input_id,item,was_code,was_decision,was_source,now_code,now_decision,why,amount
+COMPRAS|64165534|87715|1,REPARACION 01 MOTOR HIDRAULICO,EXP-13.2,auto_accept,model,EXP-13.1,review_required,a hydraulic motor is machinery; matched Mantencion Motos on MOTOR,53550
+COMPRAS|64165534|89752|1,REP 01 MOTOR HIDRAULICO,EXP-13.2,review_required,model,EXP-13.1,review_required,a hydraulic motor is machinery; matched Mantencion Motos on MOTOR,69800
+COMPRAS|66554732|204334|1,GUARDAPOLVO RODON DE 2 PULGADAS ANCHO -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",16640
+COMPRAS|66554732|204334|12,AQ-SOPORTE CANAL AQUAPLUV TIGRE -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,2620
+COMPRAS|66554732|204334|4,AQ-TEE BAJADA AQUAPLUV TIGRE -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,4168
+COMPRAS|66554732|204334|5,TAUTO-FINA 2 TORNILLO AUTOPERF FINA CAJA 100 UN -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3345
+COMPRAS|66554732|204334|6,CLAVO DE 3 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1408
+COMPRAS|66554732|204334|7,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1408
+COMPRAS|66554732|206086|3,TVZC TORNILLO VOLCANITA ZINC 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",924
+COMPRAS|66554732|207044|2,TAUTO-FINA 2 TORNILLO AUTOPERF FINA CAJA 100 UN -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3345
+COMPRAS|66554732|210058|3,VALVULA COMPACTA HI 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,1092
+COMPRAS|66554732|210058|5,-NIPLE HE-HE 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,269
+COMPRAS|66554732|211314|2,PCO PERNO COCHE 5 16 X 1 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",168
+COMPRAS|66554732|211314|3,PCO PERNO COCHE 5 16 X 1 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",168
+COMPRAS|66554732|213510|3,LIMA MOTOSIERRA -@,EXP-13.2,auto_accept,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,1933
+COMPRAS|66554732|215286|1,FU-TUBERIA FUSION 20MM O PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,2672
+COMPRAS|66554732|215286|10,TVZC TORNILLO VOLCANITA ZINC 2 1 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1412
+COMPRAS|66554732|215286|11,LLAVE BOLA JARDIN 1 2 H-FULL MANILLA ROJA -@,EXP-1.1,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,2261
+COMPRAS|66554732|215286|12,FU-TERMINAL HE 1 2 X 20MM METALICO PEGAR PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,1160
+COMPRAS|66554732|215286|3,FU-CODO 20MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,504
+COMPRAS|66554732|215286|4,FU-TEE 20MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,268
+COMPRAS|66554732|215286|6,TAUTO-FINA 2 TORNILLO AUTOPERF FINA CAJA 100 UN -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3269
+COMPRAS|66554732|216303|1,CEMENTO -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",38130
+COMPRAS|66554732|216745|1,ESMALTE AL AGUA ACRYFOL BLANCO GALON ALGIFOL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,180500
+COMPRAS|66554732|216745|5,LIJA MADERA GRANO 100 -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1850
+COMPRAS|66554732|216899|4,TVZC TORNILLO VOLCANITA ZINC 1 5 8 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",798
+COMPRAS|66554732|216899|5,GUARDAPOLVO RODON ESPECIAL 3 X 3 4 ESPESOR -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",25390
+COMPRAS|66554732|216974|1,ESMALTE AL AGUA COPPER 960 TOQUE CREATIVO GALON PANOR -@,ADM-1.6,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,59496
+COMPRAS|66554732|217579|1,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",7040
+COMPRAS|66554732|217579|2,CLAVO DE 3 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",7040
+COMPRAS|66554732|217579|3,CLAVO DE TECHO X BOLSA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6756
+COMPRAS|66554732|217755|2,GUARDAPOLVO RODON ESPECIAL 3 X 3 4 ESPESOR -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",25390
+COMPRAS|66554732|217755|3,TAUTO-FINA 1 1 2 TORNILLO AUTOPERF FINA CAJA 100 UN -@,ADM-1.6,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",5344
+COMPRAS|66554732|218245|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",32373
+COMPRAS|66554732|218245|3,CLAVO DE TECHO X BOLSA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",2252
+COMPRAS|66554732|218245|4,KG SOLDADURA E6011 1 8 BOLSA KRAFTER -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3092
+COMPRAS|66554732|218389|4,BROCHA CONDECORA 3 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,1218
+COMPRAS|66554732|218817|5,TVZC TORNILLO VOLCANITA ZINC 2 1 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",2824
+COMPRAS|66554732|218819|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",28776
+COMPRAS|66554732|219022|2,TAUTO-FINA 2 TORNILLO AUTOPERF FINA CAJA 100 UN -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6538
+COMPRAS|66554732|219022|3,SOPORTE POLICARBONATO TRANSPARENTE -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",30200
+COMPRAS|66554732|219022|4,CLAVO DE TECHO X BOLSA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",2252
+COMPRAS|66554732|219022|5,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",14080
+COMPRAS|66554732|219022|6,CLAVO DE 3 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",7040
+COMPRAS|66554732|219022|7,CLAVO DE 5KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",10992
+COMPRAS|66554732|219348|2,CLAVO VOLCANITA KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",5378
+COMPRAS|66554732|219348|3,TVZC TORNILLO VOLCANITA ZINC 1 5 8 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1596
+COMPRAS|66554732|219595|1,BROCHA CONDECORA 3 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,2436
+COMPRAS|66554732|220000|10,TVZC TORNILLO VOLCANITA ZINC 1 5 8 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1596
+COMPRAS|66554732|220000|3,AQ-TEE BAJADA AQUAPLUV TIGRE -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,2084
+COMPRAS|66554732|220000|4,AQ-SOPORTE CANAL AQUAPLUV TIGRE -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,29475
+COMPRAS|66554732|220224|7,LIJA FIERRO GRANO 100 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",496
+COMPRAS|66554732|220344|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",36810
+COMPRAS|66554732|220684|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",184050
+COMPRAS|66554732|220687|4,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",35200
+COMPRAS|66554732|220687|5,CLAVO DE 3 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",35200
+COMPRAS|66554732|221258|5,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",73620
+COMPRAS|66554732|221519|2,T1 TUERCA HILO-CORRIENTE 1 2 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6720
+COMPRAS|66554732|221519|4,KG SOLDADURA 6011 1 8 INDURA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",12572
+COMPRAS|66554732|221820|3,T1 TUERCA HILO-CORRIENTE 1 2 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",5040
+COMPRAS|66554732|222407|1,LIJA FIERRO GRANO 100 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",992
+COMPRAS|66554732|222407|10,FU-TUBERIA FUSION 25MM O PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,12555
+COMPRAS|66554732|222407|4,FU-CODO 32MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,976
+COMPRAS|66554732|222407|5,FU-COPLA 32 MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,370
+COMPRAS|66554732|222407|6,FU-TEE 32MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,1312
+COMPRAS|66554732|222551|2,KG SOLDADURA 6011 1 8 INDURA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6286
+COMPRAS|66554732|222552|1,PAR ALCAYATA PLANA 8P GRIS MUTEL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",38772
+COMPRAS|66554732|222560|10,VALVULA BOLA PASO 3 4 H-FULL -@,EXP-1.1,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,7512
+COMPRAS|66554732|222560|7,-BUSHING REDUCCION HE-HI 1 X 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,705
+COMPRAS|66554732|223063|1,SIFON LAVAPLATOS LOA HOFFENS S/CURVA -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3008
+COMPRAS|66554732|223063|10,JUEGO DE FITTING PARA SANITARIO KB-AB107 FAS-@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,10067
+COMPRAS|66554732|223063|5,SIFON LAVAPLATOS LOA HOFFENS S/CURVA -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3008
+COMPRAS|66554732|223063|6,LIJA FIERRO GRANO 80 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1210
+COMPRAS|66554732|223346|1,CLAVO DE 6 KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",8824
+COMPRAS|66554732|223346|3,TVZC TORNILLO VOLCANITA ZINC 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1849
+COMPRAS|66554732|223347|1,T1 TUERCA HILO-CORRIENTE 1 2 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",8400
+COMPRAS|66554732|223347|3,PAR ALCAYATA PLANA 8P GRIS MUTEL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6462
+COMPRAS|66554732|223347|8,SIFON LAVATORIO REGIO 1 1 4 X 40MM HOFFENS 20018 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,2168
+COMPRAS|66554732|223477|3,T1 TUERCA HILO-CORRIENTE 1 2 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1260
+COMPRAS|66554732|223520|2,PAR ALCAYATA PLANA 8P GRIS MUTEL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6462
+COMPRAS|66554732|223970|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",55215
+COMPRAS|66554732|223972|3,KG SOLDADURA 6011 1 8 INDURA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6286
+COMPRAS|66554732|224165|10,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,134
+COMPRAS|66554732|224165|4,-BUSHING REDUCCION HE-HI 1 X 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,940
+COMPRAS|66554732|224278|2,KG SOLDADURA 6011 1 8 INDURA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6286
+COMPRAS|66554732|224279|1,ESMALTE AL AGUA ACRYFOL BLANCO GALON ALGIFOL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,18050
+COMPRAS|66554732|224665|1,PAR ALCAYATA PLANA 8P GRIS MUTEL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6462
+COMPRAS|66554732|224665|2,GRAPAS PARA ENGRAPADORA DELGADA 1 2 MM 1000 UN -@,EXP-14.2,auto_accept,model,EXP-16.1,review_required,stapler consumable from a hardware store; not fence maintenance,1076
+COMPRAS|66554732|224666|6,CLAVO DE TECHO X BOLSA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",11260
+COMPRAS|66554732|224666|7,CLAVO TINGLE KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",10420
+COMPRAS|66554732|224666|8,TVZC TORNILLO VOLCANITA ZINC 1 5 8 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1512
+COMPRAS|66554732|224666|9,CLAVO VOLCANITA KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",5378
+COMPRAS|66554732|225660|1,PCO PERNO COCHE 5 16 X 5 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",5148
+COMPRAS|66554732|225660|4,PAR ALCAYATA PLANA 8P GRIS MUTEL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6462
+COMPRAS|66554732|225674|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",36810
+COMPRAS|66554732|225913|2,TVZC TORNILLO VOLCANITA ZINC 2 1 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",4236
+COMPRAS|66554732|225914|1,ESMALTE AL AGUA DYNALPROOF BLANCO GALON -@,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,16118
+COMPRAS|66554732|226312|1,T1 TUERCA HILO-CORRIENTE 1 2 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",4200
+COMPRAS|66554732|226825|2,KG SOLDADURA 6011 1 8 INDURA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",12572
+COMPRAS|66554732|226825|6,TVZC TORNILLO VOLCANITA ZINC 2 1 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",2824
+COMPRAS|66554732|227094|1,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",7040
+COMPRAS|66554732|227094|2,CLAVO DE 3 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",4224
+COMPRAS|66554732|228159|1,KIT REGULADOR + FLEXIBLE PROVIDUS BOLSA TRAD -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,16555
+COMPRAS|66554732|228272|3,JUEGO DE FITTING PARA SANITARIO KB-AB107 FAS-@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,8311
+COMPRAS|66554732|228952|2,CADENA MOTOSIERRA 325-1 6 34 DIENTES 45 PULG. MS-250 -@,EXP-13.2,auto_accept,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,25223
+COMPRAS|66554732|229761|4,LIJA FIERRO GRANO 80 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",696
+COMPRAS|66554732|230096|1,CLAVO TERRANO DE 1 1 2 KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3672
+COMPRAS|66554732|230096|2,FU-TUBERIA FUSION 20MM O PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3073
+COMPRAS|66554732|230097|1,-BUSHING REDUCCION HE-HI 1 X 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,540
+COMPRAS|66554732|230097|3,FU-TERMINAL HE 1 2 X 20MM METALICO PEGAR PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,2668
+COMPRAS|66554732|230097|5,FU-LLAVE PASO METALICA MANILLA ROJA (20 mm) HOFFENS 90101 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,4233
+COMPRAS|66554732|230097|7,SIFON LAVATORIO REGIO 1 1 4 X 40MM HOFFENS 20018 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,2686
+COMPRAS|66554732|230097|8,LLAVE BOLA JARDIN 1 2 H-FULL MANILLA ROJA -@,EXP-1.1,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,2600
+COMPRAS|66554732|230097|9,FU-CODO 20MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,725
+COMPRAS|66554732|230173|1,FU-CODO 20MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,870
+COMPRAS|66554732|230173|3,-BUSHING REDUCCION HE-HI 1 X 1 2 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,242
+COMPRAS|66554732|230173|5,TVZC TORNILLO VOLCANITA ZINC 1 1 4 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",753
+COMPRAS|66554732|230174|1,FU-TUBERIA FUSION 20MM O PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3073
+COMPRAS|66554732|231789|10,CLAVO DE 3 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",15270
+COMPRAS|66554732|231789|4,TAUTO-FINA 2 1 2 TORNILLO AUTOPERF FINA CAJA 100 UN -@,ADM-1.6,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",11541
+COMPRAS|66554732|231789|5,SOPORTE POLICARBONATO TRANSPARENTE -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",52200
+COMPRAS|66554732|231789|6,CLAVO DE TECHO X BOLSA -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",15540
+COMPRAS|66554732|231789|7,CLAVO TINGLE KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",9588
+COMPRAS|66554732|231789|8,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",13430
+COMPRAS|66554732|231789|9,CLAVO DE 6 KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",10150
+COMPRAS|66554732|232383|4,-NIPLE HE-HE 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3090
+COMPRAS|66554732|232796|1,PCO PERNO COCHE 3 8 X 6 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",4524
+COMPRAS|66554732|232796|2,PCO PERNO COCHE 3 8 X 4 1 2 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",9264
+COMPRAS|66554732|232796|7,PAR ALCAYATA PLANA 10P VERDE MUTEL-@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",28122
+COMPRAS|66554732|232798|1,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",6715
+COMPRAS|66554732|232798|2,TAUTO-FINA 2 1 2 TORNILLO AUTOPERF FINA CAJA 100 UN -@,ADM-1.6,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3847
+COMPRAS|66554732|232798|3,SOPORTE POLICARBONATO TRANSPARENTE -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",17400
+COMPRAS|66554732|233419|3,KG SOLDADURA E6011 3 32 BOLSA KRAFTER -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3759
+COMPRAS|66554732|234069|3,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",26860
+COMPRAS|66554732|234069|5,ACEITE CADENA MOTOSIERRA LUBRICHILE 5 LTS-@,EXP-13.2,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,14390
+COMPRAS|66554732|234069|6,LIMA MOTOSIERRA S MANGO 7/32 -@,EXP-13.2,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,957
+COMPRAS|66554732|234192|2,TVZC TORNILLO VOLCANITA ZINC 2 1 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3248
+COMPRAS|66554732|234193|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",72260
+COMPRAS|66554732|234619|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",54195
+COMPRAS|66554732|235076|3,CLAVO VOLCANITA KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3092
+COMPRAS|66554732|235712|10,-BUSHING REDUCCION HE-HI 2 X 1-@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,657
+COMPRAS|66554732|235712|3,-BUSHING REDUCCION HE-HI 1 X 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,540
+COMPRAS|66554732|235712|4,VALVULA COMPACTA HI 3/4 60893 -@,ADM-1.6,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,3765
+COMPRAS|66554732|235712|6,VALVULA COMPACTA HI 2 ERA-@,ADM-1.6,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,9046
+COMPRAS|66554732|235712|8,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,770
+COMPRAS|66554732|236187|10,VALVULA COMPACTA HI 3/4 60893 -@,ADM-1.6,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,2259
+COMPRAS|66554732|236187|11,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,462
+COMPRAS|66554732|236187|7,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,616
+COMPRAS|66554732|236187|8,-BUSHING REDUCCION HE-HI 1 X 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,1080
+COMPRAS|66554732|236959|4,-CODO HI-HI 1 -@,EXP-7.0,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,474
+COMPRAS|66554732|236959|5,-CODO HI-HI 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,348
+COMPRAS|66554732|236959|7,-NIPLE HE-HE 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,309
+COMPRAS|66554732|236959|8,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,154
+COMPRAS|66554732|238031|1,LIMA MOTOSIERRA S MANGO 7/32 -@,EXP-13.2,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,2871
+COMPRAS|66554732|238031|2,ACEITE CADENA MOTOSIERRA LUBRICHILE 5 LTS-@,EXP-13.2,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,14390
+COMPRAS|66554732|239969|1,CLAVO DE 6 KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",5294
+COMPRAS|66554732|239969|2,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",2336
+COMPRAS|66554732|240549|10,-CODO HI-HI 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,696
+COMPRAS|66554732|240549|11,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,308
+COMPRAS|66554732|240549|4,VALVULA COMPACTA HI 3/4 60893 -@,ADM-1.6,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,1506
+COMPRAS|66554732|241054|1,-NIPLE HE-HE 2 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,937
+COMPRAS|66554732|241054|2,VALVULA COMPACTA HI 3/4 60893 -@,ADM-1.6,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,753
+COMPRAS|66554732|241054|6,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,154
+COMPRAS|66554732|241826|2,-NIPLE HE-HE 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3090
+COMPRAS|66554732|242035|1,TVZC TORNILLO VOLCANITA ZINC 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1063
+COMPRAS|66554732|242035|2,TVZC TORNILLO VOLCANITA ZINC 3 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1923
+COMPRAS|66554732|242701|1,CLAVO DE 5KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",2107
+COMPRAS|66554732|242701|2,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1343
+COMPRAS|66554732|242783|2,-NIPLE HE-HE 3 4 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,1540
+COMPRAS|66554732|242783|6,VALVULA BOLA PASO 3 4 H-FULL -@,EXP-1.1,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,14400
+COMPRAS|66554732|243033|1,VALVULA COMPACTA HI 3/4 60893 -@,ADM-1.6,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,2259
+COMPRAS|66554732|243033|10,-NIPLE HE-HE 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,1854
+COMPRAS|66554732|243033|12,VALVULA COMPACTA HI 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,2512
+COMPRAS|66554732|243033|2,VALVULA COMPACTA HI 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,2512
+COMPRAS|66554732|243033|4,-NIPLE HE-HE 2 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,937
+COMPRAS|66554732|243035|2,-NIPLE HE-HE 1 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,6180
+COMPRAS|66554732|243036|3,TVZC TORNILLO VOLCANITA ZINC 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3189
+COMPRAS|66554732|243036|4,TVZC TORNILLO VOLCANITA ZINC 3 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3846
+COMPRAS|66554732|243356|2,TVZC TORNILLO VOLCANITA ZINC 2 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1063
+COMPRAS|66554732|243585|2,VALVULA COMPACTA HI 2 ERA-@,ADM-1.6,review_required,model,EXP-14.3,review_required,shut-off valve; belongs with the water and slurry line,7866
+COMPRAS|66554732|244019|4,CLAVO DE 4 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",4029
+COMPRAS|66554732|244019|5,CLAVO DE 3 KG -@,EXP-7.0,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",7635
+COMPRAS|66554732|244022|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",7698
+COMPRAS|66554732|244217|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",7698
+COMPRAS|66554732|244615|10,FU-LLAVE DE BOLA PP-R COMPLETA 20 MM 90158 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,1431
+COMPRAS|66554732|244615|15,BROCHA CONDECORA 3 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,1527
+COMPRAS|66554732|244615|3,CLAVO VOLCANITA KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",3092
+COMPRAS|66554732|244615|4,ESMALTE AL AGUA ACRYFOL BLANCO GALON ALGIFOL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,21453
+COMPRAS|66554732|244615|7,-BUSHING REDUCCION HE-HI 1 X 1 2 -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,242
+COMPRAS|66554732|244615|8,FU-TERMINAL HE 1 2 X 20MM METALICO PEGAR PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,1237
+COMPRAS|66554732|244615|9,FU-CODO 20MM PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,580
+COMPRAS|66554732|244617|10,TVZC TORNILLO VOLCANITA ZINC 1 5 8 CJ 100UN -@,ADM-1.2,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",869
+COMPRAS|66554732|244617|11,FU-TUBERIA FUSION 20MM O PPR -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3073
+COMPRAS|66554732|244617|13,CLAVO TINGLE KG -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",2397
+COMPRAS|66554732|244617|14,GUARDAPOLVO RODON DE 2 PULGADAS ANCHO -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",28710
+COMPRAS|66554732|244617|8,PUERTA PINO RADIATA SUP RECTO 0 80 -@,ADM-1.6,review_required,model,EXP-14.4,review_required,a door is a building material,70141
+COMPRAS|66554732|244916|13,LIJA FIERRO GRANO 80 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",1392
+COMPRAS|66554732|244916|4,KIT REGULADOR + FLEXIBLE PROVIDUS BOLSA TRAD -@,EXP-1.1,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,21841
+COMPRAS|66554732|246300|6,ACEITE CADENA MOTOSIERRA LUBRICHILE 5 LTS-@,EXP-13.2,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,15443
+COMPRAS|66554732|246300|7,LIMA MOTOSIERRA S MANGO 7/32 -@,EXP-13.2,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,957
+COMPRAS|66554732|246933|3,LIJA FIERRO GRANO 100 -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",570
+COMPRAS|66554732|16628|1,CEMENTO OFERTA ESPECIAL -@,EXP-1.1,review_required,model,EXP-14.4,review_required,"cement is a building material, not a staff cost",7698
+COMPRAS|760703753|18886|13,MOTOR HIDRAULICO ELEVADOR RF 9/11/13,EXP-13.2,review_required,model,EXP-13.1,review_required,a hydraulic motor is machinery; matched Mantencion Motos on MOTOR,1415685
+COMPRAS|760703753|18886|15,REPARACION MOTOR HIDRAULICO LOEBEL,EXP-13.2,auto_accept,model,EXP-13.1,review_required,a hydraulic motor is machinery; matched Mantencion Motos on MOTOR,57500
+COMPRAS|760703753|19661|1,KIT REPARACION MOTOR HIDRAULICO 500cc,EXP-13.2,review_required,model,EXP-13.1,review_required,a hydraulic motor is machinery; matched Mantencion Motos on MOTOR,536808
+COMPRAS|760703753|19661|4,EJE RECTO MOTOR HIDRAULICO HYM500,EXP-13.2,review_required,model,EXP-13.1,review_required,a hydraulic motor is machinery; matched Mantencion Motos on MOTOR,672090
+COMPRAS|760703753|20044|1,MOTOR HIDRAULICO 50 CORREA ENTREGA LATERAL RF TODOS,EXP-13.2,review_required,model,EXP-13.1,review_required,a hydraulic motor is machinery; matched Mantencion Motos on MOTOR,514718
+COMPRAS|765686601|35434874|5,ESMALTE SINTETICO PAJARITO BLANCO 1/4GL,ADM-1.6,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,11990
+COMPRAS|765686601|36353445|3,BROCHA 4 SILVER 1000010B,ADM-1.6,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,4193
+COMPRAS|765686601|36353445|5,BROCHA 2 SILVER 1000008B,ADM-1.6,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,3143
+COMPRAS|765686601|36578040|1,ESMALTE AGUA PRO ADVANTAGE SATIN BCO GL,ADM-1.6,auto_accept,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,62235
+COMPRAS|765686601|36711894|1,ESMALTE AL AGUA LP SEMIBRILLO BCOBASEXGL,ADM-1.6,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,27993
+COMPRAS|765686601|36711894|2,ESMALTE AL AGUA SEMIBRILLO BLANCO 1GL,ADM-1.6,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,27993
+COMPRAS|765686601|36711894|3,BROCHA PREMIUM EXP 4 PULG,ADM-1.6,auto_accept,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,4792
+COMPRAS|765686601|36711894|4,BROCHA SEM PRO 1.5 PULG,ADM-1.6,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,2392
+COMPRAS|770711002|1158729|5,SIFON LOA S/C ENTRADA 1 1/2 Y 1 1/4 - HOFFENS,ADM-1.6,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,2163
+COMPRAS|770711002|1238878|6,ESMALTE SINT BASE AGUA CAFE MORO - TRICOLOR GL,EXP-1.1,review_required,model,EXP-14.4,review_required,paint and brush; parked here pending the client's ruling on where paint goes,58673
+COMPRAS|776655848|1027|2,Botellón 20 litros,EXP-16.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,11765
+COMPRAS|776655848|662|1,Botellón 20 litros,EXP-16.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,11765
+COMPRAS|789500401|1035044|7,Despacho Online,ADM-1.2,auto_accept,model,EXP-15.3,review_required,"a delivery charge is freight, not internet",4715
+COMPRAS|810941006|29585440|7,"LIMA MOTOSIERRA 7/32""",EXP-13.2,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,8016
+COMPRAS|823926006|4860777|2,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",503880
+COMPRAS|823926006|4864235|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",120360
+COMPRAS|823926006|4864419|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",296310
+COMPRAS|823926006|4868870|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",336600
+COMPRAS|823926006|4891594|2,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",18360
+COMPRAS|823926006|4927558|2,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",21420
+COMPRAS|823926006|5173219|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",535755
+COMPRAS|823926006|5175347|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",383724
+COMPRAS|823926006|5177358|2,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",331740
+COMPRAS|823926006|5177376|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",463175
+COMPRAS|823926006|152144|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",535755
+COMPRAS|823926006|152145|1,BRUCELOSIS (ROSA DE BENGALA),EXP-14.4,review_required,model,EXP-12.2,review_required,"a brucellosis blood test is an animal analysis, not building maintenance",383724
+COMPRAS|864906001|659399|2,ACEITE MEZCLA STIHL P/MOTOSIERRAS 1 LT.,EXP-13.1,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,14316
+COMPRAS|864906001|671808|6,ACEITE MEZCLA STIHL P/MOTOSIERRAS 1 LT.,EXP-13.1,review_required,model,EXP-16.2,review_required,chainsaw consumable; the product lookup already files LIMA MOTOSIERRA here,14269
+COMPRAS|864906001|700150|2,"CLAVO CORRIENTE 3"" BOLSA (1KG)",ADM-1.6,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",4341
+COMPRAS|864906001|700150|4,"CLAVO CORRIENTE 4"" BOLSA (1KG) ""OFERTA""",ADM-1.6,review_required,model,EXP-14.4,review_required,"nail, screw, weld rod or board; building material, not comms or agrochemicals",4109
+COMPRAS|967115908|6073716|2,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,26000
+COMPRAS|967115908|6104613|2,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,78000
+COMPRAS|967115908|6131687|1,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,16250
+COMPRAS|967115908|6161039|2,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,35750
+COMPRAS|967115908|6189806|2,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,32500
+COMPRAS|967115908|6218140|1,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,19500
+COMPRAS|967115908|6246221|2,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,39000
+COMPRAS|967115908|6264029|2,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,39000
+COMPRAS|967115908|6457635|1,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,54958
+COMPRAS|967115908|6457651|2,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,41184
+COMPRAS|967115908|6486254|1,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,24024
+COMPRAS|967115908|6487980|1,Botellon 20 litros,EXP-13.2,review_required,model,EXP-1.1,review_required,bottled drinking water for staff; matched Mantencion Motos on nothing meaningful,27681
+COMPRAS|96792430K|139938055|1,PTA TERC 70X200 B/PINO CUN13Cp,EXP-14.3,auto_accept,model,EXP-14.4,review_required,a door is a building material,81471
+COMPRAS|96792430K|141083078|1,SIFON LOA S/R ENTR 11/2 - 11/4,ADM-1.6,review_required,model,EXP-14.3,review_required,threaded/PPR plumbing fitting; belongs with the water and slurry line,3353
+COMPRAS|96792430K|141790959|3,ESTUFA INFRARED WIFI 4/1 KENDC,ADM-1.2,auto_accept,model,EXP-16.2,review_required,a heater matched Comunicaciones on the word WIFI,153773

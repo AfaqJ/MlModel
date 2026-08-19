@@ -24,8 +24,20 @@ contractors (240 lines, CLP 137,094,957), hardware stores (1,534 / CLP
 technician hours (27). Four rows are deliberately held in review because they
 would pre-answer question 1 (→ D-041).
 
+**The decision log was audited and pruned this session.** 41 entries. Three were
+asserting things that had stopped being true — D-037 read as forbidding
+promotions that are live in Supabase, D-016 implied the `business_rule` payload
+tag still means the 28 sales rules (only 124 of 928 rows are `ING-*`), and D-042
+gained that third drifted tag. `DECISIONS.md` is **no longer append-only**: a
+dead entry is deleted once nothing cites it, and D-009 and D-011 were removed on
+that test. **D-043 is new and changes how sessions run — name the decision you
+are relying on, in plain language, before acting on it, not only when it
+conflicts with what Afaq asked.**
+
 v1.3.3 remains live on Cloud Run (`mlmodel-00014-lrp`). No model change. Branch
-`codex/transaction-aware-retrain-v2`. Tests: **98 passing**.
+`codex/transaction-aware-retrain-v2`, **clean — everything is committed.**
+Tests: **98 passing**. Five commits: `6b5bd41`, `8d67693`, `e749139`, `4754b2e`,
+`41348bd`.
 
 ## Next
 
@@ -158,9 +170,32 @@ review rows are undertrained rather than genuinely ambiguous.
   open rows carry none of those words** — they are bare or name only a property.
   He is also not perfectly consistent: `BOLOS SILO CHAPILCAHUIN` is filed as Hay
   while `BOLOS SILO YUTRECO` is Silage.
+- **The decision log was then audited end to end, and three entries had drifted.**
+  D-037 still stated the model-agreement bar that D-040 had removed the same day —
+  applied literally it would have reverted the `Revision Tecnica` rows now live.
+  D-016 is true of the runtime (`business_rules.csv` is 28 rules, all `ING-*`)
+  but its payload tag drifted to mean "a script applied a deterministic rule":
+  only **124 of 928** `business_rule` rows are `ING-*`. Both now carry pointers.
+  Two suspected contradictions were checked and cleared: D-024 vs the bidón
+  spellings (they live in `app/data/product_lookup.csv`, a data file, which is
+  what D-024 asks for) and D-016 vs D-029 (structured DTE field, not supplier
+  wording).
+- **`DECISIONS.md` is no longer append-only, by Afaq's instruction.** D-009 and
+  D-011 were deleted — both fully dead with zero inbound references. D-001 and
+  D-034 were kept because `CLAUDE.md`, `CONSTRAINTS.md`, `ARCHITECTURE.md` and
+  two scripts cite them. Deleting D-011 left D-015 pointing at a missing entry;
+  caught and fixed. **Check inbound references before deleting, and re-grep
+  after.**
+- **Gotcha — the same failure appeared three times in one day, in three
+  different files.** D-037, D-016 and D-027 were each true when written and none
+  had been told the ground moved. The cheap fix is a habit, not an audit: when a
+  change narrows an earlier entry, edit the earlier entry **in the same commit**.
+  D-040 said "narrows D-037" only inside D-040, which is the half nobody reads
+  first.
 - **Decided:** D-040 (client filing beats the model), D-041 (never pre-answer an
   open client question in the payload), D-042 (`prediction_source` consolidation
-  deferred to its own upload).
+  deferred to its own upload), **D-043 (name the decision before acting on it)**,
+  and D-027 amended to drop append-only.
 
 ### 2026-08-18 (sixth pass) — lookup audit re-run and clean; client brief published
 
