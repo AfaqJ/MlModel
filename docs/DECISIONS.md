@@ -236,7 +236,8 @@ broken behaviour reproduces exactly. Every caller must pass it.
 
 **Date:** 2026-08-11 · **Decided by:** Codex independent recovery
 
-D-011's frozen-embedding recommendation is superseded for release candidates.
+An earlier recommendation to freeze the token embeddings (deleted 2026-08-19 as
+a dead entry; see git history) is superseded for release candidates.
 Controlled local smoke runs showed that dynamic sequence padding grew MPS driver
 memory from 5.05 to 14.41 GiB in 12 steps even with Adafactor. Padding every
 batch to the fixed 64-token model length made memory plateau: 4.42 GiB with
