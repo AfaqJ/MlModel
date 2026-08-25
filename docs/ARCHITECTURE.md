@@ -120,13 +120,13 @@ confidence.
   re-loads wholesale. It is a release payload derived from the source data, not
   a second source of truth. Every correction script must be exact-targeted, dry
   runnable, make a local pre-write backup, and emit a changelog.
-- **Item-catalog canonicalization: nothing built, deliberately.** `item_catalog`
-  is keyed on item name plus a selective description, so a name carrying a
-  changing value spawns a new entry per invoice — 5,411 entries for 11,746
-  lines. A local prototype explored a two-table overlay and was deleted on
-  2026-08-18 without being applied; its schema was an assumption, and the
-  client meeting may invalidate it. Do not rebuild from memory of it. See
-  D-034 and `docs/STATE.md`.
+- **Item-catalog canonicalization: prepared locally, not applied.** The approved
+  payload in `reports/canonical_catalog_2026_08_25/` turns the 5,411 raw-wording
+  catalog rows into 4,029 canonical rows, repoints all 11,746 invoice lines and
+  adds 8 semantic aliases. `item_text` and line description remain immutable.
+  The transactional SQL passed against a disposable PostgreSQL copy. Production
+  Supabase still has the old catalog until Afaq approves the guarded migration
+  after a fresh backup. See D-034, D-044 and `docs/CATALOG_MATCHING_PROPOSAL.md`.
 - **Supabase (`nkdswofslslrumyraklv`), live:** categories, companies,
   item_catalog, invoices, invoice_items — 11,746 rows, 77 categories, 7,335
   auto / 4,411 review after the verified 2026-08-19 re-load. Supabase owns the
@@ -134,6 +134,10 @@ confidence.
   no DDL: it upserts whole rows, reads live IDs back, and preserves the schema.
   Writes require an explicit flag on `scripts/supabase_rest.py`.
 - **Cloud Run:** stateless. The service is a pure function; it holds no records.
+- **Future catalog resolver:** belongs in the backend ingestion writer before a
+  line is inserted. `/predict-batch` currently classifies accounting category
+  only and never writes Supabase; this repo has only offline database writers.
+  The real online ingestion owner must be found before matching is implemented.
 - **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
   row-count verified immediately before the 2026-08-17 full re-load. Earlier
   snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and

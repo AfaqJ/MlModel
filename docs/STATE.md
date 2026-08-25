@@ -5,12 +5,20 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**Live Supabase and the staged payload are IDENTICAL — nothing is pending.**
-Both hold **11,746 lines: 7,335 auto-accepted and 4,411 in review**, 77
-categories, with zero rows showing a label while awaiting review. Two uploads
-went out on 2026-08-19 via `scripts/82_apply_label_corrections.py`, each backed
-up first and verified afterwards by an independent query, not by trusting the
-script's own summary. Latest backup: `backups/supabase_20260819T064303Z/`.
+**Canonical catalog migration is ready locally and deliberately not applied.**
+The approved payload has **11,746 invoice lines, 4,029 catalog rows and 8
+aliases**, reducing the current 5,411-row catalog by 1,382. The raw item-name and
+description SHA-256 is identical before/after. The guarded transaction passed
+against a disposable PostgreSQL copy. Production Supabase remains unchanged.
+
+Backend branch: `codex/canonical-catalog-migration`, local and unpushed.
+Frontend branch: `codex/canonical-catalog-frontend`, local and unpushed. The
+frontend production build passes and history now displays original invoice item
+name and line description below the canonical catalog grouping.
+
+The live accounting-category payload remains **11,746 lines: 7,335
+auto-accepted and 4,411 in review**, 77 categories. No category or classifier
+logic changed in this catalog work.
 
 **The `manual_recategorisation` migration is APPLIED to production.**
 `002_add_manual_recategorisation_source.sql` was run in the Supabase SQL editor
@@ -18,57 +26,47 @@ by Afaq and confirmed by a probe that set and restored one row. Live now carries
 all 8 `prediction_source` values. That file is the record of a schema change that
 has actually shipped — do not lose it.
 
-**The client email was sent 2026-08-19**, five questions covering construction
-contractors (240 lines, CLP 137,094,957), hardware stores (1,534 / CLP
-27,895,730), bank commissions (107), bale making (18 / CLP 56,581,822) and GEA
-technician hours (27). Four rows are deliberately held in review because they
-would pre-answer question 1 (→ D-041).
-
-**The decision log was audited and pruned this session.** 41 entries. Three were
-asserting things that had stopped being true — D-037 read as forbidding
-promotions that are live in Supabase, D-016 implied the `business_rule` payload
-tag still means the 28 sales rules (only 124 of 928 rows are `ING-*`), and D-042
-gained that third drifted tag. `DECISIONS.md` is **no longer append-only**: a
-dead entry is deleted once nothing cites it, and D-009 and D-011 were removed on
-that test. **D-043 is new and changes how sessions run — name the decision you
-are relying on, in plain language, before acting on it, not only when it
-conflicts with what Afaq asked.**
-
 v1.3.3 remains live on Cloud Run (`mlmodel-00014-lrp`). No model change. Branch
-`codex/transaction-aware-retrain-v2`, **clean — everything is committed.**
-Tests: **98 passing**. Five commits: `6b5bd41`, `8d67693`, `e749139`, `4754b2e`,
-`41348bd`.
+base `codex/transaction-aware-retrain-v2` is unchanged. Tests there remain 98
+passing.
 
 ## Next
 
-1. **The `prediction_source` consolidation (→ D-042).** Merge the two `manual*`
+1. **Afaq inspects the catalog payload and frontend branch.** Nothing goes to
+   Supabase or Git remotes until he explicitly approves it.
+2. **If approved, take a fresh production backup/snapshot.** Rebuild if any
+   item ID, old catalog ID, `item_text` or description changed; do not weaken
+   the SQL preflight guard. Then apply the one transaction and independently
+   verify 4,029 / 11,746 / 8 plus raw-field invariants.
+3. **Push/merge the frontend only after separate approval.** Runtime alias and
+   pattern matching remains deferred until the actual online ingestion writer
+   is identified (D-044).
+4. **The `prediction_source` consolidation (→ D-042).** Merge the two `manual*`
    tags, rename or retire `client_evidence_backfill`, and delete the dead
    `COLLAPSE_TO_SCHEMA` block in `scripts/78_prepare_supabase_upload.py`. Needs
    its own migration and its own dry run — deliberately not bundled with a label
    upload.
-2. **Work the remaining 4,411 review rows.** The D-040 sweep is only partly
+5. **Work the remaining 4,411 review rows.** The D-040 sweep is only partly
    done: a general pass over *all* consistent client folder conventions was
    measured (51 candidates) but only the judged ones were applied. Re-run it with
    the D-040 limits and read each family before promoting.
-3. **The 141 vague-named rows the description rescues, CLP 106,758,176.** Review
+6. **The 141 vague-named rows the description rescues, CLP 106,758,176.** Review
    rows whose `item_text` is `Item`/`SERVICIOS`/`ANTICIPO` but whose
    `description` names the job outright — `FLETE MAICILLO`, `CONFECCION CAMINO
    YUTRECO`, `RETIRO DE PURINES`, `MANTENCION GRUPO ELECTROGENO`. Only **14
    rows, CLP 1,450,281** are genuinely blind. This is the largest readable block
    left and it was nearly written off as unreadable.
-4. **Frontend fix — still untouched.** The UI renders `predicted_code` on rows
+7. **Frontend category-review fix — still untouched.** The UI renders `predicted_code` on rows
    awaiting review. Same error class as the original incident.
-5. **Gold defect before any retrain.** `FUNDO CHAPICAHUIN` and `FUNDO RAICES` are
+8. **Gold defect before any retrain.** `FUNDO CHAPICAHUIN` and `FUNDO RAICES` are
    farm names sitting in gold as `EXP-6.3` (Cal); the model memorised them. Also
    the four client-vs-silver contradictions recorded 2026-08-18.
-6. **Run the `giro` variant — scaffolded but never trained.** Baseline to beat:
+9. **Run the `giro` variant — scaffolded but never trained.** Baseline to beat:
    base = 0.7441 accuracy / 0.6768 macro-F1 / 0.8765 top-3 on 340 val rows.
-7. **On next retrain, handle the six added categories.** `EXP-15.6` still has
+10. **On next retrain, handle the six added categories.** `EXP-15.6` still has
    **0 rows** and would trip the "fewer than 2 examples must fail loudly" limit.
    Also re-measure INT8 flip count — it worsened from 12/308 to 15/312.
-8. **Item catalog — still parked** pending the client meeting (D-036). Live
-   `item_catalog` holds 5,411 entries for 11,746 lines.
-9. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres; Chilean decimal
+11. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres; Chilean decimal
    format read as thousands separators. Amounts are correct.
 
 ## What the review rows contain
@@ -115,6 +113,31 @@ onward invoices, which are the highest-value input available, because ~3,529
 review rows are undertrained rather than genuinely ambiguous.
 
 ## Recent sessions
+
+### 2026-08-25 — canonical catalog payload and frontend history branch prepared
+
+- Afaq and colleagues approved one canonical ID per real product/recurring
+  service, including merging non-functional sizes/months while preserving raw
+  invoice names and descriptions (D-044). D-036 is unparked; D-034's evidence
+  rule remains; D-035 now allows inspected non-functional spec merges.
+- Fresh read-only snapshot: 11,746 lines and 5,411 catalog rows. The final
+  reviewed payload has 4,029 catalog rows and 8 real wording aliases. It does
+  not store OT numbers, months, sizes, case-only variants or junk placeholders
+  as aliases.
+- Generated the complete catalog, full invoice-item payload, per-line mapping
+  ledger, manifest, schema and guarded transactional SQL under
+  `reports/canonical_catalog_2026_08_25/`. Raw item/description SHA stayed
+  `f87b6fde...51a515` before and after.
+- The SQL committed successfully in disposable PostgreSQL 18: 4,029 catalog,
+  11,746 lines, 8 aliases. A first test correctly rolled back on a local-only
+  missing `service_role`; the grant was made conditional and the full test then
+  passed.
+- Frontend branch adds original item name and description to catalog history.
+  Targeted ESLint passed and `npm run build` completed. Full-repo lint remains
+  red on 12 unrelated pre-existing errors; none are in changed files.
+- **No production Supabase write and no Git push occurred.** Future matching is
+  documented as a backend-ingestion responsibility; this repo has no online
+  ingestion writer today.
 
 ### 2026-08-19 — client email sent; two uploads; the client's own filing promoted over the model
 
@@ -344,57 +367,3 @@ the description and the client's rules before calling a row wrong).
 payload first, then treat the settled auto-accepts as the new gold. So the four
 known gold defects (`CLAVO TERRANO`, `LEVANTADOR DE VACAS`, `MOSKIMIC FORTE`,
 `ORBENIN E.D.C`) are recorded, not fixed — see D-038 and the entry below.
-
-### 2026-08-18 (fourth pass) — audited the lookup and the silver backfill
-
-- **Afaq's challenge held: three of the four silver-audit rows flagged as errors
-  were not errors at all.** Each was already settled by a rule the client wrote,
-  and "fixing" them would have overwritten his own convention:
-  - `SMART BLUE ... FERTILIZANTES(B)-UREA`, CLP 67.3M — `SMARTBLUE FUNDO` is a
-    `client_product_rule` → `EXP-6.2 Nitrogeno`, and the name ends in UREA.
-  - `BIDON 20 LTS DIESEL` → `EXP-16.2` — `BIDON CERT. AMARILLO DIESEL 20 L` is a
-    `client_product_rule` → `EXP-16.2`. It is a jerrycan, not fuel.
-  - `VENTA MATERIAL`, CLP 13.03M — called meaningless from `item_text` alone.
-    Its **description** is `MAICILLO`, road surfacing gravel, from an excavation
-    contractor. `EXP-14.1 Mantencion Caminos` is right.
-  **Method: read the description and search the client's rules before calling an
-  auto-accept wrong.** Two of the three were caught only because the lookup was
-  read afterwards.
-- **One real finding, left for the client:** `SEMILLA BALLICA TAMA` sits in
-  `EXP-8.1 Pradera Perenne` (CLP 5.28M) but TAMA is a short-rotation ryegrass and
-  `EXP-8.2` exists. No client rule distinguishes varieties → question #12.
-- **Four gold defects found where a silver audit contradicts a client label**
-  on the same product: `CLAVO TERRANO` (client Cercos / silver Otros Gastos
-  Lecheria), `LEVANTADOR DE VACAS` (client Salud Animal / silver Instalaciones),
-  `MOSKIMIC FORTE` (client Otros Medicamentos / silver Agroquimicos), `ORBENIN
-  E.D.C` (client Terapias Secado / silver Otros Medicamentos). **All four are
-  gold-only — the payload follows the client code in every case.** They will
-  poison the next retrain and must be fixed before it.
-- **Lookup structure checked:** 13 entries have a blank provider and so match any
-  supplier — all are specific brand names or exact service phrases, safe. 9
-  entries have generic or very short names (`DIESEL`, `FLETE`, `Flete`); all are
-  provider-scoped, and `Flete` → `EXP-4.2` is correct for the bale contractor.
-- **The fuel/plate rule was then audited end to end and is 100% consistent.**
-  All 756 gasoline lines, classified by what `<Patente>` actually contains:
-  bidón in any spelling (109) → `EXP-11.4 Bencina`, no exceptions; a real plate
-  (216) → `ADM-1.4 Movilizacion`; an unreadable plate (24) → review,
-  deliberately; no tag at all (77) → review, which is the client's own answer
-  *"Our team to place"*; no tag but covered by client evidence (327) → Bencina.
-  **Zero misfiled fuel rows.** The bidón spellings in the wild are `BIDON`,
-  `BIDO93`, `BIDO45`, `BIDO91`, `BIDO65`, `BIDO01`, and the transpositions
-  `IBDO96`, `VIDO93`, `BIDI25`, `BIOD45`, `BID000`. **The production rule
-  handles all of them; two separate ad-hoc audit regexes written this session
-  did not.** Do not re-derive this rule in a throwaway script — read it.
-- **The plate-vs-bidón scare, resolved.** 56 fuel rows from Estaciones de
-  Servicio Paola looked like plated vehicle fuel auto-accepted as farm petrol,
-  contradicting five `direct_client_example` rows putting that supplier in
-  `ADM-1.4`. The `<Patente>` values are `BIDO93`, `BIDO45`, `BIDO91`, `IBDO96`,
-  `VIDO93` — "bidón" plus the fuel grade, typos included. Bidón means farm fuel,
-  so `EXP-11.4 Bencina` is correct and the production rule already handled the
-  typos. **The audit script was wrong, not the data** (→ D-038).
-- **`scripts/88_apply_lookup_audit_findings.py`: 98 rows promoted**, each backed
-  by a client-written lookup rule *and* the model independently agreeing: 87 HDPE
-  compression fittings → `EXP-14.3` (the client filed HDPE pipe there), 10 SMART
-  BLUE → `EXP-6.2`, 1 MOSKIMIC → `EXP-2.5`. **The 15 HDPE rows where the model
-  says Milking Parlour instead were left in review** — once the evidence stops
-  being unanimous, it is not a promotion.

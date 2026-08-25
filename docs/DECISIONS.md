@@ -653,12 +653,12 @@ unproven interpretation into a final accounting answer.
 **Date:** 2026-08-17 · **Decided by:** Afaq · **Model:** Codex GPT-5.6
 **Amended:** 2026-08-18 — the specific schema below is **withdrawn**.
 
-**What still holds.** The current `item_catalog` is an exact raw-wording
-dictionary, not a product master. Do not collapse or rewrite it to manufacture a
-smaller dashboard. `invoice_items.item_text`, description, item code, supplier,
-invoice folio and line number remain the evidence and the link back to the
-original XML. Any future canonicalization is additive over that evidence, never
-a rewrite of it.
+**Amended 2026-08-25 by Afaq:** the raw-evidence rule still holds; the old
+restriction on repurposing `item_catalog` does not. `invoice_items.item_text`,
+description, item code, supplier, invoice folio and line number remain the
+evidence and the link back to the original XML. The approved canonical catalog
+may repoint only `catalog_item_id` while leaving all of those fields unchanged
+(D-044).
 
 **What is withdrawn.** The two-table proposal (`product_catalog` plus
 `product_catalog_mapping`) and the two-invoice-line dashboard threshold were our
@@ -681,12 +681,13 @@ Neither a semantic score nor a connected component creates a canonical product
 mapping. Inspect the actual members first; only then may a small deterministic
 rule create a *suggested* mapping.
 
-Product-defining details — model/OEM identifiers, dimensions, fractions,
-gauge, grade, capacity, pack size, colour, formulation and certification — are
-conflict evidence. Do not collapse variants because they share a broad product
-family. Volatile context such as an inspected vehicle plate, farm route, animal
-count, worker, work-order number, or PPE wearer size may be an extracted
-attribute only when the checked pattern proves it does not change the item.
+**Amended 2026-08-25 by Afaq:** similarity remains candidate discovery, never
+the authority that maps a line. However, non-functional specifications such as
+size, dimensions, gauge, capacity, pack quantity and month may merge when the
+underlying product/service is the same; `Clavos` covers its sizes. Grade,
+model/OEM identity, purpose and underlying contract remain separate when they
+change the actual product/service. Volatile work-order numbers and months are
+handled by narrow reviewed patterns, not stored one by one as aliases.
 
 **Why:** flat semantic clusters put Gasolina 93 next to Gasolina 95, pipe
 fittings of different sizes together, and different needle lengths together.
@@ -725,6 +726,10 @@ prototype merged them, which was wrong.
 without re-reading the client's answers); committing it to an archive branch
 (git history is the archive, and this was never committed, so there is no
 history to preserve — the measured findings live in the client brief instead).
+
+**Unparked 2026-08-25 by Afaq:** Afaq and his colleagues approved the business
+rule and reviewed the proposed groups. Implementation now follows D-044. The
+2026-08-18 stop was correct at the time but is no longer an active blocker.
 
 ## D-037 — A row reaches auto_accept only on a rule the client wrote
 
@@ -1007,3 +1012,26 @@ he asked for the trace instead of accepting the tag.
 that is the agent's job (global `CLAUDE.md`); and surfacing only on conflict,
 which is the rule that already existed and is what let D-037 sit unchallenged for
 a day.
+
+## D-044 — One real product or recurring service gets one canonical catalog ID
+
+**Date:** 2026-08-25 · **Decided by:** Afaq and colleagues · **Model:** Codex GPT-5.6
+
+Reuse `item_catalog` as the user-facing canonical catalog. Different spelling,
+case, pack/size specification, month or installment number does not create a new
+catalog item when the underlying product or recurring service is the same.
+Different grades, actual products, purposes, assets and underlying contracts
+remain separate. Original invoice `item_text` and `description` never change;
+history displays both beneath the canonical name.
+
+Add one `item_aliases` table for true alternate wording such as `G93` →
+`Gasolina 93`. Do not store case-only duplicates, `SEGUN OT 81/82/...`, months,
+dimensions, quantities or generic placeholders as aliases. Future ingestion
+checks exact normalized canonical names, supplier/global aliases, then narrow
+approved patterns; fuzzy similarity only suggests review candidates. Matching
+belongs in the backend ingestion path, not the frontend. No such online writer
+exists in this repository yet, so runtime matching is deferred and documented.
+
+The approved local payload is 11,746 invoice lines, 4,029 canonical rows and 8
+initial aliases. It is not production until Afaq separately approves a fresh
+backup and the guarded transaction. Frontend push/merge is another approval.

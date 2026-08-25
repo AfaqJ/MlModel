@@ -1,0 +1,40 @@
+{
+  "status": "generated_not_applied",
+  "source": {
+    "snapshot": "/private/tmp/catalog_review_snapshot_20260825",
+    "proposal": "/Users/afaq/Desktop/Mctech/catalog-review-demo/public/catalog-review.json",
+    "decisions": "/Users/afaq/Downloads/catalog-review-2026-08-25 (3).json",
+    "reviewRawEvidenceSha256": "a92760613d88f160942986fd59902862dc57f160b025fda2247b999da14abfd4"
+  },
+  "counts": {
+    "invoiceItems": 11746,
+    "catalogBefore": 5411,
+    "catalogAfter": 4029,
+    "catalogReduction": 1382,
+    "aliases": 8
+  },
+  "invariants": {
+    "rawItemTextAndDescriptionSha256Before": "f87b6fde07d7738743dddfdfe3e359ade4e874afe836e891c59a66b92751a515",
+    "rawItemTextAndDescriptionSha256After": "f87b6fde07d7738743dddfdfe3e359ade4e874afe836e891c59a66b92751a515",
+    "rawFieldsUnchanged": true,
+    "uniqueCanonicalNamesAfterCaseSpacingFold": true,
+    "everyInvoiceItemMapped": true
+  },
+  "examples": {
+    "Gasolina 93": 691,
+    "Gasolina 95": 10,
+    "GASOLINA": 50,
+    "Clavos": 89,
+    "Tirafondos": 8,
+    "Materiales": 3,
+    "SEGUN OT": 22,
+    "Tractor de jardín John Deere S140": 1,
+    "Aplicación de cal": 6
+  },
+  "payloadSha256": {
+    "itemCatalog": "95a055122bb606aef8b9c23ff918ef58d4bb7a0ba727bccffde75d4e825ba65a",
+    "itemAliases": "aa62c5fe2ef2d67f13c305b29f5ef7125098554a41540adfefc32106cac2b0cd",
+    "invoiceItemCatalogMapping": "a370ca8a6b06bfdc690fa21b4c7df32f93649b69567c926e9a95737a1670aef2",
+    "invoiceItems": "aeb2312cd759885ef5e21fed9d440db0cc34b324ecc80699f1da78ba2d5ac9f6"
+  }
+}
