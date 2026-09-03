@@ -1,0 +1,133 @@
+You are auditing a Next.js dashboard for correctness. READ ONLY — change no
+source file. Your single deliverable is one markdown report written to:
+
+  /Users/afaq/Desktop/Mctech/ML-model/reports/frontend_audit_2026_08_27/AUDIT.md
+
+## The two repos
+
+- Frontend under audit: /Users/afaq/Desktop/Mctech/milk-company
+  Next.js 15 App Router, ~20k LOC, reads Supabase directly from the browser.
+  Branch feature/catalog-name-standardisation. Deployed to milk-company.vercel.app.
+- Backend / source of truth for the DATA: /Users/afaq/Desktop/Mctech/ML-model
+  Read these three FIRST, they define what the numbers are supposed to be:
+    ML-model/CLAUDE.md
+    ML-model/docs/STATE.md
+    ML-model/docs/DECISIONS.md   (grep for D-001, D-040, D-042, D-044, D-045)
+
+Never print the contents of milk-company/.env.local or any Supabase key.
+Do not connect to Supabase. Audit the code and the schema it assumes.
+
+## Ground truth for live Supabase (as of 2026-08-26)
+
+  invoice_items       11,746 lines
+  item_catalog         4,002 rows   (was 4,029 before the P-01 livestock merge;
+                                     was 5,411 before the canonical migration)
+  item_aliases             8 rows
+  decision split       7,335 auto_accept / 4,411 review_required
+  categories              77 live, of which the model can predict only 67
+  prediction_source        8 distinct values
+
+## The audit — answer each of these, in this order, with file:line evidence
+
+### 1. The review-gate violation (HIGHEST PRIORITY)
+The product's one hard rule, stated in ML-model/CLAUDE.md under "Hard limits":
+`predicted_code` is NEVER a final business classification when
+`decision = 'review_required'`. Showing it as one caused a production incident.
+(D-001 is the dedup-key decision that was the incident's ROOT CAUSE — it is not
+itself the review-gate rule. The rule lives in CLAUDE.md.)
+ML-model/docs/STATE.md "Next" item 8 states the UI currently breaks this.
+Find EVERY place in milk-company/src where a predicted category code or name is
+rendered, exported, aggregated into a metric, or charted WITHOUT the row's
+`decision` being checked. Include tables, KPI tiles, charts, CSV/Excel export,
+and tooltips. For each: file:line, what it shows, and what it should show.
+
+### 2. Item catalog page is slow
+Route: src/app/[locale]/productos (page.tsx, items-view.tsx, columns.tsx),
+data layer src/lib/items/queries.ts and src/lib/items/group.ts.
+Find the actual cause with evidence, not a guess. Check specifically:
+  - how many rows are fetched, and whether the fetch is paginated or a full scan
+  - whether it fetches on the server or in the browser
+  - N+1 queries: one query per catalog row / per item
+  - joins or grouping done in JavaScript that the database should do
+  - whether `select('*')` pulls columns the page never renders
+  - missing `.range()` / `.limit()` and repeated round-trips to work around them
+  - whether results are cached at all between navigations
+Report: root cause, the measured or reasoned cost, and the smallest fix.
+
+### 3. Analytics shows ~3,500 items but the catalog table has ~4,000
+This is a correctness bug, not cosmetic. Trace both numbers to the exact query
+that produces them:
+  - the analytics items count: src/components/analytics/tabs/items-tab.tsx and
+    src/lib/analytics/queries.ts + aggregate.ts
+  - the catalog count: src/lib/items/queries.ts
+Check every plausible cause and say which one it actually is:
+  - PostgREST default row cap (1,000) or a Supabase `max-rows` setting silently
+    truncating a `select()` with no `.range()`
+  - a `.limit()` or `.range()` hard-coded somewhere
+  - a filter applied to one path but not the other (date range, decision,
+    transaction_type COMPRAS/VENTAS, active/deleted flag)
+  - deduplication or grouping in JS that collapses distinct catalog rows
+  - an inner join that drops catalog rows with zero invoice lines
+  - counting distinct item names instead of distinct catalog IDs (the canonical
+    migration made these differ)
+State the number each path SHOULD return and why.
+
+### 4. Every metric on every dashboard — the inventory
+Two dashboard surfaces exist:
+  src/components/dashboard/**  (tabs: overview, spend-analysis, accounts-payable,
+    savings-efficiency, data-quality, tax-documents, comparison, explorer)
+  src/components/analytics/**  (tabs: categories, concentration, explorer,
+    geography, items, model, payments, risk)
+Produce ONE TABLE covering every KPI tile, chart and derived number, with columns:
+
+  | Metric | Where shown | Formula (file:line) | Verdict | Why |
+
+Verdict is exactly one of: CORRECT / WRONG / MISLEADING / UNVERIFIABLE / MOCK.
+- WRONG = the arithmetic or the filter is wrong.
+- MISLEADING = arithmetic is right but the label or framing misrepresents it
+  (e.g. counts review_required rows inside a "classified spend" total; calls
+  `client_evidence_backfill` a client label when D-042 says 0 of its 612 rows
+  trace to one; presents model accuracy the app cannot actually measure).
+- MOCK = hardcoded, random, or fed from mock data rather than Supabase.
+Watch for: sums over a truncated 1,000-row page presented as a total; averages
+of averages; percentages whose denominator excludes review rows; currency
+formatting that assumes decimals (CLP has none); date filters applied to the
+chart but not to the tile above it.
+
+### 5. Mock and dead code
+milk-company/project/ looks like an abandoned Vite prototype with
+project/src/data/mockData.ts. Determine whether ANY of it is imported by the
+live Next.js app in src/. Also list every hardcoded number, `Math.random`, or
+placeholder still rendering in src/. Say plainly which routes are real product
+and which are unfinished stubs (aprobacion, cotizacion, documentos, extractor,
+inventario, levantamiento, orden-compra, pago, recepcion, union).
+
+### 6. Correctness risks below the metrics
+  - RLS / auth: src/middleware.ts, src/lib/auth-routes.ts, src/lib/roles.ts,
+    src/lib/supabase/client.ts and server.ts. Is the anon key doing work that
+    needs a service role? Can an unauthenticated user reach data?
+  - Money: any float arithmetic on CLP amounts; rounding done before summing.
+  - i18n: messages/ has es and en. List keys rendered raw or missing.
+  - Any `any` types or unchecked `!` on Supabase results that would render
+    `undefined` or `NaN` to the user.
+
+## Rules for the report
+
+- Every claim carries file:line. A claim with no file:line does not go in.
+- Rank findings by SEVERITY: (1) wrong number shown to the client,
+  (2) hard-rule violation, (3) performance, (4) dead code / polish.
+- Separate "this IS broken" from "this MIGHT be broken, here is the check".
+  Do not guess and present it as fact.
+- Do not fix anything. Do not run `npm run build` or install packages.
+- Do not write to milk-company at all. AUDIT.md is your only output file.
+- If you think this spec asks the wrong question, say so in the report.
+
+## PROCEED WITHOUT ASKING
+
+This is a NON-INTERACTIVE run. There is no one to confirm anything — if you stop
+to ask, the run produces nothing. D-043 ("surface a decision before acting on
+it") is satisfied by writing the decisions you relied on into a "Decisions this
+audit leaned on" section at the TOP of AUDIT.md. It does NOT require you to
+pause: nothing here writes to production, to Supabase, or to any source file.
+Do the full audit now and write AUDIT.md. Do not end your turn until AUDIT.md
+exists on disk.

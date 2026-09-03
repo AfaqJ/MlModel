@@ -1,6 +1,14 @@
 # Canonical catalog migration payload
 
-Status: **generated and locally validated; not applied to Supabase**.
+Status: **applied to production Supabase on 2026-08-26. All three steps complete.**
+
+`002_apply_canonical_catalog.sql` was **not** the file that ran — it is 2.6 MB,
+which the Supabase SQL editor will not take, and this project holds no Postgres
+connection string. It was split into three idempotent steps (D-045):
+`003_step_a_schema.sql` (SQL editor, done), a PostgREST apply script (run 2026-08-26, since deleted)
+(PostgREST, done), and `004_step_c_unique_index.sql` (SQL editor, done — it
+returned `4029 | 11746 | 8` and created `item_catalog_normalized_name_uidx`).
+`002` is kept as the generated reference.
 
 This directory is the complete review payload for the approved 2026-08-25
 catalog cleanup. It reduces 5,411 catalog rows to 4,029 while keeping all
@@ -38,16 +46,18 @@ Approved examples in the migrated database: `Gasolina 93` 691 lines,
 `GASOLINA` 50, `Clavos` 89, `Tirafondos` 8, `Materiales` 3, `SEGUN OT` 22,
 `Aplicación de cal` 6 and `Tractor de jardín John Deere S140` 1.
 
-## Production gate
+## What remains
 
-Do not execute the SQL from this directory yet. Before production, take a new
-backup and snapshot. The SQL refuses to run if the 11,746 line IDs, their old
-catalog IDs, `item_text`, or `description` differ from this payload. If the
-database changed, regenerate the payload from the new snapshot instead of
-weakening the guard.
+Run `004_step_c_unique_index.sql` in the Supabase SQL editor. It creates the
+unique index on the normalized `item_name` — replacing the `(item_name,
+description)` constraint step A dropped so the 3,366 renames could proceed — and
+runs the referential `left join`. Its success is the proof the migration
+completed: if a duplicate normalized name survived, the index cannot be created
+and the statement fails naming the collision. Do not force it through.
 
-After Afaq explicitly approves the data migration, run
-`002_apply_canonical_catalog.sql` as one transaction and independently recheck
-the manifest invariants. Git pushes and the frontend merge remain a separate
-approval.
+The pre-migration backup is `backups/supabase_20260825T190718Z/` (all 5 tables,
+row counts verified against the server). To revert: restore `item_catalog` from
+it and reset each line's `catalog_item_id` from `current_catalog_item_id` in
+`invoice_item_catalog_mapping.jsonl`.
 
+Git pushes and the frontend merge remain a separate approval.

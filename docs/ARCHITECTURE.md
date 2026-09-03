@@ -35,7 +35,7 @@ models/setfit_base_recovery_v1_3_2/           PyTorch SetFit body + LR head
 artifacts/v1.3.3-int8/                        ONNX int8 deployment bundle
   │  gcloud builds submit → Artifact Registry → gcloud run deploy
   ▼
-Cloud Run `mlmodel` ──► Supabase (5 tables)   11,746 rows, 77 categories, live
+Cloud Run `mlmodel` ──► Supabase (5 tables)   11,746 rows, 78 categories, live
 ```
 
 Note the deploy path: **git is never involved**. The 278 MB `.onnx` is uploaded
@@ -55,7 +55,7 @@ model input  : "[transaction_type] | item_text | description | provider"
 model label  : category_code string, e.g. "ING-0.1"
 ```
 
-**77 categories** in the live `categories` table; the deployed model **emits 67**
+**78 categories** in the live `categories` table; the deployed model **emits 67**
 — `artifacts/v1.3.3-int8/labels.json` → `classifier_classes`, corroborated by
 `model_card.json` → `trained_classes: 67`. That artifact is the authority here;
 do not derive the number by subtracting from the category table. `AF-1.1`,
@@ -116,23 +116,29 @@ confidence.
 - **Local staged database payload:**
   `reports/recovery_v1_3_3/supabase_upload/` contains complete JSONL snapshots
   of all five tables — `categories`, `companies`, `item_catalog`, `invoices`,
-  and `invoice_items`. This is the copy correction scripts modify and script 82
-  re-loads wholesale. It is a release payload derived from the source data, not
-  a second source of truth. Every correction script must be exact-targeted, dry
-  runnable, make a local pre-write backup, and emit a changelog.
-- **Item-catalog canonicalization: prepared locally, not applied.** The approved
-  payload in `reports/canonical_catalog_2026_08_25/` turns the 5,411 raw-wording
-  catalog rows into 4,029 canonical rows, repoints all 11,746 invoice lines and
-  adds 8 semantic aliases. `item_text` and line description remain immutable.
-  The transactional SQL passed against a disposable PostgreSQL copy. Production
-  Supabase still has the old catalog until Afaq approves the guarded migration
-  after a fresh backup. See D-034, D-044 and `docs/CATALOG_MATCHING_PROPOSAL.md`.
+  and `invoice_items`. It is a release payload derived from the source data, not
+  a second source of truth, and it is now a **historical snapshot** — live moved
+  past it with the canonical catalog migration (D-044, D-045). Any write to live
+  must be exact-targeted, dry runnable, backed up first, and emit a changelog.
+  Two PostgREST facts to keep: an upsert is `INSERT ... ON CONFLICT`, so a
+  partial-column payload fails the insert arm on every NOT NULL column it omits
+  — send whole rows, or `PATCH`; and `categories_id` is database-generated, so
+  locally-invented UUIDs are meaningless. Read ids back from live and remap.
+- **Item-catalog canonicalization: applied to production 2026-08-26.** Live
+  `item_catalog` is 4,029 canonical rows plus 8 aliases, down from 5,411, for the
+  same 11,746 invoice lines. `item_text` and line description are immutable and
+  were verified unchanged against live by SHA after the write. Step C
+  (`004_step_c_unique_index.sql`) ran on 2026-08-26, adding
+  `item_catalog_normalized_name_uidx` — unique on
+  `catalog_normalize_label(item_name)`.
+  See D-034, D-044, D-045 and `docs/CATALOG_MATCHING_PROPOSAL.md` for the
+  still-deferred runtime matching design.
 - **Supabase (`nkdswofslslrumyraklv`), live:** categories, companies,
-  item_catalog, invoices, invoice_items — 11,746 rows, 77 categories, 7,335
-  auto / 4,411 review after the verified 2026-08-19 re-load. Supabase owns the
-  schema, generated UUIDs, policies, and live reviewer work. Script 82 performs
-  no DDL: it upserts whole rows, reads live IDs back, and preserves the schema.
-  Writes require an explicit flag on `scripts/supabase_rest.py`.
+  item_catalog, invoices, invoice_items — 11,746 rows, 78 categories, 7,927
+  auto / 3,819 review as of 2026-09-03. Supabase owns the
+  schema, generated UUIDs, policies, and live reviewer work. Schema changes are
+  SQL pasted into the Supabase editor; data changes go over PostgREST and
+  require an explicit flag on `scripts/supabase_rest.py`.
 - **Cloud Run:** stateless. The service is a pure function; it holds no records.
 - **Future catalog resolver:** belongs in the backend ingestion writer before a
   line is inserted. `/predict-batch` currently classifies accounting category

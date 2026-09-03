@@ -5,25 +5,30 @@ Classifies Spanish invoice line items into accounting categories for
 
 **Status:** v1.3.3 live on Cloud Run — service `mlmodel`, `europe-west1`,
 revision `mlmodel-00014-lrp`, 100% traffic. Supabase holds 11,746 corrected
-lines as of 2026-08-19: **7,335 auto-accepted, 4,411 in review**, 77 categories.
+lines as of 2026-09-03: **7,927 auto-accepted, 3,819 in review**, 78 categories.
 
 **Live and the staged payload are identical — nothing is pending.** Both
 uploads of 2026-08-19 landed and were verified independently against live.
 `002_add_manual_recategorisation_source.sql` is **applied to production**; live
-carries all 8 `prediction_source` values. Latest backup:
-`backups/supabase_20260819T064303Z/`.
-**Branch:** `codex/transaction-aware-retrain-v2` (dirty — see `docs/STATE.md`).
+carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
+backup: `backups/supabase_20260903T054820Z/`.
+**Branch:** `codex/canonical-catalog-migration` (dirty — see `docs/STATE.md`).
+Frontend: `feature/dashboard` in `../milk-company`, 39 commits ahead of `main`.
 
 `app/data/product_lookup.csv` was audited entry by entry on 2026-08-18 by an
 independent Codex pass — **1 finding in 696, not actionable.** It is clean; do
 not re-audit it. The client brief listing every open question is at
 https://claude.ai/code/artifact/47769557-4221-4b7d-a29c-00ca2d3d88a7
 
-**Item-catalog canonicalization is parked, awaiting a client meeting.** Live
-`item_catalog` holds 5,411 entries for 11,746 invoice lines, because the item
-name is the key and it often carries a changing value (a meter reading, a
-contract number, a date). No cleanup has been applied and none should be
-started until the client answers the open questions — see `docs/STATE.md`.
+**The canonical catalog migration is complete in production (D-044, D-045).**
+All three steps ran; step C closed it on 2026-08-26. Live `item_catalog` is
+**4,002 rows plus 8 aliases** for the same 11,746 invoice lines, down from 5,411
+(4,029 after the migration; P-01 merged 27 livestock rows on 2026-08-26),
+and now carries a unique index on the normalized `item_name`
+(`item_catalog_normalized_name_uidx`). Verified against live: 0 name mismatches,
+0 dangling or null `catalog_item_id`, and the raw-evidence SHA `f87b6fde…`
+identical between live and payload. Pre-migration backup:
+`backups/supabase_20260825T190718Z/`.
 
 ## What this is
 
@@ -32,14 +37,14 @@ COMPRAS/VENTAS direction from the folder the document came from. Output is top-3
 category codes with confidence, and a decision: `auto_accept` or
 `review_required`.
 
-The product is **human-in-the-loop by design**. 77 categories are live; the
+The product is **human-in-the-loop by design**. 78 categories are live; the
 deployed model emits **67** — read it from `artifacts/v1.3.3-int8/labels.json`
 (`classifier_classes`), never by subtracting from the category table. The six
 added on 2026-08-14/17 are rule-assigned and cannot be predicted (D-028); four
 more carry `trained: false`. `Data/gold/_master_gold.csv` holds 2,577 rows
 across 73 classes, 2,329 of them distinct model inputs. Many classes have very
 few examples, so the model cannot be trusted alone: the review gate is a feature,
-not a shortfall. Of 11,746 lines, 7,335 (62%) are auto-accepted and 4,411 (38%)
+not a shortfall. Of 11,746 lines, 7,927 (67%) are auto-accepted and 3,819 (33%)
 sit in review.
 
 The system is two halves that are easy to confuse: an **offline labeling
@@ -65,10 +70,23 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
 - **Before acting on any `D-NNN`, say which one and what it makes you do, in
   plain language, and wait** (D-043). Not only when it conflicts with what Afaq
   asked — every time it is load-bearing for the next step.
-- Read the backing gold `source`, never the `prediction_source` tag —
-  `client_evidence_backfill` asserts an authority none of its 612 rows has (D-042).
-- Supabase is already loaded. Re-load with `scripts/82_apply_label_corrections.py`;
-  script 80 is first-load only and will refuse.
+- Read the backing gold `source`, never the `prediction_source` tag. It is six
+  values now (D-047) — `model`, `product_lookup`, `meter_lookup`, `business_rule`,
+  `cleanup`, `user_selected` — and `cleanup` means only "a pass we ran once".
+  The provenance of the 2026-09-02 client labels is in
+  `reports/client_reply_2026_09_02/`, never in this column.
+- Supabase is already loaded and **there is no standing re-load path.** The
+  numbered one-shot uploaders were deleted on 2026-08-26: each was written
+  against a database state that no longer exists, and re-running one would have
+  fought the canonical catalog migration. Do not re-create them. Every *offline*
+  change to live data is a scoped write over PostgREST (`scripts/supabase_rest.py`)
+  that touches only the rows it names, dry run first, backed up first.
+- **The dashboard is now the one exception, and the only online writer** (D-048).
+  It assigns categories through a Next.js Server Action carrying the user's
+  session — never a browser-side call, because the publishable key is visible to
+  anyone. Row-level security is the gate: anon sees **0 rows in every table**, and
+  read and write are granted separately, so a `SELECT` policy proves nothing about
+  `UPDATE`. Never write `needs_review`; it is GENERATED and returns 400.
 - Never modify `Data/Raw_Data/` — it is the only irreplaceable thing here.
 - Never overwrite `artifacts/v1.0.0/` or `artifacts/v1.1.0/` (protected paths).
 - Never release on aggregate accuracy alone. The income slice is a mandatory
@@ -82,9 +100,11 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
 | Need | File |
 |---|---|
 | Where we are, recent sessions, next steps | `docs/STATE.md` |
+| **How every manual case becomes automated** | **`docs/AUTOMATION_PLAN.md`** |
 | How the system is built | `docs/ARCHITECTURE.md` |
 | The complete staged Supabase payload | `reports/recovery_v1_3_3/supabase_upload/` |
 | Why it is built that way | `docs/DECISIONS.md` |
+| **How a claim is allowed to become a number** | **`docs/EVIDENCE_RULES.md`** |
 | What may enter the gold dataset | `docs/LABELING_RULES.md` |
 | How the client wants things labelled | `docs/CLIENT_CONVENTIONS.md` |
 | What counts as proof before shipping | `docs/TEST_CHECKLIST.md` |
@@ -103,10 +123,10 @@ not. PyTorch must never reach the production container.
 .venv-backend/bin/python -m pytest tests/ -q     # 98 tests, all must pass
 ```
 
-For a full database re-load, mutate only the staged JSONL payload through a
-numbered correction script, run it dry, back up live with script 81, then use
-script 82. Script 82 preserves the existing Supabase schema and re-resolves all
-database-generated IDs from live before upserting whole rows.
+**Never re-load the whole database.** Every correction has been a small, named
+set of rows; re-writing 11,746 lines to change a handful is how sessions get lost.
+Back up first (`scripts/81_backup_supabase.py`), then write over PostgREST with a
+dry run, touching only the rows in scope.
 
 Deploy is **container-only** — `gcloud builds submit` → Artifact Registry →
 `gcloud run deploy`. Git is never in the path, which is what keeps the 278 MB

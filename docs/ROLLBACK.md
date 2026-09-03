@@ -45,12 +45,10 @@ is the equivalent taken before the 2026-08-14 label corrections.
 `backups/supabase_20260817T105217Z/` is the latest verified backup, taken before
 the 2026-08-17 full payload re-load.
 
-**To re-load after the first upload has landed,** use
-`scripts/82_apply_label_corrections.py`, not script 80. Script 80 is the
-first-load path and its pre-flight refuses once v1.3.3 is live — correctly, since
-it expects pre-upload row counts. Script 82 pushes whole rows and deletes live
-rows the payload no longer contains. Dry run by default; writing needs both
-`--execute` and `--i-have-backed-up-the-database`.
+**There is no re-load path, by design.** The numbered uploaders were deleted on
+2026-08-26 — each expected a database state that no longer exists. Recovery is a
+restore from `backups/`; any forward fix is a scoped PostgREST write touching
+only the rows it names, dry run first, and gated behind an explicit flag.
 
 **There was no transaction around the upload,** and there cannot be — PostgREST
 cannot wrap five tables in one. Restoring means re-loading from the backup, not

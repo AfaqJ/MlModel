@@ -1,0 +1,186 @@
+NON-INTERACTIVE BATCH RUN. Do not stop to ask for confirmation. Do not end your
+turn saying "ready to proceed once you confirm" — there is no one at the
+terminal. The project rule "surface the decision before acting on it" (D-043) is
+satisfied here by writing the decisions you relied on into a section at the top
+of your report, not by pausing.
+
+This run touches NO production system. It does not connect to Supabase, does not
+write to any database, does not call any external service, and does not deploy
+anything. It reads a local backup and writes new files under
+reports/client_reply_2026_09_02/ plus one new script under scripts/.
+
+## Read first, in this order
+
+1. /Users/afaq/Desktop/Mctech/ML-model/CLAUDE.md
+2. /Users/afaq/Desktop/Mctech/ML-model/docs/EVIDENCE_RULES.md   <- governs every number you write
+3. /Users/afaq/Desktop/Mctech/ML-model/docs/CLIENT_CONVENTIONS.md
+4. /Users/afaq/Desktop/Mctech/ML-model/docs/AUTOMATION_PLAN.md  <- section C is what this feeds
+5. /Users/afaq/Desktop/Mctech/ML-model/scripts/supabase_rest.py <- the only sanctioned write path
+
+Do NOT read docs/STATE.md or docs/DECISIONS.md end to end; the decisions that
+bind this task are quoted below from their own headings.
+
+## Data source — use ONLY this
+
+/Users/afaq/Desktop/Mctech/ML-model/backups/supabase_20260902T153305Z/
+Taken 2026-09-02, row counts verified against the server:
+categories 77, companies 461, item_catalog 4002, invoices 5195,
+invoice_items 11746. Of those lines, 4411 are in review
+(decision != 'auto_accept' AND final_categories_id IS NULL).
+
+## The decisions that bind you, quoted from their own headings
+
+D-030 — "Client authority outranks row volume when labels disagree."
+  "When our data disagrees with a client-sourced label, the client wins
+  regardless of how many rows say otherwise."
+
+D-041 — "Never resolve in the payload a question currently open with the client."
+  "If a question has gone to the client and is unanswered, the affected rows
+  stay in review_required even when we could argue a defensible answer."
+
+D-042 — read the backing gold `source`, never the `prediction_source` tag.
+  `client_evidence_backfill` asserts an authority none of its 612 rows has.
+
+Hard limit from CLAUDE.md: "A class with fewer than 2 examples cannot be trained
+and must fail loudly." And: "Never promote an unaudited row to gold."
+
+## Context: the client answered on 2026-09-02
+
+Cristian Anguita, the client, replied to five questions. THREE are now settled
+and THREE families may be relabelled. TWO he explicitly kept for himself and
+those rows MUST stay in review under D-041.
+
+SETTLED — you may act on these:
+
+  Q2 PLUMBING. Asked: does "Mantencion Agua y Purines" mean farm water only, or
+  also plumbing inside buildings? He answered verbatim:
+    "mantencion Agua y Purines normally was farm water, but i guess its easier
+     we include also plumbing inside buildings, since we dont spend much in this
+     last item. So yes, it can all go to Agua y Purines."
+  => ALL plumbing, building and farm alike, goes to EXP-14.3 Mantencion Agua y
+     Purines (categories_id e083d23e-208f-4dd2-9916-70871a21e113).
+  This is YOUR TASK. See below.
+
+  Q3 BANK COMMISSIONS and Q5 GEA TECHNICIAN HOURS are also settled but are
+  being handled separately by Claude. DO NOT touch them. Specifically, do not
+  propose changes to any line whose supplier is a bank (BICE, Banco de Chile,
+  Santander) or GEA, and do not propose creating any new category.
+
+STILL OPEN — these rows MUST remain in review, do not propose changes:
+
+  Q1 CONSTRUCTION / repair-vs-new-build. He answered "I agree you send all the
+  doubts and we categorize" and "Normally there is one big contractor, and some
+  smaller ones, plus construction materials, engineering or other studies, so I
+  dont know how we could put a rule on this." => NO RULE. Rows stay in review.
+
+  Q4 BALE MAKING silage-vs-hay. He answered "No, a same contractor can do
+  different jobs. If I had the list I can asign them". => Contractor is NOT a
+  signal. Rows stay in review.
+
+  HARDWARE STORES generally. He answered "No, we categorize depending on were we
+  use it... so guess this is not an easy one". => NO default account. Rows stay
+  in review. NOTE THE TRAP: the plumbing lines you ARE classifying come largely
+  from these same hardware suppliers. Being a hardware-store line does not
+  exclude a line from Q2; naming a plumbing material is what includes it. Be
+  explicit in your report about how you kept these apart.
+
+## YOUR TASK
+
+Identify, from the 4411 review lines only, every line that names a PLUMBING
+material, and propose EXP-14.3 for it.
+
+The prior measurement (from the 2026-08-18 pass, quoted in the email to the
+client) was: 464 plumbing-fitting lines, CLP 12,951,958, of which 60 are
+building plumbing (PVC sanitario drainage, PPR hot and cold water, Aquapluv rain
+gutters), 178 are farm water (galvanised nipples and bushings, ball valves,
+pressure PVC), and 226 are hose, clamps and mixed parts. TREAT THAT AS A HINT,
+NOT AS TRUTH — it was measured on a different row set at a different time.
+Re-measure it yourself and report where your number differs and why.
+
+Requirements:
+
+1. Build the material vocabulary from the DATA, not from your own guesses about
+   Chilean plumbing terms. Start from the most frequent item_text tokens among
+   the five hardware suppliers, and show your working. A term goes in the
+   vocabulary only if you can point at the lines that justify it.
+
+2. Every line you propose must be justified by the material named in
+   item_text/description. If the line names a job or a place instead of a
+   material, it is NOT yours — it likely belongs to Q1 and stays in review.
+
+3. Ambiguity is expected and must be preserved, not resolved. A "manguera"
+   (hose) can be irrigation, a milking parlour, or a machine. Where you cannot
+   tell from the wording alone, DO NOT propose it. Put it in a separate
+   "unresolved" file with the reason. Under-proposing is correct here;
+   over-proposing is the failure mode that costs the client trust.
+
+4. Report the money as well as the count for every group.
+
+## Deliverables — all under reports/client_reply_2026_09_02/
+
+  PLUMBING_PROPOSAL.md     Your report. Decisions relied on at the top (D-043).
+                           Then: how you built the vocabulary, the groups you
+                           found with counts and CLP, what you propose, what you
+                           deliberately did not, and the differences from the
+                           464/60/178/226 hint with the reason for each.
+  plumbing_proposal.jsonl  One object per proposed line:
+                           {item_id, item_text, description, supplier,
+                            amount, current_predicted_code,
+                            proposed_code:"EXP-14.3",
+                            proposed_categories_id:"e083d23e-208f-4dd2-9916-70871a21e113",
+                            evidence: "<the exact substring that justifies it>"}
+  plumbing_unresolved.jsonl  Same shape minus proposed_*, plus
+                           reason: "<why the wording cannot settle it>"
+
+  scripts/96_apply_plumbing_agua_purines.py
+    A scoped PostgREST writer in the style of the existing scripts, using
+    scripts/supabase_rest.py. It MUST:
+      - default to a dry run and require an explicit --apply flag to write;
+      - read plumbing_proposal.jsonl and touch ONLY those item_ids;
+      - set final_categories_id, final_code, decision='auto_accept',
+        needs_review=false, reviewed=true, and set prediction_source to
+        'client_rule' for these rows;
+      - assert the row count it is about to change equals the proposal length,
+        and fail loudly if not;
+      - print, in dry run, exactly what it would change.
+    DO NOT RUN IT WITH --apply. Run the dry run only, and paste its output into
+    your report.
+
+## Done when
+
+- The three report files exist and every number in them is measured from the
+  backup, per EVIDENCE_RULES.
+- scripts/96_apply_plumbing_agua_purines.py exists and its DRY RUN completes and
+  prints a change set whose length equals plumbing_proposal.jsonl.
+- Nothing under docs/ has been modified. Claude maintains those.
+- Nothing was written to Supabase.
+
+## Lane
+
+This design is decided — implement it, do not re-scope it. Do not touch docs/.
+Do not touch the frontend at ../milk-company. Do not modify anything under
+Data/Raw_Data/ or artifacts/. Report what you produced and the dry-run output.
+If you think this spec is wrong, say so in the report instead of working around
+it — a spec you silently reinterpret is worse than one you refuse.
+
+## AMENDMENT 2026-09-02, after a failed first run
+
+The first attempt at this spec died at 122,623 tokens with NO files written. The
+cause was environmental, not logical — the network dropped and the model
+connection could not be re-established. All of its analysis was lost because it
+held everything in memory and intended to write the deliverables at the end.
+
+**Write incrementally. Do not hold results to the end of the run.**
+
+- The moment you have a working material vocabulary, write it to
+  reports/client_reply_2026_09_02/VOCABULARY.md with the lines that justify each
+  term. Do this BEFORE classifying anything.
+- Append to plumbing_proposal.jsonl and plumbing_unresolved.jsonl as you decide
+  lines, not in one pass at the end.
+- Write PLUMBING_PROPOSAL.md in sections as you finish them, re-writing the file
+  each time. A half-finished report on disk is worth far more than a complete
+  one that never got written.
+
+If you are resuming after a failure, read whatever already exists in
+reports/client_reply_2026_09_02/ first and continue from there rather than
+starting over.

@@ -1,7 +1,10 @@
 # Supabase upload payload — v1.3.3
 
-Produced by `scripts/78_prepare_supabase_upload.py`. Every file matches the
-declared table columns exactly. **Nothing has been pushed.**
+**Historical payload — this was pushed to production on 2026-08-19 and live has
+moved past it since** (the canonical catalog migration, D-044/D-045, reduced
+`item_catalog` to 4,029 rows). It is kept as the record of what v1.3.3 shipped,
+not as something to re-run. The script that produced it and the uploaders that
+consumed it were deleted on 2026-08-26.
 
 ## State of the target database
 
@@ -79,21 +82,10 @@ verifies its own count and aborts rather than continuing; and every write is an
 idempotent upsert or a delete of an already-identified row, so a failed run can
 simply be re-run. **Your backup is the real rollback.**
 
-```bash
-# 1. read-only; changes nothing, refuses the upload if anything is off
-python3 scripts/79_supabase_preflight.py
-
-# 2. dry run; walks all 8 stages and writes nothing
-python3 scripts/80_upload_to_supabase.py
-```
-
-Then apply `001_extend_prediction_source_check.sql`, **take a backup of all five
-tables**, and only then:
-
-```bash
-python3 scripts/80_upload_to_supabase.py --execute --i-have-backed-up-the-database
-python3 scripts/80_upload_to_supabase.py --verify-only
-```
+The upload commands that used to sit here have been removed: they drove
+`scripts/79`/`scripts/80`, both deleted on 2026-08-26, and re-running them
+against today's database would fight the canonical catalog migration. This
+section is left as a description of what was done, not a procedure to repeat.
 
 `--execute` alone is refused; both flags are required.
 

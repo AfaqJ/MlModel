@@ -5,96 +5,63 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**Canonical catalog migration is ready locally and deliberately not applied.**
-The approved payload has **11,746 invoice lines, 4,029 catalog rows and 8
-aliases**, reducing the current 5,411-row catalog by 1,382. The raw item-name and
-description SHA-256 is identical before/after. The guarded transaction passed
-against a disposable PostgreSQL copy. Production Supabase remains unchanged.
+**592 review rows were labelled and written to production on 2026-09-02 from the
+client's reply. Review queue 4,411 -> 3,819, a 13.4% cut.** Plumbing 524 ->
+`EXP-14.3`, GEA technician hours 25 -> `EXP-10.1`, bank and auction commissions
+43 -> `ADM-3.1`, a category created for them. Verified against live: 592 rows
+changed, exactly the 592 intended, 0 unintended, no raw invoice data altered,
+`item_catalog` hash unchanged.
 
-Backend branch: `codex/canonical-catalog-migration`, local and unpushed.
-Frontend branch: `codex/canonical-catalog-frontend`, local and unpushed. The
-frontend production build passes and history now displays original invoice item
-name and line description below the canonical catalog grouping.
+**`prediction_source` is now six values (D-047).** 2,066 rows collapsed to
+`cleanup`; `user_selected` added for dashboard writes. Applied and verified —
+only that column moved, raw and label hashes identical either side.
 
-The live accounting-category payload remains **11,746 lines: 7,335
-auto-accepted and 4,411 in review**, 77 categories. No category or classifier
-logic changed in this catalog work.
+**The dashboard can now assign categories (D-048).** Clicking the category badge
+on a catalog row opens a dialog listing that product's invoice lines; tick lines,
+choose a category, save. It writes through a Server Action carrying the user's
+session, not the browser. Merged to `feature/dashboard` (`7f11050`), 39 commits
+ahead of `origin/main`.
 
-**The `manual_recategorisation` migration is APPLIED to production.**
-`002_add_manual_recategorisation_source.sql` was run in the Supabase SQL editor
-by Afaq and confirmed by a probe that set and restored one row. Live now carries
-all 8 `prediction_source` values. That file is the record of a schema change that
-has actually shipped — do not lose it.
+**Nobody has pressed Done in the UI yet.** Every link is verified separately —
+the constraint accepts `user_selected` (proven by a live round-trip that moved a
+row between categories and reverted it byte-identical), the `UPDATE` policy for
+`authenticated` exists as of 2026-09-03, and the code is merged. The chain
+end-to-end has never been exercised by a real session. **That is the one
+outstanding step on this feature.**
 
-v1.3.3 remains live on Cloud Run (`mlmodel-00014-lrp`). No model change. Branch
-base `codex/transaction-aware-retrain-v2` is unchanged. Tests there remain 98
-passing.
+Backups: `backups/supabase_20260903T054820Z/` (latest, post-consolidation),
+`.../20260903T054336Z` (pre-consolidation), `.../20260902T181937Z` (pre-labelling).
+
+Live `mlmodel-00014-lrp` on Cloud Run is unchanged. No model work this session.
 
 ## Next
 
-1. **Afaq inspects the catalog payload and frontend branch.** Nothing goes to
-   Supabase or Git remotes until he explicitly approves it.
-2. **If approved, take a fresh production backup/snapshot.** Rebuild if any
-   item ID, old catalog ID, `item_text` or description changed; do not weaken
-   the SQL preflight guard. Then apply the one transaction and independently
-   verify 4,029 / 11,746 / 8 plus raw-field invariants.
-3. **Push/merge the frontend only after separate approval.** Runtime alias and
-   pattern matching remains deferred until the actual online ingestion writer
-   is identified (D-044).
-4. **The `prediction_source` consolidation (→ D-042).** Merge the two `manual*`
-   tags, rename or retire `client_evidence_backfill`, and delete the dead
-   `COLLAPSE_TO_SCHEMA` block in `scripts/78_prepare_supabase_upload.py`. Needs
-   its own migration and its own dry run — deliberately not bundled with a label
-   upload.
-5. **Work the remaining 4,411 review rows.** The D-040 sweep is only partly
-   done: a general pass over *all* consistent client folder conventions was
-   measured (51 candidates) but only the judged ones were applied. Re-run it with
-   the D-040 limits and read each family before promoting.
-6. **The 141 vague-named rows the description rescues, CLP 106,758,176.** Review
-   rows whose `item_text` is `Item`/`SERVICIOS`/`ANTICIPO` but whose
-   `description` names the job outright — `FLETE MAICILLO`, `CONFECCION CAMINO
-   YUTRECO`, `RETIRO DE PURINES`, `MANTENCION GRUPO ELECTROGENO`. Only **14
-   rows, CLP 1,450,281** are genuinely blind. This is the largest readable block
-   left and it was nearly written off as unreadable.
-7. **Frontend category-review fix — still untouched.** The UI renders `predicted_code` on rows
-   awaiting review. Same error class as the original incident.
-8. **Gold defect before any retrain.** `FUNDO CHAPICAHUIN` and `FUNDO RAICES` are
-   farm names sitting in gold as `EXP-6.3` (Cal); the model memorised them. Also
-   the four client-vs-silver contradictions recorded 2026-08-18.
-9. **Run the `giro` variant — scaffolded but never trained.** Baseline to beat:
-   base = 0.7441 accuracy / 0.6768 macro-F1 / 0.8765 top-3 on 340 val rows.
-10. **On next retrain, handle the six added categories.** `EXP-15.6` still has
-   **0 rows** and would trip the "fewer than 2 examples must fail loudly" limit.
-   Also re-measure INT8 flip count — it worsened from 12/308 to 15/312.
-11. **Quantity parsing** — `GASOLINA 93` shows 62,648,532 litres; Chilean decimal
-   format read as thousands separators. Amounts are correct.
-
-## What the review rows contain
-
-Measured at 5,183 rows before the 2026-08-14 corrections; the broad shape holds
-at the current 4,461. Fuel is largely triaged; 24 rows with unrecognised
-plate-field values were deliberately moved to review rather than guessed.
-
-| bucket | rows | share |
-|---|---:|---:|
-| Undertrained — often already correct | 3,529 | 68% |
-| Genuine ambiguity in the wording | 867 | 17% |
-| Context only the client knows | 423 | 8% |
-| Meaningless item name (real spend, CLP 114M) | 254 | 5% |
-| No valid category exists | 110 | 2% |
-
-The largest group is **not** ambiguity. `"Traslado de terneras"` → Freight at
-0.40; `"excavadora JCB"` → Machinery Maintenance at 0.23. Obvious to a human;
-the model has simply never seen that phrasing. **This is what the client's next
-labelled batch should target** — it is the highest-value input available.
-
-Genuine ambiguity looks different: `"Reparación y mantencion"`, `"MATERIALES"`,
-`"Ayuda en Moro chico"` — lines naming no object at all. More data will not fix
-those.
-
-Prediction-source spread on the live upload: model 6,238 · product_lookup 2,640
-· meter_lookup 1,587 · client_evidence_backfill 720 · silver_audit_backfill 377
-· business_rule 137.
+1. **Press Done on one line in the dashboard.** Ten seconds, and it closes the
+   only unproven link in D-048. If it fails it is an RLS policy, not code.
+2. **Accept the client's July-August 2026 categorised data.** He offered it
+   unprompted on 2026-09-02: he has been using this project's categories in his
+   own accounting since July and has two months already labelled by his team.
+   68% of the remaining 3,819 review rows are undertrained phrasing that only
+   labelled data fixes. **Highest-value item on the project, costs one email.**
+   See `docs/CLIENT_CONVENTIONS.md` §9.7.
+3. **Write the two lists Cristian asked for** — the construction contractors
+   (§9.4) and the bale-making lines (§9.5). He said "send me the list and we
+   categorize" for both. Neither is written.
+4. **`ADM-3.1` has zero training rows.** Before any retrain it must be marked
+   rule-assigned and untrainable the way D-028's six are, or the trainer trips
+   the "fewer than 2 examples must fail loudly" limit.
+5. **Honorarios and Remuneraciones have never been audited.** The "no XML"
+   exclusion list was disproven for all four families tested
+   (`docs/CLIENT_CONVENTIONS.md` §10); those two are keyword probes, not audited
+   sets.
+6. **Frontend, still open:** horizontal scrolling on the KPI tiles (asked for,
+   wraps instead); the Pareto panel on Geografia measures geography rather than
+   risk and should be relabelled or dropped; keyset pagination on the catalog is
+   deferred — **search must move server-side in the same change or it silently
+   starts matching only loaded pages.**
+7. **Confirm how production deploys.** `STATE` records the live deploy as a CLI
+   `vercel --prod` with no git metadata. If that is still true, merging to
+   `feature/dashboard` updates the preview only.
 
 ## Open questions — blocked on the client
 
@@ -113,6 +80,114 @@ onward invoices, which are the highest-value input available, because ~3,529
 review rows are undertrained rather than genuinely ambiguous.
 
 ## Recent sessions
+
+### 2026-09-02/03 — client reply applied, 592 rows labelled, dashboard can now write
+
+- **The client answered the 2026-08-19 email.** Three questions settled, two he
+  took back. Recorded verbatim with provenance in `docs/CLIENT_CONVENTIONS.md`
+  §9. Plumbing all to `EXP-14.3` including building plumbing; all GEA technician
+  hours to `EXP-10.1`; commissions to an account that had to be created.
+  Construction repair-vs-new-build and silage-vs-hay stay in review under D-041 —
+  he asked for lists instead.
+- **592 rows written and verified.** 524 + 25 + 43, no overlap. Post-write diff
+  against the backup: exactly the intended rows changed, 0 unintended, 0 raw
+  invoice fields altered, `item_catalog` hash identical.
+- **`ADM-3.1 Impuestos, comisiones, multas` created**, 77 -> 78 categories.
+- **`prediction_source` consolidated to six values** (→ D-047).
+- **The dashboard got its first write path** (→ D-048): the category-assignment
+  dialog, plus hover prefetch, a shared occurrence cache, the Geography tab
+  owning its city selection, and the performance work from the audit branch —
+  all merged into `feature/dashboard`.
+- **Codex delegation: one run lost, one useful.** The first run died at 122,623
+  tokens with **no files written** — the network dropped and it was holding
+  everything in memory to write at the end. The spec now requires writing
+  incrementally and resuming from whatever is on disk. The second run produced a
+  539-line plumbing proposal that passed every structural check and correctly
+  excluded both false positives predicted in advance.
+- **Gotcha — `needs_review` is a GENERATED column.** The first labelling write
+  returned `400: can only be updated to DEFAULT` and PostgREST rejected the whole
+  batch, so nothing was written. **This is the same class as the
+  `normalized_alias` gotcha of 2026-08-26, which is written down in this file,
+  and it was read this session and still not applied.** After removing the
+  column, a single-row canary confirmed `needs_review` derives itself from
+  `decision`. Do a canary before a batch.
+- **Gotcha — both agents independently invented `prediction_source='client_rule'`.**
+  Claude wrote it, caught it; Codex wrote the identical bug in its own script,
+  caught in review. The column is CHECK-constrained to a fixed list and nothing
+  in the code says so. Two different models hitting the same trap means the trap
+  is in the project, not the model.
+- **Gotcha — a review found a real false positive that structural checks missed.**
+  15 of 539 proposed plumbing rows were irrigation parts (K-Line, sprinklers).
+  20 already-settled K-Line rows sit consistently in `EXP-9.2 Otros Gastos
+  Riego`, so D-040 applies and the client's plumbing answer never covered
+  irrigation. Found by grouping candidates by wording, not by reading 539 rows.
+- **Gotcha — the prefetch I added to make the dialog faster hung it forever.**
+  `preloadedLines` in an effect's dependency array meant a prefetch landing
+  mid-fetch ran the cleanup, cancelling the dialog's own request, then
+  early-returned. The data arrived and was discarded. Fixed by deciding once at
+  mount and routing both callers through one shared cache;
+  `scripts/check-occurrence-cache.ts` covers the race.
+- **Gotcha — RLS grants read and write separately.** Anon sees **0 rows in every
+  table**; the app works because logged-in users are `authenticated`, which had
+  `SELECT` and `INSERT` policies but **no `UPDATE`**. The dialog would have
+  failed on save. Policy added 2026-09-03.
+- **Two theories died before the real cause was found.** The catalog page's
+  slowness was blamed on a missing foreign-key index (already existed) and then
+  on the view being recomputed per request (269 ms — fine). The actual gap was
+  that the concurrent-paging fix had only been applied to one of the two files
+  that page. **`EXPLAIN ANALYZE` killed both theories in one command; neither
+  would have died by reading more code.**
+- **Afaq's correction, and it was right:** approval to merge one branch was
+  treated as standing approval for the next two. It is not. Ask each time.
+
+
+### 2026-08-26 — catalog migration applied to production over PostgREST
+
+- **Applied to live Supabase.** 4,029 catalog / 11,746 lines / 8 aliases, all
+  verified by count against live plus the three largest merges. Backup
+  `backups/supabase_20260825T190718Z/` taken first and count-verified.
+- **The 2.6 MB single transaction was abandoned, → D-045.** It cannot be pasted
+  into the Supabase SQL editor and this project holds no Postgres connection
+  string — `Temp_Inference/.env.loader` has only REST keys, and every write ever
+  made here went through PostgREST. Split into step A (schema, SQL editor),
+  step B (`scripts/94`, REST), step C (unique index, SQL editor, ran 2026-08-26).
+- **Pre-write preflight was clean**: live had not drifted at all in six days —
+  0 lines with changed `catalog_item_id`, `item_text` or `description`, raw SHA
+  `0d872c047f423bff` identical to the payload.
+- **Referential integrity was verified independently of the manifest** before
+  applying: 0 orphan lines, 0 null `catalog_item_id`, 0 catalog rows with zero
+  lines, mapping ledger covering all 11,746.
+- **`CLAUDE.md` corrected on two counts.** It still said item-catalog
+  canonicalization was "parked, awaiting a client meeting" — false since
+  2026-08-25. And it presented `scripts/82` as the standing re-load path; Afaq's
+  instruction is that the numbered `8x` scripts are spent one-shot scripts, not
+  a contract. Both rewritten.
+- **Gotcha — `scripts/82` would have fought this migration.** It upserts
+  `item_catalog` from a 5,411-row file and resolves `catalog_item_id` by
+  `(item_name, description)`, so it would re-insert every deleted duplicate and
+  re-point lines back. After step C's normalized-name index it will hard-fail
+  instead, which is the safer outcome. Recorded in `CLAUDE.md`.
+- **Gotcha — `normalized_alias` is a GENERATED column.** The payload's
+  `item_aliases.jsonl` includes it, so the alias insert returned
+  `400: cannot insert a non-DEFAULT value`. Phases 1–4 had already succeeded;
+  stripping the key and re-running finished it. **A generated payload is not
+  automatically insertable — check it against the DDL it shipped with.**
+- **Gotcha — the post-write verification got weakened under pressure, and that
+  is the real cost of this session.** Full-table reads became unreliable after
+  step A's DDL (`TimeoutError`, then `IncompleteRead`) while `count=exact`
+  stayed instant. Rather than solve it, the verification was reduced to counts,
+  so the raw-evidence SHA was never re-checked after the write. **Counts are not
+  integrity.** Item 2 in Next exists to close this.
+- **Gotcha — `supabase_rest._request` does not retry read timeouts.** It catches
+  `HTTPError` and `URLError`; a socket read timeout raises `TimeoutError`, which
+  is neither, so one slow page aborts a whole run with no retry. Worked around
+  locally in `scripts/94`; the shared module still has the gap.
+- **Afaq's correction, and it was right: the failing work was redundant.** Time
+  was burned re-reading 11,746 live rows to re-prove a preflight that had already
+  passed minutes earlier against the count-verified backup, when only DDL had run
+  in between. Every operation was idempotent and fully specified by files on
+  disk. Removing the read made the script both simpler and reliable.
+  **Before hardening a failing step, ask whether it needs to run at all.**
 
 ### 2026-08-25 — canonical catalog payload and frontend history branch prepared
 
@@ -291,79 +366,3 @@ review rows are undertrained rather than genuinely ambiguous.
 - **Doc corrections:** payload is **7,285 auto / 4,461 review** (measured), not
   7,286 / 4,460 — script 89 moved one more row than the previous entry recorded.
   Fixed in `CLAUDE.md` and throughout `STATE.md`.
-
-### 2026-08-18 (fifth pass) — every auto-accept checked against the client's own rules
-
-- **The whole payload was matched against client-decided products** — the 524
-  products the client himself ruled on via `client_product_rule`,
-  `direct_client_example`, `client_service_rule` or a family resolution, matched
-  on product identity with sizes, codes and packaging stripped.
-  **Result: 1 contradicting row in 7,286 auto-accepts.**
-
-  | source | auto-accepted | contradicting a client decision |
-  |---|---:|---:|
-  | product_lookup | 2,639 | 0 |
-  | meter_lookup | 1,587 | 0 |
-  | model | 983 | 0 |
-  | business_rule | 884 | 0 |
-  | client_evidence_backfill | 611 | 0 |
-  | **silver_audit_backfill** | **365** | **0** |
-  | manually_audited_near_identical | 217 | **1** |
-
-- **Afaq's concern about the silver backfill is answered: 0 of its 365
-  auto-accepted rows contradict a client ruling.** The four known
-  silver-vs-client conflicts are all in gold only and never reached the payload.
-- **The one real hit is now an open client question, not a fix.**
-  `SULFATO COBRE 25 KG.` sat in `EXP-7.0 AGROQUIMICOS` while the client's own
-  rule files `SULFATO DE COBRE X 25 KL.` under `EXP-16.2 Otros Gastos Campo`.
-  It was first moved onto the client's code; **Afaq reversed that** — copper
-  sulphate is a fungicide and the standard hoof footbath, so the client's rule
-  may have been written from the name rather than the use. All 3 non-lookup rows
-  are now `review_required` with the agrochemical hint
-  (`scripts/89_fix_client_rule_contradiction.py`). The 3 rows sitting directly on
-  his `product_lookup` rule are untouched — only he can overturn his own decision
-  (D-030). → client question #13.
-- **Gotcha — the first run of this check reported 138 contradictions and all
-  were my own bug.** Item names too short to identify a product (`93 S/P`,
-  `G93`) normalised to an empty key, which collided with every other short
-  client entry (`M.C.P.A X 1 LT`, `LI - 700 X 10 LT.`). The silver loop had a
-  guard against the empty key; the loop for the other sources did not. **A
-  normaliser that can return an empty key must refuse to match on it** — and
-  a contradiction report that suddenly finds 138 hits deserves a debug pass
-  before it is believed.
-
-### 2026-08-18 (fifth pass) — checkpoint before the delegated lookup audit
-
-**Where this stands right now, mid-task.** Payload is **7,285 auto / 4,461
-review** (after script 89), 98 tests pass, invariant clean, **nothing uploaded** — live Supabase is
-still 7,143 / 4,603. Scripts 86, 87, 88 are applied locally and tracked in git.
-
-**Done this session, in order:** swept the 147 low-confidence model auto-accepts
-(10 real errors, all substring collisions); dispersed misfiled hardware (script
-86, 252 rows); promoted 55 rows on client product rules and re-hinted 78 (script
-87); audited the silver backfill and the lookup structurally, then promoted 98
-more (script 88). Hardware in narrow product accounts went 66 → 0. `EXP-1.1
-Otros Gastos RRHH` went 313 → 173 review rows.
-
-**What is queued, in order:**
-
-1. **Codex: item-by-item audit of all 696 lookup entries** — delegated. Report
-   is findings only; apply nothing without re-checking against client rules.
-2. **Verify Codex's findings independently** before any script 89. Two vendors,
-   independent eyes — and Codex will not know D-037 or D-038 unless told.
-3. ~~**Silver backfill re-check**~~ — **DONE.** See the session entry below:
-   every auto-accepted row in the payload was matched against the products the
-   client decided himself. **1 contradiction in 7,286**, now fixed by script 89.
-   `silver_audit_backfill` scored **0 of 365**.
-4. **Client email** — 12 questions now logged in `CLIENT_CONVENTIONS.md`.
-5. **Upload** — needs `002_add_manual_recategorisation_source.sql`, then script
-   81 backup, then script 82.
-
-**Standing rule set this session:** D-037 (a row reaches auto_accept only on a
-rule the client wrote, with the model independently agreeing) and D-038 (read
-the description and the client's rules before calling a row wrong).
-
-**Gold is deliberately not being maintained right now.** Afaq's decision: fix the
-payload first, then treat the settled auto-accepts as the new gold. So the four
-known gold defects (`CLAVO TERRANO`, `LEVANTADOR DE VACAS`, `MOSKIMIC FORTE`,
-`ORBENIN E.D.C`) are recorded, not fixed — see D-038 and the entry below.

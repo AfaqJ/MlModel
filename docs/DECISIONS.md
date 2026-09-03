@@ -602,25 +602,6 @@ confirmed rule with its provenance tier.
 Supplies" — he never did, our audit did, and his one real supermarket label was
 toilet paper. Counting rows gave the wrong answer both times.
 
-## D-031 — Script 80 is first-load only; script 82 is the re-load
-
-**Date:** 2026-08-14 · **Decided by:** Claude Opus 5
-
-`scripts/80_upload_to_supabase.py` expects a pre-v1.3.3 database and its
-pre-flight refuses once that upload has landed. `scripts/82_apply_label_corrections.py`
-pushes whole rows to an already-populated database and deletes live rows the
-payload no longer contains. No DDL, so the frontend schema is untouched.
-
-**Two failure modes are encoded in it:** PostgREST upsert is `INSERT ... ON
-CONFLICT`, so a partial-column payload fails the insert arm on every NOT NULL
-column it omits — send whole rows, or `PATCH`. And `categories_id` is generated
-by the database, so locally-invented UUIDs are meaningless; category ids are read
-back from live and remapped before items go up.
-
-**Rejected:** dropping and recreating the tables. Every invoice, company and
-catalog row would get a new UUID and all foreign keys would need rebuilding, to
-replace ~650 row updates.
-
 ## D-032 — Source direction and client instruction beat structural audit theories
 
 **Date:** 2026-08-17 · **Decided by:** Afaq · **Model:** Codex GPT-5.6
@@ -942,6 +923,9 @@ because neither creates an asset.
 
 ## D-042 — `prediction_source` will be consolidated, but not in the same upload
 
+**Completed by D-047 on 2026-09-03.** The consolidation described here has
+been applied to production; the six surviving values are listed there.
+
 **Date:** 2026-08-19 · **Decided by:** Afaq · **Model:** Claude Opus 5
 
 Two problems are recorded and deliberately **not** fixed yet:
@@ -959,10 +943,6 @@ Two problems are recorded and deliberately **not** fixed yet:
 A third tag has the same defect: **`business_rule` (928 rows) means two
 different things** — the 28 `ING-*` sales rules that fire at inference (D-016),
 and "a correction script applied a deterministic rule", which is 804 of the 928.
-
-Also dead and removable: `COLLAPSE_TO_SCHEMA` / `--collapse-prediction-source` in
-`scripts/78_prepare_supabase_upload.py`, which squashes 4 sources to 3. It has
-never been used and now contradicts the extended CHECK constraint.
 
 **Why not now:** renaming a source value needs another migration plus rewriting
 provenance on 543 rows, on the same day two label uploads went out. Two changes in
@@ -1035,3 +1015,155 @@ exists in this repository yet, so runtime matching is deferred and documented.
 The approved local payload is 11,746 invoice lines, 4,029 canonical rows and 8
 initial aliases. It is not production until Afaq separately approves a fresh
 backup and the guarded transaction. Frontend push/merge is another approval.
+
+## D-045 — The catalog migration ships as three idempotent steps, not one transaction
+
+**Date:** 2026-08-26 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+`002_apply_canonical_catalog.sql` — the generated single guarded transaction —
+was **not** used. It is 2.6 MB, which the Supabase SQL editor will not accept,
+and this project holds no Postgres connection string: `Temp_Inference/.env.loader`
+carries REST keys only, and every write ever made here has gone through
+PostgREST. The one prior SQL migration was pasted into the SQL editor by hand
+because it was a few lines long.
+
+The migration was therefore split:
+
+- **step A** `003_step_a_schema.sql` — SQL editor. Creates `catalog_normalize_label`
+  and `item_aliases`; drops the old `(item_name, description)` unique constraint.
+- **step B** `scripts/94_apply_canonical_catalog_rest.py` — PostgREST. Insert 16,
+  repoint 2,122, delete 1,398, rename 3,366, insert 8 aliases.
+- **step C** `004_step_c_unique_index.sql` — SQL editor. Unique index on the
+  normalized `item_name`, plus the referential `left join`.
+
+**Why:** atomicity was unavailable, so it was replaced with two weaker
+properties that together cover the same risk. Every phase is **idempotent**
+(upsert merges on the primary key, PATCH sets an already-known value, DELETE of
+an absent row is a no-op), so a failure part-way is resumed by re-running — which
+is exactly what happened when the alias insert failed and phases 1–4 re-applied
+harmlessly. And the phase **order** keeps every intermediate state valid: lines
+are repointed only onto rows that already exist, and rows are deleted only once
+nothing references them. A crash leaves a partly-grouped catalog, never a
+dangling reference.
+
+**The cost, stated plainly:** between step A and step C, `item_catalog` has no
+uniqueness constraint at all. That window must be closed in the same working
+session. It was not — it stayed open for one day. Step C ran on 2026-08-26 and
+returned `4029 | 11746 | 8`, closing the migration.
+
+**Rejected:** pasting the 2.6 MB file (the editor cannot take it); splitting the
+transaction into chunks pasted in sequence (loses atomicity *and* idempotency —
+strictly worse than this); asking Afaq for the database password (avoidable, and
+a credential we do not otherwise need).
+
+**Also decided:** the numbered uploaders were spent one-shot scripts, not a
+standing re-load path. **They were deleted on 2026-08-26 (D-046)** along with
+every prescriptive reference to them.
+
+## D-046 — The numbered one-shot scripts are deleted, not kept as reference
+
+**Date:** 2026-08-26 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Nineteen numbered scripts — the Supabase bundle builder, the payload preparer,
+the pre-flight, both uploaders, and every one-shot correction script from 82 to
+94 — were deleted. Each was written against a database state that no longer
+exists. Keeping them "as reference" cost real attention every session: they were
+cited 21 times across `CLAUDE.md` and `docs/`, and every citation pulled a dead
+path back into a live conversation. `scripts/82` was the worst of them — it still
+carried the pre-canonical 5,411-row catalog and would have fought D-044 if run.
+
+**Kept:** `scripts/supabase_rest.py` (the live PostgREST client),
+`scripts/81_backup_supabase.py` (the backup path), and the whole offline ML
+pipeline (`10`, `50`–`77` minus the deleted correction scripts), which is
+re-runnable and still needed for the next retrain.
+
+**The cost, stated plainly:** `scripts/` is gitignored, so five of the deleted
+files (`74`, `76`, `78`, `79`, `94`) were untracked and are **gone permanently** —
+git is not the archive here. `94` is the script that applied the canonical
+catalog migration. The migration itself is recorded in
+`reports/canonical_catalog_2026_08_25/` and was verified against live, so what
+was lost is the mechanism, not the result. Afaq was told before deleting and
+chose to proceed.
+
+**Rule that replaces them:** there is no re-load path. Every change to live data
+is a scoped PostgREST write touching only the rows it names, dry run first,
+backed up first, behind an explicit flag.
+
+**Load-bearing facts folded out of the deleted D-031** and into
+`docs/ARCHITECTURE.md`: a PostgREST upsert is `INSERT ... ON CONFLICT`, so a
+partial-column payload fails the insert arm on every NOT NULL column it omits —
+send whole rows or `PATCH`; and `categories_id` is database-generated, so
+locally-invented UUIDs are meaningless.
+
+**Also deleted:** D-031 ("Script 80 is first-load only; script 82 is the
+re-load"), which described only the two deleted scripts and was cited nowhere.
+
+## D-047 — `prediction_source` is six values, and four cleanup tags became one
+
+**Date:** 2026-09-03 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The column now allows exactly `model`, `product_lookup`, `meter_lookup`,
+`business_rule`, `cleanup`, `user_selected`. Four historical tags collapsed into
+`cleanup` across **2,066 rows**: `manual_recategorisation` (823),
+`client_evidence_backfill` (611), `silver_audit_backfill` (366),
+`manually_audited_near_identical_backfill` (266). Applied via
+`milk-company/supabase/004_consolidate_prediction_source.sql`.
+
+**Why:** the four named one-shot passes whose scripts were deleted under D-046,
+so they described code that no longer exists. `client_evidence_backfill` had to
+go regardless of tidiness — D-042 measured that **0 of its 611 rows** trace to a
+client-sourced label, so the name asserted an authority it never had.
+
+**What it costs, stated plainly:** 592 of the `manual_recategorisation` rows were
+the 2026-09-02 labels applied from the client's own written answers — the
+strongest provenance in the table — and they now read as `cleanup` like
+everything else. That is acceptable only because **the tag was never the
+evidence**, which is the whole point of D-042. The trace for those rows is
+`reports/client_reply_2026_09_02/*.jsonl`, which records the client's own
+sentence per row, and `docs/CLIENT_CONVENTIONS.md` §9. Do not reconstruct
+provenance from this column.
+
+**Verified:** only `prediction_source` changed, on exactly 2,066 rows; 0 rows had
+any other column move; raw-evidence SHA `1d2718423f2bb6db` and label SHA
+`e823044ce9df6013` both identical before and after.
+
+**Rejected:** keeping the four names for historical fidelity. Git history and
+`reports/` already hold that, and a tag a reader will misinterpret is worse than
+one that admits it means "a pass we ran once".
+
+## D-048 — The dashboard writes to Supabase through a Server Action, never the browser
+
+**Date:** 2026-09-03 · **Decided by:** Claude, approved by Afaq · **Model:** Claude Opus 5
+
+The category-assignment dialog is the **first write path this product has ever
+had** — every other change to live data is an offline script. It writes through a
+Next.js Server Action (`src/app/[locale]/productos/actions.ts`), never a
+browser-side Supabase call.
+
+**Why:** the page reads with the publishable key, which is visible to anyone who
+opens the browser's network tab. A browser-side write would let anyone holding
+that key rewrite the client's accounting. The Server Action runs on the server
+carrying the user's session, so the database sees an `authenticated` user.
+
+Three things the write must keep doing, each learned the hard way this session:
+
+- **Never write `needs_review`.** It is a GENERATED column; PostgREST returns
+  `400` and takes the whole batch down. Setting `decision` and
+  `final_categories_id` is what moves it. Same class as the `normalized_alias`
+  gotcha of 2026-08-26.
+- **Re-read the category server-side.** The client sends an id; the action reads
+  the code from the database so a tampered request cannot store a `final_code`
+  disagreeing with its own `final_categories_id`.
+- **Report a partial write as a failure.** A silent partial save on accounting
+  data is worse than a visible error.
+
+**RLS is the gate, and it is easy to miss.** Row-level security is enabled and
+the anon role sees **0 rows in every table**. Reading worked because a
+`SELECT` policy exists for `authenticated`; writing needed its own `UPDATE`
+policy, which did not exist and was added on 2026-09-03. A read policy grants
+nothing about writes.
+
+**Rejected:** writing with the service key from a route handler. It would work
+and it would bypass RLS entirely, which throws away the only thing standing
+between a leaked publishable key and the client's books.
+

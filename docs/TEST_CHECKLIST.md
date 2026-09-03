@@ -16,17 +16,15 @@ deleted with it on 2026-08-18, so 98 is the floor again.
 
 ## Before a full Supabase re-load
 
-1. Run the exact local correction script without `--write`; its target count,
-   amount, and “no final label on review” invariant must pass.
+1. Dry-run the write; its target count, amount, and “no final label on review”
+   invariant must all pass before anything executes.
 2. Run `scripts/81_backup_supabase.py`; every one of the five table row counts
    must match Supabase before continuing.
-3. Run `scripts/82_apply_label_corrections.py --execute
-   --i-have-backed-up-the-database`. It upserts the complete staged payload,
-   not a partial patch, and deletes live rows absent from that payload.
-4. Confirm the script's live verification: row count, category IDs, item names,
-   decisions, and final labels all match. The local payload is staged at
-   `reports/recovery_v1_3_3/supabase_upload/`; Supabase schema is deliberately
-   not recreated or modified.
+3. Execute the write over PostgREST, scoped to the rows it names — never a
+   whole-database re-load. Writing must require an explicit flag.
+4. Verify against live afterwards: row counts, category IDs, item names,
+   decisions and final labels. The Supabase schema is deliberately not
+   recreated or modified.
 
 ## Before accepting a retrain
 

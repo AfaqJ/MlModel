@@ -248,11 +248,114 @@ classification is what caused the original incident.
 - **Supermarket food and drink moved to Other HR costs.** 204 rows, CLP 620,072.
   Restaurant meals and toilet paper stay where his own labelled rows put them.
 
+## 9. The client's answers of 2026-09-02
+
+Cristián replied to the five-question email of 2026-08-19. Three questions are
+settled and are now conventions. Two he explicitly took off us. Provenance for
+all five is a direct written client answer — the highest tier there is, so under
+D-030 each outranks any number of rows that disagree.
+
+**9.1 All GEA technician hours are Mantención Sala (`EXP-10.1`).** Verbatim:
+*"Yes, all techinician hours from GEA are for mantencion sala."* The initials
+after `HORA TECNICA` do not change the account. Measured: 30 such lines, 25 of
+them in review, CLP 12,314,760. Seven of the 25 were predicting `EXP-10.4` —
+the client's answer overrides them.
+
+**9.2 All plumbing goes to Mantención Agua y Purines (`EXP-14.3`)** — farm water
+*and* building plumbing alike. Verbatim: *"mantencion Agua y Purines normally was
+farm water, but i guess its easier we include also plumbing inside buildings,
+since we dont spend much in this last item. So yes, it can all go to Agua y
+Purines."* This removes the material split we had proposed: we no longer need to
+tell building plumbing from farm water, only plumbing from non-plumbing.
+
+**9.3 Bank and auction commissions get their own account.** Verbatim: *"they
+should go 'impuestos comisiones y multas', there can be some expenses in this
+category that dont have xml but the ones you mention do."* **That account does
+not exist in the system** — it was dropped at intake. See §10.
+
+**9.4 Construction, repair-vs-new-build: he took it back.** *"I agree you send
+all the doubts and we categorize"*, and on whether one contractor per project is
+a usable signal: *"Normally there is one big contractor, and some smaller ones,
+plus construction materials, engineering or other studies, so I dont know how we
+could put a rule on this."* **There is no rule.** These rows stay in review
+under D-041 and we owe him a list.
+
+**9.5 Bale making, silage-vs-hay: contractor is not a signal.** *"No, a same
+contractor can do different jobs. If I had the list I can asign them, or
+otherwise for future invoices we will ask for them to put a clear description of
+the job."* This **kills** the contractor hypothesis we had built from
+Valenzuela 18/19 silage and J-S-E 4/4 hay. A correlation that strong was still
+not a rule, and the client is the one who knew. Rows stay in review; we owe him
+a list. Note the second half — he has offered to make future invoices carry a
+clear job description, which fixes this at source.
+
+**9.6 Hardware stores have no default account.** *"No, we categorize depending on
+were we use it, most used probably is mantencion instalaciones, but could be
+others... so guess this is not an easy one, probably we could star categorizing
+ourselfs?"* No default. These rows stay in review. **Careful:** the plumbing
+lines settled by §9.2 come mostly from these same suppliers. Being a
+hardware-store line does not exclude a line from §9.2 — naming a plumbing
+material is what includes it.
+
+**9.7 He has two months of data already categorised by his own team.** Verbatim:
+*"since july 2026 we are using in our accounting the same categories that we have
+in this project, so we have 2 months of data already categorized by us (july and
+august), we can offcourse share this information with you if it is useful."*
+This is the single highest-value input available and it was volunteered, not
+asked for. `docs/STATE.md` had already flagged the July-2026-onward invoices as
+"one question deliberately never asked and still worth asking". 68% of the review
+queue (3,529 rows) is undertrained phrasing rather than genuine ambiguity, and
+labelled data is the only thing that fixes those. **Ask for it.**
+
+## 10. The "no XML" exclusion list is not trustworthy
+
+At intake, seven categories were dropped from the system on the recorded reason
+that they *"normally do not have XML"*
+(`Data/current_context_2026_06_30/excluded_categories.csv`). That claim has now
+been disproven for **every family we have tested**, measured against
+`backups/supabase_20260902T153305Z` — and every one of the 11,746 lines in that
+backup came from a real XML invoice, so a match here is a disproof:
+
+| parked family | lines | CLP | still in review |
+|---|---:|---:|---:|
+| Impuestos, comisiones, multas | 120 | 8,333,892 | 44 |
+| Arriendos (all three) | 266 | 418,911,242 | 58 |
+| Honorarios | 1 | 505,363 | 1 |
+| Remuneraciones | 14 | 180,456 | 0 |
+
+Arriendos was caught first, in the 2026-08-17 round — that is why Pelleco now has
+`Arriendo Otros Predios`. Commissions is the second, caught 2026-09-02.
+**Honorarios and Remuneraciones have never been looked at** and are listed here
+so they are not lost; the counts are keyword probes, not audited sets, and must
+be verified before anything is promoted.
+
+The rule this leaves behind, which is the generalisable part:
+
+> **An intake-time exclusion is a claim about the data and has to be measured
+> like one.** "This normally has no XML" was an assumption about how the client
+> works, recorded as a fact, and then relied on for months. Two of the four
+> families it excluded turned out to be materially represented — one of them by
+> CLP 418 million. Before trusting any exclusion, count the rows it would have
+> removed.
+
+Note the client's own description of the commissions account already read
+*"Territorial, comisiones feria, imp transferencia"* — **"comisiones feria"**,
+auction commissions. The one non-bank line in the family, Tattersall Ganado's
+`COMISION BOVINOS REPOSICION`, was treated as an exception in our email to him.
+His own description had covered it from the start. We had the answer in the file
+we were using to justify the exclusion.
+
 ## Still open — needs the client
 
-**The 2026-08-17 email has been answered and applied.** All four questions came
-back; nothing from that round is still waiting on him. What his answers left
-behind:
+**The 2026-08-19 email has been answered.** See §9. What is still outstanding
+after that reply:
+
+0. **Two lists he asked for, and the July–August 2026 labelled data he offered.**
+   §9.4 and §9.5 both end with him saying "send me the list". Those lists are
+   not written yet. §9.7 is the offer to send us two months of his own
+   categorisations — accept it.
+
+**From the 2026-08-17 round**, what his answers left behind:
 
 1. **Do the three lease buyouts belong in `AF-2.1`?** CLP 26,580,084, in review.
    See §7.

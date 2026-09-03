@@ -1,7 +1,8 @@
 # Catalog matching proposal
 
-Status: schema and data payload prepared; future ingestion matching is logged
-but intentionally not implemented.
+Status: schema and data payload **applied to production 2026-08-26** (D-044,
+D-045). Runtime ingestion matching remains logged and intentionally not
+implemented — no online Supabase writer exists in this repository yet.
 
 ## Ownership and current system boundary
 
