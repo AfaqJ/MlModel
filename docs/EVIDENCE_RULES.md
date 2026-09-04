@@ -208,3 +208,46 @@ but only **12% of the money.**
 only in `STATE.md`, which keeps five sessions and then drops them. 9 and 10 came
 from the same audit. See `docs/LABELING_RULES.md` for what may enter gold, and
 `docs/CLIENT_CONVENTIONS.md` for how the client wants things filed.*
+
+## 11. A comment asserting a property is a claim, not evidence — and a confident one hides the defect.
+
+The dashboard's purchases-vs-sales chart carried this above it:
+
+> *"Two series, one axis — never a dual axis, so the visual comparison stays
+> honest."*
+
+Both series were rendered with the same `stackId`, so the upper band plotted
+their **sum** while the legend named only one of them. On 2025-10 it drew
+1,194,984,855 where the named series was 578,067,481 — **overstated 2.07x.**
+
+The sentence was true about the axis and silent about the stacking. It survived
+three review passes precisely *because* it was reassuring: readers reached a
+statement that the chart was honest and stopped there.
+
+`tsc`, ESLint, `npm run build` and translation parity were all green throughout.
+None of them can see what a chart draws.
+
+> **Verify the rendered output against recomputed source data, never against the
+> code's description of itself.** For a chart that means: recompute each series,
+> then check the value at the visual extreme against the series the legend names.
+> A component that explains why it is correct has earned more scrutiny, not less.
+
+## 12. Reproduce the artefact before reporting a finding about it.
+
+The 2026-09-03 dashboard audit began by deriving the page's default filter
+window from its own code (`max(invoice_date) - 12 months`), recomputing that
+window over `backups/supabase_20260903T054820Z`, and matching it against a
+screenshot of the live app: record counts, both fiscal components with their
+percentages, the net-position figure, the anomaly count, and the concentration
+triple — all exact. Only then was any finding written down.
+
+Two things this bought that reading code could not:
+
+- the default window **excludes 1,003 of 5,195 invoices**, which no amount of
+  reading would have surfaced as a number;
+- every subsequent claim rested on a model already proven to be the system,
+  rather than on an inference about which filter state produced the picture.
+
+> **An exact reproduction is the cheapest proof that your model of the system is
+> the system.** A near-match is a failed reproduction: it means something is
+> still wrong, and every finding built on top of it inherits that error.

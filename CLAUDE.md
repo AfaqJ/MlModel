@@ -12,8 +12,12 @@ uploads of 2026-08-19 landed and were verified independently against live.
 `002_add_manual_recategorisation_source.sql` is **applied to production**; live
 carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
-**Branch:** `codex/canonical-catalog-migration` (dirty — see `docs/STATE.md`).
-Frontend: `feature/dashboard` in `../milk-company`, 39 commits ahead of `main`.
+**Branch:** `codex/canonical-catalog-migration`.
+Frontend: `feature/dashboard` in `../milk-company`, **43 commits ahead of
+`main`**, head `2b6c45d` — the 2026-09-03 dashboard figure audit is merged and
+pushed (D-049, D-050). Ten audit findings are still open as decisions, in that
+repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
+Afaq's deliberate choice, so those notes live on disk only.
 
 `app/data/product_lookup.csv` was audited entry by entry on 2026-08-18 by an
 independent Codex pass — **1 finding in 696, not actionable.** It is clean; do

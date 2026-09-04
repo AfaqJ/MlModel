@@ -5,63 +5,86 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**592 review rows were labelled and written to production on 2026-09-02 from the
-client's reply. Review queue 4,411 -> 3,819, a 13.4% cut.** Plumbing 524 ->
-`EXP-14.3`, GEA technician hours 25 -> `EXP-10.1`, bank and auction commissions
-43 -> `ADM-3.1`, a category created for them. Verified against live: 592 rows
-changed, exactly the 592 intended, 0 unintended, no raw invoice data altered,
-`item_catalog` hash unchanged.
+**The Analítica dashboard was audited figure by figure and three defects were
+fixed and merged.** `feature/dashboard` is now `2b6c45d`, pushed. Branch
+`fix/audit-2026-09-03` holds the three commits.
 
-**`prediction_source` is now six values (D-047).** 2,066 rows collapsed to
-`cleanup`; `user_selected` added for dashboard writes. Applied and verified —
-only that column moved, raw and label hashes identical either side.
+Every displayed number was recomputed from `backups/supabase_20260903T054820Z`
+and matched against a screenshot of the live app **before** any finding was
+written — record counts, both fiscal components with percentages, the net
+position, the anomaly count and the concentration triple all reproduced exactly
+(→ `EVIDENCE_RULES.md` §12). What that established:
 
-**The dashboard can now assign categories (D-048).** Clicking the category badge
-on a catalog row opens a dialog listing that product's invoice lines; tick lines,
-choose a category, save. It writes through a Server Action carrying the user's
-session, not the browser. Merged to `feature/dashboard` (`7f11050`), 39 commits
-ahead of `origin/main`.
+- **The purchases-vs-sales chart was stacked**, so the upper band plotted
+  ventas + compras under the Purchases label. October 2025 drew 1,194,984,855
+  where purchases were 578,067,481 — **overstated 2.07x**. Fixed (`fee5aec`).
+  The doc comment above it claimed the chart was honest; that is now
+  `EVIDENCE_RULES.md` §11.
+- **Anomaly detection pooled COMPRAS and VENTAS into one z-score** (→ D-049).
+  On the default window the flags move from 5 purchases and 9 sales to **24 and
+  1**. Fixed (`59c4cb1`), covered by `scripts/check-anomaly-direction.ts` in the
+  frontend, which was **run against the pre-fix code and confirmed to fail**.
+- **The Ítems tab showed a model suggestion on settled rows** (→ D-050): 1,574
+  of 4,002 products had no pending line and still carried a guess, 148 of them
+  contradicting the confirmed category. Column removed at Afaq's instruction,
+  reversing ledger decision B2, which is marked superseded in the same change
+  (`1dad390`).
 
-**Nobody has pressed Done in the UI yet.** Every link is verified separately —
-the constraint accepts `user_selected` (proven by a live round-trip that moved a
-row between categories and reverted it byte-identical), the `UPDATE` policy for
-`authenticated` exists as of 2026-09-03, and the code is merged. The chain
-end-to-end has never been exercised by a real session. **That is the one
-outstanding step on this feature.**
+`tsc` clean, lint clean apart from one pre-existing warning.
 
-Backups: `backups/supabase_20260903T054820Z/` (latest, post-consolidation),
-`.../20260903T054336Z` (pre-consolidation), `.../20260902T181937Z` (pre-labelling).
+**Nothing was verified on screen.** `.env.local` still holds 11-character
+redacted placeholders for the Supabase URL and anon key, and `/dashboard`
+redirects without a session, so no authenticated page can be reached locally.
+The chart fix is proven arithmetically only.
 
-Live `mlmodel-00014-lrp` on Cloud Run is unchanged. No model work this session.
+**Ten findings were left as decisions rather than fixes**, written in plain
+language for Afaq and his colleague at
+`../milk-company/docs/OPEN_QUESTIONS_2026_09_03.md`, with the measurements in
+`AUDIT_2026_09_03.md` beside it. Note `docs/` is gitignored in that repo by
+Afaq's deliberate 2026-08-27 decision — those are working notes, on disk only.
+
+Live `mlmodel-00014-lrp` on Cloud Run is unchanged. Supabase untouched this
+session — no writes, no backup taken, no model work.
 
 ## Next
 
-1. **Press Done on one line in the dashboard.** Ten seconds, and it closes the
-   only unproven link in D-048. If it fails it is an RLS policy, not code.
-2. **Accept the client's July-August 2026 categorised data.** He offered it
-   unprompted on 2026-09-02: he has been using this project's categories in his
-   own accounting since July and has two months already labelled by his team.
-   68% of the remaining 3,819 review rows are undertrained phrasing that only
-   labelled data fixes. **Highest-value item on the project, costs one email.**
-   See `docs/CLIENT_CONVENTIONS.md` §9.7.
-3. **Write the two lists Cristian asked for** — the construction contractors
-   (§9.4) and the bale-making lines (§9.5). He said "send me the list and we
-   categorize" for both. Neither is written.
-4. **`ADM-3.1` has zero training rows.** Before any retrain it must be marked
+1. **Answer the credit-note question.** 103 invoices of `document_type = '61'`,
+   CLP 87,885,532, all stored **positive**, so every dashboard total counts a
+   purchase and its cancellation as two purchases. The `Referencia` block that
+   says which invoice a credit note cancels **was never loaded into the
+   database**, so netting them correctly needs a re-read of the raw XML.
+   Options are written up in `OPEN_QUESTIONS_2026_09_03.md` §1.
+2. **Ask the client about `document_type = '43'`** — 29 liquidación facturas,
+   CLP 292,085,987, all Feria Ganaderos Osorno. If the underlying sale is
+   already present as a type 33, these double-count. No code can settle it.
+3. **Ask Salman why the Risk tab was disabled.** It arrived already commented
+   out in `7d9ae21` (2026-08-07) with no recorded reason and has never been
+   live. Now that D-049 is applied, Overview says "36 critical anomalies need
+   attention" with nowhere to click.
+4. **Decide the IVA split** (`OPEN_QUESTIONS` §3). The Tax Breakdown card adds
+   IVA crédito (CLP 909,459,709) to IVA débito (CLP 1,002,431,942) under one
+   label. Needs the accountant colleague, not a code change.
+5. **Press Done on one line in the dashboard.** Unchanged from last session and
+   still the only unproven link in D-048. Ten seconds.
+6. **Accept the client's July–August 2026 categorised data.** Still the
+   highest-value item on the project and still costs one email. See
+   `docs/CLIENT_CONVENTIONS.md` §9.7.
+7. **Write the two lists Cristian asked for** — construction contractors (§9.4)
+   and bale-making lines (§9.5). Neither is written.
+8. **`ADM-3.1` has zero training rows.** Before any retrain it must be marked
    rule-assigned and untrainable the way D-028's six are, or the trainer trips
    the "fewer than 2 examples must fail loudly" limit.
-5. **Honorarios and Remuneraciones have never been audited.** The "no XML"
-   exclusion list was disproven for all four families tested
-   (`docs/CLIENT_CONVENTIONS.md` §10); those two are keyword probes, not audited
-   sets.
-6. **Frontend, still open:** horizontal scrolling on the KPI tiles (asked for,
-   wraps instead); the Pareto panel on Geografia measures geography rather than
-   risk and should be relabelled or dropped; keyset pagination on the catalog is
-   deferred — **search must move server-side in the same change or it silently
-   starts matching only loaded pages.**
-7. **Confirm how production deploys.** `STATE` records the live deploy as a CLI
-   `vercel --prod` with no git metadata. If that is still true, merging to
-   `feature/dashboard` updates the preview only.
+9. **Honorarios and Remuneraciones have never been audited** — keyword probes,
+   not audited sets (`CLIENT_CONVENTIONS.md` §10).
+10. **Frontend, still open:** horizontal scrolling on the KPI tiles (asked for,
+    wraps instead); the Geografía Pareto panel measures geography rather than
+    risk; keyset pagination on the catalog is deferred — **search must move
+    server-side in the same change or it silently starts matching only loaded
+    pages.**
+11. **Confirm how production deploys.** `STATE` records the live deploy as a CLI
+    `vercel --prod` with no git metadata. If that is still true, merging to
+    `feature/dashboard` updates the preview only — **including the three fixes
+    merged this session.**
 
 ## Open questions — blocked on the client
 
@@ -80,6 +103,49 @@ onward invoices, which are the highest-value input available, because ~3,529
 review rows are undertrained rather than genuinely ambiguous.
 
 ## Recent sessions
+
+### 2026-09-03 — dashboard figure audit; three defects fixed and merged
+
+- **Every figure on Analítica was recomputed and matched to the live screenshot
+  before any finding was reported** (→ `EVIDENCE_RULES.md` §12). It also
+  surfaced that the default view **excludes 1,003 of 5,195 invoices** with no
+  denominator anywhere on screen — a fact no code read would have produced.
+- **Three defects fixed and merged** into `feature/dashboard` (`2b6c45d`): the
+  stacked chart, the pooled z-score (→ D-049) and the model suggestion on
+  settled rows (→ D-050).
+- **Ten further findings were logged as decisions, not fixes**, in plain
+  language at `../milk-company/docs/OPEN_QUESTIONS_2026_09_03.md`. The largest
+  is credit notes: **CLP 87,885,532 added instead of subtracted**, unfixable
+  without re-reading the `Referencia` block from raw XML.
+- **Gotcha — a doc comment asserted the opposite of what the code rendered.**
+  "never a dual axis, so the visual comparison stays honest" sat directly above
+  two areas sharing a `stackId`. True about the axis, silent about the
+  stacking, and it is *why* the bug survived three passes — reviewers reached a
+  reassuring sentence and stopped. → `EVIDENCE_RULES.md` §11.
+- **Gotcha — every static check was green the whole time.** `tsc`, ESLint,
+  `npm run build` and translation parity cannot see what a chart draws or
+  whether a z-score used the right denominator. Both defects were found by
+  recomputing against real data, and neither would ever have been found by
+  reading more code.
+- **Gotcha — a regression test that has never failed has never been tested.**
+  `check-anomaly-direction.ts` was run against the pre-fix file (copy aside,
+  `git checkout`, run, restore) and confirmed to fail before being trusted.
+  Under a minute, and it converts "passes" into "has teeth".
+- **Gotcha — provenance changed the recommendation three times out of three.**
+  `git log -S`/`-G` showed the suggestion column was added by Afaq's own
+  approved decision B2 days earlier (so removing it is a reversal he had to be
+  told about); the Risk tab shipped disabled in its first commit and has never
+  been live, reason unrecorded; and the "trend regression" subtitle was never
+  accurate, so "we removed it" was the wrong story. **`-S` misses a
+  comment-out** — the string count does not change — so `-G` is the one that
+  finds disabled code.
+- **Afaq's correction, and it was right:** `docs/` being gitignored in the
+  frontend was raised as a risk. It is deliberate — those are his working
+  notes, not something to ship. Do not re-litigate a decision that is already
+  recorded in a commit message (`765e355`).
+- **Decided:** D-049 (score against the population the value came from), D-050
+  (a settled line never shows the model's suggestion; reverses frontend B2).
+
 
 ### 2026-09-02/03 — client reply applied, 592 rows labelled, dashboard can now write
 
@@ -294,75 +360,3 @@ review rows are undertrained rather than genuinely ambiguous.
   open client question in the payload), D-042 (`prediction_source` consolidation
   deferred to its own upload), **D-043 (name the decision before acting on it)**,
   and D-027 amended to drop append-only.
-
-### 2026-08-18 (sixth pass) — lookup audit re-run and clean; client brief published
-
-- **The delegated lookup audit was re-run and it came back clean.** The first
-  run's temp file was verified empty (0 bytes) before re-running via
-  `codex exec "$(cat reports/codex_lookup_audit_2026_08_18/SPEC.txt)"`. Output is
-  saved at `reports/codex_lookup_audit_2026_08_18/codex_output.txt` (untracked —
-  `git add -f` it if committing).
-  **1 finding in 696 entries, not actionable** — line 390 `NEXGARD SPECTRA X 1
-  TABLETA` (COLUN) in `EXP-16.2`, proposed `EXP-2.5`. It is a
-  `client_product_rule`, 1 payload row, CLP 27,174, and his dog *food* goes to
-  `EXP-5.3 Concentrado Otros Animales` by the same pet-follows-the-taxonomy
-  logic. Verified independently, **not applied** (D-030). No script 90.
-  **This closes the largest unverified risk in the payload**: `product_lookup`
-  auto-accepts 2,639 rows and had never been read item by item.
-- **D-037 and D-038 amended by Afaq** — amendments are inline in each entry,
-  dated. D-037: a client rule is no longer the only route into auto_accept; the
-  model plus an independent manual auditor (Claude or Codex) agreeing on what the
-  object physically **is** now also qualifies. Where a client rule exists it still
-  wins (D-030). D-038: with no rule, apply a finding only when beyond doubt;
-  otherwise move it to the best category as a **corrected hint** and leave it in
-  review.
-- **Client brief published** —
-  https://claude.ai/code/artifact/47769557-4221-4b7d-a29c-00ca2d3d88a7
-  ("The Review Queue"). Eight **non-overlapping** questions covering 2,110 of the
-  4,461 review lines. Also covers the fixed-asset answers, the nails/tools
-  diagnosis (-> D-039), and the excluded-category audit.
-- **Decided:** no "supporting tools" category — the gap is a default rule
-  (-> D-039).
-- **The review queue was re-partitioned so no line is counted twice.** The
-  previous 13-question list double- and triple-counted: the hardware-store
-  question *contained* the fasteners, fittings, welding and half the paint
-  questions. Exclusive partition of the 4,461, priority-ordered:
-
-  | group | lines | CLP |
-  |---|---:|---:|
-  | Hardware & building stores (6 suppliers) | 1,562 | 27,987,733 |
-  | Supermarket goods | 284 | 2,040,767 |
-  | Filters | 67 | 4,954,009 |
-  | Fire extinguishers | 53 | 2,094,737 |
-  | Tolls / TAG | 45 | 574,005 |
-  | Bank commissions | 44 | 448,086 |
-  | Bale making (`bolos`) | 28 | 59,464,922 |
-  | GEA `HORA TECNICA` | 27 | 12,817,584 |
-  | **Everything else — no shared question** | **2,351** | **852,671,372** |
-
-  **The eight questions cover 47% of the lines but only 12% of the money.** State
-  that plainly; the earlier framing implied the questions would empty the queue.
-- **Excluded-category list fully checked.** Two claims were already known false
-  (`Arriendo Predio Lecheria`, `Arriendo Otros Predios`). A third is false:
-  `Impuestos, comisiones, multas` — 107 commission lines, CLP 6,768,282, from
-  BICE / Banco de Chile / Santander, 63 already auto-accepted into `ADM-1.7`.
-  The remaining three **do hold**: no `Arriendo Casas` invoices exist (Yutreco
-  appears only as a place), no wage or payroll invoices exist.
-- **Two auto-accepted families rest on `silver_audit_backfill`, which D-037 no
-  longer accepts as promotion evidence** — 37 bank-commission rows and all 24
-  ryegrass rows. Not disturbed, but they are why those two questions have zero
-  rows stuck and are still being asked.
-- **Fixable without the client:** `ASESORIA CONTABLE Y TRIBUTARIA`, CLP 505,363,
-  suggested as `EXP-15.1 Servicios Agronomicos`; `ADM-1.8 Asesoria Contable`
-  exists. Still in review, so no wrong label was ever shown.
-- **Gotcha — a supplier-shaped bucket silently swallows product-shaped ones.**
-  Counting "hardware store" and "fasteners" as separate questions triple-counted
-  hundreds of rows. **When measuring a queue by category, assign each row to
-  exactly one bucket in priority order and assert the buckets sum to the total.**
-- **Gotcha — a normaliser regex that misses a spacing variant undercounts
-  silently.** `SULFATO DE? ?COBRE` matched 3 of the 6 copper-sulphate rows;
-  `SULFATO\s+(DE\s+)?COBRE` matches all 6. A count that disagrees with the docs
-  is a regex bug until proven otherwise.
-- **Doc corrections:** payload is **7,285 auto / 4,461 review** (measured), not
-  7,286 / 4,460 — script 89 moved one more row than the previous entry recorded.
-  Fixed in `CLAUDE.md` and throughout `STATE.md`.

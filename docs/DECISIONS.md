@@ -1167,3 +1167,69 @@ nothing about writes.
 and it would bypass RLS entirely, which throws away the only thing standing
 between a leaked publishable key and the client's books.
 
+
+---
+
+## D-049 — A statistic is scored against its own population, never a pooled one
+
+**Date:** 2026-09-03 · **Decided by:** Claude, approved by Afaq · **Model:** Claude Opus 5
+
+Any detector that asks "is this value unusual?" computes its mean and standard
+deviation **within the group the value belongs to**. In this project that means
+COMPRAS and VENTAS are separate populations everywhere — outlier detection,
+averages, thresholds, and anything derived from a spread.
+
+**Why:** the dashboard's `detectAnomalies` pooled every invoice into one
+z-score. Measured on `backups/supabase_20260903T054820Z`, COMPRAS averages
+1,132,672 across 5,107 invoices and VENTAS averages 71,345,335 across 88. The
+pooled standard deviation came out at 25,514,580 and broke the detector in both
+directions at once:
+
+- the critical cut landed at **91,623,060 CLP**, so 9 of the 14 "critical"
+  flags on the default window were ordinary milk sales with nothing wrong with
+  them;
+- and that same inflated spread hid the real ones. Only **5** purchase invoices
+  cleared the pooled bar; scored against COMPRAS alone, **24** do.
+
+A wrong number that reassures is worse than no number. Both failures came from
+one line, and neither was visible without recomputing against real data —
+`tsc`, lint and the build were all green throughout.
+
+The two directions are already known to be incomparable: `DECISIONS_LEDGER.md`
+in the frontend records VENTAS as 1.7% of documents and 52% of the money. That
+asymmetry is exactly why they cannot share a distribution.
+
+**Rejected:** raising the z threshold. It would have removed the false flags
+and buried the real ones deeper — the thresholds were never the problem, the
+denominator was.
+
+**Proof:** `scripts/check-anomaly-direction.ts` in the frontend repo asserts
+both halves and fails against the previous code. Fixed in `59c4cb1`.
+
+## D-050 — A settled line never displays the model's suggestion
+
+**Date:** 2026-09-03 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Once a line's category is confirmed — a human reviewed it, or the pipeline
+auto-accepted it — no surface shows what the model would have guessed. The
+suggestion exists only for rows still in review.
+
+**Why:** the Analítica → Ítems tab carried a "Model suggestion" column that ran
+on every line rather than only pending ones. Of 4,002 products, **1,574 had no
+pending line at all and still showed a guess, and 148 of those guesses named a
+different category than the confirmed one.** That is the model publicly
+second-guessing a closed decision, which is the same failure family as
+**D-001** — a prediction presented where a classification belongs.
+
+Afaq's instruction was to remove the column, not to gate it: a suggestion on a
+row with nothing left to decide has no reader and no use.
+
+**This reverses decision B2** in the frontend's `docs/DECISIONS_LEDGER.md`,
+which had specified the separate suggestion column on 2026-08-27. That entry is
+marked superseded in the same change.
+
+**Rejected:** gating the column on `resolved.state === "pending"`. Correct, one
+conditional, and still leaves a column that is empty on 39% of rows and
+meaningless on the rest.
+
+Removed in `1dad390`, merged as `2b6c45d`.
