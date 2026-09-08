@@ -147,11 +147,19 @@ docs are deleted, not archived, and live only in git history.
 
 ## Conventions
 
-Two virtualenvs, deliberately: `.venv-train` has PyTorch, `.venv-backend` does
-not. PyTorch must never reach the production container.
+Three virtualenvs, deliberately. `.venv-train` has PyTorch; `.venv-backend` does
+not (PyTorch must never reach the production container); `.venv-yunt` has neither
+the ML stack nor its tests, because the Yunt service ships without them. The two
+suites therefore run separately — `tests/` holds both and neither venv can
+collect the other's files.
 
 ```bash
-.venv-backend/bin/python -m pytest tests/ -q     # 98 tests, all must pass
+# classifier — 98 tests
+.venv-backend/bin/python -m pytest tests/ -q --ignore=tests/test_yunt_batch.py \
+    --ignore=tests/test_yunt_dte.py --ignore=tests/test_yunt_inbound.py
+
+# yunt — 30 tests
+.venv-yunt/bin/python -m pytest tests/test_yunt_*.py -q
 ```
 
 **Never re-load the whole database.** Every correction has been a small, named

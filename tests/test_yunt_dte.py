@@ -62,7 +62,7 @@ def test_recargo_is_stored_but_never_added_to_the_line():
     assert line.reconciles
 
 
-FUEL = "81094100-6"
+FUEL = "81094100-6"   # written with the hyphen; the parser normalises it
 
 
 def test_a_scaled_line_is_rescaled():

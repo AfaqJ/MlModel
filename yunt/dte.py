@@ -61,8 +61,8 @@ from dataclasses import dataclass, field
 # the right order for Chilean petrol. Reading the quantity raw is what produced
 # the "62,648,532 litres of GASOLINA 93" figure.
 SCALED_SUPPLIERS: dict[str, tuple[float, float]] = {
-    # seller RUT: (quantity divisor, unit price divisor)
-    "81094100-6": (10_000.0, 10_000.0),
+    # seller RUT, normalised (no hyphen): (quantity divisor, unit price divisor)
+    "810941006": (10_000.0, 10_000.0),
 }
 
 TOLERANCE_FLOOR = 1.0
@@ -178,6 +178,18 @@ def decode(raw: bytes) -> str:
         return raw.decode("latin-1")
 
 
+def normalise_rut(rut: str) -> str:
+    """The shape Supabase stores: no hyphen, uppercase check digit.
+
+    Measured across all three tables holding a RUT — invoices.seller_rut,
+    invoices.buyer_rut and companies.rut — every one of 11,000+ values is stored
+    this way. The DTE writes `11920610-3`; the database holds `119206103`.
+    Getting this wrong makes every document look new, which is how a duplicate
+    load starts.
+    """
+    return (rut or "").replace("-", "").replace(".", "").strip().upper()
+
+
 def _local(tag: str) -> str:
     return tag.rsplit("}", 1)[-1] if "}" in tag else tag
 
@@ -233,7 +245,7 @@ def parse(raw: bytes, transaction_type: str) -> list[Document]:
     dtes = _all(root, "DTE") or ([root] if _local(root.tag) == "DTE" else [])
     if not dtes:
         # Some files are a bare <Documento> with no <DTE> wrapper.
-        dtes = [root] if _deep(root, "Documento") is not None else []
+        dtes = [root] if _body(root) is not None else []
 
     documents = []
     for dte in dtes:
@@ -243,8 +255,20 @@ def parse(raw: bytes, transaction_type: str) -> list[Document]:
     return documents
 
 
+def _body(dte: ET.Element) -> ET.Element | None:
+    """The document body. Type 43 (liquidacion factura) names it <Liquidacion>;
+    everything else names it <Documento>. Same structure inside, and the 29 of
+    these in the corpus are worth CLP 292 million, so they must not be skipped.
+    """
+    for tag in ("Documento", "Liquidacion", "Exportaciones"):
+        found = _deep(dte, tag)
+        if found is not None:
+            return found
+    return None
+
+
 def _parse_documento(dte: ET.Element, transaction_type: str) -> Document | None:
-    documento = _deep(dte, "Documento")
+    documento = _body(dte)
     if documento is None:
         return None
     head = _child(documento, "Encabezado")
@@ -256,7 +280,7 @@ def _parse_documento(dte: ET.Element, transaction_type: str) -> Document | None:
     receptor = _child(head, "Receptor")
     totales = _child(head, "Totales")
 
-    seller_rut = _field(emisor, "RUTEmisor")
+    seller_rut = normalise_rut(_field(emisor, "RUTEmisor"))
     doc = Document(
         document_type=_field(id_doc, "TipoDTE"),
         folio=_field(id_doc, "Folio"),
@@ -269,7 +293,7 @@ def _parse_documento(dte: ET.Element, transaction_type: str) -> Document | None:
         seller_address=_field(emisor, "DirOrigen"),
         seller_commune=_field(emisor, "CmnaOrigen"),
         seller_city=_field(emisor, "CiudadOrigen"),
-        buyer_rut=_field(receptor, "RUTRecep"),
+        buyer_rut=normalise_rut(_field(receptor, "RUTRecep")),
         buyer_name=_field(receptor, "RznSocRecep"),
         buyer_giro=_field(receptor, "GiroRecep"),
         buyer_address=_field(receptor, "DirRecep"),
