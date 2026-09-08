@@ -87,10 +87,37 @@ a confirmed parent:
 
 **Effect on automatic resolution: 78.8% -> about 87.3%.**
 
-**Needs:** your review of the 272 as a list, and a `source` / `confirmed_by`
-column on `item_aliases` **before** any bulk insert — the table has neither
-today, so after a load nobody can tell an alias you approved from one the
-machine proposed. `AUTOMATION_PLAN` B-3 flagged this and it is still true.
+**DONE — the harvest is built and measured.** Full list, with the excluded ones
+and the reasoning, at `reports/alias_harvest_2026_09_08/README.md`.
+
+| | resolved automatically | disagreeing with today |
+|---|---|---|
+| live aliases only (8 rows) | 9,255 (78.8%) | 7 |
+| + 222 harvested | 10,125 (86.2%) | 7 |
+
+870 lines gained, **zero new disagreements**.
+
+- **222 proposed** — recurring wordings, each already assigned to its catalog
+  item by the verified migration. Not an inference: a fact being written down.
+- **781 excluded** — unbounded wordings (`SEGUN OT 107`, `108`, `109`…). One
+  alias row each, forever, is exactly what D-044 forbids. These need a pattern.
+- **585 not proposed** — seen once in fifteen months. Memorising noise.
+
+**Needs, in order:**
+
+1. `milk-company/supabase/006_alias_provenance.sql` run in the SQL editor. It
+   adds `source` / `confirmed_by` / `evidence_lines` to `item_aliases`, which
+   must exist **before** any bulk insert or an alias you approved becomes
+   indistinguishable from one the machine proposed.
+2. Your yes on the 222.
+3. Then: backup, dry run, scoped PostgREST write. The write script is
+   deliberately not written yet — D-046's lesson is that a one-shot script
+   written against a database state rots, so it gets written when it is run.
+
+**Why `%LIKE%` in the database is not needed.** You asked. The catalog is 4,002
+rows; the Yunt loads it once per batch and does the narrowing in memory, which
+is faster than a round trip and needs no extension. A `pg_trgm` index would
+matter if the resolver ever ran without the catalog to hand — it does not.
 
 ---
 
