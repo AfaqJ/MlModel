@@ -49,7 +49,10 @@ more carry `trained: false`. `Data/gold/_master_gold.csv` holds 2,577 rows
 across 73 classes, 2,329 of them distinct model inputs. Many classes have very
 few examples, so the model cannot be trusted alone: the review gate is a feature,
 not a shortfall. Of 11,746 lines, 7,927 (67%) are auto-accepted and 3,819 (33%)
-sit in review.
+sit in review — but **that 67% is contaminated and reads high**: the dashboard's
+write sets `decision='auto_accept'` on a *human* pick, and `aggregate.ts:104-107`
+counts every such row as automatic. Found 2026-09-06, unfixed; see
+`docs/STATE.md` Next item 11.
 
 The system is two halves that are easy to confuse: an **offline labeling
 pipeline** (raw XML → gold → Supabase) and an **online classifier service**
@@ -99,11 +102,35 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
   live keys: never echo them, never commit them.
 - A class with fewer than 2 examples cannot be trained and must fail **loudly**.
 
+**A second workstream is open: the Yunt**, a digital collaborator over this
+data and the dashboard. Scope is agreed and sent (`docs/Yunt_scope_v1.docx`,
+19 items); the implementation plan is not written. Ingestion is deterministic
+code, not the agent (D-051); purchase orders v1 is two forms with no roles and
+no approval (D-052); open questions are answered by ~5 parameterised query
+tools with every number computed by code, never by the model (D-053). Rodrigo
+wants ingestion from Audisoft's API rather than email, but it returns 401 on
+every credential form and is blocked on them (D-054); email stays the fallback.
+The recipe is `docs/YUNT_IMPLEMENTATION_PLAN.md` on branch `feature/yunt`:
+eleven phases, each ending in something that runs. Six of its seven open
+decisions are settled (2026-09-08); D4 was withdrawn as not the Yunt's problem.
+Two facts drive the design. The classifier **auto-accepts only 8% of the
+corpus** while deterministic lookups settle 44%, and 68% of review rows are
+undertrained wordings rather than ambiguous items — so a category proposal is a
+**precedent search in SQL**, with the model grouping and explaining, never
+computing. And the agent is the **front-door router**, not a pipeline stage:
+ingestion stays plain code that would run with the router removed.
+
+**The DTE XML is ISO-8859-1 and carries no `encoding=` declaration**, so any
+parser that assumes UTF-8 corrupts every accented character. Do what
+`scripts/10_extract_line_items.py` does at lines 85-87: try UTF-8, fall back to
+latin-1.
+
 ## Where to look
 
 | Need | File |
 |---|---|
 | Where we are, recent sessions, next steps | `docs/STATE.md` |
+| **What the Yunt will do, as sent to the team** | **`docs/Yunt_scope_v1.docx`** |
 | **How every manual case becomes automated** | **`docs/AUTOMATION_PLAN.md`** |
 | How the system is built | `docs/ARCHITECTURE.md` |
 | The complete staged Supabase payload | `reports/recovery_v1_3_3/supabase_upload/` |

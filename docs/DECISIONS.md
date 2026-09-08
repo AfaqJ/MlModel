@@ -1233,3 +1233,113 @@ conditional, and still leaves a column that is empty on 39% of rows and
 meaningless on the rest.
 
 Removed in `1dad390`, merged as `2b6c45d`.
+
+## D-051 — Ingestion is deterministic code; the agent is only where judgement is
+
+**Date:** 2026-09-08 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Reading the inbound file, unpacking it, parsing the DTE XML, checking the
+sender, detecting duplicates, calling `/predict-batch`, storing the result and
+sending the acknowledgement and reception report are **plain code**. No agent
+sits anywhere in that path.
+
+The agent's scope is exactly three things, all of them judgement calls:
+proposing a category for a review line with its evidence, reading a free-text
+question and choosing which query answers it, and drafting a purchase order
+request from a plain-language sentence.
+
+**Why:** Afaq's own objection, and it was correct. "Why do we need a unit to
+take an email and send it to an endpoint when we can hook the email, run it
+through deterministic code and hit the endpoint ourselves?" There is no
+judgement in the pipeline, so an agent there adds cost, latency and a failure
+mode for nothing. It also means ingestion ships standalone, without the agent
+existing.
+
+**Rejected:** the earlier framing that had the Yunt owning ingestion end to
+end. That plan was deleted on 2026-09-08; the surviving recipe is
+`docs/YUNT_IMPLEMENTATION_PLAN.md`.
+
+## D-052 — Purchase orders v1: two forms, no roles, no approval step
+
+**Date:** 2026-09-08 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Form one opens an internal request: what is needed, how much, by when, for
+which farm or cost centre. The request stays open and is how open needs are
+tracked.
+
+**Obtaining quotations is outside the system.** There is no way to contact a
+supplier from the dashboard. Whoever is responsible negotiates by their own
+means and agrees a price.
+
+Form two places the order: supplier, final agreed price, quantity, delivery
+date. Above CLP 500,000 at least two quotations must be uploaded, which is the
+rule already displayed on Antillanca's own home screen. Below that no formal
+quotation is required and the buyer records the price the supplier gave them.
+The output is a PDF that Antillanca sends to the supplier themselves.
+Generating the order closes the request.
+
+**Roles and approval routing are explicitly deferred to v2.** The dashboard
+lists six roles but today they only filter sidebar links: the role is React
+state initialised to `ADMIN` in `app-sidebar.tsx:40`, switchable by a header
+dropdown, and `middleware.ts` checks only whether a user is logged in. Any page
+is reachable by URL regardless of role. Promising approval routing means making
+roles real first, and Antillanca has not said who approves at what amount.
+
+**Why:** Afaq's call, to keep v1 one-way and shippable. Separation of requester
+from approver is an internal control; where one person does all of it, it is
+ceremony.
+
+**Rejected:** enforcing the approval phase in v1. It would have made user roles
+a prerequisite for the whole purchase-order feature.
+
+## D-053 — Open-ended questions are answered by parameterised query tools
+
+**Date:** 2026-09-08 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Reports are not written in advance and the model does not write queries freely.
+The query space is enumerated once as about five parameterised tools. The main
+one takes filters (date range, direction, document type, category, supplier,
+item, state, amount range), a grouping (month, category, supplier, document
+type, item, city) and a measure (sum, count of lines, count of documents,
+average unit price, min, max) plus sort and limit. Four more cover period
+comparison, single-item price history, row-level listings for the spreadsheet
+attachment, and precedent lookup. Charts come from a fixed set: bar, line,
+stacked bar, pie, table.
+
+**The model picks the tool, fills the parameters, chooses the chart and writes
+the prose around the result. Code runs the query, computes every number, renders
+every output, and prints the exact filter used at the top of every answer.**
+No number in any answer is written by the model.
+
+A question that fits no tool is refused, saying so. The refusal list is the
+backlog for what to add next.
+
+**Why:** it makes "he can ask anything" a promise that can actually be kept.
+The openness lives in the parameter space, not in the code, so the surface is
+large and the implementation is small and testable.
+
+**Rejected:** letting the model author SQL against a read-only role. Larger
+blast radius, unbounded output shapes, and every number then originates from
+the model rather than from code.
+
+## D-054 — The Audisoft API is the intended ingestion source; email is the fallback
+
+**Date:** 2026-09-08 · **Decided by:** Rodrigo, relayed by Afaq · **Model:** Claude Opus 5
+
+Antillanca's accounting vendor, Audisoft, exposes `xmlrecibidos` (purchases) and
+`xmlemitidos` (sales) on their system. `crutempresa 96685810-9` matches the
+`dte_96685810_*` folders, so it serves the same document stream already parsed.
+Two endpoints also remove the need for the `COMPRAS/` and `VENTAS/` folder
+convention, since direction becomes native.
+
+**Email ingestion is still built, as the fallback.** Only the first step
+differs; parse, deduplicate, classify, store and report are shared, so the
+source is a thin swap at the front. Email also stays useful afterwards for
+backfills and anything not in Audisoft's system.
+
+**The spreadsheet template is deferred.** It existed only for data with no XML
+behind it, and that need mostly disappears if the API works.
+
+**Why:** it removes the manual export step entirely, and clause 5.1 of
+Audisoft's terms gives no uptime guarantee while 6.2 lets them revoke access
+without notice, so a second path must exist regardless.

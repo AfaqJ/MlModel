@@ -9,7 +9,7 @@ venv/
 # Downloaded model weights (large; re-downloaded on first run)
 models/
 artifacts/*
-!artifacts/v1.0.0/
+!artifacts/v1.0.0/s
 !artifacts/v1.0.0/**
 artifacts/v1.0.0/__pycache__/
 
