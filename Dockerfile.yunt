@@ -1,0 +1,17 @@
+# The Yunt service. Deliberately NOT the classifier image: no torch, no
+# onnxruntime, no transformers, no 278 MB .onnx. It calls the classifier over
+# HTTP instead, so the two deploy independently and an email bug cannot take
+# down the service the client depends on.
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /srv
+
+COPY requirements-yunt.txt .
+RUN pip install --no-cache-dir -r requirements-yunt.txt
+
+COPY yunt/ yunt/
+
+CMD exec uvicorn yunt.main:app --host 0.0.0.0 --port ${PORT:-8080}
