@@ -121,6 +121,26 @@ matter if the resolver ever ran without the catalog to hand — it does not.
 
 ---
 
+## 3b. SETTLED 2026-09-08 (Afaq): unresolved wordings become new catalog items
+
+His words: *"we can't have the Yunt go over thousands of records, the token bill
+will be huge, the db will start growing, we need a scalable solution, for now
+just keep what we have and what we can't handle let it make a separate item in
+catalog, unless we have an efficient and scalable solution."*
+
+So the resolver's `none` result does **not** call a model and does not block. The
+write path creates a new `item_catalog` row from the received wording, and the
+line is written against it. That is also what the historical pipeline did — the
+catalog reached 4,002 rows exactly this way.
+
+**The cost, stated plainly:** the catalog grows at roughly the rate of unmatched
+wordings, which on this corpus is about 14% of lines, and about 6% of those are
+unbounded (`SEGUN OT 107`) and will never be reused. Growth is the price of not
+paying per line for reasoning, and it is reversible — a later merge pass can
+collapse rows, which is exactly what the canonical migration already did once.
+
+**Not built, therefore:** any per-line model call in the catalog path.
+
 ## 4. How far deterministic goes, and where reasoning actually starts
 
 Your question, answered with measured numbers rather than an opinion.
