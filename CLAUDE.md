@@ -154,7 +154,7 @@ suites therefore run separately — `tests/` holds both and neither venv can
 collect the other's files.
 
 ```bash
-# classifier — 98 tests
+# classifier
 .venv-backend/bin/python -m pytest tests/ -q --ignore=tests/test_yunt_batch.py \
     --ignore=tests/test_yunt_dte.py --ignore=tests/test_yunt_inbound.py
 

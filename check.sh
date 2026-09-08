@@ -11,10 +11,11 @@ cd "$(dirname "$0")"
 fail=0
 step() { printf '\n\033[1m== %s\033[0m\n' "$1"; }
 
-step "classifier — 98 tests"
-.venv-backend/bin/python -m pytest tests/ -q \
-  --ignore=tests/test_yunt_batch.py --ignore=tests/test_yunt_dte.py \
-  --ignore=tests/test_yunt_inbound.py || fail=1
+step "classifier"
+# A glob, not a hand-written list. The list version already rotted: two new
+# yunt test files were silently collected by the classifier venv, so this step
+# reported 116 tests and nobody would have noticed which suite ran what.
+.venv-backend/bin/python -m pytest tests/ -q --ignore-glob='tests/test_yunt_*.py' || fail=1
 
 step "yunt — service, parser, batch"
 .venv-yunt/bin/python -m pytest tests/test_yunt_*.py -q || fail=1
