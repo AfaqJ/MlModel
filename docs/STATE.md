@@ -341,6 +341,22 @@ belong in v1.
 
 ## Recent sessions
 
+### 2026-09-09 (k) — one definition of a data-quality flag
+
+- **The arithmetic check existed twice.** `quality.ts` derived it from
+  `Line.reconciles` for the write-time downgrade; `batch-review.ts` derived it
+  again from the same field for the model prompt. Review groups now take their
+  flags from the quality module, so there is one definition.
+- **The model gains three checks it could not see before:** a line worth more
+  than its whole document, an item name that identifies nothing, and a
+  non-positive amount. `line_total_mismatch` is renamed `line_arithmetic` after
+  the module that owns it; no review packet has ever been produced, so nothing
+  stored carries the old name.
+- **A fixture that stubbed the feature out was hiding the wiring.**
+  `check-yunt-batch-review` used an empty quality result; it now runs
+  `applyQualityFlags` exactly as `prepareIngest` does.
+- **Proof:** `./check.sh` all green, `npx eve build` passed. Commit `06bd8fa`.
+
 ### 2026-09-09 (j) — the last two query tools, and one filter instead of two
 
 - **Scope item 9 is complete in code.** `yunt_invoice_aggregate` groups invoice
