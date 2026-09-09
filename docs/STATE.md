@@ -19,20 +19,21 @@ a database-backed Yunt operator allowlist, initially Afaq and later Cristian;
 Afaq has not approved that permission design yet.
 
 **The review/apply foundation and three of five business query tools are built locally.**
-Review packets, grounded evidence, findings email, inbound requests, apply/undo,
-bounded item price history, category precedent, and filtered invoice-line lists
-all have regressions. `014` writes `prediction_source='yunt_applied'` (D-066).
+Review packets, grounded evidence, findings email, retryable inbound requests,
+apply/undo, bounded item price history, category precedent, filtered invoice-line
+lists, and a durable refusal backlog all have regressions. `014` writes
+`prediction_source='yunt_applied'` (D-066).
 The aggregate and period-comparison tools, seven
 data-quality checks, exports/charts/reports, recurring reports, and Yunt-driven
 purchasing are still to build.
 
-**Migrations `005`–`010` are live. `011`–`016` are not.** Afaq confirmed the
+**Migrations `005`–`010` are live. `011`–`017` are not.** Afaq confirmed the
 live boundary; every pending migration has been loaded twice in disposable
 PostgreSQL. Supabase currently reports **EXCEEDING USAGE LIMITS**, so no live
 write or migration should be attempted until the project serves requests again.
 
-**Branch `yunt` is pushed only through `4035fef`; twenty-one commits are local**
-through `ff55c64`. Preview only. Production remains `main`; nothing merged.
+**Branch `yunt` is pushed only through `4035fef`; twenty-three commits are local**
+through `7e14e7f`. Preview only. Production remains `main`; nothing merged.
 `yunt-backend` here is also unpushed.
 
 ## HANDOVER — 2026-09-09, session ended by Afaq
@@ -108,7 +109,7 @@ ask him to run a query and paste the result.
 - Exactly **one** `yunt_category_precedent` exists — the 5-argument version from
   `009`, which is the correct one. There is **no** duplicate overload. An earlier
   claim of mine that there were two was wrong and is retracted.
-- `004` through `010` are applied. `011` through `016` are not.
+- `004` through `010` are applied. `011` through `017` are not.
 - `prediction_source` allows six values including `user_selected`, so `014` is
   legal against the live constraint.
 
@@ -152,11 +153,11 @@ Two real traps in that set:
 
 ### What to run, and why
 
-**Migrations `011` through `016`, in that order, in one paste.**
+**Migrations `011` through `017`, in that order, in one paste.**
 A combined file was generated and handed to Afaq. Regenerate it with:
 
 ```
-cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list}.sql
+cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals}.sql
 ```
 
 - `011` — review packets, so a retry cannot double-count findings
@@ -165,6 +166,7 @@ cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yun
 - `014` — apply-on-approval and undo; sealed rows, stale proposals refused
 - `015` — bounded catalog lookup and item price history; ambiguous names are not guessed
 - `016` — bounded invoice-line list with exact review/date/amount filters
+- `017` — immutable refusal/backlog entries, one per stored inbound request
 
 Why it is safe: there is no `DELETE`, `TRUNCATE`, `DROP TABLE`, or top-level
 data `UPDATE`. `014` deliberately replaces the existing
@@ -178,7 +180,8 @@ Proof: `milk-company/scripts/prove-011-to-014.sh` loads `008`->`014` in order on
 a disposable PostgreSQL, re-runs `011`->`014` for idempotency, and exercises
 `013`'s round trip. `scripts/prove-014-apply-undo.sh` proves apply/undo;
 `scripts/prove-015-price-history.sh` proves filters, ambiguity and idempotency;
-`scripts/prove-016-invoice-line-list.sh` proves bounded row filters.
+`scripts/prove-016-invoice-line-list.sh` proves bounded row filters;
+`scripts/prove-017-yunt-refusals.sh` proves refusal logging and replay safety.
 All are committed and re-runnable.
 
 **Take a backup first** (`scripts/81_backup_supabase.py`). The last one is
@@ -202,12 +205,11 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**8 of 19 done in code, 4 partly, 7 not started. Nothing agentic is live yet.**
+**9 of 19 done in code, 3 partly, 7 not started. Nothing agentic is live yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
 | 1 | A mailbox that acts only on agreed senders | Done. Never carried a real message |
-| 2 | A ZIP of SII XML, COMPRAS and VENTAS inside | Done |
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
 | 4 | Lines classified and **written to the database** | Partly. Email is connected in code; `/carga` is blocked by missing authenticated permissions; neither is live-proved |
 | 5 | An acknowledgement in minutes, then a written report | Done in code as a receipt first and a findings email later; never live-proved |
@@ -217,7 +219,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 9 | Five query tools answering open questions | Partly. Price history, category precedent and row listing are built; aggregate and period comparison remain |
 | 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Not started. Plain-text replies only |
 | 11 | Charts from a fixed set, drawn by code | Not started |
-| 12 | Says so when a question does not fit, and we learn from the list | Partly. The agent is told to refuse; no `yunt_refusals` log |
+| 12 | Says so when a question does not fit, and we learn from the list | Done in code. One immutable backlog entry per stored request; not live until `017` runs |
 | 13 | Month-end summary, post-batch digest, weekly review list | Not started |
 | 14 | Form one: what is needed, how much, by when, for which farm | Done. Tables live, not yet used in anger |
 | 15 | A request stays open until an order closes it | Done. Enforced in the database |
@@ -232,7 +234,7 @@ but their migrations, model credentials and real-message proof are still open.
 
 **The next foundation priority is permission, not another feature:** make
 `/carga` a real authenticated write without exposing service-role power, clear
-the Supabase usage block, run `011`–`015`, then prove one real email and one
+the Supabase usage block, run `011`–`017`, then prove one real email and one
 upload including replay. In parallel, finish the remaining four read tools.
 
 ## V1 checklist
@@ -271,7 +273,7 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [ ] **Five query tools + the canonical money view** (Phase 7, D-053): item
       3/5 are proved; aggregate and period comparison remain
 - [ ] Answer delivery: figure in the body, list as `.xlsx`, report as PDF
-- [ ] Refusal path and `yunt_refusals`, which is the backlog for what to add
+- [x] Refusal path and `yunt_refusals`, one immutable backlog row per request
 - [ ] Restate-then-confirm before any action the person agreed to in prose
 
 ### Acting, with a way back
@@ -296,7 +298,7 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [ ] Clear Supabase's **EXCEEDING USAGE LIMITS** state
 - [ ] Approve the `/carga` operator permission design
 - [ ] Confirm or change the temporary Opus 5 / medium choice
-- [ ] **Run `011`–`016`** in the Supabase editor — all idempotent, each proved
+- [ ] **Run `011`–`017`** in the Supabase editor — all idempotent, each proved
       twice against a disposable PostgreSQL
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
@@ -333,9 +335,16 @@ belong in v1.
   document type, review state, dates and amounts are validated filters; the
   model receives at most 100 rows and is forbidden to total them. Migration
   `016`, commit `ff55c64`.
+- **Made agent-email failure retryable.** A failed delivery now releases the
+  durable request to `open`; the old code marked it `failed` while the claim
+  function accepted only `open`, so its claimed retry path could never run.
+  Commit `9026387`.
+- **Built the refusal backlog.** The agent records one immutable refusal per
+  inbound request, with the missing capability and reason but never a model-
+  rewritten copy of the user's question. Migration `017`, commit `7e14e7f`.
 - **Proof:** `014` apply/undo and `015` price history each loaded twice and passed
-  behavioral PostgreSQL checks; `016` passed the same load-twice and behavior
-  proof. After every increment, `./check.sh` was all green
+  behavioral PostgreSQL checks; `016` and `017` passed the same load-twice and
+  behavior proof. After every increment, `./check.sh` was all green
   (types, zero lint errors, build, all checks); the final `npx eve build` passed.
 - **Gotcha:** source wiring hid a real security failure. `/carga` carries an
   authenticated client into objects granted only to `service_role`. Previewing

@@ -150,7 +150,9 @@ confidence.
   signed-in client and is currently blocked because the new objects expose no
   authenticated write policy. `/predict-batch` classifies accounting category
   only and never writes Supabase. Migrations `005`–`010` are live, including
-  `007_yunt_ingest.sql`'s atomic document write; `011`–`016` are not.
+  `007_yunt_ingest.sql`'s atomic document write; `011`–`017` are not. Failed
+  agent-email delivery releases its inbound request back to `open`, so a retry
+  can reclaim it; unsupported requests are recorded once in `yunt_refusals`.
 - **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
   row-count verified immediately before the 2026-08-17 full re-load. Earlier
   snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and
