@@ -33,6 +33,47 @@ routes structurally — a ZIP goes to deterministic ingest, anything else is
 recorded and handed to the agent. Next: the mailbox writer, then the review
 dispatch that fires after a write.
 
+## What the Yunt promises, and what it does today
+
+The 19 numbered items are the scope sent to the team, in the client's own
+words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
+disagree on *how*, the decision log wins (D-059) — but this list is what
+Antillanca was told they are getting, so it is the honest measure of progress.
+
+**8 of 19 done, 4 partly, 7 not started.**
+
+| # | What Cristian was promised | Today |
+|---|---|---|
+| 1 | A mailbox that acts only on agreed senders | Done. Never carried a real message |
+| 2 | A ZIP of SII XML, COMPRAS and VENTAS inside | Done |
+| 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
+| 4 | Lines classified and **written to the database** | Partly. Classified yes; stored only from the upload page, and never yet live |
+| 5 | An acknowledgement in minutes, then a written report | Partly. One email carries both; the fast acknowledgement is not separate |
+| 6 | Data quality flags, and fixes proposed on approval | Not started |
+| 7 | Category proposals with evidence, grouped | Partly. Tools built and grounded; nothing triggers them, accuracy unmeasured |
+| 8 | Approve a group, get a confirmation, undo it | Not started. **This is the gap that makes 6 and 7 unusable** |
+| 9 | Five query tools answering open questions | Not started |
+| 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Not started. Plain-text replies only |
+| 11 | Charts from a fixed set, drawn by code | Not started |
+| 12 | Says so when a question does not fit, and we learn from the list | Partly. The agent is told to refuse; no `yunt_refusals` log |
+| 13 | Month-end summary, post-batch digest, weekly review list | Not started |
+| 14 | Form one: what is needed, how much, by when, for which farm | Done. Tables live, not yet used in anger |
+| 15 | A request stays open until an order closes it | Done. Enforced in the database |
+| 16 | Form two, with the two-quotation rule above CLP 500,000 | Done. Rule proved by regression |
+| 17 | A purchase-order PDF Antillanca sends themselves | Partly. A print-styled page; the browser saves the PDF. Cannot be attached to mail |
+| 18 | The Yunt fills form one from a plain-language email | Not started |
+| 19 | The Yunt drafts the order once a quotation exists | Not started |
+
+**Read the middle column, not the count.** Items 1-5 and 14-17 are the parts
+that work without a language model, and they are the ones that are done. Every
+item where the Yunt is supposed to *think* — 6 to 13, 18, 19 — is either
+unstarted or built-but-unreachable. The product today is a good deterministic
+pipeline with an agent bolted on that nothing calls.
+
+**The single most valuable next thing is item 8.** Items 6 and 7 both end in a
+proposal, and there is no way to accept one. Until apply-with-undo exists, every
+finding the Yunt produces is a message Cristian can read and not act on.
+
 ## V1 checklist
 
 Every box that must be ticked for a working v1. Updated as work lands — if a box
@@ -93,9 +134,11 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 ### Deliberately not in v1
 
-Recurring scheduled reports (Phase 8), roles and approval chains on purchase
-orders (D-052), and ingestion from the Audisoft API, which is blocked on
-credentials that return 401 (D-054).
+Roles and approval chains on purchase orders (D-052, and the scope document says
+so in the client's own words), goods receipt / invoice matching / payment, and
+ingestion from the Audisoft API, which is blocked on credentials that return 401
+(D-054). **Recurring reports are not on this list** — they are scope item 13 and
+belong in v1.
 
 ## Recent sessions
 
