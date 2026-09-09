@@ -10,8 +10,8 @@ plan follows it. The scope document is what Antillanca agreed to receive, not
 the record of how it is built.
 
 **Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
-`../milk-company`. Frontend work is pushed through `4035fef`; twenty-three later
-commits are local and unpushed through `7e14e7f`.
+`../milk-company`. Frontend work is pushed through `4035fef`; twenty-four later
+commits are local and unpushed through `dc76546`.
 
 **Status: building, in `../milk-company`.** Phases 1–2.5 are done. Phase 3's
 writer is connected to both doors in source; the email path is unproved live and
@@ -20,6 +20,10 @@ and three of five query tools plus the refusal backlog are built, but migrations
 live. Every phase below carries
 its own state. The seven GO decisions D1, D2, D3, D5, D6 and D7 are settled
 (Afaq, 2026-09-08); D4 was withdrawn.
+
+The production classifier connection itself is proved: on 2026-09-09 the
+dashboard's TypeScript adapter received 10/10 results from the deployed v1.3.3
+`/predict-batch`. That does not substitute for the first real mailbox run.
 
 ---
 

@@ -15,11 +15,16 @@ backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
 purchasing forms and read-only ingestion paths are pushed through `4035fef`;
-twenty-three further commits are local and unpushed through `7e14e7f`. Migrations
+twenty-four further commits are local and unpushed through `dc76546`. Migrations
 `005`–`010` are **live**; `011`–`017` are required and not live. Ten audit
 findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
+
+The dashboard classifier adapter was exercised against the real Cloud Run URL
+on 2026-09-09: one prediction and a ten-item `/predict-batch` both returned
+complete v1.3.3 results. This proves the model connection, not the still-unrun
+Resend → Vercel → Supabase end-to-end path.
 
 `app/data/product_lookup.csv` was audited entry by entry on 2026-08-18 by an
 independent Codex pass — **1 finding in 696, not actionable.** It is clean; do

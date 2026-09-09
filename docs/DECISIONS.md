@@ -1699,3 +1699,27 @@ answer to “how did this row become settled?”, not the full audit trail.
 
 **Rejected:** reusing `user_selected`. Approval is human, but execution is by
 the Yunt, and Afaq wants those two operational paths distinguishable.
+
+---
+
+## D-067 — Email actions require an exact, structurally bound confirmation
+
+**Date:** 2026-09-09 · **Decided by:** Codex · **Model:** GPT-5.6
+
+Yunt V1 has no chat UI; its action channel is email. Before applying a category
+proposal or undoing an application, a dedicated tool sends a code-generated
+restatement for exactly one action and target. The action executes only when a
+later inbound request matches that outgoing Message-ID, the same sender, the
+same action and target, and has `CONFIRMO <one-use token>` as its entire first
+line. Quoted email text below the first line cannot approve anything. The
+database consumes the confirmation in the same transaction as the action, and
+a retry of the same request is idempotent.
+
+EVE's built-in approval pause is deliberately not used: it expects a channel
+that can render an approval control, while V1 is email-only and would park with
+nobody able to click. A generic reply is also insufficient; the previous code
+accepted any `in_reply_to`, and the webhook even filled missing reply headers
+with the opening message's own id. Both paths made “confirm first” a prompt
+instruction rather than an enforced boundary.
+
+---

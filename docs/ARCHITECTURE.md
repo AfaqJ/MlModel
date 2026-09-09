@@ -153,6 +153,9 @@ confidence.
   `007_yunt_ingest.sql`'s atomic document write; `011`–`017` are not. Failed
   agent-email delivery releases its inbound request back to `open`, so a retry
   can reclaim it; unsupported requests are recorded once in `yunt_refusals`.
+  Category apply and undo require a code-generated email restatement and a reply
+  tied to that exact Message-ID, sender, action, target and one-use first-line
+  token (D-067); a generic reply is never approval.
 - **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
   row-count verified immediately before the 2026-08-17 full re-load. Earlier
   snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and

@@ -22,7 +22,9 @@ Afaq has not approved that permission design yet.
 Review packets, grounded evidence, findings email, retryable inbound requests,
 apply/undo, bounded item price history, category precedent, filtered invoice-line
 lists, and a durable refusal backlog all have regressions. `014` writes
-`prediction_source='yunt_applied'` (D-066).
+`prediction_source='yunt_applied'` (D-066). Apply and undo now require an exact,
+email-thread-bound confirmation instead of treating any reply as approval
+(D-067).
 The aggregate and period-comparison tools, seven
 data-quality checks, exports/charts/reports, recurring reports, and Yunt-driven
 purchasing are still to build.
@@ -32,8 +34,13 @@ live boundary; every pending migration has been loaded twice in disposable
 PostgreSQL. Supabase currently reports **EXCEEDING USAGE LIMITS**, so no live
 write or migration should be attempted until the project serves requests again.
 
-**Branch `yunt` is pushed only through `4035fef`; twenty-three commits are local**
-through `7e14e7f`. Preview only. Production remains `main`; nothing merged.
+**The real Cloud Run classifier connection is proved.** The dashboard adapter
+received one successful prediction and exactly 10/10 results from a live batch,
+all reporting v1.3.3. The email path calls that same adapter. No actual mailbox
+message or Supabase write has yet proved the whole deployed chain.
+
+**Branch `yunt` is pushed only through `4035fef`; twenty-four commits are local**
+through `dc76546`. Preview only. Production remains `main`; nothing merged.
 `yunt-backend` here is also unpushed.
 
 ## HANDOVER — 2026-09-09, session ended by Afaq
@@ -274,7 +281,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       3/5 are proved; aggregate and period comparison remain
 - [ ] Answer delivery: figure in the body, list as `.xlsx`, report as PDF
 - [x] Refusal path and `yunt_refusals`, one immutable backlog row per request
-- [ ] Restate-then-confirm before any action the person agreed to in prose
+- [x] Exact restate-then-confirm for apply and undo: code-generated prompt,
+      Message-ID/sender/action/target binding, and one-use first-line token
 
 ### Acting, with a way back
 
@@ -342,9 +350,22 @@ belong in v1.
 - **Built the refusal backlog.** The agent records one immutable refusal per
   inbound request, with the missing capability and reason but never a model-
   rewritten copy of the user's question. Migration `017`, commit `7e14e7f`.
+- **Closed a dangerous approval hole.** An opening request was stored with its
+  own Message-ID as `in_reply_to`, so every question looked like a reply; even a
+  real reply was not bound to the proposal it supposedly approved. Opening
+  messages now stay opening. Apply and undo require a code-generated prompt and
+  a reply matching its Message-ID, sender, exact action, exact target and one-use
+  token on the first line. The findings email now exposes the actual proposal
+  id the next EVE session can use. Commit `dc76546` (D-067).
+- **Proved the production classifier connection without writing data.** The
+  deployed `/health` and `/artifact-check` reported v1.3.3 and intact artifacts;
+  one prediction returned `EXP-2.3 Vacunas`, and the dashboard's own TypeScript
+  adapter received exactly 10/10 results from `/predict-batch`.
 - **Proof:** `014` apply/undo and `015` price history each loaded twice and passed
   behavioral PostgreSQL checks; `016` and `017` passed the same load-twice and
-  behavior proof. After every increment, `./check.sh` was all green
+  behavior proof. The expanded `014` proof also rejects opening mail, quoted
+  confirmation text, wrong targets, reused prompts and stale rows. After every
+  increment, `./check.sh` was all green
   (types, zero lint errors, build, all checks); the final `npx eve build` passed.
 - **Gotcha:** source wiring hid a real security failure. `/carga` carries an
   authenticated client into objects granted only to `service_role`. Previewing
