@@ -25,15 +25,16 @@ lists, and a durable refusal backlog all have regressions. `014` writes
 `prediction_source='yunt_applied'` (D-066). Apply and undo now require an exact,
 email-thread-bound confirmation instead of treating any reply as approval
 (D-067).
-The Yunt-created request half of purchasing is also built (`018`), and a
-read-only tool grounds the next step in one request plus only its own bounded
-quotations. The order form now records its optional selected quotation and
-`019` rejects a quotation belonging to another request. Attaching precedent and
-drafting the final order remain. The aggregate and period-
-comparison tools, the unsettled quality-check set, exports/charts/reports and
-recurring reports are still to build.
+Purchasing is now built end to end for the Yunt: it drafts a request (`018`),
+grounds itself in one request plus only its own bounded quotations, and drafts
+and issues the order (`020`) through the same `create_purchase_order` the form
+uses, so the CLP 500,000 two-quotation rule has exactly one copy. The order form
+records its optional selected quotation and `019` rejects one belonging to
+another request. Attaching price precedent to a buying exchange remains. The
+aggregate and period-comparison tools, the unsettled quality-check set,
+exports/charts/reports and recurring reports are still to build.
 
-**Migrations `005`–`010` are live. `011`–`019` are not.** Afaq confirmed the
+**Migrations `005`–`010` are live. `011`–`020` are not.** Afaq confirmed the
 live boundary; every pending migration has been loaded twice in disposable
 PostgreSQL. Supabase currently reports **EXCEEDING USAGE LIMITS**, so no live
 write or migration should be attempted until the project serves requests again.
@@ -164,11 +165,11 @@ Two real traps in that set:
 
 ### What to run, and why
 
-**Migrations `011` through `019`, in that order, in one paste.**
+**Migrations `011` through `020`, in that order, in one paste.**
 A combined file was generated and handed to Afaq. Regenerate it with:
 
 ```
-cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals,018_yunt_purchase_requests,019_purchase_order_quotation_guard}.sql
+cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals,018_yunt_purchase_requests,019_purchase_order_quotation_guard,020_yunt_purchase_orders}.sql
 ```
 
 - `011` — review packets, so a retry cannot double-count findings
@@ -180,6 +181,9 @@ cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yun
 - `017` — immutable refusal/backlog entries, one per stored inbound request
 - `018` — email-drafted purchase requests created only after exact confirmation
 - `019` — an optional selected quotation must belong to the request being ordered
+- `020` — Yunt-drafted purchase orders; also replaces `005`'s
+  `create_purchase_order` with the same function whose signed-in guard now
+  admits `service_role`, because the Yunt has no `auth.uid()`
 
 Why it is safe: there is no `DELETE`, `TRUNCATE`, `DROP TABLE`, or top-level
 data `UPDATE`. `014` deliberately replaces the existing
@@ -197,7 +201,9 @@ a disposable PostgreSQL, re-runs `011`->`014` for idempotency, and exercises
 `scripts/prove-017-yunt-refusals.sh` proves refusal logging and replay safety;
 `scripts/prove-018-purchase-request.sh` proves draft/create/replay behavior.
 `scripts/prove-019-quotation-guard.sh` proves cross-request quotations are
-rejected while matching and unlinked orders remain valid.
+rejected while matching and unlinked orders remain valid;
+`scripts/prove-020-purchase-order.sh` proves Yunt order drafting, the exact
+confirmation, replay, and that the two-quotation rule still refuses the Yunt.
 All are committed and re-runnable.
 
 **Take a backup first** (`scripts/81_backup_supabase.py`). The last one is
@@ -221,7 +227,7 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**10 of 19 done in code, 3 partly, 6 not started. Nothing agentic is live yet.**
+**11 of 19 done in code, 3 partly, 5 not started. Nothing agentic is live yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
@@ -242,7 +248,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 16 | Form two, with the two-quotation rule above CLP 500,000 | Done. Rule proved by regression |
 | 17 | A purchase-order PDF Antillanca sends themselves | Partly. A print-styled page; the browser saves the PDF. Cannot be attached to mail |
 | 18 | The Yunt fills form one from a plain-language email | Done in code. Missing required facts are requested; a stored draft becomes a real open request only after exact confirmation. Not live until `018` runs |
-| 19 | The Yunt drafts the order once a quotation exists | Not started |
+| 19 | The Yunt drafts the order once a quotation exists | Done in code. Drafts from a supplier, quantity and agreed price it was given, then issues the order only on the exact confirmation. Not live until `020` runs |
 
 **Read the middle column, not the count.** The deterministic base is farthest
 along. The EVE review and action tools are now called by the email path in code,
@@ -313,15 +319,16 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       a quotation belonging to a different request (`019`)
 - [ ] Attach supplier/price precedent to that buying exchange when requested
       (the grounded price-history tool itself already exists)
-- [ ] The CLP 500,000 two-quotation check called from the same function the
-      form uses, never a second copy
+- [x] **The Yunt drafts and issues the order from email after exact
+      confirmation** (`020`), through the same `create_purchase_order` the form
+      calls — the CLP 500,000 two-quotation check has one copy, never a second
 
 ### Waiting on Afaq
 
 - [ ] Clear Supabase's **EXCEEDING USAGE LIMITS** state
 - [ ] Approve the `/carga` operator permission design
 - [ ] Confirm or change the temporary Opus 5 / medium choice
-- [ ] **Run `011`–`019`** in the Supabase editor — all idempotent, each proved
+- [ ] **Run `011`–`020`** in the Supabase editor — all idempotent, each proved
       twice against a disposable PostgreSQL
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
@@ -336,6 +343,29 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (g) — the Yunt drafts and issues a purchase order
+
+- **Scope item 19 built.** `draft_purchase_order` stages one order from a
+  supplier, quantity and agreed unit price the Yunt was actually given;
+  `request_action_confirmation` sends the code-generated restatement including
+  the exact total; `create_purchase_order` issues it only on the exact reply
+  (D-067). It contacts no supplier and invents no fact.
+- **One copy of the money rule, kept.** The new database function calls the
+  existing `create_purchase_order`, so the CLP 500,000 two-quotation rule, the
+  open-request check and the closing of the request are unchanged (D-052).
+- **The blocker that was there all along.** `create_purchase_order` refused any
+  caller without an `auth.uid()`. The Yunt runs as `service_role` and has none,
+  so the second caller the rule was centralised for could never have reached it.
+  `020` widens that one guard and changes nothing else.
+- **Proof:** `scripts/prove-020-purchase-order.sh` — `020` loads twice; staging
+  is idempotent; a cross-request quotation and an already-ordered request are
+  refused at drafting; "si dale" creates nothing; the exact line creates one
+  order and closes the request; a replay returns the same order; CLP 900,000 on
+  one quotation is refused in that function's own words **without** consuming
+  the confirmation token, so the retry after uploading a second quotation works.
+  `./check.sh` all green (including a new `check-yunt-purchase-order.ts`) and
+  `npx eve build` passed. Frontend commit `a9140e4`.
 
 ### 2026-09-09 (f) — purchase-order quotation integrity
 
