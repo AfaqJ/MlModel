@@ -31,8 +31,15 @@ unpushed.
 arrive by email or upload, be stored atomically, and start a grounded review
 that mails its findings back. Nothing has run against live data yet.
 
-Next: **item 8, apply-on-approval with undo.** Every path now ends in a proposal
-and there is no way to accept one, which makes items 6 and 7 read-only advice.
+Item 8 is done, so a proposal can now be accepted and reversed. Next: **the five
+query tools (item 9)**, which are what make items 10-13 and 18-19 possible — all
+of them read numbers through the same tools.
+
+**Needs your yes:** an applied proposal writes `prediction_source =
+'user_selected'`, because a person approved it and that keeps the corrected
+auto-accept metric honest. Provenance of what the Yunt touched lives in
+`yunt_application_rows`. The alternative is a seventh value, which would change
+D-047. One line to flip.
 
 ## What the Yunt promises, and what it does today
 
@@ -41,7 +48,7 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**9 of 19 done, 3 partly, 7 not started.**
+**10 of 19 done, 3 partly, 6 not started.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
@@ -52,7 +59,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 5 | An acknowledgement in minutes, then a written report | Partly. One email carries both; the fast acknowledgement is not separate |
 | 6 | Data quality flags, and fixes proposed on approval | Not started |
 | 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
-| 8 | Approve a group, get a confirmation, undo it | Not started. **This is the gap that makes 6 and 7 unusable** |
+| 8 | Approve a group, get a confirmation, undo it | Done in code. The confirmation is the database's own words, not the model's |
 | 9 | Five query tools answering open questions | Not started |
 | 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Not started. Plain-text replies only |
 | 11 | Charts from a fixed set, drawn by code | Not started |
@@ -114,9 +121,10 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 ### Acting, with a way back
 
-- [ ] **`apply_proposal(proposal_id, nonce)`** — sealed targets, no row list
-      from the caller (Phase 6)
-- [ ] **`yunt_applications`: prior values stored, undo is a per-row replay**
+- [x] **`apply_proposal`** — sealed targets, no row list from the caller, stale
+      proposals refused because a person's later edit wins (Phase 6)
+- [x] **`yunt_applications`: prior values stored, undo is a per-row replay** —
+      `decision` and `reviewed` come back too
 - [ ] Data-quality flags, all seven checks; a flagged `auto_accept` is
       downgraded to review and nothing else (Phase 4, D-058, D1)
 
@@ -130,7 +138,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 ### Waiting on Afaq
 
-- [ ] **Run `011`, `012`, `013`** in the Supabase editor — all idempotent
+- [ ] **Run `011`, `012`, `013`, `014`** in the Supabase editor — all idempotent,
+      each proved twice against a disposable PostgreSQL
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
 - [ ] Fix the `Confeccion de Bolos` duplicate — three catalog rows, one thing
