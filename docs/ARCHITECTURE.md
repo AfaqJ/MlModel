@@ -159,7 +159,9 @@ confidence.
   The same gate now covers email-drafted purchase requests: the draft stores
   what/quantity/unit/date/farm, and only its exact confirmation creates the
   ordinary `purchase_requests` row. It does not create an order or contact a
-  supplier.
+  supplier. Before discussing an order, `purchase_request_context` loads one
+  exact request, at most 20 quotations belonging to it, and any existing order;
+  private quotation storage paths never enter the model context.
 - **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
   row-count verified immediately before the 2026-08-17 full re-load. Earlier
   snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and

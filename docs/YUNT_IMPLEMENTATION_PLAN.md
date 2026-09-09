@@ -10,8 +10,8 @@ plan follows it. The scope document is what Antillanca agreed to receive, not
 the record of how it is built.
 
 **Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
-`../milk-company`. Frontend work is pushed through `4035fef`; twenty-six later
-commits are local and unpushed through `016f907`.
+`../milk-company`. Frontend work is pushed through `4035fef`; twenty-seven later
+commits are local and unpushed through `7587d50`.
 
 **Status: building, in `../milk-company`.** Phases 1–2.5 are done. Phase 3's
 writer is connected to both doors in source; the email path is unproved live and
@@ -605,7 +605,9 @@ and the PDF download. Try to order CLP 900,000 with one quotation and be stopped
 
 **Status:** form one is built locally through migration `018`, including
 required-field validation, exact email confirmation and replay safety. Price-
-precedent attachment and the order/PDF half remain.
+precedent attachment and the order/PDF half remain. A read-only EVE tool now
+loads one exact request, only its own bounded quotations, and an existing order,
+so order drafting can be grounded without exposing private storage paths.
 
 - Cristian emails "necesito 20 sacos de sal para el fundo Raíces antes del 15".
   Claude extracts item, quantity, farm and date into the **same request table**,

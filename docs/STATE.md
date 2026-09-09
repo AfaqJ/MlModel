@@ -25,8 +25,9 @@ lists, and a durable refusal backlog all have regressions. `014` writes
 `prediction_source='yunt_applied'` (D-066). Apply and undo now require an exact,
 email-thread-bound confirmation instead of treating any reply as approval
 (D-067).
-The Yunt-created request half of purchasing is also built (`018`); attaching
-precedent and drafting the final order remain. The aggregate and period-
+The Yunt-created request half of purchasing is also built (`018`), and a
+read-only tool grounds the next step in one request plus only its own bounded
+quotations. Attaching precedent and drafting the final order remain. The aggregate and period-
 comparison tools, the unsettled quality-check set, exports/charts/reports and
 recurring reports are still to build.
 
@@ -40,8 +41,8 @@ received one successful prediction and exactly 10/10 results from a live batch,
 all reporting v1.3.3. The email path calls that same adapter. No actual mailbox
 message or Supabase write has yet proved the whole deployed chain.
 
-**Branch `yunt` is pushed only through `4035fef`; twenty-six commits are local**
-through `016f907`. Preview only. Production remains `main`; nothing merged.
+**Branch `yunt` is pushed only through `4035fef`; twenty-seven commits are local**
+through `7587d50`. Preview only. Production remains `main`; nothing merged.
 `yunt-backend` here is also unpushed.
 
 ## HANDOVER — 2026-09-09, session ended by Afaq
@@ -301,6 +302,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] The two forms, real tables (`005` live) — not yet exercised live
 - [x] The Yunt drafts and creates form one from email only after exact
       confirmation (`018`)
+- [x] Read one request, its bounded quotations and any existing order without
+      exposing private quotation storage paths
 - [ ] Attach supplier/price precedent to that buying exchange when requested
       (the grounded price-history tool itself already exists)
 - [ ] The CLP 500,000 two-quotation check called from the same function the
@@ -374,6 +377,10 @@ belong in v1.
   confirmation, then creates the ordinary open `purchase_requests` row with
   `created_via='yunt'` and the source email id. It creates no order and contacts
   nobody. Migration `018`, commit `016f907`.
+- **Grounded the next purchasing step.** `purchase_request_context` reads one
+  exact request, up to 20 quotations belonging to it, and any existing order.
+  It does not expose private quotation storage paths and cannot write anything.
+  Commit `7587d50`.
 - **Proof:** `014` apply/undo and `015` price history each loaded twice and passed
   behavioral PostgreSQL checks; `016` and `017` passed the same load-twice and
   behavior proof; `018` passed load-twice plus draft/create/replay behavior. The
