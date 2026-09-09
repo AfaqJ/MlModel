@@ -1,15 +1,20 @@
 # YUNT — implementation plan
 
-The recipe behind `docs/Yunt_scope_v1.docx` (19 items). Built horizontally:
-**every phase ends with something that runs end to end**, so a defect is found
-the day it is introduced, not on the last day.
+The recipe. Built horizontally: **every phase ends with something that runs end
+to end**, so a defect is found the day it is introduced, not on the last day.
 
-Branch: `feature/yunt` (this repo). `feature/yunt` off `feature/dashboard` in
-`../milk-company` at GO.
+`docs/Yunt_scope_v1.docx` is the client-facing menu of 19 items and **is not
+authoritative** — it was sent on 2026-09-07 and several things were settled by
+discussion afterwards. Where the two disagree, `DECISIONS.md` wins and this
+plan follows it. The scope document is what Antillanca agreed to receive, not
+the record of how it is built.
 
-Status: **awaiting GO.** Nothing below is built. Section 3 held seven decisions:
-**all seven are closed** (Afaq, 2026-09-08) — D1, D2, D3, D5, D6 and D7 settled,
-D4 withdrawn. Awaiting GO, plus the four items in section 11.
+**Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
+`../milk-company`. Nothing pushed.
+
+**Status: building, in `../milk-company`.** Phases 1–2.5 are done, none of the
+write path is. Every phase below carries its own state. The seven GO decisions
+D1, D2, D3, D5, D6 and D7 are settled (Afaq, 2026-09-08); D4 was withdrawn.
 
 ---
 
@@ -84,42 +89,44 @@ The Yunt slots in as **step 9, under the same rule** (see decision D1).
 
 ## 2. Where the Yunt lives
 
-**A new Cloud Run service, `yunt`, built from this repo. Not the live classifier
-container, not Vercel.**
+**Inside the existing `milk-company` Next.js app on Vercel, as an
+[eve](https://vercel.com/eve) agent (D-055).** Same repo, same deploy, same
+database. Google Cloud hosts the classifier endpoint and nothing else.
 
 ```
-Cristian ──email──► Resend inbound ──webhook──► Cloud Run `yunt`  (new, this repo)
+Cristian ──email──► Resend inbound ──webhook──► /api/yunt/inbound   (Vercel)
+                                                    │
+   Cristian ──browser──► /carga (ZIP upload) ───────┤ same pipeline
                                                     │
         ┌───────────────────────────────────────────┼──────────────────────┐
         │                                           │                      │
    Cloud Run `mlmodel`                          Supabase                Claude API
    /predict-batch (existing, untouched)      (shared state)          (judgement only)
-                                                    │
-                                          Vercel `milk-company`
-                                          dashboard reads + writes
 ```
 
-**Why a separate service and not the existing `mlmodel` container:** `mlmodel`
-is live at 100% traffic serving the client's classifier. Its image carries the
-278 MB ONNX bundle and takes minutes to build. An email webhook has no business
-sharing a deploy or a failure mode with it. The scope already treats the
-classifier as a remote endpoint ("batches of five hundred"), so the seam exists.
+**Why not a separate Python service, which is what this plan said until
+2026-09-09:** the argument then was that the DTE parser was too hard-won to
+rewrite in TypeScript. That argument has been settled by doing it — the parser,
+the archive reader, the catalog resolver and the classifier client are all
+ported, and each was verified by replaying the same 4,451-file corpus and
+asserting the numbers as **equalities**, not by inspection. The knowledge was
+not re-earned; it was moved, with a test that proves it arrived intact.
 
-**Why not Next.js API routes on Vercel:** the DTE parser would have to be
-rewritten in TypeScript. That parser is the single hardest-won piece of code in
-the project — ISO-8859-1 with no `encoding=` declaration, the `MontoItem` vs
-`MntItem` trap, three namespace shapes — and `milk-company`'s existing TS XML
-parser is already **verifiably wrong on DTE files**
-(`src/lib/extractor/xml-parser.ts`, empty `if (elements.length > 1) {}` drops
-every `<Detalle>`). Rewriting it would be re-earning knowledge we already have
-in Python, and Vercel's function timeout is a poor fit for 400 documents.
+What that buys: one deploy instead of two, one language for the agent's tools
+(eve's tools are TypeScript files in `agent/tools/`, and `needsApproval` is a
+built-in field rather than machinery we write), and no second service sharing a
+failure mode with the client's live classifier.
 
-**The seam between the two repos is Supabase, not an API.** The Yunt writes
-proposals, flags and requests into tables; the dashboard reads them. Neither
-calls the other. That is what makes "a request the Yunt opened looks like a
-request a person opened" fall out for free rather than needing plumbing.
+**Two doors into the same pipeline, deliberately.** Email is the agreed channel
+(scope items 1–5). The `/carga` upload page is the standing fallback for when
+Cristian would rather not use email, or when the mail path is down — and it is
+also the only sane route for a full-year backfill, which was never going to
+arrive as an attachment. Both call `runIngest`; there is one copy of the logic,
+so the two cannot drift.
 
----
+**The seam with the classifier is HTTP, not an import.** That is what keeps
+torch, onnxruntime and a 278 MB model out of this app, and lets the two deploy
+independently.
 
 ## 3. Decisions needed before GO
 
@@ -275,38 +282,43 @@ Each phase is one working day or less, ends with something you can run, and
 leaves the previous phase still working. "Proof" is the command or action that
 shows it, not a summary.
 
-### Phase 0 — the deploy path, before any logic · half day
+### Phase 0 — the deploy path · DONE, and it cost nothing
 
-Build and deploy an empty `yunt` service. Nothing but `/health`.
+Superseded by D-055. The Yunt ships inside an app that is already deployed, so
+there is no new container, no `Dockerfile.yunt`, and no `.gcloudignore` trap to
+walk into. This phase existed to de-risk a deploy path that no longer exists.
 
-- `Dockerfile.yunt`, `requirements-yunt.txt` (no torch, no onnxruntime, no
-  transformers — this container must stay small and cold-start fast)
-- `yunt/main.py` — FastAPI, `/health`
-- Cloud Run service `yunt`, `europe-west1`, private (no `allUsers`)
-
-**Proof:** `curl https://yunt-.../health` returns `{"status":"ok"}`.
-**Why first:** the deploy path is where this project has historically lost time
-(`.gcloudignore`, LFS pointers, missing model). Prove it while it is empty.
-
-### Phase 1 — email in, email out · day 1
+### Phase 1 — email in, email out · BUILT, not switched on
 
 Cristian emails the Yunt, the Yunt replies. Nothing is parsed, nothing is stored.
 
-- Resend receiving domain + inbound address (`facturas@…` — needs an MX record
-  on a domain you control, or the `.resend.app` subdomain to start)
-- `POST /inbound/resend` — **Svix signature verification on the raw body**
+- `POST /api/yunt/inbound` — **Svix signature verification on the raw body**
   (`svix-id`, `svix-timestamp`, `svix-signature`; verifying against re-serialised
-  JSON silently fails)
-- Sender allowlist; a rejected sender is logged and gets no reply
-- `yunt/mail.py` — the **only** place that can call Resend's send API, with the
-  `YUNT_ALLOWED_ADDRESSES` check inside it, failing closed when unset (D5)
-- `yunt_emails` table: every message in and out, with its Resend id
+  JSON silently fails). Hand-rolled over `node:crypto` rather than adding the
+  `svix` package, and guarded by `scripts/check-webhook-signature.ts`, which
+  asserts two acceptances and eleven refusals including replay.
+- Sender allowlist. A rejected sender is logged and gets **silence, never a
+  bounce** — a bounce tells a stranger the address is live.
+- `src/lib/ingest/mail.ts` — the **only** place that can call Resend's send API,
+  with the `YUNT_ALLOWED_ADDRESSES` check inside it, failing closed when unset
+  (D5). Unset today, so the code physically cannot mail anyone. Setting the
+  variable is what turns mail on; there is no commented-out line to remember.
+- Attachments come from Resend's receiving API in two hops — `GET
+  /emails/receiving/{id}/attachments/{attachment_id}` returns a short-lived
+  signed CDN `download_url`, and the API key must **not** be sent to that URL.
 
-**Proof:** you send an email from Cristian's address, you get an acknowledgement
-naming the attachments; you send from a third address, you get silence and a row
-in `yunt_emails` marked rejected.
+**Still needed to switch it on:** a receiving address (the free `.resend.app`
+one needs no DNS; a custom domain needs an MX record on a **subdomain**, never
+the root, or all mail for that domain goes to Resend), the Resend API key, the
+webhook signing secret, and the allowlist. All four are Afaq's to supply.
 
-### Phase 2 — parse, deduplicate, report · day 2. **Still no writes.**
+**Not built:** the `yunt_emails` table recording every message in and out. It is
+a write, so it belongs with Phase 3.
+
+**Proof, once the four values exist:** send from Cristian's address and get a
+report; send from a third address and get silence.
+
+### Phase 2 — parse, deduplicate, report · DONE. **Still no writes.**
 
 - Fetch attachments via Resend's Attachments API (`download_url`, they are not
   in the webhook body), unzip, walk `COMPRAS/` and `VENTAS/`
@@ -329,7 +341,7 @@ in `yunt_emails` marked rejected.
 match `find … -name '*.xml' | wc -l` and the parser's own count; re-send the same
 email and the report says 100% duplicate.
 
-### Phase 2.5 — the catalog resolver · days 3–7 (D2)
+### Phase 2.5 — the catalog resolver · DONE, aliases awaiting a write (D2)
 
 The one phase that needs no email, no Cloud Run and no writes: it is built and
 measured **entirely offline against the 11,746 rows already in Supabase**, where
@@ -387,7 +399,7 @@ matters — **how many lines it maps to a catalog row different from the one the
 sit on today.** Day one that number is 0 by construction (tier 1 only); every
 tier added after must justify each disagreement it introduces.
 
-### Phase 3 — write to Supabase · day 8. **New invoices appear in the dashboard.**
+### Phase 3 — write to Supabase · NEXT. **New invoices appear in the dashboard.**
 
 - Classify in batches of 500 against `mlmodel`'s `/predict-batch`
 - Lock `mlmodel` to a service account, give `yunt` that identity (D6)
@@ -408,7 +420,11 @@ from you on the day, against a dry run.
 
 ### Phase 4 — data quality flags · day 9 (scope item 6)
 
-All deterministic. No model. A flag never changes a category.
+**Detection is deterministic and read-only. Fixing is a proposal, and the
+proposal goes through Phase 6's approve/apply/undo path** — not a second one
+(D-058). Afaq, 2026-09-09: the Yunt is a collaborator, not an advisor, so it
+does act on data problems — but only after Cristian approves, and through the
+one apply mechanism that already has an undo.
 
 - line total ≠ quantity × unit price (viable only because of D3)
 - document total ≠ sum of its lines
@@ -416,9 +432,20 @@ All deterministic. No model. A flag never changes a category.
 - unit price outside the historical range for that catalog item (scored against
   **that item's own history**, per D-049 — never a pooled distribution)
 - supplier RUT never seen before
+- junk item names — placeholders (`Item`, `Detalle`), empty names, a name that
+  is only a number. 177 such lines exist in the historical corpus.
 
 Flags land in `yunt_flags` and appear in the batch report. A flagged
-`auto_accept` row is **downgraded to review** (D1) — the only thing a flag changes.
+`auto_accept` row is **downgraded to review** (D1) — the only thing detection
+changes by itself. Anything beyond that is a proposal Cristian approves.
+
+**A live example of why this phase is not theoretical:** 387 stored documents
+carry lines that overstate their own header by CLP 21,189,814 in total — one
+electricity invoice worth CLP 1,261 has a line claiming CLP 1,011,311, which is
+a meter reading sitting in the amount column. Per-category spend on the
+dashboard is inflated by that today. See `docs/CLIENT_DATA_ISSUES.md` §1. The
+constraint there holds: a check may **flag**, never silently change a value and
+never block an ingest, and a missing field is normal rather than an error.
 
 **Every threshold is calibrated against the existing 11,746 rows before it
 ships, and the hit rate is reported.** Afaq's requirement, and it is the right
@@ -526,7 +553,7 @@ rather than guessed.
 Cloud Scheduler → three jobs: month-end summary, post-batch digest, weekly
 review list. Same tools, same rendering, nothing new except the trigger.
 
-### Phase 9 — purchase orders, the forms · days 14–15 (scope items 14–17, D-052)
+### Phase 9 — purchase orders, the forms · BUILT, awaiting `005_purchase_orders.sql` (D-052)
 
 Frontend work in `milk-company`. The screens exist as mock-ups with a
 `DemoBanner`; this makes them real.
@@ -725,9 +752,17 @@ contact, ever.
 
 ---
 
-## 11. What I need from you at GO
+## 11. What is still needed from you
 
-1. Answers to D1–D7 (five have a recommendation; "approve" is a fine answer).
-2. Cristian's email address, and the domain the Yunt should receive on.
-3. The Resend API key, the Claude API key, and `YUNT_ALLOWED_ADDRESSES`.
-4. Approval on the day for Phase 3, the first phase that writes to live data.
+1. **Run `milk-company/supabase/005_purchase_orders.sql`** in the Supabase SQL
+   editor. The purchasing screens are built and error until it does.
+2. **Run `milk-company/supabase/006_alias_provenance.sql`**, before any alias
+   load rather than after.
+3. **Four values for the mailbox**, all Resend-side: the receiving address (the
+   free `.resend.app` one needs no DNS at all), `RESEND_API_KEY`,
+   `RESEND_WEBHOOK_SECRET`, and `YUNT_ALLOWED_ADDRESSES` — which must include
+   Cristian's address. Mail cannot be sent until the last one is set, by design.
+4. **Approval on the day for Phase 3**, the first phase that writes to live data,
+   against a backup and a dry run.
+5. **Your yes on the 222 harvested aliases**, and on the `Confeccion de Bolos`
+   merge (`docs/YUNT_OPEN_DECISIONS.md` items 1 and 3).

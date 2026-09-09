@@ -1456,3 +1456,146 @@ different lorryload of cows, each plausible enough to be ticked through.
 the category list is fixed, so categories are what the product depends on.
 Clean up the obvious recurring items — fuel, utility bills — and let everything
 else become a new catalog row rather than paying a model per line to decide.
+
+---
+
+## D-058 — The Yunt acts on data problems, but only through one apply path
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The sent scope says of data-quality flags: *"A flag never changes anything; it
+is information for a person"* — and then, in the same paragraph, *"The YUNT
+proposes fixes to any abnormality and act upon Cristian's approval."* Those two
+sentences contradict each other. Afaq settled it in favour of the second, and
+stated the principle behind it: **a Yunt is a digital collaborator, not an
+advisor — it works on tasks, after Cristian approves them.**
+
+So the split is not flag-versus-fix, it is **detection versus action**:
+
+- **Detection is deterministic, read-only, and never blocks an ingest.** That
+  half of the scope sentence stands, and `docs/CLIENT_DATA_ISSUES.md`'s
+  constraint with it: a check may flag, never silently change a value.
+- **The fix is a proposal**, and every proposal — a category, a data
+  correction, a catalog merge — travels the **same** propose → approve → apply →
+  undo path (scope item 8, plan Phase 6). One mechanism, one undo, one audit
+  trail.
+
+**Why one path and not two.** A second apply mechanism means a second place
+where "approved" is defined, a second undo to get right, and a second set of
+rows nobody can explain later. The sealed-proposal design already exists and
+already carries its target rows and their expected revisions inside itself; a
+data fix is the same shape with a different payload.
+
+**What this does not authorise.** Nothing applies without Cristian's approval on
+that specific group, and the historical 11,746 rows are untouched by it — those
+are a separate backfill with its own approval.
+
+---
+
+## D-059 — The scope document is a client-facing menu, not the build's source of truth
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+`docs/Yunt_scope_v1.docx` was sent to the team on 2026-09-07. **Several things
+were settled by discussion afterwards, and the document was not re-issued.**
+Afaq, when the drift was surfaced: *"things were discussed after the scope
+document that is not authoritative."*
+
+Two copies of it exist and they differ — the sent one is authoritative *as a
+record of what the client was promised*, and the repo now holds that copy.
+
+**The rule:** where the scope document and `DECISIONS.md` disagree, the decision
+log wins and `YUNT_IMPLEMENTATION_PLAN.md` follows the decision log. The scope
+document is never edited to match the build; it is what Antillanca agreed to
+receive, and rewriting it after the fact would destroy the only record of that.
+When a change is big enough that Antillanca needs to know, it goes out as a new
+version with a new date, not as a silent edit.
+
+This also retires the claim, made in `YUNT_IMPLEMENTATION_PLAN.md` until today,
+that the plan is "the recipe behind the docx". It is the recipe behind the
+decisions.
+
+---
+
+## D-060 — The ZIP upload page is a permanent fallback, not a stopgap
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+`/carga` in the dashboard takes a ZIP of SII XML and runs the identical ingest
+pipeline the mailbox runs. It was built because scope item 1 (the mailbox) is
+blocked on a domain and API keys, but Afaq settled that **it stays**:
+
+- as the path for when Cristian would rather not use email;
+- as the fallback for when the mail path — or the Audisoft API, still returning
+  401 on every credential form (D-054) — stops working;
+- as the only sane route for a full-year backfill, which was never going to
+  arrive as an email attachment.
+
+**One pipeline, two doors.** Both call `runIngest` in
+`../milk-company/src/lib/ingest/live.ts`. There is no second copy of the reading,
+deduplication, resolution or classification logic, so the two cannot drift — which
+is the whole reason this is safe to keep rather than a second thing to maintain.
+
+---
+
+## D-061 — The Resend account is shared, so the Yunt filters inbound mail by recipient
+
+**Date:** 2026-09-09 · **Decided by:** Claude, confirmed by Afaq · **Model:** Claude Opus 5
+
+The Yunt receives at **`antillanca.yunt@mountaincreative.cl`**, on a Resend
+account (`MC`, Pro, `afaq@mctechstudio.com`) that already serves other projects —
+`ppd-agent` has been receiving at `testing@` and `siniestros@` on the same domain
+for 23 days.
+
+**The fact that forces this:** a Resend webhook cannot be scoped. Creating one
+takes an `endpoint` and an `events` array **and nothing else** — checked against
+the API reference, not assumed. So every endpoint registered on the account
+receives every `email.received`, whoever it was addressed to. Filtering is the
+receiver's job, which is how Stripe and GitHub work too.
+
+**So the route checks the `To:` address before the sender allowlist**, and
+ignores anything that is not the Yunt's mailbox — silently, because replying
+would put the Yunt in the middle of another project's conversation.
+`YUNT_INBOUND_ADDRESS` unset means ignore everything, which is the safe
+direction for a filter nobody has configured.
+
+**Rejected — a subdomain of its own.** `yunt.mountaincreative.cl` with its own
+MX record is the intuitive fix and it does not work: still the same account,
+still no scoping, same fan-out, plus DNS work. Real isolation would need a
+separate Resend account, which means separate billing.
+
+**What is NOT solved:** `ppd-agent` still receives a notification for every
+invoice email Cristian sends. That is their side to filter and their code is not
+in this repo.
+
+**Not on Antillanca's own domain.** `facturas@antillanca.cl` would need their IT
+to add an MX record on a subdomain — never the root, which would divert all
+their mail to Resend. Worth doing later; it blocks nothing now.
+
+---
+
+## D-062 — Preview deployments reach the webhook through a Vercel bypass secret
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Afaq's instruction: *"keep it on preview as a branch, it doesn't become prod
+until I see it working."*
+
+Vercel Authentication is on for this project, so a preview URL answers an
+unauthenticated POST with **302 → `vercel.com/sso-api`**. Resend would follow
+that to a login page and the route would never run. Measured, not assumed.
+
+The fix is Vercel's **Protection Bypass for Automation**, whose documented
+purpose is third-party webhooks that cannot set custom headers — Resend cannot.
+The secret is appended to the webhook URL as `?x-vercel-protection-bypass=…`.
+The bypass is labelled `Resend inbound webhook (Yunt)` in the project settings.
+
+**This is temporary and must be removed at merge.** Production
+(`milk-company.vercel.app`) is not behind the auth wall, so once this reaches
+production the webhook URL loses the query string. A bypass secret left in a
+production webhook URL is a credential sitting in a third party's config for no
+reason.
+
+**Rejected:** turning deployment protection off, which would expose every
+preview of the client's dashboard to anyone with the URL.
+

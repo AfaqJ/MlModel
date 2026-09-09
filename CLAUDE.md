@@ -105,8 +105,11 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
 - A class with fewer than 2 examples cannot be trained and must fail **loudly**.
 
 **A second workstream is open: the Yunt**, a digital collaborator over this
-data and the dashboard. Scope is agreed and sent (`docs/Yunt_scope_v1.docx`,
-19 items); the implementation plan is not written. Ingestion is deterministic
+data and the dashboard. The scope sent to the team (`docs/Yunt_scope_v1.docx`,
+19 items) is a **client-facing menu and is not authoritative** — things were
+settled by discussion after it went out, so where it and `DECISIONS.md`
+disagree, the decision log wins (D-059). Linear carries only nine issues, made
+for recently discovered work; it is not the map either. Ingestion is deterministic
 code, not the agent (D-051); purchase orders v1 is two forms with no roles and
 no approval (D-052); open questions are answered by ~5 parameterised query
 tools with every number computed by code, never by the model (D-053). Rodrigo
@@ -120,6 +123,15 @@ execution is durable. GCloud keeps only the classifier. The ingestion pipeline
 has been ported to `../milk-company/src/lib/ingest/` and verified by replaying
 the same corpus — identical numbers, asserted as equalities. `yunt/` here is the
 reference implementation and is deleted once the port completes.
+**Two doors reach one pipeline** — `/carga` takes an uploaded ZIP, and
+`POST /api/yunt/inbound` takes email through Resend; both call `runIngest`, and
+the upload page is permanent rather than a stopgap (D-060). **Neither writes
+anything yet.** Two environment variables fail *closed* and look like bugs if
+you do not know: an empty `YUNT_ALLOWED_ADDRESSES` means the Yunt can mail
+nobody, and an unset `YUNT_INBOUND_ADDRESS` means it ignores every message. That
+second one matters because the Resend account is shared and **a Resend webhook
+cannot be scoped** — every endpoint on the account receives every inbound
+message, so filtering by recipient is our job (D-061).
 Two facts drive the design. The classifier **auto-accepts only 8% of the
 corpus** while deterministic lookups settle 44%, and 68% of review rows are
 undertrained wordings rather than ambiguous items — so a category proposal is a

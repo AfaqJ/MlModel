@@ -5,38 +5,44 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The Yunt's whole read path is built and ported, and nothing has been written
-to the database.** Reading a ZIP of SII invoices, parsing them, deduplicating,
-matching lines to the catalog and calling the classifier all work end to end,
-in TypeScript, in `../milk-company/src/lib/ingest/`. The purchasing forms are
-built. Eight regression checks pass in the dashboard, 146 tests here.
+**The Yunt has two working ways in and still writes nothing.** A person can
+upload a ZIP at `/carga` in the dashboard, or Cristian can email
+`antillanca.yunt@mountaincreative.cl`; both run the same `runIngest` — read,
+deduplicate against live, resolve to the catalog, classify — and both print the
+same reception report. Neither stores anything.
 
-**The Yunt is an eve agent in Next.js on Vercel, not a Python service** (D-055).
-GCloud keeps only the classifier. `yunt/` here is the reference implementation
-and is deleted once the last piece is ported — Afaq's instruction, since git is
-the archive.
+**The mailbox is wired end to end but has never carried a message.** Resend
+webhook created and enabled on the `yunt` preview URL, signing secret rotated,
+Vercel bypass secret in the URL, and all six environment variables on Vercel
+Preview: `RESEND_API_KEY`, `RESEND_WEBHOOK_SECRET`, `SUPABASE_SECRET_KEY`,
+`CLASSIFIER_URL`, `YUNT_INBOUND_ADDRESS`, `YUNT_MAIL_FROM`.
+**`YUNT_ALLOWED_ADDRESSES` is deliberately unset, so the Yunt can mail nobody.**
+No deployment has been made since the variables landed, so nothing has run with
+them yet.
 
-**Branches, nothing pushed:** `yunt-backend` here, `yunt` in `../milk-company`.
+**Branch `yunt` is pushed** (`4035fef`), preview only. Production is still
+`main`; nothing has been merged. `yunt-backend` here is unpushed.
 
-**Every number in the port was verified by equality, not inspection.** The same
-4,451 files give 4,451 documents, 10,620 lines, 158 rescaled, 50 non-reconciling
-— identical to the Python, asserted as exact equalities.
-
-**Linear:** new project `Antillanca - Yunt and purchasing`, eight issues,
-MCT-139 to MCT-146 and MCT-148.
+**Nothing has been written to the database, and the two SQL files are still
+unrun.**
 
 ## Next
 
-1. **Run two SQL files in the Supabase editor** — `milk-company/supabase/005_purchase_orders.sql`
+1. **Send the first real email** to `antillanca.yunt@mountaincreative.cl` with a
+   ZIP attached, after a redeploy (environment variables are baked in at build
+   time, so the preview must be rebuilt since they landed). Success looks like
+   `[yunt] processed an inbound message; reply mail_not_configured` in the
+   Vercel logs — the reply is refused because the allowlist is empty, which is
+   correct.
+2. **Run two SQL files in the Supabase editor** — `milk-company/supabase/005_purchase_orders.sql`
    (the purchase-order screens do not work until this runs) and
    `006_alias_provenance.sql` (must precede any bulk alias load, or an alias
    Afaq approved becomes indistinguishable from one the machine proposed). Both
    idempotent.
-2. **Build the ZIP upload page** (MCT-145). Approved, unblocked, and it makes
-   the whole pipeline usable before the mailbox exists.
 3. **Write the ingest → Supabase writer** (MCT-146). First live write in this
-   workstream: backup, dry run, and Afaq's yes on the day.
-4. **Apply the 222 harvested aliases** after step 1. Backup, dry run, scoped
+   workstream: backup, dry run, and Afaq's yes on the day. Everything upstream
+   of it is built and measured.
+4. **Apply the 222 harvested aliases** after step 2. Backup, dry run, scoped
    PostgREST write. The apply script is deliberately unwritten until it is run
    (D-046's lesson).
 5. **Fix the `Confeccion de Bolos` duplicate** — three catalog rows for one
@@ -48,8 +54,12 @@ MCT-139 to MCT-146 and MCT-148.
 7. **387 documents whose lines disagree with their own header**, CLP 21,189,814
    overstated — see `docs/CLIENT_DATA_ISSUES.md` §1. Needs a decision on the
    stored rows and a question to the client.
-8. **Everything still waiting on Afaq** is in `docs/YUNT_OPEN_DECISIONS.md`:
-   Cristian's address, the receiving domain, the Resend and Claude keys.
+8. **Remove the bypass secret from the webhook URL when this merges to
+   production** (D-062). Production is not behind the auth wall, so the query
+   string becomes a credential sitting in Resend's config for no reason.
+9. **Everything still waiting on Afaq** is in `docs/YUNT_OPEN_DECISIONS.md`:
+   Cristian's address for the allowlist, and whether `mountaincreative.cl` is
+   verified for *sending* as well as receiving.
 
 The older frontend and labelling items below are unchanged and still open.
 
@@ -70,6 +80,59 @@ onward invoices, which are the highest-value input available, because ~3,529
 review rows are undertrained rather than genuinely ambiguous.
 
 ## Recent sessions
+
+### 2026-09-09 (b) — the mailbox and the upload page; Resend and Vercel wired
+
+- **Two doors into one pipeline.** `/carga` (ZIP upload, ADMIN-only, in the
+  sidebar) and `POST /api/yunt/inbound` (the Resend webhook) both call
+  `runIngest` in `src/lib/ingest/live.ts`. One copy of read → deduplicate →
+  resolve → classify → report, so the two cannot drift. Neither writes.
+- **Ported `yunt/classify.py`** to `src/lib/ingest/classify.ts`, dropping the
+  Cloud Run identity token: that came from Google's metadata server, which does
+  not exist on Vercel. The classifier stays public for now (D6).
+- **Mail, with no new dependencies.** `mail.ts` is the only sender and refuses
+  every recipient off `YUNT_ALLOWED_ADDRESSES`, which is unset. The Svix
+  signature check is a dozen lines of `node:crypto` rather than the `svix`
+  package, guarded by `scripts/check-webhook-signature.ts` — 2 acceptances, 11
+  refusals including replay outside the tolerance window.
+- **Set up in Afaq's accounts, by browser:** Resend webhook on `email.received`
+  pointing at the `yunt` preview URL, signing secret rotated, old API key
+  deleted and replaced, Vercel bypass secret created, six environment variables
+  on Vercel Preview.
+- **Decided:** D-058 (the Yunt acts on data problems, but only through one
+  apply path), D-059 (the scope docx is a client menu, not the source of truth),
+  D-060 (the upload page is permanent, not a stopgap), D-061 (shared Resend
+  account, so filter inbound by recipient), D-062 (preview reaches the webhook
+  through a Vercel bypass secret).
+- **Gotcha — two wrong endpoints in the Python port, found by reading the docs
+  rather than trusting it.** Attachments are at
+  `/emails/receiving/{id}/attachments/{attachment_id}`, not `/emails/{id}/…`,
+  and that returns JSON with a short-lived signed CDN `download_url` — a second
+  hop, and the API key must **not** be sent to it.
+- **Gotcha — concluded a feature was unavailable because a menu item was
+  missing.** Said Resend inbound was not enabled on the account, having looked
+  in the sidebar and in each domain's tabs. It is a **tab on the Emails page**,
+  and inbound had been working for another project for 23 days. Absence of a
+  menu entry is not evidence.
+- **Gotcha — a Resend webhook cannot be scoped, and the intuitive fix does not
+  work.** Creating one takes `endpoint` and `events` and nothing else, so every
+  endpoint on the account gets every `email.received`. A dedicated subdomain
+  changes nothing. Fixed in our code, by recipient (D-061).
+- **Gotcha — the preview URL answers a webhook with 302 to a login page.**
+  Vercel Authentication. Measured with `curl`, not assumed. Fixed with a
+  protection-bypass secret in the query string (D-062).
+- **Gotcha — `.gitignore` swallowed `.env.example`.** `.env*` matched the
+  template too, so the file documenting every variable would never have been
+  committed. Exempted explicitly.
+- **Afaq's correction, and it was right: the scope docx is not authoritative.**
+  Two copies existed and differed; several things were settled by discussion
+  after it was sent. Its item 6 contradicts itself — "a flag never changes
+  anything" beside "the YUNT proposes fixes and acts on Cristian's approval".
+  He settled it: the Yunt is a collaborator, not an advisor (D-058).
+- **Afaq's correction: Linear is not the map.** The tickets were made recently,
+  for things only just discovered. Nine issues do not cover nineteen scope items.
+- **Two secrets were pasted into the chat and had to be rotated.** Both replaced
+  the same session. Terminal output pasted for debugging carries live values.
 
 ### 2026-09-09 — the read path built, then ported to TypeScript; eve decided
 
@@ -248,45 +311,3 @@ review rows are undertrained rather than genuinely ambiguous.
   construction section says to send doubts, while the quoted "If I had the
   list" appears in the bale section. Treating both as one contractor-list
   request would send the wrong evidence.
-
-### 2026-09-03 — dashboard figure audit; three defects fixed and merged
-
-- **Every figure on Analítica was recomputed and matched to the live screenshot
-  before any finding was reported** (→ `EVIDENCE_RULES.md` §12). It also
-  surfaced that the default view **excludes 1,003 of 5,195 invoices** with no
-  denominator anywhere on screen — a fact no code read would have produced.
-- **Three defects fixed and merged** into `feature/dashboard` (`2b6c45d`): the
-  stacked chart, the pooled z-score (→ D-049) and the model suggestion on
-  settled rows (→ D-050).
-- **Ten further findings were logged as decisions, not fixes**, in plain
-  language at `../milk-company/docs/OPEN_QUESTIONS_2026_09_03.md`. The largest
-  is credit notes: **CLP 87,885,532 added instead of subtracted**, unfixable
-  without re-reading the `Referencia` block from raw XML.
-- **Gotcha — a doc comment asserted the opposite of what the code rendered.**
-  "never a dual axis, so the visual comparison stays honest" sat directly above
-  two areas sharing a `stackId`. True about the axis, silent about the
-  stacking, and it is *why* the bug survived three passes — reviewers reached a
-  reassuring sentence and stopped. → `EVIDENCE_RULES.md` §11.
-- **Gotcha — every static check was green the whole time.** `tsc`, ESLint,
-  `npm run build` and translation parity cannot see what a chart draws or
-  whether a z-score used the right denominator. Both defects were found by
-  recomputing against real data, and neither would ever have been found by
-  reading more code.
-- **Gotcha — a regression test that has never failed has never been tested.**
-  `check-anomaly-direction.ts` was run against the pre-fix file (copy aside,
-  `git checkout`, run, restore) and confirmed to fail before being trusted.
-  Under a minute, and it converts "passes" into "has teeth".
-- **Gotcha — provenance changed the recommendation three times out of three.**
-  `git log -S`/`-G` showed the suggestion column was added by Afaq's own
-  approved decision B2 days earlier (so removing it is a reversal he had to be
-  told about); the Risk tab shipped disabled in its first commit and has never
-  been live, reason unrecorded; and the "trend regression" subtitle was never
-  accurate, so "we removed it" was the wrong story. **`-S` misses a
-  comment-out** — the string count does not change — so `-G` is the one that
-  finds disabled code.
-- **Afaq's correction, and it was right:** `docs/` being gitignored in the
-  frontend was raised as a risk. It is deliberate — those are his working
-  notes, not something to ship. Do not re-litigate a decision that is already
-  recorded in a commit message (`765e355`).
-- **Decided:** D-049 (score against the population the value came from), D-050
-  (a settled line never shows the model's suggestion; reverses frontend B2).
