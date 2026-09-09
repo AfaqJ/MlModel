@@ -27,11 +27,13 @@ email-thread-bound confirmation instead of treating any reply as approval
 (D-067).
 The Yunt-created request half of purchasing is also built (`018`), and a
 read-only tool grounds the next step in one request plus only its own bounded
-quotations. Attaching precedent and drafting the final order remain. The aggregate and period-
+quotations. The order form now records its optional selected quotation and
+`019` rejects a quotation belonging to another request. Attaching precedent and
+drafting the final order remain. The aggregate and period-
 comparison tools, the unsettled quality-check set, exports/charts/reports and
 recurring reports are still to build.
 
-**Migrations `005`–`010` are live. `011`–`018` are not.** Afaq confirmed the
+**Migrations `005`–`010` are live. `011`–`019` are not.** Afaq confirmed the
 live boundary; every pending migration has been loaded twice in disposable
 PostgreSQL. Supabase currently reports **EXCEEDING USAGE LIMITS**, so no live
 write or migration should be attempted until the project serves requests again.
@@ -41,8 +43,8 @@ received one successful prediction and exactly 10/10 results from a live batch,
 all reporting v1.3.3. The email path calls that same adapter. No actual mailbox
 message or Supabase write has yet proved the whole deployed chain.
 
-**Branch `yunt` is pushed only through `4035fef`; twenty-seven commits are local**
-through `7587d50`. Preview only. Production remains `main`; nothing merged.
+**Branch `yunt` is pushed only through `4035fef`; twenty-eight commits are local**
+through `ce08223`. Preview only. Production remains `main`; nothing merged.
 `yunt-backend` here is also unpushed.
 
 ## HANDOVER — 2026-09-09, session ended by Afaq
@@ -118,7 +120,7 @@ ask him to run a query and paste the result.
 - Exactly **one** `yunt_category_precedent` exists — the 5-argument version from
   `009`, which is the correct one. There is **no** duplicate overload. An earlier
   claim of mine that there were two was wrong and is retracted.
-- `004` through `010` are applied. `011` through `018` are not.
+- `004` through `010` are applied. `011` through `019` are not.
 - `prediction_source` allows six values including `user_selected`, so `014` is
   legal against the live constraint.
 
@@ -162,11 +164,11 @@ Two real traps in that set:
 
 ### What to run, and why
 
-**Migrations `011` through `018`, in that order, in one paste.**
+**Migrations `011` through `019`, in that order, in one paste.**
 A combined file was generated and handed to Afaq. Regenerate it with:
 
 ```
-cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals,018_yunt_purchase_requests}.sql
+cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals,018_yunt_purchase_requests,019_purchase_order_quotation_guard}.sql
 ```
 
 - `011` — review packets, so a retry cannot double-count findings
@@ -177,6 +179,7 @@ cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yun
 - `016` — bounded invoice-line list with exact review/date/amount filters
 - `017` — immutable refusal/backlog entries, one per stored inbound request
 - `018` — email-drafted purchase requests created only after exact confirmation
+- `019` — an optional selected quotation must belong to the request being ordered
 
 Why it is safe: there is no `DELETE`, `TRUNCATE`, `DROP TABLE`, or top-level
 data `UPDATE`. `014` deliberately replaces the existing
@@ -193,6 +196,8 @@ a disposable PostgreSQL, re-runs `011`->`014` for idempotency, and exercises
 `scripts/prove-016-invoice-line-list.sh` proves bounded row filters;
 `scripts/prove-017-yunt-refusals.sh` proves refusal logging and replay safety;
 `scripts/prove-018-purchase-request.sh` proves draft/create/replay behavior.
+`scripts/prove-019-quotation-guard.sh` proves cross-request quotations are
+rejected while matching and unlinked orders remain valid.
 All are committed and re-runnable.
 
 **Take a backup first** (`scripts/81_backup_supabase.py`). The last one is
@@ -245,7 +250,7 @@ but their migrations, model credentials and real-message proof are still open.
 
 **The next foundation priority is permission, not another feature:** make
 `/carga` a real authenticated write without exposing service-role power, clear
-the Supabase usage block, run `011`–`018`, then prove one real email and one
+the Supabase usage block, run `011`–`019`, then prove one real email and one
 upload including replay. In parallel, finish the remaining four read tools.
 
 ## V1 checklist
@@ -304,6 +309,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       confirmation (`018`)
 - [x] Read one request, its bounded quotations and any existing order without
       exposing private quotation storage paths
+- [x] The order form records an optional chosen quotation; the database rejects
+      a quotation belonging to a different request (`019`)
 - [ ] Attach supplier/price precedent to that buying exchange when requested
       (the grounded price-history tool itself already exists)
 - [ ] The CLP 500,000 two-quotation check called from the same function the
@@ -314,7 +321,7 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [ ] Clear Supabase's **EXCEEDING USAGE LIMITS** state
 - [ ] Approve the `/carga` operator permission design
 - [ ] Confirm or change the temporary Opus 5 / medium choice
-- [ ] **Run `011`–`018`** in the Supabase editor — all idempotent, each proved
+- [ ] **Run `011`–`019`** in the Supabase editor — all idempotent, each proved
       twice against a disposable PostgreSQL
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
@@ -329,6 +336,18 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (f) — purchase-order quotation integrity
+
+- **Fixed an existing order integrity hole.** The order form now sends its
+  optional `selected_quotation_id`, which the existing server action already
+  supported. Migration `019` enforces that a selected quotation belongs to the
+  same purchase request; no selection remains valid. Frontend commit `ce08223`.
+- **Proof:** `scripts/prove-019-quotation-guard.sh` loaded `019` twice, rejected
+  a cross-request quotation, and accepted matching and null selections.
+  `./check.sh` and `npx eve build` both passed before commit.
+- **Checkpoint discipline:** this entry and the live/pending migration boundary
+  were written immediately after the increment, before starting more code.
 
 ### 2026-09-09 (e) — provenance fixed, migration line clarified, three query tools
 
@@ -511,65 +530,3 @@ of this down, so it was reconstructed from git and re-verified by Claude.
   for things only just discovered. Nine issues do not cover nineteen scope items.
 - **Two secrets were pasted into the chat and had to be rotated.** Both replaced
   the same session. Terminal output pasted for debugging carries live values.
-
-### 2026-09-09 — the read path built, then ported to TypeScript; eve decided
-
-- **Built the whole ingestion read path in Python, then ported it** to
-  `../milk-company/src/lib/ingest/` once Afaq settled that the Yunt is an eve
-  agent in Next.js (D-055). Parser, archive reader, catalog resolver, classifier
-  call. **Verified by equality:** same 4,451 files, same 4,451 documents, 10,620
-  lines, 158 rescaled, 50 non-reconciling, same type breakdown.
-- **Four measured rules for reading a DTE (D-056)**, none from the SII spec.
-  Non-reconciling lines went from 10.9% to **0.47%**. This corrects
-  `AUTOMATION_PLAN` A-3: the `GASOLINA 93` bug was never the decimal separator,
-  it is one supplier scaling quantity and price by 10^4 on some lines.
-- **Catalog resolver, six tiers.** 81.3% of all 11,746 lines resolve with no
-  person, and the only disagreements are one product that exists three times.
-- **222 aliases harvested** from assignments the migration already made (D-057).
-  78.8% → 86.2%, zero new disagreements. Nothing written.
-- **Purchase orders made real** — three tables, two forms, a numbered PDF. The
-  CLP 500,000 rule lives in a database function with no insert policy on
-  `purchase_orders`, so it cannot be sidestepped and the Yunt reuses the same
-  check rather than a second copy in another language.
-- **`check.sh` in both repos**, run at every checkpoint at Afaq's instruction.
-  Lint is a ratchet against the pre-existing 12 errors, not a gate that would
-  fail forever.
-- **Decided:** D-055 (eve in Next.js), D-056 (the four DTE rules), D-057 (alias
-  is an observation, pattern is a rule).
-- **Gotcha — scaling per supplier broke 2,196 lines that were already correct.**
-  The same supplier writes scaled and plain values on the same invoice. The fix
-  is per-line: arithmetic decides *whether* to rescale, the table only supplies
-  the split. A wrong table entry can no longer corrupt a correct line.
-- **Gotcha — fuzzy matching proposed confidently wrong merges.** `UNION HDPE 50
-  X 1,1/2HE` onto `…1,1/2HI`, `VIAJE 32 VACAS` onto `Viaje De 38 Vacas`.
-  Different fittings, a different lorryload of cows, each plausible enough to be
-  ticked through. Requiring every digit-carrying token to match exactly took
-  fuzzy from 805 matches to 15.
-- **Gotcha — a comment that contradicted its own code.** The purchase-order SQL
-  claimed orders could only be created through the function while also granting
-  an insert policy that made it false. Same class as `EVIDENCE_RULES` §11. Fixed
-  by making the code true, which meant `security definer` with a pinned
-  `search_path`.
-- **Gotcha — a test that passed for the wrong reason.** The path-traversal check
-  passed because JSZip normalises `..` away when it *writes* an archive, so that
-  case cannot be built with it at all. Now tested on the predicate directly.
-- **Gotcha — `check.sh` used a hand-written ignore list and it had already
-  rotted.** Two new test files were being collected by the wrong venv, so the
-  classifier step reported 116 tests. It is a glob now.
-- **Afaq's correction, and it was right: C-8 was cited where it does not apply.**
-  It governs *category* rules, which are claims about Antillanca's business
-  practice. A catalog pattern is a claim about whether two strings name the same
-  product, which the data settles. No client confirmation needed.
-- **Afaq's correction, and it was right: the reconciliation rule is inferred.**
-  Asked whether it was code or data, and whether the rule was sound or made
-  normal data look wrong. It is inferred — measured, never read from the spec.
-  That produced `docs/CLIENT_DATA_ISSUES.md` and a constraint that a check may
-  only ever flag, never change a value or block an ingest, and that a missing
-  field is normal rather than an error.
-- **Found while answering that: 387 documents whose lines overstate their own
-  header by CLP 21,189,814.** One electricity invoice worth CLP 1,261 carries a
-  line claiming CLP 1,011,311 — a meter reading in the amount column. Per-category
-  spend on the dashboard is inflated by that today.
-- **Afaq's correction on Linear: tickets were being made for side tasks.** A
-  database migration and a one-line count fix are how work gets done, not work
-  anyone needs on a board.

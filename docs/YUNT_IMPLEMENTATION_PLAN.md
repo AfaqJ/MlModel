@@ -10,14 +10,14 @@ plan follows it. The scope document is what Antillanca agreed to receive, not
 the record of how it is built.
 
 **Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
-`../milk-company`. Frontend work is pushed through `4035fef`; twenty-seven later
-commits are local and unpushed through `7587d50`.
+`../milk-company`. Frontend work is pushed through `4035fef`; twenty-eight later
+commits are local and unpushed through `ce08223`.
 
 **Status: building, in `../milk-company`.** Phases 1–2.5 are done. Phase 3's
 writer is connected to both doors in source; the email path is unproved live and
 the upload path lacks authenticated database permission. The review/apply loop
 and three of five query tools, the refusal backlog and Yunt-created purchase
-requests are built, but migrations `011`–`018` are not live. Every phase below carries
+requests are built, but migrations `011`–`019` are not live. Every phase below carries
 its own state. The seven GO decisions D1, D2, D3, D5, D6 and D7 are settled
 (Afaq, 2026-09-08); D4 was withdrawn.
 
@@ -594,6 +594,8 @@ tables. Not exercised against live data yet.
 - Request list: open until an order is generated against it
 - `orden-compra` → form two; **above CLP 500,000 the form will not submit
   without two quotation files**, below it a free-text price is enough
+- Its optional selected quotation is stored by the form and migration `019`
+  rejects any quotation belonging to another request.
 - Numbered PDF, generated server-side, downloaded by the buyer. **No supplier
   contact exists anywhere in the codebase.**
 - `aprobacion`, `recepcion`, `pago` stay mock-ups. Roles stay cosmetic (D-052).
@@ -790,8 +792,8 @@ contact, ever.
 
 ## 11. What is still needed from you
 
-1. **Clear the Supabase usage-limit block**, then run migrations `011`–`018` in
-   numeric order. `005`–`010` are live; the eight pending files are idempotent and
+1. **Clear the Supabase usage-limit block**, then run migrations `011`–`019` in
+   numeric order. `005`–`010` are live; the nine pending files are idempotent and
    proved twice locally.
 2. **Approve the `/carga` permission design.** Recommendation: a database Yunt
    operator allowlist seeded with Afaq's signed-in email, then Cristian later.

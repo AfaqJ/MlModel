@@ -150,7 +150,7 @@ confidence.
   signed-in client and is currently blocked because the new objects expose no
   authenticated write policy. `/predict-batch` classifies accounting category
   only and never writes Supabase. Migrations `005`–`010` are live, including
-  `007_yunt_ingest.sql`'s atomic document write; `011`–`018` are not. Failed
+  `007_yunt_ingest.sql`'s atomic document write; `011`–`019` are not. Failed
   agent-email delivery releases its inbound request back to `open`, so a retry
   can reclaim it; unsupported requests are recorded once in `yunt_refusals`.
   Category apply and undo require a code-generated email restatement and a reply
@@ -161,7 +161,9 @@ confidence.
   ordinary `purchase_requests` row. It does not create an order or contact a
   supplier. Before discussing an order, `purchase_request_context` loads one
   exact request, at most 20 quotations belonging to it, and any existing order;
-  private quotation storage paths never enter the model context.
+  private quotation storage paths never enter the model context. The human
+  order form can link an optional selected quotation, and `019` enforces at the
+  database boundary that it belongs to that same request.
 - **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
   row-count verified immediately before the 2026-08-17 full re-load. Earlier
   snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and
