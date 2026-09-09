@@ -1343,3 +1343,116 @@ behind it, and that need mostly disappears if the API works.
 **Why:** it removes the manual export step entirely, and clause 5.1 of
 Audisoft's terms gives no uptime guarantee while 6.2 lets them revoke access
 without notice, so a second path must exist regardless.
+
+## D-055 — The Yunt is an eve agent in Next.js on Vercel; GCloud keeps only the classifier
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The Yunt is built with [eve](https://vercel.com/eve), Vercel's agent framework,
+inside the existing `milk-company` Next.js app — same repo, same deploy, same
+database. Google Cloud hosts the classifier endpoint and nothing else.
+
+Everything after the classifier returns a category is ours and lives in
+Next.js: reading the XML, matching to the catalog, writing to Supabase. **The
+entire ingestion pipeline was ported from Python to TypeScript** into
+`../milk-company/src/lib/ingest/`.
+
+**What eve changes, for the better.** Tools are TypeScript files in
+`agent/tools/`, auto-discovered — the five parameterised query tools of D-053
+become five files with no registration layer. `needsApproval` is a single field
+and the agent pauses indefinitely without consuming compute, so the
+approve-then-apply flow of the plan is a framework primitive rather than
+machinery. Execution is durable and checkpointed, which answers both the
+114-second classification and the "the webhook must reply immediately" problem.
+
+**Email is not one of eve's channels** (Slack, Discord, Teams, Telegram, Twilio,
+GitHub, Linear), so Resend inbound stays a plain route handler feeding the
+deterministic pipeline — which is what D-051 requires anyway.
+
+**Why:** Afaq's call. It puts the agent where the rest of the logic already is,
+and lets it reach the ingestion code as a tool later.
+
+**The objection that was withdrawn:** moving off Cloud Run looked like it forced
+a TypeScript rewrite of the DTE parser, which Node makes risky (no `DOMParser`,
+and `src/lib/extractor/xml-parser.ts` is verifiably wrong on DTE). Vercel runs
+Python natively, so that was never forced — but the port happened anyway, for
+the reason above rather than under duress.
+
+**The port is verified by equality, not inspection.** Replaying the same 4,451
+files gives numbers identical to the Python: 4,451 documents, 10,620 lines, 0
+unparseable, 158 rescaled, 50 non-reconciling, and the same document-type
+breakdown. Asserted as exact equalities in `scripts/check-dte-corpus.ts`,
+because a port that is close is a port that lost a rule.
+
+**Rejected:** separate Vercel projects for the dashboard and the agent. eve
+installs into an existing project and its tools need the database logic.
+
+## D-056 — Four measured rules govern reading a DTE, and none came from the spec
+
+**Date:** 2026-09-09 · **Decided by:** Claude, approved by Afaq · **Model:** Claude Opus 5
+
+Each was decided by arithmetic over the 4,451-file corpus. **None was read from
+the SII specification** — they describe habit, not law, which is why they are
+allowed to raise a flag and not to correct anyone's books (see `CONSTRAINTS.md`).
+
+- **`.` is the decimal point.** `qty * price == monto` holds for 89.4% reading
+  it that way and 35.3% reading it as a thousands separator.
+- **`MontoItem = qty * price - DescuentoMonto`.** `DescuentoPct` is
+  informational; applying both reconciles 15% of discounted lines, subtracting
+  the amount alone reconciles 99.5%.
+- **`RecargoMonto` is excluded.** It appears on 30 lines, all one supplier, and
+  is a verbatim copy of `MontoItem` every time. Stored, never added.
+- **Supplier scaling is decided per LINE, not per supplier.** One fuel supplier
+  writes quantity and price scaled by 10^4 on some lines and plainly on others
+  of the same invoice. Scaling per supplier broke 2,196 lines that were already
+  correct. Arithmetic decides whether to rescale; the supplier table only
+  supplies the split, which arithmetic cannot recover.
+
+Also: type 43 names its body `<Liquidacion>`, not `<Documento>` — all 29,
+CLP 292,085,987, were being skipped as "no DTE found". And Supabase stores a RUT
+with the hyphen stripped and the check digit uppercased; matching the DTE's own
+format made every document look new.
+
+**This corrects `AUTOMATION_PLAN` A-3.** The `GASOLINA 93` quantity bug was
+never the Chilean decimal separator. Together these took non-reconciling lines
+from 10.9% to **0.47%**.
+
+## D-057 — An alias is a memorised observation; a pattern is a derived rule
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The distinction the catalog resolver rests on, and the answer to *"how would we
+know to strip 5 kg from `cloro organico 5 kg`?"* — **we never have to.**
+
+An **alias** records that a wording has been observed to mean a catalog item.
+Bounded, safe, asserts nothing beyond the observation. 222 were harvested from
+assignments the verified migration already made: automatic resolution 78.8% →
+86.2%, 870 lines gained, **zero new disagreements**. 781 unbounded wordings
+(`SEGUN OT 107`) were excluded — one row each, forever, is what D-044 forbids.
+585 seen-once wordings were excluded as memorising noise.
+
+A **pattern** generalises to wordings never seen, so it is written only where
+the data proves it safe. Exactly one exists beyond P-01: strip a parenthesised
+number followed by a unit or a percentage — `( 21 kWh)`, `( 16.5% )`. Never a
+bare number, never a number beside a word.
+
+**Verisure set that boundary.** `MONITOREO MES DE 11/2025 CONTRATO 1731275` —
+stripping the numbers merges four different contracts, because there the
+contract number *is* identity. Yet BICE's `COMISION DE USO MENSUAL (Nro.
+Documento: …)` is one item across 23 documents, so a document number is *not*.
+**Nothing in the string distinguishes them.** So the rule is as narrow as the
+evidence: it touches 519 lines and every one collapses to exactly one item.
+
+**Also rejected, with its evidence, so it is not reinvented:** matching on
+supplier plus unit price. 867 pairs, strongest being `Clavos` ↔ `Tornillos` and
+`Gasolina 93` ↔ `Petroleo Diesel Ultra`. Price is not evidence of identity.
+
+**And the guard that makes fuzzy matching safe:** every digit-carrying token
+must match exactly. Without it, fuzzy proposed `UNION HDPE 50 X 1,1/2HE` onto
+`…1,1/2HI` and `VIAJE 32 VACAS` onto `Viaje De 38 Vacas` — different fittings, a
+different lorryload of cows, each plausible enough to be ticked through.
+
+**Afaq's framing, which settles the priority:** the catalog is open-ended and
+the category list is fixed, so categories are what the product depends on.
+Clean up the obvious recurring items — fuel, utility bills — and let everything
+else become a new catalog row rather than paying a model per line to decide.

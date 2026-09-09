@@ -5,88 +5,53 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The Yunt workstream now has a scope Afaq has sent to the team, and four
-decisions behind it (D-051 to D-054).** The document he actually sent is
-`docs/Yunt_scope_v1.docx`, nineteen numbered items across four sections.
-`docs/YUNT_REQUIREMENTS.md` is the long-form reference behind it and is marked
-partly superseded, with its three out-of-date sections named in its own header.
-`docs/MILK_YUNT_PLAN.md` was **deleted** on 2026-09-08 with Afaq's approval.
+**The Yunt's whole read path is built and ported, and nothing has been written
+to the database.** Reading a ZIP of SII invoices, parsing them, deduplicating,
+matching lines to the catalog and calling the classifier all work end to end,
+in TypeScript, in `../milk-company/src/lib/ingest/`. The purchasing forms are
+built. Eight regression checks pass in the dashboard, 146 tests here.
 
-**The recipe now exists:** `docs/YUNT_IMPLEMENTATION_PLAN.md` on branch
-`feature/yunt`, eleven phases. Six decisions settled that session, one withdrawn.
+**The Yunt is an eve agent in Next.js on Vercel, not a Python service** (D-055).
+GCloud keeps only the classifier. `yunt/` here is the reference implementation
+and is deleted once the last piece is ported — Afaq's instruction, since git is
+the archive.
 
-**Afaq's correction, and it was right twice.** First, the `D-NNN` log was
-treated as binding on a greenfield feature; those decisions came from the
-labelling job and do not govern a new agent. Second, ingestion was designed with
-the agent inside it for no reason - there is no judgement in the path, so it is
-plain code (D-051).
+**Branches, nothing pushed:** `yunt-backend` here, `yunt` in `../milk-company`.
 
-**The Audisoft API was tested and does not authenticate.** Rodrigo wants
-ingestion from the API rather than email. Endpoints reach real code but every
-credential form returns an identical 401. Blocker message is drafted and Afaq
-has sent it. Email ingestion continues as the fallback (D-054).
+**Every number in the port was verified by equality, not inspection.** The same
+4,451 files give 4,451 documents, 10,620 lines, 158 rescaled, 50 non-reconciling
+— identical to the Python, asserted as exact equalities.
 
-**MCT-37 itself is unchanged.** No Supabase writes, no backup, no model work, no
-deploy. Live `mlmodel-00014-lrp` untouched. Tracked changes this session are
-`docs/DECISIONS.md`, `docs/STATE.md` and `CLAUDE.md`; the four Yunt files are
-untracked.
+**Linear:** new project `Antillanca - Yunt and purchasing`, eight issues,
+MCT-139 to MCT-146 and MCT-148.
 
 ## Next
 
-1. **Write the implementation plan for the Yunt scope.** Afaq asked for this
-   explicitly in a fresh session: the recipe behind
-   `docs/Yunt_scope_v1.docx`, all nineteen items. Read that docx, D-051 to
-   D-054, and the API findings below before starting.
-2. **Chase Audisoft for a working API call.** Nothing can be built against it
-   until they answer. Questions are in the sent message: one complete example
-   URL, how the token is transmitted, the date or period parameter, pagination,
-   whether the 19 June token is still active and whether access is IP
-   restricted. Also whether an HTTPS address or domain name exists, and written
-   confirmation that storing extracted lines is within clause 3.4.
-3. **The asks removed from the sent doc are recorded nowhere the team sees.**
-   Afaq deleted the "What we need from Antillanca" section: allowed sender
-   addresses, confirmation of the CLP 500,000 two-quotation rule, and the
-   July-August 2026 categorised invoices Antillanca offered and nobody
-   collected. That last one is still the highest-value input available.
-4. **Say GO on `docs/YUNT_IMPLEMENTATION_PLAN.md`.** Phase 0 is half a day and
-   proves the deploy path while it is still empty. Still needed from Afaq:
+1. **Run two SQL files in the Supabase editor** — `milk-company/supabase/005_purchase_orders.sql`
+   (the purchase-order screens do not work until this runs) and
+   `006_alias_provenance.sql` (must precede any bulk alias load, or an alias
+   Afaq approved becomes indistinguishable from one the machine proposed). Both
+   idempotent.
+2. **Build the ZIP upload page** (MCT-145). Approved, unblocked, and it makes
+   the whole pipeline usable before the mailbox exists.
+3. **Write the ingest → Supabase writer** (MCT-146). First live write in this
+   workstream: backup, dry run, and Afaq's yes on the day.
+4. **Apply the 222 harvested aliases** after step 1. Backup, dry run, scoped
+   PostgREST write. The apply script is deliberately unwritten until it is run
+   (D-046's lesson).
+5. **Fix the `Confeccion de Bolos` duplicate** — three catalog rows for one
+   service, 14 lines. Afaq approved the fix *and* folding accents in the
+   normaliser so the pair cannot recur. Needs a backup and a dry run.
+6. **Scaffold eve** (`npx eve@latest init`) in `../milk-company`, then the
+   category-proposal tool. Unknown: whether eve's `needsApproval` pause can be
+   driven by an email reply, or whether that approval is wired by hand.
+7. **387 documents whose lines disagree with their own header**, CLP 21,189,814
+   overstated — see `docs/CLIENT_DATA_ISSUES.md` §1. Needs a decision on the
+   stored rows and a question to the client.
+8. **Everything still waiting on Afaq** is in `docs/YUNT_OPEN_DECISIONS.md`:
    Cristian's address, the receiving domain, the Resend and Claude keys.
-5. **`src/lib/extractor/xml-parser.ts` in the frontend silently drops repeated
-   elements.** `flattenNode` has an empty `if (elements.length > 1) {}` branch,
-   so on a DTE file every `<Detalle>` is discarded and only the header and
-   totals survive, with no error. It is a manual inspection tool, not the
-   ingestion parser, but it is wrong for the files it is pointed at.
-6. **Press Done on one line in the dashboard.** Unchanged, still the only
-   unproven link in D-048. Ten seconds.
-7. **Answer the credit-note question.** 103 invoices of `document_type = '61'`,
-   CLP 87,885,532, all stored positive, so totals count a purchase and its
-   cancellation as two purchases. The `Referencia` block was never loaded, so
-   netting needs a re-read of the raw XML. Options in
-   `OPEN_QUESTIONS_2026_09_03.md` section 1.
-8. **Ask the client about `document_type = '43'`** - 29 liquidacion facturas,
-   CLP 292,085,987, all Feria Ganaderos Osorno. If the underlying sale is
-   already present as a type 33, these double-count.
-9. **Ask Salman why the Risk tab was disabled.** It arrived commented out in
-   `7d9ae21` with no recorded reason. With D-049 applied, Overview says "36
-   critical anomalies need attention" with nowhere to click.
-10. **Decide the IVA split** (`OPEN_QUESTIONS` section 3). The Tax Breakdown card
-    adds IVA credito to IVA debito under one label. Needs the accountant.
-11. **`ADM-3.1` has zero training rows.** Before any retrain it must be marked
-    rule-assigned and untrainable the way D-028's six are.
-12. **Honorarios and Remuneraciones have never been audited** - keyword probes,
-    not audited sets (`CLIENT_CONVENTIONS.md` section 10).
-13. **Three defects in `milk-company/src/lib/analytics/`**, verified in code:
-    - `aggregate.ts:88-90` - `totalRevenue` sums COMPRAS **and** VENTAS;
-      `avgInvoiceValue` (`:122`) divides that combined figure.
-    - `types.ts:194` requires `final_categories_id && final_code`;
-      `item_summary.sql:35-37` checks only the id.
-    - `aggregate.ts:104-107` counts `decision='auto_accept'`, which
-      `productos/actions.ts:76` sets on a **human** pick, so the auto-accept
-      rate and the 67% figure in `CLAUDE.md` are contaminated.
-14. **Frontend, still open:** horizontal scrolling on the KPI tiles; the
-    Geografia Pareto panel measures geography rather than risk; keyset
-    pagination on the catalog is deferred - **search must move server-side in
-    the same change or it silently starts matching only loaded pages.**
+
+The older frontend and labelling items below are unchanged and still open.
 
 ## Open questions — blocked on the client
 
@@ -105,6 +70,68 @@ onward invoices, which are the highest-value input available, because ~3,529
 review rows are undertrained rather than genuinely ambiguous.
 
 ## Recent sessions
+
+### 2026-09-09 — the read path built, then ported to TypeScript; eve decided
+
+- **Built the whole ingestion read path in Python, then ported it** to
+  `../milk-company/src/lib/ingest/` once Afaq settled that the Yunt is an eve
+  agent in Next.js (D-055). Parser, archive reader, catalog resolver, classifier
+  call. **Verified by equality:** same 4,451 files, same 4,451 documents, 10,620
+  lines, 158 rescaled, 50 non-reconciling, same type breakdown.
+- **Four measured rules for reading a DTE (D-056)**, none from the SII spec.
+  Non-reconciling lines went from 10.9% to **0.47%**. This corrects
+  `AUTOMATION_PLAN` A-3: the `GASOLINA 93` bug was never the decimal separator,
+  it is one supplier scaling quantity and price by 10^4 on some lines.
+- **Catalog resolver, six tiers.** 81.3% of all 11,746 lines resolve with no
+  person, and the only disagreements are one product that exists three times.
+- **222 aliases harvested** from assignments the migration already made (D-057).
+  78.8% → 86.2%, zero new disagreements. Nothing written.
+- **Purchase orders made real** — three tables, two forms, a numbered PDF. The
+  CLP 500,000 rule lives in a database function with no insert policy on
+  `purchase_orders`, so it cannot be sidestepped and the Yunt reuses the same
+  check rather than a second copy in another language.
+- **`check.sh` in both repos**, run at every checkpoint at Afaq's instruction.
+  Lint is a ratchet against the pre-existing 12 errors, not a gate that would
+  fail forever.
+- **Decided:** D-055 (eve in Next.js), D-056 (the four DTE rules), D-057 (alias
+  is an observation, pattern is a rule).
+- **Gotcha — scaling per supplier broke 2,196 lines that were already correct.**
+  The same supplier writes scaled and plain values on the same invoice. The fix
+  is per-line: arithmetic decides *whether* to rescale, the table only supplies
+  the split. A wrong table entry can no longer corrupt a correct line.
+- **Gotcha — fuzzy matching proposed confidently wrong merges.** `UNION HDPE 50
+  X 1,1/2HE` onto `…1,1/2HI`, `VIAJE 32 VACAS` onto `Viaje De 38 Vacas`.
+  Different fittings, a different lorryload of cows, each plausible enough to be
+  ticked through. Requiring every digit-carrying token to match exactly took
+  fuzzy from 805 matches to 15.
+- **Gotcha — a comment that contradicted its own code.** The purchase-order SQL
+  claimed orders could only be created through the function while also granting
+  an insert policy that made it false. Same class as `EVIDENCE_RULES` §11. Fixed
+  by making the code true, which meant `security definer` with a pinned
+  `search_path`.
+- **Gotcha — a test that passed for the wrong reason.** The path-traversal check
+  passed because JSZip normalises `..` away when it *writes* an archive, so that
+  case cannot be built with it at all. Now tested on the predicate directly.
+- **Gotcha — `check.sh` used a hand-written ignore list and it had already
+  rotted.** Two new test files were being collected by the wrong venv, so the
+  classifier step reported 116 tests. It is a glob now.
+- **Afaq's correction, and it was right: C-8 was cited where it does not apply.**
+  It governs *category* rules, which are claims about Antillanca's business
+  practice. A catalog pattern is a claim about whether two strings name the same
+  product, which the data settles. No client confirmation needed.
+- **Afaq's correction, and it was right: the reconciliation rule is inferred.**
+  Asked whether it was code or data, and whether the rule was sound or made
+  normal data look wrong. It is inferred — measured, never read from the spec.
+  That produced `docs/CLIENT_DATA_ISSUES.md` and a constraint that a check may
+  only ever flag, never change a value or block an ingest, and that a missing
+  field is normal rather than an error.
+- **Found while answering that: 387 documents whose lines overstate their own
+  header by CLP 21,189,814.** One electricity invoice worth CLP 1,261 carries a
+  line claiming CLP 1,011,311 — a meter reading in the amount column. Per-category
+  spend on the dashboard is inflated by that today.
+- **Afaq's correction on Linear: tickets were being made for side tasks.** A
+  database migration and a one-line count fix are how work gets done, not work
+  anyone needs on a board.
 
 ### 2026-09-08 - Yunt scope agreed and sent; Audisoft API tested and blocked
 
@@ -263,63 +290,3 @@ review rows are undertrained rather than genuinely ambiguous.
   recorded in a commit message (`765e355`).
 - **Decided:** D-049 (score against the population the value came from), D-050
   (a settled line never shows the model's suggestion; reverses frontend B2).
-
-
-### 2026-09-02/03 — client reply applied, 592 rows labelled, dashboard can now write
-
-- **The client answered the 2026-08-19 email.** Three questions settled, two he
-  took back. Recorded verbatim with provenance in `docs/CLIENT_CONVENTIONS.md`
-  §9. Plumbing all to `EXP-14.3` including building plumbing; all GEA technician
-  hours to `EXP-10.1`; commissions to an account that had to be created.
-  Construction repair-vs-new-build and silage-vs-hay stay in review under D-041 —
-  he asked for lists instead.
-- **592 rows written and verified.** 524 + 25 + 43, no overlap. Post-write diff
-  against the backup: exactly the intended rows changed, 0 unintended, 0 raw
-  invoice fields altered, `item_catalog` hash identical.
-- **`ADM-3.1 Impuestos, comisiones, multas` created**, 77 -> 78 categories.
-- **`prediction_source` consolidated to six values** (→ D-047).
-- **The dashboard got its first write path** (→ D-048): the category-assignment
-  dialog, plus hover prefetch, a shared occurrence cache, the Geography tab
-  owning its city selection, and the performance work from the audit branch —
-  all merged into `feature/dashboard`.
-- **Codex delegation: one run lost, one useful.** The first run died at 122,623
-  tokens with **no files written** — the network dropped and it was holding
-  everything in memory to write at the end. The spec now requires writing
-  incrementally and resuming from whatever is on disk. The second run produced a
-  539-line plumbing proposal that passed every structural check and correctly
-  excluded both false positives predicted in advance.
-- **Gotcha — `needs_review` is a GENERATED column.** The first labelling write
-  returned `400: can only be updated to DEFAULT` and PostgREST rejected the whole
-  batch, so nothing was written. **This is the same class as the
-  `normalized_alias` gotcha of 2026-08-26, which is written down in this file,
-  and it was read this session and still not applied.** After removing the
-  column, a single-row canary confirmed `needs_review` derives itself from
-  `decision`. Do a canary before a batch.
-- **Gotcha — both agents independently invented `prediction_source='client_rule'`.**
-  Claude wrote it, caught it; Codex wrote the identical bug in its own script,
-  caught in review. The column is CHECK-constrained to a fixed list and nothing
-  in the code says so. Two different models hitting the same trap means the trap
-  is in the project, not the model.
-- **Gotcha — a review found a real false positive that structural checks missed.**
-  15 of 539 proposed plumbing rows were irrigation parts (K-Line, sprinklers).
-  20 already-settled K-Line rows sit consistently in `EXP-9.2 Otros Gastos
-  Riego`, so D-040 applies and the client's plumbing answer never covered
-  irrigation. Found by grouping candidates by wording, not by reading 539 rows.
-- **Gotcha — the prefetch I added to make the dialog faster hung it forever.**
-  `preloadedLines` in an effect's dependency array meant a prefetch landing
-  mid-fetch ran the cleanup, cancelling the dialog's own request, then
-  early-returned. The data arrived and was discarded. Fixed by deciding once at
-  mount and routing both callers through one shared cache;
-  `scripts/check-occurrence-cache.ts` covers the race.
-- **Gotcha — RLS grants read and write separately.** Anon sees **0 rows in every
-  table**; the app works because logged-in users are `authenticated`, which had
-  `SELECT` and `INSERT` policies but **no `UPDATE`**. The dialog would have
-  failed on save. Policy added 2026-09-03.
-- **Two theories died before the real cause was found.** The catalog page's
-  slowness was blamed on a missing foreign-key index (already existed) and then
-  on the view being recomputed per request (269 ms — fine). The actual gap was
-  that the concurrent-paging fix had only been applied to one of the two files
-  that page. **`EXPLAIN ANALYZE` killed both theories in one command; neither
-  would have died by reading more code.**
-- **Afaq's correction, and it was right:** approval to merge one branch was
-  treated as standing approval for the next two. It is not. Ask each time.
