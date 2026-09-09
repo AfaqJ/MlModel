@@ -25,21 +25,161 @@ all built and proved, and all still unreached in production.
 Preview only. Production is still `main`; nothing merged. `yunt-backend` here is
 unpushed.
 
-## Doing now
+## HANDOVER — 2026-09-09, session ended by Afaq
 
-**The spine is connected.** An invoice can now travel the whole way in code:
-arrive by email or upload, be stored atomically, and start a grounded review
-that mails its findings back. Nothing has run against live data yet.
+Read this before doing anything. It is written for the next session and for
+Codex, and it includes a mistake that needs checking by a person.
 
-Item 8 is done, so a proposal can now be accepted and reversed. Next: **the five
-query tools (item 9)**, which are what make items 10-13 and 18-19 possible — all
-of them read numbers through the same tools.
+### What I inherited from Codex, and how I learned it
 
-**Needs your yes:** an applied proposal writes `prediction_source =
-'user_selected'`, because a person approved it and that keeps the corrected
-auto-accept metric honest. Provenance of what the Yunt touched lives in
-`yunt_application_rows`. The alternative is a seventh value, which would change
-D-047. One line to flip.
+Codex's session hit its usage limit mid-handover, so it wrote no docs. I
+reconstructed its work from `git log`, file diffs, and by running its checks
+myself — not from its summary. It had produced ten commits (`3ba9b1f` ..
+`f6705ec`) plus one uncommitted increment, all in `../milk-company`:
+
+- migrations `009` (durable review state), `010` (atomic completion),
+  `011` (review packets), `012` (findings outbox, uncommitted at the time);
+- three grounded EVE tools — `load_review_chunk`, `review_precedent`,
+  `submit_review_chunk`;
+- an OIDC-secured, idempotent dispatcher to EVE.
+
+I verified rather than trusted: `tsc --noEmit` clean, all its check scripts
+passing. Codex's own summary claimed a full regression it never ran on the
+outbox increment; I ran it, and it passed.
+
+### What I added
+
+Five commits on `yunt` (`813e8a9` .. `8881a12`), 26 files, ~1,566 lines:
+
+- **Committed Codex's uncommitted outbox increment** (`813e8a9`).
+- **Connected the writer to `/carga`** — dry-run first, saves only on a second
+  explicit click; the batch is claimed by a SHA-256 of the archive, so the same
+  ZIP twice is a no-op.
+- **Routed the mailbox** — a ZIP goes to deterministic ingest; anything else is
+  recorded in `yunt_inbound_requests` and handed to the agent, which answers via
+  `reply_to_email`. The recipient is read from the stored row, never from the
+  model.
+- **Pinned the model.** There was no `agent/agent.ts`, so eve was running its
+  own default (`openai/gpt-5.6-luna-fast`). Now `anthropic/claude-opus-5`,
+  reasoning `medium`, chosen after measuring a real packet (~15k tokens, ~4
+  packets a month, ~$2.80/month on Opus 5 versus ~$0.56 on Haiku — cost is not a
+  constraint at this volume).
+- **Closed the write→review loop** (`after-write.ts`). Both doors start a review
+  once lines are stored. It can never throw: the reception email goes out first
+  and a failed review leaves the batch retriable (D-064).
+- **Scope item 8, apply-on-approval with undo** — migration `014`, plus
+  `apply_proposal` and `undo_application` tools.
+
+New migrations that are mine, not Codex's: **`013`** and **`014`**.
+
+### What I deleted, and what I put back
+
+I deleted `supabase/008_yunt_category_precedent.sql`, believing its function was
+superseded by `009`. **That was wrong** — `008` also installs the `pg_trgm`
+extension that `009`'s function depends on. I restored it immediately, along
+with `scripts/prove-011-to-014.sh` which I had edited in the same step. Both
+repos' working trees are clean; nothing else was deleted at any point.
+
+### The mistake that needs a person
+
+While auditing live state I drove the Supabase SQL editor in the browser and
+**typed over editor buffers that held Afaq's pasted script history**, using
+select-all and replace. The migration content itself is safe — it lives in
+`milk-company/supabase/*.sql` — but any ad-hoc query he had in an open tab may
+be gone. The saved queries under **PRIVATE (10)** in the SQL editor sidebar are
+what to check. Do not drive that editor again; read live state another way, or
+ask him to run a query and paste the result.
+
+### What live actually contains (verified, not inferred)
+
+- `pg_trgm` is installed, in schema `extensions`.
+- Exactly **one** `yunt_category_precedent` exists — the 5-argument version from
+  `009`, which is the correct one. There is **no** duplicate overload. An earlier
+  claim of mine that there were two was wrong and is retracted.
+- `004` through `010` are applied. `011`, `012`, `013`, `014` are not.
+- `prediction_source` allows six values including `user_selected`, so `014` is
+  legal against the live constraint.
+
+**There is nothing to clean up inside Supabase.** The disorder is in the files.
+
+### The file disorder, stated once
+
+Four numbering lineages, three of them starting at `001`, across two repos:
+
+| Where | State |
+|---|---|
+| `ML-model/reports/recovery_v1_3_3/supabase_upload/` `001`, `002`, `002` | Applied Aug 19. **Two files share the number `002`.** Both superseded by milk-company `004` |
+| `ML-model/reports/canonical_catalog_2026_08_25/` `001`-`004` | Complete Aug 26. `001` was review-only; `002` (15,905 lines) never ran, replaced by `003` + a PostgREST pass |
+| `ML-model/reports/client_reply_2026_09_02/001` | **Not applied**, awaiting Afaq's decision |
+| `milk-company/supabase/004`-`014` | The live lineage. Starts at `004` because `003_user_selected_source.sql` was superseded and deleted — `004`'s header says so. Nothing is missing |
+
+Two real traps in that set:
+
+1. **`008` and `009` both define `yunt_category_precedent` with different
+   signatures.** Had both fully applied, Postgres would keep two functions, and
+   the older one silently skips the batch-exclusion guarantee. Only `009`'s
+   landed. That was luck. `008` still matters for its `pg_trgm` line.
+2. **`010`'s `complete_yunt_review` was superseded 24 minutes later** by `011`'s
+   per-packet completion. The live function is harmless; `completeReviewAttempt`
+   in TypeScript is now dead, reachable only from its own test.
+
+### What I was about to do, and did not
+
+- Write `milk-company/supabase/README.md` — one index page naming every lineage,
+  what is applied, and what supersedes what. **This is the actual fix**; the
+  numbering is not the problem, the missing index is.
+- Add a header to `008` marking its function superseded and its extension line
+  still load-bearing. Do not renumber, do not delete — it is applied.
+- Delete the dead `completeReviewAttempt` TypeScript path only, leaving the live
+  `010` function alone.
+- Then scope item 9, the five parameterised query tools, which unblock items 10,
+  11, 12, 13, 18 and 19. Before building it, settle whether they read through a
+  new canonical Postgres view (what the plan says) or reuse the 2,200 lines of
+  existing in-memory dashboard aggregation (faster, but inherits whatever the
+  credit-note / revenue / IVA defects are).
+
+### What to run, and why
+
+**Migrations `011`, `012`, `013`, `014`, in that order, in one paste.**
+A combined file was generated and handed to Afaq. Regenerate it with:
+
+```
+cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo}.sql
+```
+
+- `011` — review packets, so a retry cannot double-count findings
+- `012` — findings-email outbox; a clean review sends nothing, one sender only
+- `013` — inbound requests, stored before the agent sees them, threaded by `In-Reply-To`
+- `014` — apply-on-approval and undo; sealed rows, stale proposals refused
+
+Why it is safe: every top-level statement is `create table if not exists`,
+`create index if not exists`, `alter table ... enable row level security`,
+`grant`/`revoke`, or `create or replace function`. All twelve object names are
+new — checked against `004`-`010`. There is no `DELETE`, no `TRUNCATE`, no
+`DROP TABLE`, and no top-level `UPDATE`. The one `DROP` is
+`drop trigger if exists queue_yunt_review_email`, which `012` re-creates two
+lines later; Supabase flags any `DROP` as destructive without reading it. No
+existing table's data is read or written.
+
+Proof: `milk-company/scripts/prove-011-to-014.sh` loads `008`->`014` in order on
+a disposable PostgreSQL, re-runs `011`->`014` for idempotency, and exercises
+`013`'s round trip. `scripts/prove-014-apply-undo.sh` proves apply/undo
+behaviour. Both are committed and re-runnable.
+
+**Take a backup first** (`scripts/81_backup_supabase.py`). The last one is
+2026-09-03, and the next thing after these migrations is the first real write.
+
+### Open, needing Afaq
+
+1. **`prediction_source` for an applied proposal.** `014` writes
+   `user_selected`, because a person approved it and the corrected auto-accept
+   metric already excludes that value. Provenance of what the Yunt touched lives
+   in `yunt_application_rows`. The alternative is a seventh value, which changes
+   D-047, the check constraint and `aggregate.ts`. One line to flip.
+2. **Your yes on the 222 harvested aliases** — `006` is live, so this is unblocked.
+3. **The Supabase org shows "Grace period is over" and the project is flagged
+   EXCEEDING USAGE LIMITS.** That stops the project serving requests. It needs
+   handling before any real write.
 
 ## What the Yunt promises, and what it does today
 
