@@ -14,8 +14,9 @@ carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
-purchasing forms, the ported ingestion pipeline and six regression checks live
-there; nothing is pushed. Ten audit findings are still open as decisions, in that
+purchasing forms and read-only ingestion paths are pushed through `4035fef`;
+eleven further commits are local and unpushed. Migrations `005`–`010` are
+**live**; `011` and `012` are not. Ten audit findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
 
@@ -118,7 +119,7 @@ every credential form and is blocked on them (D-054); email stays the fallback.
 The recipe is `docs/YUNT_IMPLEMENTATION_PLAN.md`; what still needs Afaq is
 `docs/YUNT_OPEN_DECISIONS.md`. **The Yunt is an [eve](https://vercel.com/eve)
 agent in Next.js on Vercel, not a Python service** (2026-09-09): tools are
-TypeScript files in `agent/tools/`, `needsApproval` is a built-in field, and
+TypeScript files in `agent/tools/`, `approval` is a built-in field, and
 execution is durable. GCloud keeps only the classifier. The ingestion pipeline
 has been ported to `../milk-company/src/lib/ingest/` and verified by replaying
 the same corpus — identical numbers, asserted as equalities. `yunt/` here is the
@@ -126,18 +127,29 @@ reference implementation and is deleted once the port completes.
 **Two doors reach one pipeline** — `/carga` takes an uploaded ZIP, and
 `POST /api/yunt/inbound` takes email through Resend; both call `runIngest`, and
 the upload page is permanent rather than a stopgap (D-060). **Neither writes
-anything yet.** Two environment variables fail *closed* and look like bugs if
+anything yet, and neither reaches anything built after `runIngest`.** The
+writer, the review state, the packet queue, the EVE tools, the dispatcher and
+the findings outbox all exist and are proved locally, but every one of them is
+imported only by a `scripts/check-*` regression. Read the callers before
+believing a stage is wired. Two environment variables fail *closed* and look like bugs if
 you do not know: an empty `YUNT_ALLOWED_ADDRESSES` means the Yunt can mail
 nobody, and an unset `YUNT_INBOUND_ADDRESS` means it ignores every message. That
 second one matters because the Resend account is shared and **a Resend webhook
 cannot be scoped** — every endpoint on the account receives every inbound
 message, so filtering by recipient is our job (D-061).
-Two facts drive the design. The classifier **auto-accepts only 8% of the
+The deterministic ingest writes even when Claude is unavailable. Immediately
+after a successful write, the Yunt reviews every line through compact groups,
+then sends a second email only when it has a finding or proposal; the first
+reception email never depends on the agent (D-064). That reply is sent without
+asking — it is the second half of the sender's own exchange, and the outbox, not
+the model, decides whether anything goes out (D-065). Applying a proposal is
+still approval-gated and that tool does not exist. Two facts drive the design.
+The classifier **auto-accepts only 8% of the
 corpus** while deterministic lookups settle 44%, and 68% of review rows are
 undertrained wordings rather than ambiguous items — so a category proposal is a
 **precedent search in SQL**, with the model grouping and explaining, never
-computing. And the agent is the **front-door router**, not a pipeline stage:
-ingestion stays plain code that would run with the router removed.
+computing. The agent is a post-write reviewer and conversational front door;
+ingestion stays plain code that succeeds with the agent unavailable.
 
 **The DTE XML is ISO-8859-1 and carries no `encoding=` declaration**, so any
 parser that assumes UTF-8 corrupts every accented character. Do what

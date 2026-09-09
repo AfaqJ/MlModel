@@ -1599,3 +1599,82 @@ reason.
 **Rejected:** turning deployment protection off, which would expose every
 preview of the client's dashboard to anyone with the URL.
 
+---
+
+## D-063 — One invoice and all of its lines are one database transaction
+
+**Date:** 2026-09-09 · **Decided by:** Codex · **Model:** GPT-5.6
+
+The ingest writer may create or update reference rows first, but an invoice and
+every `invoice_items` row belonging to it cross the database through one
+transactional RPC. If any line is invalid, the invoice and all lines in that
+RPC call roll back together.
+
+This closes a retry hole in the original Phase 3 wording. Separate PostgREST
+upserts could insert an invoice, fail on a later line, then see the invoice as a
+duplicate on webhook redelivery and skip the data that never arrived. Batch-id
+deduplication does not repair a half-written business document; atomic document
+writes prevent that state from existing.
+
+The writer still preflights every row before its first write, defaults to dry
+run, and never includes the generated `needs_review` column. Nothing here
+authorises a live write: backup, dry-run evidence, and Afaq's explicit approval
+remain mandatory.
+
+---
+
+## D-064 — Storage never waits for Yunt; every saved line gets a compact post-write review
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** GPT-5.6
+
+The deterministic path stores the invoice and classifier result first. Claude
+being slow or unavailable may never cause an invoice to be lost. A successful
+write is followed immediately by a Yunt review, and an unavailable review stays
+eligible for a later attempt.
+
+The Yunt reviews **all** saved lines, including auto-accepted ones, to catch a
+plausible false positive. It does so token-efficiently: code groups repeated
+normalised wording and sends counts, classification variants, confidence
+ranges, counterparties, amounts and deterministic flags once per group. Exact
+line identities remain outside the prompt and later seal any proposed action.
+
+Email delivery is split by responsibility. The first email is the deterministic
+reception report and does not wait for the agent. A second email is sent only
+when Yunt has a finding or proposal: what it noticed, the evidence, and the
+action it offers to take. No second email is sent when Claude is down, and no
+suggestion changes a category without the existing approval/apply/undo path.
+
+The second email is sent **without asking** — see D-065 for why that is not
+a hole in the approval rule, and what makes it safe.
+
+---
+
+## D-065 — The findings reply is part of reception, not a new outbound action
+
+**Date:** 2026-09-09 · **Decided by:** Codex, ratified by Afaq · **Model:** GPT-5.6
+
+`agent/instructions.md` requires human approval before any tool that changes
+company data, contacts another person, or creates an external effect. The
+second email of D-064 would deadlock against that rule: the agent would finish
+its review and then stop, waiting for a confirmation no one is watching for.
+
+So the rule is narrowed, not waived. Approval is required to contact **another
+person** or create a **new** external effect. Replying to the same allowed
+sender who just sent the invoices is neither — it is the second half of an
+exchange that person started, and D-064 already settled that it happens. After
+the final packet reports `reviewCompleted: true`, the agent calls
+`send_review_findings` once without asking.
+
+The safety is in the outbox, not in the model's judgement. A trigger sets the
+queued row `ready` only when flags or proposals exist and `suppressed`
+otherwise, so a clean review sends nothing however the agent behaves. One
+worker can claim the row; a second claim gets zero rows. The recipient is the
+original sender read from the batch, never a value the model supplies. The
+send carries a stable Resend `Idempotency-Key`.
+
+**This does not extend to acting on a proposal.** Changing a category still
+requires the approval/apply/undo path, and no such tool exists yet.
+
+**Rejected:** letting the agent return findings to the webhook request and mail
+from there. That request may not outlive the review, and a Resend or EVE retry
+would then send the same findings twice.

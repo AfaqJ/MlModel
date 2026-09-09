@@ -105,11 +105,10 @@ and the reasoning, at `reports/alias_harvest_2026_09_08/README.md`.
 
 **Needs, in order:**
 
-1. `milk-company/supabase/006_alias_provenance.sql` run in the SQL editor. It
-   adds `source` / `confirmed_by` / `evidence_lines` to `item_aliases`, which
-   must exist **before** any bulk insert or an alias you approved becomes
-   indistinguishable from one the machine proposed.
-2. Your yes on the 222.
+1. ~~`006_alias_provenance.sql` run in the SQL editor.~~ **Done 2026-09-09.**
+   It added `source` / `confirmed_by` / `evidence_lines` to `item_aliases`, so
+   an alias you approved is now distinguishable from one the machine proposed.
+2. Your yes on the 222. **This is the blocker now.**
 3. Then: backup, dry run, scoped PostgREST write. The write script is
    deliberately not written yet — D-046's lesson is that a one-shot script
    written against a database state rots, so it gets written when it is run.
@@ -186,7 +185,8 @@ problem is a dictionary.
 - **The classifier encodes one line at a time.** Measured 127 ms/line against the
   live service, so a 900-line month takes about 114 seconds. Fine for a
   background job. Batching the ONNX encode is the fix if it ever matters.
-- **`milk-company/supabase/005_purchase_orders.sql` has not been run.** Until it
-  is, the purchasing pages load and error. Idempotent, safe to re-run.
+- **`milk-company/supabase/005_purchase_orders.sql` ran on 2026-09-09**, so the
+  purchasing pages are backed by real tables. They have not been exercised
+  against live data.
 - **Purchasing screens are Spanish-only**, not routed through next-intl. Marked
   with a `ponytail:` comment in `levantamiento/page.tsx`.

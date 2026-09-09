@@ -10,11 +10,14 @@ plan follows it. The scope document is what Antillanca agreed to receive, not
 the record of how it is built.
 
 **Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
-`../milk-company`. Nothing pushed.
+`../milk-company`. Frontend work is pushed through `4035fef`; the Phase 3 writer
+increment is local and uncommitted.
 
-**Status: building, in `../milk-company`.** Phases 1–2.5 are done, none of the
-write path is. Every phase below carries its own state. The seven GO decisions
-D1, D2, D3, D5, D6 and D7 are settled (Afaq, 2026-09-08); D4 was withdrawn.
+**Status: building, in `../milk-company`.** Phases 1–2.5 are done. Phase 3's
+writer and migration are built and proved offline, but they are disconnected
+and unapplied, so the live-write proof is still open. Every phase below carries
+its own state. The seven GO decisions D1, D2, D3, D5, D6 and D7 are settled
+(Afaq, 2026-09-08); D4 was withdrawn.
 
 ---
 
@@ -113,7 +116,7 @@ asserting the numbers as **equalities**, not by inspection. The knowledge was
 not re-earned; it was moved, with a test that proves it arrived intact.
 
 What that buys: one deploy instead of two, one language for the agent's tools
-(eve's tools are TypeScript files in `agent/tools/`, and `needsApproval` is a
+(eve's tools are TypeScript files in `agent/tools/`, and `approval` is a
 built-in field rather than machinery we write), and no second service sharing a
 failure mode with the client's live classifier.
 
@@ -144,6 +147,14 @@ only downgrade an `auto_accept` row to review. No staging store. This differs
 from the order described in the sent scope, but the behaviour Cristian observes
 is identical — nothing reaches his report before the pass has run — so it needs
 no re-send.
+
+**Confirmed and refined 2026-09-09 (Afaq, D-064).** Storage never waits for
+Claude: the deterministic reception report is the first email, even when the
+agent is unavailable. The Yunt then reviews every line through a compact map of
+normalised groups, so repeated wording is sent once rather than once per invoice
+line. A second, conversational email is sent only when the Yunt has a finding or
+proposal. If the Yunt is unavailable, that second email is absent and the saved
+batch remains eligible for a later pass.
 
 **D2. Catalog resolver scope for v1. — DECIDED: build the full resolver first.**
 
@@ -399,21 +410,29 @@ matters — **how many lines it maps to a catalog row different from the one the
 sit on today.** Day one that number is 0 by construction (tier 1 only); every
 tier added after must justify each disagreement it introduces.
 
-### Phase 3 — write to Supabase · NEXT. **New invoices appear in the dashboard.**
+### Phase 3 — write to Supabase · WRITER BUILT; LIVE CONNECTION PENDING.
+
+The writer, its batch ledger, and the atomic invoice RPC are implemented on the
+local `yunt` branch and dry-run by default. Migration `007_yunt_ingest.sql` is
+**live** as of 2026-09-09, so the database side is ready — but neither `/carga`
+nor the mail route imports the writer, so no new invoice can reach live data
+from this code today. Connecting the two doors is the remaining work.
 
 - Classify in batches of 500 against `mlmodel`'s `/predict-batch`
 - Lock `mlmodel` to a service account, give `yunt` that identity (D6)
 - Write `companies`, `item_catalog` (through the Phase 2.5 resolver), `invoices`,
-  `invoice_items` — whole rows, never partial (a PostgREST upsert is
-  `INSERT … ON CONFLICT` and fails the insert arm on every omitted NOT NULL
-  column); **never write `needs_review`**, it is GENERATED and returns 400
+  `invoice_items` — whole rows, never partial. Each invoice plus all its lines
+  goes through one transaction RPC, so one bad line rolls the document back;
+  **never write `needs_review`**, it is GENERATED and returns 400
 - Idempotent at batch level: the whole ingest keys on the email's message id, so
   a re-delivered webhook changes nothing
 - `yunt_batches` table: one row per ingest, with counts and the reconciliation
 
-**Proof:** ingest one month; row counts before/after differ by exactly the
-report's numbers; the dashboard's catalog and Analítica show the new period;
-re-run and nothing changes. Back up first (`scripts/81_backup_supabase.py`).
+**Offline proof complete:** focused planning/dry-run/replay tests plus a real
+disposable PostgreSQL run. **Live proof still required:** ingest one month; row
+counts before/after differ by exactly the report's numbers; the dashboard's
+catalog and Analítica show the new period; re-run and nothing changes. Back up
+first (`scripts/81_backup_supabase.py`).
 
 **This is the first phase that touches live data.** It gets its own approval
 from you on the day, against a dry run.
@@ -462,7 +481,9 @@ produces exactly two flags and no others.
 
 The first phase with a language model in it.
 
-1. **Code** groups the batch's review lines by normalised wording.
+1. **Code** groups every batch line by normalised wording. Each compact group
+   carries counts, classification variants, confidence ranges, counterparties,
+   amounts and deterministic flags; exact member ids stay server-side.
 2. **Code** fetches precedent for each group: confirmed lines with the same
    normalised wording, the same catalog item, or the same supplier + similar
    wording, with their categories and counts.
@@ -474,7 +495,7 @@ The first phase with a language model in it.
    evidence that was not supplied.
 5. Proposals are written to `yunt_proposals`. **Nothing is applied.**
 
-**It also re-reads the lines that were auto-accepted** (Afaq, 2026-09-08). The
+**That includes every auto-accepted line** (Afaq, reconfirmed 2026-09-09). The
 arithmetic flags in Phase 4 cannot see a category that is simply wrong — a line
 settled by a stale product-lookup entry is arithmetically perfect. Reading is
 where a language model genuinely beats the pipeline, and 44% of every batch is
@@ -553,10 +574,11 @@ rather than guessed.
 Cloud Scheduler → three jobs: month-end summary, post-batch digest, weekly
 review list. Same tools, same rendering, nothing new except the trigger.
 
-### Phase 9 — purchase orders, the forms · BUILT, awaiting `005_purchase_orders.sql` (D-052)
+### Phase 9 — purchase orders, the forms · BUILT; `005_purchase_orders.sql` is live (D-052)
 
-Frontend work in `milk-company`. The screens exist as mock-ups with a
-`DemoBanner`; this makes them real.
+Frontend work in `milk-company`. The screens existed as mock-ups with a
+`DemoBanner`; migration `005` ran on 2026-09-09, so they are backed by real
+tables. Not exercised against live data yet.
 
 - Tables: `purchase_requests`, `purchase_orders`, `quotations` (+ Supabase
   Storage bucket for the quotation files)
@@ -754,10 +776,11 @@ contact, ever.
 
 ## 11. What is still needed from you
 
-1. **Run `milk-company/supabase/005_purchase_orders.sql`** in the Supabase SQL
-   editor. The purchasing screens are built and error until it does.
-2. **Run `milk-company/supabase/006_alias_provenance.sql`**, before any alias
-   load rather than after.
+1. **Run `milk-company/supabase/011_yunt_review_chunks.sql`** and
+   **`012_yunt_review_outbox.sql`** in the Supabase SQL editor. `005`–`010` ran
+   on 2026-09-09; these two are the remainder. Both idempotent.
+2. **The Claude model and cost tier for the review agent** — the only choice the
+   review layer still needs from you.
 3. **Four values for the mailbox**, all Resend-side: the receiving address (the
    free `.resend.app` one needs no DNS at all), `RESEND_API_KEY`,
    `RESEND_WEBHOOK_SECRET`, and `YUNT_ALLOWED_ADDRESSES` — which must include
