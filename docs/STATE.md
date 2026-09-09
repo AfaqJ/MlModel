@@ -216,7 +216,7 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**11 of 19 done in code, 4 partly, 4 not started. Nothing agentic is live yet.**
+**12 of 19 done in code, 3 partly, 4 not started. Nothing agentic is live yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
@@ -227,7 +227,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 6 | Data quality flags, and fixes proposed on approval | Partly. Detection is built and calibrated; a flagged auto-accept is downgraded. Persisting flags and proposing fixes remain |
 | 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
 | 8 | Approve a group, get a confirmation, undo it | Done in code. The confirmation is the database's own words, not the model's |
-| 9 | Five query tools answering open questions | Partly. Price history, category precedent and row listing are built; aggregate and period comparison remain |
+| 9 | Five query tools answering open questions | Done in code. All five built and proved. `022` is not live |
 | 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Not started. Plain-text replies only |
 | 11 | Charts from a fixed set, drawn by code | Not started |
 | 12 | Says so when a question does not fit, and we learn from the list | Done in code. One immutable backlog entry per stored request; not live until `017` runs |
@@ -284,8 +284,10 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 - [x] Inbound requests recorded and threaded by `In-Reply-To` (`013`)
 - [x] `reply_to_email` — recipient read from the row, one reply per request
-- [ ] **Five query tools + the canonical money view** (Phase 7, D-053): item
-      3/5 are proved; aggregate and period comparison remain
+- [x] **All five query tools** (Phase 7, D-053): price history, category
+      precedent, invoice-line listing, grouped totals and period comparison.
+      Money semantics live in one function and print on every answer — net line
+      amounts, IVA excluded, credit notes negated and excluded by default
 - [ ] Answer delivery: figure in the body, list as `.xlsx`, report as PDF
 - [x] Refusal path and `yunt_refusals`, one immutable backlog row per request
 - [x] Exact restate-then-confirm for apply and undo: code-generated prompt,
@@ -338,6 +340,35 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (j) — the last two query tools, and one filter instead of two
+
+- **Scope item 9 is complete in code.** `yunt_invoice_aggregate` groups invoice
+  lines by month, category, supplier, document type, item or city and measures a
+  sum, a count of lines or of documents, an average unit price, a minimum or a
+  maximum. `period_comparison` runs it over two ranges and joins on the label.
+- **Money semantics are settled and stated, not hidden.** Net line amounts, so
+  IVA is excluded; a credit note subtracts and is excluded entirely unless asked
+  for; a prediction still under review is never counted as a category (D-001).
+  Every answer prints the filter, the basis and the credit-note treatment. Afaq
+  ruled this was an accounting question for the client rather than a code
+  blocker — if the convention changes it changes in one function.
+- **One definition of "a matching line", not two.** `016` already had the filter
+  the aggregate needed. Rather than copy it, it moved into `yunt_filtered_lines`
+  and `016` now selects from that; its signature and behaviour are unchanged,
+  proved by re-running its own checks over the new source.
+- **The only TypeScript arithmetic is the period difference, and it refuses to
+  invent a percentage.** A zero or negative base gives a difference and no
+  percent change; a group present in only one period is named as such instead of
+  being shown as a change from zero.
+- **Proof:** `scripts/prove-022-aggregate.sh` loads `022` twice and covers every
+  grouping, every measure, credit-note netting, the review-required exclusion,
+  null unit prices, argument validation and the row cap, then re-runs `016`'s
+  behaviour over the shared source. `scripts/check-yunt-aggregate.ts` covers the
+  argument mapping and the comparison edge cases. `./check.sh` all green;
+  `npx eve build` passed. Frontend commit `7b674cf`.
+- **Two migrations now pending:** `021` (`/carga` operator writes, still not
+  written to disk) and `022`.
 
 ### 2026-09-09 (i) — migrations 011-020 went live
 
