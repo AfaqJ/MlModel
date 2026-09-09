@@ -216,7 +216,7 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**12 of 19 done in code, 3 partly, 4 not started. Nothing agentic is live yet.**
+**12 of 19 done in code, 4 partly, 3 not started. Nothing agentic is live yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
@@ -228,7 +228,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
 | 8 | Approve a group, get a confirmation, undo it | Done in code. The confirmation is the database's own words, not the model's |
 | 9 | Five query tools answering open questions | Done in code. All five built and proved. `022` is not live |
-| 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Not started. Plain-text replies only |
+| 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Partly. Figure in the body and the spreadsheet attachment are built, with the filter printed on both. PDF remains |
 | 11 | Charts from a fixed set, drawn by code | Not started |
 | 12 | Says so when a question does not fit, and we learn from the list | Done in code. One immutable backlog entry per stored request; not live until `017` runs |
 | 13 | Month-end summary, post-batch digest, weekly review list | Not started |
@@ -288,7 +288,10 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       precedent, invoice-line listing, grouped totals and period comparison.
       Money semantics live in one function and print on every answer — net line
       amounts, IVA excluded, credit notes negated and excluded by default
-- [ ] Answer delivery: figure in the body, list as `.xlsx`, report as PDF
+- [x] **List as a spreadsheet attachment**, queried by the tool rather than
+      retyped by the model. CSV with a BOM and semicolons so Excel reads it in
+      Chile; a real workbook only if formatting or formulas are ever needed
+- [ ] Report as PDF, and charts from the fixed set
 - [x] Refusal path and `yunt_refusals`, one immutable backlog row per request
 - [x] Exact restate-then-confirm for apply and undo: code-generated prompt,
       Message-ID/sender/action/target binding, and one-use first-line token
@@ -342,6 +345,23 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (m) — answers arrive as a file
+
+- **Scope item 10's spreadsheet half.** `reply_with_spreadsheet` takes the same
+  filters as the list and totals tools plus the written answer, **runs the query
+  itself**, and attaches the result. A row the model retypes is a row the model
+  can get wrong, and the attachment is the artefact Cristian keeps.
+- **CSV, not a workbook.** Excel opens it and the format is forty lines rather
+  than a dependency. Two details make it readable in Chile: a UTF-8 byte-order
+  mark, or accented supplier names arrive mojibake, and a semicolon separator,
+  because a Spanish-locale Excel reads the comma as the decimal point and shifts
+  every column. Marked with a `ponytail:` note — a real workbook only when
+  formatting, several sheets or formulas are needed.
+- **Proof:** `scripts/check-yunt-spreadsheet.ts` covers the BOM, the separator, a
+  supplier name containing a semicolon, an embedded quote, an embedded newline,
+  null and undefined as empty cells, and zero surviving a falsy check.
+  `./check.sh` all green; `npx eve build` passed. Commit `4a23b6d`.
 
 ### 2026-09-09 (l) — the deterministic findings are stored
 
