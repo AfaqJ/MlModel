@@ -10,13 +10,13 @@ plan follows it. The scope document is what Antillanca agreed to receive, not
 the record of how it is built.
 
 **Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
-`../milk-company`. Frontend work is pushed through `4035fef`; nineteen later
-commits are local and unpushed through `d7b21b0`.
+`../milk-company`. Frontend work is pushed through `4035fef`; twenty-one later
+commits are local and unpushed through `ff55c64`.
 
 **Status: building, in `../milk-company`.** Phases 1–2.5 are done. Phase 3's
 writer is connected to both doors in source; the email path is unproved live and
 the upload path lacks authenticated database permission. The review/apply loop
-and the first of five query tools are built, but migrations `011`–`015` are not
+and three of five query tools are built, but migrations `011`–`016` are not
 live. Every phase below carries
 its own state. The seven GO decisions D1, D2, D3, D5, D6 and D7 are settled
 (Afaq, 2026-09-08); D4 was withdrawn.
@@ -780,7 +780,7 @@ contact, ever.
 
 ## 11. What is still needed from you
 
-1. **Clear the Supabase usage-limit block**, then run migrations `011`–`015` in
+1. **Clear the Supabase usage-limit block**, then run migrations `011`–`016` in
    numeric order. `005`–`010` are live; the five pending files are idempotent and
    proved twice locally.
 2. **Approve the `/carga` permission design.** Recommendation: a database Yunt
