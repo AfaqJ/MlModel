@@ -10,29 +10,48 @@ ZIP sent by email uses the service-role database client, writes deterministic
 facts, sends the receipt, then starts the compact Yunt review. A non-ZIP email
 is stored and handed to EVE. No real message has traversed either path.
 
-**`/carga` is currently blocked at its first real save.** It correctly uses the
-signed-in user's Supabase client, but `yunt_batches` and the writer/review RPCs
-grant only `service_role`; no authenticated policy exists. The page can preview,
-but calling the live write should fail. Do not hide this by importing the secret
-service client into a browser-triggered action. The proposed production fix is
-a database-backed Yunt operator allowlist, initially Afaq and later Cristian;
-Afaq has not approved that permission design yet.
+**`/carga` is still blocked at its first real save**, and the fix is written but
+not on disk. It correctly uses the signed-in user's Supabase client, while
+`yunt_batches` and the writer/review objects grant only `service_role`. Afaq
+settled the design on 2026-09-09: **any signed-in user**, the same permission
+every other write in this product has, because v1 has no roles (D-052). The
+named-allowlist idea is dropped. The SQL for `021` was handed over in chat —
+Claude's file writes were refused twice by the safety classifier because the
+file grants database permissions — and it needs saving to
+`milk-company/supabase/021_carga_operator_writes.sql` before it can be proved
+and run. Do not work around this by importing the service key into a
+browser-triggered action.
 
-**The review/apply foundation and three of five business query tools are built locally.**
-Review packets, grounded evidence, findings email, retryable inbound requests,
-apply/undo, bounded item price history, category precedent, filtered invoice-line
-lists, and a durable refusal backlog all have regressions. `014` writes
-`prediction_source='yunt_applied'` (D-066). Apply and undo now require an exact,
-email-thread-bound confirmation instead of treating any reply as approval
+**All five business query tools are built, and their money rules are settled.**
+Price history, category precedent, bounded line listing, grouped totals and
+period comparison. Amounts are net line amounts so IVA is excluded, a credit
+note subtracts and is excluded unless asked for, and a prediction still under
+review is never counted as a category (D-001). Every answer prints its filter
+and basis. A grouped answer also reports the total across **every** group, not
+just the hundred returned — verified against the real corpus, where by supplier
+the rows alone understate purchases by CLP 194 million.
+
+**The review/apply foundation is built locally.** Review packets, grounded
+evidence, findings email, retryable inbound requests, apply/undo and a durable
+refusal backlog all have regressions. `014` writes
+`prediction_source='yunt_applied'` (D-066). Apply and undo require an exact,
+email-thread-bound confirmation rather than treating any reply as approval
 (D-067).
-Purchasing is now built end to end for the Yunt: it drafts a request (`018`),
+
+**Purchasing is complete for the Yunt end to end.** It drafts a request (`018`),
 grounds itself in one request plus only its own bounded quotations, and drafts
 and issues the order (`020`) through the same `create_purchase_order` the form
 uses, so the CLP 500,000 two-quotation rule has exactly one copy. The order form
 records its optional selected quotation and `019` rejects one belonging to
-another request. Attaching price precedent to a buying exchange remains. The
-aggregate and period-comparison tools, the unsettled quality-check set,
-exports/charts/reports and recurring reports are still to build.
+another request. Attaching price precedent to a buying exchange remains.
+
+**Data-quality checks run on every batch**, chosen by measuring seven candidates
+against the stored corpus rather than by picking a number. Four line checks and
+one document check survive; a flagged auto-accept is downgraded to review and
+nothing else, and the findings are stored in `yunt_flags`.
+
+**Still to build:** the PDF and chart half of answer delivery, recurring
+reports, and showing flags per line in the dashboard.
 
 **Migrations `004`–`020` are ALL LIVE.** Afaq ran `011`–`020` in one paste on
 2026-09-09, from the concatenated file this session handed him. Every one had
