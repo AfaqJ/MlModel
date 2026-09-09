@@ -5,53 +5,97 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The Yunt's whole review layer is built, proved locally, and connected to
-nothing.** After the two ingest doors (`/carga` upload, `antillanca.yunt@…`
-mailbox) run `runIngest`, the next four stages now exist as code: a writer that
-stores an invoice and every line in one transaction, durable review state, a
-packet queue, three grounded EVE tools, an OIDC-secured dispatcher, and a
-findings-email outbox. **Every one of them is called only by a `scripts/check-*`
-regression.** Neither route imports the writer, and nothing imports the
-dispatcher. Ingestion still prints its reception report and stores nothing.
+**The chain is half connected.** `/carga` now reads a ZIP, shows exactly what
+would be stored, and stores it only when the person clicks a second time; the
+batch is claimed by a hash of the archive, so the same ZIP twice is a no-op. The
+mailbox splits structurally — a ZIP goes to deterministic ingest, and any other
+message is recorded as an inbound request and handed to the agent, which answers
+through `reply_to_email` with the recipient read from the stored row.
 
-**Migrations `005` through `010` are live.** Afaq ran them in the Supabase
-editor on 2026-09-09. `011_yunt_review_chunks.sql` and
-`012_yunt_review_outbox.sql` have not run. `012` is still uncommitted.
+**What is still disconnected:** the mailbox does not call the writer, and
+nothing calls `stageReviewAttempt`, so no write yet triggers a review. The
+review layer, its three EVE tools, the dispatcher and the findings outbox are
+all built and proved, and all still unreached in production.
 
-**The mailbox is wired end to end but has never carried a message.** Resend
-webhook created and enabled on the `yunt` preview URL, signing secret rotated,
-and Vercel bypass secret in the URL. Afaq reports the required Resend variables
-are posted and can see the rebuilt preview. Their values and the sender
-allowlist have not been re-read here, so the end-to-end mail path remains
-unproved.
+**Migrations `005` through `010` are live.** Afaq ran them on 2026-09-09.
+`011`, `012` and `013` are written, proved against a disposable PostgreSQL, and
+**have not run**.
 
-**Branch `yunt` is pushed only through `4035fef`; eleven commits are local.**
-`2fe8fcb` (the writer) through `f6705ec` (the dispatcher), plus the uncommitted
-outbox increment. Preview only. Production is still `main`; nothing merged.
-`yunt-backend` here is unpushed.
+**Branch `yunt` is pushed only through `4035fef`; fourteen commits are local.**
+Preview only. Production is still `main`; nothing merged. `yunt-backend` here is
+unpushed.
 
-## Next
+## Doing now
 
-1. **Commit the outbox increment, then run `./check.sh` in full.** The session
-   that built `012` ended before its regression. Claude verified `tsc --noEmit`
-   and all five Yunt check scripts pass on the working tree; the build and lint
-   steps have not run since. Do this before anything else — it is the only
-   unverified thing on disk.
-2. **Connect the writer to the two ingest doors.** Show its dry-run counts
-   against a real ZIP first. Only after a backup and Afaq's explicit yes may
-   either door call it with `dryRun: false` (MCT-146). Until this happens, every
-   stage below it is unreachable in production.
-3. **Run `011` and `012` in the Supabase editor** — both idempotent, both proved
-   twice against a disposable PostgreSQL. `011` gives review packets, `012` the
-   findings-email outbox. Neither is useful until step 2 lands.
-4. **Send the first real email** to `antillanca.yunt@mountaincreative.cl` with a
-   ZIP attached and read the Vercel log. The exact success/reply outcome depends
-   on the sender allowlist Afaq posted; do not infer it without the log.
-5. **Apply the 222 harvested aliases** — migration `006` is now live, so this is
-   unblocked. Backup, dry run, scoped PostgREST write. The apply script is
-   deliberately unwritten until it is run (D-046's lesson).
-6. **Choose the Claude model and cost tier for the review agent.** The only
-   decision the review layer still needs from Afaq; everything else is built.
+Connecting the chain so v1 is reachable end to end. Done this session: the
+writer is wired to `/carga` behind an explicit second click, and the mailbox now
+routes structurally — a ZIP goes to deterministic ingest, anything else is
+recorded and handed to the agent. Next: the mailbox writer, then the review
+dispatch that fires after a write.
+
+## V1 checklist
+
+Every box that must be ticked for a working v1. Updated as work lands — if a box
+is unticked, there is no code for it. "Built" means proved by a regression;
+"live" means the migration has run in Supabase.
+
+### The spine — invoices in, stored, reviewed
+
+- [x] Deploy path, Resend mailbox, ZIP upload page (Phases 0–1)
+- [x] Read, deduplicate, resolve to catalog, classify, report (Phases 2–2.5)
+- [x] Atomic writer: whole invoice and all its lines in one transaction (D-063)
+- [x] Writer connected to `/carga`, dry run first, save on a second click
+- [x] Mailbox router: ZIP → deterministic ingest, everything else → the agent
+- [ ] **Mailbox connected to the writer** — claimed by the Resend message id
+- [ ] **Review fires after a write** — nothing calls `stageReviewAttempt` yet
+- [ ] First real write, against a backup, with Afaq's yes on the day
+
+### The review loop
+
+- [x] Durable review state, packets, atomic completion (`009`–`011`)
+- [x] Three grounded EVE tools: load, precedent, submit
+- [x] Findings-email outbox: sends only when findings exist (`012`, D-065)
+- [x] OIDC-secured, idempotent dispatch to EVE
+- [ ] **Pin the model to Opus 5** with a cached prefix — decided, no code
+- [ ] Proof run: 200 known review rows, counting the confidently-wrong (Phase 5)
+
+### Talking to Cristian
+
+- [x] Inbound requests recorded and threaded by `In-Reply-To` (`013`)
+- [x] `reply_to_email` — recipient read from the row, one reply per request
+- [ ] **Five query tools + the canonical money view** (Phase 7, D-053)
+- [ ] Answer delivery: figure in the body, list as `.xlsx`, report as PDF
+- [ ] Refusal path and `yunt_refusals`, which is the backlog for what to add
+- [ ] Restate-then-confirm before any action the person agreed to in prose
+
+### Acting, with a way back
+
+- [ ] **`apply_proposal(proposal_id, nonce)`** — sealed targets, no row list
+      from the caller (Phase 6)
+- [ ] **`yunt_applications`: prior values stored, undo is a per-row replay**
+- [ ] Data-quality flags, all seven checks; a flagged `auto_accept` is
+      downgraded to review and nothing else (Phase 4, D-058, D1)
+
+### Purchasing
+
+- [x] The two forms, real tables (`005` live) — not yet exercised live
+- [ ] The Yunt fills them from an email, with precedent prices from the
+      price-history tool (Phase 10)
+- [ ] The CLP 500,000 two-quotation check called from the same function the
+      form uses, never a second copy
+
+### Waiting on Afaq
+
+- [ ] **Run `011`, `012`, `013`** in the Supabase editor — all idempotent
+- [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
+- [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
+- [ ] Fix the `Confeccion de Bolos` duplicate — three catalog rows, one thing
+
+### Deliberately not in v1
+
+Recurring scheduled reports (Phase 8), roles and approval chains on purchase
+orders (D-052), and ingestion from the Audisoft API, which is blocked on
+credentials that return 401 (D-054).
 
 ## Recent sessions
 
