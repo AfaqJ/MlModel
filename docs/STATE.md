@@ -302,7 +302,9 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] **Data-quality flags: four line checks and one document check**, each
       chosen by measuring candidates against the stored 11,746 lines. A flagged
       `auto_accept` is downgraded to review and nothing else (Phase 4, D-058, D1)
-- [ ] Flags persisted to `yunt_flags` and shown per line in the dashboard
+- [x] **Flags persisted to `yunt_flags`** with `source='deterministic'`, written
+      when the review attempt opens so an incomplete review still leaves them
+- [ ] Flags shown per line in the dashboard
 
 ### Purchasing
 
@@ -340,6 +342,25 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (l) — the deterministic findings are stored
+
+- **They were computed and then thrown away.** The quality checks fired at
+  ingest but their results only reached the batch report and the model prompt.
+  They now land in `yunt_flags` with `source='deterministic'`, written as the
+  review attempt opens — before the model sees anything, so a review that never
+  completes still leaves them behind.
+- **Five module types map onto the table's five allowed ones.** The table holds
+  one row per group per type, so several amount problems in a group collapse
+  into one flag naming every affected line. The worst severity wins along with
+  its own reason: a critical finding reported at `warning` is one that gets
+  skipped.
+- **Only lines the review actually linked can carry a flag**, so a stray input
+  id cannot smuggle one in, and a clean group produces no row rather than an
+  empty one.
+- **Proof:** `scripts/check-yunt-deterministic-flags.ts` covers the mapping, the
+  collapse, the severity rule, the orphan case and the clean case. `./check.sh`
+  all green; `npx eve build` passed. Commit `5965368`.
 
 ### 2026-09-09 (k) — one definition of a data-quality flag
 
