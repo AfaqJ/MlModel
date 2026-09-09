@@ -10,12 +10,14 @@ plan follows it. The scope document is what Antillanca agreed to receive, not
 the record of how it is built.
 
 **Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
-`../milk-company`. Frontend work is pushed through `4035fef`; the Phase 3 writer
-increment is local and uncommitted.
+`../milk-company`. Frontend work is pushed through `4035fef`; nineteen later
+commits are local and unpushed through `d7b21b0`.
 
 **Status: building, in `../milk-company`.** Phases 1–2.5 are done. Phase 3's
-writer and migration are built and proved offline, but they are disconnected
-and unapplied, so the live-write proof is still open. Every phase below carries
+writer is connected to both doors in source; the email path is unproved live and
+the upload path lacks authenticated database permission. The review/apply loop
+and the first of five query tools are built, but migrations `011`–`015` are not
+live. Every phase below carries
 its own state. The seven GO decisions D1, D2, D3, D5, D6 and D7 are settled
 (Afaq, 2026-09-08); D4 was withdrawn.
 
@@ -410,13 +412,15 @@ matters — **how many lines it maps to a catalog row different from the one the
 sit on today.** Day one that number is 0 by construction (tier 1 only); every
 tier added after must justify each disagreement it introduces.
 
-### Phase 3 — write to Supabase · WRITER BUILT; LIVE CONNECTION PENDING.
+### Phase 3 — write to Supabase · CONNECTED IN SOURCE; LIVE PROOF/PERMISSION PENDING.
 
 The writer, its batch ledger, and the atomic invoice RPC are implemented on the
 local `yunt` branch and dry-run by default. Migration `007_yunt_ingest.sql` is
-**live** as of 2026-09-09, so the database side is ready — but neither `/carga`
-nor the mail route imports the writer, so no new invoice can reach live data
-from this code today. Connecting the two doors is the remaining work.
+**live** as of 2026-09-09. Both `/carga` and the mail route now import it. The
+mail route uses the service client and still needs a real-message proof. The
+upload route uses the signed-in client, but its required tables and RPCs grant
+only `service_role`; a real save is blocked until an explicit operator policy is
+added. Do not replace that policy with a service-key bypass.
 
 - Classify in batches of 500 against `mlmodel`'s `/predict-batch`
 - Lock `mlmodel` to a service account, give `yunt` that identity (D6)
@@ -776,16 +780,14 @@ contact, ever.
 
 ## 11. What is still needed from you
 
-1. **Run `milk-company/supabase/011_yunt_review_chunks.sql`** and
-   **`012_yunt_review_outbox.sql`** in the Supabase SQL editor. `005`–`010` ran
-   on 2026-09-09; these two are the remainder. Both idempotent.
-2. **The Claude model and cost tier for the review agent** — the only choice the
-   review layer still needs from you.
-3. **Four values for the mailbox**, all Resend-side: the receiving address (the
-   free `.resend.app` one needs no DNS at all), `RESEND_API_KEY`,
-   `RESEND_WEBHOOK_SECRET`, and `YUNT_ALLOWED_ADDRESSES` — which must include
-   Cristian's address. Mail cannot be sent until the last one is set, by design.
-4. **Approval on the day for Phase 3**, the first phase that writes to live data,
-   against a backup and a dry run.
+1. **Clear the Supabase usage-limit block**, then run migrations `011`–`015` in
+   numeric order. `005`–`010` are live; the five pending files are idempotent and
+   proved twice locally.
+2. **Approve the `/carga` permission design.** Recommendation: a database Yunt
+   operator allowlist seeded with Afaq's signed-in email, then Cristian later.
+3. **Confirm the Claude model and cost tier.** Opus 5 / medium is temporarily
+   pinned from Claude's estimate, not yet ratified by Afaq.
+4. **Approval on the day for the first live write**, against a fresh backup and
+   the already-built dry run.
 5. **Your yes on the 222 harvested aliases**, and on the `Confeccion de Bolos`
    merge (`docs/YUNT_OPEN_DECISIONS.md` items 1 and 3).

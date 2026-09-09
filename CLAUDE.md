@@ -15,8 +15,9 @@ backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
 purchasing forms and read-only ingestion paths are pushed through `4035fef`;
-eleven further commits are local and unpushed. Migrations `005`–`010` are
-**live**; `011` and `012` are not. Ten audit findings are still open as decisions, in that
+nineteen further commits are local and unpushed through `d7b21b0`. Migrations
+`005`–`010` are **live**; `011`–`015` are required and not live. Ten audit
+findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
 
@@ -126,12 +127,13 @@ the same corpus — identical numbers, asserted as equalities. `yunt/` here is t
 reference implementation and is deleted once the port completes.
 **Two doors reach one pipeline** — `/carga` takes an uploaded ZIP, and
 `POST /api/yunt/inbound` takes email through Resend; both call `runIngest`, and
-the upload page is permanent rather than a stopgap (D-060). **Neither writes
-anything yet, and neither reaches anything built after `runIngest`.** The
-writer, the review state, the packet queue, the EVE tools, the dispatcher and
-the findings outbox all exist and are proved locally, but every one of them is
-imported only by a `scripts/check-*` regression. Read the callers before
-believing a stage is wired. Two environment variables fail *closed* and look like bugs if
+the upload page is permanent rather than a stopgap (D-060). Both routes now
+import the atomic writer and the post-write review in local code. **That is not
+the same as working live:** the email path has never carried a real ZIP, and
+`/carga` uses the signed-in Supabase client while the new writer/review objects
+are service-role-only. Its first real save is therefore blocked until a proper
+operator permission is added; do not bypass that with the service key. Two
+environment variables fail *closed* and look like bugs if
 you do not know: an empty `YUNT_ALLOWED_ADDRESSES` means the Yunt can mail
 nobody, and an unset `YUNT_INBOUND_ADDRESS` means it ignores every message. That
 second one matters because the Resend account is shared and **a Resend webhook
@@ -142,8 +144,10 @@ after a successful write, the Yunt reviews every line through compact groups,
 then sends a second email only when it has a finding or proposal; the first
 reception email never depends on the agent (D-064). That reply is sent without
 asking — it is the second half of the sender's own exchange, and the outbox, not
-the model, decides whether anything goes out (D-065). Applying a proposal is
-still approval-gated and that tool does not exist. Two facts drive the design.
+the model, decides whether anything goes out (D-065). Approval-gated apply and
+exact undo now exist locally; migration `014` is not live, and the approved
+write uses the pending `yunt_applied` provenance value (D-066). Two facts drive
+the design.
 The classifier **auto-accepts only 8% of the
 corpus** while deterministic lookups settle 44%, and 68% of review rows are
 undertrained wordings rather than ambiguous items — so a category proposal is a

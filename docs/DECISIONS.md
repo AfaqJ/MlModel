@@ -1673,8 +1673,29 @@ original sender read from the batch, never a value the model supplies. The
 send carries a stable Resend `Idempotency-Key`.
 
 **This does not extend to acting on a proposal.** Changing a category still
-requires the approval/apply/undo path, and no such tool exists yet.
+requires the approval/apply/undo path. That path now exists locally but is not
+live until migration `014` runs; D-066 records its provenance value.
 
 **Rejected:** letting the agent return findings to the webhook request and mail
 from there. That request may not outlive the review, and a Resend or EVE retry
 would then send the same findings twice.
+
+---
+
+## D-066 — A Yunt-applied category has its own provenance value
+
+**Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** GPT-5.6
+
+When a person approves a Yunt category proposal and the apply tool performs the
+change, `invoice_items.prediction_source` is `yunt_applied`. `user_selected`
+remains only for a category the person selected directly in the dashboard.
+
+Both values mean the settled category was not automatically accepted by the
+classifier or deterministic pipeline, so neither belongs in the automatic-
+accept KPI. Migration `014` adds the seventh allowed value before its apply RPC
+can write it. Exact proposal, actor and prior-row provenance still live in
+`yunt_applications` and `yunt_application_rows`; the source tag is the short
+answer to “how did this row become settled?”, not the full audit trail.
+
+**Rejected:** reusing `user_selected`. Approval is human, but execution is by
+the Yunt, and Afaq wants those two operational paths distinguishable.

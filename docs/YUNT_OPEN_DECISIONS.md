@@ -190,3 +190,29 @@ problem is a dictionary.
   against live data.
 - **Purchasing screens are Spanish-only**, not routed through next-intl. Marked
   with a `ponytail:` comment in `levantamiento/page.tsx`.
+
+---
+
+## 6. Who may commit a ZIP through `/carga`
+
+The page is labelled ADMIN-only, but the dashboard's six roles are presentation
+state, not Supabase authorization. The server action carries the signed-in
+user's client while the Yunt writer and review objects currently grant only
+`service_role`, so preview works and a real save should fail.
+
+**Recommendation:** create a small database-backed Yunt operator allowlist,
+initially `afaq@mctechstudio.com`, and add Cristian when his account is ready.
+The database—not the visible role selector—then decides who may start a write.
+Do not fix this by using the secret service client in the browser-triggered
+action; that would erase the permission boundary D-048 requires.
+
+**Needs:** Afaq's approval of the operator allowlist design.
+
+## 7. Review model and reasoning tier
+
+Claude pinned `anthropic/claude-opus-5` with medium reasoning after estimating
+about 15k input tokens per packet, four packets per month, and roughly USD 2.80
+per month versus USD 0.56 on Haiku 4.5. That is committed locally, but Afaq did
+not explicitly choose it.
+
+**Needs:** confirm Opus 5 / medium, or name the model and reasoning tier to use.

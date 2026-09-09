@@ -5,25 +5,34 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The chain is half connected.** `/carga` now reads a ZIP, shows exactly what
-would be stored, and stores it only when the person clicks a second time; the
-batch is claimed by a hash of the archive, so the same ZIP twice is a no-op. The
-mailbox splits structurally — a ZIP goes to deterministic ingest, and any other
-message is recorded as an inbound request and handed to the agent, which answers
-through `reply_to_email` with the recipient read from the stored row.
+**The full write→review chain is connected in local code, not proved live.** A
+ZIP sent by email uses the service-role database client, writes deterministic
+facts, sends the receipt, then starts the compact Yunt review. A non-ZIP email
+is stored and handed to EVE. No real message has traversed either path.
 
-**What is still disconnected:** the mailbox does not call the writer, and
-nothing calls `stageReviewAttempt`, so no write yet triggers a review. The
-review layer, its three EVE tools, the dispatcher and the findings outbox are
-all built and proved, and all still unreached in production.
+**`/carga` is currently blocked at its first real save.** It correctly uses the
+signed-in user's Supabase client, but `yunt_batches` and the writer/review RPCs
+grant only `service_role`; no authenticated policy exists. The page can preview,
+but calling the live write should fail. Do not hide this by importing the secret
+service client into a browser-triggered action. The proposed production fix is
+a database-backed Yunt operator allowlist, initially Afaq and later Cristian;
+Afaq has not approved that permission design yet.
 
-**Migrations `005` through `010` are live.** Afaq ran them on 2026-09-09.
-`011`, `012` and `013` are written, proved against a disposable PostgreSQL, and
-**have not run**.
+**The review/apply foundation and one business query tool are built locally.**
+Review packets, grounded evidence, findings email, inbound requests, apply/undo,
+and bounded item price history all have regressions. `014` writes
+`prediction_source='yunt_applied'` (D-066). The other four query tools, seven
+data-quality checks, exports/charts/reports, recurring reports, and Yunt-driven
+purchasing are still to build.
 
-**Branch `yunt` is pushed only through `4035fef`; fourteen commits are local.**
-Preview only. Production is still `main`; nothing merged. `yunt-backend` here is
-unpushed.
+**Migrations `005`–`010` are live. `011`–`015` are not.** Afaq confirmed the
+live boundary; every pending migration has been loaded twice in disposable
+PostgreSQL. Supabase currently reports **EXCEEDING USAGE LIMITS**, so no live
+write or migration should be attempted until the project serves requests again.
+
+**Branch `yunt` is pushed only through `4035fef`; nineteen commits are local**
+through `d7b21b0`. Preview only. Production remains `main`; nothing merged.
+`yunt-backend` here is also unpushed.
 
 ## HANDOVER — 2026-09-09, session ended by Afaq
 
@@ -52,9 +61,10 @@ outbox increment; I ran it, and it passed.
 Five commits on `yunt` (`813e8a9` .. `8881a12`), 26 files, ~1,566 lines:
 
 - **Committed Codex's uncommitted outbox increment** (`813e8a9`).
-- **Connected the writer to `/carga`** — dry-run first, saves only on a second
-  explicit click; the batch is claimed by a SHA-256 of the archive, so the same
-  ZIP twice is a no-op.
+- **Connected the writer to `/carga` in source** — dry-run first, saves only on
+  a second explicit click; a later permission audit found that the authenticated
+  client cannot yet access the service-only writer objects, so this is not a
+  working live path.
 - **Routed the mailbox** — a ZIP goes to deterministic ingest; anything else is
   recorded in `yunt_inbound_requests` and handed to the agent, which answers via
   `reply_to_email`. The recipient is read from the stored row, never from the
@@ -64,9 +74,10 @@ Five commits on `yunt` (`813e8a9` .. `8881a12`), 26 files, ~1,566 lines:
   reasoning `medium`, chosen after measuring a real packet (~15k tokens, ~4
   packets a month, ~$2.80/month on Opus 5 versus ~$0.56 on Haiku — cost is not a
   constraint at this volume).
-- **Closed the write→review loop** (`after-write.ts`). Both doors start a review
-  once lines are stored. It can never throw: the reception email goes out first
-  and a failed review leaves the batch retriable (D-064).
+- **Closed the write→review loop in source** (`after-write.ts`). The email door
+  has the required service permissions. The upload door calls the same code but
+  is blocked by the permission gap above. It can never turn a successful write
+  into a failed receipt (D-064).
 - **Scope item 8, apply-on-approval with undo** — migration `014`, plus
   `apply_proposal` and `undo_application` tools.
 
@@ -96,7 +107,7 @@ ask him to run a query and paste the result.
 - Exactly **one** `yunt_category_precedent` exists — the 5-argument version from
   `009`, which is the correct one. There is **no** duplicate overload. An earlier
   claim of mine that there were two was wrong and is retracted.
-- `004` through `010` are applied. `011`, `012`, `013`, `014` are not.
+- `004` through `010` are applied. `011` through `015` are not.
 - `prediction_source` allows six values including `user_selected`, so `014` is
   legal against the live constraint.
 
@@ -140,44 +151,44 @@ Two real traps in that set:
 
 ### What to run, and why
 
-**Migrations `011`, `012`, `013`, `014`, in that order, in one paste.**
+**Migrations `011` through `015`, in that order, in one paste.**
 A combined file was generated and handed to Afaq. Regenerate it with:
 
 ```
-cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo}.sql
+cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history}.sql
 ```
 
 - `011` — review packets, so a retry cannot double-count findings
 - `012` — findings-email outbox; a clean review sends nothing, one sender only
 - `013` — inbound requests, stored before the agent sees them, threaded by `In-Reply-To`
 - `014` — apply-on-approval and undo; sealed rows, stale proposals refused
+- `015` — bounded catalog lookup and item price history; ambiguous names are not guessed
 
-Why it is safe: every top-level statement is `create table if not exists`,
-`create index if not exists`, `alter table ... enable row level security`,
-`grant`/`revoke`, or `create or replace function`. All twelve object names are
-new — checked against `004`-`010`. There is no `DELETE`, no `TRUNCATE`, no
-`DROP TABLE`, and no top-level `UPDATE`. The one `DROP` is
-`drop trigger if exists queue_yunt_review_email`, which `012` re-creates two
-lines later; Supabase flags any `DROP` as destructive without reading it. No
-existing table's data is read or written.
+Why it is safe: there is no `DELETE`, `TRUNCATE`, `DROP TABLE`, or top-level
+data `UPDATE`. `014` deliberately replaces the existing
+`invoice_items_prediction_source_allowed` constraint so it can add
+`yunt_applied`; it does not rewrite existing rows. `012` drops and immediately
+re-creates its own outbox trigger. `015` creates read-only functions. Supabase
+may warn because those two expected `DROP` statements are present; read their
+exact targets before confirming.
 
 Proof: `milk-company/scripts/prove-011-to-014.sh` loads `008`->`014` in order on
 a disposable PostgreSQL, re-runs `011`->`014` for idempotency, and exercises
-`013`'s round trip. `scripts/prove-014-apply-undo.sh` proves apply/undo
-behaviour. Both are committed and re-runnable.
+`013`'s round trip. `scripts/prove-014-apply-undo.sh` proves apply/undo;
+`scripts/prove-015-price-history.sh` proves filters, ambiguity and idempotency.
+All are committed and re-runnable.
 
 **Take a backup first** (`scripts/81_backup_supabase.py`). The last one is
 2026-09-03, and the next thing after these migrations is the first real write.
 
 ### Open, needing Afaq
 
-1. **`prediction_source` for an applied proposal.** `014` writes
-   `user_selected`, because a person approved it and the corrected auto-accept
-   metric already excludes that value. Provenance of what the Yunt touched lives
-   in `yunt_application_rows`. The alternative is a seventh value, which changes
-   D-047, the check constraint and `aggregate.ts`. One line to flip.
-2. **Your yes on the 222 harvested aliases** — `006` is live, so this is unblocked.
-3. **The Supabase org shows "Grace period is over" and the project is flagged
+1. **Who may use `/carga`.** Recommendation: a database-backed Yunt operator
+   allowlist seeded with Afaq's signed-in email and extended with Cristian later.
+2. **Claude model choice.** Claude pinned Opus 5 / medium from a cost estimate;
+   Afaq has not explicitly ratified that choice.
+3. **Your yes on the 222 harvested aliases** — `006` is live, so this is unblocked.
+4. **The Supabase org shows "Grace period is over" and the project is flagged
    EXCEEDING USAGE LIMITS.** That stops the project serving requests. It needs
    handling before any real write.
 
@@ -188,19 +199,19 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**10 of 19 done, 3 partly, 6 not started.**
+**8 of 19 done in code, 4 partly, 7 not started. Nothing agentic is live yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
 | 1 | A mailbox that acts only on agreed senders | Done. Never carried a real message |
 | 2 | A ZIP of SII XML, COMPRAS and VENTAS inside | Done |
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
-| 4 | Lines classified and **written to the database** | Done in code, both doors. Never yet run against live data |
-| 5 | An acknowledgement in minutes, then a written report | Partly. One email carries both; the fast acknowledgement is not separate |
+| 4 | Lines classified and **written to the database** | Partly. Email is connected in code; `/carga` is blocked by missing authenticated permissions; neither is live-proved |
+| 5 | An acknowledgement in minutes, then a written report | Done in code as a receipt first and a findings email later; never live-proved |
 | 6 | Data quality flags, and fixes proposed on approval | Not started |
 | 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
 | 8 | Approve a group, get a confirmation, undo it | Done in code. The confirmation is the database's own words, not the model's |
-| 9 | Five query tools answering open questions | Not started |
+| 9 | Five query tools answering open questions | Partly. Item price history is built and bounded; four tools remain |
 | 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Not started. Plain-text replies only |
 | 11 | Charts from a fixed set, drawn by code | Not started |
 | 12 | Says so when a question does not fit, and we learn from the list | Partly. The agent is told to refuse; no `yunt_refusals` log |
@@ -212,15 +223,14 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 18 | The Yunt fills form one from a plain-language email | Not started |
 | 19 | The Yunt drafts the order once a quotation exists | Not started |
 
-**Read the middle column, not the count.** Items 1-5 and 14-17 are the parts
-that work without a language model, and they are the ones that are done. Every
-item where the Yunt is supposed to *think* — 6 to 13, 18, 19 — is either
-unstarted or built-but-unreachable. The product today is a good deterministic
-pipeline with an agent bolted on that nothing calls.
+**Read the middle column, not the count.** The deterministic base is farthest
+along. The EVE review and action tools are now called by the email path in code,
+but their migrations, model credentials and real-message proof are still open.
 
-**The single most valuable next thing is item 8.** Items 6 and 7 both end in a
-proposal, and there is no way to accept one. Until apply-with-undo exists, every
-finding the Yunt produces is a message Cristian can read and not act on.
+**The next foundation priority is permission, not another feature:** make
+`/carga` a real authenticated write without exposing service-role power, clear
+the Supabase usage block, run `011`–`015`, then prove one real email and one
+upload including replay. In parallel, finish the remaining four read tools.
 
 ## V1 checklist
 
@@ -233,11 +243,12 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] Deploy path, Resend mailbox, ZIP upload page (Phases 0–1)
 - [x] Read, deduplicate, resolve to catalog, classify, report (Phases 2–2.5)
 - [x] Atomic writer: whole invoice and all its lines in one transaction (D-063)
-- [x] Writer connected to `/carga`, dry run first, save on a second click
+- [ ] `/carga` live save: source is connected, but authenticated writer/review
+      permission is missing
 - [x] Mailbox router: ZIP → deterministic ingest, everything else → the agent
 - [x] **Mailbox connected to the writer** — claimed by the Resend message id
-- [x] **Review fires after a write**, from both doors, and never blocks the
-      reception email (D-064)
+- [x] **Email review fires after a write** and never blocks the receipt (D-064)
+- [ ] `/carga` review runs under the final operator permission design
 - [ ] First real write, against a backup, with Afaq's yes on the day
 
 ### The review loop
@@ -246,15 +257,17 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] Three grounded EVE tools: load, precedent, submit
 - [x] Findings-email outbox: sends only when findings exist (`012`, D-065)
 - [x] OIDC-secured, idempotent dispatch to EVE
-- [x] **Pinned to `anthropic/claude-opus-5`** in `agent/agent.ts`, reasoning
-      `medium`. Without that file eve ran its own GPT default
+- [x] **Temporarily pinned to `anthropic/claude-opus-5`** in `agent/agent.ts`,
+      reasoning `medium`; Afaq still needs to ratify the model/cost choice
 - [ ] Proof run: 200 known review rows, counting the confidently-wrong (Phase 5)
 
 ### Talking to Cristian
 
 - [x] Inbound requests recorded and threaded by `In-Reply-To` (`013`)
 - [x] `reply_to_email` — recipient read from the row, one reply per request
-- [ ] **Five query tools + the canonical money view** (Phase 7, D-053)
+- [ ] **Five query tools + the canonical money view** (Phase 7, D-053): item
+      price history is 1/5 and proved; aggregate, comparison, row list and the
+      final precedent interface remain
 - [ ] Answer delivery: figure in the body, list as `.xlsx`, report as PDF
 - [ ] Refusal path and `yunt_refusals`, which is the backlog for what to add
 - [ ] Restate-then-confirm before any action the person agreed to in prose
@@ -278,8 +291,11 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 ### Waiting on Afaq
 
-- [ ] **Run `011`, `012`, `013`, `014`** in the Supabase editor — all idempotent,
-      each proved twice against a disposable PostgreSQL
+- [ ] Clear Supabase's **EXCEEDING USAGE LIMITS** state
+- [ ] Approve the `/carga` operator permission design
+- [ ] Confirm or change the temporary Opus 5 / medium choice
+- [ ] **Run `011`–`015`** in the Supabase editor — all idempotent, each proved
+      twice against a disposable PostgreSQL
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
 - [ ] Fix the `Confeccion de Bolos` duplicate — three catalog rows, one thing
@@ -293,6 +309,28 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (e) — provenance fixed, migration line clarified, first query tool
+
+- **Afaq chose `yunt_applied`.** Unrun migration `014` now adds that seventh
+  `prediction_source`, apply writes it, undo restores the prior source, and the
+  dashboard's automatic-accept KPI excludes both direct human selections and
+  human-approved Yunt changes (D-066). Commit `649c48f`.
+- **Removed migration ambiguity.** `supabase/README.md` now names the live
+  boundary and every supersession; `008` says its function is replaced but
+  `pg_trgm` is load-bearing; the dead TypeScript caller of `010` was removed.
+  Commit `5597860`.
+- **Built query tool 1/5.** `item_price_history` resolves only one exact catalog
+  item automatically, asks when a name is ambiguous, returns bounded newest-first
+  rows with exact filters, and excludes credit notes unless explicitly included.
+  Migration `015` and EVE tool committed as `d7b21b0`.
+- **Proof:** `014` apply/undo and `015` price history each loaded twice and passed
+  behavioral PostgreSQL checks. After every increment, `./check.sh` was all green
+  (types, zero lint errors, build, all checks); the final `npx eve build` passed.
+- **Gotcha:** source wiring hid a real security failure. `/carga` carries an
+  authenticated client into objects granted only to `service_role`. Previewing
+  works because it reads; committing does not. Fix authorization at the database
+  boundary, never by smuggling the service key into the action.
 
 ### 2026-09-09 (d) — the review layer: state, packets, tools, dispatch, outbox
 
@@ -474,63 +512,3 @@ of this down, so it was reconstructed from git and re-verified by Claude.
 - **Afaq's correction on Linear: tickets were being made for side tasks.** A
   database migration and a one-line count fix are how work gets done, not work
   anyone needs on a board.
-
-### 2026-09-08 - Yunt scope agreed and sent; Audisoft API tested and blocked
-
-- **Wrote the scope Afaq sent to the team**, `docs/Yunt_scope_v1.docx`, nineteen
-  numbered items in four sections. Also `docs/YUNT_REQUIREMENTS.md` (long-form
-  reference) and `docs/Yunt_scope_v1.pdf` (earlier prose version).
-- **Decided:** D-051 ingestion is deterministic code, the agent only where
-  judgement is; D-052 purchase orders v1 is two forms with no roles and no
-  approval; D-053 open questions are answered by about five parameterised query
-  tools with every number computed by code; D-054 the Audisoft API is the
-  intended source with email as fallback.
-- **Established what a purchase order is and how it fits.** Afaq did not know
-  the domain and asked directly. The dashboard already contains the whole
-  seven-phase procurement flow as non-functional demo screens with a
-  `DemoBanner`, so this is completing a storyboard rather than designing one.
-  The OC carries the accounting category *before* the money is spent, which is
-  why it belongs in this product rather than a separate one.
-- **Tested the Audisoft API without documentation.** ~13 calls. The URLs in
-  Lautaro's email are truncated with dots. Findings: no path segments returns
-  **500** with `Connection: close`; any path segments return **401** with
-  `keep-alive`, byte-identical across RUT alone, RUT+token, token+RUT, with and
-  without the verifier digit, with a period added, and with the token as an
-  `Authorization` or bare `token` header. Query strings never worked. No
-  `WWW-Authenticate` header, so the server never says what it wants. Stopped
-  rather than keep guessing, since clause 6.2 permits revocation without notice.
-- **Afaq's correction, and it was right: the decision log was applied where it
-  does not belong.** D-048, D-041 and D-001 were surfaced as binding constraints
-  on a greenfield agent feature. They were made during the labelling job and
-  govern that pipeline, not a new product. He said the project is "polluted by
-  so many side notes" and asked to look only at what is implemented, the
-  dashboard and the ML model, plus what needs building.
-- **Afaq's correction, and it was right: the agent was in the ingestion path for
-  no reason.** His words: why do we need a unit to take an email and hit an
-  endpoint when deterministic code can do it? Nothing in that path is a
-  judgement call. Became D-051, and it makes ingestion shippable standalone.
-- **Gotcha - the DTE XML is ISO-8859-1 with no XML declaration.** Verified:
-  `file -I` reports `iso-8859-1`, and `ORDENA` stores the enye as the single
-  byte `0xD1`, which is Latin-1, not the `C3 91` UTF-8 would use. **No file in
-  the dataset carries an `encoding=` declaration**, and the XML spec says a
-  parser must then assume UTF-8. So a standards-compliant parser reads these
-  files wrong on every accented character. `scripts/10_extract_line_items.py`
-  already handles it at lines 85-87, try UTF-8 then fall back to latin-1. Any
-  new reader for the API pull needs the same.
-- **Gotcha - the frontend's XML extractor silently drops every line item.**
-  `src/lib/extractor/xml-parser.ts` is a generic XML-to-table explorer that
-  knows nothing about DTE. On a DTE file `findRepeatingElements` finds no
-  repeats under `<DTE>` (one `<Documento>`), falls to `flattenNode`, which has
-  an **empty** `if (elements.length > 1) {}` branch - so both `<Detalle>` blocks
-  are discarded and only the header and totals come back, with no error. Same
-  class as the pagination trap: valid response, quietly incomplete.
-- **Gotcha - overstated a technical claim and had to walk it back.** Said the
-  extractor "can't be used server-side" because of `DOMParser`, `atob`, `File`
-  and `webkitRelativePath`. `atob` exists in Node 16+ and `File` in Node 20+;
-  only `DOMParser` genuinely does not exist in Node or the Edge runtime. The
-  runtime was never the real objection anyway - the parser is simply wrong for
-  DTE. **Leading with the weaker argument invited a correct challenge.**
-- **Afaq's feedback, saved to memory as `menu-not-recipe`:** anything shown
-  upward is a menu of deliverables, never a numbered recipe of build steps.
-  Consolidating means fewer lines than the draft, not a re-grouping of the same
-  ones.

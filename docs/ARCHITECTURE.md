@@ -144,11 +144,13 @@ confidence.
   `../milk-company/src/lib/ingest/` and `src/lib/yunt/`. The resolver runs
   before a line is planned; the writer is dry-run by default. Downstream of the
   writer sit durable review state, a packet queue, three grounded EVE tools, an
-  OIDC-secured dispatcher and a findings-email outbox. **The whole chain is
-  disconnected from both ingest routes** — its only callers are
-  `scripts/check-*.ts`. `/predict-batch` classifies accounting category only and
-  never writes Supabase. Migrations `005`–`010` are live, including
-  `007_yunt_ingest.sql`'s atomic document write; `011` and `012` are not.
+  OIDC-secured dispatcher and a findings-email outbox. Both ingest routes call
+  the writer and post-write review in local source. The email route uses the
+  service client intended for a webhook with no user; `/carga` carries the
+  signed-in client and is currently blocked because the new objects expose no
+  authenticated write policy. `/predict-batch` classifies accounting category
+  only and never writes Supabase. Migrations `005`–`010` are live, including
+  `007_yunt_ingest.sql`'s atomic document write; `011`–`015` are not.
 - **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
   row-count verified immediately before the 2026-08-17 full re-load. Earlier
   snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and
