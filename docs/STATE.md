@@ -34,10 +34,16 @@ another request. Attaching price precedent to a buying exchange remains. The
 aggregate and period-comparison tools, the unsettled quality-check set,
 exports/charts/reports and recurring reports are still to build.
 
-**Migrations `005`–`010` are live. `011`–`020` are not.** Afaq confirmed the
-live boundary; every pending migration has been loaded twice in disposable
-PostgreSQL. Supabase currently reports **EXCEEDING USAGE LIMITS**, so no live
-write or migration should be attempted until the project serves requests again.
+**Migrations `004`–`020` are ALL LIVE.** Afaq ran `011`–`020` in one paste on
+2026-09-09, from the concatenated file this session handed him. Every one had
+been loaded twice in disposable PostgreSQL first. The next migration is `021`
+(`/carga` operator writes); it is not yet written into `milk-company/supabase/`.
+
+**What that unblocks:** review packets, the findings outbox, durable inbound
+requests, apply/undo with exact confirmation, price history, invoice-line
+listing, the refusal backlog and both halves of Yunt purchasing now exist in the
+real database. None of it has carried a real message yet — these paths are
+live-capable, not live-proved.
 
 **The real Cloud Run classifier connection is proved.** The dashboard adapter
 received one successful prediction and exactly 10/10 results from a live batch,
@@ -163,51 +169,13 @@ Two real traps in that set:
   existing in-memory dashboard aggregation (faster, but inherits whatever the
   credit-note / revenue / IVA defects are).
 
-### What to run, and why
+### What was run
 
-**Migrations `011` through `020`, in that order, in one paste.**
-A combined file was generated and handed to Afaq. Regenerate it with:
-
-```
-cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals,018_yunt_purchase_requests,019_purchase_order_quotation_guard,020_yunt_purchase_orders}.sql
-```
-
-- `011` — review packets, so a retry cannot double-count findings
-- `012` — findings-email outbox; a clean review sends nothing, one sender only
-- `013` — inbound requests, stored before the agent sees them, threaded by `In-Reply-To`
-- `014` — apply-on-approval and undo; sealed rows, stale proposals refused
-- `015` — bounded catalog lookup and item price history; ambiguous names are not guessed
-- `016` — bounded invoice-line list with exact review/date/amount filters
-- `017` — immutable refusal/backlog entries, one per stored inbound request
-- `018` — email-drafted purchase requests created only after exact confirmation
-- `019` — an optional selected quotation must belong to the request being ordered
-- `020` — Yunt-drafted purchase orders; also replaces `005`'s
-  `create_purchase_order` with the same function whose signed-in guard now
-  admits `service_role`, because the Yunt has no `auth.uid()`
-
-Why it is safe: there is no `DELETE`, `TRUNCATE`, `DROP TABLE`, or top-level
-data `UPDATE`. `014` deliberately replaces the existing
-`invoice_items_prediction_source_allowed` constraint so it can add
-`yunt_applied`; it does not rewrite existing rows. `012` drops and immediately
-re-creates its own outbox trigger. `015` creates read-only functions. Supabase
-may warn because those two expected `DROP` statements are present; read their
-exact targets before confirming.
-
-Proof: `milk-company/scripts/prove-011-to-014.sh` loads `008`->`014` in order on
-a disposable PostgreSQL, re-runs `011`->`014` for idempotency, and exercises
-`013`'s round trip. `scripts/prove-014-apply-undo.sh` proves apply/undo;
-`scripts/prove-015-price-history.sh` proves filters, ambiguity and idempotency;
-`scripts/prove-016-invoice-line-list.sh` proves bounded row filters;
-`scripts/prove-017-yunt-refusals.sh` proves refusal logging and replay safety;
-`scripts/prove-018-purchase-request.sh` proves draft/create/replay behavior.
-`scripts/prove-019-quotation-guard.sh` proves cross-request quotations are
-rejected while matching and unlinked orders remain valid;
-`scripts/prove-020-purchase-order.sh` proves Yunt order drafting, the exact
-confirmation, replay, and that the two-quotation rule still refuses the Yunt.
-All are committed and re-runnable.
-
-**Take a backup first** (`scripts/81_backup_supabase.py`). The last one is
-2026-09-03, and the next thing after these migrations is the first real write.
+Afaq applied `011`–`020` on 2026-09-09 from a concatenated file. Nothing in that
+set was destructive: no `DELETE`, `TRUNCATE`, `DROP TABLE` or top-level data
+`UPDATE`. Its four `DROP` statements were all guarded and re-created in the same
+file — `012`'s own trigger, and the two constraints `014` and `020` widen. `020`
+must follow `014` because it re-adds a constraint `014` created.
 
 ### Open, needing Afaq
 
@@ -351,10 +319,12 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 ### Waiting on Afaq
 
-- [ ] Clear Supabase's **EXCEEDING USAGE LIMITS** state
-- [ ] Approve the `/carga` operator permission design
-- [ ] **Run `011`–`020`** in the Supabase editor — all idempotent, each proved
-      twice against a disposable PostgreSQL
+- [ ] Confirm Supabase is out of its **EXCEEDING USAGE LIMITS** state. The
+      `011`–`020` run succeeding suggests it is; not checked directly
+- [ ] Save the `021` SQL this session printed into
+      `milk-company/supabase/021_carga_operator_writes.sql` so it can be proved
+      and then run — the safety classifier refuses to let Claude write that file
+- [x] `/carga` permission design decided: any signed-in user, no roles in v1
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
 - [ ] Fix the `Confeccion de Bolos` duplicate — three catalog rows, one thing
@@ -368,6 +338,23 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (i) — migrations 011-020 went live
+
+- **Afaq applied `011`–`020` in one paste.** The whole pending set is now in the
+  real database: review packets, the findings outbox, durable inbound requests,
+  apply/undo with exact confirmation, price history, invoice-line listing, the
+  refusal backlog, and both halves of Yunt purchasing. `004`–`020` are all live.
+- **What was handed over, and the safety argument that went with it.** A
+  concatenated file in run order, plus a scan showing no `DELETE`, `TRUNCATE`,
+  `DROP TABLE` or top-level data `UPDATE` anywhere in the set, and the four
+  guarded `DROP`s named with their exact targets. `020` must follow `014`
+  because it re-adds a constraint `014` creates.
+- **This changes what "not live" means in every other doc.** `supabase/README.md`,
+  this file and `CLAUDE.md` were all corrected in the same session, because a doc
+  still claiming `011`–`020` are pending is worse than no doc.
+- **Not proved live.** Every one of those paths is now live-*capable*. None has
+  carried a real message. The first real email remains the next real milestone.
 
 ### 2026-09-09 (h) — data-quality checks, chosen by measurement
 

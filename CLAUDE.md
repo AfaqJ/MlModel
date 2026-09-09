@@ -15,8 +15,9 @@ backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
 purchasing forms and read-only ingestion paths are pushed through `4035fef`;
-twenty-eight further commits are local and unpushed through `ce08223`. Migrations
-`005`–`010` are **live**; `011`–`019` are required and not live. Ten audit
+31 further commits are local and unpushed through `cd9a582`. Migrations
+`004`–`020` are **all live** — Afaq ran `011`–`020` on 2026-09-09. `021`
+(`/carga` operator writes) is the next one and is not written yet. Ten audit
 findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
