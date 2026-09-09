@@ -346,6 +346,30 @@ belong in v1.
 
 ## Recent sessions
 
+### 2026-09-09 (n) — the corpus check found a real defect
+
+- **Verified the aggregate against an independently computed count.** The real
+  stored corpus — 5,195 documents, 11,746 lines — loaded into a throwaway
+  PostgreSQL, every figure compared with the same total worked out in Python
+  from the same JSONL. Two implementations, one answer.
+- **It caught what the fixtures could not.** A grouping with more than 100
+  distinct values is truncated by the row cap, so adding up the returned rows
+  understates the answer: by supplier the corpus has **438** groups and the top
+  100 miss **CLP 194,149,548**; by item it has **5,259** groups and they miss
+  **CLP 1,733,487,393**. `truncated` was a boolean nobody had to act on.
+- **Fixed by returning the real total.** `overall_value` and `total_groups` are
+  computed with window functions across every group before the cap, and the tool
+  turns them into a coverage line: these are N of M groups, the total is X, do
+  not add the rows up. A complete answer carries no such line.
+- **Everything else agreed exactly:** purchases with and without credit notes
+  netted, line and document counts, the largest category, the lines with no
+  confirmed category, and all six groupings.
+- **`scripts/verify-022-against-corpus.py` is re-runnable** and touches nothing
+  live. Commit `619f92e`. `./check.sh` all green; `npx eve build` passed.
+- **Gotcha:** PostgreSQL will not start under a long macOS temp path (the Unix
+  socket limit) and refuses to start at all without `LC_ALL` set. Both failures
+  present as a bare "could not start server".
+
 ### 2026-09-09 (m) — answers arrive as a file
 
 - **Scope item 10's spreadsheet half.** `reply_with_spreadsheet` takes the same
