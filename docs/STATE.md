@@ -220,6 +220,27 @@ All are committed and re-runnable.
    EXCEEDING USAGE LIMITS.** That stops the project serving requests. It needs
    handling before any real write.
 
+## Linear, as of 2026-09-09
+
+Linear now mirrors this project feature by feature, so it can be read instead of
+this file for *progress*. It is still not the design; where a ticket and
+`DECISIONS.md` disagree, the decision log wins.
+
+- `MCT-142` **The Yunt assistant** is the parent. Its sub-issues are one per
+  capability: review and propose (`149`), approve and undo (`150`), answer
+  questions (`151`), spreadsheets/PDFs/charts (`152`), refuse and keep the list
+  (`153`), recurring reports (`154`), data-quality flags (`155`), open a request
+  from email (`156`), draft and issue the order from email (`157`).
+- `MCT-139` ingest, `MCT-140` purchasing, `MCT-141` the mailbox, `MCT-145` the
+  upload page carry the deterministic halves.
+- Three urgent blockers are their own tickets: `MCT-158` run the pending
+  database changes, `MCT-159` decide who may save from the upload page,
+  `MCT-160` the first real email end to end.
+
+Tickets are written at product level on purpose — no file names, no migration
+numbers, no function names — so an implementation discovery cannot turn one into
+a lie. The *how* lives here and in `DECISIONS.md`.
+
 ## What the Yunt promises, and what it does today
 
 The 19 numbered items are the scope sent to the team, in the client's own
