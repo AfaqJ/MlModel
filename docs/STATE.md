@@ -27,11 +27,12 @@ unpushed.
 
 ## Doing now
 
-Connecting the chain so v1 is reachable end to end. Done this session: the
-writer is wired to `/carga` behind an explicit second click, and the mailbox now
-routes structurally — a ZIP goes to deterministic ingest, anything else is
-recorded and handed to the agent. Next: the mailbox writer, then the review
-dispatch that fires after a write.
+**The spine is connected.** An invoice can now travel the whole way in code:
+arrive by email or upload, be stored atomically, and start a grounded review
+that mails its findings back. Nothing has run against live data yet.
+
+Next: **item 8, apply-on-approval with undo.** Every path now ends in a proposal
+and there is no way to accept one, which makes items 6 and 7 read-only advice.
 
 ## What the Yunt promises, and what it does today
 
@@ -40,17 +41,17 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**8 of 19 done, 4 partly, 7 not started.**
+**9 of 19 done, 3 partly, 7 not started.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
 | 1 | A mailbox that acts only on agreed senders | Done. Never carried a real message |
 | 2 | A ZIP of SII XML, COMPRAS and VENTAS inside | Done |
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
-| 4 | Lines classified and **written to the database** | Partly. Classified yes; stored only from the upload page, and never yet live |
+| 4 | Lines classified and **written to the database** | Done in code, both doors. Never yet run against live data |
 | 5 | An acknowledgement in minutes, then a written report | Partly. One email carries both; the fast acknowledgement is not separate |
 | 6 | Data quality flags, and fixes proposed on approval | Not started |
-| 7 | Category proposals with evidence, grouped | Partly. Tools built and grounded; nothing triggers them, accuracy unmeasured |
+| 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
 | 8 | Approve a group, get a confirmation, undo it | Not started. **This is the gap that makes 6 and 7 unusable** |
 | 9 | Five query tools answering open questions | Not started |
 | 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Not started. Plain-text replies only |
@@ -87,8 +88,9 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] Atomic writer: whole invoice and all its lines in one transaction (D-063)
 - [x] Writer connected to `/carga`, dry run first, save on a second click
 - [x] Mailbox router: ZIP → deterministic ingest, everything else → the agent
-- [ ] **Mailbox connected to the writer** — claimed by the Resend message id
-- [ ] **Review fires after a write** — nothing calls `stageReviewAttempt` yet
+- [x] **Mailbox connected to the writer** — claimed by the Resend message id
+- [x] **Review fires after a write**, from both doors, and never blocks the
+      reception email (D-064)
 - [ ] First real write, against a backup, with Afaq's yes on the day
 
 ### The review loop
@@ -97,7 +99,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] Three grounded EVE tools: load, precedent, submit
 - [x] Findings-email outbox: sends only when findings exist (`012`, D-065)
 - [x] OIDC-secured, idempotent dispatch to EVE
-- [ ] **Pin the model to Opus 5** with a cached prefix — decided, no code
+- [x] **Pinned to `anthropic/claude-opus-5`** in `agent/agent.ts`, reasoning
+      `medium`. Without that file eve ran its own GPT default
 - [ ] Proof run: 200 known review rows, counting the confidently-wrong (Phase 5)
 
 ### Talking to Cristian
