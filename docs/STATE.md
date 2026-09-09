@@ -248,7 +248,7 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**11 of 19 done in code, 3 partly, 5 not started. Nothing agentic is live yet.**
+**11 of 19 done in code, 4 partly, 4 not started. Nothing agentic is live yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
@@ -256,7 +256,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
 | 4 | Lines classified and **written to the database** | Partly. Email is connected in code; `/carga` is blocked by missing authenticated permissions; neither is live-proved |
 | 5 | An acknowledgement in minutes, then a written report | Done in code as a receipt first and a findings email later; never live-proved |
-| 6 | Data quality flags, and fixes proposed on approval | Not started |
+| 6 | Data quality flags, and fixes proposed on approval | Partly. Detection is built and calibrated; a flagged auto-accept is downgraded. Persisting flags and proposing fixes remain |
 | 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
 | 8 | Approve a group, get a confirmation, undo it | Done in code. The confirmation is the database's own words, not the model's |
 | 9 | Five query tools answering open questions | Partly. Price history, category precedent and row listing are built; aggregate and period comparison remain |
@@ -305,8 +305,11 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] Three grounded EVE tools: load, precedent, submit
 - [x] Findings-email outbox: sends only when findings exist (`012`, D-065)
 - [x] OIDC-secured, idempotent dispatch to EVE
-- [x] **Temporarily pinned to `anthropic/claude-opus-5`** in `agent/agent.ts`,
-      reasoning `medium`; Afaq still needs to ratify the model/cost choice
+- [x] **`anthropic/claude-opus-5`, reasoning `high`** in `agent/agent.ts`.
+      Settled 2026-09-09 from current published pricing: Opus 5 $5/$25 per MTok
+      against Sonnet 5 $2/$10 and Haiku 4.5 $1/$5. `high` is the model default
+      and the quality/token balance point; `medium` had been chosen on a cost
+      argument, which is the wrong axis when the whole month is a few dollars
 - [ ] Proof run: 200 known review rows, counting the confidently-wrong (Phase 5)
 
 ### Talking to Cristian
@@ -326,8 +329,10 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       proposals refused because a person's later edit wins (Phase 6)
 - [x] **`yunt_applications`: prior values stored, undo is a per-row replay** —
       `decision` and `reviewed` come back too
-- [ ] Data-quality flags, all seven checks; a flagged `auto_accept` is
-      downgraded to review and nothing else (Phase 4, D-058, D1)
+- [x] **Data-quality flags: four line checks and one document check**, each
+      chosen by measuring candidates against the stored 11,746 lines. A flagged
+      `auto_accept` is downgraded to review and nothing else (Phase 4, D-058, D1)
+- [ ] Flags persisted to `yunt_flags` and shown per line in the dashboard
 
 ### Purchasing
 
@@ -348,7 +353,6 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 - [ ] Clear Supabase's **EXCEEDING USAGE LIMITS** state
 - [ ] Approve the `/carga` operator permission design
-- [ ] Confirm or change the temporary Opus 5 / medium choice
 - [ ] **Run `011`–`020`** in the Supabase editor — all idempotent, each proved
       twice against a disposable PostgreSQL
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
@@ -364,6 +368,48 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-09 (h) — data-quality checks, chosen by measurement
+
+- **Afaq closed three standing questions.** Money semantics is an accounting
+  question for the client, not a code blocker: totals sum net line amounts,
+  credit notes subtract, IVA excluded, and the filter printed on every answer
+  says so. `/carga` gets the same permission every other write in this product
+  has — any signed-in user, no roles in v1 (D-052); the named-allowlist idea is
+  dropped. The model choice is settled below.
+- **Model settled: `claude-opus-5`, reasoning raised `medium` → `high`.** Read
+  from current published pricing rather than memory. `high` is the model's own
+  default; `medium` had been picked on cost, and at this volume the month is a
+  few dollars either way. Not `xhigh`/`max` — the agent computes nothing.
+- **Built scope item 6, and chose the check set from the corpus.** Seven
+  candidates were measured against the stored 11,746 lines / 5,096 documents.
+  Four survive: `line_arithmetic` 3.53%, `line_exceeds_document` 2.02%,
+  `junk_item_name` 1.63%, `non_positive_amount` 0.32% — 7.19% of lines together,
+  downgrading 5.62% of auto-accepts. `document_arithmetic` (8.54% of documents)
+  is reported but downgrades nothing.
+- **Dropped, with reasons:** duplicate folio fired on 0 of 5,195 documents
+  because deduplication already rejects them; an unseen supplier RUT fired on
+  8.4% of purchases and a new supplier is ordinary business; unit price against
+  an item's own history could judge only 407 of 5,217 catalog names and fired on
+  7–9% of those (D-049); `quantity <= 0` fired on nothing.
+- **Two rules were wrong as written, and both would have looked like noise.**
+  Blaming a whole document for a total mismatch downgrades 14.8% of the corpus;
+  naming the single line that exceeds the document total downgrades 1.95% and
+  still catches the meter-reading case. The document check fires on 13.2% until
+  the exempt amount is allowed for — on 199 documents the lines legitimately
+  include it while the header net does not.
+- **A first draft re-implemented arithmetic the parser already does.** It
+  measured 9.82% purely by treating `discountAmount` and `discountPct` as two
+  discounts, which `dte.ts` already documents as one. `line_arithmetic` now
+  reads `Line.reconciles`. What is new is the consequence: a line that did not
+  reconcile was counted in the report and then stored settled anyway.
+- **Proof:** `scripts/check-ingest-quality.ts` covers every rule, both
+  explained-away cases and the downgrade, and was verified to fail against the
+  double-counting draft. `./check.sh` all green, `npx eve build` passed.
+  Frontend commit `fa341a3`.
+- **Blocked, needs Afaq:** writing the `/carga` permission migration was refused
+  by the safety classifier, twice, because it grants database permissions. The
+  file is not written. It needs his approval or a paste.
 
 ### 2026-09-09 (g) — the Yunt drafts and issues a purchase order
 
