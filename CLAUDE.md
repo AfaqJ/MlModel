@@ -12,10 +12,10 @@ uploads of 2026-08-19 landed and were verified independently against live.
 `002_add_manual_recategorisation_source.sql` is **applied to production**; live
 carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
-**Branch:** `codex/canonical-catalog-migration`.
-Frontend: `feature/dashboard` in `../milk-company`, **43 commits ahead of
-`main`**, head `2b6c45d` — the 2026-09-03 dashboard figure audit is merged and
-pushed (D-049, D-050). Ten audit findings are still open as decisions, in that
+**Branch:** `yunt-backend`.
+Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
+purchasing forms, the ported ingestion pipeline and six regression checks live
+there; nothing is pushed. Ten audit findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
 
@@ -51,8 +51,10 @@ few examples, so the model cannot be trusted alone: the review gate is a feature
 not a shortfall. Of 11,746 lines, 7,927 (67%) are auto-accepted and 3,819 (33%)
 sit in review — but **that 67% is contaminated and reads high**: the dashboard's
 write sets `decision='auto_accept'` on a *human* pick, and `aggregate.ts:104-107`
-counts every such row as automatic. Found 2026-09-06, unfixed; see
-`docs/STATE.md` Next item 11.
+counted every such row as automatic. **Fixed 2026-09-09** — the count now
+excludes `prediction_source = 'user_selected'`, guarded by
+`scripts/check-auto-accept-rate.ts`, which was verified to fail against the
+pre-fix code. The 67% above is the old contaminated figure.
 
 The system is two halves that are easy to confuse: an **offline labeling
 pipeline** (raw XML → gold → Supabase) and an **online classifier service**
@@ -110,9 +112,14 @@ no approval (D-052); open questions are answered by ~5 parameterised query
 tools with every number computed by code, never by the model (D-053). Rodrigo
 wants ingestion from Audisoft's API rather than email, but it returns 401 on
 every credential form and is blocked on them (D-054); email stays the fallback.
-The recipe is `docs/YUNT_IMPLEMENTATION_PLAN.md` on branch `feature/yunt`:
-eleven phases, each ending in something that runs. Six of its seven open
-decisions are settled (2026-09-08); D4 was withdrawn as not the Yunt's problem.
+The recipe is `docs/YUNT_IMPLEMENTATION_PLAN.md`; what still needs Afaq is
+`docs/YUNT_OPEN_DECISIONS.md`. **The Yunt is an [eve](https://vercel.com/eve)
+agent in Next.js on Vercel, not a Python service** (2026-09-09): tools are
+TypeScript files in `agent/tools/`, `needsApproval` is a built-in field, and
+execution is durable. GCloud keeps only the classifier. The ingestion pipeline
+has been ported to `../milk-company/src/lib/ingest/` and verified by replaying
+the same corpus — identical numbers, asserted as equalities. `yunt/` here is the
+reference implementation and is deleted once the port completes.
 Two facts drive the design. The classifier **auto-accepts only 8% of the
 corpus** while deterministic lookups settle 44%, and 68% of review rows are
 undertrained wordings rather than ambiguous items — so a category proposal is a
