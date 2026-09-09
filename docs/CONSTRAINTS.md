@@ -100,3 +100,32 @@ Out of scope by explicit instruction, unless reopened:
   than kept, so there is nothing to resume. Do not restart it — not the schema,
   not the clustering, not a "quick" normalisation pass — until the client's
   answers are in. See D-034 and `docs/STATE.md` Next #1.
+
+## Checks on invoice data must not assume the invoice was filled in carefully
+
+**Added 2026-09-09, Afaq's instruction:** *"don't make any formulas that could
+break the thing on a lazy made invoice, like if someone forgets to put discount
+value and just puts the price. We don't go deep into accounting."*
+
+A supplier's clerk is not an accountant and the invoice is not a ledger. Every
+check over invoice data therefore obeys three rules:
+
+- **A check may only ever flag. It may never change a stored value, block an
+  ingest, or decide a category.** The amount the supplier wrote is what we
+  store, always — the only exception is a correction the line's own arithmetic
+  proves, and even then the amount itself is never touched.
+- **A missing field is normal, not an error.** No discount recorded, no unit, no
+  quantity, a blank description — all are ordinary. A check that fires on a
+  field simply being absent is wrong.
+- **Anything that fails a check is recorded in `docs/CLIENT_DATA_ISSUES.md`**,
+  with what the document says and how many are affected, so it can be raised
+  with the client. A wrong figure that traces to their invoice must be
+  attributable to their invoice.
+
+Where an invoice is internally inconsistent, the **document header wins** over
+the sum of its lines: it is what the supplier billed and what was paid.
+
+**Rejected:** deriving accounting rules from the data. Reconciliation formulas
+here were inferred by measuring what holds across the corpus, never read from
+the SII specification, so they describe habit rather than law. That is enough to
+raise a flag and not enough to correct anyone's books.
