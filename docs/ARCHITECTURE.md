@@ -150,12 +150,16 @@ confidence.
   signed-in client and is currently blocked because the new objects expose no
   authenticated write policy. `/predict-batch` classifies accounting category
   only and never writes Supabase. Migrations `005`–`010` are live, including
-  `007_yunt_ingest.sql`'s atomic document write; `011`–`017` are not. Failed
+  `007_yunt_ingest.sql`'s atomic document write; `011`–`018` are not. Failed
   agent-email delivery releases its inbound request back to `open`, so a retry
   can reclaim it; unsupported requests are recorded once in `yunt_refusals`.
   Category apply and undo require a code-generated email restatement and a reply
   tied to that exact Message-ID, sender, action, target and one-use first-line
   token (D-067); a generic reply is never approval.
+  The same gate now covers email-drafted purchase requests: the draft stores
+  what/quantity/unit/date/farm, and only its exact confirmation creates the
+  ordinary `purchase_requests` row. It does not create an order or contact a
+  supplier.
 - **Latest backup:** `backups/supabase_20260817T105217Z/` — all five live tables,
   row-count verified immediately before the 2026-08-17 full re-load. Earlier
   snapshots remain at `backups/supabase_20260814T110447Z_pre_corrections/` and

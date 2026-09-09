@@ -10,14 +10,14 @@ plan follows it. The scope document is what Antillanca agreed to receive, not
 the record of how it is built.
 
 **Branch:** `yunt-backend` here, `yunt` off `feature/dashboard` in
-`../milk-company`. Frontend work is pushed through `4035fef`; twenty-four later
-commits are local and unpushed through `dc76546`.
+`../milk-company`. Frontend work is pushed through `4035fef`; twenty-six later
+commits are local and unpushed through `016f907`.
 
 **Status: building, in `../milk-company`.** Phases 1–2.5 are done. Phase 3's
 writer is connected to both doors in source; the email path is unproved live and
 the upload path lacks authenticated database permission. The review/apply loop
-and three of five query tools plus the refusal backlog are built, but migrations `011`–`017` are not
-live. Every phase below carries
+and three of five query tools, the refusal backlog and Yunt-created purchase
+requests are built, but migrations `011`–`018` are not live. Every phase below carries
 its own state. The seven GO decisions D1, D2, D3, D5, D6 and D7 are settled
 (Afaq, 2026-09-08); D4 was withdrawn.
 
@@ -603,6 +603,10 @@ and the PDF download. Try to order CLP 900,000 with one quotation and be stopped
 
 ### Phase 10 — the Yunt fills the forms · day 16 (scope items 18–19)
 
+**Status:** form one is built locally through migration `018`, including
+required-field validation, exact email confirmation and replay safety. Price-
+precedent attachment and the order/PDF half remain.
+
 - Cristian emails "necesito 20 sacos de sal para el fundo Raíces antes del 15".
   Claude extracts item, quantity, farm and date into the **same request table**,
   with `created_via = 'yunt'` and the source email id.
@@ -784,8 +788,8 @@ contact, ever.
 
 ## 11. What is still needed from you
 
-1. **Clear the Supabase usage-limit block**, then run migrations `011`–`017` in
-   numeric order. `005`–`010` are live; the seven pending files are idempotent and
+1. **Clear the Supabase usage-limit block**, then run migrations `011`–`018` in
+   numeric order. `005`–`010` are live; the eight pending files are idempotent and
    proved twice locally.
 2. **Approve the `/carga` permission design.** Recommendation: a database Yunt
    operator allowlist seeded with Afaq's signed-in email, then Cristian later.

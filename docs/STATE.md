@@ -25,11 +25,12 @@ lists, and a durable refusal backlog all have regressions. `014` writes
 `prediction_source='yunt_applied'` (D-066). Apply and undo now require an exact,
 email-thread-bound confirmation instead of treating any reply as approval
 (D-067).
-The aggregate and period-comparison tools, seven
-data-quality checks, exports/charts/reports, recurring reports, and Yunt-driven
-purchasing are still to build.
+The Yunt-created request half of purchasing is also built (`018`); attaching
+precedent and drafting the final order remain. The aggregate and period-
+comparison tools, the unsettled quality-check set, exports/charts/reports and
+recurring reports are still to build.
 
-**Migrations `005`–`010` are live. `011`–`017` are not.** Afaq confirmed the
+**Migrations `005`–`010` are live. `011`–`018` are not.** Afaq confirmed the
 live boundary; every pending migration has been loaded twice in disposable
 PostgreSQL. Supabase currently reports **EXCEEDING USAGE LIMITS**, so no live
 write or migration should be attempted until the project serves requests again.
@@ -39,8 +40,8 @@ received one successful prediction and exactly 10/10 results from a live batch,
 all reporting v1.3.3. The email path calls that same adapter. No actual mailbox
 message or Supabase write has yet proved the whole deployed chain.
 
-**Branch `yunt` is pushed only through `4035fef`; twenty-four commits are local**
-through `dc76546`. Preview only. Production remains `main`; nothing merged.
+**Branch `yunt` is pushed only through `4035fef`; twenty-six commits are local**
+through `016f907`. Preview only. Production remains `main`; nothing merged.
 `yunt-backend` here is also unpushed.
 
 ## HANDOVER — 2026-09-09, session ended by Afaq
@@ -116,7 +117,7 @@ ask him to run a query and paste the result.
 - Exactly **one** `yunt_category_precedent` exists — the 5-argument version from
   `009`, which is the correct one. There is **no** duplicate overload. An earlier
   claim of mine that there were two was wrong and is retracted.
-- `004` through `010` are applied. `011` through `017` are not.
+- `004` through `010` are applied. `011` through `018` are not.
 - `prediction_source` allows six values including `user_selected`, so `014` is
   legal against the live constraint.
 
@@ -160,11 +161,11 @@ Two real traps in that set:
 
 ### What to run, and why
 
-**Migrations `011` through `017`, in that order, in one paste.**
+**Migrations `011` through `018`, in that order, in one paste.**
 A combined file was generated and handed to Afaq. Regenerate it with:
 
 ```
-cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals}.sql
+cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yunt_inbound_requests,014_yunt_apply_undo,015_yunt_price_history,016_yunt_invoice_line_list,017_yunt_refusals,018_yunt_purchase_requests}.sql
 ```
 
 - `011` — review packets, so a retry cannot double-count findings
@@ -174,6 +175,7 @@ cat milk-company/supabase/{011_yunt_review_chunks,012_yunt_review_outbox,013_yun
 - `015` — bounded catalog lookup and item price history; ambiguous names are not guessed
 - `016` — bounded invoice-line list with exact review/date/amount filters
 - `017` — immutable refusal/backlog entries, one per stored inbound request
+- `018` — email-drafted purchase requests created only after exact confirmation
 
 Why it is safe: there is no `DELETE`, `TRUNCATE`, `DROP TABLE`, or top-level
 data `UPDATE`. `014` deliberately replaces the existing
@@ -188,7 +190,8 @@ a disposable PostgreSQL, re-runs `011`->`014` for idempotency, and exercises
 `013`'s round trip. `scripts/prove-014-apply-undo.sh` proves apply/undo;
 `scripts/prove-015-price-history.sh` proves filters, ambiguity and idempotency;
 `scripts/prove-016-invoice-line-list.sh` proves bounded row filters;
-`scripts/prove-017-yunt-refusals.sh` proves refusal logging and replay safety.
+`scripts/prove-017-yunt-refusals.sh` proves refusal logging and replay safety;
+`scripts/prove-018-purchase-request.sh` proves draft/create/replay behavior.
 All are committed and re-runnable.
 
 **Take a backup first** (`scripts/81_backup_supabase.py`). The last one is
@@ -212,7 +215,7 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**9 of 19 done in code, 3 partly, 7 not started. Nothing agentic is live yet.**
+**10 of 19 done in code, 3 partly, 6 not started. Nothing agentic is live yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
@@ -232,7 +235,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 15 | A request stays open until an order closes it | Done. Enforced in the database |
 | 16 | Form two, with the two-quotation rule above CLP 500,000 | Done. Rule proved by regression |
 | 17 | A purchase-order PDF Antillanca sends themselves | Partly. A print-styled page; the browser saves the PDF. Cannot be attached to mail |
-| 18 | The Yunt fills form one from a plain-language email | Not started |
+| 18 | The Yunt fills form one from a plain-language email | Done in code. Missing required facts are requested; a stored draft becomes a real open request only after exact confirmation. Not live until `018` runs |
 | 19 | The Yunt drafts the order once a quotation exists | Not started |
 
 **Read the middle column, not the count.** The deterministic base is farthest
@@ -241,7 +244,7 @@ but their migrations, model credentials and real-message proof are still open.
 
 **The next foundation priority is permission, not another feature:** make
 `/carga` a real authenticated write without exposing service-role power, clear
-the Supabase usage block, run `011`–`017`, then prove one real email and one
+the Supabase usage block, run `011`–`018`, then prove one real email and one
 upload including replay. In parallel, finish the remaining four read tools.
 
 ## V1 checklist
@@ -296,8 +299,10 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 ### Purchasing
 
 - [x] The two forms, real tables (`005` live) — not yet exercised live
-- [ ] The Yunt fills them from an email, with precedent prices from the
-      price-history tool (Phase 10)
+- [x] The Yunt drafts and creates form one from email only after exact
+      confirmation (`018`)
+- [ ] Attach supplier/price precedent to that buying exchange when requested
+      (the grounded price-history tool itself already exists)
 - [ ] The CLP 500,000 two-quotation check called from the same function the
       form uses, never a second copy
 
@@ -306,7 +311,7 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [ ] Clear Supabase's **EXCEEDING USAGE LIMITS** state
 - [ ] Approve the `/carga` operator permission design
 - [ ] Confirm or change the temporary Opus 5 / medium choice
-- [ ] **Run `011`–`017`** in the Supabase editor — all idempotent, each proved
+- [ ] **Run `011`–`018`** in the Supabase editor — all idempotent, each proved
       twice against a disposable PostgreSQL
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
@@ -361,9 +366,18 @@ belong in v1.
   deployed `/health` and `/artifact-check` reported v1.3.3 and intact artifacts;
   one prediction returned `EXP-2.3 Vacunas`, and the dashboard's own TypeScript
   adapter received exactly 10/10 results from `/predict-batch`.
+- **Stopped failed reviews lying about their state.** If staged packets cannot
+  reach EVE, the numbered attempt now closes as `unavailable` instead of staying
+  `running` forever. A future retry can start a clean attempt. Commit `002e0b5`.
+- **Built Yunt-created purchase requests.** The agent refuses to invent any of
+  what/quantity+unit/date/farm, stages a durable draft, shows an exact
+  confirmation, then creates the ordinary open `purchase_requests` row with
+  `created_via='yunt'` and the source email id. It creates no order and contacts
+  nobody. Migration `018`, commit `016f907`.
 - **Proof:** `014` apply/undo and `015` price history each loaded twice and passed
   behavioral PostgreSQL checks; `016` and `017` passed the same load-twice and
-  behavior proof. The expanded `014` proof also rejects opening mail, quoted
+  behavior proof; `018` passed load-twice plus draft/create/replay behavior. The
+  expanded `014` proof also rejects opening mail, quoted
   confirmation text, wrong targets, reused prompts and stale rows. After every
   increment, `./check.sh` was all green
   (types, zero lint errors, build, all checks); the final `npx eve build` passed.
