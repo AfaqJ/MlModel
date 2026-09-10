@@ -259,14 +259,18 @@ under `reports/recovery_v1_2_0/`. (The original write-up,
 
 ---
 
-## D-010 — Document type is out of scope; direction comes from the folder
+## D-010 — Document type is out of scope
+
+> **Narrowed by [D-072] on 2026-09-10.** The half about document type still
+> holds. The half about the folder does not: direction is now read from the RUTs
+> inside each document, and the folder is only a fallback.
 
 **Date:** 2026-08-11 · **Decided by:** Afaq
 
 Raw data contains credit notes, exempt invoices, settlement invoices and debit
-notes. Classifying by document type is not this project's job — the
-COMPRAS/VENTAS folder already gives direction, and Supabase already stores it.
-Noted here only so a future session does not re-derive it as a "gap".
+notes. Classifying by document type is not this project's job — direction is
+enough, and Supabase already stores it. Noted here only so a future session does
+not re-derive it as a "gap".
 
 ---
 
@@ -1820,3 +1824,46 @@ translating them would silently change their content rather than merely changing
 the UI around it.
 
 ---
+
+## D-072 — Direction comes from the RUTs; the folder is only a fallback
+
+**Date:** 2026-09-10 · **Decided by:** Afaq · **Model:** Claude (Opus 5)
+
+`COMPRAS` or `VENTAS` is decided by who is named in the document: Antillanca as
+`RUTEmisor` is a sale, Antillanca as `RUTRecep` is a purchase. The
+`COMPRAS/`/`VENTAS/` folder is consulted only when the document names Antillanca
+on neither side. A document that names neither party and sits under no direction
+folder is refused, and the reception report says exactly that.
+
+This narrows [D-010], which made the folder the source of direction, and departs
+from the signed V1 scope, which says the same. Afaq overruled both: *"the file
+named based detection is not a good approach and can fail… i cant guarantee
+they'll upload with this exact folder format."*
+
+**Why:** the RUTs are inside the document and survive however the sender chose
+to package it. A folder name is a human convention that a client can rename,
+flatten or mix at any time, and doing so silently mislabelled every line in the
+archive — direction is part of the model input template (D-013), so a wrong
+folder is a wrong classification, not a cosmetic error.
+
+**Measured before changing anything**, across the whole raw corpus:
+
+| | |
+|---|---|
+| DTEs with both RUTs readable | 5,584 |
+| Antillanca on **neither** side | **0** |
+| Antillanca on **both** sides | **0** |
+| Under a `COMPRAS`/`VENTAS` folder | 5,195 — the live invoice count |
+| Folder rule and RUT rule **disagree** | **0** |
+
+So this relabels nothing that is already stored. What it changes is what gets
+*accepted*: an archive with a flat or differently-named folder used to be
+rejected file by file as `no_direction_folder`. That rejection reason is gone.
+Proved on the real screen: six documents in one flat `todo/` folder — four
+purchases, two sales — were read and split correctly by `/carga`, with nothing
+written.
+
+**Rejected:** keeping the folder as the first choice and the RUTs as the
+fallback. It needs a definition of a "garbage" folder name before it can decide
+anything, and the folder is the less trustworthy of the two signals in the first
+place.

@@ -229,6 +229,15 @@ set of rows; re-writing 11,746 lines to change a handful is how sessions get los
 Back up first (`scripts/81_backup_supabase.py`), then write over PostgREST with a
 dry run, touching only the rows in scope.
 
+**A feature is not finished until it has been used in the browser.** Start the
+dev server and drive the real screens on `localhost:3000` — click the buttons,
+submit the forms, read what comes back. Type checks and `check.sh` prove the code
+runs; they do not prove the feature works. Every defect found on 2026-09-10 —
+the dead "Nueva solicitud" button, the redirect that landed on a 404 after
+saving, the home-screen rule that never rendered, the accent-stripped supplier
+name — passed every automated check and would have reached Antillanca. Ask Afaq
+to sign in when a screen needs a session; never ask him to do the checking.
+
 Deploy is **container-only** — `gcloud builds submit` → Artifact Registry →
 `gcloud run deploy`. Git is never in the path, which is what keeps the 278 MB
 `.onnx` from becoming an LFS pointer. `.gcloudignore` is **required**: without

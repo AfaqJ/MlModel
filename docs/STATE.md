@@ -11,8 +11,8 @@ by row against live, replayed to prove the second upload changes nothing, then
 removed. Live is back at baseline exactly: 5,195 invoices / 11,746 lines /
 461 companies / 0 batches. Backup `supabase_20260910T044749Z`.
 
-**Migrations: `026` is CONFIRMED live; `024` is believed pending; `023` and
-`025` are believed live but NOT re-verified.** Afaq lost track of what he pasted
+**Migrations: `024` and `026` are CONFIRMED live; `023` and `025` are believed
+live but NOT re-verified.** Afaq lost track of what he pasted
 (2026-09-10) and asked that this be settled first next session. `026` is proved
 by behaviour, not by a doc: a quotation saved with no file at all on 2026-09-10,
 which `storage_path NOT NULL` would have refused. **Verify the rest the same
@@ -22,9 +22,13 @@ so re-pasting any of them is safe and is the cheapest way to be certain. Afaq ra
 `021`–`023` and then `025` on 2026-09-10. `025` is independent of `024` — it
 touches `invoices.transport_plate` and the precedent function, references
 `yunt_flags` nowhere — so applying it first was safe, despite its header saying
-"run after 024". `024_yunt_flags_dashboard_read.sql` grants signed-in users
-*read* on `yunt_flags`; until it runs the new dashboard flag column shows
-nothing. `026_quotation_without_file.sql` (Afaq ran it 2026-09-10) lets a
+"run after 024". `024_yunt_flags_dashboard_read.sql` grants signed-in
+users *read* on `yunt_flags`. Afaq ran it on 2026-09-10 and it is **proved by
+behaviour**: the signed-in dashboard's invoice detail (folio 1224) fetched
+`yunt_flags`, and neither the `flagsLoadError` banner nor the
+`[dashboard] quality flag fetch failed` console line appeared. Without the grant
+PostgREST returns 42501 and `fetchOpenFlagsForItems` throws, so the absence of
+that error is the grant. `026_quotation_without_file.sql` (Afaq ran it 2026-09-10) lets a
 quotation be a stated price rather than a document.
 
 **`MCT-164` is done and closed.** The apparent label inconsistency was
@@ -42,8 +46,8 @@ generator check, targeted lint, `tsc --noEmit` and a visual PDF render all
 passed. What remains is the acceptance run from one real stored question.
 
 **`MCT-155` is half done.** The dashboard flag column is committed (`0d20315`);
-`024` must run before a signed-in user sees anything. The approve/undo half is
-not built.
+`024` is live, so a signed-in user would see a flag if one existed; none has been
+written to live yet. The approve/undo half is not built.
 
 **`YUNT_ALLOWED_ADDRESSES` was never unset.** It has been on Vercel Preview
 since 2026-09-09, value unknown because every var is sensitive-flagged and reads
@@ -72,7 +76,8 @@ promises; recurring reports (#13 / `MCT-154`) are parked for V2 (D-069), leaving
 live integration or acceptance (see the table below). Outside that original
 scope, `MCT-165` — judging whether a quotation is genuine before it counts
 toward the CLP 500,000 rule — is still unbuilt and needs the Claude API key.
-`MCT-155` only needs `024` plus a person reading real flags; D-070 deliberately
+`MCT-155` only needs a person reading real flags now that `024`
+is live; D-070 deliberately
 forbids the Yunt from proposing edits to values copied from a DTE.
 
 **Do not drive the Supabase SQL editor.** A previous session typed over editor
@@ -113,16 +118,28 @@ committed together as `205451d` and both are Done in Linear with proof comments.
 that can be completed without credentials or live input. `MCT-152` needs only
 its acceptance run from a real stored question; none currently exists.
 
-**Waiting on Afaq:** run `024`; the Claude API key, which unblocks the first
+**Waiting on Afaq:** the Claude API key, which unblocks the first
 half of `MCT-149`, `MCT-165` and everything agent-shaped; a real email for
 `MCT-160`;
 a decision on whether TypeScript ingestion should create Antillanca as a company
 row when the old Python load never did.
 
-**Deferred deliberately:** `MCT-162`, direction from the DTE RUTs instead of
-the ZIP folders, is not required by the signed V1 scope. Performance work in
-`MCT-166` is parked while functionality is finished. Recurring reports remain
-parked for V2.
+**`MCT-162` is done (D-072).** Direction is read from the RUTs in each document
+— Antillanca as `RUTEmisor` is a sale, as `RUTRecep` a purchase — and the
+`COMPRAS`/`VENTAS` folder is only a fallback for a document naming neither. That
+case does not exist: across all 5,584 raw DTEs, Antillanca is on exactly one side
+of every one, never neither and never both, and the RUT rule reproduces the
+folder on all 5,195 ingested documents with **zero disagreements**. So nothing
+already stored is relabelled; what changed is that a flat or differently-named
+archive is now accepted instead of rejected file by file. Proved on `/carga`:
+six documents in one flat `todo/` folder, four purchases and two sales, read and
+split correctly with nothing written. The `no_direction_folder` rejection reason
+is gone.
+
+**Deferred deliberately:** `MCT-143` client data questions stay logged, not
+raised: Afaq's call on 2026-09-10 was that they do not appear to affect
+processing logic. Performance work in `MCT-166` is parked while functionality is
+finished. Recurring reports remain parked for V2.
 
 **Ticket coverage is not proven.** The tickets were AI-generated and may not
 span the whole scope. Closing them all is not the same as building everything.
@@ -155,7 +172,7 @@ disagree, the decision log wins.
 - **In progress:** `MCT-142` the parent, `MCT-149` review and propose (blocked on
   the API key), `MCT-150` approve and undo, `MCT-152` PDF/charts (built, needs
   acceptance), `MCT-153` refusals (cannot close without a live refusal),
-  `MCT-155` flags (needs `024`), `MCT-156`/`157` purchasing from email,
+  `MCT-155` flags, `MCT-156`/`157` purchasing from email,
   `MCT-161` the order document, `MCT-140`/`141`/`144`.
 - **Todo:** `MCT-160` the first real email.
 - **Backlog, parked for V2:** `MCT-154` recurring reports (D-069).
@@ -163,8 +180,8 @@ disagree, the decision log wins.
   its error loop but did not satisfy its no-second-query done-when.
 - **Done:** `MCT-163` hardcoded Spanish and `MCT-167` the order-centric list
   (`205451d`).
-- **Backlog, deferred on purpose:** `MCT-162` direction from the RUTs and
-  `MCT-143` client data questions.
+- **Built, ticket needs closing:** `MCT-162` direction from the RUTs (D-072).
+- **Backlog, deferred on purpose:** `MCT-143` client data questions.
 
 Tickets are written at product level on purpose — no file names, no migration
 numbers, no function names — so an implementation discovery cannot turn one into
@@ -189,7 +206,7 @@ yet.**
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
 | 4 | Lines classified and **written to the database** | Built and proved through `/carga` on live; the email route remains unproved |
 | 5 | An acknowledgement in minutes, then a written report | Built as a receipt first and a findings email later; never live-proved |
-| 6 | Data quality flags, and fixes proposed on approval | Flags are built, calibrated and persisted; the dashboard stays dark until `024`. D-070 corrects the scope: DTE values are reported, never changed; only category changes can be proposed |
+| 6 | Data quality flags, and fixes proposed on approval | Flags are built, calibrated and persisted; `024` is live and the dashboard read works, but no flag has been written to live yet. D-070 corrects the scope: DTE values are reported, never changed; only category changes can be proposed |
 | 7 | Category proposals with evidence, grouped | Built and grounded; deterministic precedent quality measured at 97.2% of proposals correct. The real Claude review still needs its key and acceptance run |
 | 8 | Approve a group, get confirmation, undo it | Built with database-enforced confirmation and undo; no live agent run yet |
 | 9 | Five query tools answering open questions | Done. All five built and their figures independently proved; `022` is live |
@@ -277,7 +294,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       `auto_accept` is downgraded to review and nothing else (Phase 4, D-058, D1)
 - [x] **Flags persisted to `yunt_flags`** with `source='deterministic'`, written
       when the review attempt opens so an incomplete review still leaves them
-- [ ] Flags shown per line in the dashboard — built (`0d20315`), dark until `024` runs
+- [x] Flags shown per line in the dashboard — built (`0d20315`); `024` is live,
+      the authenticated read works, and no open flag exists yet to display
 
 ### Purchasing
 
@@ -298,9 +316,9 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 - [ ] Confirm Supabase is out of its **EXCEEDING USAGE LIMITS** state. The
       `011`–`020` run succeeding suggests it is; not checked directly
-- [ ] **Run `024`** in the Supabase SQL editor. Proved by
-      `scripts/prove-024-yunt-flags-read.sh`; it grants read only and changes no
-      row. `021`-`023` and `025` are already applied
+- [x] **`024` is run and confirmed live** (2026-09-10). Proved offline by
+      `scripts/prove-024-yunt-flags-read.sh` and on live by the signed-in
+      dashboard reading `yunt_flags` without error
 - [x] `021` written and proved (`scripts/prove-021-carga-writes.sh`)
 - [x] `/carga` permission design decided: any signed-in user, no roles in v1
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
