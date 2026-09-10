@@ -47,9 +47,10 @@ readable needs Afaq. He has said this is a readability preference, not a blocker
 `5a03d23`, three commits past the last push (`02d7a58`): flags column,
 invoice-context precedent, PDF/charts. Both working trees clean.
 
-**Still to build:** recurring reports (`MCT-154`, not started, and there is still
-no `vercel.json` so no scheduler exists), the approve/undo half of `MCT-155`, and
-the first half of `MCT-149`, which needs the Claude API key.
+**Still to build in V1:** the approve/undo half of `MCT-155`, and the first half
+of `MCT-149`, which needs the Claude API key. **Recurring reports (`MCT-154`) are
+parked for V2** (D-069) — a first pass lives on `yunt-recurring-reports-v2` and is
+deliberately not on `yunt`, so no V1 deploy registers a cron.
 
 **Do not drive the Supabase SQL editor.** A previous session typed over editor
 buffers holding Afaq's own saved queries. Read live state through
@@ -76,8 +77,8 @@ data is wrong.
 
 ### The order of work, agreed 2026-09-10
 
-**Next, needs nobody:** `MCT-154` recurring reports; the approve/undo half of
-`MCT-155`. `MCT-152` needs only its acceptance run, not more building.
+**Next, needs nobody:** the approve/undo half of `MCT-155`. `MCT-152` needs only
+its acceptance run, not more building.
 
 **Waiting on Afaq:** run `024`; the Claude API key, which unblocks the first
 half of `MCT-149` and everything agent-shaped; a real email for `MCT-160`;
@@ -122,7 +123,8 @@ disagree, the decision log wins.
   acceptance), `MCT-153` refusals (cannot close without a live refusal),
   `MCT-155` flags (needs `024`), `MCT-156`/`157` purchasing from email,
   `MCT-161` the order document, `MCT-140`/`141`/`144`.
-- **Todo:** `MCT-154` recurring reports, `MCT-160` the first real email.
+- **Todo:** `MCT-160` the first real email.
+- **Backlog, parked for V2:** `MCT-154` recurring reports (D-069).
 - **Backlog, deferred on purpose:** `MCT-162` direction from the RUTs,
   `MCT-163` hardcoded Spanish, `MCT-143` client data questions.
 
@@ -152,7 +154,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 | 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Done in code. Figure, CSV attachment and a true PDF, with the filter and basis printed on each. No real question has been answered with one yet |
 | 11 | Charts from a fixed set, drawn by code | Done in code. Five fixed types drawn as SVG by `src/lib/yunt/report.ts`, no chart library |
 | 12 | Says so when a question does not fit, and we learn from the list | Done in code. One immutable backlog entry per stored request; not live until `017` runs |
-| 13 | Month-end summary, post-batch digest, weekly review list | Not started |
+| 13 | Month-end summary, post-batch digest, weekly review list | **Parked for V2** (D-069). A first pass exists on a side branch; the post-batch half is arguably already the findings email |
 | 14 | Form one: what is needed, how much, by when, for which farm | Done. Tables live, not yet used in anger |
 | 15 | A request stays open until an order closes it | Done. Enforced in the database |
 | 16 | Form two, with the two-quotation rule above CLP 500,000 | Done. Rule proved by regression |
@@ -265,8 +267,9 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 Roles and approval chains on purchase orders (D-052, and the scope document says
 so in the client's own words), goods receipt / invoice matching / payment, and
 ingestion from the Audisoft API, which is blocked on credentials that return 401
-(D-054). **Recurring reports are not on this list** — they are scope item 13 and
-belong in v1.
+(D-054), and — since 2026-09-10 — **recurring reports**, scope item 13, which
+were in v1 until the product questions behind them turned out to be unanswered
+(D-069).
 ## Recent sessions
 
 ### 2026-09-10 (c) — the deciding field, and reports that carry a file

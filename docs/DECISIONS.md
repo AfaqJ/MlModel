@@ -1748,3 +1748,27 @@ then return no evidence at all; ranking degrades gracefully where a filter
 returns nothing.
 
 ---
+
+## D-069 — Recurring reports move to V2
+
+**Date:** 2026-09-10 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Scope item 13 — the month-end summary, post-batch digest and weekly review list
+— is parked for V2. `MCT-154` is in the backlog. A working first pass sits on
+`milk-company` branch `yunt-recurring-reports-v2`: the cron config, both reports,
+migration `026` for an on/off switch, a dashboard toggle and two agent tools.
+None of it is on `yunt`, so a V1 deploy registers no cron and `026` stays unrun.
+
+**Why:** the reports were built before anyone settled what they say, when they
+run, or who receives them. Those are product decisions and every one of them was
+guessed. Antillanca has not asked for the feature, the deterministic reception
+email already tells Cristian a batch landed, and V1 still has unbuilt work that
+was actually requested. Parking it costs nothing — the figures come from the
+existing aggregate query and the PDF from `MCT-152`, so resuming is a matter of
+answering the questions, not rebuilding.
+
+**Rejected:** shipping it switched off. An unshipped feature cannot be turned on
+by accident, and a `vercel.json` on the release branch registers its cron the
+moment it deploys, whatever the toggle says.
+
+---
