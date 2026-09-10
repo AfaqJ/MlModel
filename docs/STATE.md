@@ -31,6 +31,19 @@ PostgREST returns 42501 and `fetchOpenFlagsForItems` throws, so the absence of
 that error is the grant. `026_quotation_without_file.sql` (Afaq ran it 2026-09-10) lets a
 quotation be a stated price rather than a document.
 
+**BLOCKER, found 2026-09-10: the deployed classifier rejects `transport_plate`.**
+Every ingest fails at the classify step right now. `5ef2fd7` added the field to
+`app/api/schemas.py` and the dashboard's adapter sends it on every line, always,
+`null` included (`classify.ts:59`). Cloud Run is still on `mlmodel-00014-lrp`,
+the pre-change v1.3.3, whose schema forbids the extra key: `/predict-batch`
+answers `422 extra_forbidden` for `body.items[*].transport_plate`. Seen on the
+real `/carga` screen, not in a test. Nothing was written — the dry run fails
+before the write. Ingest was proved working earlier the same day, *before*
+`5ef2fd7` landed, which is why nothing caught it. Two ways out: redeploy the
+classifier (container-only, and `docs/TEST_CHECKLIST.md`'s income slice is a
+mandatory gate), or point `CLASSIFIER_URL` at a locally run service from source
+to unblock testing without a production release.
+
 **`MCT-164` is done and closed.** The apparent label inconsistency was
 deterministic all along. `dte.ts` now keeps `<Transporte><Patente>` as
 `invoices.transport_plate`, and `025` ranks an exact `meter_code` match above
