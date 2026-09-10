@@ -10,16 +10,18 @@ ZIP sent by email uses the service-role database client, writes deterministic
 facts, sends the receipt, then starts the compact Yunt review. A non-ZIP email
 is stored and handed to EVE. No real message has traversed either path.
 
-**`/carga` is still blocked at its first real save**, and the fix is written but
-not on disk. It correctly uses the signed-in user's Supabase client, while
-`yunt_batches` and the writer/review objects grant only `service_role`. Afaq
-settled the design on 2026-09-09: **any signed-in user**, the same permission
-every other write in this product has, because v1 has no roles (D-052). The
-named-allowlist idea is dropped. The SQL for `021` was handed over in chat —
-Claude's file writes were refused twice by the safety classifier because the
-file grants database permissions — and it needs saving to
-`milk-company/supabase/021_carga_operator_writes.sql` before it can be proved
-and run. Do not work around this by importing the service key into a
+**`/carga`'s permission fix is written and proved, and waiting to be run.**
+The page correctly uses the signed-in user's Supabase client while
+`yunt_batches` and the writer/review objects granted only `service_role`, so its
+first real save would have failed. Afaq settled the design on 2026-09-09: **any
+signed-in user**, the same permission every other write in this product has,
+because v1 has no roles (D-052); the named-allowlist idea is dropped.
+`021_carga_operator_writes.sql` now exists and
+`scripts/prove-021-carga-writes.sh` asserts the fixture cannot save *before* the
+migration, then that `authenticated` ends up with exactly what the upload path
+needs — no update policy on `yunt_batch_items`, no direct insert into `invoices`
+or `invoice_items`, nothing for `anon`. Until it is run live, `/carga` still
+cannot save. Do not work around that by importing the service key into a
 browser-triggered action.
 
 **All five business query tools are built, and their money rules are settled.**
@@ -54,9 +56,19 @@ nothing else, and the findings are stored in `yunt_flags`.
 reports, and showing flags per line in the dashboard.
 
 **Migrations `004`–`020` are ALL LIVE.** Afaq ran `011`–`020` in one paste on
-2026-09-09, from the concatenated file this session handed him. Every one had
-been loaded twice in disposable PostgreSQL first. The next migration is `021`
-(`/carga` operator writes); it is not yet written into `milk-company/supabase/`.
+2026-09-09, from the concatenated file that session handed him. Every one had
+been loaded twice in disposable PostgreSQL first.
+
+**`021` and `022` are written, proved and NOT live.** They were handed over
+consolidated on 2026-09-10, in that order. `021` is the `/carga` operator
+grant; `022` adds grouped totals and moves `016`'s filter into one shared
+source both read. Neither contains a `DROP`, `TRUNCATE`, `DELETE` or top-level
+data `UPDATE`, and neither changes row-level-security posture on any table —
+checked by grep, not by assumption. Regenerate the paste with:
+
+```
+cat milk-company/supabase/{021_carga_operator_writes,022_yunt_aggregate}.sql
+```
 
 **What that unblocks:** review packets, the findings outbox, durable inbound
 requests, apply/undo with exact confirmation, price history, invoice-line
@@ -241,7 +253,7 @@ Antillanca was told they are getting, so it is the honest measure of progress.
 |---|---|---|
 | 1 | A mailbox that acts only on agreed senders | Done. Never carried a real message |
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
-| 4 | Lines classified and **written to the database** | Partly. Email is connected in code; `/carga` is blocked by missing authenticated permissions; neither is live-proved |
+| 4 | Lines classified and **written to the database** | Partly. Email is connected in code; `/carga`'s permission is written and proved as `021` but not run; neither is live-proved |
 | 5 | An acknowledgement in minutes, then a written report | Done in code as a receipt first and a findings email later; never live-proved |
 | 6 | Data quality flags, and fixes proposed on approval | Partly. Detection is built and calibrated; a flagged auto-accept is downgraded. Persisting flags and proposing fixes remain |
 | 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
@@ -278,8 +290,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 - [x] Deploy path, Resend mailbox, ZIP upload page (Phases 0–1)
 - [x] Read, deduplicate, resolve to catalog, classify, report (Phases 2–2.5)
 - [x] Atomic writer: whole invoice and all its lines in one transaction (D-063)
-- [ ] `/carga` live save: source is connected, but authenticated writer/review
-      permission is missing
+- [ ] `/carga` live save: source is connected and `021` grants the permission,
+      but `021` has not been run, so the first real save still fails
 - [x] Mailbox router: ZIP → deterministic ingest, everything else → the agent
 - [x] **Mailbox connected to the writer** — claimed by the Resend message id
 - [x] **Email review fires after a write** and never blocks the receipt (D-064)
@@ -347,9 +359,10 @@ is unticked, there is no code for it. "Built" means proved by a regression;
 
 - [ ] Confirm Supabase is out of its **EXCEEDING USAGE LIMITS** state. The
       `011`–`020` run succeeding suggests it is; not checked directly
-- [ ] Save the `021` SQL this session printed into
-      `milk-company/supabase/021_carga_operator_writes.sql` so it can be proved
-      and then run — the safety classifier refuses to let Claude write that file
+- [ ] **Run `021` then `022`** in the Supabase SQL editor. Both proved twice
+      against disposable PostgreSQL; neither drops, truncates, deletes, updates
+      data, or changes row-level-security posture. Back up first
+- [x] `021` written and proved (`scripts/prove-021-carga-writes.sh`)
 - [x] `/carga` permission design decided: any signed-in user, no roles in v1
 - [ ] **Your yes on the 222 harvested aliases** (`006` is live, so unblocked)
 - [ ] Send the first real email to `antillanca.yunt@mountaincreative.cl`
@@ -364,6 +377,31 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-10 — the two pending migrations, written, proved and handed over
+
+- **Wrote `021_carga_operator_writes.sql`.** Afaq supplied the text, because
+  Claude's own write of it had been refused twice by the safety classifier for
+  granting database permissions. Nothing in it was changed.
+- **Proved it, which it had never been.** `scripts/prove-021-carga-writes.sh`
+  first asserts the fixture *cannot* save before the migration, so the proof
+  cannot pass vacuously against an already-open database; then loads `021`
+  twice; then checks that `authenticated` ends up with exactly the table
+  privileges, function grants and per-command policies the upload path needs —
+  and that `yunt_batch_items` gained no update policy, a direct insert into
+  `invoices`/`invoice_items` is still refused, and `anon` gained nothing.
+  Commit `e65edae`.
+- **Re-proved `022`** so both pending migrations were green on the same day.
+- **Handed over the consolidated paste** of `021` then `022`, after checking by
+  grep rather than assumption that neither carries a `DROP`, `TRUNCATE`,
+  `DELETE`, top-level data `UPDATE`, or any row-level-security posture change.
+- **Skipped `check.sh` deliberately.** The commit touched only SQL, a shell
+  script and Markdown; running the TypeScript regression would have proved
+  nothing and is the kind of broad re-run Afaq asked to stop.
+- **Correction:** five frontend and six root commits that appeared to be someone
+  else's work were from later in the previous session, past the point Claude's
+  context was trimmed. Neither Afaq nor Codex worked after it ended.
+
 
 ### 2026-09-09 (n) — the corpus check found a real defect
 
