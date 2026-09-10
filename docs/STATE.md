@@ -51,9 +51,9 @@ back as `[SENSITIVE]`. That is what produced the wrong note in earlier docs.
 `vercel env rm` is blocked by the permission classifier, so converting them to
 readable needs Afaq. He has said this is a readability preference, not a blocker.
 
-**Git.** `ML-model` on `yunt-backend` at `1b19a65`; `CLAUDE.md` was already
-modified when this session began, and this session changes `STATE.md` and
-`DECISIONS.md`. `milk-company` on `yunt` at `205451d`, 12 commits past its
+**Git.** `ML-model` on `yunt-backend`; the completed scope reconciliation is at
+`3e6a857`, `CLAUDE.md` was already modified when this session began, and this
+tracker checkpoint follows it. `milk-company` on `yunt` at `205451d`, 12 commits past its
 upstream. Three uncommitted performance files remain parked: dashboard and
 products cache experiments plus the analytics hint nesting fix. Do not mix them
 into feature work without reopening `MCT-166`.
@@ -107,7 +107,7 @@ actually applied (see Now). Re-pasting an idempotent migration settles it.
 both languages while leaving Antillanca's stored and client-facing content in
 Spanish (D-071). `MCT-167` adds the missing order-centric list. Both passed
 targeted lint, TypeScript, translation-key parity and browser checks. They are
-committed together as `205451d`; their Linear status still needs updating.
+committed together as `205451d` and both are Done in Linear with proof comments.
 
 **Next, needs nobody:** there is no more missing original-scope feature code
 that can be completed without credentials or live input. `MCT-152` needs only
@@ -159,8 +159,10 @@ disagree, the decision log wins.
   `MCT-161` the order document, `MCT-140`/`141`/`144`.
 - **Todo:** `MCT-160` the first real email.
 - **Backlog, parked for V2:** `MCT-154` recurring reports (D-069).
-- **Built and awaiting ticket update:** `MCT-163` hardcoded Spanish and
-  `MCT-167` the order-centric list (`205451d`).
+- **Backlog, parked performance:** `MCT-166`; removing the broken cache stopped
+  its error loop but did not satisfy its no-second-query done-when.
+- **Done:** `MCT-163` hardcoded Spanish and `MCT-167` the order-centric list
+  (`205451d`).
 - **Backlog, deferred on purpose:** `MCT-162` direction from the RUTs and
   `MCT-143` client data questions.
 
@@ -342,6 +344,18 @@ were in v1 until the product questions behind them turned out to be unanswered
 - **Performance stayed parked.** Three uncommitted cache/hydration files remain
   outside the feature commit. Do not let them obscure the remaining functional
   acceptance work.
+- **Linear corrected through its connector.** `MCT-163` and `MCT-167` are Done
+  with proof comments. `MCT-166` was reopened to Backlog because its committed
+  change did not meet its done-when. `MCT-155` now says flags report source-data
+  problems and never rewrite DTE values (D-070), and `MCT-141` no longer claims
+  the already-configured Resend mailbox/domain are blockers. `MCT-154` is
+  Backlog, matching its parked-for-V2 title.
+- **No other ticket can honestly close without the Claude key or user input.**
+  `MCT-150` explicitly requires the real email approval and undo path;
+  `MCT-152` needs a real stored question; `MCT-153` a real refusal; `MCT-155`
+  migration `024` plus human judgement; and `MCT-141`/`160` a real message whose
+  review/findings step uses Claude. A fresh five-table logical backup was taken
+  at `backups/supabase_20260910T130219Z`, but no live write followed it.
 
 ### 2026-09-10 (d) — purchasing proved by using it, and four defects it hid
 
