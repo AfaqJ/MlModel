@@ -15,9 +15,10 @@ backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
 purchasing forms and read-only ingestion paths are pushed through `4035fef`;
-31 further commits are local and unpushed through `cd9a582`. Migrations
+37 further commits are local and unpushed through `e65edae`. Migrations
 `004`–`020` are **all live** — Afaq ran `011`–`020` on 2026-09-09. `021`
-(`/carga` operator writes) is the next one and is not written yet. Ten audit
+(`/carga` operator writes) and `022` (grouped totals) are written, proved twice
+against disposable PostgreSQL, and **not live**. Ten audit
 findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
@@ -137,8 +138,9 @@ the upload page is permanent rather than a stopgap (D-060). Both routes now
 import the atomic writer and the post-write review in local code. **That is not
 the same as working live:** the email path has never carried a real ZIP, and
 `/carga` uses the signed-in Supabase client while the new writer/review objects
-are service-role-only. Its first real save is therefore blocked until a proper
-operator permission is added; do not bypass that with the service key. Two
+are service-role-only. Migration `021` grants exactly that — any signed-in user,
+because v1 has no roles (D-052) — but it has not been run, so the first real
+save still fails. Do not bypass that with the service key. Two
 environment variables fail *closed* and look like bugs if
 you do not know: an empty `YUNT_ALLOWED_ADDRESSES` means the Yunt can mail
 nobody, and an unset `YUNT_INBOUND_ADDRESS` means it ignores every message. That
