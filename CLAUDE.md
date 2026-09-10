@@ -14,12 +14,12 @@ carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
-purchasing forms and read-only ingestion paths are pushed through `4035fef`;
-37 further commits are local and unpushed through `e65edae`. Migrations
-`004`–`020` are **all live** — Afaq ran `011`–`020` on 2026-09-09. `021`
-(`/carga` operator writes) and `022` (grouped totals) are **live** — Afaq ran
-them on 2026-09-10, verified by 12 new `*_auth_*` policies and the three
-aggregate functions. Ten audit
+purchasing forms and read-only ingestion paths are pushed through `02d7a58`;
+three further commits are local and unpushed through `5a03d23`. Migrations
+`004`–`023` and `025` are **all live** — Afaq ran `011`–`020` on 2026-09-09 and
+`021`–`023` then `025` on 2026-09-10. **`024` (dashboard reads `yunt_flags`) is
+the only pending one**, so the new per-line flag column shows nothing until it
+runs. Ten audit
 findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
@@ -95,10 +95,13 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
   deterministic. **23 wordings / 882 lines are decided by `meter_code`** —
   different electricity meters are different cost centres. **6 wordings / 625
   lines are petrol, decided by the DTE's `<Transporte><Patente>`** (plate →
-  `ADM-1.4`, jerrycan → `EXP-11.4`, see `docs/CLIENT_CONVENTIONS.md`), a field
-  the raw XML carries and `dte.ts` **discards**, so it is not in the database at
-  all. Before concluding the client's labelling is inconsistent, look at what
-  else the row carries and read `CLIENT_CONVENTIONS.md` (`MCT-164`).
+  `ADM-1.4`, jerrycan → `EXP-11.4`, see `docs/CLIENT_CONVENTIONS.md`). Both are
+  now readable: `dte.ts` keeps the plate as `invoices.transport_plate` and `025`
+  ranks an exact `meter_code` match above same-wording evidence (D-068), which
+  cut confidently-wrong proposals from 5.75% to 2.76%. Rows written before
+  2026-09-10 still carry no plate. Before concluding the client's labelling is
+  inconsistent, look at what else the row carries and read
+  `CLIENT_CONVENTIONS.md` (`MCT-164`, closed).
 - Read the backing gold `source`, never the `prediction_source` tag. It is six
   values now (D-047) — `model`, `product_lookup`, `meter_lookup`, `business_rule`,
   `cleanup`, `user_selected` — and `cleanup` means only "a pass we ran once".

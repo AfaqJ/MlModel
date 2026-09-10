@@ -1723,3 +1723,28 @@ with the opening message's own id. Both paths made “confirm first” a prompt
 instruction rather than an enforced boundary.
 
 ---
+
+## D-068 — An exact meter match outranks same-wording evidence
+
+**Date:** 2026-09-10 · **Decided by:** Codex, from Afaq's correction · **Model:** GPT-5.6
+
+`yunt_category_precedent` ranked historical lines by wording similarity alone.
+Migration `025` adds a `same_meter` tier that sorts above it: when the line
+being judged carries a `meter_code`, lines with the same normalised meter are
+cited first, whatever their wording. The DTE's `<Transporte><Patente>` is
+preserved as `invoices.transport_plate` in the same migration, so the petrol
+plate/jerrycan rule in `CLIENT_CONVENTIONS.md` has a column to read.
+
+**Why:** 29 item wordings looked like the client filing one thing under several
+categories. Every one turned out deterministic — 23 wordings / 882 lines decided
+by `meter_code` (different meters are different cost centres), 6 wordings /
+625 lines by the plate. Wording similarity was searching the one field that does
+*not* decide the answer. Measured on the fixed 400-line held-out run, confidently
+wrong proposals fell 5.75% → 2.76%. See D-038 and D-040 — this is the same rule,
+now enforced in SQL instead of trusted to a reader.
+
+**Rejected:** filtering to same-meter rows only. A meter with no history would
+then return no evidence at all; ranking degrades gracefully where a filter
+returns nothing.
+
+---
