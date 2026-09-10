@@ -31,18 +31,21 @@ PostgREST returns 42501 and `fetchOpenFlagsForItems` throws, so the absence of
 that error is the grant. `026_quotation_without_file.sql` (Afaq ran it 2026-09-10) lets a
 quotation be a stated price rather than a document.
 
-**BLOCKER, found 2026-09-10: the deployed classifier rejects `transport_plate`.**
-Every ingest fails at the classify step right now. `5ef2fd7` added the field to
-`app/api/schemas.py` and the dashboard's adapter sends it on every line, always,
-`null` included (`classify.ts:59`). Cloud Run is still on `mlmodel-00014-lrp`,
-the pre-change v1.3.3, whose schema forbids the extra key: `/predict-batch`
-answers `422 extra_forbidden` for `body.items[*].transport_plate`. Seen on the
-real `/carga` screen, not in a test. Nothing was written — the dry run fails
-before the write. Ingest was proved working earlier the same day, *before*
-`5ef2fd7` landed, which is why nothing caught it. Two ways out: redeploy the
-classifier (container-only, and `docs/TEST_CHECKLIST.md`'s income slice is a
-mandatory gate), or point `CLASSIFIER_URL` at a locally run service from source
-to unblock testing without a production release.
+**The classifier was redeployed on 2026-09-10 and ingest works again.** Revision
+`mlmodel-00015-mjr`, image tag `v1.3.3-plate`, 100% of traffic. The model is
+untouched — `artifacts/v1.3.3-int8/` has no commits since the previous deploy and
+`/artifact-check` reports the same 278,181,947 bytes — so this shipped code, not
+weights: `5ef2fd7` had added `transport_plate` to `app/api/schemas.py` that
+morning while Cloud Run still ran the container built before it, and Pydantic
+answers `422 extra_forbidden` to an unknown key. Every ingest failed at the
+classify step for a few hours, found by driving `/carga` rather than by a test.
+
+`docs/TEST_CHECKLIST.md`'s "Before deploying" list is now
+`scripts/88_prove_deploy.sh`; all seven checks pass against the live revision,
+including the incident path and its direction guard. The income slice does **not**
+gate this kind of release — it gates accepting a *retrain*, read off
+`model_card.json`, and there is no new model card. Rollback stays a traffic shift
+to `mlmodel-00014-lrp`, no rebuild.
 
 **`MCT-164` is done and closed.** The apparent label inconsistency was
 deterministic all along. `dte.ts` now keeps `<Transporte><Patente>` as
