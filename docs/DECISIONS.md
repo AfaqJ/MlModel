@@ -1803,3 +1803,20 @@ which would need a migration against an applied one to delete a door that is
 already locked.
 
 ---
+
+## D-071 — Locale changes interface chrome, not Antillanca's business content
+
+**Date:** 2026-09-10 · **Decided by:** Afaq · **Model:** Codex GPT-5
+
+Switching the dashboard to English translates its interface labels, help text,
+buttons, validation messages and navigation. It does not translate stored or
+client-facing content. Invoice wording, supplier and item names, category names,
+generated reception reports, purchase-order documents and downloaded filenames
+stay in Spanish exactly as Antillanca owns or receives them.
+
+**Why:** the language switch is for the person operating the interface. The
+documents and business records still belong to the Spanish-speaking client, and
+translating them would silently change their content rather than merely changing
+the UI around it.
+
+---

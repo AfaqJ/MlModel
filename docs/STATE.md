@@ -51,8 +51,12 @@ back as `[SENSITIVE]`. That is what produced the wrong note in earlier docs.
 `vercel env rm` is blocked by the permission classifier, so converting them to
 readable needs Afaq. He has said this is a readability preference, not a blocker.
 
-**Git.** `ML-model` on `yunt-backend` at `408e6d2`. `milk-company` on `yunt` at
-`f947f7e`, seven commits past the last push (`02d7a58`). Both trees clean.
+**Git.** `ML-model` on `yunt-backend` at `1b19a65`; `CLAUDE.md` was already
+modified when this session began, and this session changes `STATE.md` and
+`DECISIONS.md`. `milk-company` on `yunt` at `205451d`, 12 commits past its
+upstream. Three uncommitted performance files remain parked: dashboard and
+products cache experiments plus the analytics hint nesting fix. Do not mix them
+into feature work without reopening `MCT-166`.
 Parked branch `yunt-recurring-reports-v2` holds the V2 recurring-reports work
 and its own `026` — renumber that one when it is resumed (D-069).
 
@@ -62,12 +66,14 @@ than two → allowed with two → request closed → numbered PDF. `MCT-140`,
 `MCT-161`, `MCT-168` and `MCT-169` are closed on that evidence. Test rows are
 marked `PRUEBA`; delete by `title like 'PRUEBA%'`, orders before requests.
 
-**Still to build in V1:** the first half of `MCT-149`, and `MCT-165` (judging
-whether an uploaded quotation is genuine) — both need the Claude API key.
-`MCT-155`'s scope is settled (D-070) and only needs `024` plus a person reading
-real flags. **Recurring reports (`MCT-154`) are
-parked for V2** (D-069) — a first pass lives on `yunt-recurring-reports-v2` and is
-deliberately not on `yunt`, so no V1 deploy registers a cron.
+**The original V1 scope has no missing implementation code.** It contains 19
+promises; recurring reports (#13 / `MCT-154`) are parked for V2 (D-069), leaving
+18 active. All 18 have code, 8 are fully accepted end to end, and 10 still need
+live integration or acceptance (see the table below). Outside that original
+scope, `MCT-165` — judging whether a quotation is genuine before it counts
+toward the CLP 500,000 rule — is still unbuilt and needs the Claude API key.
+`MCT-155` only needs `024` plus a person reading real flags; D-070 deliberately
+forbids the Yunt from proposing edits to values copied from a DTE.
 
 **Do not drive the Supabase SQL editor.** A previous session typed over editor
 buffers holding Afaq's own saved queries. Read live state through
@@ -83,7 +89,7 @@ AI-generated and are **not authoritative** — correct them when they are wrong.
 Post concise, ASCII-only project updates in Linear after each milestone, pitched
 at a product manager, not at an engineer.
 
-`agent/tools/` holds 20 tools; `src/lib/yunt/` holds 19 modules. Read that
+`agent/tools/` holds 22 tools; `src/lib/yunt/` holds 22 modules. Read that
 listing before adding either — three re-implementations were caught only because
 someone looked first.
 
@@ -97,10 +103,15 @@ data is wrong.
 **First, cheap and blocking nothing else:** confirm which migrations are
 actually applied (see Now). Re-pasting an idempotent migration settles it.
 
-**Next, needs nobody:** `MCT-152` needs only its acceptance run — no more
-building. `MCT-167` (an order-centric list) is Low and genuinely optional.
-`MCT-163` (four hardcoded-Spanish pages) is the one Afaq wants after the
-functionality is done.
+**Completed this session:** `MCT-163` localises the upload and purchasing UI in
+both languages while leaving Antillanca's stored and client-facing content in
+Spanish (D-071). `MCT-167` adds the missing order-centric list. Both passed
+targeted lint, TypeScript, translation-key parity and browser checks. They are
+committed together as `205451d`; their Linear status still needs updating.
+
+**Next, needs nobody:** there is no more missing original-scope feature code
+that can be completed without credentials or live input. `MCT-152` needs only
+its acceptance run from a real stored question; none currently exists.
 
 **Waiting on Afaq:** run `024`; the Claude API key, which unblocks the first
 half of `MCT-149`, `MCT-165` and everything agent-shaped; a real email for
@@ -108,10 +119,10 @@ half of `MCT-149`, `MCT-165` and everything agent-shaped; a real email for
 a decision on whether TypeScript ingestion should create Antillanca as a company
 row when the old Python load never did.
 
-**Last, deliberately:** `MCT-162` direction from the RUTs, and `MCT-163` the
-four hardcoded-Spanish pages. Both work as they are; neither affects Antillanca,
-who read Spanish and whose archives are named consistently. Do these when the
-feature work is done, not before.
+**Deferred deliberately:** `MCT-162`, direction from the DTE RUTs instead of
+the ZIP folders, is not required by the signed V1 scope. Performance work in
+`MCT-166` is parked while functionality is finished. Recurring reports remain
+parked for V2.
 
 **Ticket coverage is not proven.** The tickets were AI-generated and may not
 span the whole scope. Closing them all is not the same as building everything.
@@ -148,8 +159,10 @@ disagree, the decision log wins.
   `MCT-161` the order document, `MCT-140`/`141`/`144`.
 - **Todo:** `MCT-160` the first real email.
 - **Backlog, parked for V2:** `MCT-154` recurring reports (D-069).
-- **Backlog, deferred on purpose:** `MCT-162` direction from the RUTs,
-  `MCT-163` hardcoded Spanish, `MCT-143` client data questions.
+- **Built and awaiting ticket update:** `MCT-163` hardcoded Spanish and
+  `MCT-167` the order-centric list (`205451d`).
+- **Backlog, deferred on purpose:** `MCT-162` direction from the RUTs and
+  `MCT-143` client data questions.
 
 Tickets are written at product level on purpose — no file names, no migration
 numbers, no function names — so an implementation discovery cannot turn one into
@@ -162,32 +175,39 @@ words (`docs/Yunt_scope_v1.docx`). Where that document and `DECISIONS.md`
 disagree on *how*, the decision log wins (D-059) — but this list is what
 Antillanca was told they are getting, so it is the honest measure of progress.
 
-**14 of 19 done in code, 3 partly, 2 not started. Nothing agentic is live yet.**
+**Implementation: 18 of 18 active V1 promises have code; #13 is parked for
+V2. Acceptance: 8 of those 18 are proved end to end, and 10 still need a live
+email, model run, migration or real request. Nothing agentic is live-proved
+yet.**
 
 | # | What Cristian was promised | Today |
 |---|---|---|
-| 1 | A mailbox that acts only on agreed senders | Done. Never carried a real message |
+| 1 | A mailbox that acts only on agreed senders | Built. Never carried a real message |
+| 2 | A ZIP containing SII XML under `COMPRAS` and `VENTAS` | Proved through `/carga`; the real mailbox path is still unproved |
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
-| 4 | Lines classified and **written to the database** | Done. `021` is live and a signed-in person has saved through `/carga` on live, verified and cleaned back to baseline. Email has still never carried a real message |
-| 5 | An acknowledgement in minutes, then a written report | Done in code as a receipt first and a findings email later; never live-proved |
-| 6 | Data quality flags, and fixes proposed on approval | Partly. Detection is built, calibrated and persisted to `yunt_flags`; the dashboard column is built but dark until `024` runs. Proposing fixes remains |
-| 7 | Category proposals with evidence, grouped | Partly. Built, grounded, and now triggered by every write. Accuracy still unmeasured |
-| 8 | Approve a group, get a confirmation, undo it | Done in code. The confirmation is the database's own words, not the model's |
-| 9 | Five query tools answering open questions | Done in code. All five built and proved. `022` is not live |
-| 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Done in code. Figure, CSV attachment and a true PDF, with the filter and basis printed on each. No real question has been answered with one yet |
-| 11 | Charts from a fixed set, drawn by code | Done in code. Five fixed types drawn as SVG by `src/lib/yunt/report.ts`, no chart library |
-| 12 | Says so when a question does not fit, and we learn from the list | Done in code. One immutable backlog entry per stored request; not live until `017` runs |
+| 4 | Lines classified and **written to the database** | Built and proved through `/carga` on live; the email route remains unproved |
+| 5 | An acknowledgement in minutes, then a written report | Built as a receipt first and a findings email later; never live-proved |
+| 6 | Data quality flags, and fixes proposed on approval | Flags are built, calibrated and persisted; the dashboard stays dark until `024`. D-070 corrects the scope: DTE values are reported, never changed; only category changes can be proposed |
+| 7 | Category proposals with evidence, grouped | Built and grounded; deterministic precedent quality measured at 97.2% of proposals correct. The real Claude review still needs its key and acceptance run |
+| 8 | Approve a group, get confirmation, undo it | Built with database-enforced confirmation and undo; no live agent run yet |
+| 9 | Five query tools answering open questions | Done. All five built and their figures independently proved; `022` is live |
+| 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Built and visually checked. No real stored question has received one yet |
+| 11 | Charts from a fixed set, drawn by code | Done. Five fixed SVG types are code-drawn and checked |
+| 12 | Says so when a question does not fit, and we learn from the list | Built and migration `017` is live; no real refusal exists yet |
 | 13 | Month-end summary, post-batch digest, weekly review list | **Parked for V2** (D-069). A first pass exists on a side branch; the post-batch half is arguably already the findings email |
-| 14 | Form one: what is needed, how much, by when, for which farm | Done. Tables live, not yet used in anger |
-| 15 | A request stays open until an order closes it | Done. Enforced in the database |
-| 16 | Form two, with the two-quotation rule above CLP 500,000 | Done. Rule proved by regression |
-| 17 | A purchase-order PDF Antillanca sends themselves | Partly. A print-styled page; the browser saves the PDF. Cannot be attached to mail |
-| 18 | The Yunt fills form one from a plain-language email | Done in code. Missing required facts are requested; a stored draft becomes a real open request only after exact confirmation. Not live until `018` runs |
-| 19 | The Yunt drafts the order once a quotation exists | Done in code. Drafts from a supplier, quantity and agreed price it was given, then issues the order only on the exact confirmation. Not live until `020` runs |
+| 14 | Form one: what is needed, how much, by when, for which farm | Done and exercised on live |
+| 15 | A request stays open until an order closes it | Done, database-enforced and exercised on live |
+| 16 | Form two, with the two-quotation rule above CLP 500,000 | Done; refusal with fewer than two and success with two were both proved on live |
+| 17 | A purchase-order PDF Antillanca sends themselves | Done. The print page and true PDF use one loader and were exercised on live |
+| 18 | The Yunt fills form one from a plain-language email | Built; exact confirmation turns a stored draft into a request. Migration `018` is live, but no real email/model run exists |
+| 19 | The Yunt drafts the order once a quotation exists | Built; exact confirmation issues the order and migration `020` is live. No real email/model run exists |
 
-**Read the middle column, not the count.** The deterministic base is farthest
-along. The EVE review and action tools are now called by the email path in code,
-but their migrations, model credentials and real-message proof are still open.
+**Read the middle column, not only the count.** The deterministic base is
+proved. The EVE review and action tools are called by the email path in code,
+but model credentials and real-message proof are still open. The repository has
+22 agent tools; all tools promised by the original scope exist. `MCT-165` is an
+important discovered safety gap outside that scope, not evidence that the scope
+toolset is missing.
 
 **The next foundation priority is permission, not another feature:** make
 `/carga` a real authenticated write without exposing service-role power, clear
@@ -294,6 +314,34 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 were in v1 until the product questions behind them turned out to be unanswered
 (D-069).
 ## Recent sessions
+
+### 2026-09-10 (e) — localisation finished and scope counted from the contract
+
+- **`MCT-163` built and accepted in the browser.** `/carga`, `/solicitudes`,
+  request detail/order forms, `/ordenes` and `/levantamiento` now use the shared
+  Spanish/English catalog. English changes only interface chrome; Antillanca's
+  stored values, generated reports and purchase-order documents remain Spanish
+  (D-071).
+- **`MCT-167` built.** `/ordenes` is now an order-first list with order number,
+  supplier, amount and date, linked from requests. Live currently has zero
+  orders, so the browser acceptance proved the real empty-data state; it did not
+  invent a production order to exercise a row.
+- **Proof:** targeted ESLint, `npx tsc --noEmit --incremental false`, catalog
+  parity (42 upload keys and 115 purchasing keys), `git diff --check`, and all
+  five affected routes in the signed-in browser in both locales. Commit
+  `205451d`.
+- **Reconciled the 19-item scope from `Yunt_scope_v1.docx`, not ticket status.**
+  Item 13 is parked; every active item has code. Eight are fully accepted and
+  ten need live integration/acceptance. All original-scope tools exist; there
+  are 22 agent tools and 22 Yunt library modules, correcting the stale 20/19
+  inventory.
+- **Ticket coverage is broad but not proof of completeness.** `MCT-165` is a
+  discovered safety gap outside the original promise, and several tickets call
+  code-built work done without the live email/model evidence their own done-when
+  requires.
+- **Performance stayed parked.** Three uncommitted cache/hydration files remain
+  outside the feature commit. Do not let them obscure the remaining functional
+  acceptance work.
 
 ### 2026-09-10 (d) — purchasing proved by using it, and four defects it hid
 
@@ -483,28 +531,3 @@ migration ledger, not from its summary.
 - **Correction:** five frontend and six root commits that appeared to be someone
   else's work were from later in the previous session, past the point Claude's
   context was trimmed. Neither Afaq nor Codex worked after it ended.
-
-
-### 2026-09-09 (n) — the corpus check found a real defect
-
-- **Verified the aggregate against an independently computed count.** The real
-  stored corpus — 5,195 documents, 11,746 lines — loaded into a throwaway
-  PostgreSQL, every figure compared with the same total worked out in Python
-  from the same JSONL. Two implementations, one answer.
-- **It caught what the fixtures could not.** A grouping with more than 100
-  distinct values is truncated by the row cap, so adding up the returned rows
-  understates the answer: by supplier the corpus has **438** groups and the top
-  100 miss **CLP 194,149,548**; by item it has **5,259** groups and they miss
-  **CLP 1,733,487,393**. `truncated` was a boolean nobody had to act on.
-- **Fixed by returning the real total.** `overall_value` and `total_groups` are
-  computed with window functions across every group before the cap, and the tool
-  turns them into a coverage line: these are N of M groups, the total is X, do
-  not add the rows up. A complete answer carries no such line.
-- **Everything else agreed exactly:** purchases with and without credit notes
-  netted, line and document counts, the largest category, the lines with no
-  confirmed category, and all six groupings.
-- **`scripts/verify-022-against-corpus.py` is re-runnable** and touches nothing
-  live. Commit `619f92e`. `./check.sh` all green; `npx eve build` passed.
-- **Gotcha:** PostgreSQL will not start under a long macOS temp path (the Unix
-  socket limit) and refuses to start at all without `LC_ALL` set. Both failures
-  present as a bare "could not start server".
