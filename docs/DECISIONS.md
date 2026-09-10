@@ -1772,3 +1772,34 @@ by accident, and a `vercel.json` on the release branch registers its cron the
 moment it deploys, whatever the toggle says.
 
 ---
+
+## D-070 — The Yunt may change a category, never a value from the document
+
+**Date:** 2026-09-10 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The only correction the Yunt can offer is the category of a line (and, if it is
+ever wanted, which catalog item a line belongs to — Afaq called that "not that
+important", so it is not built). An amount, quantity, date, item name or any
+other figure that came off the DTE is never rewritten. When one of those is
+wrong the Yunt reports it and offers nothing: Cristian decides whether it gets
+fixed, and it gets fixed at the source.
+
+This is already enforced structurally rather than by instruction, which is why
+it is worth writing down: `yunt_proposals` allows a `data_fix` type, but
+`apply_yunt_proposal` in `014` refuses it outright, and `review-persistence.ts`
+hardcodes every stored proposal to `category_change`. **That refusal is the
+decision, not an unfinished feature.** Do not "complete" it.
+
+**Why:** the stored figures are what Antillanca filed with the SII. A copy that
+silently disagrees with the filed document is worse than a copy with a known
+error in it, because the error is at least visible to whoever compares them.
+The review path already has the right shape for this — a `data_quality` finding
+carries a severity and a reason and no action at all.
+
+**Rejected:** rewriting the value with the original kept for undo. Undo makes it
+recoverable, not correct; it still means our number and the SII's number differ
+for as long as nobody looks. Also rejected: dropping the `data_fix` enum value,
+which would need a migration against an applied one to delete a door that is
+already locked.
+
+---
