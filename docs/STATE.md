@@ -55,6 +55,32 @@ nothing else, and the findings are stored in `yunt_flags`.
 **Still to build:** the PDF and chart half of answer delivery, recurring
 reports, and showing flags per line in the dashboard.
 
+### The three unblocked increments, and what a survey on 2026-09-10 found
+
+None of these need Afaq. Start with whichever, but do not re-survey — this is
+what is already on disk.
+
+1. **Recurring reports** (scope 13, `MCT-154`). Every number they need is
+   already computed: `loadAggregate`, `period_comparison` and `spreadsheet` all
+   exist as tools. What is missing is a scheduler — **there is no `vercel.json`
+   in the repo**, so no cron exists yet. The post-batch digest may already be
+   the findings email (D-064); check before building a second one. A recurring
+   report is a *new* outbound action rather than the second half of someone's
+   own exchange, so it is the first thing that does not fit D-065's reasoning —
+   its recipients can only come from `YUNT_ALLOWED_ADDRESSES`, which is the one
+   list governing both directions and is still unset.
+2. **PDF and charts** (scope 10/11, `MCT-152`). The spreadsheet half is done and
+   `reply_with_spreadsheet` runs its own query rather than taking rows from the
+   model — copy that shape. Nothing exists for PDF or charts; charts must be
+   drawn by code from a fixed set, never described by the model (D-053).
+3. **Flags per line in the dashboard** (`MCT-155`). Flags are already stored in
+   `yunt_flags`, which is live, and are already carried into review groups. This
+   is display work only and needs no migration.
+
+`agent/tools/` currently holds 20 tools; `src/lib/yunt/` holds 19 modules. Read
+that listing before adding either — three of this project's re-implementations
+were caught only because someone looked first.
+
 **Migrations `004`–`020` are ALL LIVE.** Afaq ran `011`–`020` in one paste on
 2026-09-09, from the concatenated file that session handed him. Every one had
 been loaded twice in disposable PostgreSQL first.
