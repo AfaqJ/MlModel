@@ -11,7 +11,14 @@ by row against live, replayed to prove the second upload changes nothing, then
 removed. Live is back at baseline exactly: 5,195 invoices / 11,746 lines /
 461 companies / 0 batches. Backup `supabase_20260910T044749Z`.
 
-**Migrations `004`–`023`, `025` and `026` are LIVE; only `024` is pending.** Afaq ran
+**Migrations: `026` is CONFIRMED live; `024` is believed pending; `023` and
+`025` are believed live but NOT re-verified.** Afaq lost track of what he pasted
+(2026-09-10) and asked that this be settled first next session. `026` is proved
+by behaviour, not by a doc: a quotation saved with no file at all on 2026-09-10,
+which `storage_path NOT NULL` would have refused. **Verify the rest the same
+way — by what the database does, not by what this file says.** Every statement
+in `023`–`026` is idempotent (`if exists` / `if not exists` / `drop not null`),
+so re-pasting any of them is safe and is the cheapest way to be certain. Afaq ran
 `021`–`023` and then `025` on 2026-09-10. `025` is independent of `024` — it
 touches `invoices.transport_plate` and the precedent function, references
 `yunt_flags` nowhere — so applying it first was safe, despite its header saying
@@ -87,8 +94,13 @@ data is wrong.
 
 ### The order of work, agreed 2026-09-10
 
-**Next, needs nobody:** `MCT-144` catalog matching; `MCT-166` the dashboard
-cache that has never taken effect. `MCT-152` needs only its acceptance run.
+**First, cheap and blocking nothing else:** confirm which migrations are
+actually applied (see Now). Re-pasting an idempotent migration settles it.
+
+**Next, needs nobody:** `MCT-152` needs only its acceptance run — no more
+building. `MCT-167` (an order-centric list) is Low and genuinely optional.
+`MCT-163` (four hardcoded-Spanish pages) is the one Afaq wants after the
+functionality is done.
 
 **Waiting on Afaq:** run `024`; the Claude API key, which unblocks the first
 half of `MCT-149`, `MCT-165` and everything agent-shaped; a real email for
@@ -324,6 +336,16 @@ were in v1 until the product questions behind them turned out to be unanswered
   cents; the stored figure is a division artefact. Found by clicking it.
 - **All four defects above passed types, lint and `check.sh`.** `CLAUDE.md` now
   says a feature is not finished until it has been used in the browser.
+- **`MCT-144` closed by re-measuring, not building:** 81.3% of 11,746 lines
+  match with nobody involved and every automatic match lands where it sits
+  today. The only 7 disagreements are the known `Confeccion de bolos` triple.
+- **`MCT-166` closed, and it was two pages.** The dashboard cached ~3.7 MB of
+  invoices and `/productos` ~3.25 MB of summaries through `unstable_cache`,
+  which refuses anything over 2 MB — so neither ever cached anything and both
+  threw on every render before querying anyway. Removing the wrapper changes
+  nothing at runtime. The second page was found by reading the server log while
+  fixing the first, which is the argument for reading logs rather than trusting
+  a green suite.
 
 ### 2026-09-10 (c) — the deciding field, and reports that carry a file
 
