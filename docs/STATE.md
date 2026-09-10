@@ -5,111 +5,91 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The full write→review chain is connected in local code, not proved live.** A
-ZIP sent by email uses the service-role database client, writes deterministic
-facts, sends the receipt, then starts the compact Yunt review. A non-ZIP email
-is stored and handed to EVE. No real message has traversed either path.
+**Invoices now go from a ZIP to the live database, proved end to end.** On
+2026-09-10 a synthetic invoice was uploaded through `/carga` as a signed-in
+user, saved, verified row by row against live, replayed to prove the second
+upload changes nothing, then removed. Live returned to baseline exactly:
+5,195 invoices / 11,746 lines / 461 companies / 0 batches.
 
-**`/carga`'s permission fix is written and proved, and waiting to be run.**
-The page correctly uses the signed-in user's Supabase client while
-`yunt_batches` and the writer/review objects granted only `service_role`, so its
-first real save would have failed. Afaq settled the design on 2026-09-09: **any
-signed-in user**, the same permission every other write in this product has,
-because v1 has no roles (D-052); the named-allowlist idea is dropped.
-`021_carga_operator_writes.sql` now exists and
-`scripts/prove-021-carga-writes.sh` asserts the fixture cannot save *before* the
-migration, then that `authenticated` ends up with exactly what the upload path
-needs — no update policy on `yunt_batch_items`, no direct insert into `invoices`
-or `invoice_items`, nothing for `anon`. Until it is run live, `/carga` still
-cannot save. Do not work around that by importing the service key into a
-browser-triggered action.
+**Migrations `004`–`022` are ALL LIVE.** Afaq ran `021` and `022` on
+2026-09-10; verified by 12 new `*_auth_*` policies and the three aggregate
+functions existing. `023` is written and proved but **NOT live** — see below.
 
-**All five business query tools are built, and their money rules are settled.**
-Price history, category precedent, bounded line listing, grouped totals and
-period comparison. Amounts are net line amounts so IVA is excluded, a credit
-note subtracts and is excluded unless asked for, and a prediction still under
-review is never counted as a category (D-001). Every answer prints its filter
-and basis. A grouped answer also reports the total across **every** group, not
-just the hundred returned — verified against the real corpus, where by supplier
-the rows alone understate purchases by CLP 194 million.
+**`023_protect_settled_lines.sql` is written, proved, and waiting to be run.**
+`007`'s line upsert overwrites `final_code`, `decision` and `prediction_source`
+from whatever the caller passes; the only thing preventing that is the dedup
+check in application code. `023` makes a settled row structurally
+un-overwritable. The predicate is `final_code is not null OR reviewed`, not
+`reviewed` alone: measured against live, 7,927 rows carry a `final_code` and
+exactly 7,927 carry `decision='auto_accept'`, but only **593** carry
+`reviewed=true`, so a `reviewed` guard would have protected 7% of what needs
+protecting. `reviewed` is monotonic — a human review sets it once and nothing
+resets it — and is the right marker going forward (Afaq, 2026-09-10).
+`milk-company/scripts/check-settled-lines.sql` fails against `007` and passes
+against `023`; run it both ways or the guard is unproved.
 
-**The review/apply foundation is built locally.** Review packets, grounded
-evidence, findings email, retryable inbound requests, apply/undo and a durable
-refusal backlog all have regressions. `014` writes
-`prediction_source='yunt_applied'` (D-066). Apply and undo require an exact,
-email-thread-bound confirmation rather than treating any reply as approval
-(D-067).
+**Three defects were found by actually running the thing, not by reading it.**
 
-**Purchasing is complete for the Yunt end to end.** It drafts a request (`018`),
-grounds itself in one request plus only its own bounded quotations, and drafts
-and issues the order (`020`) through the same `create_purchase_order` the form
-uses, so the CLP 500,000 two-quotation rule has exactly one copy. The order form
-records its optional selected quotation and `019` rejects one belonging to
-another request. Attaching price precedent to a buying exchange remains.
+1. **`directionOf` rejected every real archive.** It required a path segment
+   exactly `COMPRAS`/`VENTAS`; the client's export names them
+   `dte_<rut>_COMPRAS`. A real upload would have stored nothing and reported
+   "0 files read". Fixed, three assertions added. **Afaq's point, now
+   `MCT-162`: the DTE itself states the direction** — Antillanca's RUT
+   `96685810-9` is `RUTRecep` on a purchase and `RUTEmisor` on a sale. The
+   folder should be the fallback, not the source. Deliberately deferred; it
+   works today.
+2. **`item_aliases` is invisible to a signed-in user.** 8 rows exist; the
+   upload path logged `loadAliases: 0 rows`. `021` never granted it to
+   `authenticated`, so `/carga` and the email path resolve items differently —
+   the exact drift the one-pipeline design exists to prevent. **Not yet fixed.**
+3. **The TypeScript pipeline creates Antillanca as a company; the old Python
+   load never did.** 461 companies, none of them the client. Saving put
+   `966858109 ANTILLANCA SPA` into its own counterparty list. Needs a decision,
+   not a fix.
 
-**Data-quality checks run on every batch**, chosen by measuring seven candidates
-against the stored corpus rather than by picking a number. Four line checks and
-one document check survive; a flagged auto-accept is downgraded to review and
-nothing else, and the findings are stored in `yunt_flags`.
+Also: `/carga`'s "Proveedores nuevos" card counts both parties of every document
+as an upsert list, not new rows — it says 2 when the answer is 1.
 
-**Still to build:** the PDF and chart half of answer delivery, recurring
-reports, and showing flags per line in the dashboard.
+**`YUNT_ALLOWED_ADDRESSES` was never unset.** It has been on Vercel Preview
+since 2026-09-09, value unknown because every var is sensitive-flagged and reads
+back as `[SENSITIVE]`. That is what produced the wrong note in earlier docs.
+`vercel env rm` is blocked by the permission classifier, so converting them to
+readable needs Afaq. He has said this is a readability preference, not a blocker.
 
-### The three unblocked increments, and what a survey on 2026-09-10 found
+**Branch `yunt` is pushed through `02d7a58`** — all 38 commits, including the
+`directionOf` fix and `023`. Preview rebuilt. Production remains `main`.
 
-None of these need Afaq. Start with whichever, but do not re-survey — this is
-what is already on disk.
+**Still to build:** recurring reports (`MCT-154`), PDF and charts (`MCT-152`),
+flags per line in the dashboard (`MCT-155`). None touch the write path; every
+number they need is already computed by existing tools. There is still no
+`vercel.json`, so no scheduler exists.
 
-1. **Recurring reports** (scope 13, `MCT-154`). Every number they need is
-   already computed: `loadAggregate`, `period_comparison` and `spreadsheet` all
-   exist as tools. What is missing is a scheduler — **there is no `vercel.json`
-   in the repo**, so no cron exists yet. The post-batch digest may already be
-   the findings email (D-064); check before building a second one. A recurring
-   report is a *new* outbound action rather than the second half of someone's
-   own exchange, so it is the first thing that does not fit D-065's reasoning —
-   its recipients can only come from `YUNT_ALLOWED_ADDRESSES`, which is the one
-   list governing both directions and is still unset.
-2. **PDF and charts** (scope 10/11, `MCT-152`). The spreadsheet half is done and
-   `reply_with_spreadsheet` runs its own query rather than taking rows from the
-   model — copy that shape. Nothing exists for PDF or charts; charts must be
-   drawn by code from a fixed set, never described by the model (D-053).
-3. **Flags per line in the dashboard** (`MCT-155`). Flags are already stored in
-   `yunt_flags`, which is live, and are already carried into review groups. This
-   is display work only and needs no migration.
+### Working agreement, set by Afaq on 2026-09-10
 
-`agent/tools/` currently holds 20 tools; `src/lib/yunt/` holds 19 modules. Read
-that listing before adding either — three of this project's re-implementations
-were caught only because someone looked first.
+One ticket at a time: implement, check it in the UI at `localhost:3000`, run an
+end-to-end test, fix what breaks, update the ticket, close it, move on. Do not
+open five things at once. Anything touching production data needs a rollback
+path written *before* the write and a backup taken first. Tickets were
+AI-generated and are **not authoritative** — correct them when they are wrong.
+Post concise, ASCII-only project updates in Linear after each milestone, pitched
+at a product manager, not at an engineer.
 
-**Migrations `004`–`020` are ALL LIVE.** Afaq ran `011`–`020` in one paste on
-2026-09-09, from the concatenated file that session handed him. Every one had
-been loaded twice in disposable PostgreSQL first.
+`agent/tools/` holds 20 tools; `src/lib/yunt/` holds 19 modules. Read that
+listing before adding either — three re-implementations were caught only because
+someone looked first.
 
-**`021` and `022` are written, proved and NOT live.** They were handed over
-consolidated on 2026-09-10, in that order. `021` is the `/carga` operator
-grant; `022` adds grouped totals and moves `016`'s filter into one shared
-source both read. Neither contains a `DROP`, `TRUNCATE`, `DELETE` or top-level
-data `UPDATE`, and neither changes row-level-security posture on any table —
-checked by grep, not by assumption. Regenerate the paste with:
+### Local UI testing, which is now the fast path
 
-```
-cat milk-company/supabase/{021_carga_operator_writes,022_yunt_aggregate}.sql
-```
+`.env.local` in `milk-company` had both Supabase values as `[SENSITIVE]`; Afaq
+filled in the project URL and the **publishable** key (`sb_publishable_…`, the
+replacement for the legacy anon key). `npm run dev` then works against live
+Supabase with a real signed-in session. It holds **no service key**, which is
+what proved `MCT-159`: the save could only have gone through RLS as
+`authenticated`.
 
-**What that unblocks:** review packets, the findings outbox, durable inbound
-requests, apply/undo with exact confirmation, price history, invoice-line
-listing, the refusal backlog and both halves of Yunt purchasing now exist in the
-real database. None of it has carried a real message yet — these paths are
-live-capable, not live-proved.
-
-**The real Cloud Run classifier connection is proved.** The dashboard adapter
-received one successful prediction and exactly 10/10 results from a live batch,
-all reporting v1.3.3. The email path calls that same adapter. No actual mailbox
-message or Supabase write has yet proved the whole deployed chain.
-
-**Branch `yunt` is pushed only through `4035fef`; twenty-eight commits are local**
-through `ce08223`. Preview only. Production remains `main`; nothing merged.
-`yunt-backend` here is also unpushed.
+To put a file into the upload form without a file picker, copy it to
+`milk-company/public/` and have the page `fetch()` it into a `DataTransfer` —
+far cheaper than injecting base64. Delete it afterwards.
 
 ## HANDOVER — 2026-09-09, session ended by Afaq
 
@@ -403,6 +383,70 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 belong in v1.
 
 ## Recent sessions
+
+### 2026-09-10 (b) — the first real save, and three defects found by running it
+
+- **Afaq ran `021` and `022`.** Verified by 12 new `*_auth_*` policies and the
+  three aggregate functions. `MCT-158` closed.
+- **`MCT-159` closed: a signed-in person can upload and save.** Full round trip
+  through `/carga` on live — dry run, confirm, 5,195→5,196 invoices and
+  11,746→11,747 lines, then cleaned back to baseline exactly. The done-when
+  ("saves as that person, not the system") is proved by construction:
+  `.env.local` holds no service key, so the write could only pass RLS as
+  `authenticated`.
+- **`MCT-146` closed: replay proved inert.** The identical archive uploaded a
+  second time produced 0 new documents, no second batch claim, no duplicate
+  invoice, unchanged counts — and the reception report was still generated.
+  That is also the hard half of `MCT-160`, so the mailbox ticket is now only
+  waiting on Resend carrying a real message.
+- **`MCT-151` closed: the money figures were checked independently.** All 31
+  monthly groups across COMPRAS and VENTAS agree with a recomputation from the
+  raw rows — values, line counts and document counts. COMPRAS 4,852,221,504;
+  VENTAS 5,269,557,578. The top-N guard was checked too: 25 of 438 supplier
+  groups shown understate by CLP 954,276,937, and `overall_value` carries the
+  truth. Saved as `scripts/86_verify_aggregate_vs_raw.py`.
+- **`MCT-145` and `MCT-139` closed** on the evidence above. `MCT-139`'s
+  description asserted the direction "cannot be worked out from the file
+  itself"; that was corrected in place rather than left for a future session to
+  believe.
+- **Wrote `023`** and `check-settled-lines.sql`, which fails against `007`
+  (`FAIL legacy final_code overwritten: expected 6001, got 9999`) and passes
+  against `023`.
+- **Raised `MCT-162`** (direction from the DTE's RUTs, not the folder) and
+  **`MCT-163`** (four new pages are hardcoded Spanish: `carga`, `solicitudes`,
+  `ordenes`, `levantamiento`). Both deliberately deferred.
+- **`MCT-153` cannot be closed by building** — its done-when needs Cristian to
+  be refused by a live Yunt. Mechanism built, table live, zero rows, which is
+  correct. Noted on the ticket.
+- **`MCT-149`: the category proposal was measured, and the finding is about the
+  data, not the code.** Held out against the 7,927 human-confirmed lines (each
+  line removed from its own evidence), sample 400, fixed seed:
+  13.0% abstain, 92.8% of proposals correct, **5.75% confidently wrong** —
+  wrong while resting on same-wording evidence, which is the expensive kind.
+  Examining all 20 confident errors showed they are almost entirely **not**
+  search failures: **29 wordings are filed by humans under more than one
+  category, covering 1,507 of 7,927 lines (19%)**. `servicio publico` is
+  EXP-11.2:15 / EXP-11.1:15 / EXP-9.1:6 — a tie, so nothing can beat 50% there;
+  `gasolina 93` is 368/81 across an operating and an administrative category,
+  which looks deliberate rather than sloppy. The search performs near this
+  data's ceiling. Reproduce with
+  `scripts/87_measure_precedent_quality.py`. Raised for the client on `MCT-143`.
+  `MCT-149` stays open only for its first half, which needs the Claude API key.
+- **Three project updates posted in Linear**, ASCII-only and pitched at a
+  product manager, per Afaq's standing request.
+- **Gotcha — a cleanup script must delete children before parents.** The first
+  cleanup run hit a 409: `yunt_batch_items.item_id` references
+  `invoice_items.item_id`. Nothing was deleted; the database refused. Order is
+  batch children, then lines, then invoices, then `yunt_batches`, then the
+  company row.
+- **Gotcha — the test invoice must reuse an existing supplier and existing
+  catalog wording.** Change only the folio on a real DTE. Then the only new rows
+  are the invoice, its lines, the batch, and Antillanca's own company row, which
+  makes the cleanup exact instead of sprawling. The DTE signature is never
+  verified, so editing the folio is safe.
+- **Gotcha — `unzip -l` shows uncompressed size.** The 5-file archive reads
+  6,920 there and is 4,673 bytes on disk. Not a truncation bug.
+
 
 ### 2026-09-10 — the two pending migrations, written, proved and handed over
 

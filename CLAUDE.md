@@ -17,8 +17,9 @@ Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
 purchasing forms and read-only ingestion paths are pushed through `4035fef`;
 37 further commits are local and unpushed through `e65edae`. Migrations
 `004`–`020` are **all live** — Afaq ran `011`–`020` on 2026-09-09. `021`
-(`/carga` operator writes) and `022` (grouped totals) are written, proved twice
-against disposable PostgreSQL, and **not live**. Ten audit
+(`/carga` operator writes) and `022` (grouped totals) are **live** — Afaq ran
+them on 2026-09-10, verified by 12 new `*_auth_*` policies and the three
+aggregate functions. Ten audit
 findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
@@ -139,11 +140,16 @@ import the atomic writer and the post-write review in local code. **That is not
 the same as working live:** the email path has never carried a real ZIP, and
 `/carga` uses the signed-in Supabase client while the new writer/review objects
 are service-role-only. Migration `021` grants exactly that — any signed-in user,
-because v1 has no roles (D-052) — but it has not been run, so the first real
-save still fails. Do not bypass that with the service key. Two
-environment variables fail *closed* and look like bugs if
-you do not know: an empty `YUNT_ALLOWED_ADDRESSES` means the Yunt can mail
-nobody, and an unset `YUNT_INBOUND_ADDRESS` means it ignores every message. That
+because v1 has no roles (D-052) — and **it is live since 2026-09-10**; a
+signed-in person has saved through `/carga` and the replay changed nothing.
+Never bypass RLS with the service key from a browser-triggered action; the
+absence of a service key in `.env.local` is what proved the save went through
+as the user. Two environment variables fail *closed* and look like bugs if you
+do not know: an empty `YUNT_ALLOWED_ADDRESSES` means the Yunt can mail nobody,
+and an unset `YUNT_INBOUND_ADDRESS` means it ignores every message. Both are
+**set on Vercel Preview**, but every variable there is sensitive-flagged and
+reads back as `[SENSITIVE]`, so their values cannot be confirmed from the CLI —
+that unreadability is what made earlier docs claim the allowlist was unset. That
 second one matters because the Resend account is shared and **a Resend webhook
 cannot be scoped** — every endpoint on the account receives every inbound
 message, so filtering by recipient is our job (D-061).
@@ -153,7 +159,7 @@ then sends a second email only when it has a finding or proposal; the first
 reception email never depends on the agent (D-064). That reply is sent without
 asking — it is the second half of the sender's own exchange, and the outbox, not
 the model, decides whether anything goes out (D-065). Approval-gated apply and
-exact undo now exist locally; migration `014` is not live, and the approved
+exact undo now exist locally; migration `014` is live, and the approved
 write uses the pending `yunt_applied` provenance value (D-066). Two facts drive
 the design.
 The classifier **auto-accepts only 8% of the
