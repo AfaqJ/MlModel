@@ -11,13 +11,14 @@ by row against live, replayed to prove the second upload changes nothing, then
 removed. Live is back at baseline exactly: 5,195 invoices / 11,746 lines /
 461 companies / 0 batches. Backup `supabase_20260910T044749Z`.
 
-**Migrations `004`–`023` and `025` are LIVE; only `024` is pending.** Afaq ran
+**Migrations `004`–`023`, `025` and `026` are LIVE; only `024` is pending.** Afaq ran
 `021`–`023` and then `025` on 2026-09-10. `025` is independent of `024` — it
 touches `invoices.transport_plate` and the precedent function, references
 `yunt_flags` nowhere — so applying it first was safe, despite its header saying
 "run after 024". `024_yunt_flags_dashboard_read.sql` grants signed-in users
 *read* on `yunt_flags`; until it runs the new dashboard flag column shows
-nothing.
+nothing. `026_quotation_without_file.sql` (Afaq ran it 2026-09-10) lets a
+quotation be a stated price rather than a document.
 
 **`MCT-164` is done and closed.** The apparent label inconsistency was
 deterministic all along. `dte.ts` now keeps `<Transporte><Patente>` as
@@ -43,12 +44,21 @@ back as `[SENSITIVE]`. That is what produced the wrong note in earlier docs.
 `vercel env rm` is blocked by the permission classifier, so converting them to
 readable needs Afaq. He has said this is a readability preference, not a blocker.
 
-**Git.** `ML-model` on `yunt-backend` at `5ef2fd7`. `milk-company` on `yunt` at
-`5a03d23`, three commits past the last push (`02d7a58`): flags column,
-invoice-context precedent, PDF/charts. Both working trees clean.
+**Git.** `ML-model` on `yunt-backend` at `408e6d2`. `milk-company` on `yunt` at
+`f947f7e`, seven commits past the last push (`02d7a58`). Both trees clean.
+Parked branch `yunt-recurring-reports-v2` holds the V2 recurring-reports work
+and its own `026` — renumber that one when it is resumed (D-069).
 
-**Still to build in V1:** the approve/undo half of `MCT-155`, and the first half
-of `MCT-149`, which needs the Claude API key. **Recurring reports (`MCT-154`) are
+**Purchasing is proved end to end on live**, by using the screens rather than
+reading them: request → quotations → order above CLP 500,000 refused with fewer
+than two → allowed with two → request closed → numbered PDF. `MCT-140`,
+`MCT-161`, `MCT-168` and `MCT-169` are closed on that evidence. Test rows are
+marked `PRUEBA`; delete by `title like 'PRUEBA%'`, orders before requests.
+
+**Still to build in V1:** the first half of `MCT-149`, and `MCT-165` (judging
+whether an uploaded quotation is genuine) — both need the Claude API key.
+`MCT-155`'s scope is settled (D-070) and only needs `024` plus a person reading
+real flags. **Recurring reports (`MCT-154`) are
 parked for V2** (D-069) — a first pass lives on `yunt-recurring-reports-v2` and is
 deliberately not on `yunt`, so no V1 deploy registers a cron.
 
@@ -77,11 +87,12 @@ data is wrong.
 
 ### The order of work, agreed 2026-09-10
 
-**Next, needs nobody:** the approve/undo half of `MCT-155`. `MCT-152` needs only
-its acceptance run, not more building.
+**Next, needs nobody:** `MCT-144` catalog matching; `MCT-166` the dashboard
+cache that has never taken effect. `MCT-152` needs only its acceptance run.
 
 **Waiting on Afaq:** run `024`; the Claude API key, which unblocks the first
-half of `MCT-149` and everything agent-shaped; a real email for `MCT-160`;
+half of `MCT-149`, `MCT-165` and everything agent-shaped; a real email for
+`MCT-160`;
 a decision on whether TypeScript ingestion should create Antillanca as a company
 row when the old Python load never did.
 
@@ -272,6 +283,48 @@ were in v1 until the product questions behind them turned out to be unanswered
 (D-069).
 ## Recent sessions
 
+### 2026-09-10 (d) — purchasing proved by using it, and four defects it hid
+
+- **Checkpoint repair.** Codex replaced this file with 41 lines before dying;
+  the 900-line version was still uncommitted at `HEAD`, so nothing was lost.
+  Restored, trimmed to five sessions, and the dead 2026-09-09 HANDOVER section
+  deleted. `CLAUDE.md` and `supabase/README.md` had gone false about migrations.
+- **`MCT-154` parked for V2** (D-069) after building a first pass and realising
+  every product question behind it had been guessed. Code lives on
+  `yunt-recurring-reports-v2`, off the release branch so no cron is registered.
+- **`MCT-155` scope settled** (D-070): the Yunt may change a category and never
+  a value off the document. Already enforced — `apply_yunt_proposal` refuses
+  `data_fix` and `review-persistence.ts` hardcodes `category_change`. That
+  refusal is the decision, not unfinished work. The model is now told so.
+- **`MCT-161` closed.** One loader feeds the print page and a new PDF route, so
+  the printed and emailed order cannot drift. The PDF writer was emitting ASCII,
+  printing "Comercial Peña y Muñoz" as "Pena y Munoz" on a document that
+  supplier reads; the font already declared WinAnsi, so it just had to be
+  written as Latin-1. `MCT-152`'s reports inherit the fix.
+- **`MCT-140` closed**, exercised on live: the CLP 500,000 rule refused an order
+  with no quotations and allowed one with two. The rule is `count(*)` in the
+  database, never a model — `MCT-165` raised because counting cannot tell a real
+  quotation from a blank file.
+- **`MCT-168` closed.** A quotation may now be a stated price; a constraint
+  keeps it honest — document or source, never neither, because either way it
+  counts toward a rule that gates money.
+- **`MCT-169` closed.** The request page could always show what an item last
+  cost; nobody had ever seen it, because nothing linked a request to a
+  catalogued item. Verified live: Petroleo Diesel shows FEROSOR AGRICOLA at
+  753/709/864/747. Everything stays free text — the list is a shortcut.
+- **Gotcha — every internal link dropped the locale and 404'd.** Eleven files
+  imported plain `next/link`/`useRouter` when `createNavigation` versions exist.
+  Creating a request landed on a 404 *after saving it*, so it read as failure.
+  All 18 routes now return 200 in both locales.
+- **Gotcha — the home screen's CLP 500,000 notice never rendered.** `<strong>`
+  in a message is a next-intl rich-text tag, not HTML, so `t()` threw and the
+  card came up empty. `t.rich` fixes it and removes two `dangerouslySetInnerHTML`
+  sinks fed by translator-controlled strings.
+- **Gotcha — a one-click price chip read $753 and filled 752.99.** CLP has no
+  cents; the stored figure is a division artefact. Found by clicking it.
+- **All four defects above passed types, lint and `check.sh`.** `CLAUDE.md` now
+  says a feature is not finished until it has been used in the browser.
+
 ### 2026-09-10 (c) — the deciding field, and reports that carry a file
 
 Run by Codex; it hit its usage limit mid-checkpoint, having replaced this file
@@ -433,20 +486,3 @@ migration ledger, not from its summary.
 - **Gotcha:** PostgreSQL will not start under a long macOS temp path (the Unix
   socket limit) and refuses to start at all without `LC_ALL` set. Both failures
   present as a bare "could not start server".
-
-### 2026-09-09 (m) — answers arrive as a file
-
-- **Scope item 10's spreadsheet half.** `reply_with_spreadsheet` takes the same
-  filters as the list and totals tools plus the written answer, **runs the query
-  itself**, and attaches the result. A row the model retypes is a row the model
-  can get wrong, and the attachment is the artefact Cristian keeps.
-- **CSV, not a workbook.** Excel opens it and the format is forty lines rather
-  than a dependency. Two details make it readable in Chile: a UTF-8 byte-order
-  mark, or accented supplier names arrive mojibake, and a semicolon separator,
-  because a Spanish-locale Excel reads the comma as the decimal point and shifts
-  every column. Marked with a `ponytail:` note — a real workbook only when
-  formatting, several sheets or formulas are needed.
-- **Proof:** `scripts/check-yunt-spreadsheet.ts` covers the BOM, the separator, a
-  supplier name containing a semicolon, an embedded quote, an embedded newline,
-  null and undefined as empty cells, and zero surviving a falsy check.
-  `./check.sh` all green; `npx eve build` passed. Commit `4a23b6d`.
