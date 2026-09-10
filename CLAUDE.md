@@ -89,6 +89,16 @@ pipeline** (raw XML → gold → Supabase) and an **online classifier service**
 - **Before acting on any `D-NNN`, say which one and what it makes you do, in
   plain language, and wait** (D-043). Not only when it conflicts with what Afaq
   asked — every time it is load-bearing for the next step.
+- **Wording alone does not decide a category, and assuming it does manufactures
+  ambiguity that is not there.** Measured 2026-09-10: 29 item wordings appeared
+  to be filed under several categories, and every one turned out to be
+  deterministic. **23 wordings / 882 lines are decided by `meter_code`** —
+  different electricity meters are different cost centres. **6 wordings / 625
+  lines are petrol, decided by the DTE's `<Transporte><Patente>`** (plate →
+  `ADM-1.4`, jerrycan → `EXP-11.4`, see `docs/CLIENT_CONVENTIONS.md`), a field
+  the raw XML carries and `dte.ts` **discards**, so it is not in the database at
+  all. Before concluding the client's labelling is inconsistent, look at what
+  else the row carries and read `CLIENT_CONVENTIONS.md` (`MCT-164`).
 - Read the backing gold `source`, never the `prediction_source` tag. It is six
   values now (D-047) — `model`, `product_lookup`, `meter_lookup`, `business_rule`,
   `cleanup`, `user_selected` — and `cleanup` means only "a pass we ran once".

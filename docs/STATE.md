@@ -78,6 +78,31 @@ at a product manager, not at an engineer.
 listing before adding either — three re-implementations were caught only because
 someone looked first.
 
+**Grill him where his input is genuinely needed** — his domain knowledge has now
+twice beaten a statistical conclusion (the folder-vs-RUT direction, and the
+meter/plate finding above). Ask before concluding something about the client's
+data is wrong.
+
+### The order of work, agreed 2026-09-10
+
+**Next, needs nobody:** `MCT-155` flags per line (needs a small `024` grant —
+`yunt_flags` is `service_role`-only so the dashboard reads zero);
+`MCT-164` meter and plate; `MCT-152` PDF and charts; `MCT-154` recurring reports
+(no `vercel.json` exists yet).
+
+**Waiting on Afaq:** run `023`; the Claude API key, which unblocks the second
+half of `MCT-149` and everything agent-shaped; a real email for `MCT-160`.
+
+**Last, deliberately:** `MCT-162` direction from the RUTs, and `MCT-163` the
+four hardcoded-Spanish pages. Both work as they are; neither affects Antillanca,
+who read Spanish and whose archives are named consistently. Do these when the
+feature work is done, not before.
+
+**Ticket coverage is not proven.** The tickets were AI-generated and may not
+span the whole scope. Closing them all is not the same as building everything.
+Reconcile `docs/Yunt_scope_v1.docx` and `DECISIONS.md` against the closed
+tickets at the end — the decision log wins where they disagree (D-059).
+
 ### Local UI testing, which is now the fast path
 
 `.env.local` in `milk-company` had both Supabase values as `[SENSITIVE]`; Afaq
@@ -430,7 +455,27 @@ belong in v1.
   `gasolina 93` is 368/81 across an operating and an administrative category,
   which looks deliberate rather than sloppy. The search performs near this
   data's ceiling. Reproduce with
-  `scripts/87_measure_precedent_quality.py`. Raised for the client on `MCT-143`.
+  `scripts/87_measure_precedent_quality.py`.
+- **That conclusion was WRONG, and Afaq caught it within the hour.** He said to
+  check the description and the client convention before blaming the labels.
+  Both paid out. **There is no inconsistency at all.** All 29 wordings are
+  decided by a field the precedent search never looks at:
+  **23 wordings / 882 lines are determined by `meter_code` with zero
+  exceptions** — different electricity meters are different cost centres, so
+  `Servicio publico` correctly lands in three categories (3021→EXP-11.2 15/15,
+  124581→EXP-11.1 15/15, 28201→EXP-9.1 6/6). The remaining
+  **6 wordings / 625 lines are all petrol**, decided by the DTE's
+  `<Transporte><Patente>` — plate means `ADM-1.4`, jerrycan means `EXP-11.4`,
+  a rule already written in `docs/CLIENT_CONVENTIONS.md:55-61`. The raw XML
+  carries it (78 of 600 sampled COMPRAS invoices) and **`dte.ts` discards it** —
+  no reference to `Patente` or `Transporte` anywhere — so it never reaches the
+  database and the rule cannot be applied. Raised as **`MCT-164`** (High). The
+  `MCT-143` comment was **withdrawn**; nothing goes to the client.
+- **The lesson, worth more than the ticket:** apparent label noise was
+  100% deterministic once the right column was used. Before concluding the data
+  is inconsistent, check what else the row carries and read
+  `CLIENT_CONVENTIONS.md`. Statistics over `item_text` alone will manufacture
+  ambiguity that is not there.
   `MCT-149` stays open only for its first half, which needs the Claude API key.
 - **Three project updates posted in Linear**, ASCII-only and pitched at a
   product manager, per Afaq's standing request.
