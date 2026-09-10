@@ -31,7 +31,7 @@ def test_the_request_carries_everything_the_cascade_needs():
     assert payload["item_text"] == "ITEM 0"
     # extra="forbid" on the service side: an unexpected key is a 422.
     assert set(payload) == {"input_id", "item_text", "description",
-                            "provider", "meter_code", "transaction_type"}
+                            "provider", "meter_code", "transport_plate", "transaction_type"}
 
 
 def test_input_id_is_unique_per_line_across_documents():

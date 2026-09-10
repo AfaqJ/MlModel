@@ -8,6 +8,7 @@ from app.inference.confidence import DecisionResult, decide, entropy
 from app.inference.business_rules import direction_mask
 from app.inference.model_input import build_model_text
 from app.inference.ambiguity_guard import model_review_guard_reason
+from app.inference.fuel_context import petrol_context
 
 
 class Predictor:
@@ -31,6 +32,7 @@ class Predictor:
         description: str = "",
         provider: str = "",
         meter_code: str | None = None,
+        transport_plate: str | None = None,
         transaction_type: str | None = None,
         invoice_metadata: dict | None = None,
         input_id: str | None = None,
@@ -38,6 +40,13 @@ class Predictor:
         return_debug: bool = False,
     ) -> dict:
         started = time.perf_counter()
+        fuel = petrol_context(item_text, description, transport_plate, transaction_type)
+        if fuel and fuel.category_code:
+            return self._invoice_context_guard(
+                self._fuel_response(fuel, input_id, started, top_k, return_debug),
+                invoice_metadata,
+            )
+        forced_review_reason = fuel.reason if fuel else None
 
         # Deterministic electricity path: when a known meter (CdgIntRecep) is
         # supplied, the category is fixed by the client's meter map and the ML
@@ -48,6 +57,7 @@ class Predictor:
                 return self._invoice_context_guard(
                     self._meter_response(meter_hit, meter_code, input_id, started, top_k, return_debug),
                     invoice_metadata,
+                    forced_review_reason,
                 )
 
         # A verified exact sales phrase is authoritative. Skip both the model and
@@ -57,6 +67,7 @@ class Predictor:
             return self._invoice_context_guard(
                 self._business_rule_response(rule_hit, input_id, started, top_k, return_debug),
                 invoice_metadata,
+                forced_review_reason,
             )
 
         # Row-level client product labels are stronger than invoice-folder
@@ -68,6 +79,7 @@ class Predictor:
             return self._invoice_context_guard(
                 self._product_response(lookup_hit, input_id, started, top_k, return_debug),
                 invoice_metadata,
+                forced_review_reason,
             )
 
         text = self.build_text(item_text, description, provider, transaction_type)
@@ -153,16 +165,44 @@ class Predictor:
                 "model_text": text,
                 "model_top1": model_top[0],
             }
-        return self._invoice_context_guard(response, invoice_metadata)
+        return self._invoice_context_guard(response, invoice_metadata, forced_review_reason)
 
     @staticmethod
-    def _invoice_context_guard(response: dict, invoice_metadata: dict | None) -> dict:
+    def _invoice_context_guard(
+        response: dict,
+        invoice_metadata: dict | None,
+        forced_review_reason: str | None = None,
+    ) -> dict:
+        if forced_review_reason:
+            response["decision"] = "review_required"
+            response["reason"] = forced_review_reason
         metadata = invoice_metadata or {}
         document_type = str(metadata.get("document_type") or metadata.get("tipo_dte") or "").lstrip("0")
         document_kind = str(metadata.get("xml_document_kind") or "").lower()
         if document_type == "43" or document_kind == "liquidacion":
             response["decision"] = "review_required"
             response["reason"] = "liquidacion_dte43_requires_client_category"
+        return response
+
+    def _fuel_response(self, hit, input_id, started, top_k, return_debug) -> dict:
+        prediction = {
+            "code": hit.category_code,
+            "name": self.bundle.names.get(hit.category_code, ""),
+            "score": 1.0,
+        }
+        response = {
+            "input_id": input_id,
+            "model_version": self.bundle.model_version,
+            "source": "business_rule",
+            "predictions": [prediction][:top_k],
+            "confidence": {"top1": 1.0, "margin": 1.0, "entropy": 0.0},
+            "decision": "auto_accept" if not self.shadow_mode else "review_required",
+            "reason": "shadow_mode" if self.shadow_mode else hit.reason,
+            "latency_ms": int((time.perf_counter() - started) * 1000),
+            "debug": None,
+        }
+        if return_debug:
+            response["debug"] = {"fuel_context": hit.__dict__}
         return response
 
     def _business_rule_response(self, hit, input_id, started, top_k, return_debug) -> dict:

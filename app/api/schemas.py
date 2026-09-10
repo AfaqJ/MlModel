@@ -27,6 +27,12 @@ class PredictRequest(BaseModel):
         description="Electricity meter / CdgIntRecep. When present and known, resolves "
         "deterministically via the meter lookup instead of the ML model.",
     )
+    transport_plate: str | None = Field(
+        default=None,
+        max_length=64,
+        description="DTE Transporte/Patente. For petrol, a confirmed vehicle plate or "
+        "bidon spelling resolves deterministically; every other value requires review.",
+    )
     transaction_type: TransactionType = Field(
         description="COMPRAS (purchase) or VENTAS (sale), from the source DTE folder. "
         "It is required because it is part of both deterministic routing and the "

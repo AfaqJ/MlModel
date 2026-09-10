@@ -60,6 +60,9 @@ def to_request(document: dte.Document, line: dte.Line) -> dict:
 
     `meter_code` is the receiver's internal code. On a COMPRAS line from a known
     electricity meter it short-circuits the whole cascade to a fixed category.
+
+    `transport_plate` is the DTE's Transporte/Patente value. Petrol needs it to
+    distinguish farm jerrycans from vehicle travel without asking the model.
     """
     return {
         # Addresses the line uniquely inside this batch so results can be paired
@@ -70,6 +73,7 @@ def to_request(document: dte.Document, line: dte.Line) -> dict:
         "description": (line.description or "")[:512],
         "provider": (document.seller_name or "")[:256],
         "meter_code": document.receiver_internal_code or None,
+        "transport_plate": document.transport_plate or None,
         "transaction_type": document.transaction_type,
     }
 

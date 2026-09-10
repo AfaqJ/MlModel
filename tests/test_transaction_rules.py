@@ -59,6 +59,8 @@ class Bundle:
         self.head = head or FixedHead()
         self.names = {
             "EXP-1.1": "Otros Gastos RRHH",
+            "EXP-11.4": "Bencina predial",
+            "ADM-1.4": "Combustible vehiculos",
             "ING-0.1": "VENTA DE LECHE",
             "ING-0.4": "VENTA TERNEROS",
             "ING-0.6": "VENTA LEÑA",
@@ -66,6 +68,49 @@ class Bundle:
         self.weak_classes = set()
         self.thresholds = {"accept_top1": 0.8, "accept_margin": 0.2}
         self.model_version = "test"
+
+
+@pytest.mark.parametrize("plate", ["TBZL91", "pksr-82"])
+def test_known_vehicle_plate_decides_petrol_before_the_model(plate):
+    result = Predictor(Bundle(FailIfCalledEncoder())).predict(
+        item_text="GASOLINA 93",
+        transport_plate=plate,
+        transaction_type="COMPRAS",
+    )
+    assert result["source"] == "business_rule"
+    assert result["predictions"][0]["code"] == "ADM-1.4"
+    assert result["decision"] == "auto_accept"
+
+
+@pytest.mark.parametrize("plate", ["BIDON", "BIDO93", "BIOD45", "VIDO93", "IBDO96"])
+def test_confirmed_bidon_spellings_decide_farm_petrol(plate):
+    result = Predictor(Bundle(FailIfCalledEncoder())).predict(
+        item_text="G93",
+        transport_plate=plate,
+        transaction_type="COMPRAS",
+    )
+    assert result["predictions"][0]["code"] == "EXP-11.4"
+    assert result["decision"] == "auto_accept"
+
+
+@pytest.mark.parametrize("plate", [None, "ENVASE", "QQ1234"])
+def test_unconfirmed_petrol_transport_signal_cannot_auto_accept(plate):
+    result = Predictor(Bundle(FixedEncoder())).predict(
+        item_text="GASOLINA 93",
+        transport_plate=plate,
+        transaction_type="COMPRAS",
+    )
+    assert result["decision"] == "review_required"
+    assert result["reason"] == "petrol_transport_signal_requires_review"
+
+
+def test_transport_plate_does_not_change_diesel():
+    result = Predictor(Bundle(FixedEncoder())).predict(
+        item_text="PETROLEO DIESEL",
+        transport_plate="TBZL91",
+        transaction_type="COMPRAS",
+    )
+    assert result["source"] == "model"
 
 
 def test_verified_sale_short_circuits_encoder():

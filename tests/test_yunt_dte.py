@@ -13,14 +13,14 @@ import pytest
 from yunt import dte
 
 
-def wrap(detalle: str, *, rut: str = "76000000-1", extra: str = "") -> bytes:
+def wrap(detalle: str, *, rut: str = "76000000-1", header_extra: str = "", extra: str = "") -> bytes:
     xml = f"""<DTE xmlns="http://www.sii.cl/SiiDte" version="1.0"><Documento ID="T33F1">
       <Encabezado>
         <IdDoc><TipoDTE>33</TipoDTE><Folio>1</Folio><FchEmis>2026-08-01</FchEmis></IdDoc>
         <Emisor><RUTEmisor>{rut}</RUTEmisor><RznSoc>PRUEBA</RznSoc>
                 <GiroEmis>COM. EQ.ORDEÑA</GiroEmis></Emisor>
         <Receptor><RUTRecep>96685810-9</RUTRecep><RznSocRecep>ANTILLANCA SPA</RznSocRecep></Receptor>
-        <Totales><MntNeto>100</MntNeto><IVA>19</IVA><MntTotal>119</MntTotal></Totales>
+        {header_extra}<Totales><MntNeto>100</MntNeto><IVA>19</IVA><MntTotal>119</MntTotal></Totales>
       </Encabezado>
       <Detalle>{detalle}</Detalle>{extra}
     </Documento></DTE>"""
@@ -96,6 +96,12 @@ def test_references_are_captured():
            "<RazonRef>ANULA</RazonRef></Referencia>")
     doc = dte.parse(wrap("<NmbItem>X</NmbItem><MontoItem>1</MontoItem>", extra=ref), "COMPRAS")[0]
     assert doc.references[0].folio == "555" and doc.references[0].code == "1"
+
+
+def test_transport_plate_is_captured():
+    transport = "<Transporte><Patente> TBZL91 </Patente></Transporte>"
+    doc = dte.parse(wrap("<NmbItem>G93</NmbItem><MontoItem>1</MontoItem>", header_extra=transport), "COMPRAS")[0]
+    assert doc.transport_plate == "TBZL91"
 
 
 def test_every_detalle_becomes_a_line_or_a_recorded_drop():

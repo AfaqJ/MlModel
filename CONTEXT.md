@@ -85,6 +85,14 @@ the same document type appears on both sides, and the classifier requires it.
 That is why it comes from the folder, and why the ZIP layout is part of the
 agreement with Cristian rather than an implementation detail.
 
+**Meter code** — the receiver's internal service number (`CdgIntRecep`). For
+electricity it identifies the account more precisely than the supplier's line
+wording does.
+
+**Patente** — the DTE transport field. On petrol purchases Antillanca uses it
+for either a vehicle plate or a spelling of *bidón*; that value determines
+vehicle travel versus farm petrol. An absent or unrecognised value is unresolved.
+
 **Document types** — `33` factura electrónica · `34` exenta · `56` nota de
 débito · `61` nota de crédito · `43` liquidación factura. Type 43 names its body
 `<Liquidacion>`, not `<Documento>`.

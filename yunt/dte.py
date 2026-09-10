@@ -157,6 +157,7 @@ class Document:
     total_amount: float
     payment_form: str
     receiver_internal_code: str
+    transport_plate: str
     lines: list[Line] = field(default_factory=list)
     references: list[Reference] = field(default_factory=list)
     # Reconciliation: what the file held vs what we emit, with typed reasons.
@@ -305,6 +306,7 @@ def _parse_documento(dte: ET.Element, transaction_type: str) -> Document | None:
         total_amount=_number(_field(totales, "MntTotal")) or 0.0,
         payment_form=_field(id_doc, "FmaPago"),
         receiver_internal_code=_field(receptor, "CdgIntRecep"),
+        transport_plate=_field(_child(head, "Transporte"), "Patente"),
     )
 
     detalles = _all(documento, "Detalle")
