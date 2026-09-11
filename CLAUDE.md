@@ -4,7 +4,9 @@ Classifies Spanish invoice line items into accounting categories for
 **Antillanca**, a Chilean dairy/agriculture client of Audisis / Grupo ProGestión.
 
 **Status:** v1.3.3 live on Cloud Run — service `mlmodel`, `europe-west1`,
-revision `mlmodel-00014-lrp`, 100% traffic. Supabase holds 11,746 corrected
+revision `mlmodel-00015-mjr` (image `v1.3.3-plate`), 100% traffic. Same model
+bytes as `00014-lrp`; the redeploy shipped the code that accepts
+`transport_plate`. Prove a deploy with `scripts/88_prove_deploy.sh <url>`. Supabase holds 11,746 corrected
 lines as of 2026-09-03: **7,927 auto-accepted, 3,819 in review**, 78 categories.
 
 **Live and the staged payload are identical — nothing is pending.** Both
@@ -16,10 +18,9 @@ backup: `backups/supabase_20260903T054820Z/`.
 Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
 purchasing forms and read-only ingestion paths are pushed through `02d7a58`;
 three further commits are local and unpushed through `5a03d23`. Migrations
-`004`–`023` and `025` are **all live** — Afaq ran `011`–`020` on 2026-09-09 and
-`021`–`023` then `025` on 2026-09-10. **`024` (dashboard reads `yunt_flags`) is
-the only pending one**, so the new per-line flag column shows nothing until it
-runs. Ten audit
+`004`–`027` are live. `024`, `026` and `027` are confirmed by behaviour;
+`023` and `025` are believed live but were never re-verified — all are
+idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that
 repo's `docs/OPEN_QUESTIONS_2026_09_03.md`; `docs/` there is gitignored by
 Afaq's deliberate choice, so those notes live on disk only.
@@ -152,9 +153,15 @@ the upload page is permanent rather than a stopgap (D-060). Both routes now
 import the atomic writer and the post-write review in local code. **That is not
 the same as working live:** the email path has never carried a real ZIP, and
 `/carga` uses the signed-in Supabase client while the new writer/review objects
-are service-role-only. Migration `021` grants exactly that — any signed-in user,
-because v1 has no roles (D-052) — and **it is live since 2026-09-10**; a
-signed-in person has saved through `/carga` and the replay changed nothing.
+were written for the service role. Migrations `021` and `027` grant exactly what
+the operator needs — any signed-in user, because v1 has no roles (D-052) — and
+both are live; a signed-in person has saved through `/carga`, the replay changed
+nothing, and the deterministic quality flags land. **`021` missed `yunt_flags`
+and that was not a cosmetic gap:** the flag write happens inside the review, and
+`reviewAfterWrite` swallows its own errors by design (D-064), so the refusal
+skipped the entire post-write review while the screen reported success. When
+something that should have written rows wrote none, read
+`milk-company/.next/dev/logs/next-development.log` before theorising.
 Never bypass RLS with the service key from a browser-triggered action; the
 absence of a service key in `.env.local` is what proved the save went through
 as the user. Two environment variables fail *closed* and look like bugs if you
@@ -192,6 +199,7 @@ latin-1.
 | Need | File |
 |---|---|
 | Where we are, recent sessions, next steps | `docs/STATE.md` |
+| **How to test against the real API without wasting it** | **`docs/YUNT_TEST_PLAN.md`** |
 | **What the Yunt will do, as sent to the team** | **`docs/Yunt_scope_v1.docx`** |
 | **How every manual case becomes automated** | **`docs/AUTOMATION_PLAN.md`** |
 | How the system is built | `docs/ARCHITECTURE.md` |

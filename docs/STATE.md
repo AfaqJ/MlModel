@@ -5,31 +5,22 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The pipeline is proved end to end offline and live-saved once.** On 2026-09-10
-a synthetic invoice went through `/carga` as a signed-in user, was verified row
-by row against live, replayed to prove the second upload changes nothing, then
-removed. Live is back at baseline exactly: 5,195 invoices / 11,746 lines /
-461 companies / 0 batches. Backup `supabase_20260910T044749Z`.
+**Everything that can be done without the Claude API key is done.** Every open
+ticket is now blocked on a live run, not on missing code. The key is the next
+thing that happens; `docs/YUNT_TEST_PLAN.md` is the plan for spending it well.
 
-**Migrations: `024` and `026` are CONFIRMED live; `023` and `025` are believed
-live but NOT re-verified.** Afaq lost track of what he pasted
-(2026-09-10) and asked that this be settled first next session. `026` is proved
-by behaviour, not by a doc: a quotation saved with no file at all on 2026-09-10,
-which `storage_path NOT NULL` would have refused. **Verify the rest the same
-way — by what the database does, not by what this file says.** Every statement
-in `023`–`026` is idempotent (`if exists` / `if not exists` / `drop not null`),
-so re-pasting any of them is safe and is the cheapest way to be certain. Afaq ran
-`021`–`023` and then `025` on 2026-09-10. `025` is independent of `024` — it
-touches `invoices.transport_plate` and the precedent function, references
-`yunt_flags` nowhere — so applying it first was safe, despite its header saying
-"run after 024". `024_yunt_flags_dashboard_read.sql` grants signed-in
-users *read* on `yunt_flags`. Afaq ran it on 2026-09-10 and it is **proved by
-behaviour**: the signed-in dashboard's invoice detail (folio 1224) fetched
-`yunt_flags`, and neither the `flagsLoadError` banner nor the
-`[dashboard] quality flag fetch failed` console line appeared. Without the grant
-PostgREST returns 42501 and `fetchOpenFlagsForItems` throws, so the absence of
-that error is the grant. `026_quotation_without_file.sql` (Afaq ran it 2026-09-10) lets a
-quotation be a stated price rather than a document.
+**Live is at baseline exactly** — 5,195 invoices / 11,746 lines / 461 companies /
+4,002 catalog items / 78 categories. Backup `supabase_20260911T074329Z`. The
+MCT-155 test batch was written to live, read, judged and removed; the undo script
+`scripts/89_cleanup_mct155_test.py` restored the counts exactly and is the pattern
+to copy for the next live test (anchored on one fake supplier RUT, dry-run by
+default, verifies the baseline itself).
+
+**Migrations: `024`, `026` and `027` are CONFIRMED live; `023` and `025` are
+believed live but NOT re-verified.** `024` is proved by the signed-in dashboard
+reading `yunt_flags` without error; `026` by a quotation saved with no file at
+all; `027` by flags actually landing on a save. Everything in `023`–`027` is
+idempotent, so re-pasting is safe and is the cheapest way to settle the last two.
 
 **The classifier was redeployed on 2026-09-10 and ingest works again.** Revision
 `mlmodel-00015-mjr`, image tag `v1.3.3-plate`, 100% of traffic. The model is
@@ -47,17 +38,15 @@ gate this kind of release — it gates accepting a *retrain*, read off
 `model_card.json`, and there is no new model card. Rollback stays a traffic shift
 to `mlmodel-00014-lrp`, no rebuild.
 
-**Two defects on the upload confirmation screen, found 2026-09-11 and fixed
-(D-073, D-074).** The TypeScript ingest planned a `companies` row for *both*
-parties, so it would have written Antillanca into a table whose 461 live rows are
-all counterparties and none of them us — and an invoice references the other
-party, so that row would have been unreferenced. It now skips our own RUT, which
-closes the question this file had been carrying as waiting on Afaq. Separately,
-the "Proveedores nuevos" figure was the length of the whole upsert list rather
-than a count of what is actually new, so a month of familiar suppliers would have
-announced dozens of new ones on the screen you press Save from. Both were found by
-uploading a one-document batch and reading the screen, not by a test;
-`scripts/check-ingest-writer.ts` now pins both.
+**The review now runs on Sonnet 5 at `high` reasoning (D-076).** Two files must
+agree: `agent/agent.ts` picks the model, `YUNT_REVIEW_MODEL` in
+`src/lib/yunt/after-write.ts` stamps it on each attempt as provenance. What would
+reverse it is review *quality*, not cost — see D-076 for what to watch for.
+
+**`reviewAfterWrite` now takes an optional dispatcher** (`2e496a6`), so the whole
+review chain — packets, chunking, the submit guard, proposals, approval, apply,
+undo — can be driven by a stub with no API call. That is step 0 of the test plan
+and it should happen before the key is wired.
 
 **`MCT-164` is done and closed.** The apparent label inconsistency was
 deterministic all along. `dte.ts` now keeps `<Transporte><Patente>` as
@@ -73,9 +62,11 @@ credit-note rule and truncation disclosure are printed on the artefact. Focused
 generator check, targeted lint, `tsc --noEmit` and a visual PDF render all
 passed. What remains is the acceptance run from one real stored question.
 
-**`MCT-155` is half done.** The dashboard flag column is committed (`0d20315`);
-`024` is live, so a signed-in user would see a flag if one existed; none has been
-written to live yet. The approve/undo half is not built.
+**`MCT-155` is done and closed.** Flags are written, shown per line in both
+languages, and have been read on live data and judged useful. There is no
+approve/undo half: a flag reports a problem in the supplier's document and never
+changes a value (D-070), so there is nothing to approve. Category proposals keep
+their own approve-and-undo path, which is `MCT-150`.
 
 **`YUNT_ALLOWED_ADDRESSES` was never unset.** It has been on Vercel Preview
 since 2026-09-09, value unknown because every var is sensitive-flagged and reads
@@ -104,9 +95,8 @@ promises; recurring reports (#13 / `MCT-154`) are parked for V2 (D-069), leaving
 live integration or acceptance (see the table below). Outside that original
 scope, `MCT-165` — judging whether a quotation is genuine before it counts
 toward the CLP 500,000 rule — is still unbuilt and needs the Claude API key.
-`MCT-155` only needs a person reading real flags now that `024`
-is live; D-070 deliberately
-forbids the Yunt from proposing edits to values copied from a DTE.
+`MCT-155` is closed; D-070 deliberately forbids the Yunt from proposing edits to
+values copied from a DTE.
 
 **Do not drive the Supabase SQL editor.** A previous session typed over editor
 buffers holding Afaq's own saved queries. Read live state through
@@ -131,24 +121,19 @@ twice beaten a statistical conclusion (the folder-vs-RUT direction, and the
 meter/plate finding above). Ask before concluding something about the client's
 data is wrong.
 
-### The order of work, agreed 2026-09-10
+### The order of work, as of 2026-09-11
 
-**First, cheap and blocking nothing else:** confirm which migrations are
-actually applied (see Now). Re-pasting an idempotent migration settles it.
+**Nothing is left that does not need the key.** Every open ticket is blocked on a
+live run. The plan for those runs is `docs/YUNT_TEST_PLAN.md`, and its step 0 —
+driving the whole review chain from a stub, free — should happen **before** the
+key is wired, because that is where the non-model bugs are.
 
-**Completed this session:** `MCT-163` localises the upload and purchasing UI in
-both languages while leaving Antillanca's stored and client-facing content in
-Spanish (D-071). `MCT-167` adds the missing order-centric list. Both passed
-targeted lint, TypeScript, translation-key parity and browser checks. They are
-committed together as `205451d` and both are Done in Linear with proof comments.
+**Waiting on Afaq:** the Claude API key (see the test plan for exactly which
+variable, which depends on whether it is a gateway key or an Anthropic one), and
+a real invoice email for `MCT-160`.
 
-**Next, needs nobody:** there is no more missing original-scope feature code
-that can be completed without credentials or live input. `MCT-152` needs only
-its acceptance run from a real stored question; none currently exists.
-
-**Waiting on Afaq:** the Claude API key, which unblocks the first
-half of `MCT-149`, `MCT-165` and everything agent-shaped; a real email for
-`MCT-160`.
+**Still unverified, cheap:** `023` and `025` are believed live but were never
+re-checked. Both are idempotent; re-pasting settles it.
 
 **`MCT-162` is done (D-072).** Direction is read from the RUTs in each document
 — Antillanca as `RUTEmisor` is a sale, as `RUTRecep` a purchase — and the
@@ -181,11 +166,19 @@ Supabase with a real signed-in session. It holds **no service key**, which is
 what proved `MCT-159`: the save could only have gone through RLS as
 `authenticated`.
 
-To put a file into the upload form without a file picker, copy it to
-`milk-company/public/` and have the page `fetch()` it into a `DataTransfer` —
-far cheaper than injecting base64. Delete it afterwards.
+To put a file into the upload form without a file picker, build the bytes in the
+page and assign them through a `DataTransfer`, then `form.requestSubmit()`.
 
-## Linear, as of 2026-09-10
+**Do not stage the file in `milk-company/public/`.** It reads as cheaper than
+inlining base64 and it is not: the dev server watches that directory, so writing
+there triggers Fast Refresh, the page reloads, and the file input is cleared
+before the submit lands. The symptom is a submit that silently does nothing,
+twice, with no console error. Inline the base64 — a one-document ZIP is about
+1.3 KB of it. Also wait for hydration before assigning: on a freshly navigated
+page the first `requestSubmit()` can be swallowed, and clicking the real button
+by `ref` after setting the file is the reliable form.
+
+## Linear, as of 2026-09-11
 
 Linear mirrors this project feature by feature, so it can be read instead of this
 file for *progress*. It is not the design; where a ticket and `DECISIONS.md`
@@ -195,18 +188,19 @@ disagree, the decision log wins.
   `MCT-147` auto-accept rate, `MCT-148` purchasing tables, `MCT-151` answer
   questions, `MCT-158` run pending migrations, `MCT-159` signed-in save,
   `MCT-164` the field that decides the answer.
-- **In progress:** `MCT-142` the parent, `MCT-149` review and propose (blocked on
-  the API key), `MCT-150` approve and undo, `MCT-152` PDF/charts (built, needs
-  acceptance), `MCT-153` refusals (cannot close without a live refusal),
-  `MCT-155` flags, `MCT-156`/`157` purchasing from email,
-  `MCT-161` the order document, `MCT-140`/`141`/`144`.
+- **In progress — every one blocked on a live run, none on missing code:**
+  `MCT-142` the parent, `MCT-149` review and propose, `MCT-150` approve and undo,
+  `MCT-152` PDF/charts (needs one real stored question), `MCT-153` refusals
+  (needs one real refusal), `MCT-156`/`157` purchasing from email, `MCT-141`
+  receive by email.
 - **Todo:** `MCT-160` the first real email.
 - **Backlog, parked for V2:** `MCT-154` recurring reports (D-069).
 - **Backlog, parked performance:** `MCT-166`; removing the broken cache stopped
   its error loop but did not satisfy its no-second-query done-when.
 - **Done:** `MCT-163` hardcoded Spanish and `MCT-167` the order-centric list
   (`205451d`).
-- **Built, ticket needs closing:** `MCT-162` direction from the RUTs (D-072).
+- **Done:** `MCT-162` direction from the RUTs (D-072) and `MCT-155` quality
+  flags, both closed 2026-09-11 with proof comments.
 - **Backlog, deferred on purpose:** `MCT-143` client data questions.
 
 Tickets are written at product level on purpose — no file names, no migration
@@ -232,7 +226,7 @@ yet.**
 | 3 | Duplicate detection on RUT + type + folio; sending twice changes nothing | Done |
 | 4 | Lines classified and **written to the database** | Built and proved through `/carga` on live; the email route remains unproved |
 | 5 | An acknowledgement in minutes, then a written report | Built as a receipt first and a findings email later; never live-proved |
-| 6 | Data quality flags, and fixes proposed on approval | Flags are built, calibrated and persisted; `024` is live and the dashboard read works, but no flag has been written to live yet. D-070 corrects the scope: DTE values are reported, never changed; only category changes can be proposed |
+| 6 | Data quality flags, and fixes proposed on approval | **Done.** Built, calibrated, persisted, shown per line in both languages, and accepted on live data. D-070 corrects the scope: DTE values are reported, never changed; only category changes can be proposed |
 | 7 | Category proposals with evidence, grouped | Built and grounded; deterministic precedent quality measured at 97.2% of proposals correct. The real Claude review still needs its key and acceptance run |
 | 8 | Approve a group, get confirmation, undo it | Built with database-enforced confirmation and undo; no live agent run yet |
 | 9 | Five query tools answering open questions | Done. All five built and their figures independently proved; `022` is live |
@@ -320,8 +314,8 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       `auto_accept` is downgraded to review and nothing else (Phase 4, D-058, D1)
 - [x] **Flags persisted to `yunt_flags`** with `source='deterministic'`, written
       when the review attempt opens so an incomplete review still leaves them
-- [x] Flags shown per line in the dashboard — built (`0d20315`); `024` is live,
-      the authenticated read works, and no open flag exists yet to display
+- [x] Flags shown per line in the dashboard, in both languages, proved on live
+      data and judged useful (`MCT-155` closed 2026-09-11)
 
 ### Purchasing
 
@@ -360,6 +354,43 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 were in v1 until the product questions behind them turned out to be unanswered
 (D-069).
 ## Recent sessions
+
+### 2026-09-11 — everything that did not need the key, finished
+
+- **Finished what the previous session was interrupted mid-air doing.** Codex had
+  stopped while proving the authenticated `yunt_flags` read on localhost and its
+  final checkpoint never landed, so `STATE.md` still claimed `024` was pending and
+  `MCT-162` was deferred — both already false. Proved `024` live by behaviour and
+  corrected the file.
+- **`MCT-162` done and closed (D-072).** Direction now comes from the RUTs in the
+  document; the folder is only a fallback. Measured first: across 5,584 raw DTEs
+  Antillanca is on exactly one side of every one, and the RUT rule reproduces the
+  folder on all 5,195 ingested documents with zero disagreements. D-010 was
+  narrowed in the same commit rather than left standing.
+- **Redeployed the classifier.** Revision `mlmodel-00015-mjr`. Same model bytes;
+  what shipped was the code that already accepted `transport_plate`.
+- **`MCT-155` done and closed.** A synthetic invoice with five deliberate problems
+  and one clean control was written to live, its flags read and judged useful, and
+  the batch removed with the counts verified back to baseline.
+- **Switched the review to Sonnet 5 at `high` (D-076)**, and made the review chain
+  drivable by a stub so the first run of it costs nothing.
+- **Decided:** direction from the RUTs (→ D-072), `companies` holds counterparties
+  only (→ D-073), "proveedores nuevos" counts what is new (→ D-074), a flag's
+  sentence is interface not stored content (→ D-075), Sonnet 5 for review
+  (→ D-076).
+- **Gotcha — four failures today were invisible to every automated check**, and
+  all four were found by driving a real screen. The classifier 422, the
+  `yunt_flags` RLS refusal that silently skipped the *entire* post-write review,
+  the doubled supplier count, and the untranslated flag text. `tsc`, lint and the
+  check scripts passed throughout. Treat a green suite as evidence about the code
+  and nothing else.
+- **Gotcha — a swallowed error is invisible twice.** `reviewAfterWrite` never
+  throws, by design (D-064), so the RLS refusal surfaced only in
+  `.next/dev/logs/next-development.log`. When something that should have written
+  rows wrote none and the screen looks happy, read that file before theorising.
+- **Gotcha — do not stage upload fixtures in `public/`.** The dev server watches
+  it, Fast Refresh reloads the page, and the file input is cleared before submit.
+  Cost two silent no-op submits. Inline the base64 instead.
 
 ### 2026-09-10 (e) — localisation finished and scope counted from the contract
 
@@ -566,26 +597,3 @@ migration ledger, not from its summary.
   6,920 there and is 4,673 bytes on disk. Not a truncation bug.
 
 
-### 2026-09-10 — the two pending migrations, written, proved and handed over
-
-- **Wrote `021_carga_operator_writes.sql`.** Afaq supplied the text, because
-  Claude's own write of it had been refused twice by the safety classifier for
-  granting database permissions. Nothing in it was changed.
-- **Proved it, which it had never been.** `scripts/prove-021-carga-writes.sh`
-  first asserts the fixture *cannot* save before the migration, so the proof
-  cannot pass vacuously against an already-open database; then loads `021`
-  twice; then checks that `authenticated` ends up with exactly the table
-  privileges, function grants and per-command policies the upload path needs —
-  and that `yunt_batch_items` gained no update policy, a direct insert into
-  `invoices`/`invoice_items` is still refused, and `anon` gained nothing.
-  Commit `e65edae`.
-- **Re-proved `022`** so both pending migrations were green on the same day.
-- **Handed over the consolidated paste** of `021` then `022`, after checking by
-  grep rather than assumption that neither carries a `DROP`, `TRUNCATE`,
-  `DELETE`, top-level data `UPDATE`, or any row-level-security posture change.
-- **Skipped `check.sh` deliberately.** The commit touched only SQL, a shell
-  script and Markdown; running the TypeScript regression would have proved
-  nothing and is the kind of broad re-run Afaq asked to stop.
-- **Correction:** five frontend and six root commits that appeared to be someone
-  else's work were from later in the previous session, past the point Claude's
-  context was trimmed. Neither Afaq nor Codex worked after it ended.
