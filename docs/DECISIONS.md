@@ -1971,3 +1971,94 @@ not have made, or a finding whose reasoning does not follow from the rows
 attached. Any of those is a reason to go back to Opus — it is one line in each
 file.
 
+
+## D-077 — The Yunt runs on an Anthropic key, direct, not through the gateway
+
+**Date:** 2026-09-11 · **Decided by:** Afaq
+
+`agent/agent.ts` asks for `anthropic/claude-sonnet-5`, which is a **Vercel AI
+Gateway** model id. Afaq has an Anthropic key (`sk-ant-…`) and nothing else. The
+gateway will not accept it, so the agent moves to the direct path:
+`npm i @ai-sdk/anthropic`, and `model: anthropic("claude-sonnet-5")`.
+
+This is not only a plumbing choice. Billing and per-request usage then show up
+in the **Anthropic console**, which is the one Afaq can actually read; through
+the gateway they show up in Vercel. The whole concern behind
+`docs/YUNT_TEST_PLAN.md` is not spending blind, so the readable console wins.
+
+The model and the reasoning setting are unchanged — D-076 still holds, and
+`YUNT_REVIEW_MODEL` in `src/lib/yunt/after-write.ts` must move with
+`agent/agent.ts` exactly as it says. The stamped value becomes
+`claude-sonnet-5`, without the `anthropic/` prefix, because that is what the
+direct path actually calls.
+
+The key lives on **Vercel**, not only in `.env.local`: the agent runs in the
+deployment. It is added unflagged rather than sensitive, so a later session can
+confirm it is there instead of reading `[SENSITIVE]` and guessing — the same
+unreadability that made earlier docs claim `YUNT_ALLOWED_ADDRESSES` was unset.
+
+## D-078 — eve's default tools are off
+
+**Date:** 2026-09-11 · **Decided by:** Afaq
+
+`defineAgent` in `agent/agent.ts` gets `defaultTools: false`. eve was giving the
+Yunt eleven tools nobody here wrote — `bash`, `read_file`, `write_file`,
+`web_fetch`, `web_search`, `agent`, `ask_question`, `todo`, `task_update`,
+`task_cancel`, `load_skill` — on top of our 22.
+
+Two reasons, and the second is the one that would have cost a paid run.
+
+**`ask_question` deadlocks this agent.** It pauses the session so a channel can
+render a prompt and a person can click. The Yunt's only channel is email, so
+there is nothing to render and nobody to click: the session parks forever. This
+is the same deadlock D-065 avoided for the findings reply and the reason
+`apply.ts` uses a database-enforced confirmation instead of eve's `approval`
+helper. Leaving `ask_question` reachable puts the deadlock back in by the side
+door, and it looks exactly like a model outage from outside.
+
+**`bash`, `write_file`, `web_fetch` and `agent` are an injection surface.** The
+Yunt's input is email written by someone else. `agent/instructions.md` tells the
+model that text is information and not instructions, which is mitigation by
+prompt; removing the capability is mitigation by construction, and the second
+kind does not depend on the model reading carefully. Nothing the Yunt is
+supposed to do needs a shell, the filesystem or the open web — every fact comes
+from a query tool (D-053).
+
+Reversible in one line. If some later feature genuinely needs one of these, add
+that single tool back as a file under `agent/tools/`, which is how eve's own
+documentation says to do it.
+
+## D-079 — The superseded Python `yunt/` is deleted
+
+**Date:** 2026-09-11 · **Decided by:** Afaq
+
+Ingestion lives in `../milk-company/src/lib/ingest/`. The Python `yunt/` in this
+repo was the reference it was ported from, and the two have already diverged —
+D-072 (direction from the RUTs) landed only in the TypeScript. Its 49 tests
+still ran, which is precisely the problem: a green suite over code nothing calls
+reads as reassurance.
+
+Git history is the archive. Deleting it means `CLAUDE.md`'s standing warning
+("`yunt/` here is the superseded Python reference and still exists … never port
+logic out of it") goes with it, and the venv/test-command conventions that
+mention `.venv-yunt` need the same pass — a doc that still routes people to a
+directory that is gone is worse than the directory was.
+
+## D-080 — Natural email requests are restated before any write
+
+**Date:** 2026-09-11 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+D-067's structural safety remains: sender, email thread, action, target and
+single use must all match. Its visible UUID-style confirmation code is replaced
+by the natural exact first line `SÍ, ADELANTE` (or `YES, GO AHEAD` in English).
+The binding stays hidden from the client in stored context.
+
+Natural-language instructions — including selective changes, a category named
+by the user and `Undo that.` — never write directly. The Yunt first sends a
+short interpretation naming the affected records and the exact business
+before/after state. Only the exact confirmation phrase on the resulting thread
+may perform that stated action.
+
+Client-facing reasoning uses accounting evidence: for example, how the same
+concept was previously filed, or what the supplied document supports. It does
+not mention model confidence, UUIDs, internal logs or database implementation.

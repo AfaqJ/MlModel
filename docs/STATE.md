@@ -5,12 +5,115 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**Everything that can be done without the Claude API key is done.** Every open
-ticket is now blocked on a live run, not on missing code. The key is the next
-thing that happens; `docs/YUNT_TEST_PLAN.md` is the plan for spending it well.
+**The Yunt is deployed and receiving real Outlook email.** The Anthropic key,
+direct Sonnet 5 path, disabled eve default tools, Vercel protection bypass and
+latest `yunt` deployment are all proved. The deployed frontend is `7d8b632`;
+its protected inbound route is reachable and returns the expected 405 to a GET.
 
-**Live is at baseline exactly** — 5,195 invoices / 11,746 lines / 461 companies /
-4,002 catalog items / 78 categories. Backup `supabase_20260911T074329Z`. The
+**Test 1 is in progress on a fully backed-up seven-line archive.** One proposed
+Leasing category was applied exactly once. A natural-language `Undo that.` was
+correctly restated as a short accounting confirmation showing EXP-15.8 as the
+current state and an uncategorised, review-pending state as the restore target.
+The application has not been undone yet: the next message is the exact first
+line `SÍ, ADELANTE` in that email thread.
+
+**Two live defects were found and fixed.** Replies initially lost the hidden
+proposal/application context, so an exact approval could not act; the thread now
+recovers it from the prior Yunt email. Resend can also return HTTP 200 before its
+RFC Message-ID is populated; `7d8b632` now retries that incomplete response so
+threading metadata is retained without resending or another model call. The full
+`./check.sh` and free `check-yunt-review-chain.ts` chain are green.
+
+**Client wording is now accounting-first.** Natural language never writes by
+itself: the Yunt briefly states the exact records and before/after business state,
+grounds category reasoning in prior filings or the supplied document, then asks
+for `SÍ, ADELANTE`. It does not expose confidence, UUIDs, database failures or
+model internals.
+
+The live baseline before these tests is 5,195 invoices / 11,746 lines / 461
+companies / 4,002 catalog items / 78 categories / 0 purchase requests. The
+test backup is `backups/supabase_20260911T093640Z`; the undo is
+`scripts/90_yunt_live_test_undo.py`, dry-run by default, and preserves each
+changed row's original values.
+
+## Next
+
+1. Send `SÍ, ADELANTE` on the pending undo email and verify the application,
+   proposal and invoice line return to their exact recorded before-state.
+2. Finish Test 1's remaining live acceptance cases: selective approval, a
+   user-supplied category, bare/quoted approval rejection and stale-proposal
+   refusal. Reuse the same archive; one judgement change per model run.
+3. Run the report/refusal thread (MCT-152/153), then purchasing (MCT-156/157).
+   Close only tickets whose done-when has been observed, and clean all test data
+   with the existing baseline-aware undo.
+
+## Prior checkpoint (superseded by `Now` above)
+
+**Step 0 had been run before the key was added.** `docs/GO_RUNBOOK.md` became the
+operative file: the three tests were prepared, the fixtures existed and had
+been read through the real ingest, and the undo was written and dry-run.
+
+**Four blockers were found for free before anything was spent; all are now
+resolved.** At that checkpoint there was no model credential on Vercel (the agent runs
+in the deployment, so `.env.local` is not enough); every deploy since
+2026-09-10 fails because the eve service emits an Edge `_middleware`, which is
+fixed here with `runtime: "nodejs"` but unverified until a push; Vercel
+Deployment Protection answers 401 to every request, Production included, so the
+Resend webhook has never been able to reach `/api/yunt/inbound` at all; and 18
+commits are unpushed, so the newest working Preview is two days behind. Details
+and the fix for each are in `GO_RUNBOOK.md`.
+
+**`YUNT_ALLOWED_ADDRESSES` is one address: `afaq@mctechstudio.com`.** Read from
+`.env.local`, which earlier docs assumed was unreadable. Mail from anywhere else
+is ignored in silence, so every test email must be sent from there.
+
+### Completed actionable list, answered by Afaq on 2026-09-11
+
+Completed in this order. Kept as history because D-077 through D-079 explain
+the resulting architecture.
+
+1. **Afaq adds the Anthropic key to Vercel himself**, so it never passes through
+   a transcript. Unflagged, not sensitive, so a later session can confirm it is
+   there (D-077):
+   `vercel env add ANTHROPIC_API_KEY preview` — paste at the prompt.
+2. **Switch the agent to the direct Anthropic path** (D-077): `npm i
+   @ai-sdk/anthropic`, `model: anthropic("claude-sonnet-5")` in
+   `agent/agent.ts`, and `YUNT_REVIEW_MODEL` in `src/lib/yunt/after-write.ts`
+   to `claude-sonnet-5` in the same commit — D-076 says those two move together.
+   In the same edit, `defaultTools: false` (D-078).
+3. **Push `yunt` and watch the deploy.** 18 commits, and the top one carries the
+   `runtime: "nodejs"` middleware fix for
+   `Edge Runtime is not supported in services`. Afaq has asked for this to be
+   done for him. If the deploy still fails, the next thing to try is Next 16's
+   `proxy.ts` (`npx @next/codemod@canary middleware-to-proxy .`); the Edge
+   function is what Vercel refuses, not the middleware's logic.
+4. **Deployment Protection is still on and nothing bypasses it.** Afaq thought
+   he had added a bypass; `vercel env ls` shows no automation-bypass secret on
+   the project, and a request carrying a made-up bypass value is redirected to
+   the Vercel login exactly like one carrying none. So Resend has never reached
+   `/api/yunt/inbound`, and no email test can pass until either protection is
+   off for the project or a Protection Bypass for Automation secret exists and
+   is appended to the webhook URL in Resend as
+   `?x-vercel-protection-bypass=<secret>`. The svix signature covers the body,
+   so a query string does not invalidate it. **This is a Vercel dashboard
+   setting and it needs Afaq.**
+5. **Delete the leftover test row** — one `purchase_requests` row,
+   `SOL-2026-0003` "Petroleo Diesel", whose description already says
+   `PRUEBA 4 ... Eliminar despues`. Afaq has confirmed it is his test row.
+   Back up first, write the delete as a scoped PostgREST call anchored on that
+   `request_id`, and re-snapshot the baseline afterwards
+   (`scripts/90_yunt_live_test_undo.py --snapshot`), because the purchasing
+   baseline moves from 1 to 0.
+6. **Delete the Python `yunt/`** (D-079), and in the same commit take
+   `CLAUDE.md`'s warning about it, and the `.venv-yunt` test conventions, out
+   with it.
+7. **Then run the three tests**, in `docs/GO_RUNBOOK.md`'s order. Everything
+   they need already exists: the archive, the fixture check, the undo and its
+   snapshot.
+
+**The earlier MCT-155 cleanup returned live to baseline exactly** — 5,195 invoices /
+11,746 lines / 461 companies / 4,002 catalog items / 78 categories. Backup
+`supabase_20260911T074329Z`. The
 MCT-155 test batch was written to live, read, judged and removed; the undo script
 `scripts/89_cleanup_mct155_test.py` restored the counts exactly and is the pattern
 to copy for the next live test (anchored on one fake supplier RUT, dry-run by
@@ -74,10 +177,9 @@ back as `[SENSITIVE]`. That is what produced the wrong note in earlier docs.
 `vercel env rm` is blocked by the permission classifier, so converting them to
 readable needs Afaq. He has said this is a readability preference, not a blocker.
 
-**Git.** `ML-model` on `yunt-backend`; the completed scope reconciliation is at
-`3e6a857`, `CLAUDE.md` was already modified when this session began, and this
-tracker checkpoint follows it. `milk-company` on `yunt` at `205451d`, 12 commits past its
-upstream. Three uncommitted performance files remain parked: dashboard and
+**Git.** `ML-model` is on `yunt-backend`; this checkpoint and its test fixtures
+follow `f3dff7b`. `milk-company` is on `yunt` at `7d8b632`, pushed and deployed.
+Three uncommitted performance files remain parked: dashboard and
 products cache experiments plus the analytics hint nesting fix. Do not mix them
 into feature work without reopening `MCT-166`.
 Parked branch `yunt-recurring-reports-v2` holds the V2 recurring-reports work
@@ -354,6 +456,80 @@ were in v1 until the product questions behind them turned out to be unanswered
 (D-069).
 ## Recent sessions
 
+### 2026-09-11 (c) — first live email chain, apply, and safe undo confirmation
+
+- The Anthropic key and Vercel automation bypass are active; the current `yunt`
+  branch deploys successfully and Resend reaches `/api/yunt/inbound`.
+- The seven-line invoice archive was backed up, ingested and reviewed. It made
+  four category proposals and two source-document flags.
+- A natural `Apply the Leasing change.` produced a confirmation. `SÍ, ADELANTE`
+  applied exactly one proposal and stored the complete before-state.
+- The first approval exposed a lost-email-context defect. The Yunt now resolves
+  the sealed action and target from its prior email before interpreting the reply.
+- Afaq's `Undo that.` correctly selected the one application and produced a
+  precise before/after confirmation; it is waiting for `SÍ, ADELANTE`.
+- Client mail was shortened and grounded in prior accounting evidence. Internal
+  confidence, model, UUID and database language is hidden (D-080).
+- Resend sometimes returns HTTP 200 before it supplies an RFC Message-ID. The
+  sender now retries that incomplete response; focused regression, the full
+  frontend check and the free review chain pass. Frontend commit `7d8b632` is
+  pushed, deployed Ready and the protected handler probe returns 405.
+- Backup: `backups/supabase_20260911T093640Z`. Baseline: 5,195 invoices, 11,746
+  lines, 461 companies, 4,002 catalog items, 78 categories, 0 purchase requests.
+- Gotcha: HTTP 200 from Resend's detail endpoint does not mean its threading
+  metadata is ready. A successful-looking response without `message_id` must be
+  retried, never treated as final and never repaired by resending.
+
+### 2026-09-11 (b) — step 0, and the four blockers it found before anything was spent
+
+- **The whole review chain now runs free.** `scripts/check-yunt-review-chain.ts`
+  takes six real DTEs through the real ingest and the real classifier, then
+  staging, chunking, the submit guard, proposals, the findings email, the
+  confirmation prompt and the apply/undo payloads, with a stub dispatcher and no
+  API call. Eight deliberately bad answers go in and every one is refused.
+  `DUMP_PACKET=1` writes the exact packet to `/tmp` to be read before sending.
+- **It found a real bug.** The live classifier answered `429 Rate exceeded.` to
+  a warm follow-up batch. `classify()` threw with no retry, the writer refuses
+  to store lines with no category, and on the email path that is a reception
+  report saying the attachment could not be read — nothing stored and no webhook
+  redelivery coming. Now retried three times on 429 and 5xx, never on a 4xx,
+  with `scripts/check-classifier-retry.ts` behind it.
+- **Four deployment blockers, none of them visible from the code.** No model
+  credential on Vercel; every deploy since 2026-09-10 rejected with
+  `Edge Runtime is not supported in services`; Deployment Protection 401ing
+  every request including Production, which is why the mailbox has never carried
+  a message; and 18 unpushed commits. The middleware one is fixed here
+  (`runtime: "nodejs"`), verified as far as local goes — the Edge function is
+  gone from the build and a signed-out request still redirects to `/es/login`.
+- **eve was giving the agent eleven tools nobody wrote**, including `bash`,
+  `web_fetch` and `ask_question`. Turned off by decision (D-078).
+- **Test 1 is prepared and verified without spending anything.**
+  `scripts/91_make_yunt_test_zip.py` builds six COMPRAS documents, seven lines,
+  fake RUT `77123456-7`, folios 999101-999106, ~928 tokens of packet. Three
+  lines are ones where the client's own filing disagrees with the classifier
+  (EXP-15.8, ADM-1.8, EXP-7.0), one carries a deliberate arithmetic error, one a
+  junk name, one is a clean auto-accept control. `check-yunt-test-fixture.ts`
+  reads it through the real pipeline against a read-only snapshot of live and
+  asserts every one of those.
+- **The undo was written before the write**, covers all three tests, and
+  dry-runs clean against a baseline it snapshots itself
+  (`scripts/90_yunt_live_test_undo.py`). Its purchasing anchor is
+  `created_via = 'yunt'`, **not** `title like 'PRUEBA%'` — the Yunt drafts the
+  title from the sender's own words, which is exactly how the 2026-09-10
+  leftover survived the documented filter.
+- **The precedent baseline reproduces exactly**, free and read-only: 97.2% of
+  proposals correct, 2.76% confidently wrong, 400 held-out human-confirmed lines.
+- **Decided:** direct Anthropic key rather than the gateway (→ D-077), eve's
+  default tools off (→ D-078), the Python `yunt/` deleted (→ D-079).
+- **Gotcha — a preview URL answering 401 is not a broken route.** Every
+  deployment in this project sits behind Vercel SSO, so the webhook never
+  arrived and nothing in the app ever ran. Probe the deployed URL before
+  debugging the handler.
+- **Gotcha — `scripts/` and `backups/` are gitignored in this repo.** The new
+  undo script, the fixture generator and the baseline snapshot live on disk
+  only, like `89_cleanup_mct155_test.py` before them.
+
+
 ### 2026-09-11 — everything that did not need the key, finished
 
 - **Finished what the previous session was interrupted mid-air doing.** Codex had
@@ -482,117 +658,3 @@ were in v1 until the product questions behind them turned out to be unanswered
   nothing at runtime. The second page was found by reading the server log while
   fixing the first, which is the argument for reading logs rather than trusting
   a green suite.
-
-### 2026-09-10 (c) — the deciding field, and reports that carry a file
-
-Run by Codex; it hit its usage limit mid-checkpoint, having replaced this file
-with a 41-line summary. The 900-line version was still uncommitted at `HEAD`, so
-nothing was lost; the work below was reconstructed from `git`, Linear and the
-migration ledger, not from its summary.
-
-- **`MCT-164` closed.** `dte.ts` keeps `<Transporte><Patente>`; `025` stores it
-  as `invoices.transport_plate` and ranks an exact `meter_code` match above
-  same-wording evidence in `yunt_category_precedent`. Afaq applied `025`.
-- **Measured, not asserted:** the fixed 400-line held-out run moved
-  confidently-wrong proposals from **5.75% to 2.76%**, 97.2% of proposals
-  correct. `scripts/87_measure_precedent_quality.py 400`.
-- **`MCT-152` built** (`5a03d23`): `reply_with_report` runs the aggregate query
-  itself and attaches a true PDF or one of five code-drawn charts, with the
-  filter, basis, credit-note rule and any truncation printed on the artefact.
-  Checked by `npx tsx scripts/check-yunt-report.ts`, targeted ESLint,
-  `npx tsc --noEmit`, and a Poppler render of the produced PDF. Not closed —
-  the acceptance run from a real stored question has not happened.
-- **`MCT-155` half built** (`0d20315`): the flag column exists in the explorer
-  tab and `024` is written and proved, but not run, so it displays nothing yet.
-- **Decided:** an exact meter match outranks wording similarity (→ D-068).
-- **Gotcha — Linear accepts a status change but rejects a detailed metrics
-  comment.** Its outbound-data policy blocks the numbers, not the transition.
-  Keep ticket comments short and product-level; put the measurements here.
-- **Gotcha — `025`'s own header says "run after `024`" and that is advice, not a
-  dependency.** It references `yunt_flags` nowhere. Read the migration before
-  believing its header.
-
-### 2026-09-10 (b) — the first real save, and three defects found by running it
-
-- **Afaq ran `021` and `022`.** Verified by 12 new `*_auth_*` policies and the
-  three aggregate functions. `MCT-158` closed.
-- **`MCT-159` closed: a signed-in person can upload and save.** Full round trip
-  through `/carga` on live — dry run, confirm, 5,195→5,196 invoices and
-  11,746→11,747 lines, then cleaned back to baseline exactly. The done-when
-  ("saves as that person, not the system") is proved by construction:
-  `.env.local` holds no service key, so the write could only pass RLS as
-  `authenticated`.
-- **`MCT-146` closed: replay proved inert.** The identical archive uploaded a
-  second time produced 0 new documents, no second batch claim, no duplicate
-  invoice, unchanged counts — and the reception report was still generated.
-  That is also the hard half of `MCT-160`, so the mailbox ticket is now only
-  waiting on Resend carrying a real message.
-- **`MCT-151` closed: the money figures were checked independently.** All 31
-  monthly groups across COMPRAS and VENTAS agree with a recomputation from the
-  raw rows — values, line counts and document counts. COMPRAS 4,852,221,504;
-  VENTAS 5,269,557,578. The top-N guard was checked too: 25 of 438 supplier
-  groups shown understate by CLP 954,276,937, and `overall_value` carries the
-  truth. Saved as `scripts/86_verify_aggregate_vs_raw.py`.
-- **`MCT-145` and `MCT-139` closed** on the evidence above. `MCT-139`'s
-  description asserted the direction "cannot be worked out from the file
-  itself"; that was corrected in place rather than left for a future session to
-  believe.
-- **Wrote `023`** and `check-settled-lines.sql`, which fails against `007`
-  (`FAIL legacy final_code overwritten: expected 6001, got 9999`) and passes
-  against `023`.
-- **Raised `MCT-162`** (direction from the DTE's RUTs, not the folder) and
-  **`MCT-163`** (four new pages are hardcoded Spanish: `carga`, `solicitudes`,
-  `ordenes`, `levantamiento`). Both deliberately deferred.
-- **`MCT-153` cannot be closed by building** — its done-when needs Cristian to
-  be refused by a live Yunt. Mechanism built, table live, zero rows, which is
-  correct. Noted on the ticket.
-- **`MCT-149`: the category proposal was measured, and the finding is about the
-  data, not the code.** Held out against the 7,927 human-confirmed lines (each
-  line removed from its own evidence), sample 400, fixed seed:
-  13.0% abstain, 92.8% of proposals correct, **5.75% confidently wrong** —
-  wrong while resting on same-wording evidence, which is the expensive kind.
-  Examining all 20 confident errors showed they are almost entirely **not**
-  search failures: **29 wordings are filed by humans under more than one
-  category, covering 1,507 of 7,927 lines (19%)**. `servicio publico` is
-  EXP-11.2:15 / EXP-11.1:15 / EXP-9.1:6 — a tie, so nothing can beat 50% there;
-  `gasolina 93` is 368/81 across an operating and an administrative category,
-  which looks deliberate rather than sloppy. The search performs near this
-  data's ceiling. Reproduce with
-  `scripts/87_measure_precedent_quality.py`.
-- **That conclusion was WRONG, and Afaq caught it within the hour.** He said to
-  check the description and the client convention before blaming the labels.
-  Both paid out. **There is no inconsistency at all.** All 29 wordings are
-  decided by a field the precedent search never looks at:
-  **23 wordings / 882 lines are determined by `meter_code` with zero
-  exceptions** — different electricity meters are different cost centres, so
-  `Servicio publico` correctly lands in three categories (3021→EXP-11.2 15/15,
-  124581→EXP-11.1 15/15, 28201→EXP-9.1 6/6). The remaining
-  **6 wordings / 625 lines are all petrol**, decided by the DTE's
-  `<Transporte><Patente>` — plate means `ADM-1.4`, jerrycan means `EXP-11.4`,
-  a rule already written in `docs/CLIENT_CONVENTIONS.md:55-61`. The raw XML
-  carries it (78 of 600 sampled COMPRAS invoices) and **`dte.ts` discards it** —
-  no reference to `Patente` or `Transporte` anywhere — so it never reaches the
-  database and the rule cannot be applied. Raised as **`MCT-164`** (High). The
-  `MCT-143` comment was **withdrawn**; nothing goes to the client.
-- **The lesson, worth more than the ticket:** apparent label noise was
-  100% deterministic once the right column was used. Before concluding the data
-  is inconsistent, check what else the row carries and read
-  `CLIENT_CONVENTIONS.md`. Statistics over `item_text` alone will manufacture
-  ambiguity that is not there.
-  `MCT-149` stays open only for its first half, which needs the Claude API key.
-- **Three project updates posted in Linear**, ASCII-only and pitched at a
-  product manager, per Afaq's standing request.
-- **Gotcha — a cleanup script must delete children before parents.** The first
-  cleanup run hit a 409: `yunt_batch_items.item_id` references
-  `invoice_items.item_id`. Nothing was deleted; the database refused. Order is
-  batch children, then lines, then invoices, then `yunt_batches`, then the
-  company row.
-- **Gotcha — the test invoice must reuse an existing supplier and existing
-  catalog wording.** Change only the folio on a real DTE. Then the only new rows
-  are the invoice, its lines, the batch, and Antillanca's own company row, which
-  makes the cleanup exact instead of sprawling. The DTE signature is never
-  verified, so editing the folio is safe.
-- **Gotcha — `unzip -l` shows uncompressed size.** The 5-file archive reads
-  6,920 there and is 4,673 bytes on disk. Not a truncation bug.
-
-
