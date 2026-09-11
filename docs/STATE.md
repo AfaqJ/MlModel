@@ -198,8 +198,7 @@ disagree, the decision log wins.
 - **Backlog, parked performance:** `MCT-166`; removing the broken cache stopped
   its error loop but did not satisfy its no-second-query done-when.
 - **Done:** `MCT-163` hardcoded Spanish and `MCT-167` the order-centric list
-  (`205451d`).
-- **Done:** `MCT-162` direction from the RUTs (D-072) and `MCT-155` quality
+  (`205451d`); `MCT-162` direction from the RUTs (D-072) and `MCT-155` quality
   flags, both closed 2026-09-11 with proof comments.
 - **Backlog, deferred on purpose:** `MCT-143` client data questions.
 

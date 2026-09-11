@@ -1,6 +1,14 @@
 """Turning one received ZIP into a set of new documents, plus an honest account
 of everything that did not make it.
 
+SUPERSEDED, 2026-09-11. Ingestion lives in ../milk-company/src/lib/ingest/.
+This module is the old Python reference; it is kept only because its tests still
+run, and it has already diverged. Everything below about direction is WRONG as of
+D-072: direction is read from the RUTs inside the document, and the folder is
+only a fallback for a document naming Antillanca on neither side. Measured across
+5,584 real DTEs, that case does not occur. Do not port logic out of this file and
+do not treat it as the current design.
+
 The direction (COMPRAS or VENTAS) comes from the folder, because it cannot be
 recovered from the file: the same document type appears on both sides and the
 classifier requires it. That is why the ZIP layout is part of the agreement with

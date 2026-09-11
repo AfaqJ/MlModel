@@ -15,9 +15,10 @@ uploads of 2026-08-19 landed and were verified independently against live.
 carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
-Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. The
-purchasing forms and read-only ingestion paths are pushed through `02d7a58`;
-three further commits are local and unpushed through `5a03d23`. Migrations
+Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. As of
+2026-09-11 it is at `2e496a6` with **18 commits unpushed** — push before starting
+new work there. Three performance files stay uncommitted and parked (`MCT-166`);
+do not fold them into feature work. Migrations
 `004`–`027` are live. `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
@@ -145,8 +146,11 @@ agent in Next.js on Vercel, not a Python service** (2026-09-09): tools are
 TypeScript files in `agent/tools/`, `approval` is a built-in field, and
 execution is durable. GCloud keeps only the classifier. The ingestion pipeline
 has been ported to `../milk-company/src/lib/ingest/` and verified by replaying
-the same corpus — identical numbers, asserted as equalities. `yunt/` here is the
-reference implementation and is deleted once the port completes.
+the same corpus — identical numbers, asserted as equalities. **`yunt/` here is
+the superseded Python reference and still exists** — its 49 tests still run, but
+it is NOT where ingestion lives any more. Change `../milk-company/src/lib/ingest/`
+and never `yunt/`; the two have already diverged, because D-072 (direction from
+the RUTs) landed only in the TypeScript.
 **Two doors reach one pipeline** — `/carga` takes an uploaded ZIP, and
 `POST /api/yunt/inbound` takes email through Resend; both call `runIngest`, and
 the upload page is permanent rather than a stopgap (D-060). Both routes now
@@ -228,7 +232,7 @@ collect the other's files.
 .venv-backend/bin/python -m pytest tests/ -q --ignore=tests/test_yunt_batch.py \
     --ignore=tests/test_yunt_dte.py --ignore=tests/test_yunt_inbound.py
 
-# yunt — 30 tests
+# yunt — 49 tests
 .venv-yunt/bin/python -m pytest tests/test_yunt_*.py -q
 ```
 

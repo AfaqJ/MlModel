@@ -54,6 +54,93 @@ category that was never offered, a malformed approval line — and confirm the
 system refuses rather than storing it. A guard that has never been seen to fail
 is not known to work.
 
+## Where test data comes from
+
+Afaq put two options on the table (2026-09-11), and they answer different
+questions. **Both are allowed. Whichever is used, the rows come out again.**
+
+### Option A — synthetic lines
+
+Invent a document with a fake supplier RUT and a folio that cannot collide.
+`scripts/89_cleanup_mct155_test.py` is the worked example: anchored on RUT
+`77123456-7` and folio `999001`, dry-run by default, and it verifies the row
+counts return to baseline itself.
+
+Best for testing **behaviour you can specify in advance** — a deliberate
+arithmetic error, a junk item name, an amount above the document total. You
+control the answer, so a wrong result is unambiguous.
+
+Weak for judging category quality: a made-up item has no precedent, so every
+line lands in review and proves nothing about proposals.
+
+### Option B — held-out real lines
+
+Afaq's framing: *"take a chunk out of the original lines that are already in the
+data, remove them from the data, then send them again so they act as new unseen
+data."*
+
+This is the stronger test of the **proposal**, because the client's own label is
+the answer key. It is also already implemented offline and read-only:
+
+    .venv-backend/bin/python scripts/87_measure_precedent_quality.py 400
+
+That script removes each line's own row from its evidence before proposing —
+the same rule the batch review follows, since a batch may not cite itself. Run
+it **before** spending anything on the API. It costs nothing and it is the
+honest measurement.
+
+The live variant — actually deleting rows and re-ingesting the file — tests
+something the script cannot: the real pipeline end to end, with a known answer
+at the end of it. Four things to know before doing that:
+
+1. **It is not truly "unseen".** Deleting `invoice_items` removes the precedent
+   evidence, which is the point — but the line's `item_catalog` row and any
+   `item_aliases` survive, so `product_lookup` and catalog matching still fire.
+   You are testing the proposal path with a known answer, not a cold start.
+   Making it genuinely unseen means removing the catalog entry too, which other
+   invoices reference. Do not.
+2. **The invoice row must go, not just the lines.** Dedup is
+   `seller_rut | document_type | folio`, so a re-sent document whose invoice row
+   still exists is rejected as already registered and nothing runs.
+3. **Choose lines whose label you trust.** Only the 7,927 human-confirmed rows
+   are an answer key. A row still in review is not a ground truth, it is a
+   guess, and grading against it measures nothing.
+4. **Take a small, contiguous, named chunk** — one supplier, one month — so the
+   undo is a single scoped delete and re-insert rather than a scatter.
+
+### Putting them back, which is not optional
+
+- **Back up first.** `.venv-backend/bin/python scripts/81_backup_supabase.py`.
+- **Write the undo before the write**, and dry-run it before it has anything to
+  find, so you know it runs. Verify the counts against baseline afterwards.
+- **Never leave a test row untagged.** A leftover `purchase_requests` row titled
+  "Petroleo Diesel" survived the 2026-09-10 purchasing tests because the `PRUEBA`
+  convention was not applied to it, and nothing in its content says it is a test.
+  A test row that reads as a real one is worse than no cleanup, because the next
+  person cannot tell.
+
+### What the backup does and does not cover
+
+`scripts/81_backup_supabase.py` exports **five tables** — `categories`,
+`companies`, `item_catalog`, `invoices`, `invoice_items` — as a logical row
+export over PostgREST, with a per-table row count and SHA, checked against what
+the server reports. The three most recent are byte-for-byte consistent at
+5,195 / 11,746 / 461 / 4,002 / 78, and live matches them exactly as of
+2026-09-11.
+
+It does **not** cover:
+
+- **schema, indexes or RLS policies** — it restores data, not structure, so it
+  is no defence against a bad migration;
+- `item_aliases` (**8 rows live, backed up nowhere**);
+- `purchase_requests`, `quotations`, `purchase_orders`;
+- any `yunt_*` table — batches, flags, proposals, applications.
+
+So for a held-out test on invoices and lines, the backup is a real safety net.
+For anything touching aliases, purchasing or the Yunt's own tables, it is not —
+write the undo and rely on that instead.
+
+
 ## The three real tests
 
 Each one closes several tickets because the tickets sit on one path. Do them in
