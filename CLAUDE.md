@@ -146,11 +146,9 @@ agent in Next.js on Vercel, not a Python service** (2026-09-09): tools are
 TypeScript files in `agent/tools/`, `approval` is a built-in field, and
 execution is durable. GCloud keeps only the classifier. The ingestion pipeline
 has been ported to `../milk-company/src/lib/ingest/` and verified by replaying
-the same corpus — identical numbers, asserted as equalities. **`yunt/` here is
-the superseded Python reference and still exists** — its 49 tests still run, but
-it is NOT where ingestion lives any more. Change `../milk-company/src/lib/ingest/`
-and never `yunt/`; the two have already diverged, because D-072 (direction from
-the RUTs) landed only in the TypeScript.
+the same corpus — identical numbers, asserted as equalities. The superseded
+Python reference was deleted under D-079; change
+`../milk-company/src/lib/ingest/` for ingestion work.
 **Two doors reach one pipeline** — `/carga` takes an uploaded ZIP, and
 `POST /api/yunt/inbound` takes email through Resend; both call `runIngest`, and
 the upload page is permanent rather than a stopgap (D-060). Both routes now
@@ -203,6 +201,7 @@ latin-1.
 | Need | File |
 |---|---|
 | Where we are, recent sessions, next steps | `docs/STATE.md` |
+| **What to run when the key is wired** | **`docs/GO_RUNBOOK.md`** |
 | **How to test against the real API without wasting it** | **`docs/YUNT_TEST_PLAN.md`** |
 | **What the Yunt will do, as sent to the team** | **`docs/Yunt_scope_v1.docx`** |
 | **How every manual case becomes automated** | **`docs/AUTOMATION_PLAN.md`** |
@@ -221,19 +220,13 @@ docs are deleted, not archived, and live only in git history.
 
 ## Conventions
 
-Three virtualenvs, deliberately. `.venv-train` has PyTorch; `.venv-backend` does
-not (PyTorch must never reach the production container); `.venv-yunt` has neither
-the ML stack nor its tests, because the Yunt service ships without them. The two
-suites therefore run separately — `tests/` holds both and neither venv can
-collect the other's files.
+Two virtualenvs, deliberately. `.venv-train` has PyTorch; `.venv-backend` does
+not, because PyTorch must never reach the production container. The Yunt's
+TypeScript checks run from `../milk-company/check.sh`.
 
 ```bash
 # classifier
-.venv-backend/bin/python -m pytest tests/ -q --ignore=tests/test_yunt_batch.py \
-    --ignore=tests/test_yunt_dte.py --ignore=tests/test_yunt_inbound.py
-
-# yunt — 49 tests
-.venv-yunt/bin/python -m pytest tests/test_yunt_*.py -q
+.venv-backend/bin/python -m pytest tests/ -q
 ```
 
 **Never re-load the whole database.** Every correction has been a small, named
