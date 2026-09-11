@@ -1910,3 +1910,35 @@ same class of defect as D-001 — a display asserting something the data does no
 say. `scripts/check-ingest-writer.ts` now pins both directions: the same batch
 reports one new counterparty when it is unknown and zero once it is on file.
 
+## D-075 — A flag's sentence is interface, not stored content
+
+**Date:** 2026-09-11 · **Decided by:** Afaq · **Model:** Claude (Opus 5)
+
+[D-072] and [D-071] split text by where it ends up: interface chrome follows the
+language switch, stored and client-facing content stays Spanish. A quality flag's
+`reason` and `suggested_action` fell on the stored side and so stayed Spanish in
+the English dashboard, which made the English page unreadable in exactly the
+place it mattered.
+
+They are now re-stated by the interface in the reader's language. The stored
+Spanish is untouched, because it is what goes to Cristian by email — that half of
+D-071 still holds. The carve-out is narrow: **text we generate about our own
+findings, addressed to whoever is reviewing, is interface** even when it happens
+to be persisted.
+
+**Why re-derive rather than store a translation:** `yunt_flags` keeps one row per
+group per type, and four different amount checks collapse into `amount_anomaly`.
+When several lines share one flag the stored reason describes only one of them
+("N lineas. Por ejemplo: …"). The line itself carries every number the sentence
+needs, so the interface names the condition on the row actually being displayed —
+**more accurate than the text it replaces**, not merely translated.
+
+The conditions are tested in the same order the ingest checks run, so the two can
+never disagree about a row. A flag written by the model (`source = 'yunt'`) is
+never re-stated: its wording is shown exactly as given.
+`scripts/check-yunt-dashboard-flags.ts` pins each branch, the ordering, the
+no-declared-total case, and the model-wording fallback.
+
+**Rejected:** a `detail jsonb` column plus a backfill. It is the cleaner long-term
+shape, but nothing needed it — the numbers were already on the line.
+
