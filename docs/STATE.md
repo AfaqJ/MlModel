@@ -47,6 +47,18 @@ gate this kind of release — it gates accepting a *retrain*, read off
 `model_card.json`, and there is no new model card. Rollback stays a traffic shift
 to `mlmodel-00014-lrp`, no rebuild.
 
+**Two defects on the upload confirmation screen, found 2026-09-11 and fixed
+(D-073, D-074).** The TypeScript ingest planned a `companies` row for *both*
+parties, so it would have written Antillanca into a table whose 461 live rows are
+all counterparties and none of them us — and an invoice references the other
+party, so that row would have been unreferenced. It now skips our own RUT, which
+closes the question this file had been carrying as waiting on Afaq. Separately,
+the "Proveedores nuevos" figure was the length of the whole upsert list rather
+than a count of what is actually new, so a month of familiar suppliers would have
+announced dozens of new ones on the screen you press Save from. Both were found by
+uploading a one-document batch and reading the screen, not by a test;
+`scripts/check-ingest-writer.ts` now pins both.
+
 **`MCT-164` is done and closed.** The apparent label inconsistency was
 deterministic all along. `dte.ts` now keeps `<Transporte><Patente>` as
 `invoices.transport_plate`, and `025` ranks an exact `meter_code` match above
@@ -136,9 +148,7 @@ its acceptance run from a real stored question; none currently exists.
 
 **Waiting on Afaq:** the Claude API key, which unblocks the first
 half of `MCT-149`, `MCT-165` and everything agent-shaped; a real email for
-`MCT-160`;
-a decision on whether TypeScript ingestion should create Antillanca as a company
-row when the old Python load never did.
+`MCT-160`.
 
 **`MCT-162` is done (D-072).** Direction is read from the RUTs in each document
 — Antillanca as `RUTEmisor` is a sale, as `RUTRecep` a purchase — and the

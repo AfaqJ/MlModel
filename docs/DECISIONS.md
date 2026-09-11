@@ -1867,3 +1867,46 @@ written.
 fallback. It needs a definition of a "garbage" folder name before it can decide
 anything, and the folder is the less trustworthy of the two signals in the first
 place.
+
+## D-073 — `companies` holds counterparties, never Antillanca itself
+
+**Date:** 2026-09-11 · **Decided by:** Afaq · **Model:** Claude (Opus 5)
+
+The TypeScript ingest wrote a `companies` row for **both** parties on every
+document, so it would have added Antillanca to a table that has never contained
+it. It no longer does: our own RUT is skipped when the write is planned.
+
+**Why:** an invoice links the *other* party — `companyRut` is the seller on a
+COMPRAS document and the buyer on a VENTAS one — so a row for Antillanca is one
+no invoice would ever reference, and it would appear as one of our own suppliers
+in every list built from this table. Live carries **461 company rows and none of
+them is Antillanca**, which is the meaning the old Python load established and
+the dashboard's "Contrapartes" count still assumes.
+
+This closes the question `STATE.md` had been carrying as waiting on Afaq. It is
+one condition to reverse if a later feature genuinely needs both parties stored.
+
+**Found by** uploading a one-document test batch through `/carga` and reading
+the confirmation screen, which offered to create *two* suppliers for an invoice
+with one.
+
+---
+
+## D-074 — "Proveedores nuevos" counts what does not exist yet
+
+**Date:** 2026-09-11 · **Decided by:** Claude (Opus 5)
+
+The upload confirmation screen showed the length of the whole upsert list, which
+carries every counterparty in the batch whether or not it is already on file. A
+month of invoices from entirely familiar suppliers would have announced dozens of
+"new" ones on the screen you press Save from.
+
+The upsert list itself is unchanged and still carries everyone, because the
+upsert also refreshes names and seller/buyer roles on existing rows. Only the
+number shown is now filtered against the companies already stored.
+
+**Why:** a confirmation screen that overstates what it is about to create is the
+same class of defect as D-001 — a display asserting something the data does not
+say. `scripts/check-ingest-writer.ts` now pins both directions: the same batch
+reports one new counterparty when it is unknown and zero once it is on file.
+
