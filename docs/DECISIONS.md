@@ -2062,3 +2062,32 @@ may perform that stated action.
 Client-facing reasoning uses accounting evidence: for example, how the same
 concept was previously filed, or what the supplied document supports. It does
 not mention model confidence, UUIDs, internal logs or database implementation.
+
+## D-081 — The review batch is resolved from the conversation, not from one message id
+
+**Date:** 2026-09-11 · **Decided by:** Claude · **Recorded by:** Claude (Opus 5)
+
+The proposal lookup matched a reply's `In-Reply-To` against
+`yunt_review_outbox.resend_message_id`. That column can hold Resend's **API
+uuid**, while a reply quotes the **RFC Message-ID** — two different identifier
+spaces that can never be equal. Measured on live on 2026-09-11: the lookup had
+never once succeeded, and the one apparent success on 2026-09-11 was a manual
+recovery script, not the agent. Resend can also answer a send before the
+Message-ID exists, leaving a null hop mid-thread.
+
+So resolution now walks the thread where the ids allow it, and otherwise falls
+back to the newest **sent** findings mail addressed to this sender under the
+same subject, with `Re:`/`Fwd:` prefixes stripped.
+
+**The tradeoff, stated plainly.** The fallback is a heuristic. Two batches
+mailed to the same person under the same subject would resolve to the newer
+one. That is accepted for v1 because the confirmation step restates the exact
+line and destination before anything is written, so a wrong batch is visible to
+the client before it can do damage — and because the alternative, a lookup that
+never works, is worse. Revisit if a client ever runs two open review threads
+under one subject.
+
+`resolveThreadReviewBatch` is the single place both the proposal listing and a
+user's category correction resolve through; they had duplicated the broken
+lookup. Guarded by `scripts/check-thread-batch-resolution.ts`, which fails
+against the pre-fix code.

@@ -5,47 +5,67 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The Yunt is deployed and receiving real Outlook email.** The Anthropic key,
-direct Sonnet 5 path, disabled eve default tools, Vercel protection bypass and
-latest `yunt` deployment are all proved. The deployed frontend is `7d8b632`;
-its protected inbound route is reachable and returns the expected 405 to a GET.
+**Test 1's classification cases are proved end to end on live email, and three
+real bugs were found and fixed doing it.** Every case ran through real Outlook
+mail, the deployed agent and live Supabase. Deployed frontend is `72562e8`.
 
-**Test 1 is in progress on a fully backed-up seven-line archive.** One proposed
-Leasing category was applied exactly once. A natural-language `Undo that.` was
-correctly restated as a short accounting confirmation showing EXP-15.8 as the
-current state and an uncategorised, review-pending state as the restore target.
-The application has not been undone yet: the next message is the exact first
-line `SÍ, ADELANTE` in that email thread.
+| Case | Result |
+|---|---|
+| Approve a proposal | Applied. `096b6abe`, ADM-1.4 → ADM-1.8, 1 row |
+| Reject one | Honoured, nothing touched, proposal left pending |
+| Correct with a category never suggested | Staged as EXP-2.6, confirmed, applied (`5b204210`) |
+| `Undo that.` | Restored all four recorded before-values exactly |
+| Approval phrase not on the first line | Refused; nothing applied |
 
-**Two live defects were found and fixed.** Replies initially lost the hidden
-proposal/application context, so an exact approval could not act; the thread now
-recovers it from the prior Yunt email. Resend can also return HTTP 200 before its
-RFC Message-ID is populated; `7d8b632` now retries that incomplete response so
-threading metadata is retained without resending or another model call. The full
-`./check.sh` and free `check-yunt-review-chain.ts` chain are green.
+**Nothing was ever written before a confirmation**, in any run. Applied rows
+carry `prediction_source = 'yunt_applied'` (D-066) and complete before-state.
 
-**Client wording is now accounting-first.** Natural language never writes by
-itself: the Yunt briefly states the exact records and before/after business state,
-grounds category reasoning in prior filings or the supplied document, then asks
-for `SÍ, ADELANTE`. It does not expose confidence, UUIDs, database failures or
-model internals.
+**The proposal lookup had never once worked on live** (D-081). It compared
+Resend's API uuid to an RFC Message-ID. The 2026-09-11 "Apply the Leasing
+change" success was Codex's manual recovery script, not the agent. Resolution
+now comes from the conversation, verified against live data before shipping.
 
-The live baseline before these tests is 5,195 invoices / 11,746 lines / 461
-companies / 4,002 catalog items / 78 categories / 0 purchase requests. The
-test backup is `backups/supabase_20260911T093640Z`; the undo is
-`scripts/90_yunt_live_test_undo.py`, dry-run by default, and preserves each
-changed row's original values.
+**Two more fixes in the same run.** The client-facing "Por qué" printed the
+model's filler — "esta categoría encaja mejor con el concepto" — because the
+grounded precedent we had already computed lost to whatever prose survived the
+internal-terms filter. It now leads with the precedent, satisfying D-080. And a
+category written the way the Yunt itself prints it — `EXP-2.6 Otros Gastos Salud
+Animal`, code and name together — was rejected as "no unique category"; the
+matcher now accepts code, name, or both.
+
+All three carry regression checks **verified to fail against the pre-fix code**:
+`check-thread-batch-resolution.ts`, and two new cases in
+`check-yunt-action-confirmation.ts`. `./check.sh` is green.
+
+**Still open, deliberately not spent on:** the stale-proposal refusal is
+enforced in SQL by `apply_yunt_proposal` and covered offline by
+`check-yunt-apply.ts`; it was not re-proved live. One proposal, G0002, is still
+pending on purpose and is the cheapest next live case.
+
+**A rejection is acknowledged but not recorded.** Saying "no, déjalo como está"
+leaves the proposal in `proposed`. Nothing is wrong with the data, but there is
+no stored trace that the client declined it.
+
+**Live is NOT at baseline — the test batch is still there**, and
+`scripts/90_yunt_live_test_undo.py` dry-runs clean against it: 6 invoices, 7
+lines, 6 catalog items, 1 batch, 14 inbound requests, 4 proposals, 3
+applications, 1 refusal. Both applied category changes sit on those test lines,
+so removing the batch removes them; no production row was touched. Backup
+`backups/supabase_20260911T093640Z`. Run with `--apply` when the batch is no
+longer needed.
+
+**`yunt_refusals` has its first row**, which is what `MCT-153` was waiting for.
+It has not been inspected.
 
 ## Next
 
-1. Send `SÍ, ADELANTE` on the pending undo email and verify the application,
-   proposal and invoice line return to their exact recorded before-state.
-2. Finish Test 1's remaining live acceptance cases: selective approval, a
-   user-supplied category, bare/quoted approval rejection and stale-proposal
-   refusal. Reuse the same archive; one judgement change per model run.
-3. Run the report/refusal thread (MCT-152/153), then purchasing (MCT-156/157).
-   Close only tickets whose done-when has been observed, and clean all test data
-   with the existing baseline-aware undo.
+1. Decide whether to clean the test batch now (`--apply`) or keep it for the
+   stale-proposal case and any further Test 1 work. G0002 is the live anchor.
+2. Close what the evidence supports. `MCT-150`'s approve-and-undo path is now
+   proved through real email; check each ticket's own done-when before closing,
+   and do not close on code alone.
+3. Then the report/refusal thread (MCT-152/153 — a real refusal now exists) and
+   purchasing (MCT-156/157).
 
 ## Prior checkpoint (superseded by `Now` above)
 
@@ -455,6 +475,31 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 were in v1 until the product questions behind them turned out to be unanswered
 (D-069).
 ## Recent sessions
+
+### 2026-09-11 (c) — Test 1's classification cases, and the lookup that had never worked
+
+- **Five cases proved on live email**: approve, reject, correct with a category
+  the Yunt never suggested, undo, and an approval phrase not on the first line.
+  Nothing was written before a confirmation in any of them.
+- **The proposal lookup had never once succeeded on live** (→ D-081). It matched
+  Resend's API uuid against the RFC Message-ID a reply quotes. The earlier
+  "Apply the Leasing change" success was a manual recovery script.
+- **The client-facing reason printed the model's filler**, because the grounded
+  precedent lost to whatever prose survived the internal-terms filter. It now
+  leads with the precedent, which is what D-080 already required.
+- **A category written as the Yunt prints it was rejected** — `EXP-2.6 Otros
+  Gastos Salud Animal` matched neither code nor name alone.
+- **Each fix carries a regression check verified to fail without it.** Two were
+  proved by stashing the fix and re-running.
+- **Gotcha — clicking Outlook's Send by coordinate silently saves a draft.**
+  Cost four minutes polling for an email that never left. Click it by element
+  ref; confirm it left by reading Sent Items, not by the compose window closing.
+- **Gotcha — a wide `git add` swept the parked MCT-166 files into a feature
+  commit.** Reverted in a follow-up and restored as uncommitted. Name the paths.
+- **Gotcha — poll for a NEW row, not for the newest row to settle.** Three
+  watchers exited immediately or timed out because the reply had already been
+  answered before the watcher sampled its baseline.
+
 
 ### 2026-09-11 (c) — first live email chain, apply, and safe undo confirmation
 
