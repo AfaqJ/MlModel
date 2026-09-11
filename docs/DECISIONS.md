@@ -1942,3 +1942,32 @@ no-declared-total case, and the model-wording fallback.
 **Rejected:** a `detail jsonb` column plus a backfill. It is the cleaner long-term
 shape, but nothing needed it — the numbers were already on the line.
 
+## D-076 — The Yunt reviews on Sonnet 5, high reasoning
+
+**Date:** 2026-09-11 · **Decided by:** Afaq
+
+`agent/agent.ts` was `anthropic/claude-opus-5`. It is now
+`anthropic/claude-sonnet-5`, reasoning unchanged at `high`.
+
+Afaq's reason: *"there isn't deep math or reasoning to do here, just checking at
+data or drafting mail or reports."* That agrees with what the file already
+argued for its reasoning setting — **the agent computes nothing.** Every number
+comes from a tool, and `submit_review_chunk` rejects any finding citing a
+category or an evidence row it was not given. The work is reading, matching and
+refusing.
+
+`reasoning: "high"` stays, because the failure that costs something is a
+confident wrong category or an invented purchasing fact, and that is what the
+reasoning budget guards. Cost was never the argument for lowering it.
+
+**Two places, and they must agree.** `agent/agent.ts` chooses the model;
+`YUNT_REVIEW_MODEL` in `src/lib/yunt/after-write.ts` is stamped on each review
+attempt as provenance. If they drift, a stored review names a model that did not
+write it.
+
+**What would reverse this:** review quality, not cost. Watch the first live runs
+for a category proposal that cites evidence it was not given, a refusal it should
+not have made, or a finding whose reasoning does not follow from the rows
+attached. Any of those is a reason to go back to Opus — it is one line in each
+file.
+
