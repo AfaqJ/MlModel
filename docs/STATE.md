@@ -5,67 +5,62 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**Test 1's classification cases are proved end to end on live email, and three
-real bugs were found and fixed doing it.** Every case ran through real Outlook
-mail, the deployed agent and live Supabase. Deployed frontend is `72562e8`.
+**The Yunt's classification, approval and query paths are proved on live email.**
+Deployed frontend `6716017`. Seven bugs were found by testing and fixed, each
+with a regression check verified to fail against the pre-fix code.
 
-| Case | Result |
+**Closed this session: `MCT-150`, `MCT-152`.**
+
+| Proved live | Evidence |
 |---|---|
-| Approve a proposal | Applied. `096b6abe`, ADM-1.4 → ADM-1.8, 1 row |
-| Reject one | Honoured, nothing touched, proposal left pending |
-| Correct with a category never suggested | Staged as EXP-2.6, confirmed, applied (`5b204210`) |
-| `Undo that.` | Restored all four recorded before-values exactly |
-| Approval phrase not on the first line | Refused; nothing applied |
+| Approve a proposal | `096b6abe` ADM-1.4 -> ADM-1.8; `5b204210` -> EXP-2.6 |
+| Reject one | Honoured, nothing touched |
+| Correct with an unsuggested category | Staged, restated, applied |
+| Undo | All four before-values restored exactly |
+| Approval phrase not on first line | Refused, nothing applied |
+| Query with no data (2024 fuel) | No data, no invented number, no empty Excel |
+| Query with data (2025 fuel) | CLP 93.146.229 = independent recount, to the peso |
+| Spreadsheet | Opened: BOM, semicolons, accents, filter header, rows sum exact |
+| PDF | Opened: qpdf clean, 12 months chronological, total exact |
+| Refusal | Out-of-scope question refused; genuine `yunt_refusals` row written |
 
-**Nothing was ever written before a confirmation**, in any run. Applied rows
-carry `prediction_source = 'yunt_applied'` (D-066) and complete before-state.
+**Bugs found and fixed (all shipped):**
+1. Proposal lookup had **never once worked on live** (D-081) - it compared
+   Resend's API uuid to an RFC Message-ID. Earlier "success" was a manual script.
+2. Client-facing reason printed model filler instead of the precedent (D-080).
+3. A category written as the Yunt prints it (`EXP-2.6 Otros Gastos Salud Animal`)
+   matched nothing.
+4. Report replies delivered literal `\n` instead of line breaks.
+5. Monthly chart ordered by amount, not by month - the line was not a trend.
+6. Charts capped at 10 rows, silently dropping April and June, no disclosure.
+7. A reply promised a PDF and carried an .svg.
 
-**The proposal lookup had never once worked on live** (D-081). It compared
-Resend's API uuid to an RFC Message-ID. The 2026-09-11 "Apply the Leasing
-change" success was Codex's manual recovery script, not the agent. Resolution
-now comes from the conversation, verified against live data before shipping.
-
-**Two more fixes in the same run.** The client-facing "Por qué" printed the
-model's filler — "esta categoría encaja mejor con el concepto" — because the
-grounded precedent we had already computed lost to whatever prose survived the
-internal-terms filter. It now leads with the precedent, satisfying D-080. And a
-category written the way the Yunt itself prints it — `EXP-2.6 Otros Gastos Salud
-Animal`, code and name together — was rejected as "no unique category"; the
-matcher now accepts code, name, or both.
-
-All three carry regression checks **verified to fail against the pre-fix code**:
-`check-thread-batch-resolution.ts`, and two new cases in
-`check-yunt-action-confirmation.ts`. `./check.sh` is green.
-
-**Still open, deliberately not spent on:** the stale-proposal refusal is
-enforced in SQL by `apply_yunt_proposal` and covered offline by
-`check-yunt-apply.ts`; it was not re-proved live. One proposal, G0002, is still
-pending on purpose and is the cheapest next live case.
-
-**A rejection is acknowledged but not recorded.** Saying "no, déjalo como está"
-leaves the proposal in `proposed`. Nothing is wrong with the data, but there is
-no stored trace that the client declined it.
-
-**Live is NOT at baseline — the test batch is still there**, and
-`scripts/90_yunt_live_test_undo.py` dry-runs clean against it: 6 invoices, 7
-lines, 6 catalog items, 1 batch, 14 inbound requests, 4 proposals, 3
-applications, 1 refusal. Both applied category changes sit on those test lines,
-so removing the batch removes them; no production row was touched. Backup
-`backups/supabase_20260911T093640Z`. Run with `--apply` when the batch is no
-longer needed.
-
-**`yunt_refusals` has its first row**, which is what `MCT-153` was waiting for.
-It has not been inspected.
+**Live is NOT at baseline.** Test batch still present;
+`scripts/90_yunt_live_test_undo.py` dry-runs clean (6 invoices, 7 lines, 1 batch,
+~20 inbound requests, 4 proposals, 3 applications, 2 refusals). Both applied
+category changes sit on test lines; no production row was touched. Backup
+`backups/supabase_20260911T093640Z`. Run `--apply` when testing is finished.
 
 ## Next
 
-1. Decide whether to clean the test batch now (`--apply`) or keep it for the
-   stale-proposal case and any further Test 1 work. G0002 is the live anchor.
-2. Close what the evidence supports. `MCT-150`'s approve-and-undo path is now
-   proved through real email; check each ticket's own done-when before closing,
-   and do not close on code alone.
-3. Then the report/refusal thread (MCT-152/153 — a real refusal now exists) and
-   purchasing (MCT-156/157).
+1. **`MCT-149`** needs one fresh batch producing a grouped findings email with
+   the NEW grounded wording. The old one printed the vague text. Build a ZIP with
+   **new folios** (`scripts/91_make_yunt_test_zip.py`; reusing folios 999101-06
+   dedups to zero and produces no proposals). Emailing it also exercises
+   `MCT-141` / `MCT-160`.
+2. **`MCT-153` cannot close yet.** A genuine refusal now exists, but its
+   done-when requires something to be **built because of** the list. Not met.
+3. **`MCT-156` / `MCT-157`** purchasing by email - untested.
+4. Not re-proved live, covered by SQL + offline checks: stale-proposal refusal,
+   double approval.
+
+**Ticket count: 25 total - 17 Done, 5 In Progress (141, 142, 149, 153, 156, 157
+minus the two closed), 1 Todo (160), 2 parked (154, 143).**
+
+**Gotchas worth keeping.** Click Outlook's Send by element ref, never by
+coordinate - a coordinate click silently saves a draft. Poll for a NEW request
+id, not for the newest row to settle. Name paths in `git add`; a wide add swept
+the parked MCT-166 files into a feature commit.
 
 ## Prior checkpoint (superseded by `Now` above)
 
@@ -475,6 +470,20 @@ ingestion from the Audisoft API, which is blocked on credentials that return 401
 were in v1 until the product questions behind them turned out to be unanswered
 (D-069).
 ## Recent sessions
+
+### 2026-09-12 - queries, reports and charts proved; seven bugs fixed
+
+- **`MCT-150` and `MCT-152` closed** on live evidence with proof comments.
+- **Money semantics verified to the peso**: the Yunt excluded CLP 2.218.982 of
+  credit notes and said so; the naive recount was the wrong one.
+- **Three chart/report defects found by opening the delivered files**: value
+  ordering on a time series, two months dropped silently, and a body promising a
+  PDF while carrying an .svg. All fixed with `check-yunt-report-periods.ts`.
+- **Escaped newlines** reached the client in a report reply; normalised at the
+  one point all mail leaves through, and in the stored copy too.
+- **Lesson**: opening the artefact found three bugs that every green check and
+  every correct figure in the email body had missed.
+
 
 ### 2026-09-11 (c) — Test 1's classification cases, and the lookup that had never worked
 
