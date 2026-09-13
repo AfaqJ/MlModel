@@ -12,20 +12,22 @@ the reception mismatch as folio `999205`: 40 × CLP 9,000 (CLP 360,000) versus
 the supplier-stated CLP 412,000. This was flagged without changing the
 invoice. No live data or application code changed in this documentation pass.
 
-New feedback reopened `MCT-142`, `MCT-152`, `MCT-156`, and `MCT-157`. Commit
-`562e1c8` is pushed to the `yunt` preview branch: replies now retain the opening
-email as their Outlook thread parent, an order PDF is emailed to the requester,
-and migration `029` stops an over-threshold order before confirmation if it has
-fewer than two quotations. Local regression checks and the production build
-pass. Migration `029` still needs applying in Supabase before live proof.
+New feedback briefly reopened `MCT-142`, `MCT-152`, `MCT-156`, and `MCT-157`.
+The historical thread already meets `MCT-156`'s stated live acceptance condition,
+so it is Done again. Commits `7837e39` and `f801250` are pushed to the `yunt`
+preview branch: a Q&A answer renews the exact confirmation, report attachments
+are now styled XLSX/PDF deliverables, and prior `562e1c8` preserves the opening
+email as the Outlook thread parent and emails an order PDF to the requester.
+Migration `029` still needs applying in Supabase before new purchase-order live
+proof.
 
 ## Now
 
 **The Yunt's classification, approval, query and purchasing paths are proved on
-live email.** Deployed frontend `6716017`, with the purchase-thread context fix
-on the `yunt` preview. Live testing found and fixed the prior rendering and
-lookup defects plus two purchase-thread context defects; every code fix has a
-regression check.
+live email.** The tested changes are on the `yunt` preview branch at `f801250`;
+the new report format and purchase-order preflight still need fresh live proof.
+Live testing found and fixed the prior rendering and lookup defects plus two
+purchase-thread context defects; every code fix has a regression check.
 
 **Closed on live evidence: `MCT-150`, `MCT-141`, `MCT-149`, `MCT-160`, and
 `MCT-153`.**
@@ -66,16 +68,16 @@ record is `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md`.
 ## Next
 
 1. Apply `milk-company/supabase/029_yunt_order_quotation_preflight.sql`, then
-   live-test the opening-email thread, the pre-confirmation two-quotation
-   refusal, and the purchase-order PDF email. This is `MCT-156`/`MCT-157`.
-2. Rebuild `MCT-152` report artifacts as presentable templates: a real styled
-   workbook, a designed PDF, and polished charts. The present CSV/basic-PDF/SVG
-   files are correct but do not meet the presentation requirement.
+   live-test the pre-confirmation two-quotation refusal and the purchase-order
+   PDF email. This is `MCT-157`.
+2. Send one fresh report request and open its styled XLSX, designed PDF and
+   chart attachment from the received email. This is the remaining `MCT-152`
+   live acceptance, not more feature work.
 3. `MCT-165` stays in Backlog. It would inspect uploaded quotation files but
    cannot prove a supplier's price is truthful and is not needed for v1.
 
-**Ticket count: 25 total - 19 Done, 4 In Progress (`MCT-142`, `MCT-152`,
-`MCT-156`, `MCT-157`), 2 parked (`MCT-154`, `MCT-143`).**
+**Ticket count: 25 total - 20 Done, 3 In Progress (`MCT-142`, `MCT-152`,
+`MCT-157`), 2 parked (`MCT-154`, `MCT-143`).**
 
 **Gotchas worth keeping.** Click Outlook's Send by element ref, never by
 coordinate - a coordinate click silently saves a draft. Poll for a NEW request

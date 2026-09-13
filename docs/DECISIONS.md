@@ -2114,3 +2114,16 @@ correct data. A report sent by the Yunt must be a readable, presentable business
 document: a real styled spreadsheet, a designed PDF, and a chart with an
 intentional layout. The model chooses a supported query and output type only;
 code owns all figures and the fixed document templates.
+
+## D-084 — A confirmation remains direct-reply-bound after Q&A
+
+**Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+An approval phrase is valid only as a direct reply to the code-generated
+confirmation message. A same-thread reply after intervening Q&A must not reach
+back silently to a two-message-old proposal. When the person asks a question
+instead of approving, Yunt answers briefly and sends a fresh restatement of the
+same change. The person can then reply directly to that fresh confirmation.
+
+This is deliberate: it preserves a visible, exact before/after state at the
+moment of approval and stops an ordinary “yes” from authorising an old change.
