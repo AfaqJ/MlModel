@@ -12,6 +12,13 @@ the reception mismatch as folio `999205`: 40 × CLP 9,000 (CLP 360,000) versus
 the supplier-stated CLP 412,000. This was flagged without changing the
 invoice. No live data or application code changed in this documentation pass.
 
+New feedback reopened `MCT-142`, `MCT-152`, `MCT-156`, and `MCT-157`. Commit
+`562e1c8` is pushed to the `yunt` preview branch: replies now retain the opening
+email as their Outlook thread parent, an order PDF is emailed to the requester,
+and migration `029` stops an over-threshold order before confirmation if it has
+fewer than two quotations. Local regression checks and the production build
+pass. Migration `029` still needs applying in Supabase before live proof.
+
 ## Now
 
 **The Yunt's classification, approval, query and purchasing paths are proved on
@@ -20,8 +27,8 @@ on the `yunt` preview. Live testing found and fixed the prior rendering and
 lookup defects plus two purchase-thread context defects; every code fix has a
 regression check.
 
-**Closed on live evidence: `MCT-150`, `MCT-152`, `MCT-141`, `MCT-149`,
-`MCT-160`, `MCT-156`, `MCT-157`, `MCT-153`, `MCT-142`.**
+**Closed on live evidence: `MCT-150`, `MCT-141`, `MCT-149`, `MCT-160`, and
+`MCT-153`.**
 
 | Proved live | Evidence |
 |---|---|
@@ -58,16 +65,17 @@ record is `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md`.
 
 ## Next
 
-1. Monitor real use. The refusal list is future product input, not a release
-   blocker; a safe refusal and one original-wording log entry complete `MCT-153`.
-2. `MCT-165` stays in Backlog. It would check whether uploaded quotation files
-   are genuine; it cannot prove a supplier's price is truthful, and it is not
-   required for v1's written-quotation flow.
-3. Not re-proved live, covered by SQL + offline checks: stale-proposal refusal,
-   double approval.
+1. Apply `milk-company/supabase/029_yunt_order_quotation_preflight.sql`, then
+   live-test the opening-email thread, the pre-confirmation two-quotation
+   refusal, and the purchase-order PDF email. This is `MCT-156`/`MCT-157`.
+2. Rebuild `MCT-152` report artifacts as presentable templates: a real styled
+   workbook, a designed PDF, and polished charts. The present CSV/basic-PDF/SVG
+   files are correct but do not meet the presentation requirement.
+3. `MCT-165` stays in Backlog. It would inspect uploaded quotation files but
+   cannot prove a supplier's price is truthful and is not needed for v1.
 
-**Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
-`MCT-143`).**
+**Ticket count: 25 total - 19 Done, 4 In Progress (`MCT-142`, `MCT-152`,
+`MCT-156`, `MCT-157`), 2 parked (`MCT-154`, `MCT-143`).**
 
 **Gotchas worth keeping.** Click Outlook's Send by element ref, never by
 coordinate - a coordinate click silently saves a draft. Poll for a NEW request

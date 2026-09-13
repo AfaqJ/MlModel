@@ -2104,3 +2104,13 @@ not a condition for closing this implementation ticket.
 `MCT-165`, which checks whether an uploaded file looks like a genuine quotation,
 remains in Backlog. V1 accepts a quotation recorded as a stated price in email,
 and file inspection cannot prove that a supplier's claimed price is true.
+
+## D-083 — Reports are deliverables, not data dumps
+
+**Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+`MCT-152` is not complete merely because its CSV, PDF and chart open with
+correct data. A report sent by the Yunt must be a readable, presentable business
+document: a real styled spreadsheet, a designed PDF, and a chart with an
+intentional layout. The model chooses a supported query and output type only;
+code owns all figures and the fixed document templates.

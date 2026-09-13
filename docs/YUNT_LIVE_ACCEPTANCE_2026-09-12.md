@@ -196,9 +196,11 @@ by Antillanca, not by Yunt.
 
 | Status | Meaning |
 |---|---|
-| 23 tickets done | All scoped Yunt capabilities above have live evidence. |
+| 19 tickets done | Earlier capability evidence remains valid; four tickets reopened for new acceptance requirements. |
 | `MCT-153` done | Its completed scope is safe refusal plus recording the original rejected wording once. Later review of real refusals and feature selection is separate product work. |
-| `MCT-142` done | Parent ticket; the scoped email assistant capabilities are complete and live-tested. |
+| `MCT-142` in progress | Parent reopened while the three changed child capabilities are re-proved. |
+| `MCT-152` in progress | The files open and contain correct figures, but their CSV/basic-PDF/SVG presentation does not yet meet the required document standard. |
+| `MCT-156` / `MCT-157` in progress | The preview now retains replies in the opening Outlook thread; it will warn about the two-quotation rule before confirmation and email the purchase-order PDF. Migration `029` plus live proof remain. |
 | `MCT-154`, `MCT-143` parked | Deliberately deferred, not silently dropped. |
 | `MCT-165` separate Backlog | It would validate that an uploaded file looks like a quotation before that file counts toward the two-quotation rule. It is deferred: a written/telephone quotation is already valid v1 input, and file inspection cannot prove a supplier's price is truthful. |
 
