@@ -5,11 +5,14 @@ lives in `DECISIONS.md`.
 
 ## Now
 
-**The Yunt's classification, approval and query paths are proved on live email.**
-Deployed frontend `6716017`. Seven bugs were found by testing and fixed, each
-with a regression check verified to fail against the pre-fix code.
+**The Yunt's classification, approval, query and purchasing paths are proved on
+live email.** Deployed frontend `6716017`, with the purchase-thread context fix
+on the `yunt` preview. Live testing found and fixed the prior rendering and
+lookup defects plus two purchase-thread context defects; every code fix has a
+regression check.
 
-**Closed this session: `MCT-150`, `MCT-152`.**
+**Closed on live evidence: `MCT-150`, `MCT-152`, `MCT-141`, `MCT-149`,
+`MCT-160`, `MCT-156`, `MCT-157`.**
 
 | Proved live | Evidence |
 |---|---|
@@ -23,6 +26,10 @@ with a regression check verified to fail against the pre-fix code.
 | Spreadsheet | Opened: BOM, semicolons, accents, filter header, rows sum exact |
 | PDF | Opened: qpdf clean, 12 months chronological, total exact |
 | Refusal | Out-of-scope question refused; genuine `yunt_refusals` row written |
+| Fresh inbound ZIP | Folios `999201`–`999206`: 6 new documents, 7 lines and a reception report |
+| Grouped findings email | One Sonnet review: 3 concrete flags, 4 unapplied proposals, each citing its prior records |
+| Purchase request | Missing year prompted a question; exact confirmation opened `SOL-2026-0001`, no supplier contacted |
+| Purchase order | One quote at CLP 600,000 genuinely refused; two quotes then exact confirmation created `OC-2026-0001` and closed the request |
 
 **Bugs found and fixed (all shipped):**
 1. Proposal lookup had **never once worked on live** (D-081) - it compared
@@ -35,32 +42,28 @@ with a regression check verified to fail against the pre-fix code.
 6. Charts capped at 10 rows, silently dropping April and June, no disclosure.
 7. A reply promised a PDF and carried an .svg.
 
-**Live is NOT at baseline.** Test batch still present;
-`scripts/90_yunt_live_test_undo.py` dry-runs clean (6 invoices, 7 lines, 1 batch,
-~20 inbound requests, 4 proposals, 3 applications, 2 refusals). Both applied
-category changes sit on test lines; no production row was touched. Backup
-`backups/supabase_20260911T093640Z`. Run `--apply` when testing is finished.
+**Live is back at baseline exactly.** The synthetic invoice batches, category
+changes, purchasing request/quotes/order, and test inbound mail records were
+all removed. No production invoice row was touched. The complete acceptance
+record is `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md`.
 
 ## Next
 
-1. **`MCT-149`** needs one fresh batch producing a grouped findings email with
-   the NEW grounded wording. The old one printed the vague text. Build a ZIP with
-   **new folios** (`scripts/91_make_yunt_test_zip.py`; reusing folios 999101-06
-   dedups to zero and produces no proposals). Emailing it also exercises
-   `MCT-141` / `MCT-160`.
-2. **`MCT-153` cannot close yet.** A genuine refusal now exists, but its
+1. **`MCT-153` cannot close yet.** A genuine refusal now exists, but its
    done-when requires something to be **built because of** the list. Not met.
-3. **`MCT-156` / `MCT-157`** purchasing by email - untested.
-4. Not re-proved live, covered by SQL + offline checks: stale-proposal refusal,
+2. Not re-proved live, covered by SQL + offline checks: stale-proposal refusal,
    double approval.
 
-**Ticket count: 25 total - 17 Done, 5 In Progress (141, 142, 149, 153, 156, 157
-minus the two closed), 1 Todo (160), 2 parked (154, 143).**
+**Ticket count: 25 total - 21 Done, 2 In Progress (`MCT-142`, `MCT-153`),
+2 parked (`MCT-154`, `MCT-143`).**
 
 **Gotchas worth keeping.** Click Outlook's Send by element ref, never by
 coordinate - a coordinate click silently saves a draft. Poll for a NEW request
 id, not for the newest row to settle. Name paths in `git add`; a wide add swept
-the parked MCT-166 files into a feature commit.
+the parked MCT-166 files into a feature commit. In the live-test rollback,
+application rows are reached through their application (not a batch id), catalog
+records must be proven absent from the pre-test identity snapshot before deletion,
+and purchase-order drafts must be deleted before their order.
 
 ## Prior checkpoint (superseded by `Now` above)
 
@@ -474,6 +477,14 @@ were in v1 until the product questions behind them turned out to be unanswered
 ### 2026-09-12 - queries, reports and charts proved; seven bugs fixed
 
 - **`MCT-150` and `MCT-152` closed** on live evidence with proof comments.
+- **Fresh invoice-email acceptance passed**: new folios `999201`–`999206` made
+  the real reception report, then a single Sonnet review made 3 flags and 4
+  grounded, unapplied category proposals. The findings email names the actual
+  precedent count, category and wording rather than model filler.
+- **`MCT-141`, `MCT-149` and `MCT-160` closed** in Linear from that evidence.
+- **Two cheap harness fixes:** the fixture check accepts an explicit new folio
+  base; preflight no longer blocks the valid direct-Anthropic path on an unused,
+  expired Vercel OIDC token. `preflight-go.ts` printed `all clear` against live.
 - **Money semantics verified to the peso**: the Yunt excluded CLP 2.218.982 of
   credit notes and said so; the naive recount was the wrong one.
 - **Three chart/report defects found by opening the delivered files**: value
