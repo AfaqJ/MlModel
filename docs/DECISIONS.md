@@ -2091,3 +2091,16 @@ under one subject.
 user's category correction resolve through; they had duplicated the broken
 lookup. Guarded by `scripts/check-thread-batch-resolution.ts`, which fails
 against the pre-fix code.
+
+## D-082 — Safe refusal and one faithful log entry complete the refusal feature
+
+**Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+`MCT-153` is complete when the Yunt refuses an out-of-scope question safely and
+records the user's original wording once. Reviewing later real refusals and
+choosing a feature to build from them remains ordinary product discovery; it is
+not a condition for closing this implementation ticket.
+
+`MCT-165`, which checks whether an uploaded file looks like a genuine quotation,
+remains in Backlog. V1 accepts a quotation recorded as a stated price in email,
+and file inspection cannot prove that a supplier's claimed price is true.

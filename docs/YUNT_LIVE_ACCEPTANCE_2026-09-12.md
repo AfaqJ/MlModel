@@ -196,11 +196,11 @@ by Antillanca, not by Yunt.
 
 | Status | Meaning |
 |---|---|
-| 21 tickets done | All tested Yunt capabilities above have live evidence. |
-| `MCT-153` active | It needs real user refusals to accumulate and a new capability chosen from that real backlog. A synthetic test request is not honest evidence for this ticket. |
-| `MCT-142` active | Parent ticket; it remains open while `MCT-153` is open. |
+| 23 tickets done | All scoped Yunt capabilities above have live evidence. |
+| `MCT-153` done | Its completed scope is safe refusal plus recording the original rejected wording once. Later review of real refusals and feature selection is separate product work. |
+| `MCT-142` done | Parent ticket; the scoped email assistant capabilities are complete and live-tested. |
 | `MCT-154`, `MCT-143` parked | Deliberately deferred, not silently dropped. |
-| `MCT-165` separate | It must validate that an uploaded file is actually a quotation before that file counts toward the two-quotation rule. Written/telephone quotes were tested; this file-validation capability was not. |
+| `MCT-165` separate Backlog | It would validate that an uploaded file looks like a quotation before that file counts toward the two-quotation rule. It is deferred: a written/telephone quotation is already valid v1 input, and file inspection cannot prove a supplier's price is truthful. |
 
 ## Final data safety result
 

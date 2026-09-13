@@ -21,7 +21,7 @@ lookup defects plus two purchase-thread context defects; every code fix has a
 regression check.
 
 **Closed on live evidence: `MCT-150`, `MCT-152`, `MCT-141`, `MCT-149`,
-`MCT-160`, `MCT-156`, `MCT-157`.**
+`MCT-160`, `MCT-156`, `MCT-157`, `MCT-153`, `MCT-142`.**
 
 | Proved live | Evidence |
 |---|---|
@@ -58,17 +58,16 @@ record is `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md`.
 
 ## Next
 
-1. **`MCT-153` cannot close yet.** A genuine refusal now exists, but its
-   done-when requires something to be **built because of** the list. Not met.
-2. **`MCT-165` is the next buildable backlog item, outside the 25-ticket
-   count.** Before implementation, decide whether an uploaded quotation that
-   looks doubtful should block issuance or only warn and be recorded. The model
-   must never become the database's final gate.
+1. Monitor real use. The refusal list is future product input, not a release
+   blocker; a safe refusal and one original-wording log entry complete `MCT-153`.
+2. `MCT-165` stays in Backlog. It would check whether uploaded quotation files
+   are genuine; it cannot prove a supplier's price is truthful, and it is not
+   required for v1's written-quotation flow.
 3. Not re-proved live, covered by SQL + offline checks: stale-proposal refusal,
    double approval.
 
-**Ticket count: 25 total - 21 Done, 2 In Progress (`MCT-142`, `MCT-153`),
-2 parked (`MCT-154`, `MCT-143`).**
+**Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
+`MCT-143`).**
 
 **Gotchas worth keeping.** Click Outlook's Send by element ref, never by
 coordinate - a coordinate click silently saves a draft. Poll for a NEW request
