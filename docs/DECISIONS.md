@@ -2149,3 +2149,23 @@ valid quantity, show a one-click latest-price × quantity estimate. It is always
 an explicit choice: typing a quantity, changing it, or selecting an item must
 never replace a budget the buyer entered. Historic invoice price is planning
 context, not a committed supplier price.
+
+## D-087 — A reversible real sample for the team, with additive email access
+
+**Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-6)
+
+Afaq authorized backing up and removing a small set of existing invoices so
+the team can email the original XML as unseen input. Remove complete documents
+and their lines, not just lines (the invoice header would still deduplicate).
+Keep the catalog and other precedent rows. The handover deliberately leaves
+5 invoices / 12 lines absent, with a full 23-table snapshot and a proved exact
+restore. This tests ingestion, not held-out model generalization. One volunteer
+sends the ZIP; subsequent sends are duplicates. After team testing begins,
+cleanup must name that run's exact records instead of assuming all Yunt-created
+purchases are disposable.
+
+Email access includes `cristian.anguita@gmail.com` and the exact
+`@mctechstudio.com` domain. The original sensitive Preview allowlist cannot be
+read back, so an additive variable preserves it and the shared inbound/outbound
+gate combines both lists. Domain matching excludes subdomains and lookalikes.
+Dashboard accounts remain a separate access mechanism.

@@ -5,6 +5,23 @@ lives in `DECISIONS.md`.
 
 ## Session — 2026-09-13
 
+Team handover prepared after acceptance. Verified the saved baseline, took a
+fresh full 23-table snapshot, extracted 5 unchanged original XML invoices / 12
+lines, and detached only those exact IDs. Proved restore to identical row hashes,
+then detached again for tomorrow.
+The five core tables also match the independent 2026-09-11 backup field for
+field (zero changed/added/removed rows before detachment). Snapshot/undo controls:
+`backups/yunt_team_handover_20260913/` and `scripts/91_yunt_team_sample.py`.
+The real app XML parser confirms all identities/amounts; no paid model call.
+
+Preview `a16fc51` is Ready: exact @mctechstudio.com matching and Cristian's Gmail
+are added through `YUNT_ADDITIONAL_ALLOWED_ADDRESSES`; the unreadable existing
+allowlist stays untouched. Focused checks and build passed. Teams copy, HTML
+talking script, field meanings and reference labels live in
+`handover/yunt-team-test/`. D-087 records the changed test boundary. Gotcha:
+Vercel sensitive values cannot be read back; an additive setting avoided
+overwriting unknown recipients. Browser policy blocked local HTML visual QA.
+
 Delivered a boss-facing English HTML capability guide at
 `docs/YUNT_CAPABILITY_GUIDE.html`. It states the supported workflows,
 hard guardrails, limitations and concrete answers to the operational “what if?”
@@ -35,7 +52,8 @@ quantity changed. Regression check, ESLint and production build passed.
 ## Now
 
 **The Yunt's classification, approval, query and purchasing paths are proved on
-live email.** The tested changes are on the `yunt` preview branch at `8bec6c2`.
+live email.** Current `yunt` Preview is `a16fc51` (team email access); it includes
+the `28c49b7` recent-price budget feature and `8bec6c2` purchase preflight repair.
 Every reported rendering, lookup and purchase-thread defect has a focused
 regression check, and the final report/purchase proof has been received from the
 actual deployed agent.
@@ -77,21 +95,29 @@ buyer must press the button to use it; no input is automatically changed.
 6. Charts capped at 10 rows, silently dropping April and June, no disclosure.
 7. A reply promised a PDF and carried an .svg.
 
-**Live is back at baseline exactly.** The synthetic invoice batches, category
-changes, purchasing request/quotes/order, report test requests and test inbound
-mail records were all removed. No production invoice row was touched. The
+**Live is baseline minus the agreed handover sample.** Prior synthetic tests
+were fully cleaned. Five real invoice headers and their twelve lines are now
+backed up and intentionally absent: 5,190 invoices / 11,734 lines. All other
+tracked rows match the full fresh snapshot by hash. The team ZIP restores their
+content through ingest; it may assign new IDs and predictions. This is not
+equivalent to an exact original-row restore. Use the maintainer guide for that.
+The
 acceptance records are `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md` and
 `docs/YUNT_LIVE_ACCEPTANCE_2026-09-13.md`; the presenter-ready guide is
 `docs/YUNT_CAPABILITY_GUIDE.html`.
 
 ## Next
 
-1. Keep `MCT-165` in Backlog. File inspection cannot prove a supplier's quoted
+1. Share `handover/yunt-team-test/TEAMS_MESSAGE.md` with the guide and invoice
+   ZIP. One volunteer ingests it once; others try focused reports/purchases.
+   Retain conversation and SOL/OC identifiers for later scoped cleanup.
+2. After team testing, inspect exact new identities before cleanup. The old
+   `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are disposable;
+   do not use that assumption once team work begins. Preserve both snapshots.
+3. Keep `MCT-165` in Backlog. File inspection cannot prove a supplier's quoted
    price truthful and is not needed for v1.
-2. Treat the HTML capability guide as the handover/reference for demonstrations;
+4. Treat the HTML capability guide as the handover/reference for demonstrations;
    revise it whenever a supported tool, business rule or report template changes.
-3. Any future test batch must use the scoped rollback script and finish by
-   proving the saved baseline, as this one did.
 
 **Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
 `MCT-143`).**

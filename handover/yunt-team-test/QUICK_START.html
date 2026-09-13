@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yunt • Team trial</title><style>
+:root{font-family:system-ui,sans-serif;color:#17312c;background:#eef3f0;font-size:15px;line-height:1.55}*{box-sizing:border-box}body{margin:0}main{max-width:1000px;margin:36px auto;padding:36px;background:white;border-radius:18px}h1{font-size:36px;line-height:1.1;margin:12px 0}h2{font-size:21px;margin-top:28px}h3{font-size:16px;margin-bottom:6px}.eyebrow{color:#527168;letter-spacing:.13em;font-size:12px;font-weight:700}p{margin:8px 0 14px}.banner{padding:16px 20px;background:#eaf4ee;border-left:4px solid #327453;border-radius:6px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{border:1px solid #dae4df;border-radius:10px;padding:16px}blockquote{margin:9px 0;padding:10px 14px;background:#f4f7f5;border-left:3px solid #86a694}table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;padding:10px;vertical-align:top;border-bottom:1px solid #dae4df}th{background:#eaf4ee}code{background:#eef3f0;padding:2px 5px;border-radius:4px}a{color:#256647}small,.muted{color:#567068}details{margin:15px 0}summary{cursor:pointer;font-weight:650}ol{padding-left:22px}li{margin-bottom:12px}@media(max-width:700px){main{margin:0;padding:22px;border-radius:0}.grid{grid-template-columns:1fr}h1{font-size:29px}td,th{padding:7px}}@media print{body{background:white}main{margin:0;padding:0}.card,blockquote,tr{break-inside:avoid}details{display:block}}
+</style></head><body><main>
+<div class="eyebrow">ANTILLANCA · TEAM TRIAL · 13 SEPTEMBER 2026</div>
+<h1>Try Yunt. Check the flow.</h1>
+<p>Email <a href="mailto:antillanca.yunt@mountaincreative.cl">antillanca.yunt@mountaincreative.cl</a>. Access includes the exact <strong>@mctechstudio.com</strong> domain and <strong>cristian.anguita@gmail.com</strong>. English requests are welcome. <a href="https://milk-company-git-yunt-mountain-creative.vercel.app/en/solicitudes">Open Yunt Preview dashboard →</a></p>
+<div class="banner"><strong>Before you start</strong><br>These actions save records in the shared database used by Preview. One person sends the invoice ZIP once; coordinate category edits. Give each new scenario a distinct subject, such as “Alex — September purchasing”. Use Reply for follow-ups. For approval, directly reply to the latest confirmation with <code>YES, GO AHEAD</code> on the first line. Questions do not approve a change; Yunt should answer and refresh the confirmation.</div>
+<h2>1. Three quick ways to try it</h2>
+<div class="grid"><article class="card"><h3>Questions and reports</h3>
+<blockquote>Which five suppliers had the highest net purchase spend in 2025?</blockquote>
+<blockquote>Send net purchases by month for 2025 as an Excel workbook.</blockquote>
+<p>Expect a data-backed answer or formatted XLSX attachment. Ask for PDF or a monthly line chart in a follow-up; charts arrive as SVG files. Check dates, filters and totals. If there is no matching data, expect an honest answer.</p>
+</article><article class="card"><h3>What it can and cannot do</h3>
+<p>It can query recorded purchases, compare periods and prices, explain findings, stage category corrections, undo applied changes, and prepare purchase requests/orders.</p>
+<p>It cannot contact suppliers, prove a quotation truthful, browse the web, change invoice source amounts, or answer farm/stock questions unsupported by its data. Unsupported requests should be refused and logged.</p>
+</article></div>
+<h2>2. Invoice conversation · one volunteer</h2>
+<p>Attach <a href="yunt-unseen-invoices.zip">yunt-unseen-invoices.zip</a> to a <strong>new email</strong>. It contains five unchanged original XML invoices, covering 12 lines. Those exact database records were backed up and removed; the catalog and other historical purchases remain.</p>
+<ol>
+<li><strong>Send:</strong> “Please import the attached purchase invoices and tell me what needs review.”<br><strong>Expect:</strong> receipt with 5 new documents and 12 lines, then findings if the review identifies any. A new category proposal is not guaranteed. Do not expect an invented problem.</li>
+<li><strong>Reply to the findings:</strong> “Do not apply anything yet. Explain the classification of AUDISOFT invoice 23715, line 2, and the historical evidence.”<br><strong>Expect:</strong> an explanation without an approved category change.</li>
+<li><strong>Try selective correction:</strong> “Change only AUDISOFT invoice 23715, line 2, to [category code chosen from the dashboard]. Leave the other lines unchanged.”<br><strong>Expect:</strong> an exact restatement before writing. Check its target and destination; directly confirm only if correct. If Yunt supplied numbered proposals, “Apply proposal 2 only” tests partial approval.</li>
+<li><strong>Try undo:</strong> “Undo the category change you just applied.” Read the restatement, then directly confirm. Check the original category returned. To reject a pending suggestion, say “Reject proposal [number]; leave its category unchanged.”</li>
+</ol>
+<p class="muted">Saved reference: <a href="REFERENCE.md">12 original line classifications</a>. A re-send of the same ZIP should add zero invoices: identity uses supplier RUT + document type + folio. These invoices are unseen to current ingestion, not necessarily to model training. Reports temporarily omit their amounts until reimported.</p>
+<h2>3. Purchase request → quotations → order</h2>
+<ol>
+<li><strong>Ask:</strong> “I need 20 bags of mineral salt for Fundo Raíces by 30 October 2026.” Read the proposed request and directly confirm. Expect a saved <code>SOL-…</code> request. Missing essentials should prompt a question.</li>
+<li><strong>Reply:</strong> “For that request, record a telephone quotation from Agro Uno at CLP 30,000 net per bag, CLP 600,000 net total. Prepare the purchase order.”<br>Expect a request for a second quotation before order confirmation: this amount exceeds CLP 500,000.</li>
+<li><strong>Reply:</strong> “Record a second telephone quotation from Agro Dos at CLP 31,000 net per bag, CLP 620,000 net total. Choose Agro Uno, 20 bags at CLP 30,000 net each, delivery 30 October 2026.”<br>Expect the exact order restated. Directly confirm; expect an <code>OC-…</code>, a closed request and the order PDF attached to Yunt’s email. Supplier contact remains outside the system.</li>
+</ol>
+<p><strong>These example supplier prices are fictional.</strong> Use this script only for the agreed internal trial. The resulting records are saved, so retain their SOL/OC numbers for cleanup. A price can be recorded from a stated phone/email quote; a PDF is not required. If Yunt refuses a request explicitly described as hypothetical, report that response rather than trying to bypass it.</p>
+<h2>4. What the dashboard fields mean</h2>
+<p>Open <strong>Purchase requests → New request</strong>. Please compare this flow with the client agreement. “Possible later use” below describes options for discussion, not committed functionality.</p>
+<table><thead><tr><th>Field / option</th><th>Meaning and behavior today</th><th>Possible later use</th></tr></thead><tbody>
+<tr><td>Manual request</td><td>A person needs something. Default origin label.</td><td>Distinguish people’s requests from generated ones.</td></tr>
+<tr><td>Continuous stock</td><td>Replenishing a regularly used supply. Label only; no stock monitoring or automatic reorder.</td><td>Stock-based replenishment if inventory rules are built.</td></tr>
+<tr><td>Planned seasonal purchase</td><td>Buying for a season. Label only; no calendar or scheduled requests.</td><td>Seasonal planning if agreed.</td></tr>
+<tr><td>Planned / Urgent</td><td>Normal versus time-sensitive priority. No separate approval route.</td><td>Prioritization or notifications if agreed.</td></tr>
+<tr><td>Product / supply · Service</td><td>Physical item versus work somebody performs. Descriptive metadata.</td><td>Separate reporting or workflows if needed.</td></tr>
+<tr><td>One-time · Recurring</td><td>Needed once versus expected to repeat. Recurring does not generate future requests.</td><td>Repeat scheduling if built.</td></tr>
+<tr><td>Item · Description</td><td>What you need and details. Select an existing dropdown item to link its history; a new item can be typed.</td><td>—</td></tr>
+<tr><td>Quantity · Unit</td><td>How much, e.g. 20 bags. Used to prepare the order; verify them again before issuance.</td><td>—</td></tr>
+<tr><td>Needed by · Farm / cost centre</td><td>Delivery need and where the cost belongs. Recorded planning information; no budget enforcement.</td><td>—</td></tr>
+<tr><td>Estimated budget</td><td>Expected total spend. Known items show recent recorded prices here. Quantity × latest unit price is a button you choose; no automatic overwrite. Check units match—no conversion. Final order price is agreed separately.</td><td>Budget comparisons if agreed.</td></tr>
+<tr><td>Supplier</td><td>Recorded with each quotation and chosen for the order, rather than required on the initial request. No supplier outreach.</td><td>—</td></tr>
+</tbody></table>
+<h2>Send feedback we can reproduce</h2>
+<p>Share the email thread or SOL/OC number, the request you made, what you expected, and the actual response. Flag confusing wording, wrong figures/categories, missing attachments, or anything that differs from the client’s intended purchasing flow. One or two focused scenarios per person keeps paid model usage reasonable.</p>
+<p class="muted">Dashboard login access is separate from permission to email Yunt. After team testing begins, ask the maintainer for scoped cleanup; do not run the old blanket Yunt test cleanup script.</p>
+</main></body></html>

@@ -9,7 +9,11 @@ bytes as `00014-lrp`; the redeploy shipped the code that accepts
 `transport_plate`. Prove a deploy with `scripts/88_prove_deploy.sh <url>`. Supabase holds 11,746 corrected
 lines as of 2026-09-03: **7,927 auto-accepted, 3,819 in review**, 78 categories.
 
-**Live and the staged payload are identical — nothing is pending.** Both
+**Handover exception (2026-09-13):** five backed-up purchase invoices / twelve
+lines are intentionally absent for the team's first ingestion. Before cleanup,
+read `handover/yunt-team-test/MAINTAINER.md`; use the exact sample snapshot,
+not the old blanket Yunt cleanup. All other tracked rows match the baseline.
+Before this handover sample, live and the staged payload were identical. Both
 uploads of 2026-08-19 landed and were verified independently against live.
 `002_add_manual_recategorisation_source.sql` is **applied to production**; live
 carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
