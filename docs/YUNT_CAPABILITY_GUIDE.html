@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Yunt — Capability &amp; Operating Guide</title>
+  <style>
+    :root { --ink:#15352f; --muted:#61736e; --paper:#f7faf8; --line:#d9e4df; --green:#176b54; --mint:#e5f3ec; --amber:#9b5d00; --amberbg:#fff3dc; }
+    * { box-sizing:border-box } body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif }
+    main { max-width:1080px; margin:auto; padding:42px 24px 72px } header { background:linear-gradient(125deg,#0c3b31,#1b765b); color:white; border-radius:20px; padding:42px; box-shadow:0 14px 34px #15352f2b }
+    h1 { font-size:clamp(2rem,5vw,3.2rem); line-height:1.06; margin:0 0 12px } h2 { font-size:1.35rem; margin:38px 0 14px } h3 { margin:0 0 7px; font-size:1.05rem } p { margin:8px 0 }.lede { max-width:760px; color:#def2e8; font-size:1.08rem }.stamp { font-size:.86rem; color:#d4e9df; margin-top:24px }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px }.card,details,.note { background:white; border:1px solid var(--line); border-radius:14px; padding:20px }.card strong { color:var(--green) }.tag { display:inline-block; border-radius:999px; padding:3px 9px; font-size:.78rem; font-weight:700; letter-spacing:.02em }.yes { background:var(--mint); color:#176b54 }.limit { background:var(--amberbg); color:var(--amber) }.note { border-left:4px solid var(--green) }.warning { border-left-color:#d38b15; background:var(--amberbg) }
+    table { width:100%; border-collapse:collapse; background:white; border:1px solid var(--line); border-radius:14px; overflow:hidden } th,td { padding:12px 14px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top } th { background:#eaf4ef; font-size:.88rem } tr:last-child td { border:0 } code { background:#edf3f0; border-radius:4px; padding:1px 5px; font: .88em ui-monospace,SFMono-Regular,Menlo,monospace } details { margin:10px 0 } summary { cursor:pointer; font-weight:700 } details[open] summary { margin-bottom:11px }.case { color:var(--muted); font-size:.92rem } ul { margin:8px 0 8px 20px; padding:0 } li { margin:5px 0 }.flow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:16px 0 }.step { background:white; border:1px solid var(--line); border-radius:10px; padding:9px 12px; font-weight:600 }.arrow { color:var(--green); font-weight:700 } footer { color:var(--muted); font-size:.88rem; margin-top:36px }
+    @media print { body { background:white } main { max-width:none; padding:0 } header { box-shadow:none; border-radius:0 } details { break-inside:avoid } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Yunt: what it can do, what it will not do</h1>
+    <p class="lede">A practical guide for operational conversations. It separates hard controls from model interpretation, gives concrete examples, and calls out the edges where a person must still decide.</p>
+    <p class="stamp">Prepared 13 September 2026 · Living operational guide</p>
+  </header>
+
+  <h2>The selling points</h2>
+  <section class="grid">
+    <article class="card"><strong>Email-first operation</strong><br>Send invoices, ask a question, approve a proposed category, create a purchase request, or request a report without opening the dashboard.</article>
+    <article class="card"><strong>Records before language</strong><br>The model interprets intent, but it cannot invent figures or write arbitrary data. Database tools own the actual read, draft, approval and write.</article>
+    <article class="card"><strong>Human-controlled changes</strong><br>Classification changes and purchases are staged, restated, then require an exact reply before the database changes.</article>
+    <article class="card"><strong>Presentable evidence</strong><br>Reports return designed XLSX, PDF or SVG attachments: clear title, criteria, hierarchy, headers, tables or charts—not a text dump.</article>
+  </section>
+
+  <h2>At a glance</h2>
+  <table>
+    <thead><tr><th>Capability</th><th>How a person asks</th><th>What Yunt returns</th><th>Control</th></tr></thead>
+    <tbody>
+      <tr><td>Invoice ingestion</td><td>Email a ZIP containing Chilean invoice XML files.</td><td>Reception count, duplicates skipped, then findings and category proposals.</td><td>Never changes source invoice values.</td></tr>
+      <tr><td>Category correction</td><td>Reply “apply item 2 only” or name the intended category.</td><td>An exact restatement and a confirmation request.</td><td>Only the selected sealed proposal can be applied.</td></tr>
+      <tr><td>Questions and reports</td><td>Ask for a figure, table, PDF, workbook, or chart over supported purchase data.</td><td>Grounded answer plus the requested attachment when applicable.</td><td>Tool queries calculate figures; the model does not do its own arithmetic.</td></tr>
+      <tr><td>Purchasing</td><td>Describe what is needed, quantity, date and cost centre; later provide quotations.</td><td>Purchase-request draft, then order draft and a PDF after confirmation.</td><td>Exact confirmation; orders over CLP 500,000 require two recorded quotations.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How the guardrails work</h2>
+  <div class="flow"><span class="step">Person emails request</span><span class="arrow">→</span><span class="step">Yunt reads permitted context</span><span class="arrow">→</span><span class="step">Tool reads / stages exact record</span><span class="arrow">→</span><span class="step">Yunt restates effect</span><span class="arrow">→</span><span class="step">Exact confirmation</span><span class="arrow">→</span><span class="step">Database writes one permitted action</span></div>
+  <div class="note"><strong>Important distinction:</strong> natural language selects an option; it never substitutes for authority. The model can identify “item 2” or “the diesel category,” but the database receives the hidden proposal or draft ID resolved from the email thread—not a free-form category or invoice-row command.</div>
+
+  <h2>Answers to the operational “what if?” questions</h2>
+  <details open><summary>1. What makes an invoice a duplicate?</summary><p>For XML invoices, the duplicate identity is <code>issuer RUT + document type + folio</code>. Folio alone is deliberately insufficient: different suppliers may use the same number. A repeated document is reported and skipped; it is not loaded twice.</p><p class="case">Example: supplier A’s invoice 101 and supplier B’s invoice 101 are different. Re-sending supplier A’s invoice 101 is a duplicate.</p></details>
+  <details><summary>2. What does the arithmetic check trust?</summary><p>It uses deterministic XML fields: line quantity × unit price versus the declared line amount, and document totals where applicable. The test found 40 × CLP 9,000 = CLP 360,000 while the XML declared CLP 412,000; Yunt flagged the discrepancy and did not alter the filing.</p><p>If a supplier omits or misplaces a required deterministic field, the relevant arithmetic check cannot be proved. That becomes a data-quality limitation or rejection/flag, never a model-made correction.</p></details>
+  <details><summary>3. Can confirmation survive Q&amp;A in the same conversation?</summary><p>Yes, but safely. A question after a proposal does not apply anything. Yunt answers briefly and sends a <em>fresh</em> confirmation message; the final <code>SÍ, ADELANTE</code> / <code>YES, GO AHEAD</code> must directly reply to that fresh message. It does not silently connect a “yes” to a proposal several messages back.</p></details>
+  <details><summary>4. What does “partial approval” actually change?</summary><p>Only the chosen proposal. The email wording is interpreted, then resolved to a hidden proposal ID from that thread. The application writes only that proposal’s sealed invoice lines. Any new replacement category is restated and separately confirmed before writing.</p><p class="case">“Apply item 2 only” cannot accidentally apply items 1 and 3.</p></details>
+  <details><summary>5. Is confirmation a hard rule or just model behavior?</summary><p>It is both. The agent is instructed to require the exact first line, and the database validates the reply’s sender, the exact confirmation message it replies to, action, target and one-time token. A casual “yes” or a confirmation in the wrong reply position does not perform the write.</p></details>
+  <details><summary>6. Can a different topic start in the same thread?</summary><p>Yes. A report question can follow invoice discussion or purchasing in a thread. The agent uses the reply context only for an outstanding action; a new report request is handled by the report tools. Do not use an old confirmation phrase while changing topic: a confirmation must stay a direct reply to Yunt’s current confirmation message.</p></details>
+  <details><summary>7. How free is the model?</summary><p>It can understand supported requests, choose among its tools, explain a result and ask for missing facts. It cannot browse the internet, contact suppliers, change invoice source amounts, issue an unconfirmed order, or access production/farm data that is not available through a tool. Out-of-scope questions are refused and recorded for later product learning.</p></details>
+  <details><summary>8. Are spreadsheet and PDF reports presentation quality?</summary><p>Yes. The workbook uses a dark title band, report title, criteria block, frozen headers, readable widths and number formatting. The PDF has a branded header, scope/criteria, summary cards, a structured table with alternating rows and pagination footer. Charts have a deliberate visual frame and chronological time order.</p><p class="case">The design is code-controlled and repeatable. It is not an open-ended “make any document style” agent like a general document-design tool.</p></details>
+  <details><summary>9. Why might a clarification arrive as a separate email?</summary><p>That was a historical threading defect: an outgoing message used the wrong identifier, so Outlook could not attach it to the conversation. The reply helper now uses the inbound RFC Message-ID (or the immediate message being replied to) to retain the conversation. A new topic may still intentionally begin a new thread; an ordinary clarification should not.</p></details>
+  <details><summary>10. How much room is there to improve reports?</summary><p>Substantial room within the fixed, deterministic renderer: palette, typography, logo, cover/title hierarchy, section order, cards, tables, chart types, legends, annotations, page sizing and workbook tabs can all be improved without giving the model control over figures. The right approach is to design templates in code and visually test every artifact.</p></details>
+  <details><summary>11. Does Yunt learn the two-quotation requirement too late?</summary><p>No. The current order flow preflights before it asks for purchase-order confirmation. Above CLP 500,000, fewer than two recorded quotes prevents the order draft itself. The database repeats the same rule at final issuance so it cannot be bypassed. Yunt should ask for the missing second quote, not offer a confirmation then fail.</p><p class="case">A live repair also ensures that this expected preflight returns a short, usable request for the second quotation instead of leaving the conversation without an answer.</p></details>
+  <details><summary>12. Does the purchase-order PDF arrive by email?</summary><p>Yes. Once the person directly confirms the prepared order, Yunt sends the finished purchase-order PDF to the requester’s email. It does not tell them to download it from the dashboard, and it does not contact the supplier.</p></details>
+
+  <h2>Concrete operating examples</h2>
+  <section class="grid">
+    <article class="card"><h3>Invoices</h3><p><strong>Ask:</strong> Attach a ZIP of XML invoices.</p><p><strong>Result:</strong> “Received 6 documents, 7 lines, 1 discrepancy.” Then grounded findings and category proposals arrive. Duplicate documents are skipped.</p></article>
+    <article class="card"><h3>Report</h3><p><strong>Ask:</strong> “Send me a PDF of purchases grouped by month during 2025.”</p><p><strong>Result:</strong> A concise answer and a PDF attachment with the same date criteria visible in the document.</p></article>
+    <article class="card"><h3>Purchase request</h3><p><strong>Ask:</strong> “I need 20 bags of mineral salt for Raíces Estate on 2026-10-30.”</p><p><strong>Result:</strong> A restated request. If the year is absent, Yunt asks for it rather than guessing.</p></article>
+    <article class="card"><h3>Purchase order</h3><p><strong>Ask:</strong> Provide supplier, agreed price and quote(s), then ask Yunt to prepare the order.</p><p><strong>Result:</strong> If required evidence exists, an exact order restatement and confirmation; after confirmation, a PDF by email.</p></article>
+  </section>
+
+  <h2>Known boundaries and safe habits</h2>
+  <table>
+    <thead><tr><th>Situation</th><th>Yunt’s expected behavior</th><th>What the person should do</th></tr></thead>
+    <tbody>
+      <tr><td>Missing purchase fact</td><td>Ask a short clarification; do not guess.</td><td>Supply the missing date, quantity/unit, item or cost centre.</td></tr>
+      <tr><td>Ambiguous category approval</td><td>Ask which proposal or category is intended.</td><td>Name the proposal number or category clearly.</td></tr>
+      <tr><td>Invoice amount appears wrong</td><td>Flag it with the deterministic evidence; do not modify it.</td><td>Correct it at the source / with the supplier.</td></tr>
+      <tr><td>Order total above CLP 500,000</td><td>Require two recorded quotations before the order can be prepared.</td><td>Provide and record the second quote.</td></tr>
+      <tr><td>Unsupported business question</td><td>Refuse honestly and record the request.</td><td>Use the system holding that data, or decide whether the capability belongs on the roadmap.</td></tr>
+      <tr><td>Test emails marked “PRUEBA”</td><td>Current live behavior refuses to create a real purchase request.</td><td>Use an approved isolated test process; never rely on a wording marker as the only cleanup control.</td></tr>
+    </tbody>
+  </table>
+
+  <footer>Source of truth: the deployed Yunt tools and database controls. This guide deliberately distinguishes verified behavior from proposed future capability; it should be updated when a control or supported data source changes.</footer>
+</main>
+</body>
+</html>

@@ -2127,3 +2127,14 @@ same change. The person can then reply directly to that fresh confirmation.
 
 This is deliberate: it preserves a visible, exact before/after state at the
 moment of approval and stops an ordinary “yes” from authorising an old change.
+
+## D-085 — The quotation preflight must answer before confirmation
+
+**Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+For an order above CLP 500,000, fewer than two recorded quotations must be
+reported before an order confirmation is requested. The same database constraint
+remains the final authority at issuance. If that expected constraint is reached
+while staging, the agent returns a structured `quotation_required` result and
+asks for the missing quotation; it does not leave the email unanswered, split
+the purchase, or offer a confirmation it cannot honor.

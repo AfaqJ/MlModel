@@ -5,29 +5,33 @@ lives in `DECISIONS.md`.
 
 ## Session — 2026-09-13
 
-Expanded the live-acceptance report into a precise English demonstration guide:
-each test now states the original input, whether a file was attached, its
-English meaning, the observed reply and the resulting record. It identifies
-the reception mismatch as folio `999205`: 40 × CLP 9,000 (CLP 360,000) versus
-the supplier-stated CLP 412,000. This was flagged without changing the
-invoice. No live data or application code changed in this documentation pass.
+Delivered a boss-facing English HTML capability guide at
+`docs/YUNT_CAPABILITY_GUIDE.html`. It states the supported workflows,
+hard guardrails, limitations and concrete answers to the operational “what if?”
+questions. It is deliberately specific about the difference between model
+interpretation and database enforcement.
 
-New feedback briefly reopened `MCT-142`, `MCT-152`, `MCT-156`, and `MCT-157`.
-The historical thread already meets `MCT-156`'s stated live acceptance condition,
-so it is Done again. Commits `7837e39` and `f801250` are pushed to the `yunt`
-preview branch: a Q&A answer renews the exact confirmation, report attachments
-are now styled XLSX/PDF deliverables, and prior `562e1c8` preserves the opening
-email as the Outlook thread parent and emails an order PDF to the requester.
-Migration `029` still needs applying in Supabase before new purchase-order live
-proof.
+Applied migration `029` live, then ran the final live acceptance. Commit
+`8bec6c2` is pushed to the `yunt` preview branch: an expected purchase-order
+two-quotation preflight now produces a concise request for the missing quote
+instead of leaving an inbound request open. The error condition is recognized
+narrowly; unrelated database failures still surface normally.
+
+Live proof: a neutral email created `SOL-2026-0002`; one CLP 600,000 quotation
+was refused before confirmation; the second quotation unlocked an exact order
+proposal; a direct `SÍ, ADELANTE` created `OC-2026-0002`, closed the request,
+and emailed its PDF to the requester. Separate live emails returned the requested
+styled XLSX, PDF and SVG monthly reports. `MCT-152`, `MCT-157` and parent
+`MCT-142` were closed in Linear with this evidence. Test-only records were
+removed and every tracked live table again matches the baseline exactly.
 
 ## Now
 
 **The Yunt's classification, approval, query and purchasing paths are proved on
-live email.** The tested changes are on the `yunt` preview branch at `f801250`;
-the new report format and purchase-order preflight still need fresh live proof.
-Live testing found and fixed the prior rendering and lookup defects plus two
-purchase-thread context defects; every code fix has a regression check.
+live email.** The tested changes are on the `yunt` preview branch at `8bec6c2`.
+Every reported rendering, lookup and purchase-thread defect has a focused
+regression check, and the final report/purchase proof has been received from the
+actual deployed agent.
 
 **Closed on live evidence: `MCT-150`, `MCT-141`, `MCT-149`, `MCT-160`, and
 `MCT-153`.**
@@ -47,7 +51,8 @@ purchase-thread context defects; every code fix has a regression check.
 | Fresh inbound ZIP | Folios `999201`–`999206`: 6 new documents, 7 lines and a reception report |
 | Grouped findings email | One Sonnet review: 3 concrete flags, 4 unapplied proposals, each citing its prior records |
 | Purchase request | Missing year prompted a question; exact confirmation opened `SOL-2026-0001`, no supplier contacted |
-| Purchase order | One quote at CLP 600,000 genuinely refused; two quotes then exact confirmation created `OC-2026-0001` and closed the request |
+| Purchase order | One quote at CLP 600,000 was refused before confirmation; two quotes then direct exact confirmation created `OC-2026-0002`, closed the request and emailed the requester `OC-2026-0002.pdf` |
+| Styled report outputs | Separate real emails returned the XLSX workbook, designed PDF and chronological SVG line chart for monthly 2025 purchases |
 
 **Bugs found and fixed (all shipped):**
 1. Proposal lookup had **never once worked on live** (D-081) - it compared
@@ -61,23 +66,23 @@ purchase-thread context defects; every code fix has a regression check.
 7. A reply promised a PDF and carried an .svg.
 
 **Live is back at baseline exactly.** The synthetic invoice batches, category
-changes, purchasing request/quotes/order, and test inbound mail records were
-all removed. No production invoice row was touched. The complete acceptance
-record is `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md`.
+changes, purchasing request/quotes/order, report test requests and test inbound
+mail records were all removed. No production invoice row was touched. The
+acceptance records are `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md` and
+`docs/YUNT_LIVE_ACCEPTANCE_2026-09-13.md`; the presenter-ready guide is
+`docs/YUNT_CAPABILITY_GUIDE.html`.
 
 ## Next
 
-1. Apply `milk-company/supabase/029_yunt_order_quotation_preflight.sql`, then
-   live-test the pre-confirmation two-quotation refusal and the purchase-order
-   PDF email. This is `MCT-157`.
-2. Send one fresh report request and open its styled XLSX, designed PDF and
-   chart attachment from the received email. This is the remaining `MCT-152`
-   live acceptance, not more feature work.
-3. `MCT-165` stays in Backlog. It would inspect uploaded quotation files but
-   cannot prove a supplier's price is truthful and is not needed for v1.
+1. Keep `MCT-165` in Backlog. File inspection cannot prove a supplier's quoted
+   price truthful and is not needed for v1.
+2. Treat the HTML capability guide as the handover/reference for demonstrations;
+   revise it whenever a supported tool, business rule or report template changes.
+3. Any future test batch must use the scoped rollback script and finish by
+   proving the saved baseline, as this one did.
 
-**Ticket count: 25 total - 20 Done, 3 In Progress (`MCT-142`, `MCT-152`,
-`MCT-157`), 2 parked (`MCT-154`, `MCT-143`).**
+**Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
+`MCT-143`).**
 
 **Gotchas worth keeping.** Click Outlook's Send by element ref, never by
 coordinate - a coordinate click silently saves a draft. Poll for a NEW request
@@ -198,7 +203,7 @@ mere same-wording evidence. Measured on the fixed 400-line held-out run,
 confidently-wrong proposals fell **5.75% → 2.76%**, 97.2% of proposals correct.
 Reproduce with `.venv-backend/bin/python scripts/87_measure_precedent_quality.py 400`.
 
-**`MCT-152` is implemented but not closed.** `reply_with_report` queries the
+**At that earlier checkpoint, `MCT-152` was implemented but not closed.** `reply_with_report` queries the
 aggregate RPC itself and attaches a real PDF or one of five code-drawn SVG
 charts (bar, monthly line, stacked bar, pie, table). Filter, accounting basis,
 credit-note rule and truncation disclosure are printed on the artefact. Focused
