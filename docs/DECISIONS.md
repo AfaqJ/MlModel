@@ -2138,3 +2138,14 @@ remains the final authority at issuance. If that expected constraint is reached
 while staging, the agent returns a structured `quotation_required` result and
 asks for the missing quotation; it does not leave the email unanswered, split
 the purchase, or offer a confirmation it cannot honor.
+
+## D-086 — Recent prices suggest; the buyer chooses
+
+**Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+When a buyer selects an existing catalog item while creating a purchase request,
+show its three newest recorded invoice prices beside Estimated budget. With a
+valid quantity, show a one-click latest-price × quantity estimate. It is always
+an explicit choice: typing a quantity, changing it, or selecting an item must
+never replace a budget the buyer entered. Historic invoice price is planning
+context, not a committed supplier price.

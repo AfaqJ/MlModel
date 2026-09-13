@@ -25,6 +25,13 @@ styled XLSX, PDF and SVG monthly reports. `MCT-152`, `MCT-157` and parent
 `MCT-142` were closed in Linear with this evidence. Test-only records were
 removed and every tracked live table again matches the baseline exactly.
 
+The purchase-request form now surfaces the three newest invoice prices as soon
+as a known catalog item is selected. It offers latest-price × quantity as an
+explicit Estimated budget button; it never overwrites typed planning data
+(D-086). Local UI proof used Bodega lecheria Maitén: CLP 2,697,000 per recorded
+unit × 20 offered CLP 53,940,000, and an entered CLP 123 remained unchanged when
+quantity changed. Regression check, ESLint and production build passed.
+
 ## Now
 
 **The Yunt's classification, approval, query and purchasing paths are proved on
@@ -32,6 +39,11 @@ live email.** The tested changes are on the `yunt` preview branch at `8bec6c2`.
 Every reported rendering, lookup and purchase-thread defect has a focused
 regression check, and the final report/purchase proof has been received from the
 actual deployed agent.
+
+**Purchase planning is clearer in the dashboard.** A known item now shows its
+three newest recorded prices during request entry, and its most recent unit
+price can calculate a budget suggestion after the buyer provides quantity. The
+buyer must press the button to use it; no input is automatically changed.
 
 **Closed on live evidence: `MCT-150`, `MCT-141`, `MCT-149`, `MCT-160`, and
 `MCT-153`.**
