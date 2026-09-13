@@ -3,6 +3,15 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-13
+
+Expanded the live-acceptance report into a precise English demonstration guide:
+each test now states the original input, whether a file was attached, its
+English meaning, the observed reply and the resulting record. It identifies
+the reception mismatch as folio `999205`: 40 × CLP 9,000 (CLP 360,000) versus
+the supplier-stated CLP 412,000. This was flagged without changing the
+invoice. No live data or application code changed in this documentation pass.
+
 ## Now
 
 **The Yunt's classification, approval, query and purchasing paths are proved on
@@ -51,7 +60,11 @@ record is `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md`.
 
 1. **`MCT-153` cannot close yet.** A genuine refusal now exists, but its
    done-when requires something to be **built because of** the list. Not met.
-2. Not re-proved live, covered by SQL + offline checks: stale-proposal refusal,
+2. **`MCT-165` is the next buildable backlog item, outside the 25-ticket
+   count.** Before implementation, decide whether an uploaded quotation that
+   looks doubtful should block issuance or only warn and be recorded. The model
+   must never become the database's final gate.
+3. Not re-proved live, covered by SQL + offline checks: stale-proposal refusal,
    double approval.
 
 **Ticket count: 25 total - 21 Done, 2 In Progress (`MCT-142`, `MCT-153`),
