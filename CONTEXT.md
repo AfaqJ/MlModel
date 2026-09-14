@@ -113,6 +113,13 @@ quantity, delivery date. Generating it closes its request. It carries the
 **accounting category before the money is spent**, which is the reason purchase
 orders belong in this product at all.
 
+**Handover sample** — five complete original purchase invoices (twelve lines)
+intentionally removed from live so the team can email their unchanged XML as new
+input. It is a reversible ingestion exercise, not a fresh model-quality test.
+Its exact row snapshot and recovery instructions are in
+`handover/yunt-team-test/MAINTAINER.md`. It is the only deliberate difference
+between live and the saved baseline at handover.
+
 ---
 
 ## The Yunt
@@ -127,3 +134,9 @@ reading a free-text question and picking which prepared query answers it, and
 drafting a purchase request from a sentence. **It never writes a number, never
 writes a query, and never writes to the database** — it returns a structured
 answer, and code checks and writes it.
+
+**Email allowlist** — the shared inbound/outbound permission gate. A listed
+mailbox may send Yunt a request and receive its reply. An entry such as
+`@mctechstudio.com` matches the exact domain only; it excludes subdomains and
+lookalikes. The original protected list is combined with the additive team list
+so expanding access does not overwrite existing recipients.

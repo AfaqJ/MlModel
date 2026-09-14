@@ -8,9 +8,9 @@ lives in `DECISIONS.md`.
 Team handover prepared after acceptance. Verified the saved baseline, took a
 fresh full 23-table snapshot, extracted 5 unchanged original XML invoices / 12
 lines, and detached only those exact IDs. Proved restore to identical row hashes,
-then detached again for tomorrow.
-The five core tables also match the independent 2026-09-11 backup field for
-field (zero changed/added/removed rows before detachment). Snapshot/undo controls:
+then detached again for team testing. The five core tables also match the
+independent 2026-09-11 backup field for field (zero changed/added/removed rows
+before detachment). Snapshot/undo controls:
 `backups/yunt_team_handover_20260913/` and `scripts/91_yunt_team_sample.py`.
 The real app XML parser confirms all identities/amounts; no paid model call.
 

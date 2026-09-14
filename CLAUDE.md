@@ -6,8 +6,9 @@ Classifies Spanish invoice line items into accounting categories for
 **Status:** v1.3.3 live on Cloud Run — service `mlmodel`, `europe-west1`,
 revision `mlmodel-00015-mjr` (image `v1.3.3-plate`), 100% traffic. Same model
 bytes as `00014-lrp`; the redeploy shipped the code that accepts
-`transport_plate`. Prove a deploy with `scripts/88_prove_deploy.sh <url>`. Supabase holds 11,746 corrected
-lines as of 2026-09-03: **7,927 auto-accepted, 3,819 in review**, 78 categories.
+`transport_plate`. Prove a deploy with `scripts/88_prove_deploy.sh <url>`. The
+saved live baseline holds 11,746 corrected lines and 78 categories; the current
+handover state intentionally holds 11,734 lines (see below).
 
 **Handover exception (2026-09-13):** five backed-up purchase invoices / twelve
 lines are intentionally absent for the team's first ingestion. Before cleanup,
@@ -19,10 +20,9 @@ uploads of 2026-08-19 landed and were verified independently against live.
 carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
-Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`. As of
-2026-09-11 it is at `2e496a6` with **18 commits unpushed** — push before starting
-new work there. Three performance files stay uncommitted and parked (`MCT-166`);
-do not fold them into feature work. Migrations
+Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`, is pushed
+at `a16fc51` and deployed to Preview. Three performance files stay uncommitted
+and parked (`MCT-166`); do not fold them into feature work. Migrations
 `004`–`027` are live. `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
