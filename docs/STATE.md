@@ -3,6 +3,57 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-15 (b)
+
+**Yunt documents themed and rebuilt; two chart bugs found on live and fixed.**
+Frontend `yunt` is at `8809120` (after `9ec8689`), Preview Ready.
+
+- One document theme, `src/lib/documents/theme.ts` (Pastizal hex copied from
+  `globals.css`), and a small dependency-free PDF canvas,
+  `src/lib/documents/pdf.ts`. Report PDF: moss band, criteria in plain Spanish,
+  total/groups/period tiles, optional chart, detail table with total row, page
+  footers. Every chart request now arrives **inside the PDF**; the loose `.svg`
+  attachment is gone (D-093). Spreadsheet uses the same colours, CLP number
+  format, a total row only when every group is present. Purchase-order PDF
+  rebuilt to match the print page: black and white with a sage-deep rule and
+  labels; the print page got the same accents. Criteria never print query
+  mechanics (`sort`, `limit`) and never English enum values.
+- Dashboard pages no longer double the shell's padding or cap their width
+  (`/carga`, solicitudes, órdenes, productos, historial, extractor,
+  levantamiento). `/carga` stat tiles got a card ground.
+- Proof: `scripts/render-yunt-documents.ts <dir>` writes every file type from
+  sample data with no email or model call; the four `check-*` document scripts
+  pass; a live test order (`SOL-2026-0015` / `OC-2026-0010`, $370.000) was made
+  through the screens, its print page and PDF route checked, then deleted.
+  Three live emails (PDF by month, pie by category, sheet by supplier) all came
+  back as themed files.
+- **Bug found on live:** the pie drew 10 of 69 categories and took each share of
+  those ten — "24,3%" was really 17,1%, and the centre showed $2.841 MM against
+  $4.029 MM. Now the rest is one "Otros" slice and shares use the query total;
+  share charts refuse measures that do not add up (D-094). Carried over from the
+  old SVG code; the sample data had only 8 categories, so no local render could
+  show it.
+- **Bug found locally:** footers read "Página 1 de 1" on multi-page reports
+  (page count read while later pages were set aside). Both have regressions in
+  `check-yunt-report-periods.ts`, each verified to fail without its fix. The pie
+  fix was then rendered from the real live aggregate (read-only).
+- **Blocker:** the retry email got no reply — Vercel logs show the Anthropic API
+  refusing with *credit balance is too low*. The Yunt answers nothing until
+  credits are topped up. No token usage is recorded anywhere we own (no admin
+  key, nothing logged per request); real spend is only in the Anthropic Console.
+- Cleanup: the test order, request and all four inbound requests deleted by
+  exact id; every purchasing/Yunt table is 0, invoices 5,195 / lines 11,746.
+  Request counter now at `SOL-2026-0016`. Two empty Outlook drafts from the
+  session remain in Drafts (Outlook did not remove them).
+- **Gotcha — Outlook web drops the first keystrokes** of the To field after a
+  click, turning the address into `tillanca.yunt@…`, and focus jumps between
+  open drafts. Zoom on the chip before sending; Backspace the chip and retype
+  with the field already focused; set Subject with `form_input`.
+- **Gotcha — poppler renders Helvetica-Bold as regular on this Mac.** The file
+  was right (`pdffonts`); render with `sips` (Quartz) to judge a PDF by eye.
+- **Gotcha — the eve request sends no `cache_control`**, so every model turn
+  re-pays the full system prompt and tool list. Worth checking before volume.
+
 ## Session — 2026-09-15
 
 **Live database restored to baseline.** Compared every tracked table with
@@ -147,6 +198,15 @@ quantity changed. Regression check, ESLint and production build passed.
 
 ## Now
 
+**Next session is ML retraining** on the latest labelled data — see `Next` 1.
+
+**Blocked on Afaq: Anthropic API credits are exhausted.** Every Yunt email
+reply fails until they are topped up (seen 2026-09-15 14:02 in Vercel logs).
+
+**Yunt documents are themed and on the `yunt` Preview (`8809120`)**: report
+PDF with charts inside it, spreadsheet, purchase-order PDF, one theme file.
+See the 2026-09-15 (b) entry.
+
 **The repeat-purchase feature is pushed, deployed to the `yunt` Preview, and
 visibly accepted in Outlook for new, exact-repeat and similar-name flows.**
 Migration `030` is live. The current Preview is
@@ -186,7 +246,7 @@ review before production.** See the 2026-09-15 entry for what changed.
 | Grouped findings email | One Sonnet review: 3 concrete flags, 4 unapplied proposals, each citing its prior records |
 | Purchase request | Missing year prompted a question; exact confirmation opened `SOL-2026-0001`, no supplier contacted |
 | Purchase order | One quote at CLP 600,000 was refused before confirmation; two quotes then direct exact confirmation created `OC-2026-0002`, closed the request and emailed the requester `OC-2026-0002.pdf` |
-| Styled report outputs | Separate real emails returned the XLSX workbook, designed PDF and chronological SVG line chart for monthly 2025 purchases |
+| Styled report outputs | Real emails returned the themed XLSX, the report PDF and (2026-09-15) chart reports drawn inside the PDF; the loose SVG attachment is gone (D-093) |
 
 **Bugs found and fixed (all shipped):**
 1. Proposal lookup had **never once worked on live** (D-081) - it compared
@@ -209,26 +269,39 @@ acceptance records are `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md` and
 
 ## Next
 
-1. Before any new team test on unseen data, detach a fresh sample: the
+1. **Retrain the classifier on the latest labelled data (next session's focus).**
+   Start by establishing, from the data rather than prose, what "latest
+   labelled" is: `Data/gold/_master_gold.csv` (2,577 rows / 73 classes at last
+   count), the 2026-09-02 client labels in `reports/client_reply_2026_09_02/`,
+   and the 11,746 human-corrected live lines — read the backing gold `source`,
+   never `prediction_source`. Rules that bind the retrain: never promote an
+   unaudited row (`docs/LABELING_RULES.md`); dedup on the built input string
+   (D-013); client conventions outrank row counts (`docs/CLIENT_CONVENTIONS.md`,
+   D-040); rule-assigned classes are not trained (D-028); a class under 2
+   examples fails loudly; `artifacts/v1.0.0/` and `v1.1.0/` are protected; accept
+   only through `docs/TEST_CHECKLIST.md` "Before accepting a retrain" including
+   the income slice and `scripts/77_model_trust_report.py`. Train in
+   `.venv-train`; PyTorch never enters `.venv-backend`.
+2. Afaq tops up Anthropic credits; then resend one pie-chart email to prove
+   D-094 end to end (`Envíame un gráfico de torta con las compras de 2025 por
+   categoría.`), and delete its inbound row afterwards.
+3. Before any new team test on unseen data, detach a fresh sample: the
    2026-09-13 one is back in live, so `yunt-unseen-invoices.zip` is seen data.
-2. Afaq reviews the `yunt` Preview
+4. Afaq reviews the `yunt` Preview
    (`https://milk-company-git-yunt-mountain-creative.vercel.app`) and decides
    whether it goes to production. Still unverified by eye: historical-category
-   chips on a real open request (there are no open requests at baseline).
-3. Optional performance work, not urgent for a handful of users: move the
-   Analytics aggregation into the database instead of downloading every line;
-   store `item_summary` and refresh it on import. MCT-166 stays parked on
-   `parked/mct-166`.
-4. Decide whether to build a dashboard review inbox/notification flow. Until
-   then, describe `/carga` as deterministic upload/classification, not a Yunt
-   chat channel.
-5. Run broader ambiguous-wording and longer-session tests before claiming
-   comprehensive tool-choice or memory reliability across all 25 tools.
-6. After any future team testing, inspect exact new identities before cleanup.
-   The old `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are
-   disposable; do not use that assumption once team work begins.
-7. Keep `MCT-165` in Backlog. File inspection cannot prove a supplier's quoted
-   price truthful and is not needed for v1.
+   chips on a real open request, and the `/carga` stat tiles with a loaded ZIP.
+5. Optional performance work: move the Analytics aggregation into the database;
+   store `item_summary` and refresh it on import; consider prompt caching for the
+   eve agent. MCT-166 stays parked on `parked/mct-166`.
+6. Decide whether to build a dashboard review inbox/notification flow. Until
+   then, describe `/carga` as deterministic upload/classification.
+7. Run broader ambiguous-wording and longer-session tests before claiming
+   tool-choice or memory reliability across all 25 tools.
+8. After any future team testing, inspect exact new identities before cleanup.
+   `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are
+   disposable; do not use that once team work begins.
+9. Keep `MCT-165` in Backlog.
 
 **Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
 `MCT-143`).**
@@ -239,7 +312,10 @@ id, not for the newest row to settle. Name paths in `git add`; a wide add swept
 the parked MCT-166 files into a feature commit. In the live-test rollback,
 application rows are reached through their application (not a batch id), catalog
 records must be proven absent from the pre-test identity snapshot before deletion,
-and purchase-order drafts must be deleted before their order.
+and purchase-order drafts must be deleted before their order. `scripts/` and
+`backups/` are gitignored here, so undo scripts and snapshots live on disk only.
+A Resend HTTP 200 without `message_id` is incomplete: retry, never resend.
+A preview URL answering 401 is Deployment Protection, not a broken route.
 
 ## Prior checkpoint (superseded by `Now` above)
 
@@ -526,7 +602,7 @@ yet.**
 | 8 | Approve a group, get confirmation, undo it | Built with database-enforced confirmation and undo; no live agent run yet |
 | 9 | Five query tools answering open questions | Done. All five built and their figures independently proved; `022` is live |
 | 10 | Figure in the body, list as spreadsheet, report as PDF, filter printed on top | Built and visually checked. No real stored question has received one yet |
-| 11 | Charts from a fixed set, drawn by code | Done. Five fixed SVG types are code-drawn and checked |
+| 11 | Charts from a fixed set, drawn by code | Done. Five fixed types, code-drawn inside the report PDF (D-093); pie/stacked shares use the whole total (D-094) |
 | 12 | Says so when a question does not fit, and we learn from the list | Built and migration `017` is live; no real refusal exists yet |
 | 13 | Month-end summary, post-batch digest, weekly review list | **Parked for V2** (D-069). A first pass exists on a side branch; the post-batch half is arguably already the findings email |
 | 14 | Form one: what is needed, how much, by when, for which farm | Done and exercised on live |
@@ -592,7 +668,7 @@ is unticked, there is no code for it. "Built" means proved by a regression;
       retyped by the model. CSV with a BOM and semicolons so Excel reads it in
       Chile; a real workbook only if formatting or formulas are ever needed
 - [x] **Report as PDF, and charts from the fixed set** — one tool, five chart
-      types drawn as SVG by code, PDF written without a browser. Acceptance from
+      types drawn by code inside the PDF, written without a browser. Acceptance from
       a real stored question is still outstanding
 - [x] Refusal path and `yunt_refusals`, one immutable backlog row per request
 - [x] Exact restate-then-confirm for apply and undo: code-generated prompt,
@@ -670,232 +746,3 @@ were in v1 until the product questions behind them turned out to be unanswered
   one point all mail leaves through, and in the stored copy too.
 - **Lesson**: opening the artefact found three bugs that every green check and
   every correct figure in the email body had missed.
-
-
-### 2026-09-11 (c) — Test 1's classification cases, and the lookup that had never worked
-
-- **Five cases proved on live email**: approve, reject, correct with a category
-  the Yunt never suggested, undo, and an approval phrase not on the first line.
-  Nothing was written before a confirmation in any of them.
-- **The proposal lookup had never once succeeded on live** (→ D-081). It matched
-  Resend's API uuid against the RFC Message-ID a reply quotes. The earlier
-  "Apply the Leasing change" success was a manual recovery script.
-- **The client-facing reason printed the model's filler**, because the grounded
-  precedent lost to whatever prose survived the internal-terms filter. It now
-  leads with the precedent, which is what D-080 already required.
-- **A category written as the Yunt prints it was rejected** — `EXP-2.6 Otros
-  Gastos Salud Animal` matched neither code nor name alone.
-- **Each fix carries a regression check verified to fail without it.** Two were
-  proved by stashing the fix and re-running.
-- **Gotcha — clicking Outlook's Send by coordinate silently saves a draft.**
-  Cost four minutes polling for an email that never left. Click it by element
-  ref; confirm it left by reading Sent Items, not by the compose window closing.
-- **Gotcha — a wide `git add` swept the parked MCT-166 files into a feature
-  commit.** Reverted in a follow-up and restored as uncommitted. Name the paths.
-- **Gotcha — poll for a NEW row, not for the newest row to settle.** Three
-  watchers exited immediately or timed out because the reply had already been
-  answered before the watcher sampled its baseline.
-
-
-### 2026-09-11 (c) — first live email chain, apply, and safe undo confirmation
-
-- The Anthropic key and Vercel automation bypass are active; the current `yunt`
-  branch deploys successfully and Resend reaches `/api/yunt/inbound`.
-- The seven-line invoice archive was backed up, ingested and reviewed. It made
-  four category proposals and two source-document flags.
-- A natural `Apply the Leasing change.` produced a confirmation. `SÍ, ADELANTE`
-  applied exactly one proposal and stored the complete before-state.
-- The first approval exposed a lost-email-context defect. The Yunt now resolves
-  the sealed action and target from its prior email before interpreting the reply.
-- Afaq's `Undo that.` correctly selected the one application and produced a
-  precise before/after confirmation; it is waiting for `SÍ, ADELANTE`.
-- Client mail was shortened and grounded in prior accounting evidence. Internal
-  confidence, model, UUID and database language is hidden (D-080).
-- Resend sometimes returns HTTP 200 before it supplies an RFC Message-ID. The
-  sender now retries that incomplete response; focused regression, the full
-  frontend check and the free review chain pass. Frontend commit `7d8b632` is
-  pushed, deployed Ready and the protected handler probe returns 405.
-- Backup: `backups/supabase_20260911T093640Z`. Baseline: 5,195 invoices, 11,746
-  lines, 461 companies, 4,002 catalog items, 78 categories, 0 purchase requests.
-- Gotcha: HTTP 200 from Resend's detail endpoint does not mean its threading
-  metadata is ready. A successful-looking response without `message_id` must be
-  retried, never treated as final and never repaired by resending.
-
-### 2026-09-11 (b) — step 0, and the four blockers it found before anything was spent
-
-- **The whole review chain now runs free.** `scripts/check-yunt-review-chain.ts`
-  takes six real DTEs through the real ingest and the real classifier, then
-  staging, chunking, the submit guard, proposals, the findings email, the
-  confirmation prompt and the apply/undo payloads, with a stub dispatcher and no
-  API call. Eight deliberately bad answers go in and every one is refused.
-  `DUMP_PACKET=1` writes the exact packet to `/tmp` to be read before sending.
-- **It found a real bug.** The live classifier answered `429 Rate exceeded.` to
-  a warm follow-up batch. `classify()` threw with no retry, the writer refuses
-  to store lines with no category, and on the email path that is a reception
-  report saying the attachment could not be read — nothing stored and no webhook
-  redelivery coming. Now retried three times on 429 and 5xx, never on a 4xx,
-  with `scripts/check-classifier-retry.ts` behind it.
-- **Four deployment blockers, none of them visible from the code.** No model
-  credential on Vercel; every deploy since 2026-09-10 rejected with
-  `Edge Runtime is not supported in services`; Deployment Protection 401ing
-  every request including Production, which is why the mailbox has never carried
-  a message; and 18 unpushed commits. The middleware one is fixed here
-  (`runtime: "nodejs"`), verified as far as local goes — the Edge function is
-  gone from the build and a signed-out request still redirects to `/es/login`.
-- **eve was giving the agent eleven tools nobody wrote**, including `bash`,
-  `web_fetch` and `ask_question`. Turned off by decision (D-078).
-- **Test 1 is prepared and verified without spending anything.**
-  `scripts/91_make_yunt_test_zip.py` builds six COMPRAS documents, seven lines,
-  fake RUT `77123456-7`, folios 999101-999106, ~928 tokens of packet. Three
-  lines are ones where the client's own filing disagrees with the classifier
-  (EXP-15.8, ADM-1.8, EXP-7.0), one carries a deliberate arithmetic error, one a
-  junk name, one is a clean auto-accept control. `check-yunt-test-fixture.ts`
-  reads it through the real pipeline against a read-only snapshot of live and
-  asserts every one of those.
-- **The undo was written before the write**, covers all three tests, and
-  dry-runs clean against a baseline it snapshots itself
-  (`scripts/90_yunt_live_test_undo.py`). Its purchasing anchor is
-  `created_via = 'yunt'`, **not** `title like 'PRUEBA%'` — the Yunt drafts the
-  title from the sender's own words, which is exactly how the 2026-09-10
-  leftover survived the documented filter.
-- **The precedent baseline reproduces exactly**, free and read-only: 97.2% of
-  proposals correct, 2.76% confidently wrong, 400 held-out human-confirmed lines.
-- **Decided:** direct Anthropic key rather than the gateway (→ D-077), eve's
-  default tools off (→ D-078), the Python `yunt/` deleted (→ D-079).
-- **Gotcha — a preview URL answering 401 is not a broken route.** Every
-  deployment in this project sits behind Vercel SSO, so the webhook never
-  arrived and nothing in the app ever ran. Probe the deployed URL before
-  debugging the handler.
-- **Gotcha — `scripts/` and `backups/` are gitignored in this repo.** The new
-  undo script, the fixture generator and the baseline snapshot live on disk
-  only, like `89_cleanup_mct155_test.py` before them.
-
-
-### 2026-09-11 — everything that did not need the key, finished
-
-- **Finished what the previous session was interrupted mid-air doing.** Codex had
-  stopped while proving the authenticated `yunt_flags` read on localhost and its
-  final checkpoint never landed, so `STATE.md` still claimed `024` was pending and
-  `MCT-162` was deferred — both already false. Proved `024` live by behaviour and
-  corrected the file.
-- **`MCT-162` done and closed (D-072).** Direction now comes from the RUTs in the
-  document; the folder is only a fallback. Measured first: across 5,584 raw DTEs
-  Antillanca is on exactly one side of every one, and the RUT rule reproduces the
-  folder on all 5,195 ingested documents with zero disagreements. D-010 was
-  narrowed in the same commit rather than left standing.
-- **Redeployed the classifier.** Revision `mlmodel-00015-mjr`. Same model bytes;
-  what shipped was the code that already accepted `transport_plate`.
-- **`MCT-155` done and closed.** A synthetic invoice with five deliberate problems
-  and one clean control was written to live, its flags read and judged useful, and
-  the batch removed with the counts verified back to baseline.
-- **Switched the review to Sonnet 5 at `high` (D-076)**, and made the review chain
-  drivable by a stub so the first run of it costs nothing.
-- **Decided:** direction from the RUTs (→ D-072), `companies` holds counterparties
-  only (→ D-073), "proveedores nuevos" counts what is new (→ D-074), a flag's
-  sentence is interface not stored content (→ D-075), Sonnet 5 for review
-  (→ D-076).
-- **Gotcha — four failures today were invisible to every automated check**, and
-  all four were found by driving a real screen. The classifier 422, the
-  `yunt_flags` RLS refusal that silently skipped the *entire* post-write review,
-  the doubled supplier count, and the untranslated flag text. `tsc`, lint and the
-  check scripts passed throughout. Treat a green suite as evidence about the code
-  and nothing else.
-- **Gotcha — a swallowed error is invisible twice.** `reviewAfterWrite` never
-  throws, by design (D-064), so the RLS refusal surfaced only in
-  `.next/dev/logs/next-development.log`. When something that should have written
-  rows wrote none and the screen looks happy, read that file before theorising.
-- **Gotcha — do not stage upload fixtures in `public/`.** The dev server watches
-  it, Fast Refresh reloads the page, and the file input is cleared before submit.
-  Cost two silent no-op submits. Inline the base64 instead.
-
-### 2026-09-10 (e) — localisation finished and scope counted from the contract
-
-- **`MCT-163` built and accepted in the browser.** `/carga`, `/solicitudes`,
-  request detail/order forms, `/ordenes` and `/levantamiento` now use the shared
-  Spanish/English catalog. English changes only interface chrome; Antillanca's
-  stored values, generated reports and purchase-order documents remain Spanish
-  (D-071).
-- **`MCT-167` built.** `/ordenes` is now an order-first list with order number,
-  supplier, amount and date, linked from requests. Live currently has zero
-  orders, so the browser acceptance proved the real empty-data state; it did not
-  invent a production order to exercise a row.
-- **Proof:** targeted ESLint, `npx tsc --noEmit --incremental false`, catalog
-  parity (42 upload keys and 115 purchasing keys), `git diff --check`, and all
-  five affected routes in the signed-in browser in both locales. Commit
-  `205451d`.
-- **Reconciled the 19-item scope from `Yunt_scope_v1.docx`, not ticket status.**
-  Item 13 is parked; every active item has code. Eight are fully accepted and
-  ten need live integration/acceptance. All original-scope tools exist; there
-  are 22 agent tools and 22 Yunt library modules, correcting the stale 20/19
-  inventory.
-- **Ticket coverage is broad but not proof of completeness.** `MCT-165` is a
-  discovered safety gap outside the original promise, and several tickets call
-  code-built work done without the live email/model evidence their own done-when
-  requires.
-- **Performance stayed parked.** Three uncommitted cache/hydration files remain
-  outside the feature commit. Do not let them obscure the remaining functional
-  acceptance work.
-- **Linear corrected through its connector.** `MCT-163` and `MCT-167` are Done
-  with proof comments. `MCT-166` was reopened to Backlog because its committed
-  change did not meet its done-when. `MCT-155` now says flags report source-data
-  problems and never rewrite DTE values (D-070), and `MCT-141` no longer claims
-  the already-configured Resend mailbox/domain are blockers. `MCT-154` is
-  Backlog, matching its parked-for-V2 title.
-- **No other ticket can honestly close without the Claude key or user input.**
-  `MCT-150` explicitly requires the real email approval and undo path;
-  `MCT-152` needs a real stored question; `MCT-153` a real refusal; `MCT-155`
-  migration `024` plus human judgement; and `MCT-141`/`160` a real message whose
-  review/findings step uses Claude. A fresh five-table logical backup was taken
-  at `backups/supabase_20260910T130219Z`, but no live write followed it.
-
-### 2026-09-10 (d) — purchasing proved by using it, and four defects it hid
-
-- **Checkpoint repair.** Codex replaced this file with 41 lines before dying;
-  the 900-line version was still uncommitted at `HEAD`, so nothing was lost.
-  Restored, trimmed to five sessions, and the dead 2026-09-09 HANDOVER section
-  deleted. `CLAUDE.md` and `supabase/README.md` had gone false about migrations.
-- **`MCT-154` parked for V2** (D-069) after building a first pass and realising
-  every product question behind it had been guessed. Code lives on
-  `yunt-recurring-reports-v2`, off the release branch so no cron is registered.
-- **`MCT-155` scope settled** (D-070): the Yunt may change a category and never
-  a value off the document. Already enforced — `apply_yunt_proposal` refuses
-  `data_fix` and `review-persistence.ts` hardcodes `category_change`. That
-  refusal is the decision, not unfinished work. The model is now told so.
-- **`MCT-161` closed.** One loader feeds the print page and a new PDF route, so
-  the printed and emailed order cannot drift. The PDF writer was emitting ASCII,
-  printing "Comercial Peña y Muñoz" as "Pena y Munoz" on a document that
-  supplier reads; the font already declared WinAnsi, so it just had to be
-  written as Latin-1. `MCT-152`'s reports inherit the fix.
-- **`MCT-140` closed**, exercised on live: the CLP 500,000 rule refused an order
-  with no quotations and allowed one with two. The rule is `count(*)` in the
-  database, never a model — `MCT-165` raised because counting cannot tell a real
-  quotation from a blank file.
-- **`MCT-168` closed.** A quotation may now be a stated price; a constraint
-  keeps it honest — document or source, never neither, because either way it
-  counts toward a rule that gates money.
-- **`MCT-169` closed.** The request page could always show what an item last
-  cost; nobody had ever seen it, because nothing linked a request to a
-  catalogued item. Verified live: Petroleo Diesel shows FEROSOR AGRICOLA at
-  753/709/864/747. Everything stays free text — the list is a shortcut.
-- **Gotcha — every internal link dropped the locale and 404'd.** Eleven files
-  imported plain `next/link`/`useRouter` when `createNavigation` versions exist.
-  Creating a request landed on a 404 *after saving it*, so it read as failure.
-  All 18 routes now return 200 in both locales.
-- **Gotcha — the home screen's CLP 500,000 notice never rendered.** `<strong>`
-  in a message is a next-intl rich-text tag, not HTML, so `t()` threw and the
-  card came up empty. `t.rich` fixes it and removes two `dangerouslySetInnerHTML`
-  sinks fed by translator-controlled strings.
-- **Gotcha — a one-click price chip read $753 and filled 752.99.** CLP has no
-  cents; the stored figure is a division artefact. Found by clicking it.
-- **All four defects above passed types, lint and `check.sh`.** `CLAUDE.md` now
-  says a feature is not finished until it has been used in the browser.
-- **`MCT-144` closed by re-measuring, not building:** 81.3% of 11,746 lines
-  match with nobody involved and every automatic match lands where it sits
-  today. The only 7 disagreements are the known `Confeccion de bolos` triple.
-- **`MCT-166` closed, and it was two pages.** The dashboard cached ~3.7 MB of
-  invoices and `/productos` ~3.25 MB of summaries through `unstable_cache`,
-  which refuses anything over 2 MB — so neither ever cached anything and both
-  threw on every render before querying anyway. Removing the wrapper changes
-  nothing at runtime. The second page was found by reading the server log while
-  fixing the first, which is the argument for reading logs rather than trusting
-  a green suite.

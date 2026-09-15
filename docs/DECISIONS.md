@@ -2115,6 +2115,9 @@ document: a real styled spreadsheet, a designed PDF, and a chart with an
 intentional layout. The model chooses a supported query and output type only;
 code owns all figures and the fixed document templates.
 
+Implemented by D-093 (one document theme, charts inside the PDF) and D-094
+(share charts are shares of the whole total).
+
 ## D-084 — A confirmation remains direct-reply-bound after Q&A
 
 **Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
@@ -2234,7 +2237,8 @@ Moss sidebar `#1F2A22`, oat page ground `#F5F3EC`, white cards and controls,
 sage `#3E7B4F` only for primary actions / current page / focus, wheat `#C8963E`
 only for the headline KPI. Table header rows are moss with centred titles; the
 frozen first column stays oat; scrollable cells stay white. Tokens live in
-`src/app/globals.css`.
+`src/app/globals.css`. Generated documents copy these colours as hex in
+`src/lib/documents/theme.ts` (D-093); change both together.
 
 **Why:** the stock greyscale read as bland, and colour alone on white was not
 enough — structure (dark frame, tinted headers, cards on a tinted ground) is
@@ -2255,3 +2259,42 @@ the title only when it fits (the open sidebar already shows the name).
 desktop, which stacked filters and cut KPI figures.
 **Rejected:** more viewport breakpoints — they cannot see the sidebar.
 
+## D-093 — Every Yunt document shares one theme, and charts live inside the PDF
+
+**Date:** 2026-09-15 · **Decided by:** Afaq · **Recorded by:** Claude (Opus 5)
+
+Report PDFs, chart reports, spreadsheets and the purchase-order PDF read one
+file, `src/lib/documents/theme.ts`, whose colours are the Pastizal tokens
+(D-091) as hex, drawn with a small dependency-free PDF canvas
+(`src/lib/documents/pdf.ts`). A chart request returns a report PDF — header,
+criteria, summary tiles, the chart, the detail table — never a loose image
+file. The purchase order stays mostly black and white so it prints cleanly for
+suppliers, with the theme's sage-deep only on its rule and labels, and matches
+the print page. Criteria print in Spanish words, never parameter names or query
+mechanics. The model still chooses only the query and output type (D-053, D-083).
+
+**Why:** Afaq's review of the delivered files: plain text on a page, an
+unformatted sheet, and "a graph thrown in an SVG" read as data dumps, and the
+emailed order did not look like the order on screen. Outlook does not preview
+SVG at all.
+**Rejected:** a headless browser or PDF library (weight inside the Vercel
+function for what a few hundred lines draw); PNG charts (needs a rasterizer and
+still arrives as a loose image); a Pastizal-coloured purchase order (prints and
+photocopies badly for suppliers).
+
+## D-094 — A pie or stacked chart shows shares of the whole query
+
+**Date:** 2026-09-15 · **Decided by:** Claude (Opus 5), after a live test Afaq ran
+
+Shares and the donut centre use the query's own total. When more groups exist
+than fit (10), the top 9 are drawn and everything else is one "Otros (N grupos)"
+slice, with a line saying so; the detail table still lists every group. Share
+charts are refused for measures that do not add up (average, min, max, distinct
+documents), so the model picks another chart type.
+
+**Why:** the first live pie of 2025 purchases by category drew 10 of 69 groups
+and computed each share of those ten: "Sin categoría confirmada 24,3%" was
+really 17,1%, and the centre showed $2.841 MM against a real $4.029 MM. A share
+of a subset read as a share of the whole is a wrong number on a client document.
+**Rejected:** keeping the "Se muestran 10 de 69" note alone — the percentages
+beside it still read as shares of everything.
