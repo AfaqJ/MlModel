@@ -2152,6 +2152,10 @@ context, not a committed supplier price.
 
 ## D-087 — A reversible real sample for the team, with additive email access
 
+**Sample part expired 2026-09-15:** Afaq had live restored to the full baseline,
+so the five invoices are back and the ZIP is no longer unseen. A new unseen
+test needs a fresh detach. The email-access part still stands.
+
 **Date:** 2026-09-13 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-6)
 
 Afaq authorized backing up and removing a small set of existing invoices so
@@ -2169,3 +2173,85 @@ Email access includes `cristian.anguita@gmail.com` and the exact
 read back, so an additive variable preserves it and the shared inbound/outbound
 gate combines both lists. Domain matching excludes subdomains and lookalikes.
 Dashboard accounts remain a separate access mechanism.
+
+## D-088 — A recent, explicitly selected historical purchase may be repeated
+
+**Date:** 2026-09-14 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+The normal purchase-request confirmation remains the first email step. If the
+buyer subsequently explicitly selects an exact historical catalog item,
+supplier, unit and unit price from the last six months, the Yunt may offer a
+repeat instead of requiring two new quotations above CLP 500,000. The repeat
+confirmation states the supplier, RUT, rate, quantity, delivery date, cost
+centre and historical category. Its exact confirmation atomically creates the
+request and the linked order, then closes the request; it never contacts the
+supplier.
+
+This is a narrow exception to D-052, not a change to the normal two-quotation
+rule. A similar item spelling is only a suggestion until the buyer expressly
+chooses the named historic catalog item. The database independently checks the
+six-month source, supplier RUT, unit and rate. A changed repeat creates a fresh
+pending draft, invalidating the old confirmation rather than allowing it to
+approve different details.
+
+## D-089 — Requests are the open-work queue; orders own their history
+
+**Date:** 2026-09-15 · **Decided by:** Afaq · **Recorded by:** Codex (GPT-5)
+
+Purchase Requests shows open work only. It keeps an explicit Purchase Orders
+navigation control, but does not duplicate generated orders. Purchase Orders
+owns the generated-order list and its issued-month, supplier, and category
+filters. Removing redundant content must not remove the route that users rely
+on to reach its dedicated screen.
+
+For a new request, every visible field is required except detailed description;
+an uncatalogued free-text item remains allowed. On a known item, historic
+category chips come only from prior purchase invoices and selecting one fills
+the PO category without altering historic data. The form and server action
+require a category, while the database-level non-null category constraint is
+parked for now rather than introduced as a migration.
+
+## D-090 — Numbers read the Chilean way in both UI languages
+
+**Date:** 2026-09-15 · **Decided by:** Afaq · **Recorded by:** Claude (Opus 5)
+
+Amounts and counts are the client's data, so they are formatted `es-CL` whether
+the UI is Spanish or English: `4.192`, `$9.259.812.345`, `9,8%`, and `$9.260 MM`
+for millions in tight spaces. Only labels translate. One formatter
+(`NUMBER_LOCALE` in `src/lib/dashboard/format.ts`); bare `toLocaleString()`
+followed the browser's language and is not used for figures.
+
+**Why:** plain `es` prints `4192` and `9.259.812.345 CLP`; English `$9.26B`
+reads as *billón* (a trillion) to a Chilean. The purchasing pages already
+hard-coded `es-CL`, so one rule removed a split.
+**Rejected:** following the UI language — two formats for the same figure.
+
+## D-091 — Pastizal theme with a framed layout
+
+**Date:** 2026-09-15 · **Decided by:** Afaq · **Recorded by:** Claude (Opus 5)
+
+Moss sidebar `#1F2A22`, oat page ground `#F5F3EC`, white cards and controls,
+sage `#3E7B4F` only for primary actions / current page / focus, wheat `#C8963E`
+only for the headline KPI. Table header rows are moss with centred titles; the
+frozen first column stays oat; scrollable cells stay white. Tokens live in
+`src/app/globals.css`.
+
+**Why:** the stock greyscale read as bland, and colour alone on white was not
+enough — structure (dark frame, tinted headers, cards on a tinted ground) is
+what made it read designed. Earthy fits a dairy/farming client.
+**Rejected:** navy + trust blue (generic), Arcilla, Petróleo, Tinta palettes.
+
+## D-092 — Layout responds to the space beside the sidebar
+
+**Date:** 2026-09-15 · **Decided by:** Afaq · **Recorded by:** Claude (Opus 5)
+
+Filter rows, the KPI grid, KPI figures and the header title size themselves with
+container queries on their own area, not viewport breakpoints. Narrow areas
+collapse filters behind one "Filtros" toggle that opens an even 2-column grid;
+the header uses icon-only language/role pickers below tablet width and shows
+the title only when it fits (the open sidebar already shows the name).
+
+**Why:** viewport breakpoints treated a 900px window with the sidebar open as
+desktop, which stacked filters and cut KPI figures.
+**Rejected:** more viewport breakpoints — they cannot see the sidebar.
+

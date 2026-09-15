@@ -6,6 +6,12 @@ current detached/restored status are local under
 the team attachment. Share only QUICK_START.html, the original invoice ZIP and
 REFERENCE.md (and use TEAMS_MESSAGE.md as the accompanying text).
 
+**2026-09-15: live was restored to baseline.** The five sample invoices / twelve
+lines are back and the 09-14 repeat-purchase test rows were removed (backup and
+script: `backups/pre_baseline_restore_20260915/`). The `restore` command below
+will now refuse — there is nothing left to restore. The ZIP is no longer unseen;
+a new team test needs a fresh detach.
+
 Baseline: 5,195 invoices / 11,746 lines. Handover: 5,190 / 11,734. All other
 tracked rows are identical to the new full snapshot. Removing five complete
 documents is required: removing only their lines would still deduplicate the

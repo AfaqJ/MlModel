@@ -3,6 +3,102 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-15
+
+**Live database restored to baseline.** Compared every tracked table with
+`backups/yunt_team_handover_20260913/`: the only differences were the 09-14
+repeat-purchase test data (fixture supplier *Proveedor Prueba Recompra*, folio
+`TEST-BROWSER-030`, its catalog item and line, `SOL-2026-0009`–`0014`,
+`OC-2026-0004`–`0009`, 13 inbound requests, 9 drafts) and the five detached
+handover invoices / twelve lines. A scoped script deleted exactly those rows and
+re-inserted the sample with original IDs; counts, core ID sets and the 17
+restored rows' fields were verified against the snapshot. Deleted rows and the
+script: `backups/pre_baseline_restore_20260915/`. A full wipe-and-reload was
+considered and rejected: same end state, more risk. Request/order number
+counters were not reset — the next request is `SOL-2026-0015`.
+Gotcha: a `select=*` read of every table in parallel hung for 14 minutes; per-
+table `count` plus ID-column reads answered the same question in seconds.
+
+**UI/UX polish merged and pushed to `yunt`** (`mountain-creative/milk-company`,
+head `55f8797`, Preview rebuilds from it). Everything below was driven in the
+browser at 390 / 700 / 900 (sidebar open) / 1280 / 1600 px, and `check.sh` is
+all green with 0 lint errors and a passing build.
+
+- Numbers use Chilean format in both UI languages: `4.192`, `$9.260 MM`,
+  `9,8%` — one formatter, `src/lib/dashboard/format.ts` (D-090).
+- Sidebar highlights the current page; Órdenes de compra, Nueva solicitud and
+  the print-order page have back links. Leftover hardcoded text translated,
+  including a translated file picker (`src/components/file-input.tsx`).
+- Empty states have icon + action; orders month filter is a month-level
+  calendar (`src/components/month-picker.tsx`); duplicate filter title removed.
+- Layout sizes on the space beside the sidebar, not the screen (container
+  queries): filters collapse behind one "Filtros" button and open as an even
+  2-column grid; KPI grid goes 2→4 columns; KPI figures scale with the card.
+  Header shows icon-only language/role pickers below tablet width, and the
+  title only when it fits (D-092).
+- Pastizal theme: moss sidebar, oat ground, sage actions, wheat headline tile,
+  moss table header row with oat frozen column and centred titles (D-091).
+- Hydration error in the pending KPI card fixed (skeleton `div` inside `p`).
+- Sidebar names stay "Solicitudes de compra" and the inner page stays
+  "Órdenes de compra" — Afaq decided against renaming.
+
+**Folders consolidated.** The `.worktrees/ux-operational-home` copy is deleted;
+`../milk-company` is the only frontend checkout, on `yunt`, clean apart from
+generated `AGENTS.md`/`CLAUDE.md`. The previously uncommitted MCT-166 cache
+edits and two script edits (`preflight-go.ts`, `check-yunt-test-fixture.ts`)
+are parked as two commits on local branch `parked/mct-166` — not for merge.
+The unreachable mock page `productos/[id]/ordenes/[orderId]` stays as is.
+
+Performance review (read-only, nothing changed): Analytics downloads every
+invoice line for the range into the browser (~12 pages) and aggregates in
+`dashboard-view.tsx:240-256`; the DB-side aggregate is only the catalog's
+`item_summary` view. The catalog loads all 4,002 summaries server-side, so its
+search covers every item. Sidebar prefetch is kept deliberately.
+
+Gotchas: switching branches or rebasing while `next dev` runs replays each
+intermediate commit, so the page briefly shows old themes — a dev artefact, not
+a user-facing bug (production CSS verified to contain only Pastizal tokens).
+After a branch switch Turbopack kept serving the old CSS until the dev server
+was restarted. In a worktree whose `node_modules` is a symlink, Turbopack
+refuses to start; `--webpack` works.
+
+## Session — 2026-09-14
+
+The repeat purchase-order flow is complete in `../milk-company` and pushed to
+`mountain-creative/milk-company` branch `yunt` at `fe5ea4b` (following
+`19337ca`). The branch Preview is
+`https://milk-company-git-yunt-mountain-creative.vercel.app`. It is not the
+production app. The classifier/data-pipeline repository is separately
+`AfaqJ/MlModel`, branch `yunt-backend`; do not treat the two as one branch.
+
+The final visible Outlook coverage ran for all three purchase cases: a new
+purchase follows the normal request-plus-order path; an exact recent historic
+purchase offers a repeat with supplier, RUT, historic category and price; and a
+similar spelling is only suggested until the buyer explicitly selects the
+historic item. A changed repeat invalidates the previous confirmation and
+creates a new draft. Local TypeScript, Next build, Eve build, and
+`scripts/prove-030-repeat-purchase-orders.sh` passed. Migration `030` is live.
+D-088 remains the controlling decision.
+
+The temporary repeat fixture and its test records were removed on 2026-09-15
+as part of the baseline restore.
+
+Dashboard upload was demonstrated locally and on Preview as a dry run only,
+using a temporary copy outside the repository. It shows deterministic catalog
+matches, category/decision suggestions and a `Save to database` second step.
+No save occurred. The dashboard does not start a Yunt conversation or send a
+review email: after a real save it can dispatch EVE review work, but today has
+no review inbox or notification surface. The email ingestion route is the
+conversational route. This is a product gap, not evidence of a failed upload.
+
+Team handover additions are uncommitted in `handover/yunt-team-test/`:
+`TEAMS_MESSAGE_REPEAT_FLOW.md`, `yunt-real-outlook-threads-english.pdf`, and
+`YUNT_TECHNICAL_ONBOARDING_TODO.md`. Preserve the existing
+`yunt-unseen-invoices.zip`; it is Rodrigo's intentional test sample.
+
+Gotcha: UI contributions go to `mountain-creative/milk-company:yunt`, never
+`yunt-backend` (that is this classifier repo). Stage named paths only.
+
 ## Session — 2026-09-13
 
 Team handover prepared after acceptance. Verified the saved baseline, took a
@@ -51,17 +147,25 @@ quantity changed. Regression check, ESLint and production build passed.
 
 ## Now
 
-**The Yunt's classification, approval, query and purchasing paths are proved on
-live email.** Current `yunt` Preview is `a16fc51` (team email access); it includes
-the `28c49b7` recent-price budget feature and `8bec6c2` purchase preflight repair.
-Every reported rendering, lookup and purchase-thread defect has a focused
-regression check, and the final report/purchase proof has been received from the
-actual deployed agent.
+**The repeat-purchase feature is pushed, deployed to the `yunt` Preview, and
+visibly accepted in Outlook for new, exact-repeat and similar-name flows.**
+Migration `030` is live. The current Preview is
+`https://milk-company-git-yunt-mountain-creative.vercel.app`. The app is on
+`mountain-creative/milk-company:yunt`; the classifier/data work is in the
+separate `AfaqJ/MlModel:yunt-backend` repository.
+
+**The dashboard is not yet a Yunt conversation surface.** It can preview a ZIP
+and, after a save, trigger background review; it currently does not show the
+result as a Yunt discussion or notify the uploader. Email remains the working
+Yunt interface for conversational review and purchasing.
 
 **Purchase planning is clearer in the dashboard.** A known item now shows its
 three newest recorded prices during request entry, and its most recent unit
 price can calculate a budget suggestion after the buyer provides quantity. The
 buyer must press the button to use it; no input is automatically changed.
+
+**The UI/UX polish and the Pastizal theme are on `yunt` (`55f8797`) for Preview
+review before production.** See the 2026-09-15 entry for what changed.
 
 **Closed on live evidence: `MCT-150`, `MCT-141`, `MCT-149`, `MCT-160`, and
 `MCT-153`.**
@@ -95,29 +199,36 @@ buyer must press the button to use it; no input is automatically changed.
 6. Charts capped at 10 rows, silently dropping April and June, no disclosure.
 7. A reply promised a PDF and carried an .svg.
 
-**Live is baseline minus the agreed handover sample.** Prior synthetic tests
-were fully cleaned. Five real invoice headers and their twelve lines are now
-backed up and intentionally absent: 5,190 invoices / 11,734 lines. All other
-tracked rows match the full fresh snapshot by hash. The team ZIP restores their
-content through ingest; it may assign new IDs and predictions. This is not
-equivalent to an exact original-row restore. Use the maintainer guide for that.
-The
+**Live is at baseline (restored 2026-09-15).** 5,195 invoices / 11,746 lines /
+461 companies / 4,002 catalog items / 78 categories; every purchasing and Yunt
+table is empty. The handover sample is back, so the team ZIP is no longer
+unseen. The
 acceptance records are `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md` and
 `docs/YUNT_LIVE_ACCEPTANCE_2026-09-13.md`; the presenter-ready guide is
 `docs/YUNT_CAPABILITY_GUIDE.html`.
 
 ## Next
 
-1. Share `handover/yunt-team-test/TEAMS_MESSAGE.md` with the guide and invoice
-   ZIP. One volunteer ingests it once; others try focused reports/purchases.
-   Retain conversation and SOL/OC identifiers for later scoped cleanup.
-2. After team testing, inspect exact new identities before cleanup. The old
-   `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are disposable;
-   do not use that assumption once team work begins. Preserve both snapshots.
-3. Keep `MCT-165` in Backlog. File inspection cannot prove a supplier's quoted
+1. Before any new team test on unseen data, detach a fresh sample: the
+   2026-09-13 one is back in live, so `yunt-unseen-invoices.zip` is seen data.
+2. Afaq reviews the `yunt` Preview
+   (`https://milk-company-git-yunt-mountain-creative.vercel.app`) and decides
+   whether it goes to production. Still unverified by eye: historical-category
+   chips on a real open request (there are no open requests at baseline).
+3. Optional performance work, not urgent for a handful of users: move the
+   Analytics aggregation into the database instead of downloading every line;
+   store `item_summary` and refresh it on import. MCT-166 stays parked on
+   `parked/mct-166`.
+4. Decide whether to build a dashboard review inbox/notification flow. Until
+   then, describe `/carga` as deterministic upload/classification, not a Yunt
+   chat channel.
+5. Run broader ambiguous-wording and longer-session tests before claiming
+   comprehensive tool-choice or memory reliability across all 25 tools.
+6. After any future team testing, inspect exact new identities before cleanup.
+   The old `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are
+   disposable; do not use that assumption once team work begins.
+7. Keep `MCT-165` in Backlog. File inspection cannot prove a supplier's quoted
    price truthful and is not needed for v1.
-4. Treat the HTML capability guide as the handover/reference for demonstrations;
-   revise it whenever a supported tool, business rule or report template changes.
 
 **Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
 `MCT-143`).**

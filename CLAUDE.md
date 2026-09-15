@@ -7,23 +7,23 @@ Classifies Spanish invoice line items into accounting categories for
 revision `mlmodel-00015-mjr` (image `v1.3.3-plate`), 100% traffic. Same model
 bytes as `00014-lrp`; the redeploy shipped the code that accepts
 `transport_plate`. Prove a deploy with `scripts/88_prove_deploy.sh <url>`. The
-saved live baseline holds 11,746 corrected lines and 78 categories; the current
-handover state intentionally holds 11,734 lines (see below).
-
-**Handover exception (2026-09-13):** five backed-up purchase invoices / twelve
-lines are intentionally absent for the team's first ingestion. Before cleanup,
-read `handover/yunt-team-test/MAINTAINER.md`; use the exact sample snapshot,
-not the old blanket Yunt cleanup. All other tracked rows match the baseline.
-Before this handover sample, live and the staged payload were identical. Both
+live database is **at baseline** (restored 2026-09-15): 5,195 invoices / 11,746
+corrected lines, 78 categories, every purchasing and Yunt table empty. The
+five handover-sample invoices are back, so `yunt-unseen-invoices.zip` is no
+longer unseen. Baseline snapshot: `backups/yunt_team_handover_20260913/`; the
+rows removed by the restore: `backups/pre_baseline_restore_20260915/`.
+Before the handover sample, live and the staged payload were identical. Both
 uploads of 2026-08-19 landed and were verified independently against live.
 `002_add_manual_recategorisation_source.sql` is **applied to production**; live
 carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
-Frontend: branch `yunt` in `../milk-company`, off `feature/dashboard`, is pushed
-at `a16fc51` and deployed to Preview. Three performance files stay uncommitted
-and parked (`MCT-166`); do not fold them into feature work. Migrations
-`004`–`027` are live. `024`, `026` and `027` are confirmed by behaviour;
+Frontend: branch `yunt` in `../milk-company` (the only frontend checkout), off
+`feature/dashboard`, is pushed at `55f8797` with the UI polish and Pastizal
+theme (D-090–D-092) for Preview review; Afaq promotes to production himself.
+The `MCT-166` cache edits are parked as commits on local branch
+`parked/mct-166`; do not fold them into feature work. Migrations
+`004`–`030` are live. `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that
