@@ -3,6 +3,38 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-16 (b)
+
+**v1.4.0 was trained on gold only, and gold was not the whole labelled set.**
+Live carried 6,842 more settled lines — including the only examples that exist
+for `ADM-3.1`, `EXP-15.7` and `EXP-15.8` (215 lines, 0 gold rows). Afaq caught
+it. `scripts/102_merge_live_labels.py` now merges gold with every settled
+Supabase label by trust order and writes
+`Data/candidates/retrain_2026_09_16/` — **4,251 distinct inputs, 76 classes**
+against v1.4.0's 2,369 / 73 (→ D-099).
+
+**A v1.4.1 training run is in flight and left running deliberately.** Started
+2026-09-16 ~07:50, `models/setfit_retrain_2026_09_16_C`, CPU, batch 8, 2,000
+steps, ~1.3 s/step, log `reports/retrain_2026_09_16/train_C.log`. One run only:
+two in parallel is what swapped the Mac yesterday. **Next session picks it up
+from `Next` 1.**
+
+- The locked split honours **both** earlier splits, so neither v1.3.3 nor
+  v1.4.0 ever trained on a row that is now a test row: 843 test rows, 466 of
+  them the exact rows v1.4.0 was measured on. Six classes under 5 inputs remain
+  untestable (`ADM-1.9`, `EXP-15.1`, `EXP-6.4`, `EXP-8.3`, `ING-0.3`, `ING-0.6`).
+- Refused from live: 982 `model` auto-accepts (its own guesses, 0.698 precision)
+  and 103 DTE-43 liquidación lines. Conflicts: 167 resolved by trust, 15 dropped
+  as ties, plate pairs kept (D-029).
+- **`backups/yunt_team_handover_20260913/` is byte-identical to live** and is the
+  local mirror to use. `reports/recovery_v1_3_3/supabase_upload/` is **stale** —
+  7,335 settled rows, pre-D-047 source names. Nothing was written to Supabase
+  this session; the live read was read-only.
+- **Decided:** gold plus settled live labels, by trust order (→ D-099). The next
+  artifact is **v1.4.1**.
+- Regenerable and untracked: `reports/retrain_2026_09_16/live_settled_items.json`
+  and `live_invoices.json` (the read-only pull).
+
 ## Session — 2026-09-16
 
 **The classifier is retrained and live: v1.4.0, revision `mlmodel-00016-p8z`,
@@ -211,143 +243,57 @@ Team handover additions are uncommitted in `handover/yunt-team-test/`:
 Gotcha: UI contributions go to `mountain-creative/milk-company:yunt`, never
 `yunt-backend` (that is this classifier repo). Stage named paths only.
 
-## Session — 2026-09-13
-
-Team handover prepared after acceptance. Verified the saved baseline, took a
-fresh full 23-table snapshot, extracted 5 unchanged original XML invoices / 12
-lines, and detached only those exact IDs. Proved restore to identical row hashes,
-then detached again for team testing. The five core tables also match the
-independent 2026-09-11 backup field for field (zero changed/added/removed rows
-before detachment). Snapshot/undo controls:
-`backups/yunt_team_handover_20260913/` and `scripts/91_yunt_team_sample.py`.
-The real app XML parser confirms all identities/amounts; no paid model call.
-
-Preview `a16fc51` is Ready: exact @mctechstudio.com matching and Cristian's Gmail
-are added through `YUNT_ADDITIONAL_ALLOWED_ADDRESSES`; the unreadable existing
-allowlist stays untouched. Focused checks and build passed. Teams copy, HTML
-talking script, field meanings and reference labels live in
-`handover/yunt-team-test/`. D-087 records the changed test boundary. Gotcha:
-Vercel sensitive values cannot be read back; an additive setting avoided
-overwriting unknown recipients. Browser policy blocked local HTML visual QA.
-
-Delivered a boss-facing English HTML capability guide at
-`docs/YUNT_CAPABILITY_GUIDE.html`. It states the supported workflows,
-hard guardrails, limitations and concrete answers to the operational “what if?”
-questions. It is deliberately specific about the difference between model
-interpretation and database enforcement.
-
-Applied migration `029` live, then ran the final live acceptance. Commit
-`8bec6c2` is pushed to the `yunt` preview branch: an expected purchase-order
-two-quotation preflight now produces a concise request for the missing quote
-instead of leaving an inbound request open. The error condition is recognized
-narrowly; unrelated database failures still surface normally.
-
-Live proof: a neutral email created `SOL-2026-0002`; one CLP 600,000 quotation
-was refused before confirmation; the second quotation unlocked an exact order
-proposal; a direct `SÍ, ADELANTE` created `OC-2026-0002`, closed the request,
-and emailed its PDF to the requester. Separate live emails returned the requested
-styled XLSX, PDF and SVG monthly reports. `MCT-152`, `MCT-157` and parent
-`MCT-142` were closed in Linear with this evidence. Test-only records were
-removed and every tracked live table again matches the baseline exactly.
-
-The purchase-request form now surfaces the three newest invoice prices as soon
-as a known catalog item is selected. It offers latest-price × quantity as an
-explicit Estimated budget button; it never overwrites typed planning data
-(D-086). Local UI proof used Bodega lecheria Maitén: CLP 2,697,000 per recorded
-unit × 20 offered CLP 53,940,000, and an entered CLP 123 remained unchanged when
-quantity changed. Regression check, ESLint and production build passed.
-
 ## Now
 
 **The classifier is v1.4.0, live and verified** — revision `mlmodel-00016-p8z`,
 image `mlmodel:v1.4.0`, 100% traffic, 73 trained classes, familiarity gate at
 k=5. Read the class list from `artifacts/v1.4.0-int8/labels.json`, never by
-arithmetic on the category table. On the locked test set it auto-accepts about
-the same share of lines as v1.3.3 (41.6% vs 40.6%) and is right 96.9% of those
-times against 69.8%. Rollback: traffic to `mlmodel-00015-mjr`.
+arithmetic on the category table. Rollback: traffic to `mlmodel-00015-mjr`.
 
-**The 3,819 review lines have not been re-classified with it.** Nothing in
-Supabase changed; the new model only affects lines classified from now on.
+**A v1.4.1 run is training right now and must be picked up** — gold merged with
+every settled Supabase label, 4,251 distinct inputs, 76 classes (D-099). See
+`Next` 1 for the exact commands. It supersedes v1.4.0 only if it wins on the
+843-row locked test set.
 
-**Blocked on Afaq: Anthropic API credits are exhausted.** Every Yunt email
-reply fails until they are topped up (seen 2026-09-15 14:02 in Vercel logs).
-
-**Yunt documents are themed and on the `yunt` Preview (`8809120`)**: report
-PDF with charts inside it, spreadsheet, purchase-order PDF, one theme file.
-See the 2026-09-15 (b) entry.
-
-**The repeat-purchase feature is pushed, deployed to the `yunt` Preview, and
-visibly accepted in Outlook for new, exact-repeat and similar-name flows.**
-Migration `030` is live. The current Preview is
-`https://milk-company-git-yunt-mountain-creative.vercel.app`. The app is on
-`mountain-creative/milk-company:yunt`; the classifier/data work is in the
-separate `AfaqJ/MlModel:yunt-backend` repository.
-
-**The dashboard is not yet a Yunt conversation surface.** It can preview a ZIP
-and, after a save, trigger background review; it currently does not show the
-result as a Yunt discussion or notify the uploader. Email remains the working
-Yunt interface for conversational review and purchasing.
-
-**Purchase planning is clearer in the dashboard.** A known item now shows its
-three newest recorded prices during request entry, and its most recent unit
-price can calculate a budget suggestion after the buyer provides quantity. The
-buyer must press the button to use it; no input is automatically changed.
-
-**The UI/UX polish and the Pastizal theme are on `yunt` (`55f8797`) for Preview
-review before production.** See the 2026-09-15 entry for what changed.
-
-**Closed on live evidence: `MCT-150`, `MCT-141`, `MCT-149`, `MCT-160`, and
-`MCT-153`.**
-
-| Proved live | Evidence |
-|---|---|
-| Approve a proposal | `096b6abe` ADM-1.4 -> ADM-1.8; `5b204210` -> EXP-2.6 |
-| Reject one | Honoured, nothing touched |
-| Correct with an unsuggested category | Staged, restated, applied |
-| Undo | All four before-values restored exactly |
-| Approval phrase not on first line | Refused, nothing applied |
-| Query with no data (2024 fuel) | No data, no invented number, no empty Excel |
-| Query with data (2025 fuel) | CLP 93.146.229 = independent recount, to the peso |
-| Spreadsheet | Opened: BOM, semicolons, accents, filter header, rows sum exact |
-| PDF | Opened: qpdf clean, 12 months chronological, total exact |
-| Refusal | Out-of-scope question refused; genuine `yunt_refusals` row written |
-| Fresh inbound ZIP | Folios `999201`–`999206`: 6 new documents, 7 lines and a reception report |
-| Grouped findings email | One Sonnet review: 3 concrete flags, 4 unapplied proposals, each citing its prior records |
-| Purchase request | Missing year prompted a question; exact confirmation opened `SOL-2026-0001`, no supplier contacted |
-| Purchase order | One quote at CLP 600,000 was refused before confirmation; two quotes then direct exact confirmation created `OC-2026-0002`, closed the request and emailed the requester `OC-2026-0002.pdf` |
-| Styled report outputs | Real emails returned the themed XLSX, the report PDF and (2026-09-15) chart reports drawn inside the PDF; the loose SVG attachment is gone (D-093) |
-
-**Bugs found and fixed (all shipped):**
-1. Proposal lookup had **never once worked on live** (D-081) - it compared
-   Resend's API uuid to an RFC Message-ID. Earlier "success" was a manual script.
-2. Client-facing reason printed model filler instead of the precedent (D-080).
-3. A category written as the Yunt prints it (`EXP-2.6 Otros Gastos Salud Animal`)
-   matched nothing.
-4. Report replies delivered literal `\n` instead of line breaks.
-5. Monthly chart ordered by amount, not by month - the line was not a trend.
-6. Charts capped at 10 rows, silently dropping April and June, no disclosure.
-7. A reply promised a PDF and carried an .svg.
-
-**Live is at baseline (restored 2026-09-15).** 5,195 invoices / 11,746 lines /
-461 companies / 4,002 catalog items / 78 categories; every purchasing and Yunt
-table is empty. The handover sample is back, so the team ZIP is no longer
-unseen. The
-acceptance records are `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md` and
-`docs/YUNT_LIVE_ACCEPTANCE_2026-09-13.md`; the presenter-ready guide is
-`docs/YUNT_CAPABILITY_GUIDE.html`.
+**The 3,819 review lines have not been re-classified with any new model.**
+Nothing in Supabase changed; a new model only affects lines classified from now
+on.
 
 ## Next
 
-1. **Re-classify the 3,819 review lines with v1.4.0** — the gain only reaches
-   Antillanca when stored lines are revisited. Scoped write over PostgREST
-   (`scripts/supabase_rest.py`), backup first (`scripts/81_backup_supabase.py`),
-   dry run first, and never touch a line a human settled (`user_selected`).
-   Decide first whether a new suggestion may overwrite an existing
-   `predicted_code` on a review row, or only be added.
-2. **Harvest gold rows for `ADM-3.1`, `EXP-15.7` and `EXP-15.8`** (43, 14 and
-   158 live lines, 0 gold rows each) per `docs/LABELING_RULES.md`, so D-095 can
-   cover them at the next retrain. Same for the 22 weak classes under 15
-   distinct inputs, which can never auto-accept until they grow.
+1. **Finish v1.4.1** (a training run may still be in flight — check
+   `reports/retrain_2026_09_16/train_C.log` and `ps` before starting anything):
+
+   ```bash
+   D=Data/candidates/retrain_2026_09_16; M=$PWD/models/setfit_retrain_2026_09_16_C
+   # a) familiarity index (D-096: recalibrate, never carry k forward)
+   .venv-train/bin/python scripts/75_calibrate_familiarity_gate.py --model $M \
+     --gold $D/master_gold.csv --split $D/split_compat.csv \
+     --report reports/retrain_2026_09_16/familiarity_calibration.json --write-index
+   # b) INT8 export as v1.4.1 (2 GiB Cloud Run; ceilings are deliberate, D-097)
+   .venv-train/bin/python training/export_recovery_onnx.py --model $M \
+     --gold $D/master_gold.csv --split $D/split_compat.csv \
+     --thresholds reports/recovery_v1_3_2/selected_thresholds.json \
+     --output artifacts/v1.4.1-int8 --version v1.4.1 --quantize int8 \
+     --allow-top1-disagreement 0.09 --allow-threshold-decision-disagreement 0.05
+   # c) compare all three on the 843-row locked split
+   .venv-train/bin/python scripts/101_evaluate_retrain.py --split $D/split.csv \
+     --model v133=artifacts/v1.3.3-int8 --model v140=artifacts/v1.4.0-int8 \
+     --model v141=artifacts/v1.4.1-int8 --report-dir reports/retrain_2026_09_16
+   ```
+
+   Accept only through `docs/TEST_CHECKLIST.md` "Before accepting a retrain":
+   the income slice is a mandatory gate, and auto-accept precision must not fall
+   below v1.4.0's 0.969. Then point `Dockerfile`, `.dockerignore`,
+   `.gcloudignore` and `app/core/config.py` at `v1.4.1-int8`, run pytest, build
+   `mlmodel:v1.4.1` and deploy. A fresh model directory needs `_name_or_path`
+   in its `config.json` before SetFit will load it.
+2. **Re-classify the 3,819 review lines** with whichever model wins — the gain
+   only reaches Antillanca when stored lines are revisited. Scoped write over
+   PostgREST (`scripts/supabase_rest.py`), backup first
+   (`scripts/81_backup_supabase.py`), dry run first, never touch a
+   `user_selected` line. Decide first whether a new suggestion may overwrite an
+   existing `predicted_code` on a review row, or only be added.
 3. Afaq tops up Anthropic credits; then resend one pie-chart email to prove
    D-094 end to end (`Envíame un gráfico de torta con las compras de 2025 por
    categoría.`), and delete its inbound row afterwards.

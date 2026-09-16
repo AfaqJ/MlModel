@@ -2408,3 +2408,48 @@ disagree.
 the comparison means nothing. Verified: replaying v1.3.3 on its own original
 rows through `scripts/101_evaluate_retrain.py` reproduces its recorded 0.7532
 accuracy and 0.8654 top-3 exactly.
+
+---
+
+## D-099 — Training data is gold **plus** every settled Supabase label, by trust order
+
+**Date:** 2026-09-16 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+v1.4.0 was trained from `Data/gold/_master_gold.csv` alone. That was wrong:
+gold is one lineage of the labelled set, and live carried 6,842 more settled
+lines, including the only examples that exist for `ADM-3.1`, `EXP-15.7` and
+`EXP-15.8` (215 lines, 0 gold rows). Afaq: *"the whole point of retraining was
+that I have more labels now and you still kept some categories undertrained
+which clearly had lines in the db."*
+
+`scripts/102_merge_live_labels.py` merges both. Trust order, highest first:
+
+| Source | Why it ranks there |
+|---|---|
+| `user_selected` | a person at Antillanca chose it in the dashboard |
+| gold | audited into `Data/gold/` per `docs/LABELING_RULES.md` |
+| `cleanup` | our audited passes applying client conventions |
+| `business_rule` / `product_lookup` | exact client phrase and product rules |
+| `meter_lookup` | decided by the meter, not by the text (D-068) |
+
+**Refused:** 982 `model` auto-accepts — the model's own guesses, measured at
+0.698 auto-accept precision, so feeding them back teaches roughly a third of its
+own mistakes — and 103 DTE-43 liquidación lines, which have no client category
+(D-016 lineage). Where one model input carried two labels: 167 resolved by trust
+order, 15 dropped as ties the text genuinely cannot settle, and the D-029 plate
+pairs kept one per label.
+
+Result: **4,251 distinct model inputs across 76 classes**, against v1.4.0's
+2,369 / 73.
+
+**The local mirror of live is `backups/yunt_team_handover_20260913/`** — verified
+identical to live, row for row, on 2026-09-16. The obvious-looking local file,
+`reports/recovery_v1_3_3/supabase_upload/invoice_items.jsonl`, is **stale**:
+7,335 settled rows against live's 7,927, still using the pre-D-047 source names.
+Use the backup, or read live; never that payload.
+
+**Why not write these rows into gold:** `docs/LABELING_RULES.md` forbids
+promoting an unaudited row, and a rule-assigned line is not an audited one. The
+merge therefore happens in the training candidate, where provenance stays
+visible in `source` (`live_cleanup`, `live_business_rule`, …), and gold keeps
+its meaning.

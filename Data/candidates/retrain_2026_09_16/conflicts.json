@@ -1,0 +1,1488 @@
+[
+  {
+    "text": "compras 93 s p estaciones de servicio paola uslar molina e i r l",
+    "kept": "ADM-1.4",
+    "dropped": [
+      "EXP-11.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras adhesivo pvc lata secado rapido 240cc hoffens 50038 adhesivo pvc lata secado rapido 240cc hoffens 50038 doris ivonne castillo kanter",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras adhesivo vinilit 240cc secado lento comercial climent spa",
+    "kept": "EXP-10.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras adicionales segun presupuesto constructora raul ernesto palma risopatron e i r l",
+    "kept": "EXP-14.1",
+    "dropped": [
+      "AF-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras administracion del servicio cargo fijo mensual cooperativa electrica paillaco limitada",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras administracion del servicio cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras administracion del servicio cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras ajuste para facilitar el pago en efectivo mes actual cia electrica osorno s a",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras ajuste para facilitar el pago en efectivo mes anterior cia electrica osorno s a",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras arriendo de retro excavadora soc comercial nahum correa ltda",
+    "kept": "EXP-14.1",
+    "dropped": [
+      "EXP-15.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras bidon 20 lts diesel bidon 20 lts diesel administradora de ventas al detalle ltda",
+    "kept": "EXP-11.3",
+    "dropped": [
+      "EXP-16.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras bolos hector adrian valenzuela paredes",
+    "kept": "EXP-4.2",
+    "dropped": [
+      "EXP-5.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras bolos silo chapilcahuin 20 bolos silo empastadas arriendo servicios agricolas corpal spa",
+    "kept": "EXP-4.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras cargo fondo de estabilizacion ley 21 472 cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras cargo fondo de estabilizacion ley 21 472 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras cargo mensual por demanda maxima de potencia leida cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras cargo mensual por demanda maxima de potencia leida hora punta cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras cargo por servicio publico cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras carro con estanque para terneros sandra paulina valladares rios",
+    "kept": "EXP-14.2",
+    "dropped": [
+      "AF-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras cena 41 personas n op 080 victor vera viveros",
+    "kept": "EXP-1.1",
+    "dropped": [
+      "ADM-1.5"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras clavo terrano 1 1 2 x 11 clavo terrano 1 1 2 x 11 comercial harcha spa",
+    "kept": "EXP-10.4",
+    "dropped": [
+      "EXP-14.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras codo plansa 1 2 hoffens codo plansa 1 2 hoffens comercial harcha spa",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras codo soldar 1 2 codo soldar 1 2 comercial harcha spa",
+    "kept": "EXP-10.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras control de roedores inicio de control de roedores predio tineo visita realizada en noviembre 2025 h2 asesorias y servicios spa",
+    "kept": "EXP-16.2",
+    "dropped": [
+      "EXP-7.0"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras copla reduccion hi hi 1 x 3 4 copla reduccion hi hi 1 x 3 4 doris ivonne castillo kanter",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras copla soldar 2 copla soldar 2 comercial harcha spa",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima potencia leida 22 8 x 28803 15789473684 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima potencia leida 24 6 x 28746 382113821135 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima potencia leida 30 57 x 28305 430160287862 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima potencia leida 30 57 x 28592 934249263984 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima suministrada 38 55 x 18007 159533073933 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima suministrada 39 21 x 17984 28972200969 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima suministrada 39 21 x 18065 161948482528 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras demanda maxima suministrada 40 44 x 18117 161226508408 cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras descuento interrupcion del servicio compensacion cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras desodorante pinos cereza desodorante pinos cereza cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-2.6",
+    "dropped": [
+      "EXP-16.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras digestivo bilifar 120 grs ferosor agricola s a",
+    "kept": "EXP-2.2",
+    "dropped": [
+      "EXP-2.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 1 193 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 1 211 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 1 724 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 1 852 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 1 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 10 027 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.2",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 112 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 115 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 117 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 129 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 13 863 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 1310 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 133 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 139 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 153 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 155 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 157 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 16 762 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 162 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 166 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 17 710 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.2",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 17 961 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 182 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 19 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 193 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 2 053 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 2 135 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 2 521 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 209 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 214 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 217 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 245 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 252 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 257 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 261 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 27 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 28 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 3 101 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 3 512 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 3 978 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 32 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 321 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 34 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 3960 kwh cooperativa rural elect r bueno ltda",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras electricidad consumida 4 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 40 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.2",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 42 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 456 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 5 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 51 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 524 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 5400 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 6 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 60 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 61 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 610 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 624 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 6240 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 633 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 675 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 73 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 746 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 7620 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 7860 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 795 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 798 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 8 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.2",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 822 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 8760 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 923 kwh cooperativa rural elect r bueno ltda",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 934 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 937 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 951 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida 969 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras electricidad consumida cia electrica osorno s a",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras empanadas dulac futrono spa",
+    "kept": "EXP-1.1",
+    "dropped": [
+      "ADM-1.5"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras filtro malla purificacion tipo y 2 azud puelche los rios sociedad por acciones",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras flete traslado de bolos de silo desde el sector las quemas hasta el fundo el maiten servicios comercial agricola y forestal morales opitz spa",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras g93 g93 distribuidora comercial p y g limitada",
+    "kept": null,
+    "dropped": [
+      "ADM-1.4",
+      "EXP-11.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras g93 g93 juan carlos martinez y cia ltda",
+    "kept": null,
+    "dropped": [
+      "ADM-1.4",
+      "EXP-11.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras g93 g93 soc de transportes steuer holmgren y com",
+    "kept": null,
+    "dropped": [
+      "ADM-1.4",
+      "EXP-11.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras gasolina 93 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 3
+  },
+  {
+    "text": "compras gasolina 93 gasolina 93 soc de transportes steuer holmgren y com",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras gasolina 93 retira antillanca spa impuesto base combustible 12137 impuesto variable combustible 1117 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 3
+  },
+  {
+    "text": "compras gasolina 93 retira antillanca spa impuesto base combustible 12381 impuesto variable combustible 369 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras gasolina 93 retira antillanca spa impuesto base combustible 24812 impuesto variable combustible 365 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 3
+  },
+  {
+    "text": "compras gasolina 93 retira antillanca spa impuesto base combustible 27429 impuesto variable combustible 885 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras gasolina 93 retira antillanca spa impuesto base combustible 30128 impuesto variable combustible 897 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras gasolina 93 retira antillanca spa impuesto base combustible 40527 impuesto variable combustible 596 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras gasolina 95 retira antillanca spa impuesto base combustible 13728 impuesto variable combustible 249 cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-11.4",
+    "dropped": [
+      "ADM-1.4"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras guante largo nitrilo xl shoof 204630 guante largo nitrilo xl marca shoof cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-2.6",
+    "dropped": [
+      "EXP-16.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras guantes shoof largo l nitri azul caja 100 un ferosor agricola s a",
+    "kept": "EXP-2.2",
+    "dropped": [
+      "EXP-16.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras hi planza 11 2 ricardo francisco wulff muller",
+    "kept": "EXP-9.2",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras hora tecnica comercial servifeed spa",
+    "kept": "EXP-13.1",
+    "dropped": [
+      "EXP-10.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras hora tecnica lh gea farm technologies osorno ltda",
+    "kept": "EXP-13.1",
+    "dropped": [
+      "EXP-10.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras interes por mora energia cia electrica osorno s a",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras juego ducha eurospray cromo duschy juego ducha eurospray cromo duschy comercial harcha spa",
+    "kept": "EXP-10.3",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras levantador de vacas standard 201613 cooperativa agricola y de servicios ltda",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-2.6"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras llave bola jardin taumm stretto 1 2 llave bola jardin taumm stretto 1 2 comercial harcha spa",
+    "kept": "EXP-14.2",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras moskimic forte 3 lt cooperativa agricola lechera stgo",
+    "kept": "EXP-7.0",
+    "dropped": [
+      "EXP-2.5"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras movimientos de bolos agricola j s e limitada",
+    "kept": "EXP-5.4",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras n y sanitaria gris 40 x 40 n y sanitaria gris 40 x 40 doris ivonne castillo kanter",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras orbenin e d c caja 36 jer secado cooperativa agricola y de servicios ltda",
+    "kept": "EXP-2.5",
+    "dropped": [
+      "EXP-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras pago de cuenta fuera de plazo cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras pencivet x caja ferosor agricola s a",
+    "kept": "EXP-2.2",
+    "dropped": [
+      "EXP-2.5"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras perdida por transformacion cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras planilla numero 73697 analisis coop fecas sedimentacion cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-12.1",
+    "dropped": [
+      "EXP-12.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras planilla numero 73698 analisis coop fecas parasitos pul cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-12.1",
+    "dropped": [
+      "EXP-12.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras planilla numero 76449 analisis coop fecas sedimentacion cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-12.1",
+    "dropped": [
+      "EXP-12.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras planilla numero 76450 analisis coop fecas sedimentacion cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-12.1",
+    "dropped": [
+      "EXP-12.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 06 02 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 06 03 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 08 05 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 08 08 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 09 10 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 10 03 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 10 06 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 10 07 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 10 11 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras poliza 6615118 fecha de pago 11 12 2025 cia de seguros generales consorcio nacional de seguros sa",
+    "kept": "ADM-2.3",
+    "dropped": [
+      "ADM-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras pozo purines oocc y equipos cooperativa agricola y de servicios ltda",
+    "kept": "EXP-14.3",
+    "dropped": [
+      "AF-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras r m e cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras reajuste comp por ipc cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras recalculo compensaciones calculo id 234 269 cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-11.2"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras recargo lectura de bt de consumos de cliente en at e 3 5 cooperativa electrica paillaco limitada",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras recargo lectura de bt de consumos de cliente en at p 3 5 cooperativa electrica paillaco limitada",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras recargo mal factor de potencia cia electrica osorno s a",
+    "kept": null,
+    "dropped": [
+      "EXP-11.1",
+      "EXP-9.1"
+    ],
+    "trust": 1
+  },
+  {
+    "text": "compras saldo presupueso inicial constructora raul ernesto palma risopatron e i r l",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "AF-2.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras servicio publico cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras silosolve mc x 100 g silosolve mc x 100 g cooperativa agricola y lechera de la union ltda",
+    "kept": "EXP-4.1",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras tapa canaleta p25 blanco univ sodimac s a",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras tapa tornillo pvc hidr he 34 todo construccion sur spa",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras tee plastico 3 4 comercial climent spa",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras terminal hi 32 mm hdpe todo construccion sur spa",
+    "kept": "EXP-14.4",
+    "dropped": [
+      "EXP-14.3"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras transporte de electricidad 117 kwh cooperativa electrica paillaco limitada",
+    "kept": "EXP-9.1",
+    "dropped": [
+      "EXP-11.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras transporte de electricidad cia electrica osorno s a",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado bolos silos con carro y retorno desde maiten a yutreco 1 viaje luis antonio torres jaramillo",
+    "kept": "EXP-4.1",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado de bolos de silo desde bramadero a yutreco segun numero de guia 1459 marcelo alejandro guzman catalan",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado de bolos de silo desde raices a yutreco segun guia n 1473 marcelo alejandro guzman catalan",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado de bolos demaihue al maiten servicios vitap spa",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado de bolos desde bramadero a yutreco 39 bolos sergio fabian rodriguez delgado",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado de bolos desde bramadero hasta yutreco guia 1491 1492 1493 sergio fabian rodriguez delgado",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado de bolos desde bromadero hasta yutreco guia 1487 sergio fabian rodriguez delgado",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras traslado de bolos desde fdo bramadero hasta yutreco guias 1479 1481 sergio fabian rodriguez delgado",
+    "kept": "EXP-15.3",
+    "dropped": [
+      "EXP-4.2"
+    ],
+    "trust": 4
+  },
+  {
+    "text": "compras uso del sistema de transmision cooperativa rural elect r bueno ltda",
+    "kept": "EXP-11.1",
+    "dropped": [
+      "EXP-11.2",
+      "EXP-9.1"
+    ],
+    "trust": 4
+  }
+]

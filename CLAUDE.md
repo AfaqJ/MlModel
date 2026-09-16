@@ -6,7 +6,9 @@ Classifies Spanish invoice line items into accounting categories for
 **Status:** v1.4.0 live on Cloud Run — service `mlmodel`, `europe-west1`,
 revision `mlmodel-00016-p8z` (image `mlmodel:v1.4.0`), 100% traffic, deployed
 and verified 2026-09-16. Roll back with a traffic shift to `mlmodel-00015-mjr`
-(v1.3.3). Prove a deploy with `scripts/88_prove_deploy.sh <url>`. The
+(v1.3.3). Prove a deploy with `scripts/88_prove_deploy.sh <url>`. **v1.4.1 is training**
+on gold merged with every settled Supabase label (D-099); `docs/STATE.md`
+`Next` 1 carries the commands to finish, test and deploy it. The
 live database is **at baseline** (restored 2026-09-15): 5,195 invoices / 11,746
 corrected lines, 78 categories, every purchasing and Yunt table empty. The
 five handover-sample invoices are back, so `yunt-unseen-invoices.zip` is no
