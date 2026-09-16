@@ -355,6 +355,9 @@ drift away from the data. Afaq reversed the request after seeing the numbers.
 
 ## D-019 — Familiarity gate kept at k=10 / agreement 0.4
 
+> **Superseded by D-096** (2026-09-16): v1.4.0 ships k=5 / 0.40, re-measured
+> on its own weights. The gate itself is unchanged.
+
 **Date:** 2026-08-12 · **Decided by:** Afaq
 
 **Why:** on the raw replay it caught 163 rows that had *all* cleared the
@@ -538,6 +541,11 @@ removed), and keeping handovers in `~/.claude/handoffs/` (does not travel with
 the repo, invisible in a diff, invisible to Codex).
 
 ## D-028 — Three new categories are assigned by rule, not predicted by the model
+
+> **Narrowed by D-095** (2026-09-15): v1.4.0 trains every category that has
+> gold rows, so `AF-1.1`, `AF-2.1`, `ING-0.7` and `ADM-2.3` are predictable now.
+> Rule assignment stays in front of the model. `ADM-3.1`, `EXP-15.7` and
+> `EXP-15.8` have no gold rows and remain rule-only.
 
 **Date:** 2026-08-14 · **Decided by:** Afaq · **Model:** Claude Opus 5
 
@@ -2298,3 +2306,105 @@ really 17,1%, and the centre showed $2.841 MM against a real $4.029 MM. A share
 of a subset read as a share of the whole is a wrong number on a client document.
 **Rejected:** keeping the "Se muestran 10 de 69" note alone — the percentages
 beside it still read as shares of everything.
+
+---
+
+## D-095 — Every category is trained; a deterministic rule is an add-on, never a replacement
+
+**Date:** 2026-09-15 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The model gets every live category it has gold rows for, including the six added
+on 2026-08-14/17 and the ones a lookup already settles. Afaq's words: *"the ML
+model always have all the categories, we don't exclude any category just because
+it can be sorted by some deterministic pattern, that pattern is just an add on,
+it's not a replacement."*
+
+v1.4.0 trains **73** classes against v1.3.3's 67. `AF-1.1` (108 distinct inputs),
+`AF-2.1` (13), `ADM-2.3` (16), `ING-0.7` (6) and `ING-0.6` (3, synthetic floor)
+are now predictable; `ADM-1.9` trains on 1 real row plus 2 D-005 synthetic rows.
+`ADM-3.1`, `EXP-15.7` and `EXP-15.8` have **0 gold rows** and are still
+rule-only — live has 43, 14 and 158 lines under them, so they are the obvious
+next harvest into gold.
+
+**Why:** a rule covers the wordings it was written for. The model is what
+generalises to the next wording, and a category it cannot emit is a category
+the model can only ever get wrong. Measured on the locked test set, the 29 rows
+in unemittable categories went from all-wrong to `AF-1.1` recall 1.00.
+
+**Narrows D-028**, which deferred these categories to "a later retrain". This is
+that retrain. The order of the cascade is unchanged: fuel, meter, exact phrase
+and product lookups still answer before the model.
+
+---
+
+## D-096 — The familiarity gate ships at k=5 for v1.4.0
+
+**Date:** 2026-09-16 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+`scripts/75_calibrate_familiarity_gate.py` swept k and agreement on the v1.4.0
+weights and selected **k=5, agreement 0.40** over 1,903 indexed training rows.
+
+Of 177 model-only auto-accepts on the locked test set (171 right, 6 wrong):
+
+| Setting | Correct auto-accepts lost | Wrong ones caught |
+|---|---|---|
+| **k=5 / 0.40 (shipped)** | **0** | 1 of 6 |
+| k=10 / 0.40 (D-019) | 4 | 2 of 6 |
+
+**Why:** k=10 buys one extra catch for four correct auto-accepts, on a model
+whose remaining mistakes are near-misses inside a family (`MANGA DE LECHE`
+EXP-10.3 → EXP-10.1; `Revision Tecnica Maquinaria` EXP-13.1 → EXP-13.3) that no
+neighbourhood vote can separate, because genuine neighbours sit in both classes.
+
+**Supersedes D-019.** The gate itself is unchanged and still only downgrades;
+what changed is the neighbourhood size, re-measured on new weights. Recalibrate
+on every retrain rather than carrying a number forward.
+
+---
+
+## D-097 — INT8 ships for v1.4.0 with the top-1 ceiling raised to 9%
+
+**Date:** 2026-09-16 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The export gate refused at its 7% default. Measured INT8 against the FP32
+reference on the 466 locked test rows: top-1 disagreement **8.80%** (41 rows),
+threshold-decision disagreement **1.72%** (8 rows), cosine mean 0.9929,
+accuracy **0.6931 → 0.6974**. Afaq raised the top-1 ceiling to 9%; the
+decision ceiling stayed at 5%.
+
+**Why:** Cloud Run is 2 GiB / 1 CPU on the free tier and FP32 peaks at 1.92 GiB,
+so INT8 is the only thing that fits. The trade is better than the one v1.3.3
+shipped with (6.41% top-1, **4.81%** decision flips, accuracy 0.7532 → 0.7468):
+more first picks move, far fewer auto-accept/review decisions flip, and accuracy
+does not drop. Both ceilings are stamped into `model_card.json`.
+
+**Rejected:** shipping FP32 (does not fit), and lowering the accepted
+disagreement by re-quantising per-channel (untried, and the decision-level
+number — the one that reaches the dashboard — was already inside its ceiling).
+
+---
+
+## D-098 — One locked split, reused by every model compared on it
+
+**Date:** 2026-09-15 · **Decided by:** Claude Opus 5, confirmed by Afaq
+
+`scripts/100_build_retrain_candidate.py` writes `split.csv` once and every
+candidate reads it with `--split-from`. Rules baked into it:
+
+- v1.3.3's 312 validation inputs stay **test**; its training inputs stay
+  **train**. So the old model and every new one are scored on rows none of them
+  trained on, and the comparison is like-for-like.
+- 20% of each class's new inputs join the test set; classes under 5 distinct
+  inputs are train-only and are listed as untested (6 of them).
+- Synthetic rows (D-005) and plate-conflict rows (D-029) are never test rows.
+- The build fails if any test input also appears in train.
+
+Direction, absent from 2,508 of 2,577 gold rows, is recovered from the raw XML
+line where one matches (1,606 rows, **0** disagreements with the category family)
+and from the `ING-`/expense family otherwise. The build stops if the two ever
+disagree.
+
+**Why:** without a locked split, every retrain is scored on a different exam and
+the comparison means nothing. Verified: replaying v1.3.3 on its own original
+rows through `scripts/101_evaluate_retrain.py` reproduces its recorded 0.7532
+accuracy and 0.8654 top-3 exactly.

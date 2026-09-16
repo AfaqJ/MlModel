@@ -22,7 +22,10 @@ def test_model_info():
     body = response.json()
     model_card = json.loads((settings.model_dir / "model_card.json").read_text())
     assert body["model_version"] == model_card["model_version"]
-    assert body["num_trained_classes"] == 67
+    # Read the count from the packaged artifact rather than pinning a number:
+    # a retrain changes it (67 in v1.3.3, 73 in v1.4.0) and what matters is that
+    # the service reports what it actually loaded.
+    assert body["num_trained_classes"] == model_card["trained_classes"]
 
 
 def test_predict_known_vaccine():

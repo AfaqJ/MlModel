@@ -1,0 +1,929 @@
+{
+  "live_v133_int8": {
+    "all": {
+      "rows": 466,
+      "accuracy": 0.5236,
+      "macro_f1": 0.5124,
+      "top3_accuracy": 0.7039,
+      "auto_accept_rate": 0.4056,
+      "auto_accept_precision": 0.6984,
+      "auto_accept_wrong": 57
+    },
+    "income": {
+      "rows": 22,
+      "accuracy": 0.9545,
+      "macro_f1": 0.7368,
+      "top3_accuracy": 0.9545,
+      "auto_accept_rate": 0.9091,
+      "auto_accept_precision": 1.0,
+      "auto_accept_wrong": 0
+    },
+    "old_v1_3_3_validation": {
+      "rows": 312,
+      "accuracy": 0.6891,
+      "macro_f1": 0.6242,
+      "top3_accuracy": 0.8333,
+      "auto_accept_rate": 0.4487,
+      "auto_accept_precision": 0.9143,
+      "auto_accept_wrong": 12
+    },
+    "new_rows": {
+      "rows": 154,
+      "accuracy": 0.1883,
+      "macro_f1": 0.2239,
+      "top3_accuracy": 0.4416,
+      "auto_accept_rate": 0.3182,
+      "auto_accept_precision": 0.0816,
+      "auto_accept_wrong": 45
+    },
+    "rows_with_class_unknown_to_model": 29,
+    "per_class": {
+      "ADM-1.10": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "ADM-1.2": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "ADM-1.3": {
+        "support": 2,
+        "recall": 1.0
+      },
+      "ADM-1.4": {
+        "support": 8,
+        "recall": 0.125
+      },
+      "ADM-1.5": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "ADM-1.6": {
+        "support": 8,
+        "recall": 0.5
+      },
+      "ADM-1.7": {
+        "support": 11,
+        "recall": 1.0
+      },
+      "ADM-1.8": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "ADM-2.1": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "ADM-2.2": {
+        "support": 2,
+        "recall": 0.0
+      },
+      "ADM-2.3": {
+        "support": 3,
+        "recall": 0.0
+      },
+      "AF-1.1": {
+        "support": 22,
+        "recall": 0.0
+      },
+      "AF-2.1": {
+        "support": 3,
+        "recall": 0.0
+      },
+      "EXP-1.1": {
+        "support": 38,
+        "recall": 0.0526
+      },
+      "EXP-10.1": {
+        "support": 10,
+        "recall": 0.6
+      },
+      "EXP-10.2": {
+        "support": 1,
+        "recall": 0.0
+      },
+      "EXP-10.3": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-10.4": {
+        "support": 6,
+        "recall": 0.1667
+      },
+      "EXP-11.1": {
+        "support": 21,
+        "recall": 0.1905
+      },
+      "EXP-11.2": {
+        "support": 7,
+        "recall": 0.0
+      },
+      "EXP-11.3": {
+        "support": 6,
+        "recall": 1.0
+      },
+      "EXP-11.4": {
+        "support": 19,
+        "recall": 0.7895
+      },
+      "EXP-11.5": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-12.1": {
+        "support": 7,
+        "recall": 0.5714
+      },
+      "EXP-12.2": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "EXP-13.1": {
+        "support": 10,
+        "recall": 0.4
+      },
+      "EXP-13.2": {
+        "support": 4,
+        "recall": 0.25
+      },
+      "EXP-13.3": {
+        "support": 6,
+        "recall": 0.5
+      },
+      "EXP-14.1": {
+        "support": 6,
+        "recall": 0.5
+      },
+      "EXP-14.2": {
+        "support": 13,
+        "recall": 0.7692
+      },
+      "EXP-14.3": {
+        "support": 8,
+        "recall": 0.75
+      },
+      "EXP-14.4": {
+        "support": 12,
+        "recall": 0.4167
+      },
+      "EXP-15.2": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-15.3": {
+        "support": 8,
+        "recall": 0.25
+      },
+      "EXP-15.4": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-15.5": {
+        "support": 4,
+        "recall": 0.0
+      },
+      "EXP-16.1": {
+        "support": 27,
+        "recall": 0.7407
+      },
+      "EXP-16.2": {
+        "support": 12,
+        "recall": 0.25
+      },
+      "EXP-2.1": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-2.2": {
+        "support": 3,
+        "recall": 0.3333
+      },
+      "EXP-2.3": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "EXP-2.4": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-2.5": {
+        "support": 19,
+        "recall": 0.7368
+      },
+      "EXP-2.6": {
+        "support": 23,
+        "recall": 0.6087
+      },
+      "EXP-3.1": {
+        "support": 5,
+        "recall": 0.6
+      },
+      "EXP-4.1": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-4.2": {
+        "support": 9,
+        "recall": 0.7778
+      },
+      "EXP-4.3": {
+        "support": 4,
+        "recall": 0.0
+      },
+      "EXP-5.1": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-5.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "EXP-5.3": {
+        "support": 4,
+        "recall": 0.5
+      },
+      "EXP-5.4": {
+        "support": 1,
+        "recall": 0.0
+      },
+      "EXP-5.5": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-6.1": {
+        "support": 2,
+        "recall": 1.0
+      },
+      "EXP-6.2": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-6.3": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-6.5": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-7.0": {
+        "support": 11,
+        "recall": 0.5455
+      },
+      "EXP-8.1": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-8.2": {
+        "support": 2,
+        "recall": 0.0
+      },
+      "EXP-8.4": {
+        "support": 3,
+        "recall": 0.3333
+      },
+      "EXP-9.1": {
+        "support": 6,
+        "recall": 0.8333
+      },
+      "EXP-9.2": {
+        "support": 7,
+        "recall": 0.2857
+      },
+      "ING-0.1": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "ING-0.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "ING-0.4": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "ING-0.7": {
+        "support": 1,
+        "recall": 0.0
+      }
+    }
+  },
+  "new_A_fp32": {
+    "all": {
+      "rows": 466,
+      "accuracy": 0.6931,
+      "macro_f1": 0.665,
+      "top3_accuracy": 0.8541,
+      "auto_accept_rate": 0.3798,
+      "auto_accept_precision": 0.9661,
+      "auto_accept_wrong": 6
+    },
+    "income": {
+      "rows": 22,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "top3_accuracy": 1.0,
+      "auto_accept_rate": 0.7727,
+      "auto_accept_precision": 1.0,
+      "auto_accept_wrong": 0
+    },
+    "old_v1_3_3_validation": {
+      "rows": 312,
+      "accuracy": 0.7115,
+      "macro_f1": 0.6682,
+      "top3_accuracy": 0.8622,
+      "auto_accept_rate": 0.3333,
+      "auto_accept_precision": 0.9712,
+      "auto_accept_wrong": 3
+    },
+    "new_rows": {
+      "rows": 154,
+      "accuracy": 0.6558,
+      "macro_f1": 0.3843,
+      "top3_accuracy": 0.8377,
+      "auto_accept_rate": 0.474,
+      "auto_accept_precision": 0.9589,
+      "auto_accept_wrong": 3
+    },
+    "rows_with_class_unknown_to_model": 0,
+    "per_class": {
+      "ADM-1.10": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "ADM-1.2": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "ADM-1.3": {
+        "support": 2,
+        "recall": 1.0
+      },
+      "ADM-1.4": {
+        "support": 8,
+        "recall": 0.75
+      },
+      "ADM-1.5": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "ADM-1.6": {
+        "support": 8,
+        "recall": 0.5
+      },
+      "ADM-1.7": {
+        "support": 11,
+        "recall": 0.9091
+      },
+      "ADM-1.8": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "ADM-2.1": {
+        "support": 3,
+        "recall": 0.3333
+      },
+      "ADM-2.2": {
+        "support": 2,
+        "recall": 0.5
+      },
+      "ADM-2.3": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "AF-1.1": {
+        "support": 22,
+        "recall": 1.0
+      },
+      "AF-2.1": {
+        "support": 3,
+        "recall": 0.0
+      },
+      "EXP-1.1": {
+        "support": 38,
+        "recall": 0.8947
+      },
+      "EXP-10.1": {
+        "support": 10,
+        "recall": 0.5
+      },
+      "EXP-10.2": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-10.3": {
+        "support": 4,
+        "recall": 0.25
+      },
+      "EXP-10.4": {
+        "support": 6,
+        "recall": 0.3333
+      },
+      "EXP-11.1": {
+        "support": 21,
+        "recall": 0.381
+      },
+      "EXP-11.2": {
+        "support": 7,
+        "recall": 0.8571
+      },
+      "EXP-11.3": {
+        "support": 6,
+        "recall": 1.0
+      },
+      "EXP-11.4": {
+        "support": 19,
+        "recall": 0.8947
+      },
+      "EXP-11.5": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-12.1": {
+        "support": 7,
+        "recall": 1.0
+      },
+      "EXP-12.2": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "EXP-13.1": {
+        "support": 10,
+        "recall": 0.2
+      },
+      "EXP-13.2": {
+        "support": 4,
+        "recall": 0.5
+      },
+      "EXP-13.3": {
+        "support": 6,
+        "recall": 0.1667
+      },
+      "EXP-14.1": {
+        "support": 6,
+        "recall": 0.3333
+      },
+      "EXP-14.2": {
+        "support": 13,
+        "recall": 0.7692
+      },
+      "EXP-14.3": {
+        "support": 8,
+        "recall": 0.625
+      },
+      "EXP-14.4": {
+        "support": 12,
+        "recall": 0.3333
+      },
+      "EXP-15.2": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-15.3": {
+        "support": 8,
+        "recall": 0.5
+      },
+      "EXP-15.4": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-15.5": {
+        "support": 4,
+        "recall": 0.0
+      },
+      "EXP-16.1": {
+        "support": 27,
+        "recall": 0.8148
+      },
+      "EXP-16.2": {
+        "support": 12,
+        "recall": 0.4167
+      },
+      "EXP-2.1": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-2.2": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-2.3": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "EXP-2.4": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-2.5": {
+        "support": 19,
+        "recall": 0.7368
+      },
+      "EXP-2.6": {
+        "support": 23,
+        "recall": 0.6522
+      },
+      "EXP-3.1": {
+        "support": 5,
+        "recall": 0.8
+      },
+      "EXP-4.1": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-4.2": {
+        "support": 9,
+        "recall": 0.4444
+      },
+      "EXP-4.3": {
+        "support": 4,
+        "recall": 0.25
+      },
+      "EXP-5.1": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-5.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "EXP-5.3": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-5.4": {
+        "support": 1,
+        "recall": 0.0
+      },
+      "EXP-5.5": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-6.1": {
+        "support": 2,
+        "recall": 1.0
+      },
+      "EXP-6.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "EXP-6.3": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-6.5": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-7.0": {
+        "support": 11,
+        "recall": 0.4545
+      },
+      "EXP-8.1": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-8.2": {
+        "support": 2,
+        "recall": 0.0
+      },
+      "EXP-8.4": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-9.1": {
+        "support": 6,
+        "recall": 0.5
+      },
+      "EXP-9.2": {
+        "support": 7,
+        "recall": 0.5714
+      },
+      "ING-0.1": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "ING-0.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "ING-0.4": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "ING-0.7": {
+        "support": 1,
+        "recall": 1.0
+      }
+    }
+  },
+  "new_v140_int8": {
+    "all": {
+      "rows": 466,
+      "accuracy": 0.6845,
+      "macro_f1": 0.6658,
+      "top3_accuracy": 0.8519,
+      "auto_accept_rate": 0.4163,
+      "auto_accept_precision": 0.9691,
+      "auto_accept_wrong": 6
+    },
+    "income": {
+      "rows": 22,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "top3_accuracy": 1.0,
+      "auto_accept_rate": 0.9545,
+      "auto_accept_precision": 1.0,
+      "auto_accept_wrong": 0
+    },
+    "old_v1_3_3_validation": {
+      "rows": 312,
+      "accuracy": 0.7115,
+      "macro_f1": 0.6732,
+      "top3_accuracy": 0.8622,
+      "auto_accept_rate": 0.3878,
+      "auto_accept_precision": 0.9752,
+      "auto_accept_wrong": 3
+    },
+    "new_rows": {
+      "rows": 154,
+      "accuracy": 0.6299,
+      "macro_f1": 0.3482,
+      "top3_accuracy": 0.8312,
+      "auto_accept_rate": 0.474,
+      "auto_accept_precision": 0.9589,
+      "auto_accept_wrong": 3
+    },
+    "rows_with_class_unknown_to_model": 0,
+    "per_class": {
+      "ADM-1.10": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "ADM-1.2": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "ADM-1.3": {
+        "support": 2,
+        "recall": 1.0
+      },
+      "ADM-1.4": {
+        "support": 8,
+        "recall": 0.75
+      },
+      "ADM-1.5": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "ADM-1.6": {
+        "support": 8,
+        "recall": 0.375
+      },
+      "ADM-1.7": {
+        "support": 11,
+        "recall": 1.0
+      },
+      "ADM-1.8": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "ADM-2.1": {
+        "support": 3,
+        "recall": 0.3333
+      },
+      "ADM-2.2": {
+        "support": 2,
+        "recall": 0.5
+      },
+      "ADM-2.3": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "AF-1.1": {
+        "support": 22,
+        "recall": 1.0
+      },
+      "AF-2.1": {
+        "support": 3,
+        "recall": 0.0
+      },
+      "EXP-1.1": {
+        "support": 38,
+        "recall": 0.8947
+      },
+      "EXP-10.1": {
+        "support": 10,
+        "recall": 0.6
+      },
+      "EXP-10.2": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-10.3": {
+        "support": 4,
+        "recall": 0.25
+      },
+      "EXP-10.4": {
+        "support": 6,
+        "recall": 0.1667
+      },
+      "EXP-11.1": {
+        "support": 21,
+        "recall": 0.381
+      },
+      "EXP-11.2": {
+        "support": 7,
+        "recall": 0.7143
+      },
+      "EXP-11.3": {
+        "support": 6,
+        "recall": 1.0
+      },
+      "EXP-11.4": {
+        "support": 19,
+        "recall": 0.8947
+      },
+      "EXP-11.5": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-12.1": {
+        "support": 7,
+        "recall": 1.0
+      },
+      "EXP-12.2": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "EXP-13.1": {
+        "support": 10,
+        "recall": 0.2
+      },
+      "EXP-13.2": {
+        "support": 4,
+        "recall": 0.5
+      },
+      "EXP-13.3": {
+        "support": 6,
+        "recall": 0.1667
+      },
+      "EXP-14.1": {
+        "support": 6,
+        "recall": 0.3333
+      },
+      "EXP-14.2": {
+        "support": 13,
+        "recall": 0.8462
+      },
+      "EXP-14.3": {
+        "support": 8,
+        "recall": 0.5
+      },
+      "EXP-14.4": {
+        "support": 12,
+        "recall": 0.3333
+      },
+      "EXP-15.2": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-15.3": {
+        "support": 8,
+        "recall": 0.5
+      },
+      "EXP-15.4": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-15.5": {
+        "support": 4,
+        "recall": 0.0
+      },
+      "EXP-16.1": {
+        "support": 27,
+        "recall": 0.7778
+      },
+      "EXP-16.2": {
+        "support": 12,
+        "recall": 0.25
+      },
+      "EXP-2.1": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-2.2": {
+        "support": 3,
+        "recall": 0.3333
+      },
+      "EXP-2.3": {
+        "support": 4,
+        "recall": 1.0
+      },
+      "EXP-2.4": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-2.5": {
+        "support": 19,
+        "recall": 0.7368
+      },
+      "EXP-2.6": {
+        "support": 23,
+        "recall": 0.6522
+      },
+      "EXP-3.1": {
+        "support": 5,
+        "recall": 0.8
+      },
+      "EXP-4.1": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-4.2": {
+        "support": 9,
+        "recall": 0.2222
+      },
+      "EXP-4.3": {
+        "support": 4,
+        "recall": 0.25
+      },
+      "EXP-5.1": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-5.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "EXP-5.3": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-5.4": {
+        "support": 1,
+        "recall": 0.0
+      },
+      "EXP-5.5": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-6.1": {
+        "support": 2,
+        "recall": 1.0
+      },
+      "EXP-6.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "EXP-6.3": {
+        "support": 1,
+        "recall": 1.0
+      },
+      "EXP-6.5": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-7.0": {
+        "support": 11,
+        "recall": 0.6364
+      },
+      "EXP-8.1": {
+        "support": 4,
+        "recall": 0.75
+      },
+      "EXP-8.2": {
+        "support": 2,
+        "recall": 0.5
+      },
+      "EXP-8.4": {
+        "support": 3,
+        "recall": 0.6667
+      },
+      "EXP-9.1": {
+        "support": 6,
+        "recall": 0.5
+      },
+      "EXP-9.2": {
+        "support": 7,
+        "recall": 0.5714
+      },
+      "ING-0.1": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "ING-0.2": {
+        "support": 3,
+        "recall": 1.0
+      },
+      "ING-0.4": {
+        "support": 9,
+        "recall": 1.0
+      },
+      "ING-0.7": {
+        "support": 1,
+        "recall": 1.0
+      }
+    }
+  }
+}

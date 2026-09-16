@@ -30,7 +30,7 @@ deleted with it on 2026-08-18, so 98 is the floor again.
 
 Read the generated `model_card.json` and check, in this order:
 
-1. **Income slice accuracy.** Currently 21 rows at 1.00. This is a **mandatory
+1. **Income slice accuracy.** Currently 22 rows at 1.00 (v1.4.0). This is a **mandatory
    gate** — aggregate accuracy alone has already shipped one incident. v1.1.0
    reported 0.7441 over 340 validation rows containing **zero** income examples.
    The number was real and meaningless.
@@ -38,7 +38,7 @@ Read the generated `model_card.json` and check, in this order:
    had none in v1.1.0.
 3. **No class with fewer than 2 examples was silently dropped.** It must fail
    loudly. `excluded_untrained` currently lists `ADM-1.9` and `ADM-2.3`.
-4. **Weak-class list recomputed from the split.** Currently 26 classes under 15
+4. **Weak-class list recomputed from the split.** Currently 22 classes under 15
    distinct examples.
 
 ## Calibration — the baseline to beat
@@ -77,11 +77,16 @@ The exporter enforces these and refuses by default. If you had to raise a
 ceiling to ship, record the actual and allowed values in `DECISIONS.md` — see
 D-017, where exactly that happened.
 
-| Check | v1.3.3-int8 | Default ceiling |
-|---|---|---|
-| cosine mean vs FP32 | 0.99005 | — |
-| top-1 disagreement | 0.0641 | 0.03 |
-| threshold-decision disagreement | 0.04808 (15/312) | 0.0 |
+| Check | v1.3.3-int8 | v1.4.0-int8 | Default ceiling |
+|---|---|---|---|
+| cosine mean vs FP32 | 0.99005 | 0.99291 | — |
+| top-1 disagreement | 0.0641 | 0.08798 (41/466) | 0.03 |
+| threshold-decision disagreement | 0.04808 (15/312) | 0.01717 (8/466) | 0.0 |
+| accuracy FP32 → INT8 | 0.7532 → 0.7468 | 0.6931 → 0.6974 | — |
+
+v1.4.0 shipped with the top-1 ceiling raised to 0.09 and the decision ceiling
+left at 0.05 — D-097. More first picks move than in v1.3.3, but three times
+fewer auto-accept/review decisions flip, and accuracy does not drop.
 
 **Read the direction of the flips, not just the count.** In v1.3.3, 13 of 15
 were auto-accept → review (safe) and 2 were review → auto-accept and both

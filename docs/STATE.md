@@ -3,6 +3,67 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-16
+
+**The classifier is retrained and live: v1.4.0, revision `mlmodel-00016-p8z`,
+image `mlmodel:v1.4.0`, 100% of traffic.** All seven checks in
+`scripts/88_prove_deploy.sh` pass against the live URL; `/model-info` reports
+v1.4.0, 73 trained classes, trained 2026-09-16, thresholds unchanged.
+Rollback is a traffic shift to `mlmodel-00015-mjr`, which is untouched.
+
+**What was trained.** `scripts/100_build_retrain_candidate.py` built
+`Data/candidates/retrain_2026_09_15/` from gold: 2,625 rows → **2,369 distinct
+inputs**, 73 classes (v1.3.3 had 1,582 / 67). It fills the missing direction
+(1,606 rows from the raw XML line, 0 disagreements; the rest from the category
+family), restores 46 audited rows master gold had lost, and adds 2 D-005
+synthetic ADM-1.9 rows. Training ran 1,500 steps on CPU into
+`models/setfit_retrain_2026_09_15_A`; export with the familiarity index into
+`artifacts/v1.4.0-int8` (278 MB INT8).
+
+**Measured on 466 locked test rows no model trained on** (312 are v1.3.3's own
+August validation rows), model-only, direction mask applied, thresholds
+unchanged, via `scripts/101_evaluate_retrain.py`:
+
+| | live v1.3.3 | **v1.4.0 INT8** |
+|---|---|---|
+| accuracy | 0.524 | **0.685** |
+| macro-F1 | 0.512 | **0.666** |
+| top-3 | 0.704 | **0.852** |
+| auto-accept rate | 0.406 | 0.416 |
+| auto-accept precision | 0.698 | **0.969** |
+| wrong auto-accepts | **57** | **6** |
+| income (22 rows) | 21/22 | **22/22** |
+| rows in unemittable classes | 29 | **0** |
+
+On the 154 test rows drawn from labels added since August: accuracy
+0.188 → **0.630**, auto-accept precision 0.082 → **0.959**, wrong auto-accepts
+45 → **3**. On the old 312: 0.689 → 0.712, wrong auto-accepts 12 → 3. Per class,
+`EXP-1.1` recall 0.05 → 0.89, `AF-1.1` 0.00 → 1.00, `ADM-1.4` 0.12 → 0.75;
+regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
+0.78 → 0.44 — the Bolos Silo/Heno question is still open with the client).
+
+- **Decided:** every category with gold rows is trained (→ D-095); familiarity
+  gate at k=5 (→ D-096); INT8 top-1 ceiling raised to 9% (→ D-097); one locked
+  split reused by every candidate (→ D-098).
+- One gold label fixed: `SP-00472` ING-0.1 → ING-0.7 (a used milk tank sold is a
+  fixed-asset sale; live already said ING-0.7, so Supabase needed no write).
+- `tests/test_api.py::test_model_info` no longer pins 67 classes; it reads
+  `trained_classes` from the packaged model card. 109 tests pass.
+- **Gotcha — two training runs in parallel filled RAM and swap** (9 GB of 10 GB
+  swap on a 16 GB Mac). Step time went 4 s → 284 s and a 95-minute run took 9.8
+  hours. Run them sequentially: memory, not cores, is the limit. Candidate B
+  (per-class cap in the body stage) was killed at step 1249 and never finished;
+  A's numbers made it unnecessary.
+- **Gotcha — the saved v1.3.3 weights were written by sentence-transformers
+  5.5.1 and will not load under the 3.4.1 now in `.venv-train`.**
+  `scripts/101_evaluate_retrain.py` therefore loads any SetFit directory as
+  plain transformers + mean pooling + the joblib head, which is what the service
+  computes anyway. A freshly trained model also needs `_name_or_path` in
+  `config.json` before SetFit's model-card helper will load it.
+- **Gotcha — numpy 2.2 prints overflow/invalid warnings from the familiarity
+  matmul** on the larger index. Checked against float64: identical to 1.4e-8.
+  Cosmetic.
+
 ## Session — 2026-09-15 (b)
 
 **Yunt documents themed and rebuilt; two chart bugs found on live and fixed.**
@@ -198,7 +259,15 @@ quantity changed. Regression check, ESLint and production build passed.
 
 ## Now
 
-**Next session is ML retraining** on the latest labelled data — see `Next` 1.
+**The classifier is v1.4.0, live and verified** — revision `mlmodel-00016-p8z`,
+image `mlmodel:v1.4.0`, 100% traffic, 73 trained classes, familiarity gate at
+k=5. Read the class list from `artifacts/v1.4.0-int8/labels.json`, never by
+arithmetic on the category table. On the locked test set it auto-accepts about
+the same share of lines as v1.3.3 (41.6% vs 40.6%) and is right 96.9% of those
+times against 69.8%. Rollback: traffic to `mlmodel-00015-mjr`.
+
+**The 3,819 review lines have not been re-classified with it.** Nothing in
+Supabase changed; the new model only affects lines classified from now on.
 
 **Blocked on Afaq: Anthropic API credits are exhausted.** Every Yunt email
 reply fails until they are topped up (seen 2026-09-15 14:02 in Vercel logs).
@@ -269,39 +338,36 @@ acceptance records are `docs/YUNT_LIVE_ACCEPTANCE_2026-09-12.md` and
 
 ## Next
 
-1. **Retrain the classifier on the latest labelled data (next session's focus).**
-   Start by establishing, from the data rather than prose, what "latest
-   labelled" is: `Data/gold/_master_gold.csv` (2,577 rows / 73 classes at last
-   count), the 2026-09-02 client labels in `reports/client_reply_2026_09_02/`,
-   and the 11,746 human-corrected live lines — read the backing gold `source`,
-   never `prediction_source`. Rules that bind the retrain: never promote an
-   unaudited row (`docs/LABELING_RULES.md`); dedup on the built input string
-   (D-013); client conventions outrank row counts (`docs/CLIENT_CONVENTIONS.md`,
-   D-040); rule-assigned classes are not trained (D-028); a class under 2
-   examples fails loudly; `artifacts/v1.0.0/` and `v1.1.0/` are protected; accept
-   only through `docs/TEST_CHECKLIST.md` "Before accepting a retrain" including
-   the income slice and `scripts/77_model_trust_report.py`. Train in
-   `.venv-train`; PyTorch never enters `.venv-backend`.
-2. Afaq tops up Anthropic credits; then resend one pie-chart email to prove
+1. **Re-classify the 3,819 review lines with v1.4.0** — the gain only reaches
+   Antillanca when stored lines are revisited. Scoped write over PostgREST
+   (`scripts/supabase_rest.py`), backup first (`scripts/81_backup_supabase.py`),
+   dry run first, and never touch a line a human settled (`user_selected`).
+   Decide first whether a new suggestion may overwrite an existing
+   `predicted_code` on a review row, or only be added.
+2. **Harvest gold rows for `ADM-3.1`, `EXP-15.7` and `EXP-15.8`** (43, 14 and
+   158 live lines, 0 gold rows each) per `docs/LABELING_RULES.md`, so D-095 can
+   cover them at the next retrain. Same for the 22 weak classes under 15
+   distinct inputs, which can never auto-accept until they grow.
+3. Afaq tops up Anthropic credits; then resend one pie-chart email to prove
    D-094 end to end (`Envíame un gráfico de torta con las compras de 2025 por
    categoría.`), and delete its inbound row afterwards.
-3. Before any new team test on unseen data, detach a fresh sample: the
+4. Before any new team test on unseen data, detach a fresh sample: the
    2026-09-13 one is back in live, so `yunt-unseen-invoices.zip` is seen data.
-4. Afaq reviews the `yunt` Preview
+5. Afaq reviews the `yunt` Preview
    (`https://milk-company-git-yunt-mountain-creative.vercel.app`) and decides
    whether it goes to production. Still unverified by eye: historical-category
    chips on a real open request, and the `/carga` stat tiles with a loaded ZIP.
-5. Optional performance work: move the Analytics aggregation into the database;
+6. Optional performance work: move the Analytics aggregation into the database;
    store `item_summary` and refresh it on import; consider prompt caching for the
    eve agent. MCT-166 stays parked on `parked/mct-166`.
-6. Decide whether to build a dashboard review inbox/notification flow. Until
+7. Decide whether to build a dashboard review inbox/notification flow. Until
    then, describe `/carga` as deterministic upload/classification.
-7. Run broader ambiguous-wording and longer-session tests before claiming
+8. Run broader ambiguous-wording and longer-session tests before claiming
    tool-choice or memory reliability across all 25 tools.
-8. After any future team testing, inspect exact new identities before cleanup.
+9. After any future team testing, inspect exact new identities before cleanup.
    `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are
    disposable; do not use that once team work begins.
-9. Keep `MCT-165` in Backlog.
+10. Keep `MCT-165` in Backlog.
 
 **Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
 `MCT-143`).**

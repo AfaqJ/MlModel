@@ -15,11 +15,13 @@ session. This file is the full list.
 
 - Never delete or modify raw XML under `Data/Raw_Data/`. Everything else in the
   project is derivable; this is not.
-- **The gold that v1.3.3 actually trained on is
-  `Data/candidates/recovery_v1_3_2/master_gold.csv`** — 1,837 rows, 1,582
-  distinct model inputs, with `split_seed42.csv` beside it.
-  `Data/gold/_master_gold.csv` (2,262 rows) is the *older* lineage and is not
-  what production runs on. Do not conflate them.
+- **The gold that v1.4.0 actually trained on is
+  `Data/candidates/retrain_2026_09_15/master_gold.csv`** — 2,625 rows, 2,369
+  distinct model inputs, with the locked `split.csv` beside it. It is built from
+  `Data/gold/_master_gold.csv` by `scripts/100_build_retrain_candidate.py`, plus
+  46 audited rows master gold had lost and 2 synthetic ADM-1.9 rows.
+  `Data/candidates/recovery_v1_3_2/` is what v1.3.3 trained on; keep it for
+  comparison and do not conflate the two.
 - **Trap:** `training/train_recovery_setfit.py` still *defaults* to
   `Data/candidates/recovery_v1_3_1/`. `training/export_recovery_onnx.py`
   defaults to `recovery_v1_3_2`. Always pass `--gold` and `--split` explicitly;
@@ -43,8 +45,8 @@ session. This file is the full list.
   than the input is what destroyed 47 milk-sale rows and caused the incident.
 - A category with fewer than 2 examples cannot be trained (SetFit needs a
   positive pair). This must fail **loudly**, not silently. See BUG-001.
-  `ADM-1.9` and `ADM-2.3` are currently excluded as untrained; 26 classes have
-  fewer than 15 distinct examples and are review-routed by the weak-class guard.
+  v1.4.0 excludes nothing (`excluded_untrained: []`); 22 classes have fewer than
+  15 distinct examples and are review-routed by the weak-class guard.
 - Never release on aggregate accuracy alone. The income slice is a mandatory
   gate. See `TEST_CHECKLIST.md`.
 

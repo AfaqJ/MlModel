@@ -89,6 +89,13 @@ def load_and_collapse(path: Path) -> tuple[list[dict[str, str]], dict]:
     collapsed = []
     for input_key, rows in sorted(grouped.items()):
         labels = sorted({row["category_code"].strip() for row in rows})
+        if len(labels) > 1 and all(row.get("verify_flag") == "conflict" for row in rows):
+            # D-029: petrol pairs identical to the model whose label the plate
+            # decides. Inference never lets the model settle these, so they are
+            # kept, one per label, rather than blocking the whole run.
+            for label in labels:
+                collapsed.append(min((r for r in rows if r["category_code"].strip() == label), key=lambda r: r["gold_id"]))
+            continue
         if len(labels) > 1:
             contradictions.append({
                 "normalized_input": input_key,
@@ -377,6 +384,13 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="disable the provider-free training variants (ablation only)",
     )
+    parser.add_argument("--split-from", type=Path, help="locked split CSV (gold_id, split); `test` rows are held out")
+    parser.add_argument(
+        "--body-cap-per-class",
+        type=int,
+        default=0,
+        help="at most N training inputs per class for the contrastive body stage; the head still sees every row",
+    )
     parser.add_argument("--overwrite-split", action="store_true")
     parser.add_argument("--overwrite-output", action="store_true")
     parser.add_argument("--memory-smoke", action="store_true")
@@ -433,13 +447,29 @@ def main() -> None:
         )
 
     rows, data_audit = load_and_collapse(args.gold)
-    train_rows, validation_rows, excluded_rows = deterministic_split(rows)
-    split_sha256 = write_or_verify_split(
-        args.split_manifest,
-        train_rows + validation_rows + excluded_rows,
-        sha256_file(args.gold),
-        args.overwrite_split,
-    )
+    if args.split_from:
+        # A split built outside the trainer (scripts/100) and locked across
+        # every candidate compared on it. `test` rows are never trained on.
+        with args.split_from.open(encoding="utf-8", newline="") as handle:
+            locked = {row["gold_id"]: row for row in csv.DictReader(handle)}
+        missing = [row["gold_id"] for row in rows if row["gold_id"] not in locked]
+        if missing or len(locked) != len(rows):
+            raise SystemExit(f"--split-from does not match the collapsed gold: {missing[:10]}")
+        train_rows, validation_rows, excluded_rows = [], [], []
+        for row in rows:
+            if locked[row["gold_id"]]["category_code"] != row["category_code"]:
+                raise SystemExit(f"--split-from label differs for {row['gold_id']}")
+            row["split"] = locked[row["gold_id"]]["split"]
+            (validation_rows if row["split"] == "test" else train_rows).append(row)
+        split_sha256 = sha256_file(args.split_from)
+    else:
+        train_rows, validation_rows, excluded_rows = deterministic_split(rows)
+        split_sha256 = write_or_verify_split(
+            args.split_manifest,
+            train_rows + validation_rows + excluded_rows,
+            sha256_file(args.gold),
+            args.overwrite_split,
+        )
 
     train_counts = Counter(row["category_code"] for row in train_rows)
     validation_counts = Counter(row["category_code"] for row in validation_rows)
@@ -529,8 +559,31 @@ def main() -> None:
     monitor = MPSMemoryMonitor(args.empty_cache_every)
     trainer.add_callback(monitor)
 
+    body_rows = augmented_train_rows
+    if args.body_cap_per_class > 0:
+        # ponytail: round-robin over providers for variety; a wording-cluster
+        # picker is the upgrade if the cap ever needs to be much tighter.
+        by_class: defaultdict[str, defaultdict[str, list]] = defaultdict(lambda: defaultdict(list))
+        for row in sorted(augmented_train_rows, key=lambda r: sha256_bytes(f"{SEED}\0{r['gold_id']}".encode())):
+            by_class[row["category_code"]][normalize(row.get("provider"))].append(row)
+        body_rows = []
+        for providers in by_class.values():
+            queues = [queue for _, queue in sorted(providers.items())]
+            picked = []
+            while len(picked) < args.body_cap_per_class and any(queues):
+                for queue in queues:
+                    if queue and len(picked) < args.body_cap_per_class:
+                        picked.append(queue.pop(0))
+            body_rows.extend(picked)
+        print(f"body stage capped at {args.body_cap_per_class}/class: {len(body_rows)} of {len(augmented_train_rows)} rows")
+
     started = time.time()
-    trainer.train()
+    # The two SetFit stages, called separately so the body can see a capped set
+    # while the logistic head (class_weight=balanced) is fitted on every row.
+    trainer.train_embeddings(
+        [row["text"] for row in body_rows], [row["category_code"] for row in body_rows], args=training_args
+    )
+    trainer.train_classifier(train_dataset["text"], train_dataset["label"], args=training_args)
     elapsed_minutes = round((time.time() - started) / 60, 2)
     after_embeddings = token_embeddings[tracked_ids].detach().cpu()
     embedding_delta = float(torch.max(torch.abs(after_embeddings - before_embeddings)))
@@ -556,6 +609,9 @@ def main() -> None:
         "model_input_template": "[transaction_type] | item_text | description | provider",
         "batch_size": args.batch_size,
         "max_steps": args.max_steps,
+        "split_from": str(args.split_from) if args.split_from else None,
+        "body_cap_per_class": args.body_cap_per_class,
+        "body_stage_rows": len(body_rows),
         "elapsed_minutes": elapsed_minutes,
         "data_audit": data_audit,
         "provider_augmentation": augmentation_audit,

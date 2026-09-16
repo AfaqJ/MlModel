@@ -29,12 +29,15 @@ gcloud run revisions list --service mlmodel --region europe-west1
 gcloud run services update-traffic mlmodel --region europe-west1 --to-revisions <REVISION>=100
 ```
 
-Current: `mlmodel-00014-lrp` (v1.3.3-int8, 100%). The v1.1.0 revisions are still
-present, so a rollback to the pre-recovery generation is available.
+Current: `mlmodel-00016-p8z` (v1.4.0-int8, 100%, deployed 2026-09-16). The
+previous generation `mlmodel-00015-mjr` (v1.3.3-int8) and the v1.1.0 revisions
+are still present, so both steps back are available.
 
 **Check after:** hit `/artifact-check` on the service. It must report
-`model.onnx = 278,181,947 bytes` and `looks_like_lfs_pointer: false` for
-v1.3.3-int8. A different size means a different generation is live.
+`looks_like_lfs_pointer: false`, and `/model-info` must report the expected
+`model_version`. Both v1.3.3-int8 and v1.4.0-int8 happen to be 278,181,947
+bytes — same architecture, same quantisation — so size alone does **not**
+identify the generation; read `model_version`.
 
 ## Roll back the database
 

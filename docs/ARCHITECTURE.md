@@ -25,14 +25,14 @@ Data/processed/line_items.csv                 12,103 line items
   ├──► Data/silver/         Ollama (qwen3:14b) candidate labels + audit ledger
   ├──► client-supplied rules and examples (imported directly, no Ollama)
   ▼
-Data/candidates/recovery_v1_3_2/master_gold.csv   1,837 rows — what v1.3.3 trained on
-  │                                               (1,582 distinct model inputs)
-  │  training/train_recovery_setfit.py
+Data/candidates/retrain_2026_09_15/master_gold.csv  2,625 rows — what v1.4.0 trained on
+  │  scripts/100_build_retrain_candidate.py       (2,369 distinct model inputs,
+  │  training/train_recovery_setfit.py             locked split.csv beside it)
   ▼
-models/setfit_base_recovery_v1_3_2/           PyTorch SetFit body + LR head
-  │  training/export_recovery_onnx.py
+models/setfit_retrain_2026_09_15_A/           PyTorch SetFit body + LR head
+  │  scripts/75 (familiarity index) → training/export_recovery_onnx.py
   ▼
-artifacts/v1.3.3-int8/                        ONNX int8 deployment bundle
+artifacts/v1.4.0-int8/                        ONNX int8 deployment bundle
   │  gcloud builds submit → Artifact Registry → gcloud run deploy
   ▼
 Cloud Run `mlmodel` ──► Supabase (5 tables)   11,746 rows, 78 categories, live
@@ -55,15 +55,16 @@ model input  : "[transaction_type] | item_text | description | provider"
 model label  : category_code string, e.g. "ING-0.1"
 ```
 
-**78 categories** in the live `categories` table; the deployed model **emits 67**
-— `artifacts/v1.3.3-int8/labels.json` → `classifier_classes`, corroborated by
-`model_card.json` → `trained_classes: 67`. That artifact is the authority here;
-do not derive the number by subtracting from the category table. `AF-1.1`,
-`AF-2.1` and `ING-0.7` were added 2026-08-14 and are assigned by rule, not
-predicted — see D-028. `ADM-1.9`, `ADM-2.3`, `ING-0.5` and `ING-0.6` carry
-`trained: false` and cannot be emitted. 26 classes have fewer than 15 distinct examples and are
-routed to review by the weak-class guard. Validation: 312 rows, accuracy 0.7532
-(FP32) / 0.7468 (INT8), top-3 0.8654, income slice 21 rows at 1.00.
+**78 categories** in the live `categories` table; the deployed model **emits 73**
+— `artifacts/v1.4.0-int8/labels.json` → `classifier_classes`, corroborated by
+`model_card.json` → `trained_classes: 73`. That artifact is the authority here;
+do not derive the number by subtracting from the category table. Every category
+with gold rows is trained, including `AF-1.1`, `AF-2.1`, `ING-0.7` and the ones
+a lookup settles (D-095); `ADM-3.1`, `EXP-15.7` and `EXP-15.8` have no gold rows
+and are rule-assigned only. 22 classes have fewer than 15 distinct examples and
+are routed to review by the weak-class guard. Locked test set: 466 rows,
+accuracy 0.6931 (FP32) / 0.6845 (INT8), macro-F1 0.666, top-3 0.852, income
+slice 22 rows at 1.00, auto-accept precision 0.969.
 
 **The head never sees category names.** `coef_[i]` is 768 numbers learned by
 gradient descent from class `i`'s training examples. The human-readable name
