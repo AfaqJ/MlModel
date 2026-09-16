@@ -27,3 +27,7 @@ rule_version,transaction_type,item_text,category_code,action,note
 2026.08.12-v3,VENTAS,VENTA DE LEÑA,ING-0.6,assign,"Common insertion of ""de""."
 2026.08.12-v3,VENTAS,VENTAS LEÑA,ING-0.6,assign,Plural invoice wording.
 2026.08.12-v3,VENTAS,VENTAS DE LEÑA,ING-0.6,assign,"Plural wording with ""de""."
+2026.08.12-v3,VENTAS,VENTAS DE ACTIVO FIJO,ING-0.7,assign,Canonical active client taxonomy leaf; exact-name rule.
+2026.08.12-v3,VENTAS,VENTA DE ACTIVO FIJO,ING-0.7,assign,"Singular invoice wording; the live line fd472b77 uses it."
+2026.08.12-v3,VENTAS,VENTA ACTIVO FIJO,ING-0.7,assign,"Common omission of ""de""."
+2026.08.12-v3,VENTAS,VENTAS ACTIVO FIJO,ING-0.7,assign,"Plural wording with omitted ""de""."

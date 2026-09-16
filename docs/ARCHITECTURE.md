@@ -25,14 +25,14 @@ Data/processed/line_items.csv                 12,103 line items
   ├──► Data/silver/         Ollama (qwen3:14b) candidate labels + audit ledger
   ├──► client-supplied rules and examples (imported directly, no Ollama)
   ▼
-Data/candidates/retrain_2026_09_15/master_gold.csv  2,625 rows — what v1.4.0 trained on
-  │  scripts/100_build_retrain_candidate.py       (2,369 distinct model inputs,
+Data/candidates/retrain_2026_09_16/master_gold.csv  gold + every settled live label
+  │  scripts/100 (gold candidate) → scripts/102   (4,251 distinct model inputs,
   │  training/train_recovery_setfit.py             locked split.csv beside it)
   ▼
-models/setfit_retrain_2026_09_15_A/           PyTorch SetFit body + LR head
+models/setfit_retrain_2026_09_16_C/           PyTorch SetFit body + LR head
   │  scripts/75 (familiarity index) → training/export_recovery_onnx.py
   ▼
-artifacts/v1.4.0-int8/                        ONNX int8 deployment bundle
+artifacts/v1.4.1-int8/                        ONNX int8 deployment bundle
   │  gcloud builds submit → Artifact Registry → gcloud run deploy
   ▼
 Cloud Run `mlmodel` ──► Supabase (5 tables)   11,746 rows, 78 categories, live
@@ -55,16 +55,19 @@ model input  : "[transaction_type] | item_text | description | provider"
 model label  : category_code string, e.g. "ING-0.1"
 ```
 
-**78 categories** in the live `categories` table; the deployed model **emits 73**
-— `artifacts/v1.4.0-int8/labels.json` → `classifier_classes`, corroborated by
-`model_card.json` → `trained_classes: 73`. That artifact is the authority here;
+**78 categories** in the live `categories` table; the deployed model **emits 76**
+— `artifacts/v1.4.1-int8/labels.json` → `classifier_classes`, corroborated by
+`model_card.json` → `trained_classes: 76`. That artifact is the authority here;
 do not derive the number by subtracting from the category table. Every category
-with gold rows is trained, including `AF-1.1`, `AF-2.1`, `ING-0.7` and the ones
-a lookup settles (D-095); `ADM-3.1`, `EXP-15.7` and `EXP-15.8` have no gold rows
-and are rule-assigned only. 22 classes have fewer than 15 distinct examples and
-are routed to review by the weak-class guard. Locked test set: 466 rows,
-accuracy 0.6931 (FP32) / 0.6845 (INT8), macro-F1 0.666, top-3 0.852, income
-slice 22 rows at 1.00, auto-accept precision 0.969.
+with a settled label anywhere is trained (D-095, D-099); only `EXP-15.6` has no
+rows at all. 10 classes have fewer than 15 distinct examples and are routed to
+review by the weak-class guard. Locked test set: 843 rows, accuracy 0.7699
+(FP32) / 0.7770 (INT8), macro-F1 0.709, top-3 0.925, income slice 22 rows at
+1.00, auto-accept precision 0.966 over a 41.8% auto-accept rate.
+
+The artifact's `taxonomy.json`, built from
+`Data/current_context_2026_06_30/taxonomy_from_plan.csv`, is the only source of
+a category's display name and must carry all 78 live categories — D-100.
 
 **The head never sees category names.** `coef_[i]` is 768 numbers learned by
 gradient descent from class `i`'s training examples. The human-readable name

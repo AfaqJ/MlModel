@@ -1,0 +1,367 @@
+{
+  "model": "models/setfit_retrain_2026_09_16_C",
+  "train_rows_in_index": 3408,
+  "validation_rows": 843,
+  "weak_classes": [
+    "ADM-1.3",
+    "ADM-1.5",
+    "ADM-1.9",
+    "ADM-2.2",
+    "ADM-2.3",
+    "ADM-3.1",
+    "AF-2.1",
+    "EXP-10.2",
+    "EXP-11.5",
+    "EXP-15.1",
+    "EXP-15.2",
+    "EXP-15.4",
+    "EXP-15.7",
+    "EXP-2.1",
+    "EXP-4.1",
+    "EXP-5.1",
+    "EXP-5.2",
+    "EXP-5.3",
+    "EXP-5.4",
+    "EXP-5.5",
+    "EXP-6.1",
+    "EXP-6.3",
+    "EXP-6.4",
+    "EXP-6.5",
+    "EXP-8.2",
+    "EXP-8.3",
+    "EXP-8.4",
+    "ING-0.2",
+    "ING-0.3",
+    "ING-0.6",
+    "ING-0.7"
+  ],
+  "model_only_auto_accepts": 339,
+  "model_only_correct": 328,
+  "model_only_wrong": 11,
+  "max_correct_loss": 0.01,
+  "selected": {
+    "k": 5,
+    "min_agreement": 0.4,
+    "correct_auto_accepts_lost": 3,
+    "correct_loss_rate": 0.0091,
+    "wrong_auto_accepts_caught": 0,
+    "wrong_total": 11,
+    "pinned": true
+  },
+  "sweep": [
+    {
+      "k": 3,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 0,
+      "correct_loss_rate": 0.0,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 0,
+      "correct_loss_rate": 0.0,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.0091,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.0091,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.0091,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 17,
+      "correct_loss_rate": 0.0518,
+      "wrong_auto_accepts_caught": 3,
+      "wrong_total": 11
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 17,
+      "correct_loss_rate": 0.0518,
+      "wrong_auto_accepts_caught": 3,
+      "wrong_total": 11
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 0,
+      "correct_loss_rate": 0.0,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.0091,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.0091,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 9,
+      "correct_loss_rate": 0.0274,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 9,
+      "correct_loss_rate": 0.0274,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 16,
+      "correct_loss_rate": 0.0488,
+      "wrong_auto_accepts_caught": 1,
+      "wrong_total": 11
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 16,
+      "correct_loss_rate": 0.0488,
+      "wrong_auto_accepts_caught": 1,
+      "wrong_total": 11
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.0091,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 7,
+      "correct_loss_rate": 0.0213,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 7,
+      "correct_loss_rate": 0.0213,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 12,
+      "correct_loss_rate": 0.0366,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 17,
+      "correct_loss_rate": 0.0518,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 17,
+      "correct_loss_rate": 0.0518,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 22,
+      "correct_loss_rate": 0.0671,
+      "wrong_auto_accepts_caught": 4,
+      "wrong_total": 11
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.0091,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 6,
+      "correct_loss_rate": 0.0183,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 8,
+      "correct_loss_rate": 0.0244,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 14,
+      "correct_loss_rate": 0.0427,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 11
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 19,
+      "correct_loss_rate": 0.0579,
+      "wrong_auto_accepts_caught": 1,
+      "wrong_total": 11
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 23,
+      "correct_loss_rate": 0.0701,
+      "wrong_auto_accepts_caught": 2,
+      "wrong_total": 11
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 29,
+      "correct_loss_rate": 0.0884,
+      "wrong_auto_accepts_caught": 5,
+      "wrong_total": 11
+    }
+  ],
+  "wrong_auto_accepts": [
+    {
+      "gold_id": "FR-00001",
+      "truth": "EXP-11.4",
+      "predicted": "ADM-1.4",
+      "top1": 0.9972,
+      "margin": 0.9968,
+      "text": "[COMPRAS] | 93 S/P | COMERCIALIZADORA CARTIZ SPA"
+    },
+    {
+      "gold_id": "MA-05873",
+      "truth": "ADM-1.3",
+      "predicted": "EXP-15.5",
+      "top1": 0.7928,
+      "margin": 0.6797,
+      "text": "[COMPRAS] | Arriendo agosto 25 | ADDVISE SPA"
+    },
+    {
+      "gold_id": "SP-00373",
+      "truth": "EXP-15.3",
+      "predicted": "EXP-15.5",
+      "top1": 0.8084,
+      "margin": 0.7231,
+      "text": "[COMPRAS] | Arriendo febrero 26 | ADDVISE SPA"
+    },
+    {
+      "gold_id": "LV-7e00920b",
+      "truth": "EXP-3.1",
+      "predicted": "EXP-2.5",
+      "top1": 0.7523,
+      "margin": 0.5684,
+      "text": "[COMPRAS] | CIPIOSYN 50 CC (CIPIONATO ESTRADIOL) | COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA"
+    },
+    {
+      "gold_id": "SP-00227",
+      "truth": "EXP-16.2",
+      "predicted": "EXP-7.0",
+      "top1": 0.997,
+      "margin": 0.9965,
+      "text": "[COMPRAS] | CONTROL DE ROEDORES | INICIO DE CONTROL DE ROEDORES PREDIO TINEO, VISITA REALIZADA EN NOVIEMBRE 2025. | H2 ASESORIAS Y SERVICIOS SPA"
+    },
+    {
+      "gold_id": "SP-00050",
+      "truth": "EXP-11.2",
+      "predicted": "EXP-11.1",
+      "top1": 0.8018,
+      "margin": 0.6614,
+      "text": "[COMPRAS] | Electricidad consumida ( 17.710 kWh) | COOPERATIVA ELECTRICA PAILLACO LIMITADA"
+    },
+    {
+      "gold_id": "SA-00440",
+      "truth": "EXP-2.5",
+      "predicted": "EXP-2.6",
+      "top1": 0.8466,
+      "margin": 0.7644,
+      "text": "[COMPRAS] | JERINGA DESECHABLE 10CC C/AGUJA (L.L.) | JERINGA DESECHABLE 10 CC CON AGUJA | COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA."
+    },
+    {
+      "gold_id": "SA-00433",
+      "truth": "EXP-2.5",
+      "predicted": "EXP-2.6",
+      "top1": 0.7944,
+      "margin": 0.6688,
+      "text": "[COMPRAS] | JERINGA DESECHABLE 20CC-C/AGUJA(L.L.) | JERINGA DESECHABLE 20 CC CON AGUJA | COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA."
+    },
+    {
+      "gold_id": "SP-00033",
+      "truth": "EXP-10.3",
+      "predicted": "EXP-10.1",
+      "top1": 0.8302,
+      "margin": 0.7284,
+      "text": "[COMPRAS] | MANGA DE LECHE 12 MM.X MT | GEA Farm Technologies Osorno Ltda."
+    },
+    {
+      "gold_id": "SA-00378",
+      "truth": "EXP-8.4",
+      "predicted": "EXP-7.0",
+      "top1": 0.8116,
+      "margin": 0.7126,
+      "text": "[COMPRAS] | RAPS TORDON 21K - | BRAMADERO | PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA"
+    },
+    {
+      "gold_id": "SA-00089",
+      "truth": "EXP-15.5",
+      "predicted": "EXP-14.1",
+      "top1": 0.8191,
+      "margin": 0.7831,
+      "text": "[COMPRAS] | TRASLADO DE ABONO | 2 VUELTAS - TINEO | PRESTACIONES DE SERVICIOS AGRICOLAS EL SIERVO LIMITADA"
+    }
+  ]
+}

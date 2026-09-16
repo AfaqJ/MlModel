@@ -6,8 +6,8 @@
 !app/
 !app/**
 !artifacts/
-!artifacts/v1.4.0-int8/
-!artifacts/v1.4.0-int8/**
+!artifacts/v1.4.1-int8/
+!artifacts/v1.4.1-int8/**
 
 # Re-excluded after the allow-list above (last match wins).
 # Offline batch tooling: line_filters.py carries vocabulary tuned to one XML

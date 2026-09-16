@@ -34,12 +34,14 @@ raised top-1 marginally but collapsed top-3 diversity and hurt rare classes. See
 path is the recovery pair below.
 
 ```bash
-# 1. build the candidate + locked split from gold (D-098)
+# 1. build the candidate + locked split from gold (D-098), then merge in every
+#    settled Supabase label (D-099). Gold alone is NOT the labelled set.
 .venv-backend/bin/python scripts/100_build_retrain_candidate.py
+.venv-backend/bin/python scripts/102_merge_live_labels.py   # reads the live pull
 
 # 2. train (CPU, ~1.5 h for 1,500 steps; run one at a time — two runs swap and
 #    take 6x longer). --body-cap-per-class caps the contrastive stage only.
-D=Data/candidates/retrain_2026_09_15
+D=Data/candidates/retrain_2026_09_16
 .venv-train/bin/python training/train_recovery_setfit.py \
   --gold $D/master_gold.csv --split-from $D/split.csv \
   --output models/setfit_retrain_<stamp> --device cpu --batch-size 8 --max-steps 1500
@@ -66,6 +68,11 @@ D=Data/candidates/retrain_2026_09_15
 
 `scripts/75` and `training/export_recovery_onnx.py` read a split whose held-out
 rows are labelled `validation`; `split_compat.csv` is that view of `split.csv`.
+
+**Before exporting, check the category list.** `taxonomy_from_plan.csv` is the
+only source of display names and must carry all 78 live categories, and every
+`ING-` leaf needs a rule in `app/data/business_rules.csv` — D-100. `pytest`
+enforces both.
 
 **Gotchas.** A freshly trained directory needs `_name_or_path` in `config.json`
 before SetFit's model-card helper will load it. Weights saved by

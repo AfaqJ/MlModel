@@ -29,9 +29,10 @@ gcloud run revisions list --service mlmodel --region europe-west1
 gcloud run services update-traffic mlmodel --region europe-west1 --to-revisions <REVISION>=100
 ```
 
-Current: `mlmodel-00016-p8z` (v1.4.0-int8, 100%, deployed 2026-09-16). The
-previous generation `mlmodel-00015-mjr` (v1.3.3-int8) and the v1.1.0 revisions
-are still present, so both steps back are available.
+Current: `mlmodel-00018-sll` (v1.4.1-int8, image `v1.4.1-names`, 100%, deployed
+2026-09-16). Steps back: `mlmodel-00017-vg5` (the same v1.4.1 weights with the
+stale name list), `mlmodel-00016-p8z` (v1.4.0), `mlmodel-00015-mjr` (v1.3.3),
+and the v1.1.0 revisions.
 
 **Check after:** hit `/artifact-check` on the service. It must report
 `looks_like_lfs_pointer: false`, and `/model-info` must report the expected

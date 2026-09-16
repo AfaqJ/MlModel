@@ -165,9 +165,11 @@ def test_every_sales_taxonomy_name_is_a_rule():
 
     with taxonomy_path.open(encoding="utf-8-sig", newline="") as handle:
         taxonomy = list(csv.DictReader(handle))
-    assert len(taxonomy) == 71
+    # 78 = every category in the live `categories` table, including the seven
+    # added in August 2026 (D-028, D-095). Sales leaves must each resolve exactly.
+    assert len(taxonomy) == 78
     sales = [row for row in taxonomy if row["new_code"].startswith("ING-")]
-    assert len(sales) == 6
+    assert len(sales) == 7
     for row in sales:
         hit = rules.match(row["leaf"], "VENTAS")
         assert hit is not None

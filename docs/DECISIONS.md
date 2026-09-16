@@ -2453,3 +2453,41 @@ promoting an unaudited row, and a rule-assigned line is not an audited one. The
 merge therefore happens in the training candidate, where provenance stays
 visible in `source` (`live_cleanup`, `live_business_rule`, …), and gold keeps
 its meaning.
+
+---
+
+## D-100 — The category name list is rebuilt from the live `categories` table, and a test holds it there
+
+**Date:** 2026-09-16 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+`Data/current_context_2026_06_30/taxonomy_from_plan.csv` is what
+`training/export_recovery_onnx.py` turns into the artifact's `taxonomy.json`,
+which is the only place a category's human-readable name lives. It still held
+the **71** categories of June while live held **78**, so every artifact since
+August shipped a name list missing `ADM-3.1`, `AF-1.1`, `AF-2.1`, `EXP-15.6`,
+`EXP-15.7`, `EXP-15.8` and `ING-0.7`. `/predict` returned the right code with
+`name: ""`, and the dashboard would have rendered a blank category to Antillanca.
+
+All seven were added with the names copied from live and verified: 78 codes,
+0 missing, 0 name mismatches. Re-exported with the same weights — the image tag
+became `v1.4.1-names` while the model version stayed **v1.4.1**, the same way
+`v1.3.3-plate` worked.
+
+**The second gap this exposed is the more interesting one.**
+`tests/test_transaction_rules.py::test_every_sales_taxonomy_name_is_a_rule`
+asserts that every `ING-` leaf name resolves through
+`app/data/business_rules.csv`. It had been passing only because the taxonomy it
+read was stale: `ING-0.7` had no rule, so a sale line literally named
+`VENTA DE ACTIVO FIJO` fell through to the model, where 6 examples put it on the
+weak list and into review. Four rules were added (canonical, singular, and both
+without "de"); live now answers `ING-0.7` by `business_rule`.
+
+**Why the exact-name rule is sales-only:** on a sale the client writes the
+invoice, so an item naming a category is the client naming their own category.
+On a purchase the supplier writes it and a match is a coincidence in someone
+else's document.
+
+**Rule:** when a category is created, it lands in the live table, in this CSV,
+and — if it is a sales category — in `business_rules.csv`, in the same change.
+The test asserts 78 categories and 7 sales leaves, so the next drift fails
+before it ships.

@@ -15,13 +15,16 @@ session. This file is the full list.
 
 - Never delete or modify raw XML under `Data/Raw_Data/`. Everything else in the
   project is derivable; this is not.
-- **The gold that v1.4.0 actually trained on is
-  `Data/candidates/retrain_2026_09_15/master_gold.csv`** — 2,625 rows, 2,369
-  distinct model inputs, with the locked `split.csv` beside it. It is built from
-  `Data/gold/_master_gold.csv` by `scripts/100_build_retrain_candidate.py`, plus
-  46 audited rows master gold had lost and 2 synthetic ADM-1.9 rows.
-  `Data/candidates/recovery_v1_3_2/` is what v1.3.3 trained on; keep it for
-  comparison and do not conflate the two.
+- **The data that v1.4.1 actually trained on is
+  `Data/candidates/retrain_2026_09_16/master_gold.csv`** — 4,251 distinct model
+  inputs across 76 classes, with the locked `split.csv` beside it. It is
+  `scripts/100` (gold, direction, restored rows) followed by `scripts/102`
+  (every settled Supabase label, by trust order — D-099).
+  **`Data/gold/_master_gold.csv` alone is not the labelled set**: training from
+  it left `ADM-3.1`, `EXP-15.7` and `EXP-15.8` unlearnable while live held 215
+  lines for them. The local mirror of live is
+  `backups/yunt_team_handover_20260913/`, verified identical;
+  `reports/recovery_v1_3_3/supabase_upload/` is stale and must not be used.
 - **Trap:** `training/train_recovery_setfit.py` still *defaults* to
   `Data/candidates/recovery_v1_3_1/`. `training/export_recovery_onnx.py`
   defaults to `recovery_v1_3_2`. Always pass `--gold` and `--split` explicitly;
@@ -45,7 +48,7 @@ session. This file is the full list.
   than the input is what destroyed 47 milk-sale rows and caused the incident.
 - A category with fewer than 2 examples cannot be trained (SetFit needs a
   positive pair). This must fail **loudly**, not silently. See BUG-001.
-  v1.4.0 excludes nothing (`excluded_untrained: []`); 22 classes have fewer than
+  v1.4.1 excludes nothing (`excluded_untrained: []`); 10 classes have fewer than
   15 distinct examples and are review-routed by the weak-class guard.
 - Never release on aggregate accuracy alone. The income slice is a mandatory
   gate. See `TEST_CHECKLIST.md`.

@@ -3,12 +3,12 @@
 Classifies Spanish invoice line items into accounting categories for
 **Antillanca**, a Chilean dairy/agriculture client of Audisis / Grupo ProGestión.
 
-**Status:** v1.4.0 live on Cloud Run — service `mlmodel`, `europe-west1`,
-revision `mlmodel-00016-p8z` (image `mlmodel:v1.4.0`), 100% traffic, deployed
-and verified 2026-09-16. Roll back with a traffic shift to `mlmodel-00015-mjr`
-(v1.3.3). Prove a deploy with `scripts/88_prove_deploy.sh <url>`. **v1.4.1 is training**
-on gold merged with every settled Supabase label (D-099); `docs/STATE.md`
-`Next` 1 carries the commands to finish, test and deploy it. The
+**Status:** v1.4.1 live on Cloud Run — service `mlmodel`, `europe-west1`,
+revision `mlmodel-00018-sll` (image `mlmodel:v1.4.1-names`), 100% traffic,
+deployed and verified 2026-09-16. Trained on gold merged with every settled
+Supabase label (D-099). Roll back with a traffic shift to `mlmodel-00017-vg5`,
+`mlmodel-00016-p8z` (v1.4.0) or `mlmodel-00015-mjr` (v1.3.3). Prove a deploy
+with `scripts/88_prove_deploy.sh <url>`. The
 live database is **at baseline** (restored 2026-09-15): 5,195 invoices / 11,746
 corrected lines, 78 categories, every purchasing and Yunt table empty. The
 five handover-sample invoices are back, so `yunt-unseen-invoices.zip` is no
@@ -62,13 +62,14 @@ category codes with confidence, and a decision: `auto_accept` or
 `review_required`.
 
 The product is **human-in-the-loop by design**. 78 categories are live; the
-deployed model emits **73** — read it from `artifacts/v1.4.0-int8/labels.json`
+deployed model emits **76** — read it from `artifacts/v1.4.1-int8/labels.json`
 (`classifier_classes`), never by subtracting from the category table. Every
-category with gold rows is trained, deterministic rule or not (D-095);
-`ADM-3.1`, `EXP-15.7` and `EXP-15.8` have no gold rows and stay rule-only.
-`Data/gold/_master_gold.csv` holds 2,577 rows across 73 classes; the training
-candidate `Data/candidates/retrain_2026_09_15/` collapses to 2,369 distinct
-model inputs. Many classes have very
+category with a settled label anywhere is trained, deterministic rule or not
+(D-095, D-099); only `EXP-15.6` has no rows at all. The training set is
+`Data/candidates/retrain_2026_09_16/` — gold merged with every settled Supabase
+label, 4,251 distinct model inputs. `Data/gold/_master_gold.csv` alone is
+**not** the labelled set and training from it left three categories
+unlearnable. Many classes have very
 few examples, so the model cannot be trusted alone: the review gate is a feature,
 not a shortfall. Of 11,746 lines, 7,927 (67%) are auto-accepted and 3,819 (33%)
 sit in review — but **that 67% is contaminated and reads high**: the dashboard's
