@@ -3,6 +3,42 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-17 (e)
+
+**Every 2026-09-17 audit ticket is Done in Linear, parents included** (170–188;
+171, 172, 173, 174 closed once their sub-issues were). `milk-company` commits,
+local on `yunt`, **not pushed**: `575b9f5` (182), `ae742db` (178), `4f33cdb` (183),
+`9a8fd2f` (184), `c4c11c4` (185), `daab3ce` (181), `3deb814` (188). `036` and `037`
+are live (backups `backups/supabase_20260917T095106Z`, `…T101159Z`). Full
+`./check.sh` green after the batch.
+
+- **MCT-182, D-106:** Analítica computes on the server with the *same* TypeScript
+  aggregation, not SQL, and sends only what each tab draws (page 5.08 MB → 294 KB;
+  all 8 tabs text-identical before/after). Views sit in Next's data cache keyed on
+  `analytics_version.changed_at`, which `036` triggers move on any write to
+  invoices, lines, categories, companies or the catalog. Raw rows are memoised per
+  instance on the same key. Reload 0.4 s on a local `next start`; first load after
+  a data change ~5 s. **Dev mode never reads the data cache** — prove caching on a
+  production build (`milk-company-prod` in `.claude/launch.json`, port 3001).
+- **MCT-183:** Productos searches, filters, sorts and pages on the server; all state
+  in the URL (page 3.53 MB → 286 KB; searches return identical items). Search runs
+  over memoised summaries, not a DB index.
+- **MCT-178 (D-104):** `src/lib/ingest/units.ts` maps spellings to standard units at
+  ingest and on every read; 70 of 134 stored spellings map, 64 listed as unmapped.
+- **MCT-184 (D-105):** request item search = `search_invoice_wordings` (037).
+- **MCT-185:** shared `[locale]/loading.tsx`; Órdenes filter uses `next/form` +
+  `SubmitButton`. Every other server button already disabled while busy.
+- **MCT-181:** the "Ã³" names were *our* decoder (UTF-8 files with one stray byte
+  fell back to Latin-1 whole), repaired by `src/lib/ingest/text.ts` at ingest and
+  on read; the 14 stored rows are **not rewritten** (offer a scoped write if Afaq
+  wants the database itself clean). Analítica shows the longest name per RUT.
+- **MCT-188:** `price_outlier` flag at ingest, 10× from the item+unit median
+  (≥5 purchases, credit notes excluded); 3.65% of judgeable stored lines.
+- **Payload floor:** both pages still carry ~180 KB of React payload, mostly the
+  app-wide translations the layout sends on every page. Out of these tickets.
+- **Afaq's working rule (this session):** build first, test minimally per feature,
+  run the full `check.sh` only after 3–4 features.
+
 ## Session — 2026-09-17 (d)
 
 **MCT-177 and MCT-187 are Done** (`milk-company` `4447d52` and `72f6c07`, local on
@@ -270,9 +306,9 @@ regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
 
 ## Now
 
-**Active work is the 2026-09-17 audit tickets.** Done: MCT-170, 175, 176, 179,
-177, 180, 186, 187. Migrations `004`–`035` are live, plus `item_summary.last_amount`.
-`yunt` is pushed at `66efc19` (Preview only) with `4447d52` and `72f6c07` local; production
+**The 2026-09-17 audit is finished: every ticket 170–188 is Done.** Migrations
+`004`–`037` are live, plus `item_summary.last_amount`. `yunt` is pushed at
+`66efc19` (Preview only); eleven ticket commits after it are local. Production
 Vercel is still the 2026-09-16 build, held by Afaq.
 
 **The classifier remains v1.4.1 live and verified.** Revision
@@ -281,17 +317,14 @@ classes. The 3,819 review lines have not been re-classified.
 
 ## Next
 
-1. **MCT-182** (large).
-2. **MCT-181** (supplier names by RUT, double-encoded "Ã"): not small. It needs
-   an ingest decoding fix plus RUT grouping in every supplier ranking.
-   **None of the remaining tickets is small** (checked 2026-09-17): 177 is the
-   size of 176; 178 is medium; 181 needs a live write for 14 stored names;
-   184 needs an index; 185 is broad; 182/183 are large. The only hard order is
-   187 after 177 and 188 after 178. Everything else is a recommendation.
-3. Then 183 → 184 → 185 → 178 → 181 → 188.
+1. **Afaq decides when to push `yunt` and deploy production.** Then measure
+   Analítica and Productos load times on Vercel (the tickets' "under 1 s").
+2. Deeper test pass across the batch, as Afaq planned after 3–4 features.
+3. Optional: a 14-row scoped write to clean the stored "Ã" names (MCT-181).
 4. At the first real ingest, verify on screen: "Corrige DTE …", stored
    `additional_taxes`, the `document_totals` flag, the with-excise hover price,
-   `document_adjustments` in the invoice detail, and a stored `reconciliation`.
+   `document_adjustments` in the invoice detail, a stored `reconciliation`, and any
+   `price_outlier` flag.
 
 ## Prior checkpoint (superseded by `Now` above)
 

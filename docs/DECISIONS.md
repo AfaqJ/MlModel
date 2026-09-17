@@ -2575,3 +2575,12 @@ The canonical `item_catalog.item_name` (D-044) is for display only. Purchase-req
 
 **Why:** Repeat orders must use the wording the supplier invoices under, or they cannot be matched back to that supplier's history. "G93" (78 lines) returned nothing because it only exists under the catalog name "Gasolina 93".
 **Rejected:** Adding more aliases to the catalog search. Ticket: MCT-184.
+
+## D-106 — Analítica figures are computed on the server by the existing TypeScript, cached on a database change stamp
+
+**Date:** 2026-09-17 · **Decided by:** Afaq (via MCT-182 scope) · **Model:** Claude Opus 5
+
+The dashboard's aggregation functions run on the server over the same filtered rows the browser used to hold; only each tab's result is sent. Results are cached in Next's data cache keyed on `analytics_version.changed_at`, a one-row stamp that statement-level triggers (migration `036`) move on any write to `invoices`, `invoice_items`, `categories`, `companies` or `item_catalog`. Productos reuses the same stamp for its memoised summaries. No code path has to remember to invalidate.
+
+**Why:** Re-implementing ~1,500 lines of figures in SQL would let them drift from what the screen showed; reusing the code made every tab text-identical before and after. A tag-invalidation call in each writer missed writes made outside the app (SQL editor, Yunt agent steps) and a self-generated version stamp flipped under stale-while-revalidate.
+**Rejected:** SQL grouped-totals per chart; `revalidateTag` from every writer; a version generated inside `unstable_cache`. Tickets: MCT-182, MCT-183.
