@@ -5,8 +5,9 @@ lives in `DECISIONS.md`.
 
 ## Session — 2026-09-17 (d)
 
-**MCT-177 is Done** (`milk-company` `4447d52`, local on `yunt`, not pushed; `034`
-live, backup `backups/supabase_20260917T084405Z`).
+**MCT-177 and MCT-187 are Done** (`milk-company` `4447d52` and `72f6c07`, local on
+`yunt`, not pushed; `034` and `035` live, backups
+`backups/supabase_20260917T084405Z` and `backups/supabase_20260917T092218Z`).
 
 - **Production is NOT on today's work.** Pushing `66efc19` built a Vercel
   *Preview* (`milk-company-git-yunt-…`); `milk-company.vercel.app` still serves the
@@ -21,6 +22,14 @@ live, backup `backups/supabase_20260917T084405Z`).
   on hover. Both the excise and discount splits are now computed over all loaded
   lines, before filters — a category filter used to concentrate them.
 - Localhost after `034`: Compras still $4.405.098.457 (02.04.2025–02.04.2026).
+- **MCT-187:** new invoices store `invoices.reconciliation` — the three checks
+  (line arithmetic, lines ± adjustments = net + exempt, parts = total), each
+  ok/false/null with expected and received; flags derive from the same result
+  (identical counts over the 5,195 raw documents). Explorer: "Solo no cuadra",
+  a row tag, the failing checks in the detail. **Stored invoices are null
+  ("unchecked") by Afaq's choice — no backfill.** Recargos counts a surcharge only
+  when the line's arithmetic includes it: $4.994.306 → $0 (every stored one was a
+  copy). `src/lib/ingest/arithmetic.ts` is the one line formula for both sides.
 - **Afaq wants a plain brief before each ticket's build**, stating why it cannot
   break when a supplier changes behaviour.
 
@@ -262,8 +271,8 @@ regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
 ## Now
 
 **Active work is the 2026-09-17 audit tickets.** Done: MCT-170, 175, 176, 179,
-177, 180, 186. Migrations `004`–`034` are live, plus `item_summary.last_amount`.
-`yunt` is pushed at `66efc19` (Preview only) with `4447d52` local; production
+177, 180, 186, 187. Migrations `004`–`035` are live, plus `item_summary.last_amount`.
+`yunt` is pushed at `66efc19` (Preview only) with `4447d52` and `72f6c07` local; production
 Vercel is still the 2026-09-16 build, held by Afaq.
 
 **The classifier remains v1.4.1 live and verified.** Revision
@@ -272,16 +281,17 @@ classes. The 3,819 review lines have not been re-classified.
 
 ## Next
 
-1. **MCT-187** (unblocked by 177).
+1. **MCT-182** (large).
 2. **MCT-181** (supplier names by RUT, double-encoded "Ã"): not small. It needs
    an ingest decoding fix plus RUT grouping in every supplier ranking.
    **None of the remaining tickets is small** (checked 2026-09-17): 177 is the
    size of 176; 178 is medium; 181 needs a live write for 14 stored names;
    184 needs an index; 185 is broad; 182/183 are large. The only hard order is
    187 after 177 and 188 after 178. Everything else is a recommendation.
-3. Then 182 → 183 → 184 → 185 → 178 → 181 → 188.
+3. Then 183 → 184 → 185 → 178 → 181 → 188.
 4. At the first real ingest, verify on screen: "Corrige DTE …", stored
-   `additional_taxes`, the `document_totals` flag, and the with-excise price.
+   `additional_taxes`, the `document_totals` flag, the with-excise hover price,
+   `document_adjustments` in the invoice detail, and a stored `reconciliation`.
 
 ## Prior checkpoint (superseded by `Now` above)
 

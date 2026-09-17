@@ -28,7 +28,7 @@ Vercel AI Gateway through `AI_GATEWAY_API_KEY`; D-101 supersedes the earlier
 direct-Anthropic decision D-077.
 The `MCT-166` cache edits are parked as commits on local branch
 `parked/mct-166`; do not fold them into feature work. Migrations
-`004`–`034` are live. `024`, `026` and `027` are confirmed by behaviour;
+`004`–`035` are live. `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that
