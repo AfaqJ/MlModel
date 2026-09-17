@@ -2616,3 +2616,65 @@ XMLs showed 1 new, 2 already registered, classified, nothing saved.
 email); sending raw files from the browser (hits the request cap for a month);
 PDF intake — deferred by Afaq, likely agent-prepared, not deterministic parsing.
 
+---
+
+## D-108 — Yunt gates writes when available; ML-only may write with a complete audit trail
+
+**Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Codex
+
+One Next.js orchestrator owns invoice intake from email and `/carga`. After XML
+parsing and data-quality checks, it runs the exact product, meter, fuel and sales
+accounting rules locally. Lines settled by those rules stay settled; only the
+unresolved lines go to the Cloud Run classifier. Results are merged one-to-one
+by stable input id, and a missing or duplicated result aborts the whole batch.
+
+The availability contract is:
+
+| Available | What happens |
+| --- | --- |
+| ML + Yunt | Yunt reviews the complete proposal before write. Show the full report, require client confirmation, then commit once. |
+| ML only | Commit the deterministic + ML result immediately and show/send a complete audit report. Uncertain lines remain review-required. |
+| Yunt only, at most 10 unresolved lines | Yunt may suggest the unresolved categories with full client, taxonomy and precedent context. Show the full report, require confirmation, then commit once. |
+| Yunt only, more than 10 unresolved lines | Save nothing and ask the user to retry later. |
+| Neither | Save nothing and ask the user to retry later. |
+
+The ten-line limit is counted **after** deterministic resolution. If a rejected
+batch contains cheaply resolved lines, those results are discarded too; rerun
+the cheap rules later instead of maintaining partial recovery state.
+
+Whenever Yunt participates, confirmation is required even when it agrees with
+ML. No invoice, invoice-item or final classification rows become business truth
+before that confirmation. Because an email reply can arrive hours later, the
+exact prepared write plan, report hash, authorized sender/source identity and
+one-use confirmation token live in one durable staged-approval record. This is
+not an outage queue: it has no cron, automatic retry or delayed dashboard result,
+and it closes on approval, rejection or expiry. Approval commits atomically and
+idempotently; duplicate uploads or replies cannot import twice.
+
+The client sees every line: document, supplier, wording/description, quantity,
+unit, unit price, amount, proposed category, decision source, review status and
+Yunt reason/flag. Email prefers an inline table through 25 lines and uses XLSX
+above that with a concise inline summary. The dashboard shows the same report.
+
+Yunt fallback is not an ungrounded second classifier. It gets the category guide,
+client conventions, precedents and read-only lookup/evidence tools needed for an
+informed suggestion; it must surface ambiguity rather than claim certainty. The
+extra tools are visible only in a server-issued `ml_fallback` session and every
+executor independently rejects other modes. A process-global boolean is unsafe
+under Vercel concurrency and is forbidden. Ordinary ML-review sessions do not
+receive these fallback tools.
+
+The deterministic rule source moves to Next.js, but the Cloud Run cascade is not
+deleted until its direct callers have migrated and parity tests prove identical
+answers. This decision supersedes D-064's unconditional post-write review: when
+Yunt is available it reviews before write and gates confirmation. D-064's
+availability principle survives only in the explicit ML-only row above.
+
+**Why:** Yunt can catch an ML mistake before it is logged, but an ML outage need
+not stop a small, well-grounded batch. Simultaneous outages are rare and do not
+justify a hidden pending queue, cron, partial imports or a dashboard result that
+appears after the user has left.
+
+**Rejected:** always writing before Yunt reviews; using Yunt for more than ten
+unresolved lines; retaining partial deterministic successes; retrying outage
+batches later; exposing fallback tools during ordinary review. Ticket: MCT-189.

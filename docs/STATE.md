@@ -3,6 +3,40 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-17 (g)
+
+**The classifier/Yunt reliability policy is final (D-108) and captured in
+Linear as urgent Todo [MCT-189](https://linear.app/mctechstudio/issue/MCT-189/make-invoice-classification-reliable-across-ml-and-yunt-failures).** No
+pipeline code was changed in this session. The present implementation still
+writes before Yunt reviews, treats the classifier as a hard dependency, and
+does not implement the new fallback matrix.
+
+- Deterministic accounting lookups move to a shared Next.js orchestrator and
+  run before ML. Only unresolved lines go to ML. Keep the Cloud Run copy until
+  its direct callers have migrated and parity is proved.
+- ML + Yunt: show the proposed complete report, require confirmation, then
+  commit. ML only: commit immediately and return a complete audit report. Yunt
+  only: allowed only when at most 10 lines remain unresolved after deterministic
+  checks; show the report, require confirmation, then commit. Yunt-only above
+  10, or neither service: save nothing and ask the user to retry later.
+- Whenever Yunt participates, confirmation is required even if it agrees with
+  ML. Email therefore needs one durable staged approval record; this is not an
+  outage queue, has no cron/retry, and never appears as imported business data.
+- Prefer an inline email table through 25 lines; use XLSX above that. Dashboard
+  shows the same complete line report. Fallback-only lookup tools are exposed
+  and executor-enabled only in a server-issued `ml_fallback` session.
+- Still to fix around this work: changing language remounts `/carga` and loses
+  the selected upload/result; remove the redundant dashboard card that previews
+  the email; mount Yunt on the dashboard only after MCT-189 is implemented and
+  proved; then produce the requested granular plain-language flow diagram.
+- D-107 was re-proved, not rewritten: `milk-company` `2402bd0` is pushed and
+  `yunt == origin/yunt` (0 ahead, 0 behind). Both email and `/carga` accept one
+  or many ZIPs/XMLs, including a mix, as one batch. Proof rerun: real month 388
+  XML / 902 lines, loose XML equals ZIP, resend is idempotent; inbound router,
+  TypeScript and targeted ESLint passed (one unrelated unused-import warning).
+- No Linear ticket was created for the ZIP/XML reminder. The only new issue is
+  MCT-189 for the reliability implementation.
+
 ## Session — 2026-09-17 (f)
 
 **Both ingest doors now take loose DTE XML files (one or many) as well as ZIPs
@@ -340,29 +374,38 @@ regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
 
 ## Now
 
-**The 2026-09-17 audit is finished (170–188 Done) and both ingest doors take loose
-XML as well as ZIP (D-107).** Migrations `004`–`037` are live. `yunt` is pushed at
-`2402bd0`; Vercel Preview built. Production Vercel is still the 2026-09-16 build,
-held by Afaq.
+**The reliability design is final (D-108, MCT-189) but not implemented.** The
+current code still runs ML before saving and Yunt only after saving. Do not
+describe the new matrix as live until MCT-189 is built and all five outcomes
+pass for both dashboard and email.
+
+**Both ingest doors already take one or many ZIP/XML files (D-107).** Migrations
+`004`–`037` are live. `milk-company` branch `yunt` is pushed at `2402bd0` and is
+exactly even with `origin/yunt`; its Vercel Preview built. Production Vercel is
+still the 2026-09-16 build, held by Afaq.
 
 **The classifier remains v1.4.1 live and verified** (`mlmodel-00018-sll`). It is a
 hard dependency of saving invoices today — see session (f).
 
 ## Next
 
-1. **Reliability plan for classifier ↔ Yunt** (session f): put the decisions to
-   Afaq one round at a time — save without a classification, what retries and
-   what triggers it (cron is production-only), whether the Yunt ever classifies,
-   cache lifetime — then implement, then the granular diagram.
-2. Answer Afaq's webhook questions (facts are in session f).
-3. Afaq decides when to deploy production; then measure Analítica and Productos
-   on Vercel.
-4. First real ingest: verify the on-screen items listed in session (d)/(e), and
-   send one real email with loose XML attachments to the Preview.
-5. Optional: 14-row scoped write for the stored "Ã" names (MCT-181).
-6. **STATE.md needs a consolidation pass:** 9 session entries plus ~450 lines of
-   older sections below; not trimmed in this rushed checkpoint to avoid dropping
-   facts that are not yet in `DECISIONS.md`.
+1. **Implement MCT-189 exactly as D-108:** shared Next.js orchestrator,
+   deterministic-first partition, availability matrix, Yunt fallback context and
+   guarded tools, staged approvals, atomic commit, complete table/XLSX report,
+   idempotency, parity and integration tests. Do not add outage retries or
+   partial imports.
+2. Fix `/carga` language switching so locale chrome changes without losing the
+   selected files, preview or approval state. Remove the redundant dashboard
+   "How it would look in the email" card.
+3. Mount Yunt on the dashboard only after MCT-189 is proved; then create the
+   requested granular, practical flow diagram from the implemented behavior.
+4. Answer Afaq's webhook questions (facts are in session f).
+5. Afaq decides when to deploy production; then measure Analítica and Productos
+   on Vercel and run the first real email/XML ingest against the promoted build.
+6. Optional: 14-row scoped write for the stored "Ã" names (MCT-181).
+7. **STATE.md still needs a consolidation pass:** more than five older session
+   entries remain. They were not deleted during this checkpoint because several
+   still contain facts not yet promoted to `DECISIONS.md`.
 
 ## Prior checkpoint (superseded by `Now` above)
 
