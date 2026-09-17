@@ -3,6 +3,27 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-17 (d)
+
+**MCT-177 is Done** (`milk-company` `4447d52`, local on `yunt`, not pushed; `034`
+live, backup `backups/supabase_20260917T084405Z`).
+
+- **Production is NOT on today's work.** Pushing `66efc19` built a Vercel
+  *Preview* (`milk-company-git-yunt-…`); `milk-company.vercel.app` still serves the
+  2026-09-16 build. Afaq: do not promote or push to production yet.
+- **MCT-177:** `DscRcgGlobal` is stored as sent in `invoices.document_adjustments`
+  (future ingests; `%` resolved to CLP over the lines it applies to). The line-sum
+  flag counts adjustments: 430 → 161 of 5,195 documents, 0 newly flagged. Category
+  and item spend add each line's share; stored line amounts never change. Invoice
+  detail lists the adjustment. Nothing is supplier-specific: no section, no change.
+- **MCT-176 excise split: Afaq keeps it,** on condition the price says which it is.
+  Ítems now reads "Precio Unit. Prom. (sin impuestos)" with the with-excise price
+  on hover. Both the excise and discount splits are now computed over all loaded
+  lines, before filters — a category filter used to concentrate them.
+- Localhost after `034`: Compras still $4.405.098.457 (02.04.2025–02.04.2026).
+- **Afaq wants a plain brief before each ticket's build**, stating why it cannot
+  break when a supplier changes behaviour.
+
 ## Session — 2026-09-17 (c)
 
 **MCT-170, 175, 176, 179, 180 and 186 are Done; `032`, `033` and the `item_summary`
@@ -26,14 +47,12 @@ placeholder names such as "Item" read the description, display only). Backups be
   stored. Desglose Fiscal adds "Otros impuestos" and "Sin desglosar"
   ($19.527.167 on the range above), so its rows equal Total. Items shows unit
   price with stored excise.
-- **MCT-176 splits the excise per line by the DTE's own `CodImpAdic`.** An
-  earlier note said not to allocate per line. Afaq was told; if he objects,
-  reduce it to a per-invoice figure.
+- **MCT-176 splits the excise per line by the DTE's own `CodImpAdic`;** Afaq
+  confirmed it in (d).
 - **Not yet seen live, closed by Afaq's choice:** the "Corrige DTE …" line, stored
   taxes, the new flag and the with-excise price all need a genuinely new document.
   Check them at the first real ingest.
-- **Unchecked:** the Vercel production deploy of `66efc19` has not been opened in
-  a browser. Check that Analítica and Productos load there.
+- **Checked in (d):** `66efc19` built only a Preview; production was never updated.
 - **Dead code (Afaq: later, only if absolutely safe):** `src/components/dashboard/*` and
   `src/lib/dashboard/{aggregate,invoices}.ts` are imported by no route. Last
   session's edits there were reverted, not committed.
@@ -243,8 +262,9 @@ regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
 ## Now
 
 **Active work is the 2026-09-17 audit tickets.** Done: MCT-170, 175, 176, 179,
-180, 186. Migrations `004`–`033` are live, plus `item_summary.last_amount`. `yunt` is
-pushed at `66efc19`; production Supabase already has every migration it needs.
+177, 180, 186. Migrations `004`–`034` are live, plus `item_summary.last_amount`.
+`yunt` is pushed at `66efc19` (Preview only) with `4447d52` local; production
+Vercel is still the 2026-09-16 build, held by Afaq.
 
 **The classifier remains v1.4.1 live and verified.** Revision
 `mlmodel-00018-sll`, image `mlmodel:v1.4.1-names`, 100% traffic, 76 trained
@@ -252,16 +272,14 @@ classes. The 3,819 review lines have not been re-classified.
 
 ## Next
 
-1. **MCT-177** (document discounts, `DscRcgGlobal`): same shape as 176, with a
-   parse, a `034` column, a reconciliation flag, and a line allocation for
-   category/item spend. It was deliberately left for a full session.
+1. **MCT-187** (unblocked by 177).
 2. **MCT-181** (supplier names by RUT, double-encoded "Ã"): not small. It needs
    an ingest decoding fix plus RUT grouping in every supplier ranking.
    **None of the remaining tickets is small** (checked 2026-09-17): 177 is the
    size of 176; 178 is medium; 181 needs a live write for 14 stored names;
    184 needs an index; 185 is broad; 182/183 are large. The only hard order is
    187 after 177 and 188 after 178. Everything else is a recommendation.
-3. Then 187 (waits for 177) → 182 → 183 → 184 → 185 → 178 → 181 → 188.
+3. Then 182 → 183 → 184 → 185 → 178 → 181 → 188.
 4. At the first real ingest, verify on screen: "Corrige DTE …", stored
    `additional_taxes`, the `document_totals` flag, and the with-excise price.
 
