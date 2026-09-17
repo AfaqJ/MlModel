@@ -257,6 +257,10 @@ classes. The 3,819 review lines have not been re-classified.
    category/item spend. It was deliberately left for a full session.
 2. **MCT-181** (supplier names by RUT, double-encoded "Ã"): not small. It needs
    an ingest decoding fix plus RUT grouping in every supplier ranking.
+   **None of the remaining tickets is small** (checked 2026-09-17): 177 is the
+   size of 176; 178 is medium; 181 needs a live write for 14 stored names;
+   184 needs an index; 185 is broad; 182/183 are large. The only hard order is
+   187 after 177 and 188 after 178. Everything else is a recommendation.
 3. Then 187 (waits for 177) → 182 → 183 → 184 → 185 → 178 → 181 → 188.
 4. At the first real ingest, verify on screen: "Corrige DTE …", stored
    `additional_taxes`, the `document_totals` flag, and the with-excise price.
