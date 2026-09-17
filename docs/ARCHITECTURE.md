@@ -160,6 +160,12 @@ confidence.
   Category apply and undo require a code-generated email restatement and a reply
   tied to that exact Message-ID, sender, action, target and one-use first-line
   token (D-067); a generic reply is never approval.
+  Uploaded and emailed ZIPs are held in server memory, opened by `readZip`, and
+  each XML line is cleaned in the DTE parser before catalog matching,
+  classification or storage. Litre aliases are canonicalised to `L`; numeric
+  corrections require per-line reconciliation (D-056, D-102). The app does not
+  currently archive the original ZIP/XML, so cleaned relational rows and batch
+  metadata—not the received file—are the durable record.
   The same gate now covers email-drafted purchase requests: the draft stores
   what/quantity/unit/date/farm, and only its exact confirmation creates the
   ordinary `purchase_requests` row. It does not create an order or contact a

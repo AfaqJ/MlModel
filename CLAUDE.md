@@ -20,14 +20,13 @@ uploads of 2026-08-19 landed and were verified independently against live.
 carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
-Frontend: branch `yunt` in `../milk-company` (the only frontend checkout), off
-`feature/dashboard`, is pushed at `8809120` with the UI polish, Pastizal theme
-and themed Yunt documents (D-090–D-094) for Preview review; Afaq promotes to
-production himself. **Anthropic API credits ran out on 2026-09-15**: the Yunt
-answers no email until they are topped up.
+Frontend: branch `yunt` in `../milk-company` (the only frontend checkout) is
+pushed at `9a31459` and is the configured production branch. The Yunt uses
+Vercel AI Gateway through `AI_GATEWAY_API_KEY`; D-101 supersedes the earlier
+direct-Anthropic decision D-077.
 The `MCT-166` cache edits are parked as commits on local branch
 `parked/mct-166`; do not fold them into feature work. Migrations
-`004`–`030` are live. `024`, `026` and `027` are confirmed by behaviour;
+`004`–`031` are live. `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that

@@ -3,6 +3,36 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-17
+
+**The Yunt now uses Vercel AI Gateway, and the historical fuel-report defect is
+repaired in production.** Frontend `yunt` is pushed at `9a31459`; migration
+`031_repair_scaled_invoice_lines.sql` is live. The gateway change supersedes
+D-077 (→ D-101). The production repair changed 212 invoice lines whose quantity
+and unit price were provably stored at 10,000x and canonicalised 383 historical
+litre aliases. Its audit table keeps the original and corrected numbers.
+
+- Future ZIP ingestion normalises `L`, `Lt`, `LT`, `Litr`, `LTR`, `LTS`,
+  `Litro` and `Litros` to `L` before storage (→ D-102). The per-line arithmetic
+  guard from D-056 first accepts correct source values unchanged; only a failed
+  original calculation followed by a successful known correction is rescaled.
+  Anything else stays unchanged and is flagged as unreconciled.
+- Live post-repair proof: 0 remaining scale candidates; Gasolina 93 is one `L`
+  bucket with 31,203.82 L, CLP 22,672,196 and CLP 726.58/L.
+- Proofs: `check-dte-rules.ts` (12 rules), `check-dte-corpus.ts` (4,451 files,
+  10,620 lines, exact Python parity), the disposable migration proof, targeted
+  ESLint and the production Next.js build all passed. Full-repo ESLint alone
+  exhausted 4 GB while scanning generated `.vercel/output`; targeted lint was
+  clean.
+- **Gotcha — never pull Vercel sensitive variables over a working `.env.local`.**
+  The CLI writes `[SENSITIVE]` placeholders because it cannot reveal those
+  values, which overwrites usable local secrets. Back up the local file or pull
+  into a separate temporary file and merge names deliberately.
+- **Raw retention gap:** `/carga` and emailed ZIPs are read in server memory;
+  this app stores cleaned relational rows and batch metadata, not the original
+  ZIP/XML. The separate `/extractor` accepts standalone XML client-side but does
+  not write the invoice database or run this ingest cleanup.
+
 ## Session — 2026-09-16 (c)
 
 **v1.4.1 is live: revision `mlmodel-00018-sll`, image `mlmodel:v1.4.1-names`,
@@ -192,65 +222,6 @@ Frontend `yunt` is at `8809120` (after `9ec8689`), Preview Ready.
 - **Gotcha — the eve request sends no `cache_control`**, so every model turn
   re-pays the full system prompt and tool list. Worth checking before volume.
 
-## Session — 2026-09-15
-
-**Live database restored to baseline.** Compared every tracked table with
-`backups/yunt_team_handover_20260913/`: the only differences were the 09-14
-repeat-purchase test data (fixture supplier *Proveedor Prueba Recompra*, folio
-`TEST-BROWSER-030`, its catalog item and line, `SOL-2026-0009`–`0014`,
-`OC-2026-0004`–`0009`, 13 inbound requests, 9 drafts) and the five detached
-handover invoices / twelve lines. A scoped script deleted exactly those rows and
-re-inserted the sample with original IDs; counts, core ID sets and the 17
-restored rows' fields were verified against the snapshot. Deleted rows and the
-script: `backups/pre_baseline_restore_20260915/`. A full wipe-and-reload was
-considered and rejected: same end state, more risk. Request/order number
-counters were not reset — the next request is `SOL-2026-0015`.
-Gotcha: a `select=*` read of every table in parallel hung for 14 minutes; per-
-table `count` plus ID-column reads answered the same question in seconds.
-
-**UI/UX polish merged and pushed to `yunt`** (`mountain-creative/milk-company`,
-head `55f8797`, Preview rebuilds from it). Everything below was driven in the
-browser at 390 / 700 / 900 (sidebar open) / 1280 / 1600 px, and `check.sh` is
-all green with 0 lint errors and a passing build.
-
-- Numbers use Chilean format in both UI languages: `4.192`, `$9.260 MM`,
-  `9,8%` — one formatter, `src/lib/dashboard/format.ts` (D-090).
-- Sidebar highlights the current page; Órdenes de compra, Nueva solicitud and
-  the print-order page have back links. Leftover hardcoded text translated,
-  including a translated file picker (`src/components/file-input.tsx`).
-- Empty states have icon + action; orders month filter is a month-level
-  calendar (`src/components/month-picker.tsx`); duplicate filter title removed.
-- Layout sizes on the space beside the sidebar, not the screen (container
-  queries): filters collapse behind one "Filtros" button and open as an even
-  2-column grid; KPI grid goes 2→4 columns; KPI figures scale with the card.
-  Header shows icon-only language/role pickers below tablet width, and the
-  title only when it fits (D-092).
-- Pastizal theme: moss sidebar, oat ground, sage actions, wheat headline tile,
-  moss table header row with oat frozen column and centred titles (D-091).
-- Hydration error in the pending KPI card fixed (skeleton `div` inside `p`).
-- Sidebar names stay "Solicitudes de compra" and the inner page stays
-  "Órdenes de compra" — Afaq decided against renaming.
-
-**Folders consolidated.** The `.worktrees/ux-operational-home` copy is deleted;
-`../milk-company` is the only frontend checkout, on `yunt`, clean apart from
-generated `AGENTS.md`/`CLAUDE.md`. The previously uncommitted MCT-166 cache
-edits and two script edits (`preflight-go.ts`, `check-yunt-test-fixture.ts`)
-are parked as two commits on local branch `parked/mct-166` — not for merge.
-The unreachable mock page `productos/[id]/ordenes/[orderId]` stays as is.
-
-Performance review (read-only, nothing changed): Analytics downloads every
-invoice line for the range into the browser (~12 pages) and aggregates in
-`dashboard-view.tsx:240-256`; the DB-side aggregate is only the catalog's
-`item_summary` view. The catalog loads all 4,002 summaries server-side, so its
-search covers every item. Sidebar prefetch is kept deliberately.
-
-Gotchas: switching branches or rebasing while `next dev` runs replays each
-intermediate commit, so the page briefly shows old themes — a dev artefact, not
-a user-facing bug (production CSS verified to contain only Pastizal tokens).
-After a branch switch Turbopack kept serving the old CSS until the dev server
-was restarted. In a worktree whose `node_modules` is a symlink, Turbopack
-refuses to start; `--webpack` works.
-
 ## Now
 
 **The classifier is v1.4.1, live and verified** — revision `mlmodel-00018-sll`,
@@ -260,9 +231,14 @@ gate pinned at k=5 / 0.40. Read the class list from
 Trained on gold merged with every settled Supabase label (D-099). Rollback
 ladder: `mlmodel-00017-vg5`, `mlmodel-00016-p8z`, `mlmodel-00015-mjr`.
 
-**The 3,819 review lines have not been re-classified with it.** Nothing in
-Supabase changed today; the new model only affects lines classified from now on.
-That is the next job and the one Antillanca will actually see.
+**The frontend is on `yunt` at `9a31459`, configured for Vercel AI Gateway, and
+migration 031 is live.** Historical malformed fuel quantities/prices and litre
+aliases are repaired; future normalisation runs deterministically during DTE
+parsing before any classification or database write. The original uploaded
+ZIP/XML is not retained by the app.
+
+**The 3,819 review lines have not been re-classified with v1.4.1.** That remains
+the next classifier job and the gain Antillanca will actually see.
 
 ## Next
 
@@ -278,26 +254,27 @@ That is the next job and the one Antillanca will actually see.
    distinct inputs can never auto-accept, and 6 classes under 5 inputs
    (`ADM-1.9`, `EXP-15.1`, `EXP-6.4`, `EXP-8.3`, `ING-0.3`, `ING-0.6`) have no
    test rows at all. `EXP-15.7` at 14 inputs is one example short of the bar.
-3. Afaq tops up Anthropic credits; then resend one pie-chart email to prove
-   D-094 end to end (`Envíame un gráfico de torta con las compras de 2025 por
-   categoría.`), and delete its inbound row afterwards.
-4. Before any new team test on unseen data, detach a fresh sample: the
+3. **Audit the broader ingest/report path for comparable data-quality gaps.**
+   Prefer deterministic validation and canonicalisation at the ingestion
+   boundary; do not describe this as AI normalisation. Decide separately whether
+   raw ZIP/XML retention is required for audit and reprocessing.
+4. Prove AI Gateway end to end with one bounded report email, confirm spend in
+   Vercel AI Gateway, and clean up the exact test row afterwards.
+5. Before any new team test on unseen data, detach a fresh sample: the
    2026-09-13 one is back in live, so `yunt-unseen-invoices.zip` is seen data.
-5. Afaq reviews the `yunt` Preview
-   (`https://milk-company-git-yunt-mountain-creative.vercel.app`) and decides
-   whether it goes to production. Still unverified by eye: historical-category
-   chips on a real open request, and the `/carga` stat tiles with a loaded ZIP.
-6. Optional performance work: move the Analytics aggregation into the database;
+6. Still verify by eye: historical-category chips on a real open request and
+   the `/carga` stat tiles with a loaded ZIP.
+7. Optional performance work: move the Analytics aggregation into the database;
    store `item_summary` and refresh it on import; consider prompt caching for the
    eve agent. MCT-166 stays parked on `parked/mct-166`.
-7. Decide whether to build a dashboard review inbox/notification flow. Until
+8. Decide whether to build a dashboard review inbox/notification flow. Until
    then, describe `/carga` as deterministic upload/classification.
-8. Run broader ambiguous-wording and longer-session tests before claiming
+9. Run broader ambiguous-wording and longer-session tests before claiming
    tool-choice or memory reliability across all 25 tools.
-9. After any future team testing, inspect exact new identities before cleanup.
+10. After any future team testing, inspect exact new identities before cleanup.
    `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are
    disposable; do not use that once team work begins.
-10. Keep `MCT-165` in Backlog.
+11. Keep `MCT-165` in Backlog.
 
 **Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
 `MCT-143`).**

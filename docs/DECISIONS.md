@@ -2491,3 +2491,52 @@ else's document.
 and — if it is a sales category — in `business_rules.csv`, in the same change.
 The test asserts 78 categories and 7 sales leaves, so the next drift fails
 before it ships.
+
+---
+
+## D-101 — The Yunt uses Vercel AI Gateway; this supersedes D-077
+
+**Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Codex
+
+Rodrigo confirmed that the expected provider path is the Mountain Creative
+Vercel AI Gateway, whose Anthropic provider and billing are already configured.
+The deployment therefore uses `AI_GATEWAY_API_KEY`; it does not use a direct
+Anthropic key for ordinary Yunt calls. D-077 was the best decision under the
+information available then, but is no longer current.
+
+With eve, the model identifier is the provider/model string
+`anthropic/claude-sonnet-5`. Do not add a `gateway/` prefix and do not wrap it
+with `gateway(...)`: that produced an eve build failure because the compaction
+compiler saw `gateway/anthropic/claude-sonnet-5` as an unknown Gateway model.
+`agent/agent.ts` and the stored `YUNT_REVIEW_MODEL` provenance must still agree.
+
+**Credential rule:** create a scoped AI Gateway API key in Vercel, put it in
+the deployment as `AI_GATEWAY_API_KEY`, and use the same variable locally when
+needed. Never pull sensitive Vercel variables over a working `.env.local`; the
+CLI cannot reveal their values and writes `[SENSITIVE]` placeholders.
+
+---
+
+## D-102 — Canonicalise units and validate numeric corrections at ingestion
+
+**Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Codex
+
+Reports aggregate the structured rows already stored in `invoice_items`; they
+must not rediscover data cleanup rules independently. During DTE parsing, every
+known litre spelling (`L`, `LT`, `LTR`, `LITR`, `LTS`, `LITRO`, `LITROS`, case
+insensitive) becomes `L` before classification or storage. This keeps future
+reports in one physical-unit bucket.
+
+D-056 still governs scale correction. Correct source arithmetic is accepted
+unchanged before the supplier-specific candidate is considered. A line is
+rescaled only when the original calculation fails and the known corrected
+calculation reconciles to `MontoItem`; otherwise it remains unchanged and is
+flagged. Supplier history proposes the otherwise-underdetermined split between
+quantity and price, while arithmetic proves whether that proposal applies to
+this line.
+
+Migration `031_repair_scaled_invoice_lines.sql` applied the same rule to stored
+history: 212 proven lines repaired, 383 historical litre aliases canonicalised,
+and originals retained in `yunt_invoice_item_scale_repairs`. Raw uploaded
+ZIP/XML files are currently not archived by the app; only cleaned relational
+rows and batch metadata are durable.
