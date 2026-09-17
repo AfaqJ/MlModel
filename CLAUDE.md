@@ -21,12 +21,12 @@ carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company` (the only frontend checkout) is
-pushed at `9a31459` and is the configured production branch. The Yunt uses
+pushed at `66efc19` and is the configured production branch. The Yunt uses
 Vercel AI Gateway through `AI_GATEWAY_API_KEY`; D-101 supersedes the earlier
 direct-Anthropic decision D-077.
 The `MCT-166` cache edits are parked as commits on local branch
 `parked/mct-166`; do not fold them into feature work. Migrations
-`004`–`031` are live. `024`, `026` and `027` are confirmed by behaviour;
+`004`–`033` are live. `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that

@@ -3,6 +3,46 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-17 (c)
+
+**MCT-170, 175, 176, 179, 180 and 186 are Done; `032`, `033` and the `item_summary`
+`last_amount` column are live.** Commits in `milk-company` (branch `yunt`, **pushed
+2026-09-17 as `9a31459..66efc19`**, so Vercel production deploys it): `8254c72` (170), `3c06cf0` (175), `7570afd` (176), `ddb75ee` (186:
+every month labelled), `5f1a6a0` (180: Productos shows "Solo monto" and the
+latest amount; view backup `backups/supabase_20260917T071358Z`), `66efc19` (179:
+placeholder names such as "Item" read the description, display only). Backups before each migration:
+`backups/supabase_20260917T064728Z` and `backups/supabase_20260917T065859Z`.
+
+- **MCT-175:** DTE 61 is negative in every Analítica spend figure (D-103),
+  including concentration, payments, geography, insights and item totals. The
+  Compras card shows net, with gross and NC beneath. Proved on signed-in
+  localhost for 02.04.2025–02.04.2026: Compras went from $4.538.055.105 to
+  $4.405.098.457, exactly before − 2 × $66.478.324 of credit notes.
+  `dte_references` is stored for new ingests only.
+- **MCT-176:** header `ImptoReten` entries are stored for new ingests. A new
+  `document_totals` quality flag ("no cuadra según el proveedor") was calibrated
+  over the 5,195 stored DTEs: 1,246 mismatches without taxes, 56 with them.
+  DTE 43 is skipped because its total subtracts `Comisiones`, which is not
+  stored. Desglose Fiscal adds "Otros impuestos" and "Sin desglosar"
+  ($19.527.167 on the range above), so its rows equal Total. Items shows unit
+  price with stored excise.
+- **MCT-176 splits the excise per line by the DTE's own `CodImpAdic`.** An
+  earlier note said not to allocate per line. Afaq was told; if he objects,
+  reduce it to a per-invoice figure.
+- **Not yet seen live, closed by Afaq's choice:** the "Corrige DTE …" line, stored
+  taxes, the new flag and the with-excise price all need a genuinely new document.
+  Check them at the first real ingest.
+- **Unchecked:** the Vercel production deploy of `66efc19` has not been opened in
+  a browser. Check that Analítica and Productos load there.
+- **Dead code (Afaq: later, only if absolutely safe):** `src/components/dashboard/*` and
+  `src/lib/dashboard/{aggregate,invoices}.ts` are imported by no route. Last
+  session's edits there were reverted, not committed.
+- **Local env:** `.env.local` has no `AI_GATEWAY_API_KEY` (the Yunt needs it,
+  D-101) and now does hold `SUPABASE_SECRET_KEY`. Remove that key before
+  re-proving that `/carga` saves as the signed-in user.
+- **Gotcha:** Afaq rejected a full `check.sh` for each small ticket. It ran once
+  for 175+176 and passes.
+
 ## Session — 2026-09-17 (b)
 
 **A system-wide audit of dashboard numbers, units and speed is complete, and the fixes are 19 Linear tickets assigned to Afaq (MCT-170–188).** Nothing was changed in code or Supabase. The only live access was reads.
@@ -202,67 +242,24 @@ regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
 
 ## Now
 
-**The classifier is v1.4.1, live and verified** — revision `mlmodel-00018-sll`,
-image `mlmodel:v1.4.1-names`, 100% traffic, **76 trained classes**, familiarity
-gate pinned at k=5 / 0.40. Read the class list from
-`artifacts/v1.4.1-int8/labels.json`, never by arithmetic on the category table.
-Trained on gold merged with every settled Supabase label (D-099). Rollback
-ladder: `mlmodel-00017-vg5`, `mlmodel-00016-p8z`, `mlmodel-00015-mjr`.
+**Active work is the 2026-09-17 audit tickets.** Done: MCT-170, 175, 176, 179,
+180, 186. Migrations `004`–`033` are live, plus `item_summary.last_amount`. `yunt` is
+pushed at `66efc19`; production Supabase already has every migration it needs.
 
-**The frontend is on `yunt` at `9a31459`, configured for Vercel AI Gateway, and
-migration 031 is live.** Historical malformed fuel quantities/prices and litre
-aliases are repaired; future normalisation runs deterministically during DTE
-parsing before any classification or database write. The original uploaded
-ZIP/XML is not retained by the app.
-
-**The 2026-09-17 audit is ticketed as MCT-170–188** (D-103–D-105). MCT-170 is a live security gap: `item_summary` is readable with no session.
-
-**The 3,819 review lines have not been re-classified with v1.4.1.** That remains
-the next classifier job and the gain Antillanca will actually see.
+**The classifier remains v1.4.1 live and verified.** Revision
+`mlmodel-00018-sll`, image `mlmodel:v1.4.1-names`, 100% traffic, 76 trained
+classes. The 3,819 review lines have not been re-classified.
 
 ## Next
 
-1. **Re-classify the 3,819 review lines with v1.4.1** — the gain only reaches
-   Antillanca when stored lines are revisited. Measured on the locked test set,
-   v1.4.1 auto-files 41.8% of lines at 96.6% precision, against the live data's
-   current 37.0% at 64.4%. Scoped write over PostgREST
-   (`scripts/supabase_rest.py`), backup first (`scripts/81_backup_supabase.py`),
-   dry run first, never touch a `user_selected` line. Decide first whether a new
-   suggestion may overwrite an existing `predicted_code` on a review row, or
-   only be added.
-2. **Grow the 10 weak classes and the 6 untestable ones.** A class under 15
-   distinct inputs can never auto-accept, and 6 classes under 5 inputs
-   (`ADM-1.9`, `EXP-15.1`, `EXP-6.4`, `EXP-8.3`, `ING-0.3`, `ING-0.6`) have no
-   test rows at all. `EXP-15.7` at 14 inputs is one example short of the bar.
-3. **Work the audit tickets in order** (MCT-170 → 175 → 176 → 177 → 187 → 182 → 183 → 184 → 185 → 178 → 180 → 179 → 181 → 188 → 186). Each fix is decided in D-103, D-104 and D-105. Decide separately whether raw ZIP/XML retention is required for audit and reprocessing.
-4. Prove AI Gateway end to end with one bounded report email, confirm spend in
-   Vercel AI Gateway, and clean up the exact test row afterwards.
-5. Before any new team test on unseen data, detach a fresh sample: the
-   2026-09-13 one is back in live, so `yunt-unseen-invoices.zip` is seen data.
-6. Still verify by eye: historical-category chips on a real open request and
-   the `/carga` stat tiles with a loaded ZIP.
-7. Consider prompt caching for the eve agent. MCT-166 stays parked on `parked/mct-166`. (Analytics and Productos speed is now MCT-182/183.)
-8. Decide whether to build a dashboard review inbox/notification flow. Until
-   then, describe `/carga` as deterministic upload/classification.
-9. Run broader ambiguous-wording and longer-session tests before claiming
-   tool-choice or memory reliability across all 25 tools.
-10. After any future team testing, inspect exact new identities before cleanup.
-   `90_yunt_live_test_undo.py --apply` assumes all Yunt purchases are
-   disposable; do not use that once team work begins.
-11. Keep `MCT-165` in Backlog.
-
-**Ticket count: 25 earlier (23 Done, 2 parked: `MCT-154`, `MCT-143`) plus 19 new audit tickets MCT-170–188 in Backlog, assigned to Afaq.**
-
-**Gotchas worth keeping.** Click Outlook's Send by element ref, never by
-coordinate - a coordinate click silently saves a draft. Poll for a NEW request
-id, not for the newest row to settle. Name paths in `git add`; a wide add swept
-the parked MCT-166 files into a feature commit. In the live-test rollback,
-application rows are reached through their application (not a batch id), catalog
-records must be proven absent from the pre-test identity snapshot before deletion,
-and purchase-order drafts must be deleted before their order. `scripts/` and
-`backups/` are gitignored here, so undo scripts and snapshots live on disk only.
-A Resend HTTP 200 without `message_id` is incomplete: retry, never resend.
-A preview URL answering 401 is Deployment Protection, not a broken route.
+1. **MCT-177** (document discounts, `DscRcgGlobal`): same shape as 176, with a
+   parse, a `034` column, a reconciliation flag, and a line allocation for
+   category/item spend. It was deliberately left for a full session.
+2. **MCT-181** (supplier names by RUT, double-encoded "Ã"): not small. It needs
+   an ingest decoding fix plus RUT grouping in every supplier ranking.
+3. Then 187 (waits for 177) → 182 → 183 → 184 → 185 → 178 → 181 → 188.
+4. At the first real ingest, verify on screen: "Corrige DTE …", stored
+   `additional_taxes`, the `document_totals` flag, and the with-excise price.
 
 ## Prior checkpoint (superseded by `Now` above)
 
