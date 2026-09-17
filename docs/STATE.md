@@ -3,6 +3,35 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-17 (b)
+
+**A system-wide audit of dashboard numbers, units and speed is complete, and the fixes are 19 Linear tickets assigned to Afaq (MCT-170–188).** Nothing was changed in code or Supabase. The only live access was reads.
+
+- **Urgent security gap (MCT-170):** the `item_summary` view is `SECURITY DEFINER`, so the anon/publishable key reads it with no session (HTTP 200 with rows). `invoices` correctly returns `[]`. Fix is `security_invoker` plus a grant to authenticated users. It needs Afaq's go-ahead before touching Supabase.
+- **Wrong totals (MCT-171):**
+  - Analítica adds 103 credit notes (CLP 87.9M) as spend;
+  - 1,246 invoices fail total = net + IVA + exempt, because `ImptoReten` isn't stored (982 source files, 981 of them fuel excise 35/28);
+  - 473 invoices fail line sum = header, because `DscRcgGlobal` isn't stored;
+  - the "Recargos" KPI sums the supplier-copied `RecargoMonto`.
+  Rule set as D-103.
+- **Units (MCT-172):**
+  - 32% of lines have no unit and "each" has ~15 spellings → code map (D-104);
+  - 641 amount-only lines show "—" in Productos;
+  - 14 supplier names are double-encoded.
+- **Speed (MCT-173), measured in dev:**
+  - Analítica shows data at 3.3 s with a 4.5 MB HTML payload, and lines finish at ~8 s (10 × ~2 s PostgREST pages). Lines load in `useEffect`, so every remount refetches.
+  - Productos takes 2.6 s and ships 3.4 MB.
+  - `yunt_invoice_aggregate` (022) already does grouped totals with credit notes negated, but only the Yunt calls it.
+- **Stuck-feeling UX (MCT-174):**
+  - "G93" isn't found because search reads the catalog name only (→ D-105);
+  - there's no empty state;
+  - only 2 routes have `loading.tsx`.
+- **Gotchas:**
+  - `grill-with-docs` and `to-tickets` exist under `~/.claude/plugins/cache/.../mattpocock-skills/.../engineering/` but are `disable-model-invocation`. `grill-with-docs` = load `grilling` + `domain-modeling`.
+  - `read-only-postgres` has no connection here; use GET-only `scripts/supabase_rest.py`.
+  - The BIOLACT "price outliers" are credit notes (DTE 61).
+  - The parser already ignores `RecargoMonto` and `DescuentoPct` for line maths by measurement (see `dte.ts` header).
+
 ## Session — 2026-09-17
 
 **The Yunt now uses Vercel AI Gateway, and the historical fuel-report defect is
@@ -171,57 +200,6 @@ regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
   matmul** on the larger index. Checked against float64: identical to 1.4e-8.
   Cosmetic.
 
-## Session — 2026-09-15 (b)
-
-**Yunt documents themed and rebuilt; two chart bugs found on live and fixed.**
-Frontend `yunt` is at `8809120` (after `9ec8689`), Preview Ready.
-
-- One document theme, `src/lib/documents/theme.ts` (Pastizal hex copied from
-  `globals.css`), and a small dependency-free PDF canvas,
-  `src/lib/documents/pdf.ts`. Report PDF: moss band, criteria in plain Spanish,
-  total/groups/period tiles, optional chart, detail table with total row, page
-  footers. Every chart request now arrives **inside the PDF**; the loose `.svg`
-  attachment is gone (D-093). Spreadsheet uses the same colours, CLP number
-  format, a total row only when every group is present. Purchase-order PDF
-  rebuilt to match the print page: black and white with a sage-deep rule and
-  labels; the print page got the same accents. Criteria never print query
-  mechanics (`sort`, `limit`) and never English enum values.
-- Dashboard pages no longer double the shell's padding or cap their width
-  (`/carga`, solicitudes, órdenes, productos, historial, extractor,
-  levantamiento). `/carga` stat tiles got a card ground.
-- Proof: `scripts/render-yunt-documents.ts <dir>` writes every file type from
-  sample data with no email or model call; the four `check-*` document scripts
-  pass; a live test order (`SOL-2026-0015` / `OC-2026-0010`, $370.000) was made
-  through the screens, its print page and PDF route checked, then deleted.
-  Three live emails (PDF by month, pie by category, sheet by supplier) all came
-  back as themed files.
-- **Bug found on live:** the pie drew 10 of 69 categories and took each share of
-  those ten — "24,3%" was really 17,1%, and the centre showed $2.841 MM against
-  $4.029 MM. Now the rest is one "Otros" slice and shares use the query total;
-  share charts refuse measures that do not add up (D-094). Carried over from the
-  old SVG code; the sample data had only 8 categories, so no local render could
-  show it.
-- **Bug found locally:** footers read "Página 1 de 1" on multi-page reports
-  (page count read while later pages were set aside). Both have regressions in
-  `check-yunt-report-periods.ts`, each verified to fail without its fix. The pie
-  fix was then rendered from the real live aggregate (read-only).
-- **Blocker:** the retry email got no reply — Vercel logs show the Anthropic API
-  refusing with *credit balance is too low*. The Yunt answers nothing until
-  credits are topped up. No token usage is recorded anywhere we own (no admin
-  key, nothing logged per request); real spend is only in the Anthropic Console.
-- Cleanup: the test order, request and all four inbound requests deleted by
-  exact id; every purchasing/Yunt table is 0, invoices 5,195 / lines 11,746.
-  Request counter now at `SOL-2026-0016`. Two empty Outlook drafts from the
-  session remain in Drafts (Outlook did not remove them).
-- **Gotcha — Outlook web drops the first keystrokes** of the To field after a
-  click, turning the address into `tillanca.yunt@…`, and focus jumps between
-  open drafts. Zoom on the chip before sending; Backspace the chip and retype
-  with the field already focused; set Subject with `form_input`.
-- **Gotcha — poppler renders Helvetica-Bold as regular on this Mac.** The file
-  was right (`pdffonts`); render with `sips` (Quartz) to judge a PDF by eye.
-- **Gotcha — the eve request sends no `cache_control`**, so every model turn
-  re-pays the full system prompt and tool list. Worth checking before volume.
-
 ## Now
 
 **The classifier is v1.4.1, live and verified** — revision `mlmodel-00018-sll`,
@@ -236,6 +214,8 @@ migration 031 is live.** Historical malformed fuel quantities/prices and litre
 aliases are repaired; future normalisation runs deterministically during DTE
 parsing before any classification or database write. The original uploaded
 ZIP/XML is not retained by the app.
+
+**The 2026-09-17 audit is ticketed as MCT-170–188** (D-103–D-105). MCT-170 is a live security gap: `item_summary` is readable with no session.
 
 **The 3,819 review lines have not been re-classified with v1.4.1.** That remains
 the next classifier job and the gain Antillanca will actually see.
@@ -254,19 +234,14 @@ the next classifier job and the gain Antillanca will actually see.
    distinct inputs can never auto-accept, and 6 classes under 5 inputs
    (`ADM-1.9`, `EXP-15.1`, `EXP-6.4`, `EXP-8.3`, `ING-0.3`, `ING-0.6`) have no
    test rows at all. `EXP-15.7` at 14 inputs is one example short of the bar.
-3. **Audit the broader ingest/report path for comparable data-quality gaps.**
-   Prefer deterministic validation and canonicalisation at the ingestion
-   boundary; do not describe this as AI normalisation. Decide separately whether
-   raw ZIP/XML retention is required for audit and reprocessing.
+3. **Work the audit tickets in order** (MCT-170 → 175 → 176 → 177 → 187 → 182 → 183 → 184 → 185 → 178 → 180 → 179 → 181 → 188 → 186). Each fix is decided in D-103, D-104 and D-105. Decide separately whether raw ZIP/XML retention is required for audit and reprocessing.
 4. Prove AI Gateway end to end with one bounded report email, confirm spend in
    Vercel AI Gateway, and clean up the exact test row afterwards.
 5. Before any new team test on unseen data, detach a fresh sample: the
    2026-09-13 one is back in live, so `yunt-unseen-invoices.zip` is seen data.
 6. Still verify by eye: historical-category chips on a real open request and
    the `/carga` stat tiles with a loaded ZIP.
-7. Optional performance work: move the Analytics aggregation into the database;
-   store `item_summary` and refresh it on import; consider prompt caching for the
-   eve agent. MCT-166 stays parked on `parked/mct-166`.
+7. Consider prompt caching for the eve agent. MCT-166 stays parked on `parked/mct-166`. (Analytics and Productos speed is now MCT-182/183.)
 8. Decide whether to build a dashboard review inbox/notification flow. Until
    then, describe `/carga` as deterministic upload/classification.
 9. Run broader ambiguous-wording and longer-session tests before claiming
@@ -276,8 +251,7 @@ the next classifier job and the gain Antillanca will actually see.
    disposable; do not use that once team work begins.
 11. Keep `MCT-165` in Backlog.
 
-**Ticket count: 25 total - 23 Done, 0 In Progress, 2 parked (`MCT-154`,
-`MCT-143`).**
+**Ticket count: 25 earlier (23 Done, 2 parked: `MCT-154`, `MCT-143`) plus 19 new audit tickets MCT-170–188 in Backlog, assigned to Afaq.**
 
 **Gotchas worth keeping.** Click Outlook's Send by element ref, never by
 coordinate - a coordinate click silently saves a draft. Poll for a NEW request

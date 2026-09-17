@@ -1007,6 +1007,8 @@ a day.
 
 ## D-044 — One real product or recurring service gets one canonical catalog ID
 
+**Narrowed by D-105:** the canonical name is display-only; purchasing search matches invoice wording.
+
 **Date:** 2026-08-25 · **Decided by:** Afaq and colleagues · **Model:** Codex GPT-5.6
 
 Reuse `item_catalog` as the user-facing canonical catalog. Different spelling,
@@ -2519,6 +2521,8 @@ CLI cannot reveal their values and writes `[SENSITIVE]` placeholders.
 
 ## D-102 — Canonicalise units and validate numeric corrections at ingestion
 
+**Extended by D-104** (all units, code map) and **D-103** (credit notes, extra taxes, document discounts, flag-not-fix).
+
 **Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Codex
 
 Reports aggregate the structured rows already stored in `invoice_items`; they
@@ -2540,3 +2544,34 @@ history: 212 proven lines repaired, 383 historical litre aliases canonicalised,
 and originals retained in `yunt_invoice_item_scale_repairs`. Raw uploaded
 ZIP/XML files are currently not archived by the app; only cleaned relational
 rows and batch metadata are durable.
+
+## D-103 — Supplier numbers are stored as received; arithmetic flags, never rewrites
+
+**Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Every total is computed from the fields exactly as the DTE defines them:
+- a credit note (DTE 61) counts as negative in every spend figure, as SII's purchase register does;
+- additional taxes (`ImptoReten`: fuel excise 35/28 and others) and document-level discounts or surcharges (`DscRcgGlobal`) are stored, and are part of the reconciliation.
+
+Where a supplier's own numbers still disagree with themselves, the invoice is kept exactly as sent and flagged "no cuadra según proveedor", with the expected and received values. The D-056/D-102 scale correction stays the only automatic numeric fix. The only allowed cleanup of supplier wording is replacing placeholder names ("Item", "Detalle") with the description.
+
+**Why:** The 2026-09-17 audit found that most apparent errors were terms we never stored, not supplier mistakes: 1,246 header gaps from unstored extra taxes, 473 line-sum gaps from unstored document discounts, and BIOLACT "outliers" that were really credit notes. Correcting supplier data to force a match would take responsibility for, and risk damaging, invoices that are actually fine.
+**Rejected:** Auto-correcting non-reconciling invoices — it cannot tell a supplier mistake from a term we don't store. Tickets: MCT-171 (175, 176, 177, 187), MCT-179, MCT-188.
+
+## D-104 — Every unit spelling maps to one standard unit through a fixed map in code
+
+**Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+Extends D-102 from litres to every unit (UN, KG, M, KWH, …). The map lives in code, not in a database alias table. It is applied at ingest and wherever units are read, so older rows group correctly without a rewrite. Spellings not in the map are kept as sent and listed so they can be added. Price outliers per item and standard unit are flagged, never corrected, and credit notes are excluded (D-103).
+
+**Why:** Units are a closed, deterministic vocabulary; a table adds a fetch and a place to drift. 32% of lines carry no unit and "each" arrives in ~15 spellings.
+**Rejected:** An alias table in Supabase. Tickets: MCT-178, MCT-188.
+
+## D-105 — Purchasing item search matches invoice wording, not the canonical catalog name
+
+**Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+The canonical `item_catalog.item_name` (D-044) is for display only. Purchase-request search runs over the distinct invoice `item_text` wordings, returns the exact wording, and carries the catalog item it belongs to.
+
+**Why:** Repeat orders must use the wording the supplier invoices under, or they cannot be matched back to that supplier's history. "G93" (78 lines) returned nothing because it only exists under the catalog name "Gasolina 93".
+**Rejected:** Adding more aliases to the catalog search. Ticket: MCT-184.
