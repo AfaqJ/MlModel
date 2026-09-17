@@ -161,8 +161,8 @@ has been ported to `../milk-company/src/lib/ingest/` and verified by replaying
 the same corpus — identical numbers, asserted as equalities. The superseded
 Python reference was deleted under D-079; change
 `../milk-company/src/lib/ingest/` for ingestion work.
-**Two doors reach one pipeline** — `/carga` takes an uploaded ZIP, and
-`POST /api/yunt/inbound` takes email through Resend; both call `runIngest`, and
+**Two doors reach one pipeline** — `/carga` takes uploaded ZIPs or loose XMLs, and
+`POST /api/yunt/inbound` takes email through Resend (ZIP or XML attachments, D-107); both call `runIngest`, and
 the upload page is permanent rather than a stopgap (D-060). Both routes now
 import the atomic writer and the post-write review in local code. **That is not
 the same as working live:** the email path has never carried a real ZIP, and

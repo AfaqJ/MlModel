@@ -1535,7 +1535,7 @@ decisions.
 
 **Date:** 2026-09-09 · **Decided by:** Afaq · **Model:** Claude Opus 5
 
-`/carga` in the dashboard takes a ZIP of SII XML and runs the identical ingest
+`/carga` in the dashboard takes a ZIP of SII XML (since D-107 also loose XML files) and runs the identical ingest
 pipeline the mailbox runs. It was built because scope item 1 (the mailbox) is
 blocked on a domain and API keys, but Afaq settled that **it stays**:
 
@@ -2584,3 +2584,35 @@ The dashboard's aggregation functions run on the server over the same filtered r
 
 **Why:** Re-implementing ~1,500 lines of figures in SQL would let them drift from what the screen showed; reusing the code made every tab text-identical before and after. A tag-invalidation call in each writer missed writes made outside the app (SQL editor, Yunt agent steps) and a self-generated version stamp flipped under stale-while-revalidate.
 **Rejected:** SQL grouped-totals per chart; `revalidateTag` from every writer; a version generated inside `unstable_cache`. Tickets: MCT-182, MCT-183.
+
+---
+
+## D-107 — Both doors accept loose DTE XML files, one or many, as well as ZIPs
+
+**Date:** 2026-09-17 · **Decided by:** Afaq · **Model:** Claude Opus 5
+
+A classification job can start from any mix of ZIPs and loose `.xml` files, by
+email or on `/carga`. One reader (`readFiles` in `src/lib/ingest/batch.ts`) opens
+both; a loose XML has no folder, so its direction comes from the RUTs, which is
+the rule anyway.
+
+- **Email:** every ZIP and XML attachment of one message is **one batch** — one
+  reception report, one review — claimed by the Message-ID, falling back to the
+  Resend email id when a message has none (a shared blank claim would have made
+  every later such message look already processed). An XML sent with a bare
+  filename and an XML content type is still read as XML.
+- **`/carga`:** the picker takes several files; when more than one is chosen the
+  **browser packs them into one ZIP** before upload. A month of loose XML is
+  2.5–4 MB, at Vercel's 4.5 MB request cap; zipped it is ~10x smaller. Entry
+  dates come from the files, so re-picking the same files builds the same bytes
+  and claims the same batch.
+
+**Why:** Afaq, top priority: the endpoints must take XML "as is", not only ZIP.
+**Proof:** a real month (388 documents, 902 lines) read as loose XMLs matches the
+ZIP read document for document and direction for direction
+(`scripts/check-ingest-batch.ts`); signed-in `/carga` dry run with three real
+XMLs showed 1 new, 2 already registered, classified, nothing saved.
+**Rejected:** one batch per attachment (several reports and reviews for one
+email); sending raw files from the browser (hits the request cap for a month);
+PDF intake — deferred by Afaq, likely agent-prepared, not deterministic parsing.
+

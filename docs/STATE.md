@@ -3,6 +3,40 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-17 (f)
+
+**Both ingest doors now take loose DTE XML files (one or many) as well as ZIPs
+(D-107).** `milk-company` `2402bd0`, pushed; the nine audit commits before it were
+pushed first (`66efc19..3deb814`) and built a Ready **Preview**. Production is
+still the 2026-09-16 build. Proofs: `check-ingest-batch` (real month identical as
+loose XML vs ZIP), `check-yunt-inbound-router`, six other ingest/review checks,
+`tsc`, targeted ESLint, and a signed-in `/carga` dry run with three real XMLs.
+Full `check.sh` not run (Afaq's 3–4-feature rule).
+
+- **Found, not fixed — the classifier is a hard dependency of saving.**
+  `prepareIngest` catches a classifier failure, but `validatePrediction` in
+  `write.ts` refuses any line without a result, so a Cloud Run outage saves
+  **nothing** (email reports "No se pudieron procesar…"; `/carga` errors). This
+  contradicts D-051 ("ships standalone"). `buildBatchReview` also throws without
+  predictions, so the Yunt never runs either.
+- **Found, not fixed — a failed review is never retried.** `reviewAfterWrite`
+  marks the attempt `unavailable` and nothing ever picks it up again; no cron or
+  job exists (`vercel.json` absent).
+- **To verify:** `claimBatch` throws on a batch still `processing`; if a function
+  is killed mid-write, that message may be stuck forever on redelivery.
+- **Reliability plan was being drafted when the session stopped** (Afaq wants:
+  who depends on whom, what runs when something is down, what retries and how,
+  whether the Yunt may classify when the ML is down — he suggested only under
+  10 invoices — then a granular, plain-worded diagram of the final flow). No
+  decision taken yet.
+- **Facts gathered for that plan:**
+  - Resend webhooks on the account: Yunt → `milk-company-git-yunt-…vercel.app/api/yunt/inbound?x-vercel-protection-bypass=…` (enabled, `email.received`); `ppd-agent.vercel.app/api/inbound/resend` (enabled); `ppd-agent-website…` (disabled). Only `mountaincreative.cl` has receiving enabled.
+  - eve turns on AI Gateway `caching: 'auto'` for gateway model strings: breakpoints on the last message and before the last user message. Default lifetime **5 min** (write 1.25x, read 0.1x); `1h` exists (`cache_ttl`, write 2x) but is documented on the Responses API only — passing it through eve is unverified. Sonnet 5 minimum cacheable prefix 1,024 tokens. The Yunt's fixed context is `agent/instructions.md` (16 KB) + `agent/category-guide.md` (5.7 KB) + tool definitions.
+  - Vercel Cron calls the **production** deployment URL only, so a cron retry cannot run on Preview.
+- **Answered in chat, not yet delivered:** Afaq's webhook questions (which two apps, broadcast or not) are still owed.
+- **Gotcha:** the browser pane has no file upload; inject files with `DataTransfer`
+  fetched from a local file server (port 8765 was taken by something else).
+
 ## Session — 2026-09-17 (e)
 
 **Every 2026-09-17 audit ticket is Done in Linear, parents included** (170–188;
@@ -306,25 +340,29 @@ regressions are small-count neighbours (`EXP-13.1` 0.40 → 0.20, `EXP-4.2`
 
 ## Now
 
-**The 2026-09-17 audit is finished: every ticket 170–188 is Done.** Migrations
-`004`–`037` are live, plus `item_summary.last_amount`. `yunt` is pushed at
-`66efc19` (Preview only); eleven ticket commits after it are local. Production
-Vercel is still the 2026-09-16 build, held by Afaq.
+**The 2026-09-17 audit is finished (170–188 Done) and both ingest doors take loose
+XML as well as ZIP (D-107).** Migrations `004`–`037` are live. `yunt` is pushed at
+`2402bd0`; Vercel Preview built. Production Vercel is still the 2026-09-16 build,
+held by Afaq.
 
-**The classifier remains v1.4.1 live and verified.** Revision
-`mlmodel-00018-sll`, image `mlmodel:v1.4.1-names`, 100% traffic, 76 trained
-classes. The 3,819 review lines have not been re-classified.
+**The classifier remains v1.4.1 live and verified** (`mlmodel-00018-sll`). It is a
+hard dependency of saving invoices today — see session (f).
 
 ## Next
 
-1. **Afaq decides when to push `yunt` and deploy production.** Then measure
-   Analítica and Productos load times on Vercel (the tickets' "under 1 s").
-2. Deeper test pass across the batch, as Afaq planned after 3–4 features.
-3. Optional: a 14-row scoped write to clean the stored "Ã" names (MCT-181).
-4. At the first real ingest, verify on screen: "Corrige DTE …", stored
-   `additional_taxes`, the `document_totals` flag, the with-excise hover price,
-   `document_adjustments` in the invoice detail, a stored `reconciliation`, and any
-   `price_outlier` flag.
+1. **Reliability plan for classifier ↔ Yunt** (session f): put the decisions to
+   Afaq one round at a time — save without a classification, what retries and
+   what triggers it (cron is production-only), whether the Yunt ever classifies,
+   cache lifetime — then implement, then the granular diagram.
+2. Answer Afaq's webhook questions (facts are in session f).
+3. Afaq decides when to deploy production; then measure Analítica and Productos
+   on Vercel.
+4. First real ingest: verify the on-screen items listed in session (d)/(e), and
+   send one real email with loose XML attachments to the Preview.
+5. Optional: 14-row scoped write for the stored "Ã" names (MCT-181).
+6. **STATE.md needs a consolidation pass:** 9 session entries plus ~450 lines of
+   older sections below; not trimmed in this rushed checkpoint to avoid dropping
+   facts that are not yet in `DECISIONS.md`.
 
 ## Prior checkpoint (superseded by `Now` above)
 

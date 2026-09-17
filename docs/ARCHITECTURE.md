@@ -160,8 +160,8 @@ confidence.
   Category apply and undo require a code-generated email restatement and a reply
   tied to that exact Message-ID, sender, action, target and one-use first-line
   token (D-067); a generic reply is never approval.
-  Uploaded and emailed ZIPs are held in server memory, opened by `readZip`, and
-  each XML line is cleaned in the DTE parser before catalog matching,
+  Uploaded and emailed files — ZIPs, loose DTE XMLs, or a mix — are held in
+  server memory and opened by `readFiles` (D-107); each XML line is cleaned in the DTE parser before catalog matching,
   classification or storage. Litre aliases are canonicalised to `L`; numeric
   corrections require per-line reconciliation (D-056, D-102). The app does not
   currently archive the original ZIP/XML, so cleaned relational rows and batch
