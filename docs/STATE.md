@@ -5,9 +5,10 @@ lives in `DECISIONS.md`.
 
 ## Session — 2026-09-19
 
-**MCT-189 is built and proved locally on `milk-company` branch
-`afaq/mct-189-make-invoice-classification-reliable-across-ml-and-yunt`
-(`f77314e`, `e6c0ee5`). Not merged, not deployed.** Migration `038` is **live**
+**MCT-189 is built, proved locally, and merged into `yunt` (`d67c8d7`), which
+is pushed — so Vercel Preview now runs it, and the Resend webhook points there.
+Production is untouched and still serves the 2026-09-16 build.** The glassbox
+branch `afaq/mct-190-glassbox` is cut from that `yunt`. Migration `038` is **live**
 (backup `backups/supabase_20260919T122424Z`, verified against the baseline before
 pasting). Live data is untouched: 5,195 invoices / 11,746 lines, before and after
 every test.
