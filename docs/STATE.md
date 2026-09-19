@@ -3,6 +3,45 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-19
+
+**MCT-189 is built and proved locally on `milk-company` branch
+`afaq/mct-189-make-invoice-classification-reliable-across-ml-and-yunt`
+(`f77314e`, `e6c0ee5`). Not merged, not deployed.** Migration `038` is **live**
+(backup `backups/supabase_20260919T122424Z`, verified against the baseline before
+pasting). Live data is untouched: 5,195 invoices / 11,746 lines, before and after
+every test.
+
+- **The client's accounting rules now run in the dashboard**, generated from the
+  ML-model CSVs by `scripts/generate-rules-data.ts`. Parity proved on a real
+  month: 932 lines, 443 settled by rule, 22 petrol held for review, 467 sent to
+  the model, **zero disagreements** with Cloud Run. The Cloud Run cascade stays
+  until its direct callers migrate.
+- **Nothing is written before approval** except the ML-only row of D-108. One
+  orchestrator (`src/lib/ingest/orchestrate.ts`) serves both doors;
+  `writePreparedIngest` is gone, replaced by claim → plan → stage → commit, with
+  the plan hashed so an approval can only commit what was shown.
+- **Proved in the browser, signed in, against live:** three stored files report
+  "3 already registered, 0 new"; five new 2026-07 invoices with the classifier
+  switched off produced a `yunt_fallback` proposal — 3 suggestions, 2 left for a
+  person, each reason citing real precedent — and **wrote nothing**; reject
+  through `/api/carga/decision` returned `{rejected:true}`. Both test jobs are
+  `rejected`; nothing pending.
+- **Two defects the checks could not see, both fixed:** the Yunt answered
+  "unsure" with no category and the refusal did not say what to do instead; and a
+  fallback line printed "antes EXP-15.3" against EXP-15.3, a change that never
+  happened. Both now guarded.
+- **Still unproven:** the ML + Yunt path with both up on screen, an approval
+  actually writing rows, and the whole email path. The agent does not mount under
+  plain `next dev` — run `npx eve dev` (Node 24; it listens on 127.0.0.1:2000)
+  and point `YUNT_EVE_URL` at it.
+- **D-108 amended in five places** (no expiry, one email per job, no engine or
+  confidence in the client's copy, emailed jobs answered only by email, every
+  approved line `yunt_applied`). Plan and results:
+  `docs/MCT_189_PLAN.md`. Glassbox moved out to
+  [MCT-190](https://linear.app/mctechstudio/issue/MCT-190/glassbox-show-what-the-yunt-did-per-job-request-and-report),
+  its own branch and session.
+
 ## Session — 2026-09-17 (g)
 
 **The classifier/Yunt reliability policy is final (D-108) and captured in

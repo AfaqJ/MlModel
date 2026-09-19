@@ -2678,3 +2678,36 @@ appears after the user has left.
 **Rejected:** always writing before Yunt reviews; using Yunt for more than ten
 unresolved lines; retaining partial deterministic successes; retrying outage
 batches later; exposing fallback tools during ordinary review. Ticket: MCT-189.
+
+**Amended 2026-09-18 by Afaq, while implementing it.** Five points, each
+replacing what this entry said above:
+
+1. **A staged approval never expires.** It closes on approval or rejection only.
+   Re-sending the same files returns the pending proposal rather than opening a
+   second one, so nothing is left unreachable by the expiry rule this entry
+   originally carried.
+2. **One email per job, not two.** The reception acknowledgement is gone with
+   the post-write path: what goes out is the proposal, the audit report of a
+   saved ML-only job, or "the system is down, send it again later".
+3. **The client's copy never names the engine or its confidence.** D-108's
+   column list included decision source and review status; both are stored and
+   shown in the dashboard, and neither is mailed. Telling the client which
+   engine settled a line, or how sure it was, is a map of where the model is
+   weak. The email reads as three groups instead: confirmed, the Yunt's
+   suggestions, and what needs a person.
+4. **An emailed job is approved only by replying to that email.** The dashboard
+   shows it but cannot answer it: one job, one channel, so a per-line change
+   made on a screen can never disagree with a confirmation sitting in an inbox.
+   An uploaded job is answered on `/carga` for the same reason.
+5. **Every line of an approved batch is written `yunt_applied`.** No new
+   provenance value: `014` already allows it and `aggregate.ts` already excludes
+   it, so the automatic-accept figure reads 0% for new batches and keeps its
+   meaning for the stored history. What the model proposed stays in
+   `predicted_code`.
+
+**Also settled here:** Yunt liveness is read, never poked. A job waits ~4
+minutes, then READS the review session's event stream; re-sending the job would
+start a second review once the first is terminal, and a follow-up message would
+cancel a turn that is still working. A mid-run death (credits, provider) is
+caught by a hook on `turn.failed` / `session.failed`, which is the only thing
+that can see it. The person who sent the invoices is told; nobody else is.

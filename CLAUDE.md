@@ -28,7 +28,7 @@ Vercel AI Gateway through `AI_GATEWAY_API_KEY`; D-101 supersedes the earlier
 direct-Anthropic decision D-077.
 The `MCT-166` cache edits are parked as commits on local branch
 `parked/mct-166`; do not fold them into feature work. Migrations
-`004`–`037` are live. `024`, `026` and `027` are confirmed by behaviour;
+`004`–`038` are live (`038` pasted 2026-09-19, ahead of the code that uses it). `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that
@@ -187,7 +187,12 @@ that unreadability is what made earlier docs claim the allowlist was unset. That
 second one matters because the Resend account is shared and **a Resend webhook
 cannot be scoped** — every endpoint on the account receives every inbound
 message, so filtering by recipient is our job (D-061).
-The deterministic ingest writes even when Claude is unavailable. Immediately
+**On branch `afaq/mct-189-…` (not merged, not deployed) that order is inverted:
+the Yunt reviews the proposal and nothing is written until a person approves
+(D-108 and its 2026-09-18 amendments, `docs/MCT_189_PLAN.md`). Migration `038`
+is already live, which means production's post-write review no longer starts.
+What follows describes what production still runs.** The deterministic ingest
+writes even when Claude is unavailable. Immediately
 after a successful write, the Yunt reviews every line through compact groups,
 then sends a second email only when it has a finding or proposal; the first
 reception email never depends on the agent (D-064). That reply is sent without
