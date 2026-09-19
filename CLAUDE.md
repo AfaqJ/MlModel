@@ -21,8 +21,9 @@ carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company` (the only frontend checkout) is
-pushed at `66efc19`, but that push built only a **Preview**: production
-(`milk-company.vercel.app`) still serves the 2026-09-16 build. Local commits
+pushed at `46b25af`, which built a **Preview** carrying MCT-189; the Resend
+webhook points at that Preview, so inbound invoice mail runs the new pipeline.
+Production (`milk-company.vercel.app`) still serves the 2026-09-16 build. Local commits
 since then are unpushed; Afaq holds the production deploy. The Yunt uses
 Vercel AI Gateway through `AI_GATEWAY_API_KEY`; D-101 supersedes the earlier
 direct-Anthropic decision D-077.
@@ -163,11 +164,11 @@ Python reference was deleted under D-079; change
 `../milk-company/src/lib/ingest/` for ingestion work.
 **Two doors reach one pipeline** — `/carga` takes uploaded ZIPs or loose XMLs, and
 `POST /api/yunt/inbound` takes email through Resend (ZIP or XML attachments, D-107); both call `runIngest`, and
-the upload page is permanent rather than a stopgap (D-060). Both routes now
-import the atomic writer and the post-write review in local code. **That is not
-the same as working live:** the email path has never carried a real ZIP, and
-`/carga` uses the signed-in Supabase client while the new writer/review objects
-were written for the service role. Migrations `021` and `027` grant exactly what
+the upload page is permanent rather than a stopgap (D-060). Both doors now call `runJob`.
+**The email path carried a real ZIP on 2026-09-19** and worked end to end on
+Preview: two July invoices in, proposal mailed back, nothing written, a natural
+"descarta esto" reply closed the job and was answered. The only intake path
+never exercised for real is an approval actually writing rows. Migrations `021` and `027` grant exactly what
 the operator needs — any signed-in user, because v1 has no roles (D-052) — and
 both are live; a signed-in person has saved through `/carga`, the replay changed
 nothing, and the deterministic quality flags land. **`021` missed `yunt_flags`
@@ -187,11 +188,18 @@ that unreadability is what made earlier docs claim the allowlist was unset. That
 second one matters because the Resend account is shared and **a Resend webhook
 cannot be scoped** — every endpoint on the account receives every inbound
 message, so filtering by recipient is our job (D-061).
-**On branch `afaq/mct-189-…` (not merged, not deployed) that order is inverted:
-the Yunt reviews the proposal and nothing is written until a person approves
-(D-108 and its 2026-09-18 amendments, `docs/MCT_189_PLAN.md`). Migration `038`
-is already live, which means production's post-write review no longer starts.
-What follows describes what production still runs.** The deterministic ingest
+**That order is now inverted on `yunt` (merged 2026-09-19, `46b25af`), so
+Preview runs it: the Yunt reviews the proposal and nothing is written until a
+person approves (D-108 and its 2026-09-18 amendments, MCT-189,
+`docs/MCT_189_PLAN.md`). One orchestrator, `src/lib/ingest/orchestrate.ts`,
+serves both doors; `writePreparedIngest`, `reviewAfterWrite`,
+`submit_review_chunk` and `send_review_findings` are deleted. The client's own
+accounting rules run in Next.js from `src/lib/ingest/rules-data.json`,
+generated from this repo's CSVs — proved identical to Cloud Run on 932 real
+lines. Production still serves the 2026-09-16 build, which is the old order
+below; D-064's post-write review survives only as D-108's ML-only row, and
+migration `038` already stopped it starting.** The old order, for reading
+production: the deterministic ingest
 writes even when Claude is unavailable. Immediately
 after a successful write, the Yunt reviews every line through compact groups,
 then sends a second email only when it has a finding or proposal; the first

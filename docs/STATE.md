@@ -5,10 +5,27 @@ lives in `DECISIONS.md`.
 
 ## Session — 2026-09-19
 
-**MCT-189 is built, proved locally, and merged into `yunt` (`d67c8d7`), which
-is pushed — so Vercel Preview now runs it, and the Resend webhook points there.
+**MCT-189 is built, proved end to end, and merged into `yunt` (head `46b25af`),
+which is pushed — Vercel Preview runs it and the Resend webhook points there.
 Production is untouched and still serves the 2026-09-16 build.** The glassbox
-branch `afaq/mct-190-glassbox` is cut from that `yunt`. Migration `038` is **live**
+branch `afaq/mct-190-glassbox` sits at that same head, unstarted.
+
+**The email path is proved live.** One ZIP with two July invoices from Afaq's
+Outlook: job `ml_yunt`, `reviewing` → `awaiting_approval` in ~60s, a proposal
+email listing both lines and asking for `SÍ, ADELANTE`, **nothing written**. A
+plain-language reply ("No, descarta esta propuesta por ahora") rejected the job
+and was answered: "Listo, descarté la propuesta. No se guardó nada." Live counts
+never moved: 5,195 invoices / 11,746 lines.
+
+**The leak that run exposed, now fixed (`46b25af`).** The proposal told the
+client "el sistema mismo marcó baja confianza" — model confidence, which D-108
+as amended forbids showing. The guard only covered the fixed wording, not the
+model-authored reason. Reasons now pass through `colleagueText`, so any sentence
+naming the model, its confidence or an internal id is dropped before rendering;
+`check-job-report.ts` feeds it that exact sentence.
+
+**The one path never exercised for real: an approval writing rows.** It has
+checks, not a click. Two July invoices are ready for it whenever Afaq wants. Migration `038` is **live**
 (backup `backups/supabase_20260919T122424Z`, verified against the baseline before
 pasting). Live data is untouched: 5,195 invoices / 11,746 lines, before and after
 every test.
