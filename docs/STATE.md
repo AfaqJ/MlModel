@@ -3,6 +3,60 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-21 — handover to the next session
+
+**Start here.** Everything is pushed: `yunt` and `afaq/mct-190-glassbox` in
+`../milk-company` are at `9e71471`, the Vercel Preview built and is Ready
+(`milk-company-git-yunt-mountain-creative.vercel.app`). Production is the
+2026-09-16 build, held by Afaq. Live data is at the clean baseline (5,195 invoices,
+purchasing and reports empty) **except** one pending real job, below.
+
+**Do first, in this order:**
+1. **Migration `041` is written but not confirmed pasted.** `supabase/041_confirmation_follows_thread.sql`
+   in `../milk-company`. Ask Afaq whether it is in. Then run
+   `set -a; . ./.env.local; set +a; npx tsx scripts/prove-041-confirmation-chain.ts`
+   in `../milk-company` — it must print the "still refused" cases as well as the
+   accepted one, and clean up after itself.
+2. **The agent has no clock — fix this (Afaq: "very bad").** A request saying
+   "needed by tomorrow" got "I cannot calculate tomorrow without knowing today's
+   date". Confirmed by grep: nothing in `agent/instructions.md`, `agent/tools/*`
+   or `src/lib/yunt/dispatch.ts` gives the agent today's date or the email's
+   arrival time. On 2026-09-21 an order proposal also read "Fecha de entrega: no
+   indicada" for "tomorrow". Fix in code, not by asking the client: pass the
+   message's received-at (and today, in `America/Santiago`) into the dispatched
+   context, tell the agent to resolve relative dates ("tomorrow", "next Monday",
+   "end of the month") against it and state the resolved date back for the
+   client to confirm, and add a check script. Look at `dispatchInboundRequest`
+   in `dispatch.ts` and the purchase-request/order draft tools.
+3. **A real job is waiting.** Batch `a9fa59e8…` (three real July invoices:
+   Multimotos, Cooperativa Agrícola y Lechera, Somagel), *Waiting for approval*,
+   emailed by Afaq. After `041` he can approve by replying `SÍ, ADELANTE` to any
+   message in that thread. Approving writes 3 real invoices. To undo:
+   `scripts/91_glassbox_test_cleanup.py --since <utc> --zip handover/glassbox-test/A-EMAIL-….zip`
+   (dry run first).
+
+**Still open, in rough priority:**
+- A second, unwanted reply, "No encontré documentos que pudiera leer en ese
+  correo", arrived beside one correct answer. Only one inbound row exists. Needs
+  the Vercel logs for that minute (~2026-09-21 06:44 Chile).
+- Not yet run, marked 👀 in `docs/GLASSBOX_TEST_GUIDE.md`: change-request replies;
+  a second quotation and the two-quotation refusal; approve/reject on an uploaded
+  job's page (only the deployed Yunt creates a waiting upload); a real emailed
+  report landing in `/informes` (stored since `f15d52a`); the "same files again"
+  email answer; an unreadable attachment; a report for a period with no data.
+- The Yunt could not answer a quotation for a request made in the dashboard
+  (no id) until `find_purchase_request` — fixed and proved, but check the
+  order-approval step itself once after the date fix.
+- Outlook uploaded `yunt_test_3.zip` to Afaq's OneDrive `Attachments` folder
+  (my first attach attempt). Only he can remove it.
+- Ten older audit findings remain in `../milk-company/docs/OPEN_QUESTIONS_2026_09_03.md`.
+
+**Working agreements confirmed this session:** the client-facing pages and mail
+never show engine or confidence (D-108/D-109); tests use synthetic or a few July
+documents, never August (memory `test-data-and-mail-tests`); mail tests go through
+Afaq's Outlook in the browser pane; brief in plain language before building, and
+Afaq drives, so keep the guide `docs/GLASSBOX_TEST_GUIDE.md` current.
+
 ## Session — 2026-09-21
 
 **MCT-190, the glassbox, is built on `afaq/mct-190-glassbox` in `../milk-company`
