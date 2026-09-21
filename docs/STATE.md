@@ -18,8 +18,8 @@ is on `yunt` and deployed to Preview (D-109).** Migrations
    discarded (email), failed (both services down), already-registered upload
    (creates no job), ML-only fallback (saved without the Yunt).
 2. **Purchase** — `/solicitudes/[id]` gets a Request → Quotations → Order strip
-   and the thread. Driven: closed with an order (the real 16 Sep case, SOL-2026-0016
-   / OC-2026-0011), open needing two quotations, open with the rule not applying,
+   and the thread. Driven: closed with an order (the 16 Sep case, SOL-2026-0016
+   / OC-2026-0011, since removed as test data), open needing two quotations, open with the rule not applying,
    manual (no emails). The order is a stage, not a page.
 3. **Reports** — `/informes`: thread, the question as filters, the fetched rows as
    a table, the PDF re-drawn from stored data. Driven with two seeded reports
@@ -42,7 +42,7 @@ email — the Yunt answers "necesito el identificador interno". New read-only to
 `find_purchase_request` (by `SOL-…` number, or the open list), one instruction
 line, `check-yunt-find-request.ts`; proved against live data. `SOL-2026-0019` was
 ordered by email only by pasting the id as a workaround (`OC-2026-0012`, fake
-supplier, CLP 13,000, **left on live on purpose**).
+supplier, CLP 13,000).
 
 **Deployed.** `afaq/mct-190-glassbox` pushed and fast-forwarded into `yunt`
 (`46b25af` → `f15d52a`); `npm run build` passed locally, the Vercel Preview is
@@ -51,9 +51,16 @@ proved on it: a request made in the dashboard (`SOL-2026-0020`, since removed) w
 found from its number in an email and an order proposed. Production is still the
 2026-09-16 build.
 
+**Live data cleared (Afaq, 2026-09-21):** every test row removed, including
+`SOL-2026-0016` / `OC-2026-0011` and its 6-email thread, which he confirmed were
+test data. Now: 5,195 invoices / 11,746 lines / 461 companies / 4,002 catalog
+rows; purchasing tables and `yunt_reports` empty; 3 old *Discarded* jobs and 3
+email rows remain. Two unseen-July ZIPs for a fresh run are in
+`handover/glassbox-test/`.
+
 **Hand-run guide:** `docs/GLASSBOX_TEST_GUIDE.md`, attachments in
 `handover/glassbox-test/`, and `scripts/91_glassbox_test_cleanup.py` (scoped,
-dry-run first, refuses `SOL-2026-0016`).
+dry-run first; `--zip` undoes exactly the documents in the zips you name).
 
 **Open, found this session:**
 - **A second, unwanted reply.** One `SÍ, ADELANTE` produced both the correct "Listo,
@@ -61,9 +68,9 @@ dry-run first, refuses `SOL-2026-0016`).
   the latter is only sent when a message has ZIP/XML attachments that did not
   yield files, and no inbound row was recorded for it. Needs the Preview logs.
 - **Reports are stored from `f15d52a`.** Nothing older is backfilled.
-- **Do not run `scripts/90_yunt_live_test_undo.py --apply`** while the Yunt team
-  has purchase requests live: its Test 3 deletes every `created_via='yunt'`
-  request and order, and it has no per-test switch.
+- **Do not run `scripts/90_yunt_live_test_undo.py --apply`**: its Test 3 deletes
+  every `created_via='yunt'` request and order with no per-test switch. Use
+  `scripts/91_glassbox_test_cleanup.py` (dry run first).
 - The failed-job page gives one generic sentence; the stored error is internal
   and is never shown, so "why it failed" is not itemised.
 

@@ -2,45 +2,68 @@
 
     python scripts/91_glassbox_test_cleanup.py --since 2026-09-21T09:00:00Z            # dry run
     python scripts/91_glassbox_test_cleanup.py --since ... --requests SOL-2026-0020    # + those requests
+    python scripts/91_glassbox_test_cleanup.py --since ... --zip handover/glassbox-test/A-EMAIL-....zip
     python scripts/91_glassbox_test_cleanup.py --since ... --apply
 
 Why this exists instead of 90_yunt_live_test_undo.py: that script's Test 3 deletes
-EVERY purchase request and order with created_via='yunt', which today includes the
-Yunt team's real SOL-2026-0016 / OC-2026-0011, and it has no per-test switch.
-This one only touches:
+EVERY purchase request and order with created_via='yunt' and has no per-test
+switch. This one only touches:
 
-  * invoices from the synthetic supplier (RUT 771234567), their lines, the catalog
-    rows and company they created, and any batch that holds ONLY those lines;
+  * invoices from the synthetic supplier (RUT 771234567) and, with --zip, exactly
+    the documents (seller RUT + type + folio) inside the zips you name; their lines,
+    the catalog rows nothing else uses any more, and any batch that holds ONLY those
+    lines. A company row an approved real invoice created is left alone (harmless);
   * batches, inbound emails, refusals and stored reports created at or after
     --since (UTC). Read the dry run: if the Yunt team was testing in that window
     their rows are in it too;
   * the purchase requests you name with --requests, with their quotations,
-    drafts and order. SOL-2026-0016 is refused by name.
+    drafts and order.
 
 Dry run by default. Prints the plan, deletes children before parents.
 """
 import argparse
+import re
 import sys
+import zipfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from supabase_rest import Rest, load_env, quote_in  # noqa: E402
 
 TEST_SELLER_RUT = "771234567"
-PROTECTED_REQUESTS = {"SOL-2026-0016"}
+
+
+def documents_in(zip_path: str) -> list[tuple[str, str, str]]:
+    """(seller RUT, document type, folio) for every DTE in a zip, as the database stores them."""
+    keys = []
+    with zipfile.ZipFile(zip_path) as archive:
+        for name in archive.namelist():
+            if not name.lower().endswith(".xml"):
+                continue
+            raw = archive.read(name)
+            try:
+                text = raw.decode("utf-8")
+            except UnicodeDecodeError:
+                text = raw.decode("latin-1")  # SII XML is ISO-8859-1 with no declaration
+            root = ET.fromstring(re.sub(r'\sxmlns(:\w+)?="[^"]+"', "", text).encode("utf-8"))
+            head = root.find(".//Encabezado")
+            if head is None:
+                continue
+            rut = (head.findtext("Emisor/RUTEmisor") or "").replace(".", "").replace("-", "").upper()
+            keys.append((rut, head.findtext("IdDoc/TipoDTE") or "", head.findtext("IdDoc/Folio") or ""))
+    return keys
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--since", required=True, help="UTC time before the test began, e.g. 2026-09-21T09:00:00Z")
     parser.add_argument("--requests", default="", help="comma-separated SOL numbers to remove")
+    parser.add_argument("--zip", default="", help="comma-separated zips whose documents should be removed if they were saved")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
 
     numbers = [n.strip().upper() for n in args.requests.split(",") if n.strip()]
-    refused = PROTECTED_REQUESTS.intersection(numbers)
-    if refused:
-        raise SystemExit(f"refusing to touch {sorted(refused)}: that is the Yunt team's real request")
 
     url, key = load_env()
     db = Rest(url, key)
@@ -48,7 +71,11 @@ def main() -> None:
 
     # ---- synthetic invoices and the batches that hold only them --------------
     invoices = db.get("invoices", "invoice_id", f"seller_rut=eq.{TEST_SELLER_RUT}")
-    invoice_ids = [r["invoice_id"] for r in invoices]
+    for path in [p.strip() for p in args.zip.split(",") if p.strip()]:
+        for rut, kind, folio in documents_in(path):
+            invoices += db.get("invoices", "invoice_id",
+                               f"seller_rut=eq.{rut}&document_type=eq.{kind}&invoice_folio=eq.{folio}")
+    invoice_ids = sorted({r["invoice_id"] for r in invoices})
     items = db.get("invoice_items", "item_id,catalog_item_id", f"invoice_id=in.{quote_in(invoice_ids)}") if invoice_ids else []
     item_ids = {r["item_id"] for r in items}
     catalog_ids = sorted({r["catalog_item_id"] for r in items if r["catalog_item_id"]})
@@ -73,7 +100,7 @@ def main() -> None:
         raise SystemExit(f"no such request: {sorted(missing)}")
     orders = db.get("purchase_orders", "order_id,order_number", f"request_id=in.{quote_in(request_ids)}") if request_ids else []
 
-    print(f"synthetic invoices   {len(invoice_ids)}   lines {len(items)}   catalog candidates {len(catalog_ids)}")
+    print(f"test invoices        {len(invoice_ids)}   lines {len(items)}   catalog candidates {len(catalog_ids)}")
     print(f"batches              {len(batches)}  {sorted(b[:8] for b in batches)}")
     print(f"inbound emails       {len(inbound)}")
     for r in sorted(inbound, key=lambda r: r["created_at"]):
@@ -88,7 +115,7 @@ def main() -> None:
             db.delete(table, f"batch_id=eq.{batch}", **W)
     if invoice_ids:
         db.delete("invoice_items", f"invoice_id=in.{quote_in(invoice_ids)}", **W)
-        db.delete("invoices", f"seller_rut=eq.{TEST_SELLER_RUT}", **W)
+        db.delete("invoices", f"invoice_id=in.{quote_in(invoice_ids)}", **W)
     if catalog_ids:
         # Only catalog rows nothing else points at any more.
         still_used = {r["catalog_item_id"] for r in db.get("invoice_items", "catalog_item_id", f"catalog_item_id=in.{quote_in(catalog_ids)}")}

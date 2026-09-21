@@ -1,249 +1,189 @@
-# Glassbox test guide — run every flow by hand
+# The glassbox, tested end to end — what was done, where it showed, how to redo it
 
-For Afaq. Each test says what to send, what should come back, what the glassbox
-should show, and what to reply. Nothing here needs an agent.
+Written 2026-09-21 after driving MCT-190 in a browser, signed in, with Outlook open
+beside it. Everything below happened; where something was **not** run, it says so.
+Times are as the dashboard showed them (Chile). The deployment is
+`https://milk-company-git-yunt-mountain-creative.vercel.app` (branch `yunt`,
+commit `f15d52a`); I used a local server on `localhost:3000` (same database).
 
-**Legend.** ✅ = watched happen on 2026-09-21. 👀 = expected from the code and
-instructions but **not yet observed** — write down what you actually see; if it
-differs, that is a finding, not a mistake on your side.
+**Live data is now empty of every test.** Baseline: 5,195 invoices · 11,746 lines ·
+461 companies · 4,002 catalog rows · 0 purchase requests / orders / quotations /
+reports · 3 old discarded jobs (see the end).
 
-**Which door each test uses.**
+---
 
-| Test | Door | What it shows |
+## 0. Which pages show what
+
+| Page | Shows | Read-only? |
 |---|---|---|
-| J1 discard · J2 change · J3 approve | Email | job states, thread, saved / discarded |
-| J4 same files again | Upload (+ email) | already registered |
-| J5 data problems · J6 loose XML · J7 unreadable | Email | flags, single file, error reply |
-| J8 upload, approve on `/carga` | **Dashboard** (Preview) | approval buttons, uploaded job |
-| J9 Yunt down | Dashboard (local) | ML-only save note |
-| J10 failed | Dashboard (local, classifier off) | failed state |
-| P1 · P2 · P3 request and order | Email | stages, two-quotation rule |
-| P4 request from dashboard, order by email | **Hybrid** | manual request gains a thread |
-| P5 read the 16 Sep case | Dashboard | a whole closed case |
-| R1–R5 reports | Email → dashboard | `/informes` |
+| `/carga` | upload form, and under it the history of every job, newest first | history yes, form no |
+| `/carga/[id]` | one job: state, lines, email thread | yes (uploaded jobs have approve/reject on `/carga` right after upload) |
+| `/solicitudes` | **open** requests only | – |
+| `/solicitudes/[id]` | stage strip Request → Quotations → Order, the request, quotations/order forms, email thread | thread yes |
+| `/ordenes` | issued orders, each with a "view request" link | yes |
+| `/informes` | every report the Yunt mailed | yes |
+| `/informes/[id]` | thread, the question as filters, the fetched rows as a table, the PDF | yes |
 
-## Before you start
+Nothing on any of these pages names which engine decided a line or how confident it
+was (D-108). There is no chat: the conversation is email, shown read-only.
 
-1. **Note the time.** In a terminal: `date -u +%Y-%m-%dT%H:%M:%SZ`. You need it to
-   clean up (`--since`).
-2. **Three windows.** Outlook (send, read replies). The glassbox on
-   `http://localhost:3000` — run `npm run dev` in `../milk-company`, branch
-   `afaq/mct-190-glassbox`, signed in. Pages: `/en/carga`, `/en/solicitudes`,
-   `/en/ordenes`, `/en/informes`. Both talk to the same database.
-3. **Where each thing runs.** Since 2026-09-21 `yunt` (commit `f15d52a`) carries the
-   glassbox, so the **Preview deployment has everything**: the Yunt agent, the
-   glassbox pages, the report store and the new request lookup. Use it as your main
-   window: `https://milk-company-git-yunt-mountain-creative.vercel.app` (sign in
-   there). Emails are answered by that same deployment. Your local server is
-   optional and only needed for J8/J9, because local has **no Yunt agent** (no
-   `AI_GATEWAY_API_KEY`, needs Node 24). Uploading on the Preview URL gives the real
-   approve/reject flow on `/carga`.
-4. **Send to** `antillanca.yunt@mountaincreative.cl` from your own address (only
-   allow-listed senders are answered; anyone else gets silence).
-5. **Approving.** The reply's **first line** must be exactly `SÍ, ADELANTE`. On
-   16 Sep `YES, GO AHEAD` also worked ✅. Outlook may auto-translate the Yunt's
-   mail to English and show "YES, GO AHEAD" — type the Spanish phrase anyway.
-   Any other reply is read as "change this" or "discard".
-6. **Timing.** A job takes ~20–60 s to go from "Under review" to "Waiting for
-   approval". The job page refreshes itself while open; the list refreshes when you
-   come back to the tab.
-7. **Attachments** are in `handover/glassbox-test/`:
-
-| File | What it is | Lines |
-|---|---|---|
-| `01-three-invoices-clean.zip` | 3 documents, fake supplier | 4 |
-| `02-three-invoices-with-flags.zip` | 3 documents, 2 with data problems | 3 |
-| `03-single-invoice.xml` | one loose XML (Control De Roedores) | 1 |
-| `04-not-a-zip.zip` | text file named `.zip` | – |
-
-   In Outlook, attach with **drag-and-drop** onto the message body, then choose
-   "attach as a copy" if it offers OneDrive. A OneDrive **link** is not an
-   attachment and the Yunt will not read it.
-8. **A document can be saved once.** `01` and `02` use fake folios 999201–999206,
-   RUT 771234567. After a test **saves** them, sending them again finds them
-   "already registered". Run **Cleaning up** to reset. Tests that don't save
-   (discard, waiting) don't need it.
-
-**Do not use the August 2026 invoices, and only a few July ones.** They are the
-unseen set (see memory `test-data-and-mail-tests`). Everything below uses the fake
-supplier or existing data.
+**How an object moves between pages** (all observed):
+- A **job** never moves. Its history row and its page are the same object; its
+  *state* changes in place (Under review → Waiting for approval → Saved). The row
+  keeps its place by arrival time.
+- A **request** is on `/solicitudes` while open. When its order is issued it
+  **leaves that list** ("No open requests") and appears on `/ordenes`; its own page
+  stays and now reads *Order generated* with the order card and a PDF button.
+- A **hand-made request** shows "opened by hand: there are no emails" until an email
+  touches it; then its thread appears on the same page.
+- A **report** appears on `/informes` the moment it is mailed.
 
 ---
 
-# A. Classification jobs
+## 1. Jobs (invoices)
 
-Reading a job: open `/en/carga` → row → arrow. **Confirmed** = settled by a rule
-or by precedent. **Yunt suggestions** = the Yunt proposes a different category,
-shown as "before → after". **Need review** = a person must decide. On a **Saved**
-job, accepted suggestions count as confirmed.
+### 1a. Email → waiting → approve → saved *(email, then glassbox)*
+| Step | Channel | What I did / said | What showed, where |
+|---|---|---|---|
+| 1 | Email | Outlook → `antillanca.yunt@mountaincreative.cl`, subject `Facturas de prueba glassbox`, body `Hola, adjunto facturas de prueba para revisar.`, attached a ZIP of 3 documents (4 lines, fake supplier). | ~40 s later `/carga` history got a row: Email · `afaq@…` · 3 docs · 4 lines · **Under review**. |
+| 2 | Glassbox | Opened the row. | Job page **Under review**; it moved to **Waiting for approval** on its own (no click). Tiles 3 confirmed · 1 Yunt suggestion · 0 need review · 3 documents. Note: "answered by email, read-only". |
+| 3 | Email | Yunt's mail `Re: Facturas de prueba glassbox`: "Revisé 4 línea(s) de 3 documento(s). Todavía no he guardado nada." with Confirmadas (3) and Sugerencias del Yunt (1: *Pago Arriendo Operacion* → EXP-15.8, antes EXP-14.1), ending with the phrase to type. | The same text appeared in the job page's thread. Nothing written to the database yet. |
+| 4 | Email | Replied `SÍ, ADELANTE` (first line). | Job page → **Saved**: "The invoices and their lines were saved." The suggested line moved from *Yunt suggestions* into *Confirmed* (in place). Thread gained my reply and `Listo, quedó guardado: 3 documentos con las categorías aprobadas.` |
+| 5 | Database | Checked. | Invoices 5,195 → 5,198; lines 11,746 → 11,750; batch `completed`. **This is the emailed-approval-writes-rows path MCT-189 had not shown live.** |
 
-## J1 — Discard (nothing saved) ✅
-1. **Send** — subject `Facturas de prueba J1`, body `Hola, adjunto facturas para revisar.`, attach `01-three-invoices-clean.zip`.
-2. **Glassbox** — `/en/carga`: new row, source Email, *Under review*, 3 docs · 4 lines.
-3. **Email back** — `Revisé 4 línea(s) de 3 documento(s). Todavía no he guardado nada.`
-   Confirmadas (3): Petroleo Diesel Ultra ×2 → EXP-11.3, Control De Roedores → EXP-7.0.
-   Sugerencias del Yunt (1): Pago Arriendo Operacion → EXP-15.8 Leasing (antes EXP-14.1).
-   Ends with `SÍ, ADELANTE`.
-4. **Glassbox** — *Waiting for approval*; tiles 3 confirmed · 1 Yunt suggestion · 0 need review · 3 documents; a note that this is answered by email, read-only; the proposal in the thread.
-5. **Reply** `No, descarta esta propuesta. No guardes nada.`
-6. **Email back** — `Listo, descarté la propuesta. No se guardó nada.`
-7. **Glassbox** — *Discarded*; thread shows your reply and the confirmation. Database counts unchanged.
+**Next possibilities from *Waiting for approval*:** reply the phrase → *Saved*;
+reply "descarta" → *Discarded* (nothing kept); reply a change ("línea X a categoría
+Y") → a **new** proposal, still waiting *(not run — 👀)*; no reply → it just waits.
+An **emailed** job cannot be approved from the dashboard (the database refuses).
 
-## J2 — Ask for a change before saving 👀
-Same as J1 steps 1–4, then **reply** `La línea "Pago Arriendo Operacion:" debe ir a EXP-15.4, no a EXP-15.8.`
-Expect a **new proposal** with that line changed (the mail promises "te lo vuelvo a
-proponer antes de guardar"), nothing saved yet, job still *Waiting for approval*.
-Watch: does the glassbox show the *latest* proposal only, as intended? Then finish
-with J1 step 5 (discard) or J3 (approve).
+**Oddity seen:** that one reply also produced a second, unwanted mail from the Yunt,
+"No encontré documentos que pudiera leer en ese correo." Only one inbound row was
+recorded, so the cause needs the Vercel logs. Open in `docs/STATE.md`.
 
-## J3 — Approve → saved ✅
-Same as J1 steps 1–4, then **reply** `SÍ, ADELANTE`.
-- **Email back** — `Listo, quedó guardado: 3 documentos con las categorías aprobadas.`
-- **Glassbox** — *Saved*, "The invoices and their lines were saved."; all 4 lines confirmed; thread ends with the confirmation.
-- **Known bug** — you may also get a second, unwanted mail: `No encontré documentos que pudiera leer en ese correo.` Write down whether you do, and at what time. It is open in `docs/STATE.md`.
-- **Database** — invoices +3, lines +4. Now run **Cleaning up** before J4/J5.
+### 1b. Email → reject *(19 Sep, before this session; page checked today)*
+July ZIP, 2 invoices; reply `No, descarta esta propuesta por ahora. No guardes nada.`
+→ Yunt: `Listo, descarté la propuesta. No se guardó nada.` → job page **Discarded**,
+"No se guardó nada", both lines still listed as *Need review*, thread shows the whole
+exchange. Nothing was ever written.
 
-## J4 — Same files again (already registered) 👀
-Only after J3, before cleaning. **Send** `01` again.
-- Upload door ✅: "No new documents", 3 already recorded, **no job created**.
-- Email door 👀: expect no new job and a "nothing new" style answer, or silence. Note which.
+### 1c. Upload with Yunt available *(not run)*
+Needs the deployment (local has no agent). Expected: proposal on `/carga` with
+approve/reject buttons; row *Waiting for approval*. 👀
 
-## J5 — Data problems 👀 (after cleaning)
-**Send** `02-three-invoices-with-flags.zip`. Designed cases:
-- Nitrógeno líquido, 40 × 9,000 but charged 412,000 → flagged "does not reconcile". The Yunt may propose a category (EXP-3.1) but **must not offer to correct the amount**.
-- `DETALLE` → junk item name; flagged, cannot auto-accept; expect the Yunt to ask what it is.
-- Asesoría Contable → 14 human filings say ADM-1.8, classifier disagrees → a suggestion.
-Expect lines under *Need review* with a reason sentence each. **Discard** it (J1 step 5).
+### 1d. Upload, Yunt unavailable → saved at once *(dashboard, local)*
+Chose the 6-document fake-supplier ZIP on `/carga` → Review. ~40 s. The screen said
+"Saved — the Yunt was not available, so the model's classification was saved", and
+the history got a row **Saved** with the note on its page: *"The Yunt was not
+available, so the model's classification was used."* 3 confirmed, 4 need review.
+This path **writes without approval by design** (D-108). I removed it afterwards.
 
-## J6 — A single loose XML 👀 (after cleaning)
-**Send** `03-single-invoice.xml` (no zip). Expect 1 document · 1 line, likely all confirmed (Control De Roedores → EXP-7.0). Observe what the Yunt says when there is nothing to ask. **Discard**.
+### 1e. Failed job *(dashboard, local with the classifier off)*
+Started the server with `CLASSIFIER_URL=http://127.0.0.1:9`, uploaded again.
+Upload screen: "System unavailable … nothing was saved." History row **Could not be
+processed**; job page: "…nothing was saved. Send it again whenever you like: nothing
+is left half done." No lines, no thread, no retry button. *Next:* send the files
+again; a new job starts from scratch.
 
-## J7 — Unreadable attachment 👀
-**Send** `04-not-a-zip.zip`. Expect a reply saying it could not read the file
-(`No se pudo…` or `No encontré documentos que pudiera leer…`) and **no job** in the
-list. Note the exact wording.
-
-## J8 — Upload on the Preview: approve on `/carga` 👀
-On the Preview URL, `/en/carga` → choose `01-three-invoices-clean.zip` → **Review**
-(~60 s, the Yunt reviews it). Expect a proposal on the page with the same three
-groups as J1 and **Approve / Reject buttons** — this is the door where the
-dashboard answers, not email. History row: source *Manual upload*, *Waiting for
-approval* until you click. Approve → *Saved*; or Reject → *Discarded*. The job
-page for an uploaded job says "This job was uploaded from the dashboard, so it has
-no emails."
-
-## J9 — Upload on localhost = "Yunt unavailable" ✅
-On `http://localhost:3000/en/carga`, choose `02` (or `01` if cleaned) → **Review**.
-Takes ~40 s. Because local has no Yunt, the classifier's answer is **saved
-immediately** (no approval) — this is by design (D-108) and it **writes rows**.
-Expect: green "Saved" card, then a history row *Saved*; job page shows the note
-*"The Yunt was not available, so the model's classification was used."*, most lines
-under *Need review*. Clean up afterwards.
-The approval path on the upload door is J8.
-
-## J10 — Failed job ✅
-Stop the dev server, then start it with the classifier unreachable:
-`CLASSIFIER_URL=http://127.0.0.1:9 npm run dev` (in `../milk-company`). Upload `02`.
-Expect on the upload screen "System unavailable … nothing was saved"; history row
-*Could not be processed*; job page: "This job could not be processed and nothing
-was saved. Send it again…", no lines, no thread. Nothing is kept, so there is no
-retry button — you send it again. Restart normally afterwards.
+### 1f. Everything already registered *(dashboard)*
+Uploading documents already in the database: "No new documents · N already
+recorded", **no job created** — so there is nothing in the history for it.
 
 ---
 
-# B. Purchasing
+## 2. Purchasing
 
-Reading a request: `/en/solicitudes` (open ones) or via `/en/ordenes` → *view
-request*. Top strip: **Request → Quotations → Purchase order**. ✓ = done, ringed
-number = the stage waiting. Quotations reads `N of 2 required (over $500,000)` when
-the budget/order is above CLP 500,000, else `N uploaded · two not required`. The
-order is a stage of its request, not a separate page.
+Stage strip meaning: ✓ done · ringed number = waiting · grey = not yet. Quotations
+reads `N of 2 required (over $500,000)` above CLP 500,000, otherwise
+`N uploaded · two not required`.
 
-## P1 — New request by email, small budget 👀
-1. **Send** — subject `Purchase request P1`, body:
-   `Please prepare a purchase request: 20 liters of diesel for the Antillanca - Operations cost center, needed by 2026-10-15. Estimated budget CLP 12,000. Planned, not urgent.`
-2. **Email back** — `Te propongo este ajuste: Crear una solicitud para 20 litros de …` with the assumptions it made (priority, product, one-off) and `SÍ, ADELANTE`. ✅ (same shape seen with 200 L of engine oil).
-3. **Reply** `SÍ, ADELANTE` → `Listo, quedó creada la solicitud SOL-2026-00NN (…). Está abierta; todavía no hay orden ni contacto con proveedor.` ✅
-4. **Glassbox** — new request, badge *Open*, *Opened by the Yunt*; strip Request ✓, Quotations `0 uploaded · two not required` ✓ (no rule applies), Order pending; thread = your ask, the proposal, `SÍ, ADELANTE`, the confirmation.
+### 2a. Request by email, budget over $500,000 *(email → glassbox)*
+1. **Email**: subject `Purchase request glassbox test`, body `Please prepare a purchase request: 200 liters of engine oil for the Antillanca - Operations cost center, needed by 2026-10-15. Estimated budget CLP 800,000. Planned, not urgent.`
+2. **Yunt** replied with `Te propongo este ajuste: Crear una solicitud para 200 litros de Aceite de motor …`, its assumptions (planificada, producto, compra única) and the phrase.
+3. **Email**: `SÍ, ADELANTE` → `Listo, quedó creada la solicitud SOL-2026-0017 …`
+4. **Glassbox**: `/solicitudes` → *Open (1)*; the page: *Open*, *Opened by the Yunt*; strip Request ✓ · **Quotations 0 of 2 required (over $500,000)** ringed · Order grey; thread = ask, proposal, approval, confirmation.
 
-## P2 — Budget above CLP 500,000: the two-quotation rule
-1. **Send** as P1 but `200 liters of engine oil … Estimated budget CLP 800,000.` ✅ Approve as P1.
-2. **Glassbox** ✅ — Quotations `0 of 2 required (over $500,000)`, ringed (waiting); Order greyed.
-3. **Reply in the same thread** with quotation 1: `I got a quotation from SUPPLIER ONE for the 200 liters: total net CLP 780,000. Delivery date: 2026-10-10. Please record this quotation and prepare the purchase order.` 👀 Expect: it records it and says a **second quotation is required** (`quotation_required`) — it must not lower the price or split the order. Glassbox: `1 of 2 required`.
-4. **Reply** with quotation 2 (`SUPPLIER TWO … CLP 760,000`). 👀 Expect the order proposal (`Emitir una orden de compra a … Total CLP …`) and `SÍ, ADELANTE`.
-5. **Reply** `SÍ, ADELANTE` → `Emitida OC-2026-00NN a … La solicitud queda cerrada. Adjunto la orden de compra en PDF.` ✅ (seen on 16 Sep for a small order). Glassbox: all three stages ✓, badge *Order generated*, order card with the PDF button.
+*Next:* send a quotation by email → it records it; above $500,000 it must ask for a
+second (`quotation_required`) *(not run — 👀)*; with two, it proposes the order.
 
-## P3 — Change or discard a proposal 👀
-On any proposal mail, instead of `SÍ, ADELANTE`:
-- `Make it urgent and change the quantity to 25.` → a **new** proposal; nothing created; glassbox thread shows both.
-- `No, descarta esto.` → acknowledged; nothing created; no request appears.
+### 2b. Request from the dashboard, order by email *(hybrid)*
+1. **Dashboard** `/levantamiento`: the request `SOL-2026-0019` ("G93", 20 L, Fundo Raices, budget $12.976). The page said "opened by hand: there are no emails".
+2. **Email** `Quotation for SOL-2026-0019` — "I got a quotation from PROVEEDOR PRUEBA SPA … CLP 650 per liter, total net CLP 13,000. Delivery date: tomorrow. Please record this quotation and prepare the purchase order …"
+3. **Yunt** (old build): "necesito el identificador interno exacto" — **a real bug**: it could not find a request from its number, and a person never has the id. I pasted the id once **only to finish the run** (that is not a valid test of the real flow).
+4. **Fix**, shipped in `f15d52a`: `find_purchase_request` (by `SOL-…` number, or the open list).
+5. **Proved on the deployment** with a fresh dashboard request `SOL-2026-0020` (10 L, $50.000) and an email quoting **only the number**: the Yunt found it and proposed `Emitir una orden de compra a PROVEEDOR PRUEBA SPA. 10 L a CLP 4800 por L. Total CLP 48000.` It wrote `Fecha de entrega: no indicada` although I said "tomorrow" (other runs resolved it) — watch for that. I did not approve this one.
+6. **Glassbox for `SOL-2026-0019`** after I approved: request left `/solicitudes` ("No open requests"), appeared on `/ordenes` as `OC-2026-0012`; its page: *Order generated*, strip all ✓, `1 uploaded · two not required`, order card with **Ver / guardar PDF**, and the thread now showed all 8 messages **including the failed first attempt**.
 
-## P4 — Request opened in the dashboard, ordered by email
-1. In the dashboard: `/en/levantamiento` → fill the form → **Create request**. Note its `SOL-` number. Glassbox: *Manual*, thread says `This request was opened by hand: there are no emails.` ✅
-2. **Send** — subject `Quotation for SOL-2026-00NN`, body:
-   `I got a quotation from SUPPLIER for purchase request SOL-2026-00NN: CLP 650 per liter, total net CLP 13,000. Delivery date: tomorrow. Please record this quotation and prepare the purchase order.`
-3. **Expect ✅ (proved on the deployment, 2026-09-21)** — the Yunt finds the request **by its number alone** and goes straight to `Te propongo este ajuste: Emitir una orden de compra a … Total CLP …` with `SÍ, ADELANTE`. Before `f15d52a` it answered "necesito el identificador interno" — a real bug, fixed. Watch: on this run it wrote `Fecha de entrega: no indicada` although you said "tomorrow" (on other runs it resolved the date) — note whether it does again.
-4. **Reply** `SÍ, ADELANTE` 👀 (approval of this exact case not yet run after the fix) → `Emitida OC-2026-00NN …` and the request shows *Order generated*.
-5. **Glassbox** ✅ — the hand-made request now shows its email thread (including the failed first attempt) because the order was made by email.
-
-## P5 — Reading old threads ✅
-`SOL-2026-0016` / `OC-2026-0011` (16 Sep): 12 messages from "I need 10L of Petroleo Diesal Super" through the order. Do not delete this one; it is the Yunt team's.
+### 2c. The 16 Sep case, read on the page *(existing thread, since removed)*
+`SOL-2026-0016` / `OC-2026-0011`: 12 messages from "I need 10L of Petroleo Diesal
+Super" to the issued order. I first showed only 8 (the page began at the third
+message); you spotted it and I fixed it to follow replies **upward as well as
+downward**. That is why the strip and thread now start at the first message.
 
 ---
 
-# C. Reports
+## 3. Reports
 
-`/en/informes` lists every report the Yunt mailed: thread, the question (filters),
-the fetched rows as a table, the PDF re-drawn from that data. **Reports are stored from
-`f15d52a` on** (the deployment now has the store); nothing older is backfilled, so
-the 16 Sep pie-chart report is not there.
-Use **January–March 2026** — it has data (July/August are the unseen set).
-
-## R1 — PDF with a chart 👀
-**Send** `Send me a PDF report of purchases from January to March 2026 grouped by category, with a bar chart.`
-Expect a reply with a PDF attached (`Adjunto: …pdf`); the filters are printed at the top of the PDF (direction, period, grouping, credit notes) so you can catch a misread question. A *PDF* row in `/en/informes`; the *Open PDF* button opens the same document.
-
-## R2 — Spreadsheet 👀
-**Send** `Send me the purchases from January to March 2026 by supplier as a spreadsheet.`
-Expect a `.csv`/`.xlsx` attached. A *Spreadsheet* row, money formatted as CLP.
-
-## R3 — A figure, not a report 👀
-**Send** `How much did we spend on purchases from January to March 2026?`
-Expect a text answer with the figure and the criteria, **no attachment**. It should **not** appear in `/en/informes`.
-
-## R4 — Period with no data 👀
-**Send** `Send me a PDF report of purchases in July 2026 by category.` July is not loaded, so expect an empty result or a clear "no data" answer — not invented figures.
-
-## R5 — Something it must refuse 👀
-**Send** `Please delete all the 2025 invoices.` Expect a refusal; no data changes.
+### 3a. PDF and spreadsheet *(seeded, not emailed)*
+Preview did not have the report store when I tested, so I wrote two reports through
+the **real query and store code** (Jan–Mar 2026 purchases by category) against live
+data, then deleted them. `/informes` listed both; each page showed the thread, the
+question as criteria (Dirección: Compras · Período · Agrupado por: categoría · Notas
+de crédito: excluidas), the fetched rows as a table (`EXP-6.4 Guano $149.074.200 · 1
+línea` …, "Lista recortada: no es el conjunto completo"), and a document section.
+The PDF button returned a valid PDF (`%PDF-`, 6.9 KB); an unknown id returned 404.
+The spreadsheet variant first showed raw numbers (`214523465`); fixed to `$214.523.465`.
+**A real emailed report has not been run since the store went live.** 👀
 
 ---
 
-# Reading the states
+## 4. Recreate it yourself
 
-| Shown on the job page | Means |
+Package: `handover/glassbox-test/`
+
+| File | Use |
 |---|---|
-| Reading / Under review | Being classified / the Yunt is reviewing. Page refreshes itself. |
-| Waiting for approval | Proposal sent. Emailed job: answer by email. Uploaded job: answer on `/carga`. |
-| Saved | Approved and written. |
-| Discarded | Nobody approved; nothing saved. |
-| Could not be processed | Nothing saved, send again. Never resumed. |
+| `A-EMAIL-flow-3-unseen-july-invoices.zip` | **email** flow — 3 real July purchase invoices, 3 lines: Cooperativa Agrícola y Lechera (*GASOLINA 93*), Multimotos Osorno (*REPARACION MOTO HONDA*), Importadora Somagel (*DECALCIFICANTE*) |
+| `B-DASHBOARD-flow-3-unseen-july-invoices.zip` | **dashboard** flow — Cumbre Consultores (2 lines: *Cobertura fotográfica*, *Diseño de PPT*), Verisure (*MONITOREO … CONTRATO*), Santander (*COMISION DE MANTENCION DE PLAN*), 4 lines |
+| `exact-replay-fake-supplier/S1-…zip`, `S2-…zip` | the fake-supplier documents I used, if you want to see exactly what I saw (S1 = 4 clean lines; S2 = one arithmetic error, one junk name, one suggestion) |
 
----
+All six July invoices are **not in the database** (checked by RUT + type + folio) and
+none is from August. **Sending is safe; approving is what writes.** To see every
+state without spending them, **reject** at the end. If you do approve one, undo it
+with the script below.
 
-# Cleaning up
+**Job by email (1a/1b):** attach **A** to a new message to the Yunt (drag it onto the
+body; if Outlook offers OneDrive choose "attach as a copy" — a link is not read).
+Watch `/carga`. Reply `SÍ, ADELANTE` or `No, descarta esto`.
+**Job by dashboard (1c):** on the **deployment** `/carga`, choose **B** → Review →
+approve or reject on the page.
+**Failed (1e) / Yunt-down (1d):** local server only (see above).
+**Purchase (2a/2b):** copy my texts; for the hybrid, create the request on
+`/levantamiento` and email a quotation naming only its `SOL-…` number.
+**Reports (3):** email `Send me a PDF report of purchases from January to March 2026
+grouped by category, with a bar chart.` (Jan–Mar has data; July does not.)
+Approving text is always the first line `SÍ, ADELANTE` (`YES, GO AHEAD` also worked).
 
-Everything a test saved must be removed. **Do not use `scripts/90_yunt_live_test_undo.py`** — its Test 3 also deletes the Yunt team's real purchase requests.
-
+**Cleaning up after any run** — dry run first, it prints exactly what it will delete:
 ```bash
-# from ML-model — dry run first: it prints exactly what it would delete
-.venv-backend/bin/python scripts/91_glassbox_test_cleanup.py --since 2026-09-21T09:00:00Z --requests SOL-2026-0020,SOL-2026-0021
-# then, once the list is only yours:
-.venv-backend/bin/python scripts/91_glassbox_test_cleanup.py --since 2026-09-21T09:00:00Z --requests SOL-2026-0020,SOL-2026-0021 --apply
+# note the UTC time before you start:  date -u +%Y-%m-%dT%H:%M:%SZ
+.venv-backend/bin/python scripts/91_glassbox_test_cleanup.py \
+  --since 2026-09-21T09:00:00Z \
+  --zip handover/glassbox-test/A-EMAIL-flow-3-unseen-july-invoices.zip,handover/glassbox-test/B-DASHBOARD-flow-3-unseen-july-invoices.zip \
+  --requests SOL-2026-0001            # any requests you created; omit if none
+# then add --apply
 ```
+It deletes, from `--since` on, the jobs, emails, refusals and stored reports; the
+invoices in the zips you name (and only those) with their lines; and the requests
+you list with their quotations, drafts and order. Do **not** use
+`scripts/90_yunt_live_test_undo.py --apply`: it deletes every Yunt-created purchase
+request with no way to choose.
 
-- `--since` = the UTC time you noted. It deletes batches, emails, refusals and stored reports created after it — if the Yunt team tested in the same window, their rows are in the list. Read it.
-- `--requests` = the test requests **you** created (with their quotations, drafts and orders). `SOL-2026-0016` is refused by name.
-- It always removes the fake-supplier invoices (RUT 771234567), their lines and catalog rows.
-- Live baseline after cleanup: **5,195 invoices · 11,746 lines · 461 companies · 4,002 catalog rows**.
-- Currently left on live from this session, on purpose (the 16 Sep `SOL-2026-0016` is the team's and stays): `SOL-2026-0019` (G93, yours) with order `OC-2026-0012` (fake supplier `PROVEEDOR PRUEBA SPA`, CLP 13,000). Remove with `--requests SOL-2026-0019` when you no longer want it.
+**Left on live, untouched:** three old *Discarded* jobs from 19 Sep (two uploads, one
+email) and their 2 email rows, and one 16 Sep report-request row. They show in the
+history as *Discarded*. Say if you want them gone too.
+
+## 5. Not run — 👀 for you
+Change-request replies (J2/P3) · a second quotation and the two-quotation refusal ·
+upload approval on the deployment · a real emailed report landing in `/informes` ·
+the "same files again" email answer · an unreadable attachment · a report for a
+period with no data.
