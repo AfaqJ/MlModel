@@ -184,6 +184,6 @@ history as *Discarded*. Say if you want them gone too.
 
 ## 5. Not run — 👀 for you
 Change-request replies (J2/P3) · a second quotation and the two-quotation refusal ·
-upload approval on the deployment · a real emailed report landing in `/informes` ·
+upload approval on the deployment · **approving an emailed job from its page (D-111, migration `042`): dialog, Cancel, stale-proposal refusal, then "Sí, guardar"** · a real emailed report landing in `/informes` ·
 the "same files again" email answer · an unreadable attachment · a report for a
 period with no data.

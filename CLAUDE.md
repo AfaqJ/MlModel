@@ -21,15 +21,14 @@ carried all 8 `prediction_source` values; there are **six** now (D-047). Latest
 backup: `backups/supabase_20260903T054820Z/`.
 **Branch:** `yunt-backend`.
 Frontend: branch `yunt` in `../milk-company` (the only frontend checkout) is
-pushed at `46b25af`, which built a **Preview** carrying MCT-189; the Resend
+pushed at `e2f7f48` (2026-09-21), whose Preview carries MCT-189, the agent's clock and D-111/D-112; the Resend
 webhook points at that Preview, so inbound invoice mail runs the new pipeline.
-Production (`milk-company.vercel.app`) still serves the 2026-09-16 build. Local commits
-since then are unpushed; Afaq holds the production deploy. The Yunt uses
+Production (`milk-company.vercel.app`) still serves the 2026-09-16 build. Afaq holds the production deploy. The Yunt uses
 Vercel AI Gateway through `AI_GATEWAY_API_KEY`; D-101 supersedes the earlier
 direct-Anthropic decision D-077.
 The `MCT-166` cache edits are parked as commits on local branch
 `parked/mct-166`; do not fold them into feature work. Migrations
-`004`–`040` are live (`039` and `040` are MCT-190's read grants and `yunt_reports`, pasted 2026-09-21). `024`, `026` and `027` are confirmed by behaviour;
+`004`–`042` are live (`039`/`040` MCT-190's read grants and `yunt_reports`; `041` confirmation follows the thread, D-110; `042` lets the dashboard answer any waiting job, D-111 — all pasted 2026-09-21). `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that
