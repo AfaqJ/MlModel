@@ -2695,10 +2695,11 @@ replacing what this entry said above:
    engine settled a line, or how sure it was, is a map of where the model is
    weak. The email reads as three groups instead: confirmed, the Yunt's
    suggestions, and what needs a person.
-4. **An emailed job is approved only by replying to that email.** The dashboard
-   shows it but cannot answer it: one job, one channel, so a per-line change
-   made on a screen can never disagree with a confirmation sitting in an inbox.
-   An uploaded job is answered on `/carga` for the same reason.
+4. **A waiting job is approved by replying to its email or from the dashboard
+   (D-111).** It was first "one job, one channel": an emailed job could only be
+   answered by email and an uploaded one only on `/carga`. D-111 (2026-09-21)
+   lifted that. Both channels answer the same stored proposal, bound by its hash,
+   so a per-line change asked by email is what the dashboard shows next.
 5. **Every line of an approved batch is written `yunt_applied`.** No new
    provenance value: `014` already allows it and `aggregate.ts` already excludes
    it, so the automatic-accept figure reads 0% for new batches and keeps its
@@ -2730,8 +2731,8 @@ is visible instead of only its result.
 3. **Live without a timer that never sleeps.** The page refreshes every 5 seconds
    only while a job is `processing`, `reviewing` or `awaiting_approval`, and once
    when the tab becomes visible. A settled list makes no requests.
-4. **Email stays the only conversation.** Threads are shown read-only. An emailed
-   job is answered by email (D-108); an uploaded job on `/carga`.
+4. **Email stays the only conversation.** Threads are shown read-only. Any waiting
+   job can also be approved or discarded from its page (D-111).
 5. **Where each lives.** Jobs: history under the upload form, `/carga/[id]`.
    Purchase: one page per request, the order is a stage of it; its emails are
    found through the request and order drafts' `source_request_id`, with no new
@@ -2763,6 +2764,52 @@ the context of the proposal being discussed must be kept.
 2. **The database, not the model, judges the phrase.** It ignores capitals and
    accents. The Yunt must not refuse a reply for its wording, and must not ask the
    person to find an earlier email.
-3. **Still one channel per job:** an emailed job is answered in its email thread; an
-   uploaded job on the dashboard, from `/carga` or from its own page.
+3. **Two channels per waiting job** (D-111): the email thread, or the job's page on
+   the dashboard. The thread stays the only conversation.
 
+## D-111 — Any waiting job can be approved from the dashboard, after seeing the proposal
+
+**Date:** 2026-09-21 · **Decided by:** Afaq · **Model:** Claude
+
+Replaces the "one job, one channel" rule of D-108 point 4 (Afaq, 2026-09-18), which
+let only the sender approve an emailed job.
+
+1. **Every job in *awaiting approval* shows Approve and Discard on its page**, and on
+   `/carga` right after an upload, whichever door it came through.
+2. **Approve opens a dialog first.** It lists the proposal grouped by category, with
+   each line and amount and the lines still marked *Need review*, and only "Yes, save"
+   commits. The proposal shown is the latest stored for the job — the one the email
+   thread is currently about, since a change asked by email rewrites it in place.
+3. **You approve exactly what you saw.** The request carries the proposal's hash; if it
+   changed while the dialog was open the server answers 409 and the page reloads. The
+   endpoint refuses an approval that names no hash.
+4. **The database still guards the write** (migration `042`): the hash binding, the
+   single commit and the one-use email confirmation are unchanged; only its two refusals of a
+   signed-in user on an emailed job are gone. Any signed-in user may answer (D-052).
+5. **Whichever channel comes first settles it.** A later `SÍ` finds the job already
+   saved and changes nothing.
+
+Not decided: telling the email's sender when someone else approved on the dashboard.
+Nothing is sent today.
+
+## D-112 — The Yunt may suggest a category from context when there is no precedent
+
+**Date:** 2026-09-21 · **Decided by:** Afaq · **Model:** Claude
+
+Relaxes the batch-review rule that a suggestion had to cite a precedent it retrieved.
+
+1. **With precedent, cite it. Without, reason from everything the line carries** —
+   wording, description, supplier and what they sell, unit, amounts — read against
+   `agent/category-guide.md`, and say in the reason that there is no earlier filing and
+   what points to the category. Reasoning is never presented as precedent.
+2. **Only when an accountant would land on the same category** without knowing the
+   business. Anything that depends on what the client did with it — generic hardware
+   or tools with no known job or project — stays `unsure` and goes to review.
+3. **Nothing else changes:** a suggestion is still only a proposal a person approves
+   (D-108), the classifier's first pick still does not become a suggestion by itself,
+   and meter and plate evidence still outranks wording. It is an instruction change,
+   not code: nothing in the report gates a suggestion on precedent.
+
+**Not measured.** How often the Yunt now suggests, and how often it is right, is
+unknown until a real batch has gone through; read the *Yunt suggestions* group of the
+first jobs before trusting it.

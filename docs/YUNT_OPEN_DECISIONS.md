@@ -216,3 +216,17 @@ per month versus USD 0.56 on Haiku 4.5. That is committed locally, but Afaq did
 not explicitly choose it.
 
 **Needs:** confirm Opus 5 / medium, or name the model and reasoning tier to use.
+
+## 8. Parked: email thread for a dashboard upload
+
+Afaq's idea (2026-09-21): after a dashboard upload the Yunt emails the proposal so
+the job has a thread to reply in. **Parked** because the Yunt does not know who to
+write to — the signed-in user's login address is not necessarily a mailbox they
+read, and the Yunt only mails allowlisted addresses (D-061). Until that is decided,
+a dashboard upload is answered on its own page and the Email thread panel says
+"uploaded from the dashboard, so it has no emails". It would also need a new migration
+(a signed-in user may insert only an `approve_batch` binding), because
+`sendJobReport` writes that row with the service key.
+
+**Needs:** who receives the proposal for a dashboard upload (the uploader's login
+address, a per-user mailbox field, or one shared operations address).
