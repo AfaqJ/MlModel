@@ -29,7 +29,7 @@ Vercel AI Gateway through `AI_GATEWAY_API_KEY`; D-101 supersedes the earlier
 direct-Anthropic decision D-077.
 The `MCT-166` cache edits are parked as commits on local branch
 `parked/mct-166`; do not fold them into feature work. Migrations
-`004`–`038` are live (`038` pasted 2026-09-19, ahead of the code that uses it). `024`, `026` and `027` are confirmed by behaviour;
+`004`–`040` are live (`039` and `040` are MCT-190's read grants and `yunt_reports`, pasted 2026-09-21). `024`, `026` and `027` are confirmed by behaviour;
 `023` and `025` are believed live but were never re-verified — all are
 idempotent, so re-pasting settles it. Ten audit
 findings are still open as decisions, in that
@@ -167,8 +167,8 @@ Python reference was deleted under D-079; change
 the upload page is permanent rather than a stopgap (D-060). Both doors now call `runJob`.
 **The email path carried a real ZIP on 2026-09-19** and worked end to end on
 Preview: two July invoices in, proposal mailed back, nothing written, a natural
-"descarta esto" reply closed the job and was answered. The only intake path
-never exercised for real is an approval actually writing rows. Migrations `021` and `027` grant exactly what
+"descarta esto" reply closed the job and was answered. An emailed approval
+writing rows was proved live on 2026-09-21 (3 synthetic invoices / 4 lines, then removed). Migrations `021` and `027` grant exactly what
 the operator needs — any signed-in user, because v1 has no roles (D-052) — and
 both are live; a signed-in person has saved through `/carga`, the replay changed
 nothing, and the deterministic quality flags land. **`021` missed `yunt_flags`

@@ -2711,3 +2711,36 @@ start a second review once the first is terminal, and a follow-up message would
 cancel a turn that is still working. A mid-run death (credits, provider) is
 caught by a hook on `turn.failed` / `session.failed`, which is the only thing
 that can see it. The person who sent the invoices is told; nobody else is.
+
+
+## D-109 — The glassbox shows the client the current state of every case, read-only, from what is already stored
+
+**Date:** 2026-09-21 · **Decided by:** Afaq · **Model:** Claude
+
+MCT-190. Three read-only views over data the Yunt already keeps, so the process
+is visible instead of only its result.
+
+1. **Client-facing, so D-108 applies to the page.** A line carries no decision
+   source, no engine and no confidence; the page type cannot hold them, and the
+   model's reason passes through `colleagueText` again at the page boundary
+   because rows stored before 2026-09-19 still carry confidence talk.
+2. **Current state only.** A line shows its category now — confirmed, suggested or
+   needs review — never the history of corrections. A saved job shows accepted
+   suggestions as confirmed.
+3. **Live without a timer that never sleeps.** The page refreshes every 5 seconds
+   only while a job is `processing`, `reviewing` or `awaiting_approval`, and once
+   when the tab becomes visible. A settled list makes no requests.
+4. **Email stays the only conversation.** Threads are shown read-only. An emailed
+   job is answered by email (D-108); an uploaded job on `/carga`.
+5. **Where each lives.** Jobs: history under the upload form, `/carga/[id]`.
+   Purchase: one page per request, the order is a stage of it; its emails are
+   found through the request and order drafts' `source_request_id`, with no new
+   column. Reports: `/informes`, backed by `yunt_reports`.
+6. **Reports store the question and the data, not the PDF.** The PDF is a pure
+   function of title, chart type and data and is drawn again on open. The write
+   is best-effort, before the mail goes: a failed audit copy must not fail a
+   delivered answer. The writer lives in `report-store.ts`, which imports nothing
+   from Next, because the agent loads it.
+7. **All reads are as the signed-in user through RLS.** `039` and `040` grant
+   `select` only; the service key is never used by a page.
+

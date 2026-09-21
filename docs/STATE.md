@@ -3,12 +3,54 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-21
+
+**MCT-190, the glassbox, is built on `afaq/mct-190-glassbox` in `../milk-company`
+and driven in the browser, signed in — all three surfaces, every case below. It
+is committed locally, not pushed; Preview does not have it (D-109).** Migrations
+`039` and `040` are live. `check.sh` is green.
+
+**What Cristian and the team see, read-only, in the client's words:**
+1. **Jobs** — the history sits under the upload form on `/carga` (no tabs); a row
+   opens `/carga/[id]`: lines by current state (confirmed / suggested / needs
+   review; on a saved job an accepted suggestion is confirmed), the state, and the
+   email thread. States driven: reviewing → waiting for approval → saved (email),
+   discarded (email), failed (both services down), already-registered upload
+   (creates no job), ML-only fallback (saved without the Yunt).
+2. **Purchase** — `/solicitudes/[id]` gets a Request → Quotations → Order strip
+   and the thread. Driven: closed with an order (the real 16 Sep case, SOL-2026-0016
+   / OC-2026-0011), open needing two quotations, open with the rule not applying,
+   manual (no emails). The order is a stage, not a page.
+3. **Reports** — `/informes`: thread, the question as filters, the fetched rows as
+   a table, the PDF re-drawn from stored data. Driven with two seeded reports
+   (PDF and spreadsheet) through the real query and store code, then removed.
+
+**Proved live: an emailed approval writes rows** — a 3-document synthetic ZIP
+(fake RUT 771234567) mailed from Outlook, proposal, `SÍ, ADELANTE`, batch
+`completed`, invoices 5,195 → 5,198 and lines 11,746 → 11,750, then removed by a
+scoped delete. Live is back to baseline on every table touched; the 16 Sep
+purchase thread and every earlier row were left alone.
+
+**Open, found this session:**
+- **A second, unwanted reply.** One `SÍ, ADELANTE` produced both the correct "Listo,
+  quedó guardado" and "No encontré documentos que pudiera leer en ese correo" —
+  the latter is only sent when a message has ZIP/XML attachments that did not
+  yield files, and no inbound row was recorded for it. Needs the Preview logs.
+- **Reports are stored only by code that is deployed.** Preview runs `46b25af`,
+  so a report emailed today is answered but not kept; `/informes` fills once this
+  branch ships. Nothing is backfilled.
+- **Do not run `scripts/90_yunt_live_test_undo.py --apply`** while the Yunt team
+  has purchase requests live: its Test 3 deletes every `created_via='yunt'`
+  request and order, and it has no per-test switch.
+- The failed-job page gives one generic sentence; the stored error is internal
+  and is never shown, so "why it failed" is not itemised.
+
 ## Session — 2026-09-19
 
 **MCT-189 is built, proved end to end, and merged into `yunt` (head `46b25af`),
 which is pushed — Vercel Preview runs it and the Resend webhook points there.
 Production is untouched and still serves the 2026-09-16 build.** The glassbox
-branch `afaq/mct-190-glassbox` sits at that same head, unstarted.
+branch `afaq/mct-190-glassbox` was cut from that head; see the 2026-09-21 session.
 
 **The email path is proved live.** One ZIP with two July invoices from Afaq's
 Outlook: job `ml_yunt`, `reviewing` → `awaiting_approval` in ~60s, a proposal
@@ -24,7 +66,7 @@ model-authored reason. Reasons now pass through `colleagueText`, so any sentence
 naming the model, its confidence or an internal id is dropped before rendering;
 `check-job-report.ts` feeds it that exact sentence.
 
-**The one path never exercised for real: an approval writing rows.** It has
+**(Proved on 2026-09-21: an emailed approval wrote rows.)** Until then it had
 checks, not a click. Two July invoices are ready for it whenever Afaq wants. Migration `038` is **live**
 (backup `backups/supabase_20260919T122424Z`, verified against the baseline before
 pasting). Live data is untouched: 5,195 invoices / 11,746 lines, before and after
