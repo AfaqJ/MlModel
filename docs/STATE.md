@@ -58,6 +58,16 @@ rows; purchasing tables and `yunt_reports` empty; 3 old *Discarded* jobs and 3
 email rows remain. Two unseen-July ZIPs for a fresh run are in
 `handover/glassbox-test/`.
 
+**Approval survives chat (D-110), found by Afaq's own test.** After "I agree, log
+them", the Yunt's plain reply carried no confirmation, so his later `SÍ, ADELANTE`
+answered a message the gate did not recognise and was refused; separately the model
+wrongly refused `YES, GO ahead` (the database is case-insensitive). Fix: migration
+`041` (**must be pasted**; prove with `scripts/prove-041-confirmation-chain.ts`),
+two instruction changes, pushed to `yunt` at `9e71471`. Also fixed: the Review
+button showed no spinner until the job appeared (React holds form-action state);
+an uploaded job's page had no approve/reject; a confirmed line could say "a person
+should confirm this".
+
 **Hand-run guide:** `docs/GLASSBOX_TEST_GUIDE.md`, attachments in
 `handover/glassbox-test/`, and `scripts/91_glassbox_test_cleanup.py` (scoped,
 dry-run first; `--zip` undoes exactly the documents in the zips you name).

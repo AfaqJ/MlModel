@@ -2744,3 +2744,25 @@ is visible instead of only its result.
 7. **All reads are as the signed-in user through RLS.** `039` and `040` grant
    `select` only; the service key is never used by a page.
 
+
+## D-110 — A confirmation is tied to the conversation, not to one email
+
+**Date:** 2026-09-21 · **Decided by:** Afaq · **Model:** Claude
+
+Amends D-108 point 4 ("an emailed job is approved only by replying to that email").
+The confirmation gate, `consume_yunt_action_confirmation`, checked only the message
+a reply answered. A person who did not type the phrase got a plain answer from the
+Yunt, replied to *that*, and was refused as "a different action or target" — the
+only way out was to find the first email. Afaq: the client must never have to go back;
+the context of the proposal being discussed must be kept.
+
+1. **The gate follows the thread upward** to the *nearest* message carrying a
+   confirmation and checks that one (migration `041`). Sender, action, target, the
+   exact phrase and single use are unchanged. Nearest wins, so a revised proposal
+   supersedes an older approval.
+2. **The database, not the model, judges the phrase.** It ignores capitals and
+   accents. The Yunt must not refuse a reply for its wording, and must not ask the
+   person to find an earlier email.
+3. **Still one channel per job:** an emailed job is answered in its email thread; an
+   uploaded job on the dashboard, from `/carga` or from its own page.
+
