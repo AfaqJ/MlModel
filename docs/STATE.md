@@ -7,7 +7,7 @@ lives in `DECISIONS.md`.
 
 **MCT-190, the glassbox, is built on `afaq/mct-190-glassbox` in `../milk-company`
 and driven in the browser, signed in — all three surfaces, every case below. It
-is committed locally, not pushed; Preview does not have it (D-109).** Migrations
+is on `yunt` and deployed to Preview (D-109).** Migrations
 `039` and `040` are live. `check.sh` is green.
 
 **What Cristian and the team see, read-only, in the client's words:**
@@ -31,14 +31,36 @@ is committed locally, not pushed; Preview does not have it (D-109).** Migrations
 scoped delete. Live is back to baseline on every table touched; the 16 Sep
 purchase thread and every earlier row were left alone.
 
+**Later the same day.** The job/request/report thread now also walks *up* the
+reply chain: the row a draft binds to is often the third message, and the first
+two ("I need 10L of Petroleo…") were missing — `SOL-2026-0016` now shows all 12
+messages. Found by Afaq reading the page.
+
+**A real gap, fixed in the branch, not deployed:** every purchasing tool needs the
+internal request id, so a request opened in the dashboard cannot be ordered by
+email — the Yunt answers "necesito el identificador interno". New read-only tool
+`find_purchase_request` (by `SOL-…` number, or the open list), one instruction
+line, `check-yunt-find-request.ts`; proved against live data. `SOL-2026-0019` was
+ordered by email only by pasting the id as a workaround (`OC-2026-0012`, fake
+supplier, CLP 13,000, **left on live on purpose**).
+
+**Deployed.** `afaq/mct-190-glassbox` pushed and fast-forwarded into `yunt`
+(`46b25af` → `f15d52a`); `npm run build` passed locally, the Vercel Preview is
+Ready (`milk-company-git-yunt-mountain-creative.vercel.app`), and the new lookup was
+proved on it: a request made in the dashboard (`SOL-2026-0020`, since removed) was
+found from its number in an email and an order proposed. Production is still the
+2026-09-16 build.
+
+**Hand-run guide:** `docs/GLASSBOX_TEST_GUIDE.md`, attachments in
+`handover/glassbox-test/`, and `scripts/91_glassbox_test_cleanup.py` (scoped,
+dry-run first, refuses `SOL-2026-0016`).
+
 **Open, found this session:**
 - **A second, unwanted reply.** One `SÍ, ADELANTE` produced both the correct "Listo,
   quedó guardado" and "No encontré documentos que pudiera leer en ese correo" —
   the latter is only sent when a message has ZIP/XML attachments that did not
   yield files, and no inbound row was recorded for it. Needs the Preview logs.
-- **Reports are stored only by code that is deployed.** Preview runs `46b25af`,
-  so a report emailed today is answered but not kept; `/informes` fills once this
-  branch ships. Nothing is backfilled.
+- **Reports are stored from `f15d52a`.** Nothing older is backfilled.
 - **Do not run `scripts/90_yunt_live_test_undo.py --apply`** while the Yunt team
   has purchase requests live: its Test 3 deletes every `created_via='yunt'`
   request and order, and it has no per-test switch.

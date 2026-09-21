@@ -228,6 +228,7 @@ latin-1.
 | Where we are, recent sessions, next steps | `docs/STATE.md` |
 | **What to run when the key is wired** | **`docs/GO_RUNBOOK.md`** |
 | **How to test against the real API without wasting it** | **`docs/YUNT_TEST_PLAN.md`** |
+| **Run every glassbox flow by hand, with files and expected replies** | **`docs/GLASSBOX_TEST_GUIDE.md`** |
 | **What the Yunt will do, as sent to the team** | **`docs/Yunt_scope_v1.docx`** |
 | **How every manual case becomes automated** | **`docs/AUTOMATION_PLAN.md`** |
 | How the system is built | `docs/ARCHITECTURE.md` |
