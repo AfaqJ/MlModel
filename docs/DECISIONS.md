@@ -1954,6 +1954,8 @@ shape, but nothing needed it — the numbers were already on the line.
 
 ## D-076 — The Yunt reviews on Sonnet 5, high reasoning
 
+> **Amended 2026-09-21 (D-115): reasoning is now `medium`.** The model choice (Sonnet 5) stands.
+
 **Date:** 2026-09-11 · **Decided by:** Afaq
 
 `agent/agent.ts` was `anthropic/claude-opus-5`. It is now
@@ -2633,7 +2635,7 @@ The availability contract is:
 | Available | What happens |
 | --- | --- |
 | ML + Yunt | Yunt reviews the complete proposal before write. Show the full report, require client confirmation, then commit once. |
-| ML only | Commit the deterministic + ML result immediately and show/send a complete audit report. Uncertain lines remain review-required. |
+| ML only | ~~Commit the deterministic + ML result immediately~~ **Replaced by D-114 (2026-09-21): nothing is saved.** The job ends failed and the sender is asked to retry. The old behaviour survives only behind `YUNT_ALLOW_ML_ONLY=1`. |
 | Yunt only, at most 10 unresolved lines | Yunt may suggest the unresolved categories with full client, taxonomy and precedent context. Show the full report, require confirmation, then commit once. |
 | Yunt only, more than 10 unresolved lines | Save nothing and ask the user to retry later. |
 | Neither | Save nothing and ask the user to retry later. |
@@ -2705,6 +2707,9 @@ replacing what this entry said above:
    it, so the automatic-accept figure reads 0% for new batches and keeps its
    meaning for the stored history. What the model proposed stays in
    `predicted_code`.
+
+6. **Amended 2026-09-21 (D-114): "ML only" no longer saves.** A Yunt that is down, out of
+   credit or not finished in time never causes a write.
 
 **Also settled here:** Yunt liveness is read, never poked. A job waits ~4
 minutes, then READS the review session's event stream; re-sending the job would
@@ -2813,3 +2818,126 @@ Relaxes the batch-review rule that a suggestion had to cite a precedent it retri
 **Not measured.** How often the Yunt now suggests, and how often it is right, is
 unknown until a real batch has gone through; read the *Yunt suggestions* group of the
 first jobs before trusting it.
+
+## D-113 — History is a hint, never a rule; July and August may train the model, after the flaws are fixed
+
+**Date:** 2026-09-21 · **Decided by:** Afaq · **Model:** Claude
+
+1. **Only client-confirmed deterministic rules are treated as certain** — the product list,
+   the meter map, the plate/bidón convention and the exact-wording business rules. What a
+   supplier or wording was filed under before is **evidence to show a reviewer or the Yunt,
+   never a rule that files a line by itself.** Reason, measured on July 2026 against the
+   accountants' ledger: Doris Castillo was 96% one category in history and both history and
+   the model said so with confidence; the accountants booked 37 of her 38 lines elsewhere.
+   "Precedent and model agree, so auto-file" would have filed 138 July lines with 49 wrong.
+2. **The model's own auto-accept is not a rule either.** In July it auto-accepted 76 lines
+   with 22 wrong (0.98+ confidence was 50% right). The remedy Afaq chose is better training,
+   not switching it off: see the overnight comparison in
+   `reports/overnight_2026_09_21/README.md`. Nothing about the live threshold changed.
+3. **Training on the July and August ledger labels is allowed** ("the purpose of this data is
+   to improve the model"), but only after the training flaws are fixed, so the fixes are
+   measured on unseen data first. Order: fix on old data, test on July, then train on July,
+   test on August, then train on August. August invoices are not on this machine yet.
+4. **Not decided:** suppressing "context-dependent" suppliers. Measured on July against a list
+   built from old data alone, flagging the 18 mixed suppliers would have caught 3 of 22 wrong
+   auto-accepts and cost 11 of 54 correct ones, so the hypothesis is not supported as a
+   filter; variant D of the overnight run tests it as a training change instead.
+
+## D-114 — A Yunt that does not finish never causes a write; the review wait follows liveness
+
+**Date:** 2026-09-21 · **Decided by:** Afaq · **Model:** Claude
+
+Amends D-108's "ML only" row. Found the hard way: with the AI Gateway out of credit, one email
+saved a whole month (337 invoices / 897 lines) with nobody's approval.
+
+1. **No Yunt answer, no save.** When the classifier answered but the Yunt did not — down, out
+   of credit, or not done in time — the job ends `failed`, nothing is written, and the sender
+   is told "No alcancé a terminar la revisión … no guardé nada" and can send again. The
+   previous ML-only save is kept only behind `YUNT_ALLOW_ML_ONLY=1` (default off).
+2. **How long to wait is liveness, not a fixed deadline.** The job asks the review sessions
+   every 30 s whether they are still working; alive sessions keep it waiting, dead ones end
+   the wait at once (the failure hook still ends it in seconds). The ceiling is what is left of
+   the function's 300 s (`deadlineAt`, request start + 290 s, minus 20 s to stage the plan),
+   because waiting past that only means being killed. The old fixed 240 s / 270 s are gone.
+3. **Packets of 40 groups** (`YUNT_GROUPS_PER_PACKET`, default 40, was 80) so more run in
+   parallel and each finishes sooner. Cost is about the same; the fixed per-packet context
+   is paid more often.
+4. **Not solved:** a month that genuinely needs more than ~5 minutes cannot finish inside one
+   function. The measure is the 100-invoice test (6 packets); if a month does not fit, the
+   next step is a finisher that stages the plan when the last packet arrives, instead of a
+   function that polls.
+
+## D-115 — The Yunt reviews only what the classifier proposed or a rule held; reasoning is medium
+
+**Date:** 2026-09-21 · **Decided by:** Afaq · **Model:** Claude
+
+Reason: cost. The first measured review (100 July invoices, AI Gateway log in
+`reports/overnight_2026_09_21/gateway-inference-requests.csv`) cost $2.85 for a run that was
+cut off at one packet of six done, about $0.04 to $0.06 an invoice or roughly $14 to $20 for
+a month; thinking tokens were about a third of it.
+
+1. **Lines the client's own rules settled are not shown to the Yunt.** A line is skipped when
+   its decision is `auto_accept` and its source is `product_lookup`, `meter_lookup` or
+   `business_rule`. They are confirmed as they are and keep their source (they are not
+   rewritten to `yunt_applied`). Everything else is still reviewed: every classifier line, and
+   every line a rule deliberately held (petrol without a known plate, DTE 43). A group is
+   skipped only if all of its lines are settled. On the 100-invoice sample: 220 groups
+   become 155, 6 packets become 4.
+2. **Trade-off accepted.** The Yunt can no longer catch a rule-settled line the accountants
+   disagree with. July showed three (sulfato de cobre, AdBlue, Spartan Check); those belong
+   to the client's list, not to a per-line review (D-041).
+3. **A batch with nothing left to review skips the Yunt** and goes straight to a person's
+   approval; nothing is written first.
+4. **`reasoning: "medium"`** in `agent/agent.ts` (was `high`, D-076). It applies to every turn
+   the agent takes, not only reviews. **Unmeasured:** whether review quality moved. Watch the
+   *Yunt suggestions* group and the purchasing and report replies, and go back to `high` if a
+   confident wrong "keep" or a bad suggestion appears.
+
+## D-116 — Keep the packets that delivered; a silent packet must not cost the whole review
+
+**Date:** 2026-09-21 · **Decided by:** Afaq (after the second 100-invoice run) · **Model:** Claude
+
+The second run (100 invoices, D-115 settings): 4 packets of about 40 groups. Three delivered, at
+2 min 13 s, 2 min 13 s and 3 min 21 s after the review started; the fourth never did, and the job
+discarded all four at its ceiling. The paid-for work of the three was thrown away, twice
+(the first run lost five packets to the gateway budget).
+
+1. **`awaitVerdicts` returns what arrived** when the ceiling, a dead packet, a stopped review or
+   120 s of silence after the last delivery ends the wait. It returns null only when nothing
+   arrived, which is still a failed review (D-114).
+2. **Groups that never came are marked for a person** (`unsure`), so the classifier's word alone
+   does not confirm them, and the plan is staged for approval as usual. Nothing is written before
+   approval.
+3. **`maxDuration` 300 -> 800 s** on the email and upload routes (Fluid compute), deadline 790 s.
+4. **Not known:** why the fourth packet was silent (slow, or a session that ended without
+   submitting). The session stream could not be read from outside the deployment. The gateway
+   export for that run is the next place to look. Not fixed: re-dispatching a silent packet.
+
+## D-117 — Audit of the review path: no paid-for work is thrown away, and every session is capped
+
+**Date:** 2026-09-21 · **Decided by:** Afaq ("make sure money is not going to waste") · **Model:** Claude
+
+Found by reading the wait and dispatch code against the two failed 100-invoice runs:
+
+1. **One failed packet ended the whole wait.** The failure hook marks the batch `unavailable` when
+   *any* session dies; the wait treated that as the end. With 13 packets a single provider blip
+   would have abandoned twelve working ones. Now the wait gives up on that signal only if nothing at
+   all has delivered within 45 s (a real outage: credit, budget, provider).
+2. **A silent packet was never retried.** A session that finishes its turn without submitting parks
+   at `session.waiting` and looks alive to the probe. A packet still owed after its peers delivered
+   (1.5x their median time, at least 90 s), or one that never started, is now started once more
+   under its own operation id. Once per packet, and never when nothing has delivered.
+3. **One failed dispatch orphaned the rest.** `Promise.all` rejected while sessions that had already
+   started kept spending. Dispatch now retries each POST once, keeps what succeeded, and the wait
+   re-dispatches the rest.
+4. **Nothing bounded a looping session.** `agent.ts` now has `limits.maxTokenCostUsdPerSession: 1.5`
+   (a packet costs about $0.3 to $0.7). The instructions also say never to end the turn without
+   `submit_batch_proposal`.
+
+Worst case, stated plainly: every packet loops to the cap and is retried, so at most 2 x $1.5 per
+packet, about $12 for 100 invoices and $40 for a month. The gateway key budget is the outer bound.
+Typical, from the gateway log with D-115: about $2 to $3 and $7 to $11.
+
+**Still not known:** why the fourth packet of the second run was silent. The retry makes it cost a
+retry instead of the whole review; the cause is for the next run's logs (`[yunt] packet N delivered
+after S s`, `... is silent; starting it once more`).

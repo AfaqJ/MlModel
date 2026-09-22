@@ -1,0 +1,23 @@
+model_head.pkl not found in /Users/afaq/.cache/huggingface/hub/models--sentence-transformers--paraphrase-multilingual-mpnet-base-v2/snapshots/4328cf26390c98c5e3c738b4460a05b95f4911f5, initialising classification head with random weights. You should TRAIN this model on a downstream task to use it for predictions and inference.
+data: source=3021 distinct=3021 train=2178 validation=843
+weak train-only classes: ['ADM-1.3', 'ADM-1.9', 'ADM-2.2', 'ADM-3.1', 'EXP-10.2', 'EXP-15.1', 'EXP-6.4', 'EXP-8.3', 'ING-0.3', 'ING-0.6']
+excluded <2 classes: []
+provider augmentation: +2097 variants, 5 conflicts dropped, 0 held-out collisions dropped
+Map:   0%|          | 0/4275 [00:00<?, ? examples/s]Map: 100%|██████████| 4275/4275 [00:00<00:00, 67529.81 examples/s]
+***** Running training *****
+  Num unique pairs = 64
+  Batch size = 8
+  Num epochs = 1
+body stage capped at 60/class: 2674 of 4275 rows
+  0%|          | 0/8 [00:00<?, ?it/s]/Users/afaq/Desktop/Mctech/ML-model/.venv-train/lib/python3.11/site-packages/torch/utils/data/dataloader.py:752: UserWarning: 'pin_memory' argument is set as true but not supported on MPS now, device pinned memory won't be used.
+  super().__init__(loader)
+ 12%|█▎        | 1/8 [00:07<00:51,  7.39s/it]                                              12%|█▎        | 1/8 [00:07<00:51,  7.39s/it] 25%|██▌       | 2/8 [00:11<00:34,  5.75s/it] 38%|███▊      | 3/8 [00:15<00:24,  4.87s/it] 50%|█████     | 4/8 [00:19<00:17,  4.43s/it] 62%|██████▎   | 5/8 [00:23<00:12,  4.21s/it] 75%|███████▌  | 6/8 [00:27<00:08,  4.06s/it] 88%|████████▊ | 7/8 [00:31<00:04,  4.25s/it]100%|██████████| 8/8 [00:35<00:00,  4.09s/it]                                             100%|██████████| 8/8 [00:35<00:00,  4.09s/it]100%|██████████| 8/8 [00:35<00:00,  4.45s/it]
+{'embedding_loss': 0.1406, 'grad_norm': 2.4858157634735107, 'learning_rate': 0.0, 'epoch': 0.12}
+{'train_runtime': 35.5589, 'train_samples_per_second': 1.8, 'train_steps_per_second': 0.225, 'train_loss': 0.20269245095551014, 'epoch': 1.0}
+{
+  "optimizer": "AcceleratedOptimizer -> AdamW",
+  "embedding_delta": 7.734447717666626e-05,
+  "steps": 8,
+  "elapsed_minutes": 1.22,
+  "report": "reports/overnight_2026_09_21/smoke.json"
+}

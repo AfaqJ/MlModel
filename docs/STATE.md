@@ -3,6 +3,91 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-21/22 (handover) — Yunt reliability (D-113–D-117), July/August model evaluation
+
+**Read `reports/overnight_2026_09_21/README.md` first** — it lists where the July/August
+invoices, the accountants' ledgers, the ML reports and every script are.
+
+**Start here:** variant **F_targeted_fix** is training now (background, PID logged in
+`reports/overnight_2026_09_21/train_F_targeted_fix.log`; `caffeinate -i -w <pid>` is attached
+so a closed lid no longer stalls it — it already lost ~100 minutes once to sleep before that).
+Check progress: `tail -c 300 reports/overnight_2026_09_21/train_F_targeted_fix.log | tr '\r' '\n' | tail -3`.
+When it finishes, score it — `.venv-train/bin/python scripts/104_eval_overnight.py --model F_targeted_fix=models/overnight_2026_09_21/F_targeted_fix --exam locked843` plus a rerun of
+`august_score.py` with F's path swapped in — against **B_july70**, the current leader (below),
+before deciding which model goes forward. Nothing has been deployed; the live classifier is
+still v1.4.1.
+
+### The classifier: two real months of evidence now, not one
+
+- **The old test set overstated accuracy**: 98% of its suppliers were already in training, vs
+  67% for July. **B_july70** (old training data as-is + 70% of July's suppliers, no diet
+  changes) is the honest winner so far, checked on data it never trained on both times:
+  - July's held-out 30% of suppliers: 46.2% top-1 vs v1.4.1's 37.7%, 3 wrong auto-accepts vs 7.
+  - **August, entirely offline** (rule engine run locally via `august_offline_rules.ts` — pure,
+    no DB — ground truth from the accountant ledger, both SetFit dirs scored locally, no
+    Cloud Run call, nothing written anywhere): 60.6% top-1 vs 43.6%, 6 wrong auto-accepts vs 9.
+  - The "diet fix" variants (A/C/D: thinned supplier caps, rule-row downweighting) all scored
+    **worse** than both v1.4.1 and B — a genuine negative result, don't repeat that approach.
+- **Variant F** adds only 47 hand-picked rows to B's training: categories still under 30
+  examples, plus ADM-1.2 (ithe Verisure monitoring line — B calls it ADM-1.7 at 0.96–0.99
+  confidence, in *both* July and August). **Two rows were caught and dropped, not trained
+  through**: fuel wording that is genuinely ambiguous without the plate (same text, opposite
+  label in old gold vs the August ledger — proven, not assumed, by a real collapse
+  contradiction) and one milk-filter line with the same kind of client-filing conflict; both
+  are for the client to resolve (D-041), not us. A second check caught 2 more candidate rows
+  that were word-for-word duplicates of **locked test rows** — including those would have
+  leaked test answers into training under a new id; both dropped before training started.
+  57 August lines + 117 July lines were deliberately held out of F's training, for an honest
+  recheck (`reports/overnight_2026_09_21/F_holdout_exam.csv`).
+- **Recurring, real bug for the client, found in both months**: Verisure monitoring lines are
+  booked ADM-1.2 (Comunicaciones) by the accountants; the model is very confident they're
+  ADM-1.7 (Otros Gastos Administracion), every month. Worth a fifth business rule regardless of
+  which model ships.
+- **Not yet run**: the mandatory income-slice gate (`docs/TEST_CHECKLIST.md`) on either
+  candidate. Do this before treating either as a release candidate — aggregate accuracy alone
+  is not a release gate here.
+
+### The Yunt review path: D-114 through D-117, all pushed and on the Preview
+
+Built because two live 100-invoice test runs each wasted real money on a bug, in this order:
+
+1. **Run 1** — the AI Gateway key had a $5 lifetime budget; it ran out mid-review, and the
+   pre-existing code saved the whole batch unapproved (the old D-108 "ML only" row). **Fixed
+   (D-114):** a Yunt that does not finish now never causes a write; the wait follows session
+   liveness (probed every 30s) instead of a fixed 240s/270s deadline, capped by what's left of
+   the function's now-800s limit (Fluid compute, was 300s).
+2. **Run 2** (after D-114/D-115) — 3 of 4 packets delivered their reviews in 2–3.5 minutes; the
+   job discarded **all four**, including the three that had already been paid for, because the
+   wait logic treated "one packet done, one still owed" as healthy only until the *whole* thing
+   hit the ceiling. **Fixed (D-116):** packets that delivered are kept; a group nobody reviewed
+   in time is marked "needs a person" in the staged plan rather than silently dropped or
+   discarded with everything else.
+3. **Audit pass after that (D-117)**, done because Afaq does not want a third wasted run: one
+   failed session no longer aborts the whole wait (only total silence for 45s does); a silent or
+   never-started packet is retried exactly once; a failed dispatch no longer orphans sessions
+   that already started and are being paid for; each review session is capped at $1.50
+   (a packet costs ~$0.3–0.7, so this is a loop guard, not a target).
+4. **D-115** (cost, same audit): the Yunt is no longer shown lines the client's own rules
+   already settled (~25% of lines, ~1/3 of the spend) — only classifier lines and rule-held
+   lines (unplated fuel, DTE 43) go to review. Reasoning dropped `high`→`medium`.
+
+**Honest status: D-114 and D-115 were proven live** (run 1 confirmed the no-save behaviour and
+the correct error reply; run 2 confirmed packets dropped from 6→4 correctly). **D-116 and
+D-117 have NOT been live-tested — only unit-tested** (9 scenarios in
+`scripts/check-await-verdicts.ts`, plus a 400-line/10-packet case in
+`check-orchestrator-matrix.ts`). The next real send is the actual test of them. **Do the
+3-invoice smoke send first** (`handover/glassbox-test/A-EMAIL-flow-3-unseen-july-invoices.zip`
+— this was planned twice and never actually sent), then `~/Desktop/july-100-invoices.zip`,
+then the month. Watch the Vercel logs for `[yunt] packet N delivered after Ss` and
+`... is silent; starting it once more` — that's the new behaviour proving itself.
+
+**Open:** the income-slice check; picking B vs F once F is scored; re-setting the auto-accept
+confidence bar for whichever model ships (never on July/August numbers, only on `locked843`);
+raising the client questions from the ledgers (placeholder plates, Verisure, sulfato de cobre,
+AdBlue, Spartan Check, the milk-filter conflict); a full pipeline rehearsal (email → rules →
+model → Yunt → approval) on a still-unseen slice before the actual demo; the demo date itself
+is still unknown — ask Afaq.
+
 ## Session — 2026-09-21 (evening) — handover to the next session
 
 **Start here.** `yunt` in `../milk-company` is pushed at `e2f7f48` (Preview build

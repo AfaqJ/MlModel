@@ -1,0 +1,20 @@
+{
+ "v1.4.1 (live)": {
+  "rows": 94,
+  "accuracy": 0.4362,
+  "macro_f1": 0.4359,
+  "top3_accuracy": 0.5745,
+  "auto_accept_rate": 0.3404,
+  "auto_accept_precision": 0.7188,
+  "auto_accept_wrong": 9
+ },
+ "B_july70 (candidate)": {
+  "rows": 94,
+  "accuracy": 0.6064,
+  "macro_f1": 0.4995,
+  "top3_accuracy": 0.7766,
+  "auto_accept_rate": 0.3191,
+  "auto_accept_precision": 0.8,
+  "auto_accept_wrong": 6
+ }
+}

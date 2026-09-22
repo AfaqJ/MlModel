@@ -1,0 +1,21 @@
+21:41:46 START train A_diet_old
+23:11:44 A_diet_old already trained, skipping
+23:11:44 START eval A_diet_old
+23:12:05 END   eval A_diet_old (exit 0)
+23:12:05 START train B_july70
+00:00:52 END   train B_july70 (exit 0)
+00:00:52 START eval B_july70
+00:01:13 END   eval B_july70 (exit 0)
+00:01:13 START train C_july70_diet
+00:44:08 END   train C_july70_diet (exit 0)
+00:44:08 START eval C_july70_diet
+00:44:28 END   eval C_july70_diet (exit 0)
+00:44:28 START train E_julyfull_diet
+01:25:38 END   train E_julyfull_diet (exit 0)
+01:25:38 START eval E_julyfull_diet
+01:25:58 END   eval E_julyfull_diet (exit 0)
+01:25:58 START train D_july70_diet_ctx
+02:05:54 END   train D_july70_diet_ctx (exit 0)
+02:05:54 START eval D_july70_diet_ctx
+02:06:15 END   eval D_july70_diet_ctx (exit 0)
+02:06:15 QUEUE DONE
