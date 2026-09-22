@@ -1,0 +1,39 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/overnight_2026_09_21/B_july70' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/overnight_2026_09_21/B_july70' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/overnight_2026_09_21/B_july70' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/overnight_2026_09_21/B_july70' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+/Users/afaq/Desktop/Mctech/ML-model/.venv-train/lib/python3.11/site-packages/transformers/modeling_attn_mask_utils.py:196: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  inverted_mask = torch.tensor(1.0, dtype=dtype) - expanded_mask
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+{"rows": 843, "output": "/Users/afaq/Desktop/Mctech/ML-model/artifacts/B_july70-int8/_parity_onnx.npy"}
+  reference worker: {"rows": 843, "max_seq_length": 64, "norm_mean": 3.4703, "output": "/Users/afaq/Desktop/Mctech/ML-model/artifacts/B_july70-int8/_parity_reference.npy"}
+parity inputs (torch reference: cpu fp32, subprocess):
+  reference_embeddings   type=ndarray dtype=float64 shape=(843, 768) finite=True norm[min/mean/max]=1.9886/3.4703/4.2043
+  onnx_embeddings        type=ndarray dtype=float64 shape=(843, 768) finite=True norm[min/mean/max]=1.9727/3.4355/4.1920
+  val accuracy: torch_fp32=0.7663 onnx=0.7556 | cosine mean=0.99425 min=0.94493
+  NOTE: accepting up to 5.00% threshold-decision disagreement by explicit request; measured 3.44% (29 of 843 validation rows would land on the opposite side of auto-accept vs review)
+{
+  "artifact": "/Users/afaq/Desktop/Mctech/ML-model/artifacts/B_july70-int8",
+  "classes": 76,
+  "thresholds": {
+    "accept_top1": 0.75,
+    "accept_margin": 0.5,
+    "model_auto_accept": true
+  },
+  "parity_gate": {
+    "cosine_mean": 0.99425,
+    "cosine_min": 0.94493,
+    "top1_disagreement": 0.0605,
+    "top1_disagreement_allowed": 0.09,
+    "val_accuracy_torch_fp32": 0.7663,
+    "val_accuracy_onnx": 0.7556,
+    "val_macro_f1_onnx": 0.6727,
+    "threshold_decision_disagreement": 0.0344,
+    "threshold_decision_disagreement_allowed": 0.05,
+    "threshold_decisions_flipped": 29,
+    "validation_rows": 843,
+    "probability_max_abs_delta": 0.260153
+  }
+}

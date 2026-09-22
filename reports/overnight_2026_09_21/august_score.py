@@ -24,6 +24,7 @@ for r in rows:
 MODELS = {
     "v1.4.1 (live)": ROOT / "models/setfit_retrain_2026_09_16_C",
     "B_july70 (candidate)": ROOT / "models/overnight_2026_09_21/B_july70",
+    "F_targeted_fix (candidate)": ROOT / "models/overnight_2026_09_21/F_targeted_fix",
 }
 
 results = {}

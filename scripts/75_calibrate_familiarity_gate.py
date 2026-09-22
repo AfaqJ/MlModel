@@ -44,14 +44,22 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def load_model(path: Path):
-    import transformers.training_args as training_args
-    if not hasattr(training_args, "default_logdir"):
-        from transformers.integrations.integration_utils import default_logdir
-        training_args.default_logdir = default_logdir
-    from setfit import SetFitModel
+class _LocalSetFitModel:
+    """SetFitModel.from_pretrained's model-card inference crashes on locally-saved
+    models (no HF repo id, st_id=None). Load body + head directly instead — same
+    workaround as training/export_onnx.py."""
 
-    return SetFitModel.from_pretrained(str(path), local_files_only=True)
+    def __init__(self, path: Path):
+        import joblib
+        from sentence_transformers import SentenceTransformer
+
+        self.model_body = SentenceTransformer(str(path))
+        self.model_head = joblib.load(path / "model_head.pkl")
+        self.labels = list(self.model_head.classes_)
+
+
+def load_model(path: Path):
+    return _LocalSetFitModel(path)
 
 
 def main() -> None:

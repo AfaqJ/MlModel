@@ -16,5 +16,14 @@
   "auto_accept_rate": 0.3191,
   "auto_accept_precision": 0.8,
   "auto_accept_wrong": 6
+ },
+ "F_targeted_fix (candidate)": {
+  "rows": 94,
+  "accuracy": 0.6809,
+  "macro_f1": 0.6044,
+  "top3_accuracy": 0.8298,
+  "auto_accept_rate": 0.3617,
+  "auto_accept_precision": 0.9412,
+  "auto_accept_wrong": 2
  }
 }

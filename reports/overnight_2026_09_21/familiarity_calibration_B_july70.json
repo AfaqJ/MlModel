@@ -1,0 +1,332 @@
+{
+  "model": "models/overnight_2026_09_21/B_july70",
+  "train_rows_in_index": 3722,
+  "validation_rows": 843,
+  "weak_classes": [
+    "ADM-1.3",
+    "ADM-1.9",
+    "ADM-2.2",
+    "ADM-2.3",
+    "ADM-3.1",
+    "AF-2.1",
+    "EXP-10.2",
+    "EXP-11.5",
+    "EXP-15.1",
+    "EXP-15.2",
+    "EXP-15.7",
+    "EXP-2.1",
+    "EXP-4.1",
+    "EXP-5.1",
+    "EXP-5.2",
+    "EXP-5.3",
+    "EXP-5.4",
+    "EXP-5.5",
+    "EXP-6.1",
+    "EXP-6.3",
+    "EXP-6.4",
+    "EXP-6.5",
+    "EXP-8.2",
+    "EXP-8.3",
+    "EXP-8.4",
+    "ING-0.2",
+    "ING-0.3",
+    "ING-0.6",
+    "ING-0.7"
+  ],
+  "model_only_auto_accepts": 308,
+  "model_only_correct": 301,
+  "model_only_wrong": 7,
+  "max_correct_loss": 0.01,
+  "selected": {
+    "k": 3,
+    "min_agreement": 0.6,
+    "correct_auto_accepts_lost": 3,
+    "correct_loss_rate": 0.01,
+    "wrong_auto_accepts_caught": 0,
+    "wrong_total": 7
+  },
+  "sweep": [
+    {
+      "k": 3,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 0,
+      "correct_loss_rate": 0.0,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 0,
+      "correct_loss_rate": 0.0,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.01,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.01,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.01,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 21,
+      "correct_loss_rate": 0.0698,
+      "wrong_auto_accepts_caught": 3,
+      "wrong_total": 7
+    },
+    {
+      "k": 3,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 21,
+      "correct_loss_rate": 0.0698,
+      "wrong_auto_accepts_caught": 3,
+      "wrong_total": 7
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 0,
+      "correct_loss_rate": 0.0,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 2,
+      "correct_loss_rate": 0.0066,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 2,
+      "correct_loss_rate": 0.0066,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 6,
+      "correct_loss_rate": 0.0199,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 6,
+      "correct_loss_rate": 0.0199,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 14,
+      "correct_loss_rate": 0.0465,
+      "wrong_auto_accepts_caught": 1,
+      "wrong_total": 7
+    },
+    {
+      "k": 5,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 14,
+      "correct_loss_rate": 0.0465,
+      "wrong_auto_accepts_caught": 1,
+      "wrong_total": 7
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 1,
+      "correct_loss_rate": 0.0033,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.01,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.01,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 7,
+      "correct_loss_rate": 0.0233,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 11,
+      "correct_loss_rate": 0.0365,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 11,
+      "correct_loss_rate": 0.0365,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 7,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 25,
+      "correct_loss_rate": 0.0831,
+      "wrong_auto_accepts_caught": 2,
+      "wrong_total": 7
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.2,
+      "correct_auto_accepts_lost": 1,
+      "correct_loss_rate": 0.0033,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.3,
+      "correct_auto_accepts_lost": 3,
+      "correct_loss_rate": 0.01,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.4,
+      "correct_auto_accepts_lost": 4,
+      "correct_loss_rate": 0.0133,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.5,
+      "correct_auto_accepts_lost": 8,
+      "correct_loss_rate": 0.0266,
+      "wrong_auto_accepts_caught": 0,
+      "wrong_total": 7
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.6,
+      "correct_auto_accepts_lost": 17,
+      "correct_loss_rate": 0.0565,
+      "wrong_auto_accepts_caught": 2,
+      "wrong_total": 7
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.7,
+      "correct_auto_accepts_lost": 25,
+      "correct_loss_rate": 0.0831,
+      "wrong_auto_accepts_caught": 2,
+      "wrong_total": 7
+    },
+    {
+      "k": 10,
+      "min_agreement": 0.8,
+      "correct_auto_accepts_lost": 33,
+      "correct_loss_rate": 0.1096,
+      "wrong_auto_accepts_caught": 4,
+      "wrong_total": 7
+    }
+  ],
+  "wrong_auto_accepts": [
+    {
+      "gold_id": "SA-00805",
+      "truth": "EXP-10.4",
+      "predicted": "EXP-10.1",
+      "top1": 0.7543,
+      "margin": 0.6165,
+      "text": "[COMPRAS] | -Juego de servicio - Gestion de leche (C)var. | GEA Farm Technologies Osorno Ltda."
+    },
+    {
+      "gold_id": "FR-00001",
+      "truth": "EXP-11.4",
+      "predicted": "ADM-1.4",
+      "top1": 0.9775,
+      "margin": 0.9745,
+      "text": "[COMPRAS] | 93 S/P | COMERCIALIZADORA CARTIZ SPA"
+    },
+    {
+      "gold_id": "SP-00373",
+      "truth": "EXP-15.3",
+      "predicted": "EXP-15.5",
+      "top1": 0.7891,
+      "margin": 0.6816,
+      "text": "[COMPRAS] | Arriendo febrero 26 | ADDVISE SPA"
+    },
+    {
+      "gold_id": "SP-00227",
+      "truth": "EXP-16.2",
+      "predicted": "EXP-7.0",
+      "top1": 0.9301,
+      "margin": 0.8811,
+      "text": "[COMPRAS] | CONTROL DE ROEDORES | INICIO DE CONTROL DE ROEDORES PREDIO TINEO, VISITA REALIZADA EN NOVIEMBRE 2025. | H2 ASESORIAS Y SERVICIOS SPA"
+    },
+    {
+      "gold_id": "SA-00440",
+      "truth": "EXP-2.5",
+      "predicted": "EXP-2.6",
+      "top1": 0.7808,
+      "margin": 0.6603,
+      "text": "[COMPRAS] | JERINGA DESECHABLE 10CC C/AGUJA (L.L.) | JERINGA DESECHABLE 10 CC CON AGUJA | COOPERATIVA AGRICOLA Y LECHERA DE LA UNION LTDA."
+    },
+    {
+      "gold_id": "LV-7e00920b",
+      "truth": "EXP-3.1",
+      "predicted": "EXP-2.5",
+      "top1": 0.7734,
+      "margin": 0.666,
+      "text": "[COMPRAS] | CIPIOSYN 50 CC (CIPIONATO ESTRADIOL) | COOPERATIVA AGRICOLA Y DE SERVICIOS LTDA"
+    },
+    {
+      "gold_id": "SP-00393",
+      "truth": "EXP-4.2",
+      "predicted": "EXP-4.3",
+      "top1": 0.7995,
+      "margin": 0.6442,
+      "text": "[COMPRAS] | FILM BOLOS -Barbier Blanco__1500 M__ | Barbier Blanco__1500 M__ | FEROSOR AGRICOLA S.A."
+    }
+  ]
+}

@@ -2941,3 +2941,40 @@ Typical, from the gateway log with D-115: about $2 to $3 and $7 to $11.
 **Still not known:** why the fourth packet of the second run was silent. The retry makes it cost a
 retry instead of the whole review; the cause is for the next run's logs (`[yunt] packet N delivered
 after S s`, `... is silent; starting it once more`).
+
+## D-118 — B_july70 picked over F_targeted_fix; exported int8 under D-097's ceilings, deployed at 0% traffic
+
+**Date:** 2026-09-22 · **Decided by:** Afaq · **Model:** Claude
+
+1. **F_targeted_fix's headline August win was training contamination, not evidence.** `scripts/107`
+   trained F directly on 41 of the 94 lines `august_score.py` scores against. On every exam neither
+   model trained on — locked843 (843 rows), the August lines actually held out of F
+   (`F_holdout_exam[august_holdout]`, 56 rows), and the July holdout (117 rows) — B_july70 ties or
+   beats F, and clearly wins the income-slice gate (22/22 vs F's 21/22) and the July holdout (47.9%/0
+   wrong vs 38.5%/3 wrong). **B_july70 ships, not F.** F's targeted rows didn't generalize, consistent
+   with A/C/D/E's diet variants all scoring worse than B too (D-113).
+2. **Neither model fixes the Verisure ADM-1.2/1.7 bug.** Checked directly: both still predict ADM-1.7
+   top-1 on the untouched locked843 Verisure rows (v1.4.1 99.3%, B 97.3%, F 89.2% — F nudged toward
+   ADM-1.2 at 7.6% but didn't flip). **locked843's own gold label for Verisure is ADM-1.7** — the old
+   test set encodes the same wrong answer the accountants reject every month. This is a rule gap, not
+   a training gap; needs the 5th deterministic business rule (Verisure → ADM-1.2), not more training.
+3. **INT8 export needed D-097's ceilings, not new ones.** Default gate (0.03 top-1 / 0.0 decision)
+   failed: cosine 0.99425, top-1 disagreement 6.05%, decision disagreement 3.44%, accuracy 0.7663 fp32
+   → 0.7556 int8. Both measured numbers fall under the ceilings D-097 already established for
+   v1.4.0/v1.4.1 (0.09 / 0.05) — reused, not loosened further. Traced the 29 decision flips by hand
+   before accepting: 24 auto-accept→review (safe), 5 review→auto-accept, and of those 5 exactly **one
+   is a new false positive** — "TOALLA PAPEL INTERFOLIADA" (Cooperativa Agrícola y Lechera), true
+   EXP-5.3, both fp32 and int8 already agreed on the wrong EXP-2.6, int8's confidence alone crossed the
+   auto-accept bar. 1/843 = 0.12%, accepted as the same class of cost D-097 already priced in.
+4. **Auto-accept thresholds (0.75/0.50) are v1.4.1's, reused as-is, not recalibrated for B.** Real
+   recalibration on locked843 is still open — do not read this deploy as a re-tuned release.
+5. **Deployed as `mlmodel-b-july70-rc1`, 0% traffic**, tagged `b-july70`
+   (`https://b-july70---mlmodel-ufmuwiq6ta-ew.a.run.app`). All of `scripts/88_prove_deploy.sh` passed.
+   Production still serves v1.4.1 (`mlmodel-00018-sll`) at 100%. **No traffic shift has happened** —
+   that is a separate decision after the Yunt final test this deploy exists for.
+6. **Pipeline gap found and fixed along the way, not specific to B:** `scripts/75_calibrate_familiarity_gate.py`
+   called `SetFitModel.from_pretrained`, which crashes on any locally-saved model (no HF repo id) —
+   same bug already documented and worked around in `training/export_onnx.py`. Now loads body+head
+   directly. Also bridged the overnight comparison pipeline's stripped split.csv schema
+   (`split,gold_id,category_code`) to what the release pipeline expects (`+text,text_sha256`) — the two
+   pipelines were never wired together before this.

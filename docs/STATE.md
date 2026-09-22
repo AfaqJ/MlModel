@@ -3,6 +3,31 @@
 Updated every session. Last 5 sessions only; anything older that still matters
 lives in `DECISIONS.md`.
 
+## Session — 2026-09-22 — B_july70 picked and deployed at 0% traffic (D-118)
+
+**Start here.** F_targeted_fix finished training and was scored — its headline August number was
+training-contaminated (see D-118 point 1); on every honest exam **B_july70 wins**. It's now exported
+to int8 (`artifacts/B_july70-int8/`) and deployed as Cloud Run revision `mlmodel-b-july70-rc1` at
+**0% traffic** — production still serves v1.4.1 (`mlmodel-00018-sll`) at 100%. Test URL:
+`https://b-july70---mlmodel-ufmuwiq6ta-ew.a.run.app`. `scripts/88_prove_deploy.sh` passed clean.
+**No traffic shift decision has been made** — that's next, after Afaq runs the Yunt final test
+against the tagged URL.
+
+**Still open, in order:**
+1. Add the Verisure → ADM-1.2 business rule (neither B nor F fixed it via training — see D-118 §2).
+2. Recalibrate B_july70's auto-accept threshold on locked843 (it's currently running on v1.4.1's
+   reused 0.75/0.50, not its own tuning — D-118 §4).
+3. Afaq's Yunt final test against the 0%-traffic tag; decide the traffic shift after.
+4. The Yunt reliability smoke test (D-116/D-117, still only unit-tested) — unrelated thread, still
+   pending, still needs the AI Gateway budget checked first.
+5. Demo date still unknown — ask Afaq.
+
+**New, unrelated thread opened this session:** `experiment/jev-typesafe-eval` branch, off this one,
+for evaluating Typesafe AI's "Jev" model (launched 2026-09-15, early access) as a possible classifier
+alternative. Afaq has an API key. No Spanish-language support is documented anywhere in Typesafe's
+docs — that's the first thing to test, on the same held-out slices used for B_july70, before anything
+else. Kept strictly separate from the classifier branch so it can't contaminate a working deploy.
+
 ## Session — 2026-09-21/22 (handover) — Yunt reliability (D-113–D-117), July/August model evaluation
 
 **Read `reports/overnight_2026_09_21/README.md` first** — it lists where the July/August

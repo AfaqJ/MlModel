@@ -1,0 +1,15 @@
+The tokenizer you are loading from '/Users/afaq/Desktop/Mctech/ML-model/models/overnight_2026_09_21/B_july70' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+wrote familiarity index into /Users/afaq/Desktop/Mctech/ML-model/models/overnight_2026_09_21/B_july70
+{
+  "model_only_auto_accepts": 308,
+  "model_only_correct": 301,
+  "model_only_wrong": 7,
+  "selected": {
+    "k": 3,
+    "min_agreement": 0.6,
+    "correct_auto_accepts_lost": 3,
+    "correct_loss_rate": 0.01,
+    "wrong_auto_accepts_caught": 0,
+    "wrong_total": 7
+  }
+}
