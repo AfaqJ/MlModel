@@ -1,0 +1,2 @@
+provider,transaction_type,category_code,rule_version,note
+VERISURE CHILE SPA,COMPRAS,ADM-1.2,1,"Security/alarm monitoring is this supplier's entire business with Antillanca — confirmed against 18/18 real lines across 2025 locked843, July 2026 and August 2026, all ADM-1.2. Month-agnostic on purpose: exact item-text rows (the wrong first attempt) break every month because the invoice text embeds the month and contract number."

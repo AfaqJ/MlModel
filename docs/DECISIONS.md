@@ -2957,7 +2957,9 @@ after S s`, `... is silent; starting it once more`).
    top-1 on the untouched locked843 Verisure rows (v1.4.1 99.3%, B 97.3%, F 89.2% — F nudged toward
    ADM-1.2 at 7.6% but didn't flip). **locked843's own gold label for Verisure is ADM-1.7** — the old
    test set encodes the same wrong answer the accountants reject every month. This is a rule gap, not
-   a training gap; needs the 5th deterministic business rule (Verisure → ADM-1.2), not more training.
+   a training gap. **Fixed same day as a deterministic rule, see D-119** — not by retraining either
+   model, and locked843's own label is still stale (do not read a locked843 Verisure "miss" as a
+   regression going forward; it is the exam that is wrong there, not the system).
 3. **INT8 export needed D-097's ceilings, not new ones.** Default gate (0.03 top-1 / 0.0 decision)
    failed: cosine 0.99425, top-1 disagreement 6.05%, decision disagreement 3.44%, accuracy 0.7663 fp32
    → 0.7556 int8. Both measured numbers fall under the ceilings D-097 already established for
@@ -2968,13 +2970,76 @@ after S s`, `... is silent; starting it once more`).
    auto-accept bar. 1/843 = 0.12%, accepted as the same class of cost D-097 already priced in.
 4. **Auto-accept thresholds (0.75/0.50) are v1.4.1's, reused as-is, not recalibrated for B.** Real
    recalibration on locked843 is still open — do not read this deploy as a re-tuned release.
-5. **Deployed as `mlmodel-b-july70-rc1`, 0% traffic**, tagged `b-july70`
+5. **Deployed as `mlmodel-b-july70-rc1`**, tagged `b-july70`
    (`https://b-july70---mlmodel-ufmuwiq6ta-ew.a.run.app`). All of `scripts/88_prove_deploy.sh` passed.
-   Production still serves v1.4.1 (`mlmodel-00018-sll`) at 100%. **No traffic shift has happened** —
-   that is a separate decision after the Yunt final test this deploy exists for.
+   Shipped at 0% traffic first, deliberately, with production still on v1.4.1 — **superseded same day,
+   see D-119: traffic moved to 100% after Afaq's explicit go-ahead.**
 6. **Pipeline gap found and fixed along the way, not specific to B:** `scripts/75_calibrate_familiarity_gate.py`
    called `SetFitModel.from_pretrained`, which crashes on any locally-saved model (no HF repo id) —
    same bug already documented and worked around in `training/export_onnx.py`. Now loads body+head
    directly. Also bridged the overnight comparison pipeline's stripped split.csv schema
    (`split,gold_id,category_code`) to what the release pipeline expects (`+text,text_sha256`) — the two
    pipelines were never wired together before this.
+
+## D-119 — B_july70 traffic moved to 100%; Verisure shipped as a rule; Jev experiment concluded (for now)
+
+**Date:** 2026-09-22 · **Decided by:** Afaq · **Model:** Claude
+
+1. **Traffic moved from 0% to 100% on `mlmodel-b-july70-rc1`, Afaq's explicit go-ahead.** Verified with
+   `scripts/88_prove_deploy.sh` against the base URL. `CLASSIFIER_URL` already pointed at the base
+   Cloud Run URL rather than a revision tag, so no Vercel change was needed — the Yunt started calling
+   B_july70 on its next classifier call, no redeploy of `milk-company` required. Supersedes D-118 §5.
+2. **Verisure → `ADM-1.2` shipped as a deterministic rule, superseding D-118 §2's "needs the 5th
+   business rule" note.** Checked against real ledger data before writing anything: 18/18 real
+   Verisure lines ever seen (2025 locked843, July 2026, August 2026) are `ADM-1.2`, no exceptions,
+   exactly matching the client's own email answer.
+   **First attempt was wrong and was caught and corrected in the same session, not left as shipped:**
+   16 exact `item_text|provider` rows in `app/data/product_lookup.csv`, one per real month/contract
+   string seen so far. Afaq caught it immediately — Verisure's monitoring charge is a recurring
+   monthly invoice, so the item text embeds the month and one of 4 contract numbers, and an
+   exact-text row breaks on every new month. **Replaced with a new, month-agnostic `providerRules`
+   mechanism**: a new `app/data/provider_rules.csv` (provider, transaction_type, category_code) for
+   suppliers whose entire business with this client is one thing, checked in `applyRules()`
+   independent of item_text. New `RulesData.providerRules` field, generator support in
+   `scripts/generate-rules-data.ts`, one CSV row: `VERISURE CHILE SPA,COMPRAS,ADM-1.2`. Verified live
+   against 2025, 2030, a never-seen contract number, and a hypothetical different Verisure line — all
+   correctly resolve, because the rule doesn't read wording at all, only the supplier. Regenerated
+   `rules-data.json` on both `milk-company` branches (`yunt` and `experiment/jev-typesafe`) via
+   `scripts/generate-rules-data.ts`. **Deliberately not mirrored into `app/inference/business_rules.py`
+   / Cloud Run this pass** — the TS `applyRules()` layer already intercepts these lines before either
+   classifier is called, so the fix is complete without a second Cloud Run redeploy.
+   `scripts/check-rules-parity.ts` will report a real, known, temporary disagreement between the
+   Python and TS sides until the Python data is brought current — expected, not a bug to chase before
+   the demo. **Neither `milk-company` branch's changes are committed** — left for Afaq to review.
+   **The general lesson, worth applying to any future exact-match rule for a recurring invoice:**
+   check whether the invoice text contains something that changes every time (a date, a sequence
+   number, a contract reference) before choosing item-text matching over supplier-level matching —
+   the first attempt here didn't ask that question and shipped something that would have silently
+   reverted to the model's wrong guess every month starting in September.
+3. **The Yunt's own precedent search would not have caught the Verisure bug**, checked by reading
+   `yunt_category_precedent` (`supabase/025_invoice_context_precedent.sql`) directly rather than
+   assuming. It ranks `human_confirmed` evidence first but falls back to the model's own past
+   `pipeline_auto_accepted` guesses when nothing human-confirmed exists — and no Verisure line had
+   ever been human-corrected in Supabase, so the only "precedent" available was the model agreeing
+   with its own past mistakes. **The precedent safety net has a blind spot exactly where a bug is
+   systematic and unanimous** — worth remembering the next time a "the Yunt will catch it" argument
+   comes up for a different recurring, confidently-wrong pattern.
+4. **Jev (Typesafe AI) is not ready to replace the classifier — concluded after six rounds of real
+   prompt iteration, not a first impression.** Branch `experiment/jev-typesafe` in `milk-company`,
+   left as-is, not merged, not deleted. On `locked843`, iteration (category-description hints, an
+   explicit `NEEDS_REVIEW` abstain option, positive rules checked against real label distributions)
+   closed the accuracy gap to B_july70 (~73–76% on commits vs B's 71.0%). **Cross-validated on July
+   and August and the tuning did not generalize**: beat B_july70 on July accuracy (51.5% vs 46.2%) but
+   was ~5x less safe (14 vs 3 wrong auto-accepts); on August it flipped (46.8% vs 60.6% accuracy, but
+   safer: 2 vs 6 wrong auto-accepts). **B_july70's wrong-auto-accept count stayed in a tight band (6,
+   3, 6) across all three months of real evidence; Jev's swung from 2 to 24.** That instability across
+   months, not either single accuracy number, is the actual reason to hold off — a hint written from
+   `locked843` evidence was directly contradicted by a real July line (an embroidery-service rule).
+   Two real analytical mistakes were made and caught mid-session by checking full label distributions
+   instead of single examples before writing a rule (`CONTROL DE ROEDORES` is 17:1 `EXP-7.0`, not the
+   reverse as first written; GEA splits 6:2:2 across three categories, not one) — worth citing as the
+   concrete case for "check the distribution, not the example" going forward, on any project. Untried,
+   real next steps if this resumes: Typesafe's `examples` field (distinct from the `what`/`not_for`
+   hints used so far), real precedent retrieval (few-shot real historical lines per call), hierarchical
+   two-stage classification, and calibrating Jev's own auto-accept threshold instead of reusing
+   B_july70's 0.75/0.50.

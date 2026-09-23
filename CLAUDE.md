@@ -3,10 +3,11 @@
 Classifies Spanish invoice line items into accounting categories for
 **Antillanca**, a Chilean dairy/agriculture client of Audisis / Grupo ProGestión.
 
-**Status:** v1.4.1 live on Cloud Run — service `mlmodel`, `europe-west1`,
-revision `mlmodel-00018-sll` (image `mlmodel:v1.4.1-names`), 100% traffic,
-deployed and verified 2026-09-16. Trained on gold merged with every settled
-Supabase label (D-099). Roll back with a traffic shift to `mlmodel-00017-vg5`,
+**Status:** B_july70 live on Cloud Run — service `mlmodel`, `europe-west1`,
+revision `mlmodel-b-july70-rc1` (tag `b-july70`), 100% traffic, deployed and
+verified 2026-09-22 (D-118, D-119). Auto-accept thresholds are still v1.4.1's
+reused 0.75/0.50, not recalibrated for B — see D-118 §4, still open. Roll back
+with a traffic shift to `mlmodel-00018-sll` (v1.4.1), `mlmodel-00017-vg5`,
 `mlmodel-00016-p8z` (v1.4.0) or `mlmodel-00015-mjr` (v1.3.3). Prove a deploy
 with `scripts/88_prove_deploy.sh <url>`. The
 live database is **at baseline** (restored 2026-09-15): 5,195 invoices / 11,746
